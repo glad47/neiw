@@ -1,0 +1,140 @@
+<title>Add Customer Info</title>
+<script type="text/html" template>
+    获取到的id为：
+    {{ d.params.id }}
+</script>
+
+<div class="layui-fluid">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md4 layui-col-sm4">
+                <label class="layui-form-label">用户名：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input" id="user_edit_yhm" value="Parker">
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md4 layui-col-sm4">
+                <label class="layui-form-label">密码：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input" id="user_edit_pwd">
+                </div>
+            </div>
+            <div class="addcus-cusID layui-col-md4 layui-col-sm4">
+                <label class="layui-form-label">客户ID：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input" id="user_edit_cusid">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md4 layui-col-sm4">
+                <label class="layui-form-label">部门：</label>
+                <div class="layui-input-block">
+                    <select name="label" lay-verify="required">
+                        <option value=""></option>
+                        <option value="">IT部</option>
+                        <option value="">外贸部</option>
+                        <option value="">市场部</option>
+                    </select>
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md4 layui-col-sm4">
+                <label class="layui-form-label">职称：</label>
+                <div class="layui-input-block">
+                    <select name="label" lay-verify="required">
+                        <option value=""></option>
+                        <option value="">程序员</option>
+                        <option value="">外贸专员</option>
+                        <option value="">市场专员</option>
+                    </select>
+                </div>
+            </div>
+            <div class="addcus-cusID layui-col-md4 layui-col-sm4">
+                <label class="layui-form-label">工号：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md4 layui-col-sm4">
+                <label class="layui-form-label">办公电话：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md4 layui-col-sm4">
+                <label class="layui-form-label">Skype：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="addcus-cusID layui-col-md4 layui-col-sm4">
+                <label class="layui-form-label">Email：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md4 layui-col-sm4">
+                <label class="layui-form-label">授权管理：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="addcus-cusNum layui-col-md4 layui-col-sm4"  style="margin-left: 30px">
+                <input type="checkbox" name="yyy" lay-skin="switch" lay-text="启用|停用">
+                <input type="checkbox" name="yyy" lay-skin="switch" lay-text="银码|银码">
+            </div>
+        </div>
+
+
+        <div class="layui-tab layui-tab-card">
+            <ul class="layui-tab-title">
+                <li class="layui-this">
+                    <input type="checkbox" name="" title="" lay-skin="primary">权限管理
+                </li>
+                <li>
+                    <input type="checkbox" name="" title="" lay-skin="primary">栏目管理
+                </li>
+                <li>
+                    <input type="checkbox" name="" title="" lay-skin="primary">文档管理
+                </li>
+            </ul>
+            <div class="layui-tab-content" style="height: 100px;">
+                <div class="layui-tab-item layui-show">
+                    <input type="checkbox" name="" title="用户管理" lay-skin="primary">
+                    <input type="checkbox" name="" title="角色管理" lay-skin="primary">
+                    <input type="checkbox" name="" title="角色权限控制" lay-skin="primary">
+                    <input type="checkbox" name="" title="系统日志管理" lay-skin="primary">
+                </div>
+                <div class="layui-tab-item">
+                    <input type="checkbox" name="" title="栏目列表" lay-skin="primary">
+                    <input type="checkbox" name="" title="栏目添加" lay-skin="primary">
+                </div>
+                <div class="layui-tab-item">
+                    <input type="checkbox" name="" title="所有档案列表" lay-skin="primary">
+                    <input type="checkbox" name="" title="文章发布" lay-skin="primary">
+                    <input type="checkbox" name="" title="我的发布文档" lay-skin="primary">
+                    <input type="checkbox" name="" title="待审核的档案" lay-skin="primary">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    // 加载模块
+    //如果向后台接口发送post发送数据，可以在这个页面向后台接口发送表单数据，iframe层创建ajax方法
+    layui.use(['admin', 'table','index','jquery','form'], function(){
+        var $ = layui.$ ;
+        var form = layui.form;
+        $("#testp").click(function(){
+            parent.layui.$('#user_uname').val('我被改变了');
+            parent.layer.tips('Look here', '#user_uname', {time: 5000});
+        })
+    });
+</script>

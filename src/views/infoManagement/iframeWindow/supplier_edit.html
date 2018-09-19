@@ -1,0 +1,98 @@
+<title>Edit supplier</title>
+<div class="layui-fluid">
+    <form class="layui-form edit-cusInfo">
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md4">
+                <label class="layui-form-label">供应商标号：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md4">
+                <label class="layui-form-label">密码：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md4 layui-col-sm12">
+                <label class="layui-form-label">职称：</label>
+                <div class="layui-input-block">
+                    <select name="label" lay-verify="required">
+                        <option value=""></option>
+                        <option value="">程序员</option>
+                        <option value="">外贸专员</option>
+                        <option value="">市场专员</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-cusCom layui-col-md8">
+                <label class="layui-form-label">公司名称：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="addcus-merchandiser layui-col-md4">
+                <label class="layui-form-label">跟单员：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-tel layui-col-md4">
+                <label class="layui-form-label">电话：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="addcus-skype layui-col-md4">
+                <label class="layui-form-label">Skype：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="addcus-email layui-col-md4">
+                <label class="layui-form-label">Email：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">操作：</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="switch" lay-skin="switch" lay-text="停用|启用">
+            </div>
+        </div>
+    </form>
+    <!--地址管理-->
+    <div class="layui-table-body layui-table-main">
+        <table class="layui-table" id="addcus_addMana" layui-table>
+            <thead>
+            <th>地址ID</th>
+            <th>地址</th>
+            </thead>
+            <tbody class="layui-table-body">
+            <tr>
+                <td>1</td>
+                <td>深圳市宝安区西乡街道</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<style>
+    .edit-cusInfo .layui-input-block {margin-top: 10px;}
+    .layui-layout-body {overflow: scroll;} /**防止隐藏**/
+</style>
+
+<script>
+    layui.use(['admin', 'table', 'index','element','form'], function(){
+        var table = layui.table;
+        var $ = layui.jquery;
+        var form = layui.form;
+        var element = layui.element;
+    });
+</script>

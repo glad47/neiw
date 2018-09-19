@@ -1,23 +1,21 @@
 # ERP-PCBOnline
 
 #### 项目介绍
-PCBOline ERP SYSTEM
+PCBOline ERP SYSTEM（PCBOnlineERP内部系统）
 
 #### 软件架构
-软件架构说明
+layui单页面开发（版本pro），前后端分离模式
 
 
 #### 安装教程
 
-1. xxxx
+1. 本地服务器部署
 2. xxxx
 3. xxxx
 
 #### 使用说明
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. layui单页面（pro）
 
 #### 参与贡献
 

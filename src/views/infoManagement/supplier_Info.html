@@ -1,0 +1,128 @@
+
+<title>供应商信息</title>
+<div class="layui-fluid">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">供应商编号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="id" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">公司名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="author" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">类别</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="title" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">联系人</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" id="orderTime">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="layui-card" lay-filter="addInfo">
+        <div class="layui-card-body">
+            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
+                <button class="layui-btn" id="supplier_add" data-type="supplier_add">新增</button>
+                <button class="layui-btn" data-type="getCheckLength">修改</button>
+                <button class="layui-btn" data-type="isAll">查看</button>
+                <button class="layui-btn" data-type="isAll">设置</button>
+            </div>
+            <table class="layui-hide" id="supplier_infoTab"></table>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    /*.layui-table-box .layui-table-header thead tr td , .layui-table-box .layui-table-body .layui-table tbody tr td {width: 200px !important;}*/
+</style>
+
+
+<script>
+    layui.use(['admin', 'table', 'index','element','form'], function(){
+        var table = layui.table;
+        var $ = layui.jquery;
+        var view = layui.view;
+        var form = layui.form;
+        var element = layui.element;
+        element.on('form(demo)', function(data){
+            console.log(data);
+            alert("1");
+        });
+        table.render({
+            elem: '#supplier_infoTab'
+            ,url: './json/infoManagement/supplier_info.js'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field:'supplier_id', title: '供应商编号', sort: true,width: '120'}
+                ,{field:'company', title: '公司名称',width: '180'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                ,{field:'supplier_type', title: '类别', sort: true,width: '120'}
+                ,{field:'contact', title: '联系人', sort: true,width: '120'}
+                ,{field:'officephone', title: '办公电话', sort: true,width: '120'}
+                ,{field:'tel', title: '手机', align: 'center', sort: true,width: '120'} //单元格内容水平居中
+                ,{field:'email', title: 'Email', sort: true} //单元格内容水平居中
+                ,{field:'pay_way', title: '付款方式', sort: true}
+                ,{field:'is_tax', title: '是否含税', sort: true}
+                ,{field:'invoice_type', title: '发票类型', sort: true}
+                ,{field:'type', title: '类型', sort: true}
+                ,{field:'delivery_date', title: '交期', sort: true}
+                ,{field:'quality', title: '品质', sort: true}
+                ,{field:'cooperate', title: '配合度', sort: true}
+                ,{field:'rating', title: '评级', sort: true}
+                ,{field:'founder', title: '创建人', sort: true}
+                ,{field:'creat_time', title: '创建时间', sort: true}
+                ,{field:'modifier', title: '修改人', sort: true}
+                ,{field:'edit_time', title: '修改时间', sort: true}
+            ]]
+        });
+        var active = {
+            supplier_add:function(){
+                layer.open({
+                    skin: 'demo-class',
+                    type: 1,
+                    title: 'Supplier',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['520px', '720px'],
+                    content:'<div id="supplier_edit"></div>',
+                    btn:['确定','取消'],
+                    success: function (index,layero) {
+                        view('supplier_edit').render('/infoManagement/iframeWindow/viewtest',{id:'supplier_edit'}).then(function (value) {
+                            //视图文件请求完毕，视图内容渲染前的回调
+                        }).done(function(){
+                            //试图文件请求完毕和内容渲染完毕的回调
+                            form.render();
+                        });
+
+                    }
+                });
+            },
+
+        };
+
+        $('.layui-btn').on('click',function () {
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
+        })
+
+
+
+    });
+</script>
