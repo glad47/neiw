@@ -1,9 +1,9 @@
 <title>Edit supplier</title>
-<div class="layui-fluid">
+<div class="layui-fluid" style="width: 750px;">
     <form class="layui-form edit-cusInfo">
         <div class="layui-form-item">
             <div class="addcus-cusNum layui-col-md4">
-                <label class="layui-form-label">供应商标号：</label>
+                <label class="layui-form-label">供应商编号：</label>
                 <div class="layui-input-block">
                     <input type="text" name="" autocomplete="off" class="layui-input">
                 </div>
@@ -14,8 +14,8 @@
                     <input type="text" name="" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <div class="addcus-cusPWd layui-col-md4 layui-col-sm12">
-                <label class="layui-form-label">职称：</label>
+            <div class="addcus-cusPWd layui-col-md4">
+                <label class="layui-form-label">类别：</label>
                 <div class="layui-input-block">
                     <select name="label" lay-verify="required">
                         <option value=""></option>
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="addcus-merchandiser layui-col-md4">
-                <label class="layui-form-label">跟单员：</label>
+                <label class="layui-form-label">联系人：</label>
                 <div class="layui-input-block">
                     <input type="text" name="" autocomplete="off" class="layui-input">
                 </div>
@@ -42,13 +42,13 @@
         </div>
         <div class="layui-form-item">
             <div class="addcus-tel layui-col-md4">
-                <label class="layui-form-label">电话：</label>
+                <label class="layui-form-label">办公电话：</label>
                 <div class="layui-input-block">
                     <input type="text" name="" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="addcus-skype layui-col-md4">
-                <label class="layui-form-label">Skype：</label>
+                <label class="layui-form-label">手机：</label>
                 <div class="layui-input-block">
                     <input type="text" name="" autocomplete="off" class="layui-input">
                 </div>
@@ -60,39 +60,227 @@
                 </div>
             </div>
         </div>
+
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md4">
+                <label class="layui-form-label">付款方式：</label>
+                <div class="layui-input-block">
+                    <select name="label" lay-verify="required">
+                        <option value=""></option>
+                        <option value="">Paypal</option>
+                        <option value="">支付宝</option>
+                        <option value="">微信</option>
+                    </select>
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md4">
+                <label class="layui-form-label">是否含税：</label>
+                <div class="layui-input-block">
+                    <select name="label" lay-verify="required">
+                        <option value=""></option>
+                        <option value="">是</option>
+                        <option value="">否</option>
+                    </select>
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md4">
+                <label class="layui-form-label">发票类型：</label>
+                <div class="layui-input-block">
+                    <select name="label" lay-verify="required">
+                        <option value=""></option>
+                        <option value="">个人增值税</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">操作：</label>
             <div class="layui-input-block">
                 <input type="checkbox" name="switch" lay-skin="switch" lay-text="停用|启用">
             </div>
         </div>
+
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">内容分类</li>
+                <li>附件</li>
+                <li>备注</li>
+            </ul>
+            <div class="layui-tab-content" style="height: 100px;">
+                <div class="layui-tab-item layui-show">
+                    <!--内部分类-->
+                    <div class="layui-form-item supedit-nbfl">
+                        <div class="supedit-type layui-input-block layui-col-md12">
+                            <label class="layui-form-label">类型：</label>
+                            <input type="radio" name="supType" title="简单样板">
+                            <input type="radio" name="supType" title="复杂样板">
+                            <input type="radio" name="supType" title="批量">
+                            <input type="radio" name="supType" title="HDI">
+                            <input type="radio" name="supType" title="软板">
+                        </div>
+                        <div class="layui-input-block layui-col-md12">
+                            <div class="supedit-jq layui-col-md6">
+                                <label class="layui-form-label">交期：</label>
+                                <div id="supedit_jq"></div>
+                            </div>
+                            <div class="supedit-pz layui-col-md6">
+                                <label class="layui-form-label">品质：</label>
+                                <div id="supedit_pz"></div>
+                            </div>
+                        </div>
+                        <div class="layui-input-block layui-col-md12">
+                            <div class="supedit-phd layui-col-md6">
+                                <label class="layui-form-label">配合度：</label>
+                                <div id="supedit_phd"></div>
+                            </div>
+                            <div class="supedit-pj layui-col-md6">
+                                <label class="layui-form-label">评级：</label>
+                                <div id="supedit_pj"></div>
+                            </div>
+                        </div>
+                        <hr class="layui-bg-gray">
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <table class="layui-hide" id="supedit_tab_fj" lay-filter="supedit_tab_fj"></table>
+                    <script type="text/html" id="supedit_tab_fj_bar">
+                        <a class="layui-btn layui-btn-xs" id="supedit_upload" lay-event="upload">上传</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                    </script>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-form-item layui-form-text">
+                        <textarea placeholder="请输入备注信息" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
-    <!--地址管理-->
-    <div class="layui-table-body layui-table-main">
-        <table class="layui-table" id="addcus_addMana" layui-table>
-            <thead>
-            <th>地址ID</th>
-            <th>地址</th>
-            </thead>
-            <tbody class="layui-table-body">
-            <tr>
-                <td>1</td>
-                <td>深圳市宝安区西乡街道</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+
 </div>
 <style>
     .edit-cusInfo .layui-input-block {margin-top: 10px;}
     .layui-layout-body {overflow: scroll;} /**防止隐藏**/
+    .supedit-nbfl .layui-input-block {margin-left: 0;margin-top: 0;}
+
 </style>
 
 <script>
-    layui.use(['admin', 'table', 'index','element','form'], function(){
-        var table = layui.table;
+    layui.use(['admin', 'table', 'index','element','form','rate','upload'], function(){
+        var table = layui.table
         var $ = layui.jquery;
         var form = layui.form;
         var element = layui.element;
+        var upload = layui.upload;
+        var rate = layui.rate;
+        admin = layui.admin;
+
+        table.render({
+            elem: '#supedit_tab_fj',
+            url: './json/infoManagement/supplier_info.js',
+            // width: admin.screen() >1 ? 892 : '',
+            height: 200,
+            cols: [[
+                {field:'supplier_id', title: '编号', sort: true,width: ''}
+                ,{field:'company', title: '附件名称',width: ''} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                ,{field:'supplier_type', title: '上传时间', sort: true,width: ''}
+                ,{width:'', align:'center',title: '操作', fixed: 'right', sort: true, toolbar: '#supedit_tab_fj_bar'}
+            ]]
+                ,page: true,
+            // done事件中进行upload.render().放在其他地方有bug（需要点击两次）
+            done: function () {
+                upload.render({
+                    elem: '#supedit_upload',
+                    url: '' ,//上传接口
+                    done: function (res) {
+                        //上传完毕回调
+                    }
+                    ,error: function () {
+                        //请求异常回调
+                    }
+                });
+            }
+
+        });
+
+        //监听工具条
+         table.on('tool(supedit_tab_fj)', function (obj) {
+             var data = obj.data;
+             if(obj.event === 'upload'){
+                layer.msg('选择文件上传');
+                uploadInset.upload();
+             }else if (obj.event === 'del') {
+                 layer.confirm('真的删除行么', function(index){
+                     obj.del();
+                     layer.close(index);
+                 });
+             }
+         });
+
+        //交期
+        rate.render({
+            elem: '#supedit_jq'
+            ,value: 3
+            ,text: true
+            ,setText: function(value){ //自定义文本的回调
+                var arrs = {
+                    '1': '极差'
+                    ,'2': '差'
+                    ,'3': '中等'
+                    ,'4': '好'
+                    ,'5': '极好'
+                };
+                this.span.text(arrs[value] || ( value + "星"));
+            }
+        });
+        //品质
+        rate.render({
+            elem: '#supedit_pz'
+            ,value: 3
+            ,text: true
+            ,setText: function(value){ //自定义文本的回调
+                var arrs = {
+                    '1': '极差'
+                    ,'2': '差'
+                    ,'3': '中等'
+                    ,'4': '好'
+                    ,'5': '极好'
+                };
+                this.span.text(arrs[value] || ( value + "星"));
+            }
+        });
+        //配合度
+        rate.render({
+            elem: '#supedit_phd'
+            ,value: 3
+            ,text: true
+            ,setText: function(value){ //自定义文本的回调
+                var arrs = {
+                    '1': '极差'
+                    ,'2': '差'
+                    ,'3': '中等'
+                    ,'4': '好'
+                    ,'5': '极好'
+                };
+                this.span.text(arrs[value] || ( value + "星"));
+            }
+        });
+        //评级
+        rate.render({
+            elem: '#supedit_pj'
+            ,value: 3
+            ,text: true
+            ,setText: function(value){ //自定义文本的回调
+                var arrs = {
+                    '1': 'C'
+                    ,'2': 'B2'
+                    ,'3': 'B1'
+                    ,'4': 'A2'
+                    ,'5': 'A1'
+                };
+                this.span.text(arrs[value] || ( value + "星"));
+            }
+        });
     });
 </script>

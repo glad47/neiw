@@ -28,21 +28,18 @@
         "name": "supplierInfo"
         ,"title": "供应商信息"
         ,"jump": "/infoManagement/supplier_info"
-    },{
-      "name": "outsourcingInfo"
-        ,"title": "外协商信息"
     }]
   }, {
     "name": "template"
-    ,"title": "人事信息"
+    ,"title": "人事管理"
     ,"icon": "layui-icon-template"
     ,"list": [{
       "name": "staffFiles"
-      ,"title": "职员档案"
+      ,"title": "人事档案"
       ,"jump": "template/personalpage"
     },{
       "name": "staffStatus"
-      ,"title": "职员状态"
+      ,"title": "工资管理"
       ,"jump": "template/addresslist"
     }]
   }, {

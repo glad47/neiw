@@ -39,7 +39,7 @@
                 <button class="layui-btn" id="userInfo_add" data-type="userInfo_add">新增</button>
                 <button class="layui-btn" data-type="getCheckLength">修改</button>
                 <button class="layui-btn" data-type="isAll" id="user_look">查看</button>
-                <button class="layui-btn" data-type="userRole" id="make">设置</button>
+                <button class="layui-btn" data-type="userRole" id="userInfo_set">设置</button>
             </div>
             <table class="layui-hide" id="user_infoTab"></table>
         </div>
@@ -88,6 +88,7 @@
         var active = {
             userInfo_add:function(){
                 var that = this;
+                var this_id = $(this).attr('id');
                 layer.open({
                     type: 1,
                     title: 'User Info Management',
@@ -99,7 +100,7 @@
                     opreaId: 'thisid',
                     btn:['确定','取消'],
                     success: function (layero,index) {
-                        view('editTest').render('/infoManagement/iframeWindow/user_edit_info',{id:'editUser'}).then(function (value) {
+                        view('editTest').render('/infoManagement/renderEdit/user_edit_render',{id:this_id}).then(function (value) {
                             //视图文件请求完毕，视图内容渲染前的回调
                         }).done(function(){
                             //试图文件请求完毕和内容渲染完毕的回调
@@ -111,6 +112,7 @@
             },
             userRole:function(){
                 var that = this;
+                var this_id = $(this).attr('id');
                 layer.open({
                     type: 1,
                     title: 'User Info Management',
@@ -121,7 +123,7 @@
                     content:'<div class="layui-form" id="userRole"></div>',
                     btn:['确定','取消'],
                     success: function (layero,index) {
-                        view('userRole').render('/infoManagement/iframeWindow/user_edit_role',{id:'userRole'}).then(function (value) {
+                        view('userRole').render('/infoManagement/renderEdit/user_edit_render',{id:this_id}).then(function (value) {
                             //视图文件请求完毕，视图内容渲染前的回调
                         }).done(function(){
                             //试图文件请求完毕和内容渲染完毕的回调
