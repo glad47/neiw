@@ -1,28 +1,22 @@
-<title>Add Customer Info</title>
-<script type="text/html" template>
-    获取到的id为：
-    {{ d.params.id }}
-</script>
-
 <div class="layui-fluid">
-    <form class="layui-form">
+    <form class="layui-form" lay-filter="demo1" style="width: 650px">
         <div class="layui-form-item">
-            <div class="addcus-cusNum layui-col-md4 layui-col-sm4">
+            <div class="addcus-cusNum layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">用户名：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input" id="user_edit_yhm" value="Parker">
+                    <input type="text" name="username" autocomplete="off" class="layui-input" id="user_edit_yhm">
                 </div>
             </div>
-            <div class="addcus-cusPWd layui-col-md4 layui-col-sm4">
+            <div class="addcus-cusPWd layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">密码：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input" id="user_edit_pwd">
+                    <input type="text" name="pwd" autocomplete="off" class="layui-input" id="user_edit_pwd">
                 </div>
             </div>
-            <div class="addcus-cusID layui-col-md4 layui-col-sm4">
-                <label class="layui-form-label">客户ID：</label>
+            <div class="addcus-cusID layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">姓名：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input" id="user_edit_cusid">
+                    <input type="text" name="uname" autocomplete="off" class="layui-input" id="user_edit_cusid">
                 </div>
             </div>
         </div>
@@ -30,29 +24,29 @@
             <div class="addcus-cusNum layui-col-md4 layui-col-sm4">
                 <label class="layui-form-label">部门：</label>
                 <div class="layui-input-block">
-                    <select name="label" lay-verify="required">
+                    <select name="label" id="user_edit_dep" name="bm">
                         <option value=""></option>
-                        <option value="">IT部</option>
-                        <option value="">外贸部</option>
-                        <option value="">市场部</option>
+                        <option value="IT部">IT部</option>
+                        <option value="外贸部">外贸部</option>
+                        <option value="市场部">市场部</option>
                     </select>
                 </div>
             </div>
             <div class="addcus-cusPWd layui-col-md4 layui-col-sm4">
                 <label class="layui-form-label">职称：</label>
                 <div class="layui-input-block">
-                    <select name="label" lay-verify="required">
+                    <select name="label" id="user_edit_zc" name="zc">
                         <option value=""></option>
-                        <option value="">程序员</option>
-                        <option value="">外贸专员</option>
-                        <option value="">市场专员</option>
+                        <option value="程序员">程序员</option>
+                        <option value="外贸专员">外贸专员</option>
+                        <option value="市场专员">市场专员</option>
                     </select>
                 </div>
             </div>
             <div class="addcus-cusID layui-col-md4 layui-col-sm4">
                 <label class="layui-form-label">工号：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input">
+                    <input type="text" name="worknum" autocomplete="off" class="layui-input" id="user_edit_workNum">
                 </div>
             </div>
         </div>
@@ -61,19 +55,19 @@
             <div class="addcus-cusNum layui-col-md4 layui-col-sm4">
                 <label class="layui-form-label">办公电话：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input">
+                    <input type="text" name="offtel" autocomplete="off" class="layui-input" id="user_edit_offTel">
                 </div>
             </div>
             <div class="addcus-cusPWd layui-col-md4 layui-col-sm4">
                 <label class="layui-form-label">Skype：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input">
+                    <input type="text" name="skype" autocomplete="off" class="layui-input" id="user_edit_skype">
                 </div>
             </div>
             <div class="addcus-cusID layui-col-md4 layui-col-sm4">
                 <label class="layui-form-label">Email：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input">
+                    <input type="text" name="email" autocomplete="off" class="layui-input" id="user_edit_email">
                 </div>
             </div>
         </div>
@@ -81,12 +75,12 @@
             <div class="addcus-cusNum layui-col-md4 layui-col-sm4">
                 <label class="layui-form-label">授权管理：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input">
+                    <input type="text" name="sqgl" autocomplete="off" class="layui-input" id="user_edit_sq">
                 </div>
             </div>
             <div class="addcus-cusNum layui-col-md4 layui-col-sm4"  style="margin-left: 30px">
-                <input type="checkbox" name="yyy" lay-skin="switch" lay-text="启用|停用">
-                <input type="checkbox" name="yyy" lay-skin="switch" lay-text="银码|银码">
+                <input type="checkbox" name="offon" lay-skin="switch" lay-text="启用|停用" id="user_edit_offOn">
+                <input type="checkbox" name="pwdbank" lay-skin="switch" lay-text="银码|银码" id="user_edit_ym">
             </div>
         </div>
 
@@ -94,47 +88,45 @@
         <div class="layui-tab layui-tab-card">
             <ul class="layui-tab-title">
                 <li class="layui-this">
-                    <input type="checkbox" name="" title="" lay-skin="primary">权限管理
+                    <input type="checkbox" name="usereditQxgl" title="" lay-skin="primary" id="user_edit_sqgl" lay-filter="usereditQxgl" value="usereditQxgl">权限管理
                 </li>
                 <li>
-                    <input type="checkbox" name="" title="" lay-skin="primary">栏目管理
+                    <input type="checkbox" name="usereditlmgl" title="" lay-skin="primary" id="user_edit_lmgl" lay-filter="usereditLmgl" value="usereditLmgl">栏目管理
                 </li>
                 <li>
-                    <input type="checkbox" name="" title="" lay-skin="primary">文档管理
+                    <input type="checkbox" name="usereditWdgl" title="" lay-skin="primary" id="user_edit_wdgl" lay-filter="usereditWdgl" value="usereditWdgl">文档管理
                 </li>
             </ul>
             <div class="layui-tab-content" style="height: 100px;">
-                <div class="layui-tab-item layui-show">
-                    <input type="checkbox" name="" title="用户管理" lay-skin="primary">
-                    <input type="checkbox" name="" title="角色管理" lay-skin="primary">
-                    <input type="checkbox" name="" title="角色权限控制" lay-skin="primary">
-                    <input type="checkbox" name="" title="系统日志管理" lay-skin="primary">
+                <div class="layui-tab-item layui-show" id="user_qxgl">
+                    <input type="checkbox" name="usereditQxgl1" title="用户管理" lay-skin="primary" id="user_edit_yhgl">
+                    <input type="checkbox" name="usereditQxgl2" title="角色管理" lay-skin="primary" id="user_edit_jsgl">
+                    <input type="checkbox" name="usereditQxgl3" title="角色权限控制" lay-skin="primary" id="user_edit_jsqx">
+                    <input type="checkbox" name="usereditQxgl4" title="系统日志管理" lay-skin="primary" id="user_edit_xtrz">
                 </div>
-                <div class="layui-tab-item">
-                    <input type="checkbox" name="" title="栏目列表" lay-skin="primary">
-                    <input type="checkbox" name="" title="栏目添加" lay-skin="primary">
+                <div class="layui-tab-item" id="user_lmgl">
+                    <input type="checkbox" name="usereditlmgl1" title="栏目列表" lay-skin="primary" id="user_edit_lmlb">
+                    <input type="checkbox" name="usereditlmgl2" title="栏目添加" lay-skin="primary" id="lmtj">
                 </div>
-                <div class="layui-tab-item">
-                    <input type="checkbox" name="" title="所有档案列表" lay-skin="primary">
-                    <input type="checkbox" name="" title="文章发布" lay-skin="primary">
-                    <input type="checkbox" name="" title="我的发布文档" lay-skin="primary">
-                    <input type="checkbox" name="" title="待审核的档案" lay-skin="primary">
+                <div class="layui-tab-item" id="user_wdgl">
+                    <input type="checkbox" name="usereditWdgl1" title="所有档案列表" lay-skin="primary" id="user_edit_sydalb">
+                    <input type="checkbox" name="usereditWdgl2" title="文章发布" lay-skin="primary" id="user_edit_wzfb">
+                    <input type="checkbox" name="usereditWdgl3" title="我的发布文档" lay-skin="primary" id="user_edit_wdfbwd">
+                    <input type="checkbox" name="usereditWdgl4" title="待审核的档案" lay-skin="primary" id="user_edit_dshdda">
                 </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-col-md-offset2">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
     </form>
 </div>
 
-
 <script>
-    // 加载模块
-    //如果向后台接口发送post发送数据，可以在这个页面向后台接口发送表单数据，iframe层创建ajax方法
-    layui.use(['admin', 'table','index','jquery','form'], function(){
-        var $ = layui.$ ;
-        var form = layui.form;
-        $("#testp").click(function(){
-            parent.layui.$('#user_uname').val('我被改变了');
-            parent.layer.tips('Look here', '#user_uname', {time: 5000});
-        })
+    layui.use(['user_edit_info'], function(){
     });
 </script>

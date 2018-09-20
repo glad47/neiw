@@ -1,6 +1,7 @@
 <script type="text/html" template lay-done="layui.data.done(d);">
-    <!--获取到的id为：-->
+    <!--获取到的id为-->
     <input style="color: red;display: none;" id="userInfo_ids" name="userInfo_ids" value="{{ d.params.id }}" />
+    <a style="color: red;">{{ d.params.id }}=====>{{ d.params.ids }}</a>
     <div id="view_supplier_info"></div>
 </script>
 
@@ -14,9 +15,7 @@
             var supplier_id = $("#userInfo_ids").attr('value');
             if (supplier_id == 'userInfo_add'){
                 view('view_supplier_info').render('/infoManagement/iframeWindow/user_edit_info',{id:''}).then(function (value) {
-
                 }).done(function(){
-                    console.log($("input[name='ids']").attr('value'));
                     form.render();
                 });
             } else if (supplier_id == 'userInfo_set'){
