@@ -92,6 +92,7 @@
                 var this_id = $(this).attr('id');
                 var checkStatus = table.checkStatus('userInfoTab');
                 data = checkStatus.data;
+                data.push("{this_id:"+this_id+"}");
                 var tabData = JSON.stringify(data);
                 layer.open({
                     type: 1,
@@ -104,7 +105,7 @@
                     opreaId: 'thisid',
                     btn:false,
                     success: function (layero,index) {
-                        view('editTest').render('/infoManagement/renderEdit/user_edit_render',{id:this_id},{ids:tabData}).then(function (value) {
+                        view('editTest').render('/infoManagement/renderEdit/user_edit_render',{id:tabData}).then(function (value) {
                             //视图文件请求完毕，视图内容渲染前的回调
                         }).done(function(){
                             //试图文件请求完毕和内容渲染完毕的回调
@@ -138,8 +139,13 @@
             },
             getCheckData: function () { //获取表格选中的数据
                 var checkStatus = table.checkStatus('userInfoTab'),
-                    data = checkStatus.data;
+                data = checkStatus.data;
+                var JsonData = JSON.stringify(data);
+                console.log(JSON.stringify(data));
                 layer.alert(JSON.stringify(data));
+                var arr = JSON.parse(JsonData);//json转换为数组
+                console.log(arr[0].name);//第一个数组里面对name
+            //    在子页面直接获取到json显示出来到字符串以后，在js里新加一个json对象并转成数组，这样就能取值了
 
             }
 
