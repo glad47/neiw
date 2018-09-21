@@ -1,32 +1,70 @@
-<title>Edit User Role</title>
 <div class="layui-fluid">
-    <form class="layui-form">
-        <div class="user_dep layui-col-md12">
-            <label class="layui-form-label">部门：</label>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-form">
+            <button class="layui-btn">
+                <i class="layui-icon layui-icon-add-1"></i> 增加
+            </button>
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">部门</div>
+                    <div class="layui-card-body">
+                        <table class="layui-table" lay-skin="nob">
+                            <tr>
+                                <td>
+                                    <input type="radio" name="dep"> 技术部
+                                </td>
+                                <td>
+                                    <input type="radio" name="dep"> 供应链
+                                </td>
+                                <td>
+                                    <input type="radio" name="dep"> 运营部
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">职称</div>
+                    <div class="layui-card-body">
+                        <table class="layui-table" lay-skin="nob">
+                            <tr>
+                                <td>
+                                    <input type="radio" name="zc" title="总经理">
+                                </td>
+                                <td>
+                                    <input type="radio" name="zc" title="经理">
+                                </td>
+                                <td>
+                                    <input type="radio" name="zc" title="跟单员">
+                                </td>
+                                <td>
+                                    <input type="radio" name="zc" title="副总">
+                                </td>
+                                <td>
+                                    <input type="radio" name="zc" title="工程师">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="user_dep_list layui-input-block">
-            <input type="radio" name="user_dep" value="" title="技术部" checked>
-            <input type="radio" name="user_dep" value="" title="供应链">
-            <input type="radio" name="user_dep" value="" title="运营部">
-        </div>
-        <div class="user_pos layui-col-md12">
-            <label class="layui-form-label">职称：</label>
-        </div>
-        <div class="user_dep_list layui-input-block">
-            <input type="radio" name="user_pos" value="" title="工程师" checked>
-            <input type="radio" name="user_pos" value="" title="经理">
-            <input type="radio" name="user_pos" value="" title="跟单员">
-            <input type="radio" name="user_pos" value="" title="副总">
-            <input type="radio" name="user_pos" value="" title="总经理">
-        </div>
-    </form>
+    </div>
 </div>
 
+<style>
+    .layui-table tr:hover{background-color: red;}
+</style>
+
 <script>
-    // 加载模块
-    //如果向后台接口发送post发送数据，可以在这个页面向后台接口发送表单数据，iframe层创建ajax方法
-    layui.use(['admin', 'table','index','form','jquery'], function(){
-        var $ = layui.$ ;
+    layui.use(['admin', 'table','form'], function(){
+        var table = layui.table
+            ,admin = layui.admin;
         var form = layui.form;
 
     });

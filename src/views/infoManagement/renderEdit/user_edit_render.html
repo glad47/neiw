@@ -1,7 +1,7 @@
 <script type="text/html" template lay-done="layui.data.done(d);">
     <!--获取到的id为-->
-    <input style="color: red;display: none;" id="userInfo_ids" name="userInfo_ids" value="{{ d.params.id }}" />
-    <a style="color: red;">{{ d.params.id }}=====>{{ d.params.ids }}</a>
+    <!--<input style="color: red;display: none;" id="userInfo_ids" name="userInfo_ids" value="{{ d.params.id }}" />-->
+    <a style="color: green;display: none;" id="parentJson">{{ d.params.id }}</a>
     <div id="view_supplier_info"></div>
 </script>
 
@@ -12,13 +12,17 @@
             var $ = layui.jquery;
             var admin = layui.admin;
             var view = layui.view;
+            //获取父页传过来的json对象
+            var parentJson = $("#parentJson").text();
+            var arr = JSON.parse(parentJson); //将父页传过来的json转换为数组对象
+            var parentId = arr[0].this_id;
             var supplier_id = $("#userInfo_ids").attr('value');
-            if (supplier_id == 'userInfo_add'){
-                view('view_supplier_info').render('/infoManagement/iframeWindow/user_edit_info',{id:''}).then(function (value) {
+            if (parentId == 'userInfo_add'){
+                view('view_supplier_info').render('/infoManagement/iframeWindow/user_edit_info',{id:parentJson}).then(function (value) {
                 }).done(function(){
                     form.render();
                 });
-            } else if (supplier_id == 'userInfo_set'){
+            } else if (parentId == 'userInfo_set'){
                 view('view_supplier_info').render('/infoManagement/iframeWindow/user_edit_role',{id:''}).then(function (value) {
 
                 }).done(function(){

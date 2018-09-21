@@ -39,7 +39,7 @@
                 <button class="layui-btn" id="userInfo_add" data-type="userInfo_add">新增</button>
                 <button class="layui-btn" data-type="getCheckData">修改</button>
                 <button class="layui-btn" data-type="isAll" id="user_look">查看</button>
-                <button class="layui-btn" data-type="userRole" id="userInfo_set">设置</button>
+                <button class="layui-btn" id="userInfo_set" data-type="userRole">设置</button>
             </div>
             <table class="layui-hide" id="user_infoTab"></table>
         </div>
@@ -90,10 +90,15 @@
             userInfo_add:function(){
                 var that = this;
                 var this_id = $(this).attr('id');
-                var checkStatus = table.checkStatus('userInfoTab');
+                //获取选取行的数据
+                var checkStatus = table.checkStatus('userInfoTab'),
                 data = checkStatus.data;
-                data.push("{this_id:"+this_id+"}");
-                var tabData = JSON.stringify(data);
+                data[0].this_id=this_id;
+                var JsonData = JSON.stringify(data);
+                console.log(JSON.stringify(data));
+                // layer.alert(JSON.stringify(data));
+                var arr = JSON.parse(JsonData);
+                console.log(arr[0].test);
                 layer.open({
                     type: 1,
                     title: 'User Info Management',
@@ -105,42 +110,50 @@
                     opreaId: 'thisid',
                     btn:false,
                     success: function (layero,index) {
-                        view('editTest').render('/infoManagement/renderEdit/user_edit_render',{id:tabData}).then(function (value) {
+                        view('editTest').render('/infoManagement/renderEdit/user_edit_render',{id:JsonData}).then(function (value) {
                             //视图文件请求完毕，视图内容渲染前的回调
                         }).done(function(){
                             //试图文件请求完毕和内容渲染完毕的回调
-                            form.render();
+                            // form.render();
                         });
-
+                    },
+                    end: function () {
+                        // window.location.reload();
+                        // alert('1');
+                        // form.render();
                     }
                 });
             },
             userRole:function(){
                 var that = this;
                 var this_id = $(this).attr('id');
+                var arr = [{this_id}];
+                var JsonData = JSON.stringify(arr);
                 layer.open({
                     type: 1,
                     title: 'User Info Management',
                     shadeClose: true,
                     shade: false,
                     maxmin: true,
-                    area: ['382px', '382px'],
+                    area: ['516px', '432px'],
                     content:'<div class="layui-form" id="userRole"></div>',
                     btn:['确定','取消'],
                     success: function (layero,index) {
-                        view('userRole').render('/infoManagement/renderEdit/user_edit_render',{id:this_id}).then(function (value) {
+                        view('userRole').render('/infoManagement/renderEdit/user_edit_render',{id:JsonData}).then(function (value) {
                             //视图文件请求完毕，视图内容渲染前的回调
                         }).done(function(){
                             //试图文件请求完毕和内容渲染完毕的回调
                             form.render();
                         });
-                    }
+                    },
                 });
             },
             getCheckData: function () { //获取表格选中的数据
                 var checkStatus = table.checkStatus('userInfoTab'),
                 data = checkStatus.data;
+                data[0].test_id="这是一个测试！！！！";
                 var JsonData = JSON.stringify(data);
+                JsonData[0].testjsonID="这也是一个测试";
                 console.log(JSON.stringify(data));
                 layer.alert(JSON.stringify(data));
                 var arr = JSON.parse(JsonData);//json转换为数组

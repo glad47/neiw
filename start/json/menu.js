@@ -28,6 +28,18 @@
         "name": "supplierInfo"
         ,"title": "供应商信息"
         ,"jump": "/infoManagement/supplier_info"
+    },{
+        "name": "supplierInfo"
+        ,"title": "菜单管理"
+        ,"jump": "/infoManagement/supplier_info"
+    },{
+        "name": "supplierInfo"
+        ,"title": "部门管理"
+        ,"jump": "/infoManagement/supplier_info"
+    },{
+        "name": "supplierInfo"
+        ,"title": "角色管理"
+        ,"jump": "/infoManagement/supplier_info"
     }]
   }, {
     "name": "template"
@@ -206,14 +218,32 @@
     }]
 },{
     "name": ""
-    ,"title": "网站管理"
+    ,"title": "系统管理"
     ,"icon": "layui-icon-set"
     ,"list": [{
-        "name": "articleList"
-        ,"title": "文章列表"
+        "name": "customerInfo"
+        ,"title": "客户信息"
+        ,"jump": "/infoManagement/customer_info"
     },{
-        "name": "articleRelease"
-        ,"title": "文章发布"
+        "name": "userManagement"
+        ,"title": "用户管理"
+        ,"jump": "/infoManagement/user_info"
+    },{
+        "name": "supplierInfo"
+        ,"title": "供应商信息"
+        ,"jump": "/infoManagement/supplier_info"
+    },{
+        "name": "supplierInfo"
+        ,"title": "菜单管理"
+        ,"jump": "/infoManagement/supplier_info"
+    },{
+        "name": "supplierInfo"
+        ,"title": "部门管理"
+        ,"jump": "/infoManagement/supplier_info"
+    },{
+        "name": "supplierInfo"
+        ,"title": "角色管理"
+        ,"jump": "/infoManagement/supplier_info"
     }]
 }]
 }

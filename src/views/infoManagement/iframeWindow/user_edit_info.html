@@ -1,3 +1,9 @@
+<script type="text/html" template lay-done="layui.data.done(d);">
+    二级页面的ID为：
+    <!--<input style="color: red;display: none;" id="userInfo_ids" name="userInfo_ids" value="{{ d.params.id }}" />-->
+    <a style="color: red;" id="renderJson">{{ d.params.id }}</a>
+    <div id="view_supplier_info"></div>
+</script>
 <div class="layui-fluid">
     <form class="layui-form" lay-filter="demo1" style="width: 650px">
         <div class="layui-form-item">
@@ -127,6 +133,15 @@
 </div>
 
 <script>
-    layui.use(['user_edit_info'], function(){
-    });
+    layui.data.done = function(d){
+        layui.use(['user_edit_info','admin', 'table','index','jquery','form','element'], function(){
+            var $ = layui.$ ;
+            form = layui.form;
+            admin = layui.admin,
+                element = layui.element
+            form.render();
+        });
+
+    }
+
 </script>

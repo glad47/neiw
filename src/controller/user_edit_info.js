@@ -4,7 +4,8 @@ layui.define(['admin', 'table','index','jquery','form','element'], function(expo
     var $ = layui.$ ;
     form = layui.form;
     admin = layui.admin,
-        element = layui.element,
+    element = layui.element,
+
         //监听form表单checkbox,管理复选框，全选/取消全选操作
         //监听权限管理checkbox
         form.on('checkbox(usereditQxgl)',function(data){
@@ -52,7 +53,7 @@ layui.define(['admin', 'table','index','jquery','form','element'], function(expo
     form.on('submit(demo1)', function(data){
         var userEditAllJson = JSON.stringify(data.field);
         layer.msg(userEditAllJson);
-        console.log(userEditAllJson);
+        // console.log(userEditAllJson);
         // admin.req({
         //     type: "post",
         //     url: '',
@@ -66,10 +67,23 @@ layui.define(['admin', 'table','index','jquery','form','element'], function(expo
         // })
         return false;
     });
+    var parentTjson = $("#renderJson").text();
+        var arr = JSON.parse(parentTjson);
+    form.val("demo1",{
+        "username":arr[0].name,
+        "pwd":arr[0].username,
+        "uname":arr[0].status,
+    })
     $("#testp").click(function(){
         parent.layui.$('#user_uname').val('我被改变了');
         parent.layer.tips('Look here', '#user_uname', {time: 5000});
     })
-
+    // $(document).ready(function () {
+    //     //编辑，给表单设置默认值
+    //     var parentTjson = $("#renderJson").text();
+    //     var arr = JSON.parse(parentTjson);
+    //     $("#user_edit_yhm").val(arr[0].name);
+    // })
+    alert('1');
     exports('user_edit_info', {})
 });
