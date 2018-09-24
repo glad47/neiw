@@ -31,7 +31,7 @@
     },{
         "name": "supplierInfo"
         ,"title": "菜单管理"
-        ,"jump": "/infoManagement/supplier_info"
+        ,"jump": "/infoManagement/edit_test"
     },{
         "name": "supplierInfo"
         ,"title": "部门管理"
