@@ -37,10 +37,10 @@
         <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
                 <button class="layui-btn" id="userInfo_add" data-type="userInfo_add">新增</button>
-                <button class="layui-btn" id="userInfo_del" data-type="userInfo_del">删除</button>
-                <button class="layui-btn" data-type="userInfo_edit">修改</button>
+                <!--<button class="layui-btn" id="userInfo_del" data-type="userInfo_del">删除</button>-->
+                <!--<button class="layui-btn" data-type="userInfo_edit">修改</button>-->
                 <button class="layui-btn" data-type="isAll" id="user_look">查看</button>
-                <button class="layui-btn" id="userInfo_set" data-type="userRole">设置</button>
+                <!--<button class="layui-btn" id="userInfo_set" data-type="userRole">设置</button>-->
             </div>
             <table class="layui-hide" id="user_infoTab" lay-filter="user_infoTab"></table>
             <script type="text/html" id="table-userinfo">
@@ -129,7 +129,7 @@
             userInfo_add: function () {
                 admin.popup({
                     title: '添加用户信息',
-                    area: ['712px', '620px'],
+                    area: ['717px', '561px'],
                     id: 'LAY-popup-userinfo-add',
                     success: function (layero, index) {
                         view(this.id).render('/infoManagement/iframeWindow/user_edit_info').done(function () {
@@ -147,6 +147,12 @@
                         });
                     }
                 });
+            },
+            // 设置弹出页面
+            userInfo_role: function () {
+                admin.popup({
+                    title
+                })
             }
         }
             $('.layui-btn').on('click',function () {

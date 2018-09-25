@@ -83,7 +83,7 @@
   <!-- 侧边菜单 -->
   <div class="layui-side layui-side-menu">
     <div class="layui-side-scroll">
-      <script type="text/html" template lay-url="./json/menu.js?v={{ layui.admin.v }}" 
+      <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/menu/nav" lay-headers="{token:'{{ layui.data.token }}'}"
       lay-done="layui.element.render('nav', 'layadmin-system-side-menu');" id="TPL_layout">
       
         <div class="layui-logo" lay-href="">
@@ -197,3 +197,21 @@
   <div class="layadmin-body-shade" layadmin-event="shade"></div>
   
 </div>
+
+<!--<script>-->
+  <!--layui.use(['admin','user'],function () {-->
+      <!--admin = layui.admin;-->
+      <!--admin.req({-->
+          <!--url: 'http://192.168.0.155:8080/renren-fast/sys/menu/nav',-->
+          <!--where: {-->
+          <!--token: layui.data('layuiAdmin').token-->
+      <!--},-->
+          <!--done: function (res) {-->
+              <!--layer.msg('suc');-->
+          <!--},-->
+          <!--fail: function () {-->
+              <!--layer.msg('fail');-->
+          <!--}-->
+      <!--})-->
+  <!--})-->
+<!--</script>-->
