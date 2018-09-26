@@ -83,7 +83,7 @@
   <!-- 侧边菜单 -->
   <div class="layui-side layui-side-menu">
     <div class="layui-side-scroll">
-      <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/menu/nav" lay-headers="{token:'{{ layui.data.token }}'}"
+      <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/menu/erpnav"
       lay-done="layui.element.render('nav', 'layadmin-system-side-menu');" id="TPL_layout">
       
         <div class="layui-logo" lay-href="">
@@ -96,10 +96,10 @@
           ,pathURL = layui.admin.correctRouter(path.join('/'))
           ,dataName = layui.setter.response.dataName;
           
-          layui.each(d[dataName], function(index, item){ 
+          layui.each(d[dataName], function(index, item){
             var hasChildren = typeof item.list === 'object' && item.list.length > 0
             ,classSelected = function(){
-              var match = path[0] == item.name || (index == 0 && !path[0]) 
+              var match = path[0] == item.name || (index == 0 && !path[0])
               || (item.jump && pathURL == layui.admin.correctRouter(item.jump)) || item.spread;
               if(match){
                 return hasChildren ? 'layui-nav-itemed' : 'layui-this';
