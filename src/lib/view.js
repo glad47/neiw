@@ -70,7 +70,7 @@ layui.define(['laytpl', 'layer'], function(exports){
     
     if(request.tokenName){
       //自动给参数传入默认 token
-      options.data[request.tokenName] = request.tokenName in options.data 
+      options.data[request.tokenName] = request.tokenName in options.data
         ?  options.data[request.tokenName]
       : (layui.data(setter.tableName)[request.tokenName] || '');
       

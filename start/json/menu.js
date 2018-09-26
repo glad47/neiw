@@ -20,6 +20,7 @@
         "name": "customerInfo"
         ,"title": "客户信息"
         ,"jump": "/infoManagement/customer_info"
+        ,"list":null
     },{
         "name": "userManagement"
         ,"title": "用户管理"

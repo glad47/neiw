@@ -115,8 +115,8 @@
             </a>
             {{# if(hasChildren){ }}
               <dl class="layui-nav-child">
-              {{# layui.each(item.list, function(index2, item2){ 
-                var hasChildren2 = typeof item2.list == 'object' && item2.list.length > 0
+              {{# layui.each(item.list, function(index2, item2){
+                var hasChildren2 = typeof item2.list == 'object' && item2.list !=null && item2.list.length > 0
                 ,classSelected2 = function(){
                   var match = (path[0] == item.name && path[1] == item2.name) 
                   || (item2.jump && pathURL == layui.admin.correctRouter(item2.jump)) || item2.spread;
@@ -138,7 +138,7 @@
                         var match = (path[0] == item.name && path[1] == item2.name && path[2] == item3.name) 
                         || (item3.jump && pathURL == layui.admin.correctRouter(item3.jump))
                         ,url3 = (item3.jump && typeof item3.jump === 'string') 
-                          ? item3.jump 
+                          ? item3.jump
                         : [item.name, item2.name, item3.name].join('/')
                       }}
                         <dd data-name="{{ item3.name || '' }}"  data-jump="{{ item3.jump || '' }}" 
@@ -198,20 +198,28 @@
   
 </div>
 
-<!--<script>-->
-  <!--layui.use(['admin','user'],function () {-->
-      <!--admin = layui.admin;-->
-      <!--admin.req({-->
-          <!--url: 'http://192.168.0.155:8080/renren-fast/sys/menu/nav',-->
-          <!--where: {-->
-          <!--token: layui.data('layuiAdmin').token-->
-      <!--},-->
-          <!--done: function (res) {-->
-              <!--layer.msg('suc');-->
-          <!--},-->
-          <!--fail: function () {-->
-              <!--layer.msg('fail');-->
-          <!--}-->
-      <!--})-->
-  <!--})-->
-<!--</script>-->
+<script>
+  layui.use(['admin','user'],function () {
+      var $ = layui.$
+      admin = layui.admin
+      ,setter = layui.setter
+      ,router = layui.router()
+      ,search = router.search;
+
+      admin.req({
+          url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpnav',
+          data: '',
+          done: function (res) {
+              layui.data(setter.tableName, {
+                  key: setter.permissionsKeys
+                  ,value: res.permissions
+              });
+              layer.msg('权限标识添加成功');
+              // console.log("权限标示为："+layui.data('layuiAdmin').permissions);
+          },
+          fail: function () {
+              console.log('权限标识未能添加成功');
+          }
+      })
+  })
+</script>
