@@ -204,7 +204,7 @@ layui.define(['table', 'form'], function(exports){
     table.on('tool(LAY-user-back-role)', function(obj){
         var data = obj.data;
         if(obj.event === 'del'){
-            layer.confirm('确定删除此角色？', function(index){
+            layer.confirm('确定删除此角色s？', function(index){
                 obj.del();
                 layer.close(index);
             });

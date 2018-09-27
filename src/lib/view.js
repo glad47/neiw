@@ -47,7 +47,6 @@ layui.define(['laytpl', 'layer'], function(exports){
       key: setter.request.tokenName
       ,remove: true
     });
-    
     //跳转到登入页
     location.hash = '/user/login'; 
   };

@@ -91,10 +91,17 @@
         </div>
         
         <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
-        {{# 
+        {{#
           var path =  layui.router().path
           ,pathURL = layui.admin.correctRouter(path.join('/'))
-          ,dataName = layui.setter.response.dataName;
+          ,dataName = layui.setter.response.dataName
+          ,setter = layui.setter;
+
+          layui.data(setter.tableName, {
+              key: setter.permissionsKeys
+              ,value: d.permissions
+          });
+          layer.msg('权限标识添加成功!!');
           
           layui.each(d[dataName], function(index, item){
             var hasChildren = typeof item.list === 'object' && item.list.length > 0
@@ -199,27 +206,27 @@
 </div>
 
 <script>
-  layui.use(['admin','user'],function () {
-      var $ = layui.$
-      admin = layui.admin
-      ,setter = layui.setter
-      ,router = layui.router()
-      ,search = router.search;
-
-      admin.req({
-          url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpnav',
-          data: '',
-          done: function (res) {
-              layui.data(setter.tableName, {
-                  key: setter.permissionsKeys
-                  ,value: res.permissions
-              });
-              layer.msg('权限标识添加成功');
-              // console.log("权限标示为："+layui.data('layuiAdmin').permissions);
-          },
-          fail: function () {
-              console.log('权限标识未能添加成功');
-          }
-      })
-  })
+  // layui.use(['admin','user'],function () {
+  //     var $ = layui.$
+  //     admin = layui.admin
+  //     ,setter = layui.setter
+  //     ,router = layui.router()
+  //     ,search = router.search;
+  //
+  //     admin.req({
+  //         url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpnav',
+  //         data: '',
+  //         done: function (res) {
+  //             layui.data(setter.tableName, {
+  //                 key: setter.permissionsKeys
+  //                 ,value: res.permissions
+  //             });
+  //             layer.msg('权限标识添加成功');
+  //             // console.log("权限标示为："+layui.data('layuiAdmin').permissions);
+  //         },
+  //         fail: function () {
+  //             console.log('权限标识未能添加成功');
+  //         }
+  //     })
+  // })
 </script>
