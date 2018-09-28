@@ -1,8 +1,6 @@
 /**
 
  @Name：layuiAdmin 用户管理 管理员管理 角色管理
- @Author：star1029
- @Site：http://www.layui.com/admin/
  @License：LPPL
 
  */
@@ -32,6 +30,31 @@ layui.define(['table', 'form'], function(exports){
                 ,{field: 'perms', title: '授权标识', sort: true,minWidth:154,align:'center'}
                 ,{title: '操作', width: 165, align:'center', fixed: 'right', toolbar: '#menu_opreation'}
             ]]
+            ,done (){
+                $("#LAY_app").each(function (e) {
+                    var str = $("td[data-field='type']").text(), result = "";
+                    for(var i=0,len=str.length;i<len;i++){
+                        result += str[i];
+                        if(i % 1 == 0) result += ',';
+                    }
+                    console.log("result:==>"+result);
+                    var endArr = result.substring(0,result.length-1);
+                    for (var x=0;x < endArr.length;x++) {
+                        var element = $("tbody td[data-field='type']").eq(x);
+                        var type_value = element.text();
+                        console.log("获取的div内容为："+element.text())
+                            if (type_value =="0"){
+                                element.html("<div class=\"layui-table-cell laytable-cell-1-type\">一级菜单</div>");
+                                }
+                            if (type_value == "1") {
+                                element.html("<div class=\"layui-table-cell laytable-cell-1-type\">二级菜单</div>");
+                                }
+                            if (type_value == "2") {
+                                element.html("<div class=\"layui-table-cell laytable-cell-1-type\">按钮</div>");
+                                }
+                    }
+                })
+            }
 
         });
 
@@ -103,6 +126,7 @@ layui.define(['table', 'form'], function(exports){
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
+
 
 
     exports('sys_menu', {})
