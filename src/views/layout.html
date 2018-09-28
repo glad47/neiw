@@ -123,7 +123,7 @@
             {{# if(hasChildren){ }}
               <dl class="layui-nav-child">
               {{# layui.each(item.list, function(index2, item2){
-                var hasChildren2 = typeof item2.list == 'object' && item2.list !=null && item2.list.length > 0
+                var hasChildren2 = false
                 ,classSelected2 = function(){
                   var match = (path[0] == item.name && path[1] == item2.name) 
                   || (item2.jump && pathURL == layui.admin.correctRouter(item2.jump)) || item2.spread;
