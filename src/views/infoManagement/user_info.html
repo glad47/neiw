@@ -160,25 +160,6 @@
             active[type] ? active[type].call(this) : '';
         });
         //jquery事件
-        alert(1);
-        $("td[data-field='name']").css("color","red");
-        $("#LAY_app").each(function (e) {
-            var tdLeng = $("td[data-field='name']").length;
-            var tdArr = new Array();
-
-            var str = $("td[data-field='name']").text(), result = "";
-            for(var i=0,len=str.length;i<len;i++){
-                result += str[i];
-                if(i % 2 == 1) result += ',';
-            }
-            console.log("result:==>"+result);
-            var tdArr = result.split(",")
-            console.log("tdArr====>"+tdArr.length)
-            if ($("td[data-field='name']").text() === "帕提莫李青"){
-                alert(1);
-                $("td[data-field='name']").css("color","red");
-            }
-        })
     });
 
 
