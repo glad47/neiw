@@ -1,8 +1,8 @@
 {
     "msg": "success",
     "code": 0,
-    -"data": [
-    -{
+    "data": [
+    {
         "menuId": 1,
         "parentId": 0,
         "name": "admin",
@@ -16,7 +16,7 @@
         "list": null,
         "spread": null
     },
-    -{
+    {
         "menuId": 3,
         "parentId": 1,
         "name": "menu",
@@ -30,7 +30,7 @@
         "list": null,
         "spread": null
     },
-    -{
+    {
         "menuId": 4,
         "parentId": 1,
         "name": "role",
@@ -44,7 +44,7 @@
         "list": null,
         "spread": null
     },
-    -{
+    {
         "menuId": 5,
         "parentId": 1,
         "name": "user",
@@ -58,7 +58,7 @@
         "list": null,
         "spread": null
     },
-    -{
+    {
         "menuId": 6,
         "parentId": 3,
         "name": "list",
@@ -72,7 +72,7 @@
         "list": null,
         "spread": null
     },
-    -{
+    {
         "menuId": 7,
         "parentId": 3,
         "name": "add",
@@ -86,7 +86,7 @@
         "list": null,
         "spread": null
     },
-    -{
+    {
         "menuId": 8,
         "parentId": 3,
         "name": "update",
@@ -100,7 +100,7 @@
         "list": null,
         "spread": null
     },
-    -{
+    {
         "menuId": 9,
         "parentId": 3,
         "name": "delete",
@@ -114,7 +114,7 @@
         "list": null,
         "spread": null
     },
-    -{
+    {
         "menuId": 10,
         "parentId": 1,
         "name": "customer",
@@ -128,7 +128,7 @@
         "list": null,
         "spread": null
     },
-    -{
+    {
         "menuId": 11,
         "parentId": 1,
         "name": "supplier",
