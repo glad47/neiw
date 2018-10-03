@@ -109,12 +109,18 @@
     					//监听提交
     					form.on('submit(layuiadmin-app-form-submit)',function(data){
     						var field = data.field;
+
+                            // field.each(function(index,item){
+                            //     console.log(item);
+                            // });
+                            console.log(field);
+                            //console.log(menuIdList);
     						admin.req({
     							url: setter.baseUrl+'sys/role/save',
     							type:'POST',
-    							dataType:'json',
-    							contentType:'application/json',
-    							data: JSON.stringify(field),
+    							//dataType:'json',
+    							//contentType:'application/json',
+    							data: field,
     							success:function(data){
     								console.log(data);
     								layui.table.reload('role_listTab'); //重载表格
