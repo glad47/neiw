@@ -41,6 +41,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
       ,msgName: 'msg' //状态信息的字段名称
       ,dataName: 'data' //数据详情的字段名称
     }
+    ,baseUrl:'http://192.168.0.155:8080/renren-fast/'
     
     //独立页面路由，可随意添加（无需写参数）
     ,indPage: [

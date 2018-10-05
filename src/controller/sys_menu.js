@@ -114,45 +114,45 @@ layui.define(['table', 'form','element'], function(exports){
                             var firSel;
                             var tabNum = data.index;
                             if (tabNum == "0") {
-                                   //监听select
-                                   form.on('select(LAY-menu-dir-submit)',function (data) {
-                                       var selValue = data.value;
-                                       $("#menuAdd_menuup").find("option[text=selValue]").attr("selected",true);
-                                       var firstSel =  $("#menuAdd_menuup  option:selected").attr('name'); //原始sel的name值
-                                       firSel = firstSel;
-                                   });
+                                //监听select
+                                form.on('select(LAY-menu-dir-submit)',function (data) {
+                                    var selValue = data.value;
+                                    $("#menuAdd_menuup").find("option[text=selValue]").attr("selected",true);
+                                    var firstSel =  $("#menuAdd_menuup  option:selected").attr('name'); //原始sel的name值
+                                    firSel = firstSel;
+                                });
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝监听目录提交
-                                   form.on('submit(LAY-menu-add-submit)', function (data) {
-                                       var field = data.field; //获取提交的字段
-                                       field.parentId = firSel;
-                                       field.type = "0";
-                                       console.log(field);
-                                       //提交 Ajax成功后，关闭房前弹层并重载表格
-                                       //$.ajax ({})
-                                       admin.req({
-                                           type:'post',
-                                           url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpsave' //实际使用请改成服务端真实接口
-                                           ,data: field
-                                           ,done: function(res){
-                                               console.log(res);
-                                               layer.msg('菜单添加成功');
-                                           }
-                                           ,fail: function (res) {
-                                               layer.msg('菜单添加失败');
-                                           },
-                                       });
-                                       //layui.table.reload('sys_menu'); // 重载表格
-                                       //layer.close(index); //执行关闭
-                                   });
-                               } else if (tabNum == "1") {
-                                   //监听select
-                                   form.on('select(LAY-menu-men-submit)',function (data) {
-                                       var selValue = data.value;
-                                       $("#menuAdd_menuTs").find("option[text=selValue]").attr("selected",true);
-                                       var firstSel =  $("#menuAdd_menuTs  option:selected").attr('name'); //原始sel的name值
-                                       firSel = firstSel;
-                                       // alert(firstSel);
-                                   });
+                                form.on('submit(LAY-menu-add-submit)', function (data) {
+                                    var field = data.field; //获取提交的字段
+                                    field.parentId = firSel;
+                                    field.type = "0";
+                                    console.log(field);
+                                    //提交 Ajax成功后，关闭房前弹层并重载表格
+                                    //$.ajax ({})
+                                    admin.req({
+                                        type:'post',
+                                        url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpsave' //实际使用请改成服务端真实接口
+                                        ,data: field
+                                        ,done: function(res){
+                                            console.log(res);
+                                            layer.msg('菜单添加成功');
+                                        }
+                                        ,fail: function (res) {
+                                            layer.msg('菜单添加失败');
+                                        },
+                                    });
+                                    //layui.table.reload('sys_menu'); // 重载表格
+                                    //layer.close(index); //执行关闭
+                                });
+                            } else if (tabNum == "1") {
+                                //监听select
+                                form.on('select(LAY-menu-men-submit)',function (data) {
+                                    var selValue = data.value;
+                                    $("#menuAdd_menuTs").find("option[text=selValue]").attr("selected",true);
+                                    var firstSel =  $("#menuAdd_menuTs  option:selected").attr('name'); //原始sel的name值
+                                    firSel = firstSel;
+                                    // alert(firstSel);
+                                });
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝菜单提交
                                 form.on('submit(LAY-menu-me-submit)', function (data) {
                                     var field = data.field; //获取提交的字段
@@ -178,7 +178,7 @@ layui.define(['table', 'form','element'], function(exports){
                                     //layui.table.reload('sys_menu'); // 重载表格
                                     //layer.close(index); //执行关闭
                                 });
-                               } else if (tabNum == "2") {
+                            } else if (tabNum == "2") {
                                 //监听select
                                 form.on('select(LAY-menu-btn-submit)',function (data) {
                                     var selValue = data.value;

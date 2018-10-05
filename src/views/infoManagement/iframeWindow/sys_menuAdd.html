@@ -4,197 +4,197 @@
 </script>
 
 <div class="layui-fluid">
-        <div class="layui-tab layui-tab-brief" lay-filter="menu_tab">
-            <ul class="layui-tab-title">
-                <li id="menuAdd_tabDir">目录</li>
-                <li id="menuAdd_tabMenu">菜单</li>
-                <li id="menuAdd_tabBtn">按钮</li>
-            </ul>
-            <div class="layui-tab-content">
-                <!--目录-->
-                <div class="layui-tab-item" id="menu_tabDir">
-                    <form class="layui-form" lay-filter="user_menuAdd_form" id="user_menuAdd_form" style="width: 650px">
-                        <div class="layui-form-item">
-                            <div class="layui-col-md12">
-                                <label class="layui-form-label"><span class="mandatory">*</span>目录名称：</label>
-                                <div class="layui-input-block">
-                                    <script type="text/html" template>
-                                        <input type="text" name="title" value="{{ d.params.title || '' }}" autocomplete="off" class="layui-input" id="menuAdd_dirname">
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <div class="layui-col-md12">
-                                <label class="layui-form-label"><span class="mandatory">*</span>上级菜单：</label>
-                                <div class="layui-input-block">
-                                    <script type="text/html" name="menuup" template lay-url="http://192.168.0.155:8080/renren-fast/sys/menu/erpselect" lay-done="layui.data.done(d);">
-                                        <select name="parentId" id="menuAdd_menuup" lay-filter="LAY-menu-dir-submit">
-                                            {{#  layui.each(d.menuList, function(index, item){ }}
-                                            <option name="{{ item.parentId }}">{{ item.title }}</option>
-                                            {{#  }); }}
-                                            {{#  if(d.menuList.length === 0){ }}
-                                            无数据
-                                            {{#  } }}
-                                        </select>
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <div class="layui-col-md6">
-                                <label class="layui-form-label">排序号：</label>
-                                <div class="layui-input-block">
-                                    <script type="text/html" template>
-                                        <input type="number" name="orderNum" value="{{ d.params.orderNum || '' }}" autocomplete="off" class="layui-input" id="menuAdd_ordernum">
-                                    </script>
-                                </div>
-                            </div>
-                            <div class="layui-col-md6">
-                                <label class="layui-form-label">菜单图标：</label>
-                                <div class="layui-input-block">
-                                    <script type="text/html" template>
-                                        <input type="text" name="icon" value="{{ d.params.icon || '' }}" autocomplete="off" class="layui-input" id="menuAdd_icon">
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="layui-form-item layui-col-md-offset2">
+    <div class="layui-tab layui-tab-brief" lay-filter="menu_tab">
+        <ul class="layui-tab-title">
+            <li id="menuAdd_tabDir">目录</li>
+            <li id="menuAdd_tabMenu">菜单</li>
+            <li id="menuAdd_tabBtn">按钮</li>
+        </ul>
+        <div class="layui-tab-content">
+            <!--目录-->
+            <div class="layui-tab-item" id="menu_tabDir">
+                <form class="layui-form" lay-filter="user_menuAdd_form" id="user_menuAdd_form" style="width: 650px">
+                    <div class="layui-form-item">
+                        <div class="layui-col-md12">
+                            <label class="layui-form-label"><span class="mandatory">*</span>目录名称：</label>
                             <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="LAY-menu-add-submit">立即提交</button>
-                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                <script type="text/html" template>
+                                    <input type="text" name="title" value="{{ d.params.title || '' }}" autocomplete="off" class="layui-input" id="menuAdd_dirname">
+                                </script>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <!--菜单-->
-                <div class="layui-tab-item">
-                    <form class="layui-form" lay-filter="user_menuMe_form" id="user_menuMe_form" style="width: 650px">
-                        <div class="layui-form-item">
-                            <div class="layui-col-md12">
-                                <label class="layui-form-label"><span class="mandatory">*</span>菜单名称：</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="title" autocomplete="off" class="layui-input" id="menuAdd_name">
-                                </div>
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="layui-form-item">
-                            <div class="layui-col-md12">
-                                <label class="layui-form-label"><span class="mandatory">*</span>上级菜单：</label>
-                                <div class="layui-input-block">
-                                    <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/menu/erpselect" lay-done="layui.data.done(d);">
-                                        <select name="parentId" id="menuAdd_menuTs" lay-filter="LAY-menu-men-submit">
-                                            {{#  layui.each(d.menuList, function(index, item){ }}
-                                            <option name="{{ item.parentId }}">{{ item.title }}</option>
-                                            {{#  }); }}
-                                            {{#  if(d.menuList.length === 0){ }}
-                                            无数据
-                                            {{#  } }}
-                                        </select>
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <div class="layui-col-md12">
-                                <label class="layui-form-label">菜单路由：</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="jump" autocomplete="off" class="layui-input" id="menuAdd_tjump">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <div class="layui-col-md">
-                                <label class="layui-form-label">授权标识：</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="perms" autocomplete="off" class="layui-input" id="menuAdd_permissions">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <div class="layui-col-md6">
-                                <label class="layui-form-label">排序号：</label>
-                                <div class="layui-input-block">
-                                    <input type="number" name="orderNum" autocomplete="off" class="layui-input" id="menuAdd_otrdernum">
-                                </div>
-                            </div>
-                            <div class="layui-col-md6">
-                                <label class="layui-form-label">菜单图标：</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="icon" autocomplete="off" class="layui-input" id="menuAdd_ticon">
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="layui-form-item layui-col-md-offset2">
+                    <div class="layui-form-item">
+                        <div class="layui-col-md12">
+                            <label class="layui-form-label"><span class="mandatory">*</span>上级菜单：</label>
                             <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="LAY-menu-me-submit">立即提交</button>
-                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                <script type="text/html" name="menuup" template lay-url="http://192.168.0.155:8080/renren-fast/sys/menu/erpselect" lay-done="layui.data.done(d);">
+                                    <select name="parentId" id="menuAdd_menuup" lay-filter="LAY-menu-dir-submit">
+                                        {{#  layui.each(d.menuList, function(index, item){ }}
+                                        <option name="{{ item.parentId }}">{{ item.title }}</option>
+                                        {{#  }); }}
+                                        {{#  if(d.menuList.length === 0){ }}
+                                        无数据
+                                        {{#  } }}
+                                    </select>
+                                </script>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
 
-                <!--按钮-->
-                <div class="layui-tab-item">
-                    <form class="layui-form" lay-filter="user_menuBtn_form" id="user_menuBtn_form" style="width: 650px">
-                        <div class="layui-form-item">
-                            <div class="layui-col-md">
-                                <label class="layui-form-label"><span class="mandatory">*</span>按钮名称：</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="title" autocomplete="off" class="layui-input" id="menuAdd_btn">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <div class="layui-col-md12">
-                                <label class="layui-form-label"><span class="mandatory">*</span>上级菜单：</label>
-                                <div class="layui-input-block">
-                                    <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/menu/erpselect" lay-done="layui.data.done(d);">
-                                        <select name="parentId" id="menuAdd_tabsbtn" lay-filter="LAY-menu-btn-submit">
-                                            {{#  layui.each(d.menuList, function(index, item){ }}
-                                            <option name="{{ item.parentId }}">{{ item.title }}</option>
-                                            {{#  }); }}
-                                            {{#  if(d.menuList.length === 0){ }}
-                                            无数据
-                                            {{#  } }}
-                                        </select>
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <div class="layui-col-md">
-                                <label class="layui-form-label">授权标识：</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="perms" autocomplete="off" class="layui-input" id="menuAdd_thpermissions">
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="layui-form-item layui-col-md-offset2">
+                    <div class="layui-form-item">
+                        <div class="layui-col-md6">
+                            <label class="layui-form-label">排序号：</label>
                             <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="LAY-menu-btn-submit">立即提交</button>
-                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                <script type="text/html" template>
+                                    <input type="number" name="orderNum" value="{{ d.params.orderNum || '' }}" autocomplete="off" class="layui-input" id="menuAdd_ordernum">
+                                </script>
                             </div>
                         </div>
-                    </form>
-                </div>
+                        <div class="layui-col-md6">
+                            <label class="layui-form-label">菜单图标：</label>
+                            <div class="layui-input-block">
+                                <script type="text/html" template>
+                                    <input type="text" name="icon" value="{{ d.params.icon || '' }}" autocomplete="off" class="layui-input" id="menuAdd_icon">
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item layui-col-md-offset2">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="LAY-menu-add-submit">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--菜单-->
+            <div class="layui-tab-item">
+                <form class="layui-form" lay-filter="user_menuMe_form" id="user_menuMe_form" style="width: 650px">
+                    <div class="layui-form-item">
+                        <div class="layui-col-md12">
+                            <label class="layui-form-label"><span class="mandatory">*</span>菜单名称：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="title" autocomplete="off" class="layui-input" id="menuAdd_name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-col-md12">
+                            <label class="layui-form-label"><span class="mandatory">*</span>上级菜单：</label>
+                            <div class="layui-input-block">
+                                <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/menu/erpselect" lay-done="layui.data.done(d);">
+                                    <select name="parentId" id="menuAdd_menuTs" lay-filter="LAY-menu-men-submit">
+                                        {{#  layui.each(d.menuList, function(index, item){ }}
+                                        <option name="{{ item.parentId }}">{{ item.title }}</option>
+                                        {{#  }); }}
+                                        {{#  if(d.menuList.length === 0){ }}
+                                        无数据
+                                        {{#  } }}
+                                    </select>
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-col-md12">
+                            <label class="layui-form-label">菜单路由：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="jump" autocomplete="off" class="layui-input" id="menuAdd_tjump">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-col-md">
+                            <label class="layui-form-label">授权标识：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="perms" autocomplete="off" class="layui-input" id="menuAdd_permissions">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-col-md6">
+                            <label class="layui-form-label">排序号：</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="orderNum" autocomplete="off" class="layui-input" id="menuAdd_otrdernum">
+                            </div>
+                        </div>
+                        <div class="layui-col-md6">
+                            <label class="layui-form-label">菜单图标：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="icon" autocomplete="off" class="layui-input" id="menuAdd_ticon">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item layui-col-md-offset2">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="LAY-menu-me-submit">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!--按钮-->
+            <div class="layui-tab-item">
+                <form class="layui-form" lay-filter="user_menuBtn_form" id="user_menuBtn_form" style="width: 650px">
+                    <div class="layui-form-item">
+                        <div class="layui-col-md">
+                            <label class="layui-form-label"><span class="mandatory">*</span>按钮名称：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="title" autocomplete="off" class="layui-input" id="menuAdd_btn">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-col-md12">
+                            <label class="layui-form-label"><span class="mandatory">*</span>上级菜单：</label>
+                            <div class="layui-input-block">
+                                <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/menu/erpselect" lay-done="layui.data.done(d);">
+                                    <select name="parentId" id="menuAdd_tabsbtn" lay-filter="LAY-menu-btn-submit">
+                                        {{#  layui.each(d.menuList, function(index, item){ }}
+                                        <option name="{{ item.parentId }}">{{ item.title }}</option>
+                                        {{#  }); }}
+                                        {{#  if(d.menuList.length === 0){ }}
+                                        无数据
+                                        {{#  } }}
+                                    </select>
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-col-md">
+                            <label class="layui-form-label">授权标识：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="perms" autocomplete="off" class="layui-input" id="menuAdd_thpermissions">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="layui-form-item layui-col-md-offset2">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="LAY-menu-btn-submit">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
 
     </form>
