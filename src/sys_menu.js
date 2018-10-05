@@ -17,6 +17,8 @@ layui.define(['table', 'form'], function(exports){
             ,height: 521
             ,url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erplist'
             ,id: 'sys_menu'
+            ,page: true
+            ,limit: 10
             ,where: {
                 access_token: layui.data('layuiAdmin').access_token
             }
@@ -100,6 +102,7 @@ layui.define(['table', 'form'], function(exports){
     //事件
     var active = {
         userInfo_add: function () {
+
             admin.popup({
                 title:'添加菜单',
                 area: ['717px','561px'],
@@ -112,6 +115,7 @@ layui.define(['table', 'form'], function(exports){
                         //监听select
                         form.on('select(LAY-menu-dir-submit)',function (data) {
                             var selValue = data.value;
+                            console.log("selValue==>"+selValue);
                             $("#menuAdd_menuup").find("option[text=selValue]").attr("selected",true);
                             var firstSel =  $("#menuAdd_menuup  option:selected").attr('name'); //原始sel的name值
                             firSel = firstSel;

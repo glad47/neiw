@@ -109,11 +109,12 @@ layui.define(['table', 'form','element'], function(exports){
                 id:'LAY-popup-menu-add',
                 success: function (layero,index) {
                     view(this.id).render('/infoManagement/iframeWindow/sys_menuAdd').done(function () {
+                        $("#menuAdd_tabDir").click();
                         form.render(null, 'user_menuAdd_form');
                         form.render(null, 'user_menuMe_form');
                         //监听tab，判断提交表单
                         element.on('tab(menu_tab)', function (data) {
-                            var firSel = 0;
+                            var firSel = "0";
                             var tabNum = data.index;
                             if (tabNum == "0") {
                                 //监听select
@@ -161,6 +162,7 @@ layui.define(['table', 'form','element'], function(exports){
                                     field.parentId = firSel;
                                     field.type = "1";
                                     console.log(field);
+                                    console.log("field.type==>"+field.type)
                                     //提交 Ajax成功后，关闭房前弹层并重载表格
                                     //$.ajax ({})
                                     admin.req({
@@ -172,6 +174,7 @@ layui.define(['table', 'form','element'], function(exports){
                                         ,done: function(res){
                                             console.log(res);
                                             layer.msg('菜单添加成功');
+                                            alert('1111');
                                         }
                                         ,fail: function (res) {
                                             layer.msg('菜单添加失败');
