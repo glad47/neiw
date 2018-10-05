@@ -24,7 +24,6 @@
             <table class="layui-hide" id="role_listTab"></table>
 
             <script type="text/html" id="role-table-operate-barDemo">
-              <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
               <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
               <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
             </script>
@@ -47,14 +46,14 @@
       ,where: {
     		access_token: layui.data('layuiAdmin').access_token
   	    }
-      ,width: admin.screen() > 1 ? 1500 : ''
+      //,width: admin.screen() > 1 ? 1500 : ''
       ,cols: [[
         {type:'checkbox', fixed: 'left',width:50}
-        ,{field:'roleId', width:150, title: 'ID', fixed: 'left'}
-        ,{field:'roleName', width:280, title: '角色名称'}
-        ,{field:'remark', width:422, title: '备注'}
-        ,{field:'createTime', width:200, title: '创建时间'}
-        ,{width:390, align:'center', fixed: 'right', toolbar: '#role-table-operate-barDemo',title:'操作'}
+        ,{field:'roleId', minWidth:20, title: 'ID',align:'center'}
+        ,{field:'roleName', minWidth:80, title: '角色名称',align:'center'}
+        ,{field:'remark', minWidth:100, title: '备注',align:'center'}
+        ,{field:'createTime', minWidth:100, title: '创建时间',align:'center'}
+        ,{width:190, align:'center',align:'center',fixed: 'right', toolbar: '#role-table-operate-barDemo',title:'操作'}
       ]]
       ,page: true
     });
