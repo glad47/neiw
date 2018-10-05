@@ -15,9 +15,11 @@ layui.define(['table', 'form','element'], function(exports){
         ,form = layui.form;
     table.render({
         elem: '#sys_menu'
-        ,height: 521
+        ,height: 780
         ,url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erplist'
         ,id: 'sys_menu'
+        ,page: true
+        ,limit: 10
         ,where: {
             access_token: layui.data('layuiAdmin').access_token
         }
@@ -111,7 +113,7 @@ layui.define(['table', 'form','element'], function(exports){
                         form.render(null, 'user_menuMe_form');
                         //监听tab，判断提交表单
                         element.on('tab(menu_tab)', function (data) {
-                            var firSel;
+                            var firSel = 0;
                             var tabNum = data.index;
                             if (tabNum == "0") {
                                 //监听select
