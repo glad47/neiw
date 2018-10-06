@@ -74,11 +74,11 @@ layui.define(['table', 'form','element'], function(exports){
         var data = obj.data;
         var menuId = data.menuId;
         if(obj.event === 'del'){
-            layer.confirm('真的删除行么', function(index){
+            layer.confirm('确定删除此菜单？', function(index){
                 admin.req({
                     type:'post',
-                    url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpdelete/1'
-                    ,data: obj.menuId
+                    url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpdelete/'+menuId
+                    // ,data: obj.menuId
                     ,done : function (res) {
                         layer.msg('删除成功');
                         obj.del();
