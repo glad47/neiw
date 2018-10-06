@@ -222,11 +222,13 @@ layui.define(['table', 'form','element'], function(exports){
         //事件
     var active = {
         userInfo_add: function () {
+            // 打开弹出页
             admin.popup({
                 title:'添加菜单',
                 area: ['717px','561px'],
                 id:'LAY-popup-menu-add',
                 success: function (layero,index) {
+                    // 如果表单模板是否为undefined，自动清除表单内容
                     view(this.id).render('/infoManagement/iframeWindow/sys_menuAdd').done(function () {
                         $("#menuAdd_tabDir").click();
                         form.render(null, 'user_menuAdd_form');
@@ -249,8 +251,6 @@ layui.define(['table', 'form','element'], function(exports){
                                     field.parentId = firSel;
                                     field.type = "0";
                                     console.log(field);
-                                    //提交 Ajax成功后，关闭房前弹层并重载表格
-                                    //$.ajax ({})
                                     admin.req({
                                         type:'post',
                                         url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpsave' //实际使用请改成服务端真实接口
@@ -263,10 +263,20 @@ layui.define(['table', 'form','element'], function(exports){
                                             layer.msg('菜单添加失败');
                                         },
                                     });
-                                    //layui.table.reload('sys_menu'); // 重载表格
-                                    //layer.close(index); //执行关闭
+                                    layui.table.reload('sys_menu'); // 重载表格
+                                    layer.close(index); //执行关闭
                                 });
                             } else if (tabNum == "1") {
+                                //判断表单类型是否为undefined
+                                if(typeof($("#menuAdd_tjump") === "undefined")){
+                                    $("#menuAdd_tjump").val('');
+                                }
+                                if (typeof($("#menuAdd_permissions") === "undefined")){
+                                    $("#menuAdd_permissions").val('');
+                                }
+                                if (typeof($("#menuAdd_ticon") === "undefined")){
+                                    $("#menuAdd_ticon").val('');
+                                }
                                 //监听select
                                 form.on('select(LAY-menu-men-submit)',function (data) {
                                     var selValue = data.value;
@@ -282,13 +292,9 @@ layui.define(['table', 'form','element'], function(exports){
                                     field.type = "1";
                                     console.log(field);
                                     console.log("field.type==>"+field.type)
-                                    //提交 Ajax成功后，关闭房前弹层并重载表格
-                                    //$.ajax ({})
                                     admin.req({
                                         type:'post',
                                         url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpsave' //实际使用请改成服务端真实接口
-                                        // ,dataType: 'json'
-                                        // ,contentType: 'application/json'
                                         ,data: field
                                         ,done: function(res){
                                             console.log(res);
@@ -299,41 +305,48 @@ layui.define(['table', 'form','element'], function(exports){
                                             layer.msg('菜单添加失败');
                                         },
                                     });
-                                    //layui.table.reload('sys_menu'); // 重载表格
-                                    //layer.close(index); //执行关闭
+                                    layui.table.reload('sys_menu'); // 重载表格
+                                    layer.close(index); //执行关闭
                                 });
                             } else if (tabNum == "2") {
+                                //判断表单类型是否为undefined
+                                if (typeof($("#menuAdd_btn") === "undefined")){
+                                    $("#menuAdd_btn").val('');
+                                }
+                                if (typeof($("#menuAdd_thpermissions") === "undefined")){
+                                    $("#menuAdd_thpermissions").val('');
+                                }
                                 //监听select
                                 form.on('select(LAY-menu-btn-submit)',function (data) {
+                                    var firstSel =  $("#menuAdd_tabsbtn  option:selected").attr('name'); //原始sel的name值
                                     var selValue = data.value;
                                     $("#menuAdd_tabsbtn").find("option[text=selValue]").attr("selected",true);
-                                    var firstSel =  $("#menuAdd_tabsbtn  option:selected").attr('name'); //原始sel的name值
                                     firSel = firstSel;
                                 });
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝按钮提交
                                 form.on('submit(LAY-menu-btn-submit)', function (data) {
-                                    var field = data.field; //获取提交的字段
-                                    field.parentId = firSel;
-                                    field.type = "2";
-                                    console.log(field);
-                                    //提交 Ajax成功后，关闭房前弹层并重载表格
-                                    //$.ajax ({})
-                                    admin.req({
-                                        type:'post',
-                                        url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpsave' //实际使用请改成服务端真实接口
-                                        // ,dataType: 'json'
-                                        // ,contentType: 'application/json'
-                                        ,data: field
-                                        ,done: function(res){
-                                            console.log(res);
-                                            layer.msg('按钮添加成功');
-                                        }
-                                        ,fail: function (res) {
-                                            layer.msg('按钮添加失败');
-                                        },
-                                    });
-                                    layui.table.reload('sys_menu'); // 重载表格
-                                    layer.close(index); //执行关闭
+                                    if (firSel == 1 || firSel == 0){
+                                        layer.tips('请选择与按钮同级的菜单!', '#btnSjmenu',{tips: [1, '#0FA6D8']});
+                                        return false;
+                                    } else {
+                                        var field = data.field; //获取提交的字段
+                                        field.parentId = firSel;
+                                        field.type = "2";
+                                        admin.req({
+                                            type:'post',
+                                            url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpsave' //实际使用请改成服务端真实接口
+                                            ,data: field
+                                            ,done: function(res){
+                                                console.log(res);
+                                                layer.msg('按钮添加成功');
+                                            }
+                                            ,fail: function (res) {
+                                                layer.msg('按钮添加失败');
+                                            },
+                                        });
+                                        layui.table.reload('sys_menu'); // 重载表格
+                                        layer.close(index); //执行关闭
+                                    }
                                 });
                             }
                         });
