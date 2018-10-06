@@ -32,6 +32,7 @@
                                 <script type="text/html" name="menuup" template lay-url="http://192.168.0.155:8080/renren-fast/sys/menu/erpselect" lay-done="layui.data.done(d);">
                                     <select name="parentId" id="menuAdd_menuup" lay-filter="LAY-menu-dir-submit">
                                         {{#  layui.each(d.menuList, function(index, item){ }}
+                                        <option>请选择上级菜单</option>
                                         <option name="{{ item.menuId }}">{{ item.title }}</option>
                                         {{#  }); }}
                                         {{#  if(d.menuList.length === 0){ }}
@@ -92,6 +93,7 @@
                                 <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/menu/erpselect" lay-done="layui.data.done(d);">
                                     <select name="parentId" id="menuAdd_menuTs" lay-filter="LAY-menu-men-submit">
                                         {{#  layui.each(d.menuList, function(index, item){ }}
+                                        <option>请选择上级菜单</option>
                                         <option name="{{ item.menuId }}">{{ item.title }}</option>
                                         {{#  }); }}
                                         {{#  if(d.menuList.length === 0){ }}
@@ -176,6 +178,7 @@
                                 <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/menu/erpselect" lay-done="layui.data.done(d);">
                                     <select name="parentId" id="menuAdd_tabsbtn" lay-filter="LAY-menu-btn-submit">
                                         {{#  layui.each(d.menuList, function(index, item){ }}
+                                        <option>请选择上级菜单</option>
                                         <option name="{{ item.menuId }}">{{ item.title }}</option>
                                         {{#  }); }}
                                         {{#  if(d.menuList.length === 0){ }}
