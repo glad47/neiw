@@ -74,16 +74,21 @@ layui.define(['table', 'form','element'], function(exports){
         var data = obj.data;
         var menuId = data.menuId;
         if(obj.event === 'del'){
-            layer.prompt({
-                formType: 1
-                ,title: '敏感操作，请验证口令'
-            }, function(value, index){
+            layer.confirm('真的删除行么', function(index){
+                admin.req({
+                    type:'post',
+                    url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpdelete/1'
+                    ,data: obj.menuId
+                    ,done : function (res) {
+                        layer.msg('删除成功');
+                        obj.del();
+                        layer.close(index);
+                    }
+                    ,fail: function (res) {
+                        layer.msg('服务器异常，稍后再试！');
+                    }
+                })
                 layer.close(index);
-
-                layer.confirm('真的删除行么', function(index){
-                    obj.del();
-                    layer.close(index);
-                });
             });
         } else if(obj.event === 'edit'){
             admin.popup({
@@ -147,8 +152,6 @@ layui.define(['table', 'form','element'], function(exports){
                                     admin.req({
                                         type:'post',
                                         url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpupdate'
-                                        // ,dataType: 'json'
-                                        // ,contentType: 'application/json'
                                         ,data: field
                                         ,done: function(res){
                                             console.log(res);
@@ -159,8 +162,8 @@ layui.define(['table', 'form','element'], function(exports){
                                             layer.msg('菜单添加失败');
                                         },
                                     });
-                                    //layui.table.reload('sys_menu'); // 重载表格
-                                    //layer.close(index); //执行关闭
+                                    layui.table.reload('sys_menu'); // 重载表格
+                                    layer.close(index); //执行关闭
                                 });
                             } else if (tabNum == "2") {
                                 //监听select
@@ -177,13 +180,9 @@ layui.define(['table', 'form','element'], function(exports){
                                     field.type = "2";
                                     field.menuId= menuId;
                                     console.log(field);
-                                    //提交 Ajax成功后，关闭房前弹层并重载表格
-                                    //$.ajax ({})
                                     admin.req({
                                         type:'post',
                                         url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpupdate'
-                                        // ,dataType: 'json'
-                                        // ,contentType: 'application/json'
                                         ,data: field
                                         ,done: function(res){
                                             console.log(res);
@@ -201,9 +200,6 @@ layui.define(['table', 'form','element'], function(exports){
                         //监听提交
                         form.on('submit(LAY-user-front-submit)', function(data){
                             var field = data.field; //获取提交的字段
-
-                            //提交 Ajax 成功后，关闭当前弹层并重载表格
-                            //$.ajax({});
                             layui.table.reload('sys_menu'); //重载表格
                             layer.close(index); //执行关闭
                         });
@@ -326,7 +322,7 @@ layui.define(['table', 'form','element'], function(exports){
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝按钮提交
                                 form.on('submit(LAY-menu-btn-submit)', function (data) {
                                     if (firSel == 1 || firSel == 0){
-                                        layer.tips('请选择与按钮同级的菜单!', '#btnSjmenu',{tips: [1, '#0FA6D8']});
+                                        layer.tips('请选择与按钮同级所对应的二级菜单!', '#btnSjmenu',{tips: [1, '#0FA6D8']});
                                         return false;
                                     } else {
                                         var field = data.field; //获取提交的字段

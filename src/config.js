@@ -25,6 +25,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
     ,interceptor: true //是否开启未登入拦截
 
     ,permissionsKeys: 'permissions' //用户权限key
+    ,usernameKeys:'username'  //用户名
     
     //自定义请求字段
     ,request: {

@@ -7,23 +7,10 @@
           <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
         </a>
       </li>
-      <!--<li class="layui-nav-item layui-this layui-hide-xs layui-hide-sm layui-show-md-inline-block">
-        <a lay-href="" title="">
-          控制台
-        </a>
-      </li>-->
-      <li class="layui-nav-item layui-hide-xs" lay-unselect>
-        <a href="http://www.layui.com/admin/" target="_blank" title="前台">
-          <i class="layui-icon layui-icon-website"></i>
-        </a>
-      </li>
       <li class="layui-nav-item" lay-unselect>
         <a href="javascript:;" layadmin-event="refresh" title="刷新">
           <i class="layui-icon layui-icon-refresh-3"></i>
         </a>
-      </li>
-      <li class="layui-nav-item layui-hide-xs" lay-unselect>
-        <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach" lay-action="template/search/keywords=">
       </li>
     </ul>
     <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
@@ -42,25 +29,15 @@
         </a>
       </li>
       <li class="layui-nav-item layui-hide-xs" lay-unselect>
-        <a href="javascript:;" layadmin-event="theme">
-          <i class="layui-icon layui-icon-theme"></i>
-        </a>
-      </li>
-      <li class="layui-nav-item layui-hide-xs" lay-unselect>
-        <a href="javascript:;" layadmin-event="note">
-          <i class="layui-icon layui-icon-note"></i>
-        </a>
-      </li>
-      <li class="layui-nav-item layui-hide-xs" lay-unselect>
         <a href="javascript:;" layadmin-event="fullscreen">
           <i class="layui-icon layui-icon-screen-full"></i>
         </a>
       </li>
-      <li class="layui-nav-item" lay-unselect>
+      <li class="layui-nav-item" lay-unselect style="margin-right: 30px;">
         <script type="text/html" template lay-url="./json/user/session.js"
         lay-done="layui.element.render('nav', 'layadmin-layout-right');">
           <a href="javascript:;">
-            <cite>{{ d.data.username }}</cite>
+            <cite>{{ layui.data('layuiAdmin').username }}</cite>
           </a>
           <dl class="layui-nav-child">
             <dd><a lay-href="set/user/info">基本资料</a></dd>
@@ -69,10 +46,6 @@
             <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
           </dl>
         </script>
-      </li>
-      
-      <li class="layui-nav-item layui-hide-xs" lay-unselect>
-        <a href="javascript:;" layadmin-event="about"><i class="layui-icon layui-icon-more-vertical"></i></a>
       </li>
       <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-unselect>
         <a href="javascript:;" layadmin-event="more"><i class="layui-icon layui-icon-more-vertical"></i></a>
@@ -87,9 +60,12 @@
       lay-done="layui.element.render('nav', 'layadmin-system-side-menu');" id="TPL_layout">
       
         <div class="layui-logo" lay-href="">
-          <span>{{ layui.setter.name || 'layuiAdmin' }}</span>
+          <!--<span>{{ layui.setter.name || 'layuiAdmin' }}</span>-->
+          <span>
+            <img src="../../../src/style/res/logoMax.png" style="width: 150px">
+          </span>
         </div>
-        <!--权限标示104行layer.msg('权限标识添加成功!!');-->
+        <!--权限标示104行layer.msg('权限标识添加成功!!');layui.data('layuiAdmin').access_token-->
         <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
         {{#
           var path =  layui.router().path
