@@ -225,7 +225,6 @@ layui.define(['table', 'form','element'], function(exports){
                 success: function (layero,index) {
                     // 如果表单模板是否为undefined，自动清除表单内容
                     view(this.id).render('/infoManagement/iframeWindow/sys_menuAdd').done(function () {
-                        // alert("点击");
                         // $("#menuAdd_tabDir").click();
                         form.render(null, 'user_menuAdd_form');
                         form.render(null, 'user_menuMe_form');

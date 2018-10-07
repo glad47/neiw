@@ -1,23 +1,23 @@
 <title>Edit supplier</title>
 <div class="layui-fluid" style="width: 750px;">
-    <form class="layui-form edit-cusInfo">
+    <form class="layui-form edit-cusInfo" lay-filter="supplierAdd_form" id="supplierAdd_form">
         <div class="layui-form-item">
             <div class="addcus-cusNum layui-col-md4">
                 <label class="layui-form-label">供应商编号：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input">
+                    <input type="text" name="supplierId" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="addcus-cusPWd layui-col-md4">
                 <label class="layui-form-label">密码：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input">
+                    <input type="text" name="password" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="addcus-cusPWd layui-col-md4">
                 <label class="layui-form-label">类别：</label>
                 <div class="layui-input-block">
-                    <select name="label" lay-verify="required">
+                    <select name="type">
                         <option value=""></option>
                         <option value="">程序员</option>
                         <option value="">外贸专员</option>
@@ -30,13 +30,13 @@
             <div class="addcus-cusCom layui-col-md8">
                 <label class="layui-form-label">公司名称：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input">
+                    <input type="text" name="companyName" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="addcus-merchandiser layui-col-md4">
                 <label class="layui-form-label">联系人：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input">
+                    <input type="text" name="contact" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </div>
@@ -44,19 +44,19 @@
             <div class="addcus-tel layui-col-md4">
                 <label class="layui-form-label">办公电话：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input">
+                    <input type="text" name="officePhone" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="addcus-skype layui-col-md4">
                 <label class="layui-form-label">手机：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input">
+                    <input type="text" name="phone" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="addcus-email layui-col-md4">
                 <label class="layui-form-label">Email：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="" autocomplete="off" class="layui-input">
+                    <input type="text" name="email" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
             <div class="addcus-cusNum layui-col-md4">
                 <label class="layui-form-label">付款方式：</label>
                 <div class="layui-input-block">
-                    <select name="label" lay-verify="required">
+                    <select name="paymentType">
                         <option value=""></option>
                         <option value="">Paypal</option>
                         <option value="">支付宝</option>
@@ -76,7 +76,7 @@
             <div class="addcus-cusPWd layui-col-md4">
                 <label class="layui-form-label">是否含税：</label>
                 <div class="layui-input-block">
-                    <select name="label" lay-verify="required">
+                    <select name="taxe">
                         <option value=""></option>
                         <option value="">是</option>
                         <option value="">否</option>
@@ -86,7 +86,7 @@
             <div class="addcus-cusPWd layui-col-md4">
                 <label class="layui-form-label">发票类型：</label>
                 <div class="layui-input-block">
-                    <select name="label" lay-verify="required">
+                    <select name="invoiceType">
                         <option value=""></option>
                         <option value="">个人增值税</option>
                     </select>
@@ -156,6 +156,14 @@
                 </div>
             </div>
         </div>
+
+        <div class="layui-form-item layui-col-md-offset2">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="LAY-supplier-add-submit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+
     </form>
 
 </div>
