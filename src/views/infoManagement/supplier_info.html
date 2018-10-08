@@ -38,11 +38,116 @@
         <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
                 <button class="layui-btn" id="supplier_add" data-type="supplier_add">新增</button>
-                <button class="layui-btn" data-type="getCheckLength">修改</button>
-                <button class="layui-btn" data-type="isAll">查看</button>
+                <button class="layui-btn" data-type="supplier_edit">修改</button>
+                <button class="layui-btn" data-type="supplier_search">查看</button>
                 <button class="layui-btn" id="supplier_set" data-type="supplier_set">设置</button>
             </div>
             <table class="layui-hide" id="supplier_infoTab"></table>
+            <!--类别转换-->
+            <script type="text/html" id="type">
+                {{#  if(d.type ===1){ }}
+                    <span style="color: orangered;">PCB</span>
+                {{#  } else if (d.type ===2){ }}
+                    <span style="color: chocolate;">PCBA</span>
+                {{#  } else if (d.type ===3){ }}
+                    <span style="color: deepskyblue;">SMT</span>
+                {{#  } }}
+            </script>
+            <!--付款方式转换-->
+            <script type="text/html" id="paymentType">
+                {{#  if(d.paymentType ===0){ }}
+                    <span style="color: orangered;">类型：0</span>
+                {{#  } else if (d.paymentType ===1){ }}
+                    <span>类型：1</span>
+                {{#  } else if (d.paymentType ===2){ }}
+                    <span>类型：2</span>
+                {{#  } }}
+            </script>
+            <!--是否含税转换-->
+            <script type="text/html" id="taxe">
+                {{#  if(d.taxe ===1){ }}
+                <span>是</span>
+                {{#  } else if (d.taxe ===2){ }}
+                <span>否</span>
+                {{#  } }}
+            </script>
+            <!--发票类型转换-->
+            <script type="text/html" id="invoiceType">
+                {{#  if(d.invoiceType ===1){ }}
+                <span>收据</span>
+                {{#  } else if (d.invoiceType ===2){ }}
+                <span>普票</span>
+                {{#  } else if (d.invoiceType ===3){ }}
+                <span>增值税16%</span>
+                {{#  } }}
+            </script>
+            <!--强项类型转换-->
+            <script type="text/html" id="strengths">
+                {{#  if(d.strengths ===1){ }}
+                <span>简单样板</span>
+                {{#  } else if (d.strengths ===2){ }}
+                <span>复杂样板</span>
+                {{#  } else if (d.strengths ===3){ }}
+                <span>批量</span>
+                {{#  } }}
+            </script>
+
+            <!--评级－交期转换-->
+            <script type="text/html" id="evaluateDdelivery">
+                {{#  if(d.evaluateDdelivery ===1){ }}
+                <span>极差</span>
+                {{#  } else if (d.evaluateDdelivery ===2){ }}
+                <span>差</span>
+                {{#  } else if (d.evaluateDdelivery ===3){ }}
+                <span>中等</span>
+                {{#  } else if (d.evaluateDdelivery ===4){ }}
+                <span>好</span>
+                {{#  } else if (d.evaluateDdelivery ===5){ }}
+                <span>极好</span>
+                {{#  } }}
+            </script>
+            <!--评级－品质转换-->
+            <script type="text/html" id="evaluateQuality">
+                {{#  if(d.evaluateQuality ===1){ }}
+                <span>极差</span>
+                {{#  } else if (d.evaluateQuality ===2){ }}
+                <span>差</span>
+                {{#  } else if (d.evaluateQuality ===3){ }}
+                <span>中等</span>
+                {{#  } else if (d.evaluateQuality ===4){ }}
+                <span>好</span>
+                {{#  } else if (d.evaluateQuality ===5){ }}
+                <span>极好</span>
+                {{#  } }}
+            </script>
+            <!--评级－配合度转换-->
+            <script type="text/html" id="evaluateCompatibility">
+                {{#  if(d.evaluateCompatibility ===1){ }}
+                <span>极差</span>
+                {{#  } else if (d.evaluateCompatibility ===2){ }}
+                <span>差</span>
+                {{#  } else if (d.evaluateCompatibility ===3){ }}
+                <span>中等</span>
+                {{#  } else if (d.evaluateCompatibility ===4){ }}
+                <span>好</span>
+                {{#  } else if (d.evaluateCompatibility ===5){ }}
+                <span>极好</span>
+                {{#  } }}
+            </script>
+            <!--评级－配合度转换-->
+            <script type="text/html" id="evaluateRate">
+                {{#  if(d.evaluateRate ===1){ }}
+                <span>C</span>
+                {{#  } else if (d.evaluateRate ===2){ }}
+                <span>B2</span>
+                {{#  } else if (d.evaluateRate ===3){ }}
+                <span>B1</span>
+                {{#  } else if (d.evaluateRate ===4){ }}
+                <span>A2</span>
+                {{#  } else if (d.evaluateRate ===5){ }}
+                <span>A1</span>
+                {{#  } }}
+            </script>
         </div>
     </div>
 

@@ -111,11 +111,9 @@
                     ,success: function(layero, index){
                         view(this.id).render('/infoManagement/iframeWindow/user_edit_info', checkData).done(function(){
                             form.render(null, 'user_editInfo_form');
-
                             //监听提交
                             form.on('submit(LAY-user-front-submit)', function(data){
                                 var field = data.field; //获取提交的字段
-
                                 //提交 Ajax 成功后，关闭当前弹层并重载表格
                                 //$.ajax({});
                                 layui.table.reload('LAY-user-manage'); //重载表格
@@ -134,11 +132,9 @@
                     success: function (layero, index) {
                         view(this.id).render('/infoManagement/iframeWindow/user_edit_info').done(function () {
                             form.render(null, 'user_editInfo_form');
-
                             //监听提交
                             form.on('submit(LAY-user-editInfo-submit)', function (data) {
                                 var field = data.field; //获取提交的字段
-
                                 //提交 Ajax成功后，关闭房前弹层并重载表格
                                 //$.ajax ({})
                                 layui.table.reload('user_infoTab'); // 重载表格
