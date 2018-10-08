@@ -22,6 +22,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         ,url: 'http://192.168.0.155:8080/renren-fast/sys/supplier/list'
         ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,id:"supplier_infoTab"
+        ,toolbar: "toolbarSupplier"
         ,where: {
             access_token: layui.data('layuiAdmin').access_token
         }
@@ -46,8 +47,22 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             ,{field:'createTime', title: '创建时间', sort: true}
             ,{field:'updateUserId', title: '修改人', sort: true}
             ,{field:'updateTime', title: '修改时间', sort: true}
+            ,{title: '操作', width: 90, align:'center', fixed: 'right', toolbar: '#table-supplier'}
         ]]
     });
+
+    //监听右侧工具条事件
+    table.on('tool(supplier_infoTab)',function (obj) {
+        var data = obj.data;
+        if (obj.event === 'edit'){
+            //表格编辑打开编辑页面
+            layer.msg('这个是编辑操作');
+        } else if (obj.event === 'search'){
+            layer.msg('这个是搜索操作');
+        } else if (obj.event === 'del'){
+            layer.msg('这个是删除操作');
+        }
+    })
 
     var active = {
         /**
