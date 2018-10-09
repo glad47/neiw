@@ -1,0 +1,35 @@
+
+  <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list"style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+      <label class="layui-form-label">角色名称</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template>
+          <input type="text" name="roleName" value="{{ d.params.roleName || '' }}" lay-verify="required" placeholder="请输入角色名" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">备注</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template>
+          <input type="text" name="remark" value="{{ d.params.remark || '' }}" lay-verify="required" placeholder="请备注" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">授权</label>
+      <div class="layui-input-block">
+        <div id="LAY-auth-tree-index"></div>
+      </div>
+    </div>
+    <script type="text/html" template>
+      <input type="hidden" name="roleId" value="{{ d.params.roleId || '' }}" id="rid">
+    </script>
+    <div class="layui-form-item">
+      <label class="layui-form-label"></label>
+      <div class="layui-input-inline">
+        <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn" style="display: none;" id="layuiadmin-app-form-submit">
+      </div>
+    </div>
+  </div>
+
