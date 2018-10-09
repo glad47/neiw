@@ -43,14 +43,6 @@
                 <!--<button class="layui-btn" id="userInfo_set" data-type="userRole">设置</button>-->
             </div>
             <table class="layui-hide" id="user_infoTab" lay-filter="user_infoTab"></table>
-            <script type="text/html" id="table-userinfo">
-                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-                <!--{{#  if(d.role == '超级管理员'){ }}-->
-                <!--<a class="layui-btn layui-btn-disabled layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a>-->
-                <!--{{#  } else { }}-->
-                <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>-->
-                <!--{{#  } }}-->
-            </script>
         </div>
     </div>
 
@@ -59,104 +51,9 @@
 
 <script>
     layui.use('info_management', layui.factory('info_management')).use(['setter','info_management','admin', 'table', 'index','element','jquery','form','permissions'], function(){
-        var $ = layui.$,
-        table = layui.table,
-        form = layui.form,
-        admin = layui.admin,
-        view = layui.view
 
-        form.render(null,"user_info_formlist");
-
-        //监听搜索
-        form.on('submit(LAY-user-info-search)',function (data) {
-            var field = data.field;
-            //执行重载
-            table.reload('user_infoTab', {
-                where: field
-            });
-        });
-
-        // 事件
-        var active = {
-            userInfo_del: function () {
-                var checkStatus = table.checkStatus('user_infoTab'),
-                    checkData = checkStatus.data; //得到选中的数据
-                if (checkData.length === 0) {
-                    return layer.msg('请选择数据');
-                }
-                layer.confirm('确定删除吗？', function (index) {
-
-                    //执行 Ajax后重载
-                    /*
-                       admin.req({
-                         url: 'xxx'
-                         //,……
-                       });
-                       */
-                    table.reload('user_infoTab');
-                    layer.msg('已删除');
-                });
-            },
-            userInfo_edit: function(datas){
-              var checkStatus = table.checkStatus('user_infoTab'),
-                  checkData = checkStatus.data; //得到选中的数据
-                console.log(checkData);
-                if (checkData.length === 0) {
-                    return layer.msg('请选择数据');
-                }
-                admin.popup({
-                    title: '编辑用户'
-                    ,area: ['712px', '620px']
-                    ,id: 'LAY-popup-user-add'
-                    ,success: function(layero, index){
-                        view(this.id).render('/infoManagement/iframeWindow/user_edit_info', checkData).done(function(){
-                            form.render(null, 'user_editInfo_form');
-                            //监听提交
-                            form.on('submit(LAY-user-front-submit)', function(data){
-                                var field = data.field; //获取提交的字段
-                                //提交 Ajax 成功后，关闭当前弹层并重载表格
-                                //$.ajax({});
-                                layui.table.reload('LAY-user-manage'); //重载表格
-                                layer.close(index); //执行关闭
-                            });
-                        });
-                    }
-                });
-            },
-            //end
-            userInfo_add: function () {
-                admin.popup({
-                    title: '添加用户信息',
-                    area: ['717px', '561px'],
-                    id: 'LAY-popup-userinfo-add',
-                    success: function (layero, index) {
-                        view(this.id).render('/infoManagement/iframeWindow/user_edit_info').done(function () {
-                            form.render(null, 'user_editInfo_form');
-                            //监听提交
-                            form.on('submit(LAY-user-editInfo-submit)', function (data) {
-                                var field = data.field; //获取提交的字段
-                                //提交 Ajax成功后，关闭房前弹层并重载表格
-                                //$.ajax ({})
-                                layui.table.reload('user_infoTab'); // 重载表格
-                                layer.close(index); //执行关闭
-                            });
-                        });
-                    }
-                });
-            },
-            // 设置弹出页面
-            userInfo_role: function () {
-                admin.popup({
-                    title
-                })
-            }
-        }
-            $('.layui-btn').on('click',function () {
-            var type = $(this).data('type');
-            active[type] ? active[type].call(this) : '';
-        });
-        //jquery事件
     });
+
 
 
 

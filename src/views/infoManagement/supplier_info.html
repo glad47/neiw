@@ -6,29 +6,29 @@
             <div class="layui-inline">
                 <label class="layui-form-label">供应商编号</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="id" autocomplete="off" class="layui-input">
+                    <input type="text" id="supplier_id" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">公司名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="author" autocomplete="off" class="layui-input">
+                    <input type="text" id="supplier_companyName" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">类别</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="title" autocomplete="off" class="layui-input">
+                    <input type="text" id="supplier_type" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">联系人</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input" id="orderTime">
+                    <input type="text" class="layui-input" id="supplier_contact">
                 </div>
             </div>
             <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" data-type="reload">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                 </button>
             </div>
@@ -156,7 +156,6 @@
 </div>
 
 <style>
-    a[lay-event='del']{color: royalblue}
     /*.layui-table-box .layui-table-header thead tr td , .layui-table-box .layui-table-body .layui-table tbody tr td {width: 200px !important;}*/
 </style>
 

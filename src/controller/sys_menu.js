@@ -11,12 +11,13 @@ layui.define(['table', 'form','element'], function(exports){
         ,table = layui.table
         ,admin = layui.admin
         ,view = layui.view
+        ,setter = layui.setter
         ,element = layui.element
         ,form = layui.form;
     table.render({
         elem: '#sys_menu'
         ,height: 780
-        ,url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erplist'
+        ,url: setter.baseUrl+'sys/menu/erplist'
         ,id: 'sys_menu'
         ,page: true
         ,limit: 10
@@ -26,7 +27,7 @@ layui.define(['table', 'form','element'], function(exports){
         ,cols:[[
             {field: 'menuId',title: 'ID',sort: true,minWidth:100,align:'center'}
             ,{field: 'title', title: '名称',minWidth:144,align:'center'}
-            ,{field: 'menuup', title: '上级菜单',minWidth:106,align:'center'}
+            ,{field: 'parentName', title: '上级菜单',minWidth:106,align:'center'}
             ,{field: 'icon', title: '图标',minWidth:107,align:'center'}
             ,{field: 'type', title: '类型',minWidth:107,align:'center',templet:'#menu_type'}
             ,{field: 'orderNum', width: 80, title: '排序号',minWidth:105,align:'center'}
@@ -133,6 +134,7 @@ layui.define(['table', 'form','element'], function(exports){
                                     });
                                     layui.table.reload('sys_menu'); // 重载表格
                                     layer.close(index); //执行关闭
+                                    return false;
                                 })
                             } else if (tabNum == "1") {
                                 //监听select
@@ -164,6 +166,7 @@ layui.define(['table', 'form','element'], function(exports){
                                     });
                                     layui.table.reload('sys_menu'); // 重载表格
                                     layer.close(index); //执行关闭
+                                    return false;
                                 });
                             } else if (tabNum == "2") {
                                 //监听select
@@ -194,14 +197,16 @@ layui.define(['table', 'form','element'], function(exports){
                                     });
                                     layui.table.reload('sys_menu'); // 重载表格
                                     layer.close(index); //执行关闭
+                                    return false;
                                 });
                             }
                         });
                         //监听提交
                         form.on('submit(LAY-user-front-submit)', function(data){
                             var field = data.field; //获取提交的字段
-                            layui.table.reload('sys_menu'); //重载表格
+                            layui.table.reload('#sys_menu'); //重载表格
                             layer.close(index); //执行关闭
+                            return false;
                         });
                     });
                 }
@@ -261,6 +266,7 @@ layui.define(['table', 'form','element'], function(exports){
                                     });
                                     layui.table.reload('sys_menu'); // 重载表格
                                     layer.close(index); //执行关闭
+                                    return false;
                                 });
                             } else if (tabNum == "1") {
                                 //监听select
@@ -292,6 +298,7 @@ layui.define(['table', 'form','element'], function(exports){
                                     });
                                     layui.table.reload('sys_menu'); // 重载表格
                                     layer.close(index); //执行关闭
+                                    return false;
                                 });
                             } else if (tabNum == "2") {
                                 //监听select
@@ -324,6 +331,7 @@ layui.define(['table', 'form','element'], function(exports){
                                         });
                                         layui.table.reload('sys_menu'); // 重载表格
                                         layer.close(index); //执行关闭
+                                        return false;
                                     }
                                 });
                             }

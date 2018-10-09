@@ -19,16 +19,17 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
     });
     table.render({
         elem: '#supplier_infoTab'
-        ,url: 'http://192.168.0.155:8080/renren-fast/sys/supplier/list'
+        ,url: setter.baseUrl+'sys/supplier/list'
         ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,id:"supplier_infoTab"
-        // ,toolbar: "toolbarSupplier" 开启后会自动开启打印和导出功能
+        ,page: true
+        ,toolbar: "toolbarSupplier" //开启后会自动开启打印和导出功能
         ,where: {
             access_token: layui.data('layuiAdmin').access_token
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field:'id', title: 'ID',hide: true}
+            ,{field:'id', title: 'ID',hide: false}
             ,{field:'supplierId', title: '供应商编号', sort: true,width: 110}
             ,{field:'companyName', title: '公司名称',width: 180} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
             ,{field:'type', title: '类别', sort: true,width: 120,templet: '#type'}
@@ -51,6 +52,18 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             ,{field:'remark', title: '备注', hide:true}
             ,{title: '操作', width: 160, align:'center', fixed: 'right', toolbar: '#table-supplier'}
         ]]
+        ,done : function () {
+            layer.msg('表格加载完成');
+            //手机端
+            if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) { //移动端
+                $("#LAY_app_body").each(function (e) {
+                    $("a[lay-event='edit']").html("<i class=\"layui-icon layui-icon-edit\"></i>")
+                    $("a[lay-event='search']").html("<i class=\"layui-icon layui-icon-search\"></i>")
+                    $("a[lay-event='del']").html("<i class=\"layui-icon layui-icon-delete\"></i>")
+                    $(".laytable-cell-1-0-22").css({"width":"130px"});
+                })
+            }
+        }
     });
 
     //监听右侧工具条事件
@@ -64,6 +77,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                 ,shadeClose: true
                 ,shade: false
                 ,maxmin: true
+                ,btn:['提交']['取消']
                 ,id: 'supplierAdd_form'
                 ,area: ['55%', '75%']
                 ,success: function (layero, index) {
@@ -88,6 +102,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                             });
                             layui.table.reload('supplier_infoTab');
                             layer.close(index);
+                            return false;
                         })
                     })
                 }
@@ -98,7 +113,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                 ,shadeClose: true
                 ,shade: false
                 ,maxmin: true
-                ,area: ['360px', '360px']
+                ,area: ['362px', '399px']
                 // ,id: 'sys_menu'
                 ,success: function(layero, index){
                     view(this.id).render('/infoManagement/iframeWindow/supplier_search', data).done(function(){
@@ -121,7 +136,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                         layer.msg('服务器异常，稍后再试！');
                     }
                 })
-                layer.close(index);
+                table.reload('supplier_infoTab');
             });
         }
     })
@@ -161,61 +176,31 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                             });
                             layui.table.reload('supplier_infoTab'); //重载表格
                             layer.close(index); //执行关闭
+                            return false;
                         });
                     });
                 }
             });
         },
-        //供应商信息编辑
-        supplier_edit :function(data){
-            var checkStatus = table.checkStatus('supplier_infoTab')
-            ,data = checkStatus.data
-            ,twotest = JSON.stringify(data).substring(1, JSON.stringify(data).length -1)
-            var checkLen = data.length; //获取选中的行的数量
-            if (checkLen ===1){
-                admin.popup({
-                    title: '编辑供应商信息'
-                    ,shadeClose: true
-                    ,shade: false
-                    ,maxmin: true
-                    ,id: 'supplierAdd_form'
-                    ,area: ['55%', '65%']
-                    ,success: function (layero, index) {
-                        view(this.id).render('/infoManagement/iframeWindow/supplier_edit', data).done(function () {
-                            form.render(null, 'supplierAdd_form');
-                            console.log("data:"+data);
-                        })
-                    }
-                })
-            } else if (checkLen === 0 || checkLen == null || checkLen == ""){
-                layer.msg('请选择要编辑的行！！！');
-            } else if (checkLen > 1) {
-                layer.msg('只能选择一行，请重新选择！');
-            }
+        
+        // reload: function () {
+        //     var idReload = $('#supplier_id');
+        //     layer.msg(idReload.val())
+        //     var companyNameReload = $('#supplier_companyName');
+        //     var typeReload = $('#supplier_type');
+        //     var contactReload = $("#supplier_contact");
+        //     table.reload('supplier_infoTab',{
+        //         page: {
+        //             curr: 1
+        //         }
+        //         ,where: {
+        //             key: {
+        //                 id:idReload.val()
+        //             }
+        //         }
+        //     })
+        // }
 
-        },
-        //供应商设置
-        supplier_set:function(){
-            var this_id = $(this).attr('id');
-            layer.open({
-                skin: 'demo-class',
-                type: 1,
-                title: '供应商设置',
-                shadeClose: true,
-                shade: false,
-                maxmin: true,
-                area: ['436px', '436px'],
-                content:'<div id="supplier_edit"></div>',
-                btn:['确定','取消'],
-                success: function (index,layero) {
-                    view('supplier_edit').render('/infoManagement/renderEdit/supplier_edit_render',{id:this_id}).then(function (value) {
-
-                    }).done(function(){
-                        form.render();
-                    });
-                }
-            });
-        },
 
     };
 
@@ -223,12 +208,6 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         var type = $(this).data('type');
         active[type] && active[type].call(this);
     })
-    //手机端隐藏用户名，只显示头像
-    if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) { //移动端
-        layer.msg('1');
-        $("a[lay-event='del']").css({"color":"red","background":"none"});
-    }
-
 
 
     exports('sys_supplier', {})

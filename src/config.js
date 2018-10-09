@@ -54,6 +54,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
       ,'/infoManagement/iframeWindow/edit_user_role' //弹出页面层————编辑用户角色
       ,'/infoManagement/iframeWindow/edit_customer_info' //弹出页面层————编辑客户信息
       ,'/infoManagement/iframeWindow/sys_menuAdd' //弹出页面层————编辑客户信息
+      ,'/user/administrators/role' //弹出页面层————编辑客户信息
     ]
     
     //扩展的第三方模块
