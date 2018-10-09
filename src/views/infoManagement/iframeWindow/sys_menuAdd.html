@@ -110,7 +110,7 @@
                             <label class="layui-form-label">菜单路由：</label>
                             <div class="layui-input-block">
                                 <script type="text/html" template>
-                                    <input type="text" name="jump" value="{{ d.params.jump }}" autocomplete="off" class="layui-input" id="menuAdd_tjump">
+                                    <input type="text" name="jump" value="{{ d.params.jump || ''}}" autocomplete="off" class="layui-input" id="menuAdd_tjump">
                                 </script>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                             <label class="layui-form-label">授权标识：</label>
                             <div class="layui-input-block">
                                 <script type="text/html" template>
-                                    <input type="text" name="perms" value="{{ d.params.perms }}" autocomplete="off" class="layui-input" id="menuAdd_permissions">
+                                    <input type="text" name="perms" value="{{ d.params.perms || ''}}" autocomplete="off" class="layui-input" id="menuAdd_permissions">
                                 </script>
 
                             </div>
@@ -133,7 +133,7 @@
                             <label class="layui-form-label">排序号：</label>
                             <div class="layui-input-block">
                                 <script type="text/html" template>
-                                    <input type="number" name="orderNum" value="{{ d.params.orderNum }}" autocomplete="off" class="layui-input" id="menuAdd_otrdernum">
+                                    <input type="number" name="orderNum" value="{{ d.params.orderNum || ''}}" autocomplete="off" class="layui-input" id="menuAdd_otrdernum">
                                 </script>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                             <label class="layui-form-label">菜单图标：</label>
                             <div class="layui-input-block">
                                 <script type="text/html" template>
-                                    <input type="text" name="icon" value="{{ d.params.icon }}" autocomplete="off" class="layui-input" id="menuAdd_ticon">
+                                    <input type="text" name="icon" value="{{ d.params.icon || ''}}" autocomplete="off" class="layui-input" id="menuAdd_ticon">
                                 </script>
                             </div>
                         </div>
@@ -165,7 +165,7 @@
                             <label class="layui-form-label"><span class="mandatory">*</span>按钮名称：</label>
                             <div class="layui-input-block">
                                 <script type="text/html" template>
-                                    <input type="text" name="title" value="{{ d.params.title }}" autocomplete="off" class="layui-input" id="menuAdd_btn">
+                                    <input type="text" name="title" value="{{ d.params.title || ''}}" autocomplete="off" class="layui-input" id="menuAdd_btn">
                                 </script>
                             </div>
                         </div>
@@ -195,7 +195,7 @@
                             <label class="layui-form-label">授权标识：</label>
                             <div class="layui-input-block">
                                 <script type="text/html" template>
-                                    <input type="text" name="perms" value="{{ d.params.perms }}" autocomplete="off" class="layui-input" id="menuAdd_thpermissions">
+                                    <input type="text" name="perms" value="{{ d.params.perms || ''}}" autocomplete="off" class="layui-input" id="menuAdd_thpermissions">
                                 </script>
                             </div>
                         </div>

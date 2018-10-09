@@ -112,7 +112,7 @@ layui.define(['table', 'form'], function(exports){
                 ,success: function(layero, index){
                     view(this.id).render('infoManagement/iframeWindow/user_edit_info', data).done(function(){
                         form.render(null, 'user_editInfo_form');
-
+                        console.log(data);
                         //监听提交
                         form.on('submit(LAY-user-front-submit)', function(data){
                             var field = data.field; //获取提交的字段

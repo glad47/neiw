@@ -28,35 +28,36 @@ layui.define(['table', 'form','element'], function(exports){
             ,{field: 'title', title: '名称',minWidth:144,align:'center'}
             ,{field: 'menuup', title: '上级菜单',minWidth:106,align:'center'}
             ,{field: 'icon', title: '图标',minWidth:107,align:'center'}
-            ,{field: 'type', title: '类型',minWidth:107,align:'center',id:'menu_type'}
+            ,{field: 'type', title: '类型',minWidth:107,align:'center',templet:'#menu_type'}
             ,{field: 'orderNum', width: 80, title: '排序号',minWidth:105,align:'center'}
             ,{field: 'jump', title: '菜单URL',minWidth:106,align:'center'}
             ,{field: 'perms', title: '授权标识', sort: true,minWidth:154,align:'center'}
             ,{title: '操作', width: 165, align:'center', fixed: 'right', toolbar: '#menu_opreation'}
         ]]
-        ,done (){
-            $("#LAY_app").each(function (e) {
-                var str = $("td[data-field='type']").text(), result = "";
-                for(var i=0,len=str.length;i<len;i++){
-                    result += str[i];
-                    if(i % 1 == 0) result += ',';
-                }
-                var endArr = result.substring(0,result.length-1);
-                for (var x=0;x < endArr.length;x++) {
-                    var element = $("tbody td[data-field='type']").eq(x);
-                    var type_value = element.text();
-                    if (type_value =="0"){
-                        element.html("<div class=\"layui-table-cell laytable-cell-1-type\">一级菜单</div>");
-                    }
-                    if (type_value == "1") {
-                        element.html("<div class=\"layui-table-cell laytable-cell-1-type\">二级菜单</div>");
-                    }
-                    if (type_value == "2") {
-                        element.html("<div class=\"layui-table-cell laytable-cell-1-type\">按钮</div>");
-                    }
-                }
-            })
-        }
+        //废弃的（可用做：遍历某个div下面指定的元素，并且添加事件）
+        // ,done (){
+        //     $("#LAY_app").each(function (e) {
+        //         var str = $("td[data-field='type']").text(), result = "";
+        //         for(var i=0,len=str.length;i<len;i++){
+        //             result += str[i];
+        //             if(i % 1 == 0) result += ',';
+        //         }
+        //         var endArr = result.substring(0,result.length-1);
+        //         for (var x=0;x < endArr.length;x++) {
+        //             var element = $("tbody td[data-field='type']").eq(x);
+        //             var type_value = element.text();
+        //             if (type_value =="0"){
+        //                 element.html("<div class=\"layui-table-cell laytable-cell-1-type\">一级菜单</div>");
+        //             }
+        //             if (type_value == "1") {
+        //                 element.html("<div class=\"layui-table-cell laytable-cell-1-type\">二级菜单</div>");
+        //             }
+        //             if (type_value == "2") {
+        //                 element.html("<div class=\"layui-table-cell laytable-cell-1-type\">按钮</div>");
+        //             }
+        //         }
+        //     })
+        // }
 
     });
 
@@ -262,16 +263,6 @@ layui.define(['table', 'form','element'], function(exports){
                                     layer.close(index); //执行关闭
                                 });
                             } else if (tabNum == "1") {
-                                //判断表单类型是否为undefined
-                                if(typeof($("#menuAdd_tjump") === "undefined")){
-                                    $("#menuAdd_tjump").val('');
-                                }
-                                if (typeof($("#menuAdd_permissions") === "undefined")){
-                                    $("#menuAdd_permissions").val('');
-                                }
-                                if (typeof($("#menuAdd_ticon") === "undefined")){
-                                    $("#menuAdd_ticon").val('');
-                                }
                                 //监听select
                                 form.on('select(LAY-menu-men-submit)',function (data) {
                                     var selValue = data.value;
@@ -303,13 +294,6 @@ layui.define(['table', 'form','element'], function(exports){
                                     layer.close(index); //执行关闭
                                 });
                             } else if (tabNum == "2") {
-                                //判断表单类型是否为undefined
-                                if (typeof($("#menuAdd_btn") === "undefined")){
-                                    $("#menuAdd_btn").val('');
-                                }
-                                if (typeof($("#menuAdd_thpermissions") === "undefined")){
-                                    $("#menuAdd_thpermissions").val('');
-                                }
                                 //监听select
                                 form.on('select(LAY-menu-btn-submit)',function (data) {
                                     var firstSel =  $("#menuAdd_tabsbtn  option:selected").attr('name'); //原始sel的name值

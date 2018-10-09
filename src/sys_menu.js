@@ -33,29 +33,29 @@ layui.define(['table', 'form'], function(exports){
                 ,{field: 'perms', title: '授权标识', sort: true,minWidth:154,align:'center'}
                 ,{title: '操作', width: 165, align:'center', fixed: 'right', toolbar: '#menu_opreation'}
             ]]
-            ,done (){
-                $("#LAY_app").each(function (e) {
-                    var str = $("td[data-field='type']").text(), result = "";
-                    for(var i=0,len=str.length;i<len;i++){
-                        result += str[i];
-                        if(i % 1 == 0) result += ',';
-                    }
-                    var endArr = result.substring(0,result.length-1);
-                    for (var x=0;x < endArr.length;x++) {
-                        var element = $("tbody td[data-field='type']").eq(x);
-                        var type_value = element.text();
-                            if (type_value =="0"){
-                                element.html("<div class=\"layui-table-cell laytable-cell-1-type\">一级菜单</div>");
-                                }
-                            if (type_value == "1") {
-                                element.html("<div class=\"layui-table-cell laytable-cell-1-type\">二级菜单</div>");
-                                }
-                            if (type_value == "2") {
-                                element.html("<div class=\"layui-table-cell laytable-cell-1-type\">按钮</div>");
-                                }
-                    }
-                })
-            }
+            // ,done (){
+            //     $("#LAY_app").each(function (e) {
+            //         var str = $("td[data-field='type']").text(), result = "";
+            //         for(var i=0,len=str.length;i<len;i++){
+            //             result += str[i];
+            //             if(i % 1 == 0) result += ',';
+            //         }
+            //         var endArr = result.substring(0,result.length-1);
+            //         for (var x=0;x < endArr.length;x++) {
+            //             var element = $("tbody td[data-field='type']").eq(x);
+            //             var type_value = element.text();
+            //                 if (type_value =="0"){
+            //                     element.html("<div class=\"layui-table-cell laytable-cell-1-type\">一级菜单</div>");
+            //                     }
+            //                 if (type_value == "1") {
+            //                     element.html("<div class=\"layui-table-cell laytable-cell-1-type\">二级菜单</div>");
+            //                     }
+            //                 if (type_value == "2") {
+            //                     element.html("<div class=\"layui-table-cell laytable-cell-1-type\">按钮</div>");
+            //                     }
+            //         }
+            //     })
+            // }
 
         });
 

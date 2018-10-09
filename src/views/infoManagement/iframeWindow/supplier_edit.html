@@ -2,41 +2,37 @@
 <div class="layui-fluid" style="width: 750px;">
     <form class="layui-form edit-cusInfo" lay-filter="supplierAdd_form" id="supplierAdd_form">
         <div class="layui-form-item">
-            <div class="addcus-cusNum layui-col-md4">
-                <label class="layui-form-label">供应商编号：</label>
+            <div class="addcus-cusNum layui-col-md6">
+                <label class="layui-form-label">编号：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="supplierId" autocomplete="off" class="layui-input">
+                    <script type="text/html" template lay-done="console.log(d);">
+                        <input type="text" name="supplierId" value="{{ d.params['id'] || ''}}" autocomplete="off" class="layui-input">
+                    </script>
                 </div>
             </div>
-            <div class="addcus-cusPWd layui-col-md4">
-                <label class="layui-form-label">密码：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="password" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="addcus-cusPWd layui-col-md4">
+            <div class="addcus-cusPWd layui-col-md6">
                 <label class="layui-form-label">类别：</label>
                 <div class="layui-input-block">
                     <select name="type">
-                        <option value=""></option>
-                        <option value="">程序员</option>
-                        <option value="">外贸专员</option>
-                        <option value="">市场专员</option>
+                        <option value="1">选择类别</option>
+                        <option value="1">PCB</option>
+                        <option value="2">PCBA</option>
+                        <option value="3">SMT</option>
                     </select>
                 </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <div class="addcus-cusCom layui-col-md8">
-                <label class="layui-form-label">公司名称：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="companyName" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="addcus-merchandiser layui-col-md4">
+            <div class="addcus-merchandiser layui-col-md6">
                 <label class="layui-form-label">联系人：</label>
                 <div class="layui-input-block">
                     <input type="text" name="contact" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="addcus-cusCom layui-col-md6">
+                <label class="layui-form-label">公司名称：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="companyName" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </div>
@@ -66,10 +62,10 @@
                 <label class="layui-form-label">付款方式：</label>
                 <div class="layui-input-block">
                     <select name="paymentType">
-                        <option value=""></option>
-                        <option value="">Paypal</option>
-                        <option value="">支付宝</option>
-                        <option value="">微信</option>
+                        <option value="1">选择付款方式</option>
+                        <option value="2">PayPal</option>
+                        <option value="3">支付宝</option>
+                        <option value="4">微信</option>
                     </select>
                 </div>
             </div>
@@ -77,9 +73,9 @@
                 <label class="layui-form-label">是否含税：</label>
                 <div class="layui-input-block">
                     <select name="taxe">
-                        <option value=""></option>
-                        <option value="">是</option>
-                        <option value="">否</option>
+                        <option value="0"></option>
+                        <option value="1">是</option>
+                        <option value="2">否</option>
                     </select>
                 </div>
             </div>
@@ -87,8 +83,10 @@
                 <label class="layui-form-label">发票类型：</label>
                 <div class="layui-input-block">
                     <select name="invoiceType">
-                        <option value=""></option>
-                        <option value="">个人增值税</option>
+                        <option value="0"></option>
+                        <option value="1">收据</option>
+                        <option value="2">普票</option>
+                        <option value="3">增值税16%</option>
                     </select>
                 </div>
             </div>
@@ -113,30 +111,34 @@
                     <div class="layui-form-item supedit-nbfl">
                         <div class="supedit-type layui-input-block layui-col-md12">
                             <label class="layui-form-label">类型：</label>
-                            <input type="radio" name="supType" title="简单样板">
-                            <input type="radio" name="supType" title="复杂样板">
-                            <input type="radio" name="supType" title="批量">
-                            <input type="radio" name="supType" title="HDI">
-                            <input type="radio" name="supType" title="软板">
+                            <input type="radio" name="strengths" value="1" title="简单样板">
+                            <input type="radio" name="strengths" value="2" title="复杂样板">
+                            <input type="radio" name="strengths" value="3" title="批量">
+                            <input type="radio" name="strengths" value="4" title="HDI">
+                            <input type="radio" name="strengths" value="5" title="软板">
                         </div>
                         <div class="layui-input-block layui-col-md12">
                             <div class="supedit-jq layui-col-md6">
                                 <label class="layui-form-label">交期：</label>
                                 <div id="supedit_jq"></div>
+                                <input type="text" name="evaluateDdelivery" autocomplete="off" class="layui-input">
                             </div>
                             <div class="supedit-pz layui-col-md6">
                                 <label class="layui-form-label">品质：</label>
-                                <div id="supedit_pz"></div>
+                                <div id="supedit_pz" name="evaluateQuality"></div>
+                                <input type="text" name="evaluateQuality" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-input-block layui-col-md12">
                             <div class="supedit-phd layui-col-md6">
                                 <label class="layui-form-label">配合度：</label>
-                                <div id="supedit_phd"></div>
+                                <div id="supedit_phd" name="evaluateCompatibility"></div>
+                                <input type="text" name="evaluateCompatibility" autocomplete="off" class="layui-input">
                             </div>
                             <div class="supedit-pj layui-col-md6">
                                 <label class="layui-form-label">评级：</label>
-                                <div id="supedit_pj"></div>
+                                <div id="supedit_pj" name="evaluateRate"></div>
+                                <input type="text" name="evaluateRate" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <hr class="layui-bg-gray">
@@ -151,7 +153,7 @@
                 </div>
                 <div class="layui-tab-item">
                     <div class="layui-form-item layui-form-text">
-                        <textarea placeholder="请输入备注信息" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入备注信息" class="layui-textarea" name="remark"></textarea>
                     </div>
                 </div>
             </div>
@@ -168,8 +170,9 @@
 
 </div>
 <style>
-    .edit-cusInfo .layui-input-block {margin-top: 10px;}
+    /*.edit-cusInfo .layui-input-block {margin-top: 10px;}*/
     .layui-layout-body {overflow: scroll;} /**防止隐藏**/
+    input[name="evaluateDdelivery"],input[name="evaluateQuality"],input[name="evaluateCompatibility"],input[name="evaluateRate"]{display: none;}
     .supedit-nbfl .layui-input-block {margin-left: 0;margin-top: 0;}
 
 </style>
@@ -231,6 +234,9 @@
             elem: '#supedit_jq'
             ,value: 3
             ,text: true
+            ,choose: function (value) {
+                $("input[name='evaluateDdelivery']").val(value);
+            }
             ,setText: function(value){ //自定义文本的回调
                 var arrs = {
                     '1': '极差'
@@ -247,6 +253,9 @@
             elem: '#supedit_pz'
             ,value: 3
             ,text: true
+            ,choose: function (value) {
+                $("input[name='evaluateQuality']").val(value);
+            }
             ,setText: function(value){ //自定义文本的回调
                 var arrs = {
                     '1': '极差'
@@ -263,6 +272,9 @@
             elem: '#supedit_phd'
             ,value: 3
             ,text: true
+            ,choose: function (value) {
+                $("input[name='evaluateCompatibility']").val(value);
+            }
             ,setText: function(value){ //自定义文本的回调
                 var arrs = {
                     '1': '极差'
@@ -279,6 +291,9 @@
             elem: '#supedit_pj'
             ,value: 3
             ,text: true
+            ,choose: function (value) {
+                $("input[name='evaluateRate']").val(value);
+            }
             ,setText: function(value){ //自定义文本的回调
                 var arrs = {
                     '1': 'C'
