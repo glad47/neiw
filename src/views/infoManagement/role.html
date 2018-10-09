@@ -17,11 +17,11 @@
 	            </div>
 	            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
 	                <button class="layui-btn" id="customerInfo_add" data-type="role_add">新增</button>
-	                <button class="layui-btn" data-type="getCheckLength">批量删除</button>
+	                <!-- <button class="layui-btn" data-type="getCheckLength">批量删除</button> -->
 	            </div>
 	        </div>
             
-            <table class="layui-hide" id="role_listTab"></table>
+            <table class="layui-hide" id="role_listTab" lay-filter="role_listTab"></table>
 
             <script type="text/html" id="role-table-operate-barDemo">
               <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -33,12 +33,14 @@
 </div>
 
 <script>
-	layui.use(['admin', 'table'], function(){
-    var table = layui.table
+	layui.use(['admin', 'table','setter','form','authtree','jquery'], function(){
+    var $ = layui.jquery
+    ,table = layui.table
     ,admin = layui.admin
     ,setter = layui.setter
     ,view = layui.view
-    ,form = layui.form;
+    ,form = layui.form
+    ,authtree = layui.authtree;
   
     table.render({
       elem: '#role_listTab'
@@ -58,61 +60,94 @@
       ,page: true
     });
     
-    //监听表格复选框选择
-    // table.on('checkbox(test-table-operate)', function(obj){
-    //   console.log(obj)
-    // });
-    // //监听工具条
-    // table.on('tool(test-table-operate)', function(obj){
-    //   var data = obj.data;
-    //   if(obj.event === 'detail'){
-    //     layer.msg('ID：'+ data.id + ' 的查看操作');
-    //   } else if(obj.event === 'del'){
-    //     layer.confirm('真的删除行么', function(index){
-    //       obj.del();
-    //       layer.close(index);
-    //     });
-    //   } else if(obj.event === 'edit'){
-    //     layer.alert('编辑行：<br>'+ JSON.stringify(data))
-    //   }
-    // });
-    
-    // var $ = layui.$, active = {
-    //   getCheckData: function(){ //获取选中数据
-    //     var checkStatus = table.checkStatus('test-table-operate')
-    //     ,data = checkStatus.data;
-    //     layer.alert(JSON.stringify(data));
-    //   }
-    //   ,getCheckLength: function(){ //获取选中数目
-    //     var checkStatus = table.checkStatus('test-table-operate')
-    //     ,data = checkStatus.data;
-    //     layer.msg('选中了：'+ data.length + ' 个');
-    //   }
-    //   ,isAll: function(){ //验证是否全选
-    //     var checkStatus = table.checkStatus('test-table-operate');
-    //     layer.msg(checkStatus.isAll ? '全选': '未全选')
-    //   }
-    // };
+    //监听 工具条
+    table.on('tool(role_listTab)',function(obj){
+    	var data = obj.data;
+    	console.log(data);
+    	if (obj.event === 'edit') {
+    		admin.popup({
+    			title:'编辑角色',
+    			area:['550px','550px'],
+    			id:'LAY-popup-role-edit',
+    			btn:['提交','取消'],
+    			yes:function(index, layero){
+    				$("#layuiadmin-app-form-submit").click();
+    			},
+    			end:function(){},
+    			success:function(layero,index){
+    				view(this.id).render('infoManagement/roleformedit',data).done(function(){
+    					//form.render(null,'layuiadmin-app-form-list');
+
+    					//选中角色对应的菜单数据
+    					console.log($("#rid").val());
+				        admin.req({
+				          url:setter.baseUrl+'sys/role/info/'+$("#rid").val(),
+				          dataType:'json',
+				          success:function(data){
+				            // console.log(data.role.menuIdList);
+				            //设置选定权限
+				            authtree.setValue('#LAY-auth-tree-index',data.role.menuIdList);
+				          }
+				        });
+
+				        //监听提交
+				        form.on('submit(layuiadmin-app-form-submit)',function(data){
+				        	var field = data.field;
+				        	admin.req({
+				        		url:setter.baseUrl+'/sys/role/update',
+				        		type:'POST',
+				        		data:field,
+				        		success:function(data){
+				        			layui.table.reload('role_listTab'); //重载表格
+               						layer.close(index); //执行关闭 
+				        		}
+				        	});
+				        });
+    				});
+    			}
+    		});
+    	} else if (obj.event === 'del') {
+    		layer.confirm('确定删除此角色？', function(index){
+    			admin.req({
+    				url:setter.baseUrl+'sys/role/delete',
+    				type:'POST',
+    				data:{roleIds:data.roleId},
+    				success:function(data){
+    					layui.table.reload('role_listTab'); //重载表格
+    					layer.msg('已删除');
+    				}
+    			});
+    		});
+    	}
+    });
 
     var $ = layui.$, active = {
     	role_add: function(othis){
+    		clickTr = {};
     		admin.popup({
     			title:'添加角色',
     			area: ['550px', '550px'],
+    			btn: ['提交', '取消'],
+    			yes: function(index, layero) {
+					$('#layuiadmin-app-form-submit').click();
+				},
+				btn2: function(index, layero) {},
+				end: function() {
+					clickTr = {};
+				},
     			id:'LAY-popup-role-add',
     			success:function(layero,index){
-    				view(this.id).render('infoManagement/roleform').done(function(){
+    				view(this.id).render('infoManagement/roleformadd').done(function(){
     					//清空form表单
     					//form.render(null,;'layuiadmin-app-form-list');
 
     					//监听提交
     					form.on('submit(layuiadmin-app-form-submit)',function(data){
     						var field = data.field;
-
-                            // field.each(function(index,item){
-                            //     console.log(item);
-                            // });
-                            console.log(field);
+                            //console.log(field);
+                            //var leaf = authtree.getLeaf("#LAY-auth-tree-index");
+                            //console.log(leaf);
+                            //console.log(JSON.stringify(leaf));
                             //console.log(menuIdList);
     						admin.req({
     							url: setter.baseUrl+'sys/role/save',
