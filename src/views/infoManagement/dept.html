@@ -1,13 +1,13 @@
 
-<title>角色管理</title>
+<title>部门管理</title>
 <div class="layui-fluid">
     <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
         	<div class="layui-form-item layui-form" lay-filter="app-content-comment">
 	            <div class="layui-inline">
-	                <label class="layui-form-label">角色名</label>
+	                <label class="layui-form-label">部门名称</label>
 	                <div class="layui-input-inline">
-	                    <input type="text" name="roleName" autocomplete="off" class="layui-input">
+	                    <input type="text" name="deptName" autocomplete="off" class="layui-input">
 	                </div>
 	            </div>
 	            <div class="layui-inline">
@@ -16,14 +16,14 @@
 	                </button>
 	            </div>
 	            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-	                <button class="layui-btn" data-type="role_add">新增</button>
+	                <button class="layui-btn" data-type="dept_add">新增</button>
 	                <!-- <button class="layui-btn" data-type="getCheckLength">批量删除</button> -->
 	            </div>
 	        </div>
             
-            <table class="layui-hide" id="role_listTab" lay-filter="role_listTab"></table>
+            <table class="layui-hide" id="dept_listTab" lay-filter="dept_listTab"></table>
 
-            <script type="text/html" id="role-table-operate-barDemo">
+            <script type="text/html" id="dept-table-operate-barDemo">
               <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
               <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
             </script>
@@ -33,83 +33,66 @@
 </div>
 
 <script>
-	layui.use(['admin', 'table','setter','form','authtree','jquery'], function(){
+layui.use(['admin', 'table','setter','form','jquery'], function(){
     var $ = layui.jquery
     ,table = layui.table
     ,admin = layui.admin
     ,setter = layui.setter
     ,view = layui.view
-    ,form = layui.form
-    ,authtree = layui.authtree;
+    ,form = layui.form;
 
-    form.render(null,'app-content-comment')
+    form.render(null,'app-content-comment');
     //监听搜索
   	form.on('submit(LAY-app-contlist-search)', function(data){
     	var field = data.field;
     	console.log(field);
     	//执行重载
-    	table.reload('role_listTab', {
+    	table.reload('dept_listTab', {
       		where: field
     	});
   	});
-  
+
     table.render({
-      elem: '#role_listTab'
-      ,url: setter.baseUrl+'sys/role/list'
+      elem: '#dept_listTab'
+      ,url: setter.baseUrl+'sys/dept/list'
       ,where: {
     		access_token: layui.data('layuiAdmin').access_token
   	    }
-      //,width: admin.screen() > 1 ? 1500 : ''
       ,cols: [[
         {type:'checkbox', fixed: 'left',width:50}
-        ,{field:'roleId', minWidth:20, title: 'ID',align:'center'}
-        ,{field:'roleName', minWidth:80, title: '角色名称',align:'center'}
-        ,{field:'remark', minWidth:100, title: '备注',align:'center'}
-        ,{field:'createTime', minWidth:100, title: '创建时间',align:'center'}
-        ,{width:190, align:'center',align:'center',fixed: 'right', toolbar: '#role-table-operate-barDemo',title:'操作'}
+        ,{field:'deptId', minWidth:80, title: 'ID',align:'center'}
+        ,{field:'deptName', minWidth:80, title: '部门名称',align:'center'}
+        ,{width:200, align:'center',align:'center',fixed: 'right', toolbar: '#dept-table-operate-barDemo',title:'操作'}
       ]]
       ,page: true
     });
-    
+
     //监听 工具条
-    table.on('tool(role_listTab)',function(obj){
+    table.on('tool(dept_listTab)',function(obj){
     	var data = obj.data;
     	console.log(data);
     	if (obj.event === 'edit') {
     		admin.popup({
-    			title:'编辑角色',
+    			title:'编辑部门',
     			area:['550px','550px'],
-    			id:'LAY-popup-role-edit',
+    			id:'LAY-popup-dept-edit',
     			btn:['提交','取消'],
     			yes:function(index, layero){
     				$("#layuiadmin-app-form-submit").click();
     			},
     			end:function(){},
     			success:function(layero,index){
-    				view(this.id).render('infoManagement/roleformedit',data).done(function(){
+    				view(this.id).render('infoManagement/deptform',data).done(function(){
     					//form.render(null,'layuiadmin-app-form-list');
-
-    					//选中角色对应的菜单数据
-    					console.log($("#rid").val());
-				        admin.req({
-				          url:setter.baseUrl+'sys/role/info/'+$("#rid").val(),
-				          dataType:'json',
-				          success:function(data){
-				            // console.log(data.role.menuIdList);
-				            //设置选定权限
-				            authtree.setValue('#LAY-auth-tree-index',data.role.menuIdList);
-				          }
-				        });
-
 				        //监听提交
 				        form.on('submit(layuiadmin-app-form-submit)',function(data){
 				        	var field = data.field;
 				        	admin.req({
-				        		url:setter.baseUrl+'/sys/role/update',
+				        		url:setter.baseUrl+'sys/dept/update',
 				        		type:'POST',
 				        		data:field,
 				        		success:function(data){
-				        			layui.table.reload('role_listTab'); //重载表格
+				        			layui.table.reload('dept_listTab'); //重载表格
                						layer.close(index); //执行关闭 
 				        		}
 				        	});
@@ -118,13 +101,13 @@
     			}
     		});
     	} else if (obj.event === 'del') {
-    		layer.confirm('确定删除此角色？', function(index){
+    		layer.confirm('确定删除此部门？', function(index){
     			admin.req({
-    				url:setter.baseUrl+'sys/role/delete',
+    				url:setter.baseUrl+'sys/dept/delete',
     				type:'POST',
-    				data:{roleIds:data.roleId},
+    				data:{deptIds:data.deptId},
     				success:function(data){
-    					layui.table.reload('role_listTab'); //重载表格
+    					layui.table.reload('dept_listTab'); //重载表格
     					layer.msg('已删除');
     				}
     			});
@@ -133,10 +116,9 @@
     });
 
     var $ = layui.$, active = {
-    	role_add: function(othis){
-    		clickTr = {};
+    	dept_add: function(othis){
     		admin.popup({
-    			title:'添加角色',
+    			title:'添加部门',
     			area: ['550px', '550px'],
     			btn: ['提交', '取消'],
     			yes: function(index, layero) {
@@ -146,29 +128,24 @@
 				end: function() {
 					clickTr = {};
 				},
-    			id:'LAY-popup-role-add',
+    			id:'LAY-popup-dept-add',
     			success:function(layero,index){
-    				view(this.id).render('infoManagement/roleformadd').done(function(){
+    				view(this.id).render('infoManagement/deptform').done(function(){
     					//清空form表单
-    					//form.render(null,;'layuiadmin-app-form-list');
+    					form.render(null,'layuiadmin-app-form-list');
 
     					//监听提交
     					form.on('submit(layuiadmin-app-form-submit)',function(data){
     						var field = data.field;
-                            //console.log(field);
-                            //var leaf = authtree.getLeaf("#LAY-auth-tree-index");
-                            //console.log(leaf);
-                            //console.log(JSON.stringify(leaf));
-                            //console.log(menuIdList);
     						admin.req({
-    							url: setter.baseUrl+'sys/role/save',
+    							url: setter.baseUrl+'sys/dept/save',
     							type:'POST',
     							//dataType:'json',
     							//contentType:'application/json',
     							data: field,
     							success:function(data){
     								console.log(data);
-    								layui.table.reload('role_listTab'); //重载表格
+    								layui.table.reload('dept_listTab'); //重载表格
                						layer.close(index); //执行关闭 
     							}
     						})
@@ -179,11 +156,10 @@
     		});
     	}
     }
-    
+
     $('.test-table-operate-btn .layui-btn').on('click', function(){
       var type = $(this).data('type');
       active[type] ? active[type].call(this) : '';
     });
-  
-  });
+});
 </script>
