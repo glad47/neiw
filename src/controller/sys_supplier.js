@@ -22,12 +22,13 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         ,url: 'http://192.168.0.155:8080/renren-fast/sys/supplier/list'
         ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,id:"supplier_infoTab"
-        ,toolbar: "toolbarSupplier"
+        // ,toolbar: "toolbarSupplier" 开启后会自动开启打印和导出功能
         ,where: {
             access_token: layui.data('layuiAdmin').access_token
         }
         ,cols: [[
             {type:'checkbox'}
+            ,{field:'id', title: 'ID',hide: true}
             ,{field:'supplierId', title: '供应商编号', sort: true,width: 110}
             ,{field:'companyName', title: '公司名称',width: 180} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
             ,{field:'type', title: '类别', sort: true,width: 120,templet: '#type'}
@@ -47,20 +48,81 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             ,{field:'createTime', title: '创建时间', sort: true}
             ,{field:'updateUserId', title: '修改人', sort: true}
             ,{field:'updateTime', title: '修改时间', sort: true}
-            ,{title: '操作', width: 90, align:'center', fixed: 'right', toolbar: '#table-supplier'}
+            ,{field:'remark', title: '备注', hide:true}
+            ,{title: '操作', width: 160, align:'center', fixed: 'right', toolbar: '#table-supplier'}
         ]]
     });
 
     //监听右侧工具条事件
     table.on('tool(supplier_infoTab)',function (obj) {
         var data = obj.data;
+        var id = data.id;
+        var companyName = data.companyName;
         if (obj.event === 'edit'){
-            //表格编辑打开编辑页面
-            layer.msg('这个是编辑操作');
+            admin.popup({
+                title: '编辑供应商信息'
+                ,shadeClose: true
+                ,shade: false
+                ,maxmin: true
+                ,id: 'supplierAdd_form'
+                ,area: ['55%', '75%']
+                ,success: function (layero, index) {
+                    view(this.id).render('/infoManagement/iframeWindow/supplier_edit', data).done(function () {
+                        form.render(null, 'supplierAdd_form');
+                        form.on('submit(LAY-supplier-add-submit)', function(data){
+                            var field = data.field;
+                            field.id = id;
+                            console.log('修改供应商的信息为:'+JSON.stringify(field));
+                            admin.req({
+                                type: 'post'
+                                ,url: setter.baseUrl+'sys/supplier/update'
+                                ,data: field
+                                ,done: function (res) {
+                                    layer.msg('供应商信息修改成功');
+                                    console.log('供应商信息修改成功');
+                                }
+                                ,fail: function (res) {
+                                    layer.msg('供应商信息修改失败！！');
+                                    console.log('供应商信息修改失败！！');
+                                },
+                            });
+                            layui.table.reload('supplier_infoTab');
+                            layer.close(index);
+                        })
+                    })
+                }
+            })
         } else if (obj.event === 'search'){
-            layer.msg('这个是搜索操作');
+            admin.popup({
+                title: "供应商［"+companyName+"］信息"
+                ,shadeClose: true
+                ,shade: false
+                ,maxmin: true
+                ,area: ['360px', '360px']
+                // ,id: 'sys_menu'
+                ,success: function(layero, index){
+                    view(this.id).render('/infoManagement/iframeWindow/supplier_search', data).done(function(){
+                        //监听提交
+                    });
+                }
+            });
         } else if (obj.event === 'del'){
-            layer.msg('这个是删除操作');
+            layer.confirm('确定删除公司名为［'+companyName+"］的供应商？", function(index){
+                admin.req({
+                    type:'post',
+                    url: setter.baseUrl+'sys/supplier/delete'
+                    ,data: {"supplierIds":id}
+                    ,done : function (res) {
+                        layer.msg('删除成功');
+                        obj.del();
+                        layer.close(index);
+                    }
+                    ,fail: function (res) {
+                        layer.msg('服务器异常，稍后再试！');
+                    }
+                })
+                layer.close(index);
+            });
         }
     })
 
@@ -76,7 +138,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                 ,shadeClose: true
                 ,shade: false
                 ,maxmin: true
-                ,area: ['55%', '65%']
+                ,area: ['55%', '75%']
                 // ,id: 'sys_menu'
                 ,success: function(layero, index){
                     view(this.id).render('/infoManagement/iframeWindow/supplier_edit', data).done(function(){
@@ -161,7 +223,11 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         var type = $(this).data('type');
         active[type] && active[type].call(this);
     })
-
+    //手机端隐藏用户名，只显示头像
+    if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) { //移动端
+        layer.msg('1');
+        $("a[lay-event='del']").css({"color":"red","background":"none"});
+    }
 
 
 

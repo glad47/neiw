@@ -52,7 +52,7 @@ layui.define(['table', 'form','element'], function(exports){
         //             if (type_value == "1") {
         //                 element.html("<div class=\"layui-table-cell laytable-cell-1-type\">二级菜单</div>");
         //             }
-        //             if (type_value == "2") {
+        //             if (type_ value == "2") {
         //                 element.html("<div class=\"layui-table-cell laytable-cell-1-type\">按钮</div>");
         //             }
         //         }

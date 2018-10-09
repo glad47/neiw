@@ -5,8 +5,8 @@
             <div class="addcus-cusNum layui-col-md6">
                 <label class="layui-form-label">编号：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-done="console.log(d);">
-                        <input type="text" name="supplierId" value="{{ d.params['id'] || ''}}" autocomplete="off" class="layui-input">
+                    <script type="text/html" template>
+                        <input type="text" name="supplierId" value="{{ d.params.supplierId || ''}}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
@@ -14,7 +14,7 @@
                 <label class="layui-form-label">类别：</label>
                 <div class="layui-input-block">
                     <select name="type">
-                        <option value="1">选择类别</option>
+                        <option value="0"></option>
                         <option value="1">PCB</option>
                         <option value="2">PCBA</option>
                         <option value="3">SMT</option>
@@ -26,13 +26,17 @@
             <div class="addcus-merchandiser layui-col-md6">
                 <label class="layui-form-label">联系人：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="contact" autocomplete="off" class="layui-input">
+                    <script type="text/html" template>
+                        <input type="text" name="contact" value="{{ d.params.contact || ''}}" autocomplete="off" class="layui-input">
+                    </script>
                 </div>
             </div>
             <div class="addcus-cusCom layui-col-md6">
                 <label class="layui-form-label">公司名称：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="companyName" autocomplete="off" class="layui-input">
+                    <script type="text/html" template>
+                        <input type="text" name="companyName" value="{{ d.params.companyName || ''}}" autocomplete="off" class="layui-input">
+                    </script>
                 </div>
             </div>
         </div>
@@ -40,19 +44,25 @@
             <div class="addcus-tel layui-col-md4">
                 <label class="layui-form-label">办公电话：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="officePhone" autocomplete="off" class="layui-input">
+                    <script type="text/html" template>
+                        <input type="text" name="officePhone" value="{{ d.params.officePhone || ''}}" autocomplete="off" class="layui-input">
+                    </script>
                 </div>
             </div>
             <div class="addcus-skype layui-col-md4">
                 <label class="layui-form-label">手机：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="phone" autocomplete="off" class="layui-input">
+                    <script type="text/html" template>
+                        <input type="text" name="phone" value="{{ d.params.phone || ''}}" autocomplete="off" class="layui-input">
+                    </script>
                 </div>
             </div>
             <div class="addcus-email layui-col-md4">
                 <label class="layui-form-label">Email：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="email" autocomplete="off" class="layui-input">
+                    <script type="text/html" template>
+                        <input type="text" name="email" value="{{ d.params.email || ''}}" autocomplete="off" class="layui-input">
+                    </script>
                 </div>
             </div>
         </div>
@@ -62,7 +72,8 @@
                 <label class="layui-form-label">付款方式：</label>
                 <div class="layui-input-block">
                     <select name="paymentType">
-                        <option value="1">选择付款方式</option>
+                        <option value="0"></option>
+                        <option value="1">银联</option>
                         <option value="2">PayPal</option>
                         <option value="3">支付宝</option>
                         <option value="4">微信</option>
@@ -153,14 +164,16 @@
                 </div>
                 <div class="layui-tab-item">
                     <div class="layui-form-item layui-form-text">
-                        <textarea placeholder="请输入备注信息" class="layui-textarea" name="remark"></textarea>
+                        <script type="text/html" template>
+                            <textarea placeholder="请输入备注信息" value="{{ d.params.remark || ''}}" class="layui-textarea" name="remark"></textarea>
+                        </script>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="layui-form-item layui-col-md-offset2">
-            <div class="layui-input-block">
+            <div class="layui-input-block" style="margin-top: 60px;">
                 <button class="layui-btn" lay-submit lay-filter="LAY-supplier-add-submit">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
@@ -232,7 +245,7 @@
         //交期
         rate.render({
             elem: '#supedit_jq'
-            ,value: 3
+            ,value: 0
             ,text: true
             ,choose: function (value) {
                 $("input[name='evaluateDdelivery']").val(value);
@@ -251,7 +264,7 @@
         //品质
         rate.render({
             elem: '#supedit_pz'
-            ,value: 3
+            ,value: 0
             ,text: true
             ,choose: function (value) {
                 $("input[name='evaluateQuality']").val(value);
@@ -270,7 +283,7 @@
         //配合度
         rate.render({
             elem: '#supedit_phd'
-            ,value: 3
+            ,value: 0
             ,text: true
             ,choose: function (value) {
                 $("input[name='evaluateCompatibility']").val(value);
@@ -289,7 +302,7 @@
         //评级
         rate.render({
             elem: '#supedit_pj'
-            ,value: 3
+            ,value: 0
             ,text: true
             ,choose: function (value) {
                 $("input[name='evaluateRate']").val(value);
