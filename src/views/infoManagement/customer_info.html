@@ -1,30 +1,30 @@
 
 <title>客户信息</title>
 <div class="layui-fluid">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-comment">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="id" autocomplete="off" class="layui-input">
+                    <input type="text" name="userName" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">姓名</label>
+                <label class="layui-form-label">系统id</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="author" autocomplete="off" class="layui-input">
+                    <input type="text" name="userSystemId" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">部门</label>
+                <label class="layui-form-label">skype</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="title" autocomplete="off" class="layui-input">
+                    <input type="text" name="skypeId" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">工号</label>
+                <label class="layui-form-label">手机</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input" id="orderTime">
+                    <input type="text" name="mobilePhone" class="layui-input" id="orderTime">
                 </div>
             </div>
             <div class="layui-inline">
@@ -38,11 +38,15 @@
         <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
                 <button class="layui-btn" id="customerInfo_add" data-type="customerInfo_add">新增</button>
-                <button class="layui-btn" data-type="getCheckLength">修改</button>
-                <button class="layui-btn" data-type="isAll">查看</button>
-                <button class="layui-btn" data-type="isAll">设置</button>
+                <!-- <button class="layui-btn" data-type="getCheckLength">修改</button> -->
+                <!-- <button class="layui-btn" data-type="isAll">查看</button> -->
+                <!-- <button class="layui-btn" data-type="isAll">设置</button> -->
             </div>
-            <table class="layui-hide" id="customer_infoTab"></table>
+            <table class="layui-hide" id="customer_listTab" lay-filter="customer_listTab"></table>
+            <script type="text/html" id="role-table-operate-barDemo">
+              <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+              <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+            </script>
         </div>
     </div>
 
@@ -52,37 +56,105 @@
 
 <script>
 layui.use(['admin', 'table', 'index','element','form'], function(){
-    var table = layui.table;
-    var $ = layui.jquery;
-    var element = layui.element;
-    var admin = layui.admin;
-    var form = layui.form;
-    var view = layui.view;
-    element.on('form(demo)', function(data){
-        console.log(data);
-        alert("1");
+    var table = layui.table,
+    $ = layui.jquery,
+    element = layui.element,
+    admin = layui.admin,
+    form = layui.form,
+    view = layui.view,
+    setter = layui.setter;
+    
+    form.render(null,'app-content-comment');
+    //监听搜索
+    form.on('submit(LAY-app-contlist-search)', function(data){
+        var field = data.field;
+        console.log(field);
+        //执行重载
+        table.reload('role_listTab', {
+            where: field
+        });
     });
+
     table.render({
-        elem: '#customer_infoTab'
-        ,url: './json/infoManagement/customer_info.js'
+        elem: '#customer_listTab'
+        ,url: setter.baseUrl+'sys/consumer/user/list'
+        ,where: {
+            access_token: layui.data('layuiAdmin').access_token
+        }
         ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,cols: [[
             {type:'checkbox'}
-            ,{field:'id', title: '客户账号', sort: true}
-            ,{field:'username', title: '客户ID'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-            ,{field:'name', title: '公司名称', sort: true}
-            ,{field:'department', title: '联系人', sort: true}
-            ,{field:'position', title: '电话', sort: true}
-            ,{field:'worknumber', title: 'Skype', align: 'center', sort: true} //单元格内容水平居中
-            ,{field:'officephone', title: 'Email', sort: true, align: 'right'} //单元格内容水平居中
-            ,{field:'skype', title: '跟单员', sort: true, align: 'right'}
-            ,{field:'email', title: '创建人', sort: true, align: 'right'}
-            ,{field:'bankcode', title: '创建时间', sort: true}
-            ,{field:'status', title: '修改人', sort: true}
-            ,{field:'founder', title: '创建人', sort: true}
-            ,{field:'creattime', title: '修改时间', sort: true}
+            ,{field:'id', title: 'id', sort: true}
+            ,{field:'username', title: '用户名'}
+            ,{field:'email', title: '邮箱', sort: true}
+            ,{field:'skypeId', title: 'Skype', sort: true}
+            ,{field:'mobilePhone', title: '电话', sort: true}
+            ,{field:'googleId', title: 'Google', sort: true, align: 'right'} //单元格内容水平居中
+            ,{field:'facebookId', title: 'Facebook', sort: true, align: 'right'}
+            ,{field:'address', title: '地址', sort: true, align: 'right'}
+            ,{field:'country', title: '国家', sort: true}
+            ,{field:'city', title: '城市', sort: true}
+            ,{field:'jobrole', title: '工作角色', sort: true}
+            ,{field:'businessType', title: '业务类型', sort: true}
+            ,{field:'applications', title: '应用', sort: true}
+            ,{field:'gmtCreate', title: '注册时间', sort: true}
+            ,{field:'gmtModified', title: '更新时间', sort: true}
+            ,{field:'userSystemId', title: '用户系统id', sort: true}
+            ,{width:150, align:'center',align:'center',fixed: 'right', toolbar: '#role-table-operate-barDemo',title:'操作'}
         ]]
+        ,page: true
     });
+
+    //监听 工具条
+    table.on('tool(customer_listTab)',function(obj){
+        var data = obj.data;
+        console.log(data);
+        if (obj.event === 'edit') {
+            admin.popup({
+                title:'编辑角色',
+                area:['550px','550px'],
+                id:'LAY-popup-customer-edit',
+                btn:['提交','取消'],
+                yes:function(index, layero){
+                    $("#layuiadmin-app-form-submit").click();
+                },
+                end:function(){},
+                success:function(layero,index){
+                    view(this.id).render('infoManagement/customerform',data).done(function(){
+                        form.render(null,'layuiadmin-app-form-list');
+
+                        //监听提交
+                        form.on('submit(layuiadmin-app-form-submit)',function(data){
+                            var field = data.field;
+                            admin.req({
+                                url:setter.baseUrl+'/sys/role/update',
+                                type:'POST',
+                                data:field,
+                                success:function(data){
+                                    layui.table.reload('role_listTab'); //重载表格
+                                    layer.close(index); //执行关闭 
+                                }
+                            });
+                        });
+                    });
+                }
+            });
+        } else if (obj.event === 'del') {
+            layer.confirm('确定删除此角色？', function(index){
+                admin.req({
+                    url:setter.baseUrl+'sys/role/delete',
+                    type:'POST',
+                    data:{roleIds:data.roleId},
+                    success:function(data){
+                        layui.table.reload('role_listTab'); //重载表格
+                        layer.msg('已删除');
+                    }
+                });
+            });
+        }
+    });
+
+
     var active = {
         customerInfo_add:function(){
             var that = this;
