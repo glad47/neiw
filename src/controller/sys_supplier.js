@@ -23,7 +23,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,id:"supplier_infoTab"
         ,page: true
-        ,toolbar: "toolbarSupplier" //开启后会自动开启打印和导出功能
+        ,toolbar: true
         ,where: {
             access_token: layui.data('layuiAdmin').access_token
         }
@@ -53,7 +53,6 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             ,{title: '操作', width: 160, align:'center', fixed: 'right', toolbar: '#table-supplier'}
         ]]
         ,done : function () {
-            layer.msg('表格加载完成');
             //手机端
             if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) { //移动端
                 $("#LAY_app_body").each(function (e) {
@@ -94,13 +93,13 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                                 ,done: function (res) {
                                     layer.msg('供应商信息修改成功');
                                     console.log('供应商信息修改成功');
+                                    layui.table.reload('supplier_infoTab');
                                 }
                                 ,fail: function (res) {
                                     layer.msg('供应商信息修改失败！！');
                                     console.log('供应商信息修改失败！！');
                                 },
                             });
-                            layui.table.reload('supplier_infoTab');
                             layer.close(index);
                             return false;
                         })
@@ -131,12 +130,12 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                         layer.msg('删除成功');
                         obj.del();
                         layer.close(index);
+                        layui.table.reload('supplier_infoTab');
                     }
                     ,fail: function (res) {
                         layer.msg('服务器异常，稍后再试！');
                     }
                 })
-                table.reload('supplier_infoTab');
             });
         }
     })
@@ -169,12 +168,12 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                                 ,done: function(res){
                                     console.log(res);
                                     layer.msg('供应商添加成功');
+                                    layui.table.reload('supplier_infoTab'); //重载表格
                                 }
                                 ,fail: function (res) {
                                     layer.msg('供应商加失败');
                                 },
                             });
-                            layui.table.reload('supplier_infoTab'); //重载表格
                             layer.close(index); //执行关闭
                             return false;
                         });

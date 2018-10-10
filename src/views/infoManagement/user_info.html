@@ -5,7 +5,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label" id="yonghuming">用户名</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="id" autocomplete="off" class="layui-input" id="user_uname">
+                    <input type="text" name="username" autocomplete="off" class="layui-input" id="user_uname">
                 </div>
             </div>
             <div class="layui-inline">
@@ -36,13 +36,43 @@
     <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-                <button class="layui-btn" id="userInfo_add" data-type="userInfo_add">新增</button>
-                <!--<button class="layui-btn" id="userInfo_del" data-type="userInfo_del">删除</button>-->
-                <!--<button class="layui-btn" data-type="userInfo_edit">修改</button>-->
-                <button class="layui-btn" data-type="isAll" id="user_look">查看</button>
-                <!--<button class="layui-btn" id="userInfo_set" data-type="userRole">设置</button>-->
+                <script type="text/html" template>
+                    {{# if(layui.data('layuiAdmin').permissions.indexOf("sys:user:save") != -1){ }}
+                        <button class="layui-btn" id="userInfo_adds" data-type="userInfo_add">新增</button>
+                    {{# } }}
+                </script>
             </div>
             <table class="layui-hide" id="user_infoTab" lay-filter="user_infoTab"></table>
+            <!--<script type="text/html" id="user_info_Toolbar">-->
+                <!--<a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">编辑</a>-->
+                <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
+            <!--</script>-->
+            <script type="text/html" id="user_info_Toolbar">
+                <!--编辑权限标识判断-->
+                {{# if(layui.data('layuiAdmin').permissions.indexOf("sys:user:update") != -1){ }}
+                    <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">编辑</a>
+                {{# } }}
+                <!--删除权限判断-->
+                {{# if(layui.data('layuiAdmin').permissions.indexOf("sys:user:delete") != -1){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                {{# } }}
+            </script>
+            <script type="text/html" id="user_dept">
+                {{#  if(d.deptId ===1){ }}
+                <span>部门：1</span>
+                {{#  } else if (d.deptId ===2){ }}
+                <span>部门：2</span>
+                {{#  } else if (d.deptId ===3){ }}
+                <span>部门：3</span>
+                {{#  } }}
+            </script>
+            <script type="text/html" id="user_status">
+                {{#  if(d.status ===1){ }}
+                    <input type="checkbox" checked="" name="open" lay-skin="switch" lay-text="已启用|禁用中" disabled>
+                {{#  } else if (d.status ===0){ }}
+                <input type="checkbox"  name="close" lay-skin="switch" lay-text="已启用|禁用中" disabled>
+                {{#  } }}
+            </script>
         </div>
     </div>
 
@@ -50,7 +80,7 @@
 
 
 <script>
-    layui.use('info_management', layui.factory('info_management')).use(['setter','info_management','admin', 'table', 'index','element','jquery','form','permissions'], function(){
+    layui.use('sys_user', layui.factory('sys_user')).use(['setter','sys_user','admin', 'table', 'index','element','jquery','form','permissions'], function(){
 
     });
 

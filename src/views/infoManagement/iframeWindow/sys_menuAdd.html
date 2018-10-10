@@ -177,7 +177,7 @@
                             <div class="layui-input-block">
                                 <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/menu/erpselect" lay-done="layui.data.done(d);">
                                     <select name="parentId" id="menuAdd_tabsbtn" lay-filter="LAY-menu-btn-submit">
-                                        <option>请选择上级菜单</option>
+                                        <option></option>
                                         {{#  layui.each(d.menuList, function(index, item){ }}
                                         <option name="{{ item.menuId }}">{{ item.title }}</option>
                                         {{#  }); }}

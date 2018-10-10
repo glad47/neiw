@@ -20,6 +20,7 @@ layui.define(['table', 'form','element'], function(exports){
         ,url: setter.baseUrl+'sys/menu/erplist'
         ,id: 'sys_menu'
         ,page: true
+        ,toolbar: true
         ,limit: 10
         ,where: {
             access_token: layui.data('layuiAdmin').access_token
@@ -67,7 +68,7 @@ layui.define(['table', 'form','element'], function(exports){
 
     /**
      * @author tzh  修改菜单
-     * @type {{userInfo_add: userInfo_add}}
+     * @type {{menu_add: menu_add}}
      */
 
 
@@ -127,12 +128,12 @@ layui.define(['table', 'form','element'], function(exports){
                                         ,done: function(res){
                                             console.log(res);
                                             layer.msg('菜单修改成功');
+                                            layui.table.reload('sys_menu'); // 重载表格
                                         }
                                         ,fail: function (res) {
                                             layer.msg('菜单修改失败');
                                         },
                                     });
-                                    layui.table.reload('sys_menu'); // 重载表格
                                     layer.close(index); //执行关闭
                                     return false;
                                 })
@@ -159,12 +160,12 @@ layui.define(['table', 'form','element'], function(exports){
                                         ,done: function(res){
                                             console.log(res);
                                             layer.msg('菜单添加成功');
+                                            layui.table.reload('sys_menu'); // 重载表格
                                         }
                                         ,fail: function (res) {
                                             layer.msg('菜单添加失败');
                                         },
                                     });
-                                    layui.table.reload('sys_menu'); // 重载表格
                                     layer.close(index); //执行关闭
                                     return false;
                                 });
@@ -190,12 +191,12 @@ layui.define(['table', 'form','element'], function(exports){
                                         ,done: function(res){
                                             console.log(res);
                                             layer.msg('按钮添加成功');
+                                            layui.table.reload('sys_menu'); // 重载表格
                                         }
                                         ,fail: function (res) {
                                             layer.msg('按钮添加失败');
                                         },
                                     });
-                                    layui.table.reload('sys_menu'); // 重载表格
                                     layer.close(index); //执行关闭
                                     return false;
                                 });
@@ -204,7 +205,7 @@ layui.define(['table', 'form','element'], function(exports){
                         //监听提交
                         form.on('submit(LAY-user-front-submit)', function(data){
                             var field = data.field; //获取提交的字段
-                            layui.table.reload('#sys_menu'); //重载表格
+                            layui.table.reload('sys_menu'); //重载表格
                             layer.close(index); //执行关闭
                             return false;
                         });
@@ -217,12 +218,12 @@ layui.define(['table', 'form','element'], function(exports){
 
     /**
      * @author tzh  新增菜单
-     * @type {{userInfo_add: userInfo_add}}
+     * @type {{menu_add: menu_add}}
      */
 
         //事件
     var active = {
-        userInfo_add: function () {
+        menu_add: function () {
             // 打开弹出页
             admin.popup({
                 title:'添加菜单',
@@ -259,12 +260,12 @@ layui.define(['table', 'form','element'], function(exports){
                                         ,done: function(res){
                                             console.log(res);
                                             layer.msg('菜单添加成功');
+                                            layui.table.reload('sys_menu'); // 重载表格
                                         }
                                         ,fail: function (res) {
                                             layer.msg('菜单添加失败');
                                         },
                                     });
-                                    layui.table.reload('sys_menu'); // 重载表格
                                     layer.close(index); //执行关闭
                                     return false;
                                 });
@@ -291,12 +292,12 @@ layui.define(['table', 'form','element'], function(exports){
                                         ,done: function(res){
                                             console.log(res);
                                             layer.msg('菜单添加成功');
+                                            layui.table.reload('sys_menu'); // 重载表格
                                         }
                                         ,fail: function (res) {
                                             layer.msg('菜单添加失败');
                                         },
                                     });
-                                    layui.table.reload('sys_menu'); // 重载表格
                                     layer.close(index); //执行关闭
                                     return false;
                                 });
@@ -324,12 +325,12 @@ layui.define(['table', 'form','element'], function(exports){
                                             ,done: function(res){
                                                 console.log(res);
                                                 layer.msg('按钮添加成功');
+                                                layui.table.reload('sys_menu'); // 重载表格
                                             }
                                             ,fail: function (res) {
                                                 layer.msg('按钮添加失败');
                                             },
                                         });
-                                        layui.table.reload('sys_menu'); // 重载表格
                                         layer.close(index); //执行关闭
                                         return false;
                                     }

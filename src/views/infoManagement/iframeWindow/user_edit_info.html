@@ -1,7 +1,7 @@
 <div class="layui-fluid">
-    <form class="layui-form" lay-filter="user_editInfo_form" style="width: 650px">
+    <form class="layui-form" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 650px">
         <div class="layui-form-item">
-            <div class="addcus-cusNum layui-col-md4 layui-col-xs12 layui-col-sm12">
+            <div class="addcus-cusNum layui-col-md6 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">用户名：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
@@ -9,132 +9,97 @@
                     </script>
                 </div>
             </div>
-            <div class="addcus-cusPWd layui-col-md4 layui-col-xs12 layui-col-sm12">
+            <div class="addcus-cusPWd layui-col-md6 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">密码：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="pwd" autocomplete="off" class="layui-input" id="user_edit_pwd">
-                </div>
-            </div>
-            <div class="addcus-cusID layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">姓名：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                    <input type="text" name="uname" value="{{ d.params.name || '' }}" autocomplete="off" class="layui-input" id="user_edit_cusid">
-                    </script>
+                    <input type="text" name="password" autocomplete="off" class="layui-input" id="user_edit_pwd">
                 </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <div class="addcus-cusNum layui-col-md4 layui-col-sm4">
+            <div class="addcus-cusNum layui-col-md6 layui-col-sm6">
                 <label class="layui-form-label">部门：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <select name="label" id="user_edit_dep" name="bm">
-                            <option value=0"  {{ d.params.department === 'IT部' ? 'selected' : '' }}>IT部</option>
-                            <option value="1" {{ d.params.department === '市场部' ? 'selected' : '' }}>市场部</option>
-                            <option value="2" {{ d.params.department === '外贸部' ? 'selected' : '' }}>外贸部</option>
-                            <option value="2" {{ d.params.department === '研发部' ? 'selected' : '' }}>研发部</option>
+                    <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/dept/list" lay-done="layui.data.done(d);">
+                        <select name="deptId" id="user_edit_dep" name="bm">
+                            <option></option>
+                            {{#  layui.each(d.data, function(index, item){ }}
+                            <option value="{{ item.deptId }}">{{ item.deptName }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据
+                            {{#  } }}
                         </select>
                     </script>
 
                 </div>
             </div>
-            <div class="addcus-cusPWd layui-col-md4 layui-col-sm4">
-                <label class="layui-form-label">职称：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <select name="label" id="user_edit_zc" name="zc">
-                            <option value=0"  {{ d.params.position === '码农' ? 'selected' : '' }}>码农</option>
-                            <option value="1" {{ d.params.position === '丛林巡逻' ? 'selected' : '' }}>丛林巡逻</option>
-                            <option value="2" {{ d.params.position === '钻研代码' ? 'selected' : '' }}>钻研代码</option>
-                        </select>
-                    </script>
-                </div>
-            </div>
-            <div class="addcus-cusID layui-col-md4 layui-col-sm4">
+            <div class="addcus-cusID layui-col-md6 layui-col-sm6">
                 <label class="layui-form-label">工号：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                    <input type="text" name="worknum" value="{{ d.params.worknumber || '' }}" autocomplete="off" class="layui-input" id="user_edit_workNum">
+                        <input type="text" name="jobNumber" value="{{ d.params.jobNumber || '' }}" autocomplete="off" class="layui-input" id="user_edit_workNum">
                     </script>
                 </div>
             </div>
         </div>
-
         <div class="layui-form-item">
-            <div class="addcus-cusNum layui-col-md4 layui-col-sm4">
-                <label class="layui-form-label">办公电话：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="offtel" value="{{ d.params.officephone || ''}}" autocomplete="off" class="layui-input" id="user_edit_offTel">
-                    </script>
-
-                </div>
-            </div>
-            <div class="addcus-cusPWd layui-col-md4 layui-col-sm4">
-                <label class="layui-form-label">Skype：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="skype" value="{{ d.params.skype }}" autocomplete="off" class="layui-input" id="user_edit_skype">
-                    </script>
-                </div>
-            </div>
-            <div class="addcus-cusID layui-col-md4 layui-col-sm4">
+            <div class="addcus-cusID layui-col-md6 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Email：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="email" value="{{ d.params.email }}" autocomplete="off" class="layui-input" id="user_edit_email">
+                        <input type="text" name="email" value="{{ d.params.email || '' }}" autocomplete="off" class="layui-input" id="user_edit_cusid">
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md6 layui-col-sm6">
+                <label class="layui-form-label">Skype：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="skype" value="{{ d.params.skype || ''}}" autocomplete="off" class="layui-input" id="user_edit_skype">
                     </script>
                 </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <div class="addcus-cusNum layui-col-md4 layui-col-sm4">
-                <label class="layui-form-label">授权管理：</label>
+            <div class="addcus-cusNum layui-col-md6 layui-col-sm6">
+                <label class="layui-form-label">办公电话：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="sqgl" autocomplete="off" class="layui-input" id="user_edit_sq">
+                    <script type="text/html" template>
+                        <input type="text" name="mobile" value="{{ d.params.mobile || ''}}" autocomplete="off" class="layui-input" id="user_edit_offTel">
+                    </script>
+
                 </div>
             </div>
-            <div class="addcus-cusNum layui-col-md4 layui-col-sm4"  style="margin-left: 30px">
-                <input type="checkbox" name="offon" lay-skin="switch" lay-text="启用|停用" id="user_edit_offOn">
-                <input type="checkbox" name="pwdbank" lay-skin="switch" lay-text="银码|银码" id="user_edit_ym">
-            </div>
-        </div>
-
-
-        <div class="layui-tab layui-tab-card">
-            <ul class="layui-tab-title">
-                <li class="layui-this">
-                    <input type="checkbox" name="usereditQxgl" title="" lay-skin="primary" id="user_edit_sqgl" lay-filter="usereditQxgl" value="usereditQxgl">权限管理
-                </li>
-                <li>
-                    <input type="checkbox" name="usereditlmgl" title="" lay-skin="primary" id="user_edit_lmgl" lay-filter="usereditLmgl" value="usereditLmgl">栏目管理
-                </li>
-                <li>
-                    <input type="checkbox" name="usereditWdgl" title="" lay-skin="primary" id="user_edit_wdgl" lay-filter="usereditWdgl" value="usereditWdgl">文档管理
-                </li>
-            </ul>
-            <div class="layui-tab-content" style="height: 100px;">
-                <div class="layui-tab-item layui-show" id="user_qxgl">
-                    <input type="checkbox" name="usereditQxgl1" title="用户管理" lay-skin="primary" id="user_edit_yhgl">
-                    <input type="checkbox" name="usereditQxgl2" title="角色管理" lay-skin="primary" id="user_edit_jsgl">
-                    <input type="checkbox" name="usereditQxgl3" title="角色权限控制" lay-skin="primary" id="user_edit_jsqx">
-                    <input type="checkbox" name="usereditQxgl4" title="系统日志管理" lay-skin="primary" id="user_edit_xtrz">
-                </div>
-                <div class="layui-tab-item" id="user_lmgl">
-                    <input type="checkbox" name="usereditlmgl1" title="栏目列表" lay-skin="primary" id="user_edit_lmlb">
-                    <input type="checkbox" name="usereditlmgl2" title="栏目添加" lay-skin="primary" id="lmtj">
-                </div>
-                <div class="layui-tab-item" id="user_wdgl">
-                    <input type="checkbox" name="usereditWdgl1" title="所有档案列表" lay-skin="primary" id="user_edit_sydalb">
-                    <input type="checkbox" name="usereditWdgl2" title="文章发布" lay-skin="primary" id="user_edit_wzfb">
-                    <input type="checkbox" name="usereditWdgl3" title="我的发布文档" lay-skin="primary" id="user_edit_wdfbwd">
-                    <input type="checkbox" name="usereditWdgl4" title="待审核的档案" lay-skin="primary" id="user_edit_dshdda">
+            <div class="user_status layui-col-md6 layui-col-sm6">
+                <label class="layui-form-label">状态:</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        {{# if(d.params.status === 1){ }}
+                        <input type="checkbox" checked="" name="status" lay-skin="switch" lay-filter="switchUser" lay-text="启用|禁用">
+                        {{# } else { }}
+                        <input type="checkbox" name="status" lay-skin="switch" lay-filter="switchUser" lay-text="启用|禁用">
+                        {{#  } }}
+                    </script>
                 </div>
             </div>
         </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色：</label>
+            <div class="layui-input-block">
+                <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/role/list" lay-done="layui.data.done(d);">
+                    {{#  layui.each(d.data, function(index, item){ }}
 
-        <div class="layui-form-item layui-col-md-offset2">
+                    <input type="checkbox" name="roleIdList" lay-skin="primary" title="{{ item.roleName }}" value="{{ item.roleId }}">
+                    {{#  }); }}
+                    {{#  if(d.data.length === 0){ }}
+                    无数据
+                    {{#  } }}
+                </script>
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-col-md-offset3" style="margin-top: 30px;">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="LAY-user-editInfo-submit">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
@@ -144,15 +109,13 @@
 </div>
 
 <script>
-    // layui.data.done = function(d){
-    //     layui.use(['user_edit_info','admin', 'table','index','jquery','form','element'], function(){
-    //         var $ = layui.$ ;
-    //         form = layui.form;
-    //         admin = layui.admin,
-    //             element = layui.element
-    //         form.render();
-    //     });
-    //
-    // }
+    layui.data.done = function(d){
+        layui.use(['form'], function(){
+            var $ = layui.$ ;
+            form = layui.form;
+            form.render(null, 'user_editInfo_form');
+        });
+
+    }
 
 </script>
