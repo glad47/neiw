@@ -55,7 +55,7 @@
 
 
 <script>
-layui.use(['admin', 'table', 'index','element','form'], function(){
+layui.use(['admin', 'table','element','form'], function(){
     var table = layui.table,
     $ = layui.jquery,
     element = layui.element,
@@ -70,7 +70,7 @@ layui.use(['admin', 'table', 'index','element','form'], function(){
         var field = data.field;
         console.log(field);
         //执行重载
-        table.reload('role_listTab', {
+        table.reload('customer_listTab', {
             where: field
         });
     });
@@ -100,7 +100,7 @@ layui.use(['admin', 'table', 'index','element','form'], function(){
             ,{field:'gmtCreate', title: '注册时间', sort: true}
             ,{field:'gmtModified', title: '更新时间', sort: true}
             ,{field:'userSystemId', title: '用户系统id', sort: true}
-            ,{width:150, align:'center',align:'center',fixed: 'right', toolbar: '#role-table-operate-barDemo',title:'操作'}
+            ,{width:150, align:'center',align:'center',fixed: 'right',toolbar:'#role-table-operate-barDemo',title:'操作'}
         ]]
         ,page: true
     });
@@ -111,8 +111,8 @@ layui.use(['admin', 'table', 'index','element','form'], function(){
         console.log(data);
         if (obj.event === 'edit') {
             admin.popup({
-                title:'编辑角色',
-                area:['550px','550px'],
+                title:'编辑客户',
+                area:['720px', '700px'],
                 id:'LAY-popup-customer-edit',
                 btn:['提交','取消'],
                 yes:function(index, layero){
@@ -120,18 +120,18 @@ layui.use(['admin', 'table', 'index','element','form'], function(){
                 },
                 end:function(){},
                 success:function(layero,index){
-                    view(this.id).render('infoManagement/customerform',data).done(function(){
+                    view(this.id).render('/infoManagement/iframeWindow/customer_edit_info',data).done(function(){
                         form.render(null,'layuiadmin-app-form-list');
 
                         //监听提交
                         form.on('submit(layuiadmin-app-form-submit)',function(data){
                             var field = data.field;
                             admin.req({
-                                url:setter.baseUrl+'/sys/role/update',
+                                url:setter.baseUrl+'sys/consumer/user/update',
                                 type:'POST',
                                 data:field,
                                 success:function(data){
-                                    layui.table.reload('role_listTab'); //重载表格
+                                    layui.table.reload('customer_listTab'); //重载表格
                                     layer.close(index); //执行关闭 
                                 }
                             });
@@ -140,13 +140,13 @@ layui.use(['admin', 'table', 'index','element','form'], function(){
                 }
             });
         } else if (obj.event === 'del') {
-            layer.confirm('确定删除此角色？', function(index){
+            layer.confirm('确定删除此客户？', function(index){
                 admin.req({
-                    url:setter.baseUrl+'sys/role/delete',
+                    url:setter.baseUrl+'sys/consumer/user/delete',
                     type:'POST',
-                    data:{roleIds:data.roleId},
+                    data:{ids:data.id},
                     success:function(data){
-                        layui.table.reload('role_listTab'); //重载表格
+                        layui.table.reload('customer_listTab'); //重载表格
                         layer.msg('已删除');
                     }
                 });
@@ -158,21 +158,43 @@ layui.use(['admin', 'table', 'index','element','form'], function(){
     var active = {
         customerInfo_add:function(){
             var that = this;
-            layer.open({
+            admin.popup({
                 type: 1,
-                title: 'Customer Info Management',
+                title: '客户用户新增',
                 shadeClose: true,
                 shade: false,
-                maxmin: true, //开启最大化最小化按钮
-                area: ['720px', '520px'],
+                maxmin: false, //开启最大化最小化按钮
+                area: ['720px', '700px'],
                 content:'<div class="layui-row" id="customer_edit_info"></div>',
                 btn:['确定','取消'],
-                success: function (index,layero) {
-                    view('customer_edit_info').render('/infoManagement/iframeWindow/customer_edit_info',{id:''}).then(function (value) {
+                yes: function(index, layero) {
+                    $('#layuiadmin-app-form-submit').click();
+                },
+                success: function (layero,index) {
+                    view('customer_edit_info').render('/infoManagement/iframeWindow/customer_edit_info')
+                    .then(function (value) {
                         //视图文件请求完毕，视图内容渲染前的回调
                     }).done(function(){
-                        //试图文件请求完毕和内容渲染完毕的回调
-                        form.render();
+                        form.render(null,'layuiadmin-app-form-list');
+                        //监听提交
+                        form.on('submit(layuiadmin-app-form-submit)',function(data){
+                            var field = data.field;
+                            console.log(field);
+                            admin.req({
+                                url: setter.baseUrl+'sys/consumer/user/save',
+                                type:'POST',
+                                //dataType:'json',
+                                //contentType:'application/json',
+                                data: field,
+                                success:function(data){
+                                    console.log(data);
+                                    layui.table.reload('customer_listTab'); //重载表格
+                                    layer.close(index); //执行关闭 
+                                }
+                            })
+
+                        });
+
                     });
 
 
