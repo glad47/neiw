@@ -37,7 +37,7 @@
         <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
                 <script type="text/html" template>
-                    {{# if(layui.data('layuiAdmin').permissions.indexOf("sys:user:save") != -1){ }}
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:save") != -1){ }}
                         <button class="layui-btn" id="userInfo_adds" data-type="userInfo_add">新增</button>
                     {{# } }}
                 </script>
@@ -49,11 +49,11 @@
             <!--</script>-->
             <script type="text/html" id="user_info_Toolbar">
                 <!--编辑权限标识判断-->
-                {{# if(layui.data('layuiAdmin').permissions.indexOf("sys:user:update") != -1){ }}
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:update") != -1){ }}
                     <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">编辑</a>
                 {{# } }}
                 <!--删除权限判断-->
-                {{# if(layui.data('layuiAdmin').permissions.indexOf("sys:user:delete") != -1){ }}
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:delete") != -1){ }}
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                 {{# } }}
             </script>
@@ -81,6 +81,8 @@
 
 <script>
     layui.use('sys_user', layui.factory('sys_user')).use(['setter','sys_user','admin', 'table', 'index','element','jquery','form','permissions'], function(){
+        var form = layui.form;
+        form.render();
 
     });
 

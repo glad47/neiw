@@ -73,11 +73,11 @@
           ,dataName = layui.setter.response.dataName
           ,setter = layui.setter;
 
-          layui.data(setter.tableName, {
+          layui.sessionData(setter.tableName, {
               key: setter.permissionsKeys
               ,value: d.permissions
           });
-          
+
           layui.each(d[dataName], function(index, item){
             var hasChildren = typeof item.list === 'object' && item.list.length > 0
             ,classSelected = function(){
