@@ -98,12 +98,7 @@
                 <label class="layui-form-label">状态:</label>
                 <div class="layui-input-block">
                     <script type="text/html" template lay-done="layui.data.done(d);">
-                        {{#
-                        var sss = d.params.roleIdList;
-                        console.log("roleIdlist:"+sss);
-                        if(d.params.status === 1){
-
-                        }}
+                        {{# if(d.params.status === 1){ }}
                         <input type="checkbox" checked="" name="status" lay-skin="switch" lay-filter="switchUser" lay-text="启用|禁用">
                         {{# } else { }}
                         <input type="checkbox" name="status" lay-skin="switch" lay-filter="switchUser" lay-text="启用|禁用">
@@ -116,8 +111,12 @@
             <label class="layui-form-label">角色：</label>
             <div class="layui-input-block">
                 <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/role/list" lay-done="layui.data.done(d);">
-                    {{#  layui.each(d.data, function(index, item){ }}
-                    <input type="checkbox" name="roleIdList" lay-skin="primary" title="{{ item.roleName }}" value="{{ item.roleId }}" >
+                    {{#
+                        var plist = d.params.roleIdList;
+                        console.log(plist);  
+                        layui.each(d.data, function(index, item){ 
+                    }}
+                    <input type="checkbox" name="roleIdList" lay-skin="primary" title="{{ item.roleName }}" value="{{ item.roleId }}" {{ plist.indexOf(item.roleId) != -1 ? 'checked=""' : '' }}>
                     {{#  }); }}
                     {{#  if(d.data.length === 0){ }}
                     无数据
