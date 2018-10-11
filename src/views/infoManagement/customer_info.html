@@ -37,15 +37,23 @@
     <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-                <button class="layui-btn" id="customerInfo_add" data-type="customerInfo_add">新增</button>
+                <script type="text/html" template>
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:consumer_user:save") != -1){ }}
+                        <button class="layui-btn" id="customerInfo_add" data-type="customerInfo_add">新增</button>
+                    {{# } }}   
+                </script>   
                 <!-- <button class="layui-btn" data-type="getCheckLength">修改</button> -->
                 <!-- <button class="layui-btn" data-type="isAll">查看</button> -->
                 <!-- <button class="layui-btn" data-type="isAll">设置</button> -->
             </div>
             <table class="layui-hide" id="customer_listTab" lay-filter="customer_listTab"></table>
             <script type="text/html" id="role-table-operate-barDemo">
-              <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-              <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:consumer_user:update") != -1){ }}
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                {{# } }}   
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:consumer_user:delete") != -1){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                 {{# } }}       
             </script>
         </div>
     </div>
@@ -179,7 +187,7 @@ layui.use(['admin', 'table','element','form'], function(){
                         //监听提交
                         form.on('submit(layuiadmin-app-form-submit)',function(data){
                             var field = data.field;
-                            console.log(field);
+                            // console.log(field);
                             admin.req({
                                 url: setter.baseUrl+'sys/consumer/user/save',
                                 type:'POST',

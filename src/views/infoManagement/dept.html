@@ -16,16 +16,23 @@
 	                </button>
 	            </div>
 	            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-	                <button class="layui-btn" data-type="dept_add">新增</button>
-	                <!-- <button class="layui-btn" data-type="getCheckLength">批量删除</button> -->
+                    <script type="text/html" template>
+                        {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:dept:save") != -1){ }}
+	                       <button class="layui-btn" data-type="dept_add">新增</button>
+                        {{# } }}   
+                    </script>  
 	            </div>
 	        </div>
             
             <table class="layui-hide" id="dept_listTab" lay-filter="dept_listTab"></table>
 
             <script type="text/html" id="dept-table-operate-barDemo">
-              <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-              <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:dept:update") != -1){ }}
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                {{# } }}   
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:dept:delete") != -1){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                {{# } }}   
             </script>
         </div>
     </div>
