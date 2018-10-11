@@ -108,17 +108,14 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <script type="text/html" template>
-                <label class="layui-form-label">角色：{{ d.params.roleIdList }}</label>
-            </script>
+            <label class="layui-form-label">角色：</label>
             <div class="layui-input-block">
                 <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/role/list" lay-done="layui.data.done(d);">
                     {{#
                         var plist = d.params.roleIdList;
-                        console.log(plist);  
                         layui.each(d.data, function(index, item){ 
                     }}
-                    <input type="checkbox" name="roleIdList[]" lay-skin="primary" title="{{ item.roleName }}" value="{{ item.roleId }}" {{ plist.indexOf(item.roleId) != -1 ? 'checked=""' : '' }}>
+                    <input type="checkbox" name="roleIdList" lay-skin="primary" title="{{ item.roleName }}" value="{{ item.roleId }}" {{ plist != null && plist.indexOf(item.roleId) != -1 ? 'checked' : '' }}>
                     {{#  }); }}
                     {{#  if(d.data.length === 0){ }}
                     无数据
