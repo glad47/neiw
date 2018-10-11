@@ -1,0 +1,87 @@
+<title>订单评审</title>
+
+<title>供应商信息</title>
+<div class="layui-fluid">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto" id="orderReview_form">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">P/N：</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="supplier_id" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">File Name：</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="supplier_companyName" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">Order ID：</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="supplier_type" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">Order Time:</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">状态：</label>
+                <div class="layui-input-inline">
+                    <select name="quiz" id="orderReview_statusSel">
+                        <option value="">请选择问题</option>
+                        <option value="0">待评审</option>
+                        <option value="1">修改中</option>
+                        <option value="1">退回中</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" data-type="reload" id="orderReview_searchbtn">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--卡片－表格信息-->
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" id="orderReview_card">
+        <ul class="layui-tab-title">
+            <li class="layui-this">PCB订单</li>
+            <li>钢网订单</li>
+        </ul>
+        <div class="layui-tab-content">
+            <!--PCB订单-->
+            <div class="layui-tab-item layui-show">
+                <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
+                    <button class="layui-btn"  data-type="">修改</button>
+                    <button class="layui-btn"  data-type="">查看</button>
+                    <button class="layui-btn"  data-type="">退回</button>
+                    <button class="layui-btn"  data-type="">提交</button>
+                    <button class="layui-btn"  data-type="">查看合同</button>
+                    <button class="layui-btn"  data-type="">删除</button>
+                </div>
+            </div>
+            <div class="layui-tab-item">内容2</div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #orderReview_form {background-color: white;}
+    #orderReview_form .layui-input, .layui-textarea {width:142% !important;}
+    #orderReview_form .layui-form-label {width: 80px !important;}
+    #orderReview_form .layui-form-item .layui-input-inline{width: 80px !important;}
+    #orderReview_searchbtn {margin-left: 25px;}
+    #orderReview_form .layui-form-select .layui-edge{right: -20px;}
+    #orderReview_form .layui-form-select dl{min-width: 142% !important;}
+    #orderReview_card {background-color: white;}
+
+</style>
+
+<script>
+    layui.use('sys_supplier', layui.factory('sys_supplier')).use(['sys_supplier', 'table', 'index','element','form'], function(){
+    });
+</script>

@@ -2,9 +2,7 @@
     <form class="layui-form" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 650px">
         <div class="layui-form-item">
             <div class="addcus-cusNum layui-col-md6 layui-col-xs12 layui-col-sm12">
-                <script type="text/html" template>
-                    <label class="layui-form-label" name="editUsername" id="{{ d.params.userId || '' }}">用户名：{{d.params.roleIdList}}</label>
-                </script>
+                <label class="layui-form-label" name="editUsername" id="{{ d.params.userId || '' }}">用户名：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                     <input type="text" name="username" value="{{ d.params.username || '' }}" autocomplete="off" class="layui-input" >
@@ -115,21 +113,12 @@
                         var plist = d.params.roleIdList;
                         layui.each(d.data, function(index, item){ 
                     }}
-                    <input type="checkbox" name="roleIdList" lay-skin="primary" title="{{ item.roleName }}" value="{{ item.roleId }}" {{ plist != null && plist.indexOf(item.roleId) != -1 ? 'checked' : '' }}>
+                    <input type="checkbox" name="roleIdList[]" lay-skin="primary" title="{{ item.roleName }}" value="{{ item.roleId }}" {{ plist != null && plist.indexOf(item.roleId) != -1 ? 'checked' : '' }}>
                     {{#  }); }}
                     {{#  if(d.data.length === 0){ }}
                     无数据
                     {{#  } }}
                 </script>
-                <!--<script type="text/html" template>-->
-                    <!--{{# layui.each(d.params.roleIdList, function(index, item) { }}-->
-                    <!--<a>{{ item[1] }}1212</a>-->
-                    <!--&lt;!&ndash;{{ alert(JSON.stringify(d.params))}}&ndash;&gt;-->
-                    <!--{{#  }); }}-->
-                    <!--{{#  if(d.params.mobile === 0){ }}-->
-                    <!--无数据-->
-                    <!--{{#  } }}-->
-                <!--</script>-->
             </div>
         </div>
 
@@ -150,9 +139,5 @@
             ,admin = layui.admin
             form.render(null, 'user_editInfo_form');
         });
-
-
-
     }
-
 </script>

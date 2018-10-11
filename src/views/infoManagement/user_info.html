@@ -36,7 +36,7 @@
     <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-                <script type="text/html" template>
+                <script type="text/html" template lay-done="layui.data.done(d);">
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:save") != -1){ }}
                         <button class="layui-btn" id="userInfo_adds" data-type="userInfo_add">新增</button>
                     {{# } }}
@@ -80,13 +80,11 @@
 
 
 <script>
-    layui.use('sys_user', layui.factory('sys_user')).use(['setter','sys_user','admin', 'table', 'index','element','jquery','form','permissions'], function(){
-        var form = layui.form;
-        form.render();
+    layui.data.done = function (d) {
+        layui.use('sys_user', layui.factory('sys_user')).use(['setter','sys_user','admin', 'table', 'index','element','jquery','form','permissions'], function(){
+            var form = layui.form;
+            form.render();
 
-    });
-
-
-
-
+        });
+    }
 </script>
