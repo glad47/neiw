@@ -56,7 +56,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         var userId = data.userId;
         var username = data.username;
         if (obj.event === 'edit'){
-            
+
             admin.req({
                 type: 'get'
                 ,url: setter.baseUrl+'sys/user/info/'+userId
@@ -88,7 +88,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                                     var field = data.field;
                                     field.userId = userId;
                                     field.status = status;
-                                    // console.log("用户修改表单提交的信息为："+JSON.stringify(field));
+                                    console.log("用户修改表单提交的信息为："+JSON.stringify(field));
                                     admin.req({
                                         type: 'post'
                                         ,url: setter.baseUrl+'sys/user/update'

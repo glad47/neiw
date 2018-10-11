@@ -16,11 +16,11 @@
 	                </button>
 	            </div>
 	            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-                    <script type="text/html" template  lay-done="layui.data.auth('sys:role:save');">
+                    <script type="text/html" template>
                         {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:role:save") != -1){ }}
-	                       <button class="layui-btn" data-type="role_add">新增</button>
-                        {{# } }}   
-                    </script>   
+                            <button class="layui-btn" data-type="role_add">新增</button>
+                        {{# } }}
+                    </script>
 	            </div>
 	        </div>
             
@@ -38,24 +38,7 @@
     </div>
 
 </div>
-<!-- <script>
-    layui.auth.sss = function(d){
-        console.log(d);
-    }
-</script> -->
 <script>
-    layui.data.auth = function(d){
-        console.log(d);
-        layui.use(['jquery','setter','form'],function(){
-            var $ = layui.jquery,
-            setter = layui.setter,
-            form = layui.form;
-
-            var permissionsList = layui.sessionData('layuiAdmin').permissions;
-            console.log(permissionsList);
-
-        })
-    }
 	layui.use(['admin', 'table','setter','form','authtree','jquery'], function(){
     var $ = layui.jquery
     ,table = layui.table

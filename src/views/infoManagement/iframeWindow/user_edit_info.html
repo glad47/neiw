@@ -115,7 +115,7 @@
                         var plist = d.params.roleIdList;
                         layui.each(d.data, function(index, item){ 
                     }}
-                    <input type="checkbox" name="roleIdList" lay-skin="primary" title="{{ item.roleName }}" value="{{ item.roleId }}" {{ plist != null && plist.indexOf(item.roleId) != -1 ? 'checked' : '' }}>
+                    <input type="checkbox" name="roleIdList" lay-skin="primary" title="{{ item.roleName }}" value="{{ item.roleId }}" {{ plist != null && plist.indexOf(item.roleId) == -1 ? 'checked' : '' }}>
                     {{#  }); }}
                     {{#  if(d.data.length === 0){ }}
                     无数据
