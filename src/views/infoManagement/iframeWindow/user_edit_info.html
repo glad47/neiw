@@ -2,10 +2,12 @@
     <form class="layui-form" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 650px">
         <div class="layui-form-item">
             <div class="addcus-cusNum layui-col-md6 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">用户名：</label>
+                <script type="text/html" template>
+                    <label class="layui-form-label" name="editUsername" id="{{ d.params.userId || '' }}">用户名：{{d.params.roleIdList}}</label>
+                </script>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                    <input type="text" name="username" value="{{ d.params.username || '' }}" autocomplete="off" class="layui-input" id="user_edit_yhm">
+                    <input type="text" name="username" value="{{ d.params.username || '' }}" autocomplete="off" class="layui-input" >
                     </script>
                 </div>
             </div>
@@ -21,10 +23,31 @@
                 <label class="layui-form-label">部门：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/dept/list" lay-done="layui.data.done(d);">
+                        <!--<select name="deptId" id="user_edit_dep" name="bm">-->
+                            <!--<option></option>-->
+                            <!--{{#  layui.each(d.data, function(index, item){ }}-->
+                            <!--<option value="{{ item.deptId }}" >{{ item.deptName }}</option>-->
+                            <!--{{#  }); }}-->
+                            <!--{{#  if(d.data.length === 0){ }}-->
+                            <!--无数据-->
+                            <!--{{#  } }}-->
+                        <!--</select>-->
                         <select name="deptId" id="user_edit_dep" name="bm">
-                            <option></option>
+                            <!--编辑部门自动回填-->
+                            {{# if(d.params.deptId ===1){ }}
+                                <option value="{{d.params.deptId}}">部门:1</option>
+                            {{# } else if(d.params.deptId ===2) {}}
+                                <option value="{{d.params.deptId}}">部门:2</option>
+                            {{# } else if(d.params.deptId ===3) {}}
+                                <option value="{{d.params.deptId}}">部门:3</option>
+                            {{# } else if(d.params.deptId ===4) {}}
+                                <option value="{{d.params.deptId}}">部门:4</option>
+                            {{# } else if(d.params.deptId ===5) {}}
+                                <option value="{{d.params.deptId}}">部门:5</option>
+                            {{# }}}
+                            <!--遍历异步请求到的数据且填充-->
                             {{#  layui.each(d.data, function(index, item){ }}
-                            <option value="{{ item.deptId }}">{{ item.deptName }}</option>
+                            <option value="{{ item.deptId }}" >{{ item.deptName }}</option>
                             {{#  }); }}
                             {{#  if(d.data.length === 0){ }}
                             无数据
@@ -74,8 +97,13 @@
             <div class="user_status layui-col-md6 layui-col-sm6">
                 <label class="layui-form-label">状态:</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template>
-                        {{# if(d.params.status === 1){ }}
+                    <script type="text/html" template lay-done="layui.data.done(d);">
+                        {{#
+                        var sss = d.params.roleIdList;
+                        console.log("roleIdlist:"+sss);
+                        if(d.params.status === 1){
+
+                        }}
                         <input type="checkbox" checked="" name="status" lay-skin="switch" lay-filter="switchUser" lay-text="启用|禁用">
                         {{# } else { }}
                         <input type="checkbox" name="status" lay-skin="switch" lay-filter="switchUser" lay-text="启用|禁用">
@@ -89,13 +117,21 @@
             <div class="layui-input-block">
                 <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/role/list" lay-done="layui.data.done(d);">
                     {{#  layui.each(d.data, function(index, item){ }}
-
-                    <input type="checkbox" name="roleIdList" lay-skin="primary" title="{{ item.roleName }}" value="{{ item.roleId }}">
+                    <input type="checkbox" name="roleIdList" lay-skin="primary" title="{{ item.roleName }}" value="{{ item.roleId }}" >
                     {{#  }); }}
                     {{#  if(d.data.length === 0){ }}
                     无数据
                     {{#  } }}
                 </script>
+                <!--<script type="text/html" template>-->
+                    <!--{{# layui.each(d.params.roleIdList, function(index, item) { }}-->
+                    <!--<a>{{ item[1] }}1212</a>-->
+                    <!--&lt;!&ndash;{{ alert(JSON.stringify(d.params))}}&ndash;&gt;-->
+                    <!--{{#  }); }}-->
+                    <!--{{#  if(d.params.mobile === 0){ }}-->
+                    <!--无数据-->
+                    <!--{{#  } }}-->
+                <!--</script>-->
             </div>
         </div>
 
@@ -112,9 +148,12 @@
     layui.data.done = function(d){
         layui.use(['form'], function(){
             var $ = layui.$ ;
-            form = layui.form;
+            form = layui.form
+            ,admin = layui.admin
             form.render(null, 'user_editInfo_form');
         });
+
+
 
     }
 

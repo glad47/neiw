@@ -55,6 +55,14 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         var data = obj.data;
         var userId = data.userId;
         var username = data.username;
+        admin.req({
+            type: 'get'
+            ,url: setter.baseUrl+'sys/user/info/'+userId
+            ,success : function (res) {
+                data = res;
+                console.log("获取到的用户的信息为："+JSON.stringify(data))
+            }
+        })
         if (obj.event === 'edit'){
             admin.popup({
                 title: '修改用户信息'
@@ -76,7 +84,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                                 layer.msg('停用');
                                 status =0;
                             }
-                        })
+                        });
                         form.on('submit(LAY-user-editInfo-submit)',function (data) {
                             var field = data.field;
                             field.userId = userId;
@@ -123,6 +131,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
 
     var active ={
         userInfo_add:function (data) {
+            var status ;
             admin.popup({
                 title: '添加用户信息'
                 ,shadeClose: true
@@ -132,8 +141,20 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                 ,success: function (layero,index) {
                     view(this.id).render('/infoManagement/iframeWindow/user_edit_info',data).done(function () {
                         form.render(null,'user_editInfo_form');
+                        form.on('switch(switchUser)',function (data) {
+                            if (data.elem.checked == true){
+                                layer.msg('已启用');
+                                status =1;
+                            } else {
+                                layer.msg('停用');
+                                status =0;
+                            }
+                        });
                         form.on('submit(LAY-user-editInfo-submit)',function (data) {
                             var field = data.field;
+                            if (field.status == "" || field.status == null){
+                                field.status = 1;
+                            }
                             console.log("新增用户提交的表单值为："+JSON.stringify(field));
                             admin.req({
                                 type: 'post'
