@@ -24,8 +24,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             access_token: layui.data('layuiAdmin').access_token
         }
         ,cols: [[
-            {type:'checkbox'}
-            ,{field:'userId', title: '用户ID', sort: true,width: 90,align: 'center'}
+             {field:'userId', title: '用户ID', sort: true,width: 90,align: 'center'}
             ,{field:'username', title: '用户名',width: 180,align: 'center'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
             ,{field: 'mobile', title: '办公电话',minWidth:106,align:'center'}
             ,{field:'deptId', title: '部门', sort: true,width: 150,align: 'center',templet: '#user_dept'}

@@ -28,8 +28,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             access_token: layui.data('layuiAdmin').access_token
         }
         ,cols: [[
-            {type:'checkbox'}
-            ,{field:'id', title: 'ID',hide: false}
+             {field:'id', title: 'ID',hide: false}
             ,{field:'supplierId', title: '供应商编号', sort: true,width: 110}
             ,{field:'companyName', title: '公司名称',width: 180} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
             ,{field:'type', title: '类别', sort: true,width: 120,templet: '#type'}
