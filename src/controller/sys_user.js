@@ -194,11 +194,29 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             })
         }
     }
-    $('.layui-btn').on('click',function () {
+    $('div').delegate('.layui-btn','click',function () {
         var type = $(this).data('type');
         active[type] && active[type].call(this);
     })
 
+    // 表单验证
+    form.verify({
+        username: function (value,item) {
+            if (value == null || value == ""){
+                return '用户名不能为空！！！';
+            }
+        },
+        password: function (value,item) {
+            if (value == null || value == ""){
+                return '密码不能为空！！！';
+            }
+        },
+        jobNumber: function (value,item) {
+            if (value == null || value == ""){
+                return '工号不能为空！！！';
+            }
+        },
+    })
 
 
     exports('sys_user', {})

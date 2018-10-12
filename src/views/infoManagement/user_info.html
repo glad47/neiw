@@ -41,7 +41,7 @@
                         <!--<button class="layui-btn per_userAdd" id="userInfo_adds" data-type="userInfo_add">新增</button>-->
                     {{# } }}
                 </script>
-                <button class="layui-btn per_userAdd" id="userInfo_adds" data-type="userInfo_add">新增</button>
+                <!--<button class="layui-btn per_userAdd" id="userInfo_adds" data-type="userInfo_add">新增</button>-->
             </div>
             <table class="layui-hide" id="user_infoTab" lay-filter="user_infoTab"></table>
             <script type="text/html" id="user_info_Toolbar">
@@ -72,7 +72,11 @@
         layui.use('sys_user', layui.factory('sys_user')).use(['setter','sys_user','admin', 'table', 'index','element','jquery','form','permissions'], function(){
             var form = layui.form;
             form.render();
-
+        });
+        //新加权限工厂
+        layui.use('permissions', layui.factory('permissions')).use(['setter','permissions'], function(){
+            var form = layui.form;
+            form.render();
         });
     }
 </script>
