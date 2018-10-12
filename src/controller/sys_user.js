@@ -6,17 +6,28 @@
 
 
 layui.define(['admin', 'table', 'index','element','form'], function(exports){
-    table = layui.table
+    var $ = layui.jquery
+        ,table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
         ,setter = layui.setter
-        ,element = layui.element;
-    var $ = layui.jquery;
+        ,element = layui.element
+
+    form.render(null, 'user_info_formlist')
+    //监听搜索
+    form.on('submit(LAY-user-info-search)', function (data) {
+        var field = data.field;
+        console.log(field);
+        table.reload('user_infoTab',{
+            where: field
+        });
+    });
+
     table.render({
         elem: '#user_infoTab'
         ,url: setter.baseUrl+'sys/user/list'
-        ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        ,cellMinWidth: 80
         ,id:"user_infoTab"
         ,toolbar: true
         ,page: true
@@ -25,7 +36,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         }
         ,cols: [[
              {field:'userId', title: '用户ID', sort: true,width: 90,align: 'center'}
-            ,{field:'username', title: '用户名',width: 180,align: 'center'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+            ,{field:'username', title: '用户名',width: 180,align: 'center'}
             ,{field: 'mobile', title: '办公电话',minWidth:106,align:'center'}
             ,{field:'deptId', title: '部门id', sort: true,width: 150,align: 'center',hide: true}
             ,{field:'deptName', title: '部门', sort: true,width: 150,align: 'center'}
@@ -57,7 +68,6 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         var username = data.username;
         var deptName = data.deptName;
         if (obj.event === 'edit'){
-
             admin.req({
                 type: 'get'
                 ,url: setter.baseUrl+'sys/user/info/'+userId

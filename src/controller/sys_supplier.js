@@ -17,6 +17,13 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         console.log(data);
         alert("1");
     });
+    form.render(null,'supplierInfo_from');
+    form.on('submit(LAY-app-supplier-search)',function (data) {
+        var field = data.field;
+        table.reload('supplier_infoTab',{
+            where:field
+        });
+    });
     table.render({
         elem: '#supplier_infoTab'
         ,url: setter.baseUrl+'sys/supplier/list'

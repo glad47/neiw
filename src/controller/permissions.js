@@ -15,7 +15,7 @@ layui.define(['laytpl','layer','setter'], function (exports) {
         alert('没有用户新增按钮权限!');
     }
     $("body").on("click", "#userInfo_adds", function () {
-        // userInfo_add();
+        // active.userInfo_add();
     })
     // var user
     //对外接口
