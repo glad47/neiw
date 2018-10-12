@@ -167,7 +167,9 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                         });
                         form.on('submit(LAY-user-editInfo-submit)',function (data) {
                             var field = data.field;
-                            if (field.status == "" || field.status == null){
+                            if (field.status == "" || field.status == null || field.status == 'off'){
+                                field.status = 0;
+                            } else if (field.status == 'on'){
                                 field.status = 1;
                             }
                             console.log("新增用户提交的表单值为："+JSON.stringify(field));
