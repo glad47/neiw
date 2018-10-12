@@ -1,34 +1,34 @@
 
 <title>供应商信息</title>
 <div class="layui-fluid">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="supplierInfo_from">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">供应商编号</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="supplier_id" autocomplete="off" class="layui-input">
+                    <input type="text" id="supplier_id" name="supplierId" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">公司名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="supplier_companyName" autocomplete="off" class="layui-input">
+                    <input type="text" id="supplier_companyName" name="companyName" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">类别</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="supplier_type" autocomplete="off" class="layui-input">
+                    <input type="text" id="supplier_type" name="type" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">联系人</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input" id="supplier_contact">
+                    <input type="text" class="layui-input" name="contact" id="supplier_contact">
                 </div>
             </div>
             <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" data-type="reload">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-supplier-search" data-type="reload">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                 </button>
             </div>

@@ -8,22 +8,22 @@
                     <input type="text" name="username" autocomplete="off" class="layui-input" id="search_userName">
                 </div>
             </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">姓名</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="author" autocomplete="off" class="layui-input">
-                </div>
-            </div>
+            <!--<div class="layui-inline">-->
+                <!--<label class="layui-form-label">姓名</label>-->
+                <!--<div class="layui-input-inline">-->
+                    <!--<input type="text" name="author" autocomplete="off" class="layui-input">-->
+                <!--</div>-->
+            <!--</div>-->
             <div class="layui-inline">
                 <label class="layui-form-label">部门</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="title" autocomplete="off" class="layui-input">
+                    <input type="text" name="deptName" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">工号</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input" id="user_orderTime">
+                    <input type="text" class="layui-input" name="jobNumber" id="user_orderTime">
                 </div>
             </div>
             <div class="layui-inline">
@@ -44,10 +44,6 @@
                 <button class="layui-btn per_userAdd" id="userInfo_adds" data-type="userInfo_add">新增</button>
             </div>
             <table class="layui-hide" id="user_infoTab" lay-filter="user_infoTab"></table>
-            <!--<script type="text/html" id="user_info_Toolbar">-->
-                <!--<a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">编辑</a>-->
-                <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
-            <!--</script>-->
             <script type="text/html" id="user_info_Toolbar">
                 <!--编辑权限标识判断-->
                 {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:update") != -1){ }}

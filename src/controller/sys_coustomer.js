@@ -27,7 +27,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
         ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,cols: [[
              {field:'id', title: 'id', sort: true}
-            ,{field:'username', title: '用户名'}
+            ,{field:'userName', title: '用户名'}
             ,{field:'email', title: '邮箱', sort: true}
             ,{field:'skypeId', title: 'Skype', sort: true}
             ,{field:'mobilePhone', title: '电话', sort: true}
