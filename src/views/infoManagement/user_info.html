@@ -35,12 +35,13 @@
     </div>
     <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
-            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
+            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;" name="perTest">
                 <script type="text/html" template lay-done="layui.data.done(d);">
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:save") != -1){ }}
-                        <button class="layui-btn" id="userInfo_adds" data-type="userInfo_add">新增</button>
+                        <!--<button class="layui-btn per_userAdd" id="userInfo_adds" data-type="userInfo_add">新增</button>-->
                     {{# } }}
                 </script>
+                <button class="layui-btn per_userAdd" id="userInfo_adds" data-type="userInfo_add">新增</button>
             </div>
             <table class="layui-hide" id="user_infoTab" lay-filter="user_infoTab"></table>
             <!--<script type="text/html" id="user_info_Toolbar">-->
@@ -56,15 +57,6 @@
                 {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:delete") != -1){ }}
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                 {{# } }}
-            </script>
-            <script type="text/html" id="user_dept">
-                {{#  if(d.deptId ===1){ }}
-                <span>部门：1</span>
-                {{#  } else if (d.deptId ===2){ }}
-                <span>部门：2</span>
-                {{#  } else if (d.deptId ===3){ }}
-                <span>部门：3</span>
-                {{#  } }}
             </script>
             <script type="text/html" id="user_status">
                 {{#  if(d.status ===1){ }}

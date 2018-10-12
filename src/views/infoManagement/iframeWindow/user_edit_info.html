@@ -2,9 +2,7 @@
     <form class="layui-form" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 650px">
         <div class="layui-form-item">
             <div class="addcus-cusNum layui-col-md6 layui-col-xs12 layui-col-sm12">
-                <script type="text/html" template>
-                    <label class="layui-form-label" name="editUsername" id="{{ d.params.userId || '' }}">用户名：{{d.params.roleIdList}}</label>
-                </script>
+                <label class="layui-form-label" name="editUsername" id="{{ d.params.userId || '' }}">用户名：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                     <input type="text" name="username" value="{{ d.params.username || '' }}" autocomplete="off" class="layui-input" >
@@ -30,24 +28,14 @@
                             <!--{{#  }); }}-->
                             <!--{{#  if(d.data.length === 0){ }}-->
                             <!--无数据-->
-                            <!--{{#  } }}-->n
+                            <!--{{#  } }}-->
                         <!--</select>-->
                         <select name="deptId" id="user_edit_dep" name="bm">
                             <!--编辑部门自动回填-->
-                            {{# if(d.params.deptId ===1){ }}
-                                <option value="{{d.params.deptId}}">部门:1</option>
-                            {{# } else if(d.params.deptId ===2) {}}
-                                <option value="{{d.params.deptId}}">部门:2</option>
-                            {{# } else if(d.params.deptId ===3) {}}
-                                <option value="{{d.params.deptId}}">部门:3</option>
-                            {{# } else if(d.params.deptId ===4) {}}
-                                <option value="{{d.params.deptId}}">部门:4</option>
-                            {{# } else if(d.params.deptId ===5) {}}
-                                <option value="{{d.params.deptId}}">部门:5</option>
-                            {{# }}}
+                            <option value="{{ d.params.deptId || ''}}">{{ d.params.deptName || ''}}</option>
                             <!--遍历异步请求到的数据且填充-->
                             {{#  layui.each(d.data, function(index, item){ }}
-                            <option value="{{ item.deptId }}" >{{ item.deptName }}</option>
+                            <option value="{{ item.deptId || ''}}" >{{ item.deptName }}</option>
                             {{#  }); }}
                             {{#  if(d.data.length === 0){ }}
                             无数据

@@ -27,7 +27,8 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
              {field:'userId', title: '用户ID', sort: true,width: 90,align: 'center'}
             ,{field:'username', title: '用户名',width: 180,align: 'center'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
             ,{field: 'mobile', title: '办公电话',minWidth:106,align:'center'}
-            ,{field:'deptId', title: '部门', sort: true,width: 150,align: 'center',templet: '#user_dept'}
+            ,{field:'deptId', title: '部门id', sort: true,width: 150,align: 'center',hide: true}
+            ,{field:'deptName', title: '部门', sort: true,width: 150,align: 'center'}
             ,{field:'jobNumber', title: '工号', align: 'center', sort: true,width: 120} //单元格内容水平居中
             ,{field:'skype', title: 'Skype', sort: true,width:120,align: 'center'} //单元格内容水平居中
             ,{field:'email', title: 'Email', sort: true,align: 'center'}
@@ -54,6 +55,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         var data = obj.data;
         var userId = data.userId;
         var username = data.username;
+        var deptName = data.deptName;
         if (obj.event === 'edit'){
 
             admin.req({
@@ -61,6 +63,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                 ,url: setter.baseUrl+'sys/user/info/'+userId
                 ,success : function (res) {
                     var datainfo = res.user;
+                    datainfo.deptName = deptName;
                     console.log(datainfo);
                     admin.popup({
                         title: '修改用户信息'
