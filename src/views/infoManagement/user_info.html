@@ -35,40 +35,37 @@
     </div>
     <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
-            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;" name="perTest">
-                <script type="text/html" template lay-done="layui.data.done(d);">
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:save") != -1){ }}
-                        <!--<button class="layui-btn per_userAdd" id="userInfo_adds" data-type="userInfo_add">新增</button>-->
-                    {{# } }}
-                </script>
-                <!--<button class="layui-btn per_userAdd" id="userInfo_adds" data-type="userInfo_add">新增</button>-->
-            </div>
-            <table class="layui-hide" id="user_infoTab" lay-filter="user_infoTab"></table>
+            <!--用户权限标识容器-->
+            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;" name="permission-user-add"></div>
+            <table class="layui-hide layui-table" id="user_infoTab" lay-filter="user_infoTab"></table>
             <script type="text/html" id="user_info_Toolbar">
                 <!--编辑权限标识判断-->
                 {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:update") != -1){ }}
-                    <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">编辑</a>
+                <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">编辑</a>
                 {{# } }}
                 <!--删除权限判断-->
                 {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:delete") != -1){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                 {{# } }}
             </script>
+
+            <!--<script type="text/html" id="user_info_Toolbar">-->
+                <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
+            <!--</script>-->
             <script type="text/html" id="user_status">
                 {{#  if(d.status ===1){ }}
-                    <input type="checkbox" checked="" name="open" lay-skin="switch" lay-text="已启用|禁用中" disabled>
+                <input type="checkbox" checked="" name="open" lay-skin="switch" lay-text="已启用|禁用中" disabled>
                 {{#  } else if (d.status ===0){ }}
                 <input type="checkbox"  name="close" lay-skin="switch" lay-text="已启用|禁用中" disabled>
                 {{#  } }}
             </script>
         </div>
     </div>
-
 </div>
 
 
 <script>
-    layui.data.done = function (d) {
+    // layui.data.done = function () {
         layui.use('sys_user', layui.factory('sys_user')).use(['setter','sys_user','admin', 'table', 'index','element','jquery','form','permissions'], function(){
             var form = layui.form;
             form.render();
@@ -76,7 +73,7 @@
         //新加权限工厂
         layui.use('permissions', layui.factory('permissions')).use(['setter','permissions'], function(){
             var form = layui.form;
-            form.render();
+            // form.render();
         });
-    }
+    // }
 </script>
