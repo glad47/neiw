@@ -2,37 +2,52 @@
 
 <title>供应商信息</title>
 <div class="layui-fluid">
+    <input type="text" autocomplete="off" class="layui-input" placeholder="查询订单评审信息" style="display: none">
     <div class="layui-form layui-card-header layuiadmin-card-header-auto" id="orderReview_form">
         <div class="layui-form-item">
-            <div class="layui-inline">
+            <div class="layui-inline" id="orderReview_searll" style="display: none;">
+                <label class="layui-form-label">查询：</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="orderReview_sinp" autocomplete="off" class="layui-input" placeholder="P/N">
+                </div>
+                <div class="layui-input-inline">
+                    <select name="quiz" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
+                        <option value="P/N">P/N</option>
+                        <option value="FileName">File Name</option>
+                        <option value="OrderId">Order ID</option>
+                        <option value="OrderTime">Order Time</option>
+                    </select>
+                </div>
+            </div>
+
+            <!--电脑端-->
+            <div class="layui-inline" id="orderReview_pcsear">
                 <label class="layui-form-label">P/N：</label>
                 <div class="layui-input-inline">
                     <input type="text" id="supplier_id" autocomplete="off" class="layui-input">
                 </div>
-            </div>
-            <div class="layui-inline">
+
                 <label class="layui-form-label">File Name：</label>
                 <div class="layui-input-inline">
                     <input type="text" id="supplier_companyName" autocomplete="off" class="layui-input">
                 </div>
-            </div>
-            <div class="layui-inline">
+
                 <label class="layui-form-label">Order ID：</label>
                 <div class="layui-input-inline">
                     <input type="text" id="supplier_type" autocomplete="off" class="layui-input">
                 </div>
-            </div>
-            <div class="layui-inline">
+
                 <label class="layui-form-label">Order Time:</label>
                 <div class="layui-input-inline">
                     <input type="text" class="layui-input">
                 </div>
             </div>
+
             <div class="layui-inline">
                 <label class="layui-form-label">状态：</label>
                 <div class="layui-input-inline">
                     <select name="quiz" id="orderReview_statusSel">
-                        <option value="">请选择问题</option>
+                        <option value="">请选择状态</option>
                         <option value="0">待评审</option>
                         <option value="1">修改中</option>
                         <option value="1">退回中</option>
@@ -40,7 +55,7 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" data-type="reload" id="orderReview_searchbtn">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-orderReview-search" data-type="reload" id="orderReview_searchbtn">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                 </button>
             </div>
@@ -91,7 +106,7 @@
 <style>
     #orderReview_form {background-color: white;}
     #orderReview_form .layui-input, .layui-textarea {width:142% !important;}
-    #orderReview_form .layui-form-label {width: 80px !important;}
+    #orderReview_form .layui-form-label {width: 100px !important;}
     #orderReview_form .layui-form-item .layui-input-inline{width: 80px !important;}
     #orderReview_searchbtn {margin-left: 25px;}
     #orderReview_form .layui-form-select .layui-edge{right: -20px;}
@@ -102,5 +117,7 @@
 
 <script>
     layui.use('market_orderReview', layui.factory('market_orderReview')).use(['market_orderReview', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
     });
 </script>

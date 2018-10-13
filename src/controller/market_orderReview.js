@@ -180,32 +180,31 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             });
         },
 
-        // reload: function () {
-        //     var idReload = $('#supplier_id');
-        //     layer.msg(idReload.val())
-        //     var companyNameReload = $('#supplier_companyName');
-        //     var typeReload = $('#supplier_type');
-        //     var contactReload = $("#supplier_contact");
-        //     table.reload('supplier_infoTab',{
-        //         page: {
-        //             curr: 1
-        //         }
-        //         ,where: {
-        //             key: {
-        //                 id:idReload.val()
-        //             }
-        //         }
-        //     })
-        // }
-
-
     };
 
     $('.layui-btn').on('click',function () {
         var type = $(this).data('type');
         active[type] && active[type].call(this);
-    })
+    });
 
+    //手机端
+    if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) { //移动端
+        $("#orderReview_searll").css({"display":""});
+        $("#orderReview_pcsear").css({"display":"none"});
+        //监听select并给input name赋值
+        form.on('select(orderReview-search-select)',function (data){
+            var selValue = data.value;
+            var index = data.elem.selectedIndex;
+            var text = data.elem.options[index].text; // 选中文本
+            var Domobj = $("#orderReview_sinp");
+            if (selValue != null || selValue != ""){
+                Domobj.attr({"placeholder":text});
+                $("input[id='orderReview_sinp']").attr("name",selValue)
+            } else {
+                Domobj.attr("placeholder","请选取搜索条件");
+            }
+        });
+    }
 
     exports('market_orderReview', {})
 });

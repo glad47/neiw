@@ -127,11 +127,11 @@ layui.define(['table', 'form','element'], function(exports){
                                         ,data: field
                                         ,done: function(res){
                                             console.log(res);
-                                            layer.msg('菜单修改成功');
+                                            layer.msg('目录修改成功');
                                             layui.table.reload('sys_menu'); // 重载表格
                                         }
                                         ,fail: function (res) {
-                                            layer.msg('菜单修改失败');
+                                            layer.msg('目录修改失败');
                                         },
                                     });
                                     layer.close(index); //执行关闭
@@ -159,11 +159,11 @@ layui.define(['table', 'form','element'], function(exports){
                                         ,data: field
                                         ,done: function(res){
                                             console.log(res);
-                                            layer.msg('菜单添加成功');
+                                            layer.msg('菜单修改成功');
                                             layui.table.reload('sys_menu'); // 重载表格
                                         }
                                         ,fail: function (res) {
-                                            layer.msg('菜单添加失败');
+                                            layer.msg('菜单修改失败');
                                         },
                                     });
                                     layer.close(index); //执行关闭
@@ -189,8 +189,8 @@ layui.define(['table', 'form','element'], function(exports){
                                         url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpupdate'
                                         ,data: field
                                         ,done: function(res){
-                                            console.log(res);
-                                            layer.msg('按钮添加成功');
+                                            layer.msg('按钮修改成功');
+                                            console.log("按钮修改的信息为："+JSON.stringify(field));
                                             layui.table.reload('sys_menu'); // 重载表格
                                         }
                                         ,fail: function (res) {
