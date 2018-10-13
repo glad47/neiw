@@ -42,6 +42,12 @@ layui.define(['laytpl','layer','setter'], function (exports) {
             "                    <a class=\"layui-btn layui-btn-danger layui-btn-xs\" lay-event=\"del\">删除</a>\n" +
             "            </script>");
         var htmlInfo = $(".layui-table script:first").html();
+        $(".layui-table tbody tr td:last").append("<script type=\"text/html\" id=\"user_info_Toolbar\">\n" +
+            "                <!--编辑权限标识判断-->\n" +
+            "                    <a class=\"layui-btn layui-btn-xs\" lay-event=\"edit\" id=\"supplier_edit\">编辑</a>\n" +
+            "                <!--删除权限判断-->\n" +
+            "                    <a class=\"layui-btn layui-btn-danger layui-btn-xs\" lay-event=\"del\">删除</a>\n" +
+            "            </script>")
         console.log("htmlInfo:"+htmlInfo);
         // if (htmlInfo == null)
     }else if (Permissions.indexOf("sys:user:delete") != -1) {

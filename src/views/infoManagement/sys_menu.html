@@ -3,16 +3,20 @@
     <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-                <button class="layui-btn" id="menu_add" data-type="menu_add">新增</button>
+                <script type="text/html" template>
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:menu:save") != -1){ }}
+                    <button class="layui-btn" id="menu_add" data-type="menu_add">新增</button>
+                    {{# } }}
+                </script>
             </div>
             <table class="layui-hide" id="sys_menu" lay-filter="sys_menuTab"></table>
             <script type="text/html" id="menu_opreation">
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:menu:update") != -1){ }}
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>修改</a>
-                <!--{{#  if(d.role == '超级管理员'){ }}-->
-                <!--<a class="layui-btn layui-btn-disabled layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a>-->
-                <!--{{#  } else { }}-->
+                {{#  } }}
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:delete") != -1){ }}
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
-                <!--{{#  } }}-->
+                {{#  } }}
             </script>
             <!--类型数字转换-->
             <script type="text/html" id="menu_type">

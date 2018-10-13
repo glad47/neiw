@@ -8,12 +8,6 @@
                     <input type="text" name="username" autocomplete="off" class="layui-input" id="search_userName">
                 </div>
             </div>
-            <!--<div class="layui-inline">-->
-                <!--<label class="layui-form-label">姓名</label>-->
-                <!--<div class="layui-input-inline">-->
-                    <!--<input type="text" name="author" autocomplete="off" class="layui-input">-->
-                <!--</div>-->
-            <!--</div>-->
             <div class="layui-inline">
                 <label class="layui-form-label">部门</label>
                 <div class="layui-input-inline">
@@ -35,8 +29,14 @@
     </div>
     <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
-            <!--用户权限标识容器-->
-            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;" name="permission-user-add"></div>
+            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;" name="permission-user-add">
+                <script type="text/html" template lay-done="layui.data.done(d);">
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:save") != -1){ }}
+                    <button class="layui-btn per_userAdd" id="userInfo_adds" data-type="userInfo_add">新增</button>
+                    {{# console.log(layui.sessionData('layuiAdmin').permissions) }}
+                    {{# } }}
+                </script>
+            </div>
             <table class="layui-hide layui-table" id="user_infoTab" lay-filter="user_infoTab"></table>
             <script type="text/html" id="user_info_Toolbar">
                 <!--编辑权限标识判断-->
@@ -48,10 +48,6 @@
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                 {{# } }}
             </script>
-
-            <!--<script type="text/html" id="user_info_Toolbar">-->
-                <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
-            <!--</script>-->
             <script type="text/html" id="user_status">
                 {{#  if(d.status ===1){ }}
                 <input type="checkbox" checked="" name="open" lay-skin="switch" lay-text="已启用|禁用中" disabled>
@@ -65,15 +61,10 @@
 
 
 <script>
-    // layui.data.done = function () {
-        layui.use('sys_user', layui.factory('sys_user')).use(['setter','sys_user','admin', 'table', 'index','element','jquery','form','permissions'], function(){
+    layui.data.done = function (d) {
+        layui.use('sys_user', layui.factory('sys_user')).use(['setter','sys_user','admin', 'table', 'index','element','jquery','form'], function(){
             var form = layui.form;
             form.render();
         });
-        //新加权限工厂
-        layui.use('permissions', layui.factory('permissions')).use(['setter','permissions'], function(){
-            var form = layui.form;
-            // form.render();
-        });
-    // }
+    }
 </script>

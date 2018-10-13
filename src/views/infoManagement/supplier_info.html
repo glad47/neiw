@@ -37,13 +37,21 @@
     <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-                <button class="layui-btn" id="supplier_add" data-type="supplier_add">新增</button>
+                <script type="text/html" template>
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:supplier:save") != -1){ }}
+                    <button class="layui-btn" id="supplier_add" data-type="supplier_add">新增</button>
+                    {{#  } }}
+                </script>
             </div>
             <table class="layui-hide" id="supplier_infoTab" lay-filter="supplier_infoTab"></table>
             <script type="text/html" id="table-supplier">
                 <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="search" id="supplier_search">查看</a>
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:supplier:update") != -1){ }}
                 <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">编辑</a>
+                {{#  } }}
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:supplier:delete") != -1){ }}
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                {{#  } }}
             </script>
             <!--类别转换-->
             <script type="text/html" id="type">
