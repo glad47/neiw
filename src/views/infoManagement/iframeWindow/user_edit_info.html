@@ -120,6 +120,14 @@
                 <!--</script>-->
             </div>
         </div>
+        <div class="layui-form-item" style="display: none;">
+            <label class="layui-form-label">Salt</label>
+            <div class="layui-input-block">
+                <script type="text/html" template>
+                    <input type="text" name="salt" value="{{ d.params.salt || ''}}" autocomplete="off" class="layui-input" id="user_edit_salt">
+                </script>
+            </div>
+        </div>
 
         <div class="layui-form-item layui-col-md-offset3" style="margin-top: 30px;">
             <div class="layui-input-block">
