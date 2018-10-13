@@ -39,7 +39,7 @@ layui.define(['admin', 'table','setter','form','authtree','jquery'], function(ex
     //监听 工具条
     table.on('tool(role_listTab)',function(obj){
     	var data = obj.data;
-    	console.log(data);
+    	console.log(data.roleId);
     	if (obj.event === 'edit') {
     		admin.popup({
     			title:'编辑角色',
