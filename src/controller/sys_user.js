@@ -13,6 +13,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         ,form = layui.form
         ,setter = layui.setter
         ,element = layui.element
+        var operationType;  //操作类型(新增&修改)
 
     form.render(null, 'user_info_formlist')
     //监听搜索
@@ -68,6 +69,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         var username = data.username;
         var deptName = data.deptName;
         if (obj.event === 'edit'){
+            operationType = "useredit";
             admin.req({
                 type: 'get'
                 ,url: setter.baseUrl+'sys/user/info/'+userId
@@ -146,6 +148,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
 
     var active ={
         userInfo_add:function (data) {
+            operationType = "useradd"
             var status ;
             admin.popup({
                 title: '添加用户信息'
@@ -207,7 +210,10 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             }
         },
         password: function (value,item) {
-            if (value == null || value == ""){
+            if (operationType == "useredit" ){
+                alert(operationType);
+                return;
+            } else if (value == null || value == "" ) {
                 return '密码不能为空！！！';
             }
         },
