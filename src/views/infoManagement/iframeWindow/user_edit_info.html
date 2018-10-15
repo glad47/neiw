@@ -39,12 +39,12 @@
             </div>
 
             <div class="layui-col-md6">
-                <label class="layui-form-label">Superior Id：</label>
+                <label class="layui-form-label">上级：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/user/allClerks/" lay-data="{roleId:10}" lay-type="post" lay-done="layui.data.done(d);">
+                    <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/user/allClerks/" lay-data="{roleId: '{{ new Array(11,12) }}'}" lay-type="post" lay-done="layui.data.done(d);">
                         <select name="superiorId">
                             {{# layui.each(d.data, function(index, item){ }}
-                            <option value="{{ item.userId }}">{{ item.superiorId}}</option>
+                            <option value="{{ item.userId }}">{{ item.username}}</option>
                             {{# }); }}
                             {{# if(d.data.lenth === 0 ){ }}
                             无数据
