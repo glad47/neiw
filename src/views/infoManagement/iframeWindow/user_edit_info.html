@@ -43,8 +43,10 @@
                 <div class="layui-input-block">
                     <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/user/allClerks/" lay-data="{roleId: '{{ new Array(11,12) }}'}" lay-type="post" lay-done="layui.data.done(d);">
                         <select name="superiorId">
-                            {{# layui.each(d.data, function(index, item){ }}
-                            <option value="{{ item.userId }}">{{ item.username}}</option>
+                             <option></option>
+                            {{# var superiorId = d.params.superiorId;
+                                layui.each(d.data, function(index, item){ }}
+                            <option value="{{ item.userId }}" {{ superiorId == item.userId ? 'selected' : ''}}>{{ item.username}}</option>
                             {{# }); }}
                             {{# if(d.data.lenth === 0 ){ }}
                             无数据
