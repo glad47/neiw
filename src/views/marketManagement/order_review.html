@@ -8,15 +8,15 @@
             <div class="layui-inline" id="orderReview_searll" style="display: none;">
                 <label class="layui-form-label">查询：</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="orderReview_sinp" autocomplete="off" class="layui-input" placeholder="P/N">
-                </div>
-                <div class="layui-input-inline">
                     <select name="quiz" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
                         <option value="P/N">P/N</option>
                         <option value="FileName">File Name</option>
                         <option value="OrderId">Order ID</option>
                         <option value="OrderTime">Order Time</option>
                     </select>
+                </div>
+                <div class="layui-input-inline">
+                    <input type="text" id="orderReview_sinp" autocomplete="off" class="layui-input" placeholder="P/N">
                 </div>
             </div>
 
@@ -71,12 +71,11 @@
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
                 <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-                    <button class="layui-btn"  data-type="">修改</button>
-                    <button class="layui-btn"  data-type="">查看</button>
                     <button class="layui-btn"  data-type="">退回</button>
                     <button class="layui-btn"  data-type="">提交</button>
                     <button class="layui-btn"  data-type="">查看合同</button>
-                    <button class="layui-btn"  data-type="">删除</button>
+                    <!--<button class="layui-btn"  data-type="">删除</button>-->
+                    <!--<button class="layui-btn"  id="phone-operation">操作</button>-->
                 </div>
                 <table class="layui-table" id="or_Tabpcb" lay-filter="or_Tabpcb"></table>
                 <script type="text/html" id="Tabtb-orpcb">
@@ -112,6 +111,34 @@
     #orderReview_form .layui-form-select .layui-edge{right: -20px;}
     #orderReview_form .layui-form-select dl{min-width: 142% !important;}
     #orderReview_card {background-color: white;}
+    @media screen and (max-width: 800px) {
+        #orderReview_form .layui-input, .layui-textarea {
+            width: 240% !important;
+            margin-left: -4px;
+        }
+
+        #orderReview_form .layui-form-label {
+            width: 80px !important;
+        }
+
+        #orderReview_form .layui-form-select .layui-edge {
+            right: -86px
+        }
+        #orderReview_form .layui-form-select dl{
+            width: 240% !important;
+        }
+        #orderReview_form .layui-form-item:last-child{
+            margin-left: -20px;
+        }
+        #orderReview_searchbtn{
+            margin-left: 105px;
+            width: 57%;
+        }
+        #orderReview_form.layuiadmin-card-header-auto{
+            padding-bottom: 0;
+        }
+    }
+
 
 </style>
 
@@ -119,5 +146,8 @@
     layui.use('market_orderReview', layui.factory('market_orderReview')).use(['market_orderReview', 'table', 'index','element','form'], function(){
         var form = layui.form;
         form.render();
+    });
+    layui.use('mobileterminal',layui.factory('mobileterminal')).use(['mobileterminal'],function () {
+
     });
 </script>

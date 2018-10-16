@@ -84,7 +84,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                         ,maxmin: true
                         ,btn:['提交']['取消']
                         ,id: 'userAdd_form'
-                        ,area: ['766px', '465px']
+                        ,area: ['766px', '510px']
                         ,success: function (layero,index) {
                             view(this.id).render('/infoManagement/iframeWindow/user_edit_info',datainfo).done(function () {
                                 var status ;
@@ -148,14 +148,14 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
 
     var active ={
         userInfo_add:function (data) {
-            operationType = "useradd"
+            operationType = "useradd";
             var status ;
             admin.popup({
                 title: '添加用户信息'
                 ,shadeClose: true
                 ,shade: false
                 ,maxmin: true
-                ,area: ['766px', '465px']
+                ,area: ['766px', '510px']
                 ,success: function (layero,index) {
                     view(this.id).render('/infoManagement/iframeWindow/user_edit_info',data).done(function () {
                         form.render(null,'user_editInfo_form');
@@ -211,7 +211,6 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         },
         password: function (value,item) {
             if (operationType == "useredit" ){
-                alert(operationType);
                 return;
             } else if (value == null || value == "" ) {
                 return '密码不能为空！！！';

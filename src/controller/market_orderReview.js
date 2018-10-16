@@ -189,8 +189,8 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
 
     //手机端
     if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) { //移动端
-        $("#orderReview_searll").css({"display":""});
-        $("#orderReview_pcsear").css({"display":"none"});
+        // $("#orderReview_searll").css({"display":""});
+        // $("#orderReview_pcsear").css({"display":"none"});
         //监听select并给input name赋值
         form.on('select(orderReview-search-select)',function (data){
             var selValue = data.value;

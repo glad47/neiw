@@ -3,7 +3,7 @@
     <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-                <script type="text/html" template>
+                <script type="text/html" template lay-done="layui.data.done(d);">
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:menu:save") != -1){ }}
                     <button class="layui-btn" id="menu_add" data-type="menu_add">新增</button>
                     {{# } }}
@@ -35,16 +35,21 @@
 
 
 <script>
-    layui.use('sys_menu', layui.factory('sys_menu')).use(['setter','sys_menu','admin', 'table', 'index','element','jquery','form'], function(){
-        var $ = layui.$,
-            table = layui.table,
-            form = layui.form,
-            admin = layui.admin,
-            view = layui.view
-        form.render(null,"user_menuAdd_form");
-        //jquery事件＝＝＝＝＝＝》
+    layui.data.done = function (d) {
+        layui.use('sys_menu', layui.factory('sys_menu')).use(['setter', 'sys_menu', 'admin', 'table', 'index', 'element', 'jquery', 'form'], function () {
+            var $ = layui.$,
+                table = layui.table,
+                form = layui.form,
+                admin = layui.admin,
+                view = layui.view
+            form.render(null, "user_menuAdd_form");
+            //jquery事件＝＝＝＝＝＝》
 
-    });
+        });
+        layui.use('mobileterminal', layui.factory('mobileterminal')).use(['mobileterminal'], function () {
+
+        });
+    }
 
 
 
