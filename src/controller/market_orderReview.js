@@ -17,37 +17,81 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
         elem: '#or_Tabpcb'
-        ,url: setter.baseUrl+'sys/supplier/list'
+        ,url: setter.baseUrl+'/market/quote/audit/list'
         ,cellMinWidth: 80
         ,id:"or_Tabpcb"
         ,page: true
         ,toolbar: true
+         ,parseData: function (res) {
+            return{
+                "code": 0,
+                "data": res.page.list,
+            }
+        }
         ,where: {
             access_token: layui.data('layuiAdmin').access_token
         }
         ,cols: [[
             {type: 'checkbox', fixed: 'left'}
-            ,{field:'id', title: 'ID',hide: false}
-            ,{field:'supplierId', title: '供应商编号', sort: true,width: 110}
-            ,{field:'companyName', title: '公司名称',width: 180}
-            ,{field:'type', title: '类别', sort: true,width: 120,templet: '#type'}
-            ,{field:'contact', title: '联系人', sort: true,width: 120}
-            ,{field:'officePhone', title: '办公电话', sort: true,width: 120}
-            ,{field:'phone', title: '手机', align: 'center', sort: true,width: 120}
-            ,{field:'email', title: 'Email', sort: true,width:200}
-            ,{field:'paymentType', title: '付款方式', sort: true,templet:'#paymentType'}
-            ,{field:'taxe', title: '是否含税', sort: true,templet:'#taxe'}
-            ,{field:'invoiceType', title: '发票类型', sort: true,templet:'#invoiceType'}
-            ,{field:'strengths', title: '强项类型', sort: true,templet: '#strengths',width: 110}
-            ,{field:'evaluateDdelivery', title: '交期', sort: true,templet: '#evaluateDdelivery'}
-            ,{field:'evaluateQuality', title: '品质', sort: true,templet: '#evaluateQuality'}
-            ,{field:'evaluateCompatibility', title: '配合度', sort: true,templet: '#evaluateCompatibility'}
-            ,{field:'evaluateRate', title: '评级', sort: true,templet: '#evaluateRate'}
-            ,{field:'createUserId', title: '创建人', sort: true}
-            ,{field:'createTime', title: '创建时间', sort: true}
-            ,{field:'updateUserId', title: '修改人', sort: true}
-            ,{field:'updateTime', title: '修改时间', sort: true}
-            ,{field:'remark', title: '备注', hide:true}
+            ,{field:'status', title: '状态',hide: false,align:'center'}
+            ,{field:'orderId', title: 'Order ID',width: 110,align:'center'}
+            ,{field:'orderType', title: 'Order Type',width: 180,align:'center'}
+            ,{field:'type', title: 'Type', width: 120,templet: '#type',align:'center'}
+            ,{field:'gmtCreate', title: 'Order Time', width: 120,align:'center'}
+            ,{field:'gerberName', title: 'File Name', width: 120,align:'center'}
+            ,{field:'phone', title: 'P/N', align: 'center', width: 120,align:'center'}
+            ,{field:'email', title: 'Unit Price', width:200,align:'center'}
+            ,{field:'paymentType', title: 'Quantity', templet:'#paymentType',align:'center'}
+            ,{field:'taxe', title: 'Total Prices', templet:'#taxe',align:'center'}
+            ,{field:'invoiceType', title: 'Shipping Time', templet:'#invoiceType',align:'center'}
+            ,{field:'weight', title: 'Weight', templet: '#strengths',width: 110,align:'center'}
+            ,{field:'evaluateDdelivery', title: 'PCB Size', templet: '#evaluateDdelivery',align:'center'}
+            ,{field:'', title: 'Panel Way', templet: '#panelWay',align:'center'}
+            ,{field:'panelWayX', title: 'panelWayX',align:'center',hide: false}
+            ,{field:'panelWayY', title: 'panelWayY',align:'center',hide: false}
+            ,{field:'areaSq', title: 'Area Sq(m²)', templet: '#evaluateCompatibility',align:'center'}
+            ,{field:'pcbType', title: 'PCB Type', templet: '#evaluateRate',align:'center'}
+            ,{field:'layerNum', title: 'Layer',align:'center'}
+            ,{field:'createTime', title: 'panel',align:'center'}
+            ,{field:'updateUserId', title: 'Stack up',align:'center'}
+            ,{field:'updateTime', title: 'Finish THK',align:'center'}
+            ,{field:'material', title: 'Material',align:'center'}
+            ,{field:'productCode', title: 'Product Code',align:'center'}
+            ,{field:'tg', title: 'TG',align:'center'}
+            ,{field:'cti', title: 'CTI',align:'center'}
+            ,{field:'halogenFree', title: 'Halogen-free',align:'center'}
+            ,{field:'heatConductivity', title: 'Heat Conductivity',align:'center'}
+            ,{field:'innerLayerCopper', title: 'Inner layer copper',align:'center'}
+            ,{field:'innerMinTrack', title: 'Inner Min Track',align:'center'}
+            ,{field:'innerMinSpacing', title: 'Inner Min Spacing',align:'center'}
+            ,{field:'nofCore', title: 'N. of Core',align:'center'}
+            ,{field:'nofPp', title: 'N. of PP',align:'center'}
+            ,{field:'outerLayerCopper', title: 'Outer Layer Copper',align:'center'}
+            ,{field:'outerMinTrack', title: 'Outer Min Track',align:'center'}
+            ,{field:'innerMinSpacing', title: 'Outer Spacing',align:'center'}
+            ,{field:'bgaSize', title: 'BGA Size',align:'center'}
+            ,{field:'nofHoles', title: 'N. of Holes',align:'center'}
+            ,{field:'pthCopper', title: 'PTH Copper',align:'center'}
+            ,{field:'solderMaskTopColor', title: 'Solder Mask Color',align:'center'}
+            ,{field:'viaProcess', title: 'VIA Process',align:'center'}
+            ,{field:'remark', title: 'Silkscreen Color',align:'center'}
+            ,{field:'peelable', title: 'Peelable',align:'center'}
+            ,{field:'peelableBrand', title: 'Peelable Brand',align:'center'}
+            ,{field:'surfaceFinish', title: 'Surface Finish',align:'center'}
+            ,{field:'remark', title: 'Gold Thickness',align:'center'}
+            ,{field:'remark', title: 'Gold Area',align:'center'}
+            ,{field:'gerberPath', title: 'CNC Path',align:'center'}
+            ,{field:'punchingSlots', title: 'Punching',align:'center'}
+            ,{field:'testPointType', title: 'Test Type',align:'center'}
+            ,{field:'blindHoles', title: 'Blind Holes',align:'center'}
+            ,{field:'edgePlated', title: 'Edge Plated',align:'center'}
+            ,{field:'halfHoleLated', title: 'Half Hole Plated',align:'center'}
+            ,{field:'contrlImpeance', title: 'Contrl Impeance',align:'center'}
+            ,{field:'buriedHoles', title: 'Buried Holes',align:'center'}
+            ,{field:'carbon', title: 'Carbon',align:'center'}
+            ,{field:'bevellingCamfer', title: 'Bevelling',align:'center'}
+            ,{field:'deepMillRouting', title: 'Deep Mill Routing',align:'center'}
+            ,{field:'remark', title: 'Remark',align:'center'}
             ,{title: '操作', width: 160, align:'center', fixed: 'right', toolbar: '#Tabtb-orpcb'}
         ]]
         ,done : function () {
@@ -186,6 +230,8 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         var type = $(this).data('type');
         active[type] && active[type].call(this);
     });
+
+//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ g订单
 
     //手机端
     if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) { //移动端

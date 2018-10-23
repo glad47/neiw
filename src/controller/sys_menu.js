@@ -107,6 +107,7 @@ layui.define(['table', 'form','element'], function(exports){
                             var firSel = "0";
                             var tabNum = data.index;
                             if (tabNum == "0") {
+                                firstSel =  $("#menuAdd_menuup  option:selected").attr('name');
                                 //监听select
                                 form.on('select(LAY-menu-dir-submit)',function (data) {
                                     var selValue = data.value;
@@ -138,11 +139,13 @@ layui.define(['table', 'form','element'], function(exports){
                                     return false;
                                 })
                             } else if (tabNum == "1") {
+                                firstSel =  $("#menuAdd_menuTs  option:selected").attr('name');
                                 //监听select
                                 form.on('select(LAY-menu-men-submit)',function (data) {
                                     var selValue = data.value;
                                     $("#menuAdd_menuTs").find("option[text=selValue]").attr("selected",true);
                                     var firstSel =  $("#menuAdd_menuTs  option:selected").attr('name');
+                                    layer.msg(firstSel);
                                     firSel = firstSel;
                                 });
 //＝＝＝菜单编辑＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝监听菜单编辑
@@ -170,6 +173,7 @@ layui.define(['table', 'form','element'], function(exports){
                                     return false;
                                 });
                             } else if (tabNum == "2") {
+                                firstSel =  $("#menuAdd_tabsbtn  option:selected").attr('name');
                                 //监听select
                                 form.on('select(LAY-menu-btn-submit)',function (data) {
                                     var selValue = data.value;

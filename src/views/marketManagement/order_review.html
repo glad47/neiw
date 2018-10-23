@@ -78,6 +78,12 @@
                     <!--<button class="layui-btn"  id="phone-operation">操作</button>-->
                 </div>
                 <table class="layui-table" id="or_Tabpcb" lay-filter="or_Tabpcb"></table>
+                <script type="text/html" id="panelWay">
+                    {{ d.panelWayX || ''}}
+                    {{ if(d.panelWayY != null || d.panelWayY != ""){ }}
+                    {{ d.panelWayY || ''}}
+                    {{ } }}
+                </script>
                 <script type="text/html" id="Tabtb-orpcb">
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="search" id="supplier_search">查看</a>
                     <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">修改</a>
