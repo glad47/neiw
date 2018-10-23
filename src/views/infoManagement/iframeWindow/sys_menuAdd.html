@@ -33,7 +33,7 @@
                                     <select name="parentId" id="menuAdd_menuup" lay-filter="LAY-menu-dir-submit">
                                         <option>请选择上级菜单</option>
                                         {{#  layui.each(d.menuList, function(index, item){ }}
-                                        <option name="{{ item.menuId }}">{{ item.title }}</option>
+                                        <option name="{{ item.menuId }}" {{ d.params.parentId == item.menuId ? 'selected' : ''}}>{{ item.title }}</option>
                                         {{#  }); }}
                                         {{#  if(d.menuList.length === 0){ }}
                                         无数据
@@ -94,7 +94,7 @@
                                     <select name="parentId" id="menuAdd_menuTs" lay-filter="LAY-menu-men-submit">
                                         <option>请选择上级菜单</option>
                                         {{#  layui.each(d.menuList, function(index, item){ }}
-                                        <option name="{{ item.menuId }}">{{ item.title }}</option>
+                                        <option name="{{ item.menuId }}" {{ d.params.parentId == item.menuId ? 'selected' : ''}}>{{ item.title }}</option>
                                         {{#  }); }}
                                         {{#  if(d.menuList.length === 0){ }}
                                         无数据
@@ -179,7 +179,7 @@
                                     <select name="parentId" id="menuAdd_tabsbtn" lay-filter="LAY-menu-btn-submit">
                                         <option></option>
                                         {{#  layui.each(d.menuList, function(index, item){ }}
-                                        <option name="{{ item.menuId }}">{{ item.title }}</option>
+                                        <option name="{{ item.menuId }}" {{ d.params.parentId == item.menuId ? 'selected' : ''}}>{{ item.title }}</option>
                                         {{#  }); }}
                                         {{#  if(d.menuList.length === 0){ }}
                                         无数据
