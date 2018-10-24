@@ -84,6 +84,7 @@ layui.define(['table', 'form','element'], function(exports){
                     // ,data: obj.menuId
                     ,done : function (res) {
                         layer.msg('删除成功');
+                        active.menu_refresh();
                         obj.del();
                         layer.close(index);
                     }
@@ -112,6 +113,7 @@ layui.define(['table', 'form','element'], function(exports){
                                     var field = data.field;
                                     // field.parentId = firSel;
                                     field.type = "0";
+                                    field.parentId = 0;
                                     field.menuId= menuId;
                                     console.log(field);
                                     admin.req({
@@ -121,6 +123,7 @@ layui.define(['table', 'form','element'], function(exports){
                                         ,done: function(res){
                                             console.log(res);
                                             layer.msg('目录修改成功');
+                                            active.menu_refresh();
                                             layui.table.reload('sys_menu'); // 重载表格
                                         }
                                         ,fail: function (res) {
@@ -144,6 +147,7 @@ layui.define(['table', 'form','element'], function(exports){
                                         ,done: function(res){
                                             console.log(res);
                                             layer.msg('菜单修改成功');
+                                            active.menu_refresh();
                                             layui.table.reload('sys_menu'); // 重载表格
                                         }
                                         ,fail: function (res) {
@@ -167,6 +171,7 @@ layui.define(['table', 'form','element'], function(exports){
                                         ,data: field
                                         ,done: function(res){
                                             layer.msg('按钮修改成功');
+                                            active.menu_refresh();
                                             layui.table.reload('sys_menu'); // 重载表格
                                         }
                                         ,fail: function (res) {
@@ -228,8 +233,9 @@ layui.define(['table', 'form','element'], function(exports){
                                         ,data: field
                                         ,done: function(res){
                                             console.log(res);
-                                            layer.msg('菜单添加成功');
+                                            layer.msg('目录添加成功');
                                             layui.table.reload('sys_menu'); // 重载表格
+                                            active.menu_refresh();
                                         }
                                         ,fail: function (res) {
                                             layer.msg('菜单添加失败');
@@ -261,6 +267,7 @@ layui.define(['table', 'form','element'], function(exports){
                                             console.log(res);
                                             layer.msg('菜单添加成功');
                                             layui.table.reload('sys_menu'); // 重载表格
+                                            active.menu_refresh();
                                         }
                                         ,fail: function (res) {
                                             layer.msg('菜单添加失败');
@@ -293,6 +300,7 @@ layui.define(['table', 'form','element'], function(exports){
                                                 console.log(res);
                                                 layer.msg('按钮添加成功');
                                                 layui.table.reload('sys_menu'); // 重载表格
+                                                active.menu_refresh();
                                             }
                                             ,fail: function (res) {
                                                 layer.msg('按钮添加失败');
@@ -308,6 +316,12 @@ layui.define(['table', 'form','element'], function(exports){
                     });
                 }
             })
+        },
+        menu_refresh:function () {
+            var that = view('TPL_layout');
+            // toUrl && that.container.attr('lay-url',toUrl);
+            that.container.siblings().remove();
+            that.parse(that.container, 'refresh');
         }
     }
     $('.layui-btn').on('click',function () {
