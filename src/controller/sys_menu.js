@@ -107,18 +107,10 @@ layui.define(['table', 'form','element'], function(exports){
                             var firSel = "0";
                             var tabNum = data.index;
                             if (tabNum == "0") {
-                                firstSel =  $("#menuAdd_menuup  option:selected").attr('name');
-                                //监听select
-                                form.on('select(LAY-menu-dir-submit)',function (data) {
-                                    var selValue = data.value;
-                                    $("#menuAdd_menuup").find("option[text=selValue]").attr("selected",true);
-                                    var firstSel =  $("#menuAdd_menuup  option:selected").attr('name');
-                                    firSel = firstSel;
-                                });
 //＝＝＝目录编辑＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝监听目录编辑
                                 form.on('submit(LAY-menu-add-submit)', function (data) {
                                     var field = data.field;
-                                    field.parentId = firSel;
+                                    // field.parentId = firSel;
                                     field.type = "0";
                                     field.menuId= menuId;
                                     console.log(field);
@@ -139,23 +131,12 @@ layui.define(['table', 'form','element'], function(exports){
                                     return false;
                                 })
                             } else if (tabNum == "1") {
-                                firstSel =  $("#menuAdd_menuTs  option:selected").attr('name');
-                                //监听select
-                                form.on('select(LAY-menu-men-submit)',function (data) {
-                                    var selValue = data.value;
-                                    $("#menuAdd_menuTs").find("option[text=selValue]").attr("selected",true);
-                                    var firstSel =  $("#menuAdd_menuTs  option:selected").attr('name');
-                                    layer.msg(firstSel);
-                                    firSel = firstSel;
-                                });
 //＝＝＝菜单编辑＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝监听菜单编辑
                                 form.on('submit(LAY-menu-me-submit)', function (data) {
                                     var field = data.field; //获取提交的字段
-                                    field.parentId = firSel;
                                     field.type = "1";
                                     field.menuId= menuId;
                                     console.log(field);
-                                    console.log("field.type==>"+field.type)
                                     admin.req({
                                         type:'post',
                                         url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpupdate'
@@ -173,18 +154,10 @@ layui.define(['table', 'form','element'], function(exports){
                                     return false;
                                 });
                             } else if (tabNum == "2") {
-                                firstSel =  $("#menuAdd_tabsbtn  option:selected").attr('name');
-                                //监听select
-                                form.on('select(LAY-menu-btn-submit)',function (data) {
-                                    var selValue = data.value;
-                                    $("#menuAdd_tabsbtn").find("option[text=selValue]").attr("selected",true);
-                                    var firstSel =  $("#menuAdd_tabsbtn  option:selected").attr('name');
-                                    firSel = firstSel;
-                                });
 //＝＝＝按钮编辑＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝按钮编辑
                                 form.on('submit(LAY-menu-btn-submit)', function (data) {
                                     var field = data.field; //获取提交的字段
-                                    field.parentId = firSel;
+                                    // field.parentId = firSel;
                                     field.type = "2";
                                     field.menuId= menuId;
                                     console.log(field);
@@ -194,7 +167,6 @@ layui.define(['table', 'form','element'], function(exports){
                                         ,data: field
                                         ,done: function(res){
                                             layer.msg('按钮修改成功');
-                                            console.log("按钮修改的信息为："+JSON.stringify(field));
                                             layui.table.reload('sys_menu'); // 重载表格
                                         }
                                         ,fail: function (res) {
@@ -244,17 +216,10 @@ layui.define(['table', 'form','element'], function(exports){
                             var firSel = "0";
                             var tabNum = data.index;
                             if (tabNum == "0") {
-                                //监听select
-                                form.on('select(LAY-menu-dir-submit)',function (data) {
-                                    var selValue = data.value;
-                                    $("#menuAdd_menuup").find("option[text=selValue]").attr("selected",true);
-                                    var firstSel =  $("#menuAdd_menuup  option:selected").attr('name'); //原始sel的name值
-                                    firSel = firstSel;
-                                });
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝监听目录提交
                                 form.on('submit(LAY-menu-add-submit)', function (data) {
                                     var field = data.field; //获取提交的字段
-                                    field.parentId = firSel;
+                                    field.parentId = 0;
                                     field.type = "0";
                                     console.log(field);
                                     admin.req({
@@ -280,12 +245,11 @@ layui.define(['table', 'form','element'], function(exports){
                                     $("#menuAdd_menuTs").find("option[text=selValue]").attr("selected",true);
                                     var firstSel =  $("#menuAdd_menuTs  option:selected").attr('name'); //原始sel的name值
                                     firSel = firstSel;
-                                    // alert(firstSel);
                                 });
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝菜单提交
                                 form.on('submit(LAY-menu-me-submit)', function (data) {
                                     var field = data.field; //获取提交的字段
-                                    field.parentId = firSel;
+                                    // field.parentId = firSel;
                                     field.type = "1";
                                     console.log(field);
                                     console.log("field.type==>"+field.type)
@@ -320,7 +284,6 @@ layui.define(['table', 'form','element'], function(exports){
                                         return false;
                                     } else {
                                         var field = data.field; //获取提交的字段
-                                        field.parentId = firSel;
                                         field.type = "2";
                                         admin.req({
                                             type:'post',
