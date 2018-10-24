@@ -1,0 +1,83 @@
+<!--查看订单信息-->
+<html lang="en">
+<div class="layui-fluid">
+    <a class="layui-btn" lay-event="edit" id="supplier_edit">查看合同</a>
+    <div class="order_review_search">
+        <script type="text/html" template>
+            <table class="layui-table" lay-skin="row" lay-even="">
+                <colgroup>
+                    <col width="100">
+                    <col width="100">
+                    <col width="100">
+                    <col width="100">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td>Order Type:</td>
+                    <td>{{ d.params.orderType || ''}}</td>
+                    <td>Type:</td>
+                    <td>{{ d.params.pcbType || ''}}</td>
+                </tr>
+                <tr>
+                    <td>Gerber File:</td>
+                    <td>{{ d.params.gerberName || ''}}</td>
+                    <td>Product No:</td>
+                    <td>{{ d.params.productNo || ''}}</td>
+                </tr>
+                <tr>
+                    <td>Layers:</td>
+                    <td>{{ d.params.layerNum || ''}}</td>
+                    <td>PCB Size:</td>
+                    <td>{{ d.params.dimensionsX || ''}} * {{ d.params.dimensionsY || ''}} mm</td>
+                </tr>
+                <tr>
+                    <td>Material:</td>
+                    <td>{{ d.params.pcbType || ''}},TG:{{ d.params.tg }},{{ d.params.cti || ''}}</td>
+                    <td>Panel Way:</td>
+                    <td>{{ d.params.panelWayX || ''}} * {{ d.params.panelWayX || ''}} mm</td>
+                </tr>
+                <tr>
+                    <td>Thickness:</td>
+                    <td>{{ d.params.finishThickness || ''}}</td>
+                    <td>Min hole Size:</td>
+                    <td>{{ d.params.minHoleSize || ''}}</td>
+                </tr>
+                <tr>
+                    <td>Inner Finished Copper:</td>
+                    <td>{{ d.params.innerLayerCopper || ''}}</td>
+                    <td>Stack/Spacing(inner):</td>
+                    <td>{{ d.params.innerMinTrack || ''}}</td>
+                </tr>
+                <tr>
+                    <td>Outer Finished Copper:</td>
+                    <td>{{ d.params.outerLayerCopper || ''}}</td>
+                    <td>Stack/Spacing(outer):</td>
+                    <td>{{ d.params.outerMinTrack || ''}}</td>
+                </tr>
+                <tr>
+                    <td>Solder Mask Color:</td>
+                    <td>{{ d.params.solderMaskTopColor || ''}}</td>
+                    <td>Silkscreen Color:</td>
+                    <td>{{ d.params.silkScreenTopColor || ''}}</td>
+                </tr>
+                <tr>
+                    <td>Surface Finish:</td>
+                    <td>{{ d.params.surfaceFinish || ''}}</td>
+                    <td>Test Tooling:</td>
+                    <td>{{ d.params.surfaceFinish || ''}}</td>
+                </tr>
+                <tr>
+                    <td>gmtModified:</td>
+                    <td>{{ d.params.gmtModified || ''}}</td>
+                    <td>gmtCreate:</td>
+                    <td>{{ d.params.gmtCreate || ''}}</td>
+                </tr>
+                <tr style="border: solid silver 1px;">
+                    <td>Remark:</td>
+                    <td colspan="3">{{ d.params.remark || '' }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </script>
+    </div>
+</div>

@@ -18,10 +18,10 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
     table.render({
         elem: '#or_Tabpcb'
         ,url: setter.baseUrl+'/market/quote/audit/list'
+        ,toolbar: true
         ,cellMinWidth: 80
         ,id:"or_Tabpcb"
         ,page: true
-        ,toolbar: true
          ,parseData: function (res) {
             return{
                 "code": 0,
@@ -32,67 +32,84 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             access_token: layui.data('layuiAdmin').access_token
         }
         ,cols: [[
-            {type: 'checkbox', fixed: 'left'}
-            ,{field:'status', title: '状态',hide: false,align:'center'}
-            ,{field:'orderId', title: 'Order ID',width: 110,align:'center'}
-            ,{field:'orderType', title: 'Order Type',width: 180,align:'center'}
-            ,{field:'type', title: 'Type', width: 120,templet: '#type',align:'center'}
-            ,{field:'gmtCreate', title: 'Order Time', width: 120,align:'center'}
-            ,{field:'gerberName', title: 'File Name', width: 120,align:'center'}
-            ,{field:'phone', title: 'P/N', align: 'center', width: 120,align:'center'}
-            ,{field:'email', title: 'Unit Price', width:200,align:'center'}
-            ,{field:'paymentType', title: 'Quantity', templet:'#paymentType',align:'center'}
-            ,{field:'taxe', title: 'Total Prices', templet:'#taxe',align:'center'}
-            ,{field:'invoiceType', title: 'Shipping Time', templet:'#invoiceType',align:'center'}
-            ,{field:'weight', title: 'Weight', templet: '#strengths',width: 110,align:'center'}
-            ,{field:'evaluateDdelivery', title: 'PCB Size', templet: '#evaluateDdelivery',align:'center'}
-            ,{field:'', title: 'Panel Way', templet: '#panelWay',align:'center'}
-            ,{field:'panelWayX', title: 'panelWayX',align:'center',hide: false}
-            ,{field:'panelWayY', title: 'panelWayY',align:'center',hide: false}
-            ,{field:'areaSq', title: 'Area Sq(m²)', templet: '#evaluateCompatibility',align:'center'}
-            ,{field:'pcbType', title: 'PCB Type', templet: '#evaluateRate',align:'center'}
-            ,{field:'layerNum', title: 'Layer',align:'center'}
-            ,{field:'createTime', title: 'panel',align:'center'}
-            ,{field:'updateUserId', title: 'Stack up',align:'center'}
-            ,{field:'updateTime', title: 'Finish THK',align:'center'}
-            ,{field:'material', title: 'Material',align:'center'}
-            ,{field:'productCode', title: 'Product Code',align:'center'}
-            ,{field:'tg', title: 'TG',align:'center'}
-            ,{field:'cti', title: 'CTI',align:'center'}
-            ,{field:'halogenFree', title: 'Halogen-free',align:'center'}
-            ,{field:'heatConductivity', title: 'Heat Conductivity',align:'center'}
-            ,{field:'innerLayerCopper', title: 'Inner layer copper',align:'center'}
-            ,{field:'innerMinTrack', title: 'Inner Min Track',align:'center'}
-            ,{field:'innerMinSpacing', title: 'Inner Min Spacing',align:'center'}
-            ,{field:'nofCore', title: 'N. of Core',align:'center'}
-            ,{field:'nofPp', title: 'N. of PP',align:'center'}
-            ,{field:'outerLayerCopper', title: 'Outer Layer Copper',align:'center'}
-            ,{field:'outerMinTrack', title: 'Outer Min Track',align:'center'}
-            ,{field:'innerMinSpacing', title: 'Outer Spacing',align:'center'}
-            ,{field:'bgaSize', title: 'BGA Size',align:'center'}
-            ,{field:'nofHoles', title: 'N. of Holes',align:'center'}
-            ,{field:'pthCopper', title: 'PTH Copper',align:'center'}
-            ,{field:'solderMaskTopColor', title: 'Solder Mask Color',align:'center'}
-            ,{field:'viaProcess', title: 'VIA Process',align:'center'}
-            ,{field:'remark', title: 'Silkscreen Color',align:'center'}
-            ,{field:'peelable', title: 'Peelable',align:'center'}
-            ,{field:'peelableBrand', title: 'Peelable Brand',align:'center'}
-            ,{field:'surfaceFinish', title: 'Surface Finish',align:'center'}
-            ,{field:'remark', title: 'Gold Thickness',align:'center'}
-            ,{field:'remark', title: 'Gold Area',align:'center'}
-            ,{field:'gerberPath', title: 'CNC Path',align:'center'}
-            ,{field:'punchingSlots', title: 'Punching',align:'center'}
-            ,{field:'testPointType', title: 'Test Type',align:'center'}
-            ,{field:'blindHoles', title: 'Blind Holes',align:'center'}
-            ,{field:'edgePlated', title: 'Edge Plated',align:'center'}
-            ,{field:'halfHoleLated', title: 'Half Hole Plated',align:'center'}
-            ,{field:'contrlImpeance', title: 'Contrl Impeance',align:'center'}
-            ,{field:'buriedHoles', title: 'Buried Holes',align:'center'}
-            ,{field:'carbon', title: 'Carbon',align:'center'}
-            ,{field:'bevellingCamfer', title: 'Bevelling',align:'center'}
-            ,{field:'deepMillRouting', title: 'Deep Mill Routing',align:'center'}
-            ,{field:'remark', title: 'Remark',align:'center'}
-            ,{title: '操作', width: 160, align:'center', fixed: 'right', toolbar: '#Tabtb-orpcb'}
+            {field: '', fixed: 'left', title:'File', templet: '#file', align:'center'}
+            ,{field:'id', title: 'ID',hide: true}
+            ,{field:'status', title: '状态', hide: false, align:'center'}
+            ,{field:'userId', title: 'User ID'}
+            ,{field:'orderId', title: 'Order ID', width: 110, align:'center'}
+            ,{field:'orderType', title: 'Order Type', width: 180, align:'center'}
+            ,{field:'dimensionsX', title: 'DimensionsX', width: 120,templet: '#type', align:'center'}
+            ,{field:'dimensionsY', title: 'DimensionsY', width: 120, align:'center'}
+            ,{field:'panelSizeX', title: 'PanelSizeX', width: 120, align:'center'}
+            ,{field:'panelSizeX', title: 'PanelSizeY', align: 'center', width: 120,align:'center'}
+            ,{field:'panelWayX', title: 'PanelWayX', width:200, align:'center'}
+            ,{field:'panelWayY', title: 'PanelWayY', align:'center'}
+            ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center'}
+            ,{field:'quantityPanel', title: 'Quantity Panel', align:'center'}
+            ,{field:'areaSq', title: 'Area Sq', width: 110, align:'center'}
+            ,{field:'pcbType', title: 'PCB Type', align:'center'}
+            ,{field:'tg', title: 'TG', align:'center'}
+            ,{field:'material', title: 'Material', align:'center'}
+            ,{field:'cti', title: 'CTI', align:'center'}
+            ,{field:'productCode', title: 'Product Code', align:'center'}
+            ,{field:'layerNum', title: 'Layer', align:'center'}
+            ,{field:'halogenFree', title: 'Halogen Free', align:'center'}
+            ,{field:'finishThickness', title: 'Finish Thickness', align:'center'}
+            ,{field:'heatConductivity', title: 'Heat Conductivity', align:'center'}
+            ,{field:'innerLayerCopper', title: 'InnerLayer Copper', align:'center'}
+            ,{field:'stackUp', title: 'Stack Up', align:'center'}
+            ,{field:'innerMinTrack', title: 'InnerMin Track', align:'center'}
+            ,{field:'innerMinSpacing', title: 'InnerMin Spacing', align:'center'}
+            ,{field:'outerLayerCopper', title: 'Outer Layer Copper', align:'center'}
+            ,{field:'outerMinTrack', title: 'outerMinTrack', align:'center'}
+            ,{field:'bgaSize', title: 'bgaSize', align:'center'}
+            ,{field:'outerMinSpacing', title: 'outerMinSpacing', align:'center'}
+            ,{field:'minHoleSize', title: 'minHoleSize', align:'center'}
+            ,{field:'pthCopper', title: 'pthCopper', align:'center'}
+            ,{field:'solderMaskTopColor', title: 'solderMaskTopColor', align:'center'}
+            ,{field:'viaProcess', title: 'viaProcess', align:'center'}
+            ,{field:'solderMaskBotColor', title: 'SolderMaskBotColor', align:'center'}
+            ,{field:'silkScreenTopColor', title: 'SilkScreenTopColor', align:'center'}
+            ,{field:'silkScreenBotColor', title: 'silkScreenBotColor', align:'center'}
+            ,{field:'peelable', title: 'Peelable', align:'center'}
+            ,{field:'peelableBrand', title: 'PeelableBrand', align:'center'}
+            ,{field:'surfaceFinish', title: 'SurfaceFinish', align:'center'}
+            ,{field:'thickness', title: 'Thickness', align:'center'}
+            ,{field:'surfaceArea', title: 'SurfaceArea', align:'center'}
+            ,{field:'panelRoutingPath', title: 'PanelRoutingPath', align:'center'}
+            ,{field:'punchingHoles', title: 'PunchingHoles', align:'center'}
+            ,{field:'punchingSlots', title: 'PunchingSlots', align:'center'}
+            ,{field:'testPoint', title: 'TestPoint', align:'center'}
+            ,{field:'testPointType', title: 'TestPointType', align:'center'}
+            ,{field:'testPoinType', title: 'TestPoinType', align:'center'}
+            ,{field:'testCost', title: 'TestCost', align:'center'}
+            ,{field:'blindHoles', title: 'BlindHoles', align:'center'}
+            ,{field:'edgePlated', title: 'EdgePlated', align:'center'}
+            ,{field:'halfHoleLated', title: 'HalfHoleLated', align:'center'}
+            ,{field:'contrlImpeance', title: 'ContrlImpeance', align:'center'}
+            ,{field:'buriedHoles', title: 'BuriedHoles', align:'center'}
+            ,{field:'carbon', title: 'Carbon', align:'center'}
+            ,{field:'bevellingCamfer', title: 'BevellingCamfer', align:'center'}
+            ,{field:'deepMillRouting', title: 'deepMillRouting', align:'center'}
+            ,{field:'gerberPath', title: 'gerberPath', align:'center', hide: true}
+            ,{field:'gerberName', title: 'gerberName', align:'center', hide: true}
+            ,{field:'remark', title: 'Remark', align:'center'}
+            ,{field:'differentDesign', title: 'DifferentDesign', align:'center'}
+            ,{field:'gmtModified', title: 'gmtModified', align:'center'}
+            ,{field:'gmtCreate', title: 'gmtCreate', align:'center'}
+            ,{field:'uuid', title: 'UuId', align:'center'}
+            ,{field:'boardFee', title: 'BoardFee', align:'center'}
+            ,{field:'stencilFee', title: 'StencilFee', align:'center'}
+            ,{field:'overworkFee', title: 'OverworkFee', align:'center'}
+            ,{field:'productNo', title: 'ProductNo', align:'center'}
+            ,{field:'buildTime', title: 'BuildTime', align:'center'}
+            ,{field:'isExistSmt', title: 'IsExistSmt', align:'center'}
+            ,{field:'weight', title: 'Weight', align:'center'}
+            ,{field:'nofCore', title: 'NofCore', align:'center'}
+            ,{field:'nofPp', title: 'NofPp', align:'center'}
+            ,{field:'nofHoles', title: 'NofHoles', align:'center'}
+
+            ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#Tabtb-orpcb'}
         ]]
         ,done : function () {
             //手机端
@@ -107,131 +124,77 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         }
     });
 
-    //监听右侧工具条事件
-    table.on('tool(supplier_infoTab)',function (obj) {
+    //监听工具条
+    table.on('tool(or_Tabpcb)', function(obj){
         var data = obj.data;
-        var id = data.id;
-        var companyName = data.companyName;
-        if (obj.event === 'edit'){
+        if(obj.event === 'detail'){
             admin.popup({
-                title: '编辑供应商信息'
-                ,shadeClose: true
-                ,shade: false
-                ,maxmin: true
-                ,btn:['提交']['取消']
-                ,id: 'supplierAdd_form'
-                ,area: ['55%', '75%']
+                title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
+                ,area: ['45%', '70%']
                 ,success: function (layero, index) {
-                    view(this.id).render('/infoManagement/iframeWindow/supplier_edit', data).done(function () {
-                        form.render(null, 'supplierAdd_form');
-                        form.on('submit(LAY-supplier-add-submit)', function(data){
-                            var field = data.field;
-                            field.id = id;
-                            console.log('修改供应商的信息为:'+JSON.stringify(field));
-                            admin.req({
-                                type: 'post'
-                                ,url: setter.baseUrl+'sys/supplier/update'
-                                ,data: field
-                                ,done: function (res) {
-                                    layer.msg('供应商信息修改成功');
-                                    console.log('供应商信息修改成功');
-                                    layui.table.reload('supplier_infoTab');
-                                }
-                                ,fail: function (res) {
-                                    layer.msg('供应商信息修改失败！！');
-                                    console.log('供应商信息修改失败！！');
-                                },
-                            });
-                            layer.close(index);
-                            return false;
+                    view(this.id).render('marketManagement/iframeWindow/order_review_search', data).done(function () {
+
+                    })
+                }
+            })
+        } else if(obj.event === 'del'){
+            layer.confirm('真的删除行么', function(index){
+                obj.del();
+                layer.close(index);
+            });
+        } else if(obj.event === 'edit'){
+            admin.popup({
+                title: '编辑PCB订单信息'
+                ,area: ['45%', '561px']
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/orderOffer_update', data).done(function () {
+                        form.render(null, '')
+                        form.on('submit(LAY-market-update-submit)',function (data) {
+                            var field = data.field; //获取提交的字段
+                            alert("提交的字段信息："+JSON.stringify(field));
                         })
                     })
                 }
             })
-        } else if (obj.event === 'search'){
-            admin.popup({
-                title: "供应商［"+companyName+"］信息"
-                ,shadeClose: true
-                ,shade: false
-                ,maxmin: true
-                ,area: ['362px', '399px']
-                // ,id: 'sys_menu'
-                ,success: function(layero, index){
-                    view(this.id).render('/infoManagement/iframeWindow/supplier_search', data).done(function(){
-                        //监听提交
-                    });
-                }
-            });
-        } else if (obj.event === 'del'){
-            layer.confirm('确定删除公司名为［'+companyName+"］的供应商？", function(index){
-                admin.req({
-                    type:'post',
-                    url: setter.baseUrl+'sys/supplier/delete'
-                    ,data: {"supplierIds":id}
-                    ,done : function (res) {
-                        layer.msg('删除成功');
-                        obj.del();
-                        layer.close(index);
-                        layui.table.reload('supplier_infoTab');
-                    }
-                    ,fail: function (res) {
-                        layer.msg('服务器异常，稍后再试！');
-                    }
-                })
-            });
         }
-    })
-
-    var active = {
-        /**
-         * 动态获取id，并且传到下一个view子页面（子页面根据此id，动态渲染操作页面）
-         */
-        //供应商信息页面
-        supplier_add:function(data){
-            var this_id = $(this).attr('id');
-            admin.popup({
-                title: '添加供应商信息'
-                ,shadeClose: true
-                ,shade: false
-                ,maxmin: true
-                ,area: ['55%', '75%']
-                // ,id: 'sys_menu'
-                ,success: function(layero, index){
-                    view(this.id).render('/infoManagement/iframeWindow/supplier_edit', data).done(function(){
-                        form.render(null, 'supplierAdd_form');
-                        //监听提交
-                        form.on('submit(LAY-supplier-add-submit)', function(data){
-                            var field = data.field; //获取提交的字段
-                            layer.alert(JSON.stringify(data.field));
-                            admin.req({
-                                type:'post',
-                                url: setter.baseUrl+'sys/supplier/save' //实际使用请改成服务端真实接口
-                                ,data: field
-                                ,done: function(res){
-                                    console.log(res);
-                                    layer.msg('供应商添加成功');
-                                    layui.table.reload('supplier_infoTab'); //重载表格
-                                }
-                                ,fail: function (res) {
-                                    layer.msg('供应商加失败');
-                                },
-                            });
-                            layer.close(index); //执行关闭
-                            return false;
-                        });
-                    });
-                }
-            });
-        },
-
-    };
-
-    $('.layui-btn').on('click',function () {
-        var type = $(this).data('type');
-        active[type] && active[type].call(this);
     });
 
-//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ g订单
+
+
+//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 钢网订单
+    table.render({
+        elem: '#gw_orderTab'
+        ,url: setter.baseUrl+'/market/stencil/audit/list'
+        ,id: 'gw_orderTab'
+        ,page: true
+        ,toolbar: true
+        ,parseData: function (res) {
+            return{
+                "code": 0,
+                "data": res.page.list,
+            }
+        }
+        ,where: {
+            access_token: layui.data('layuiAdmin').access_token
+        }
+        ,cols: [[
+            {field: '', fixed: 'left', title:'File', templet: '#gw_file', align:'center'}
+            ,{field: 'status', title: '状态', align:'center'}
+            ,{field: '', title: 'Order Type', align:'center'}
+            ,{field: '', title: 'Type', align:'center'}
+            ,{field: '', title: 'Order Time', align:'center'}
+            ,{field: '', title: 'P/N', align:'center'}
+            ,{field: '', title: 'Unit Price', align:'center'}
+            ,{field: 'quantity', title: 'Quantity', align:'center'}
+            ,{field: '', title: 'Shipping Time', align:'center'}
+            ,{field: 'weight', title: 'Weight', align:'center'}
+            ,{field: 'stencilType', title: 'Stencil Type', align:'center'}
+            ,{field: 'stencilSide', title: 'Stencil Side', align:'center'}
+            ,{field: 'size', title: 'Size', align:'center'}
+            ,{field: 'thickness', title: 'Thickness', align:'center'}
+            ,{field: 'note', title: 'Note', align:'center'}
+        ]]
+    })
 
     //手机端
     if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) { //移动端
@@ -252,5 +215,30 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         });
     }
 
+
+
+    // 手机端，数据太多，这个页面单独写
+    $("#phone-operation").on('click', function () {
+        $(this).text($(this).text()=="隐藏操作"?"显示操作":"隐藏操作");
+        $(".layui-table-fixed-r").toggle('slow');
+    });
+    if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+        //订单评审搜索表单
+        $("#orderReview_searll").css({"display": ""});
+        $("#orderReview_pcsear").css({"display": "none"});
+        //监听select并给input name赋值
+        form.on('select(orderReview-search-select)', function (data) {
+            var selValue = data.value;
+            var index = data.elem.selectedIndex;
+            var text = data.elem.options[index].text; // 选中文本
+            var Domobj = $("#orderReview_sinp");
+            if (selValue != null || selValue != "") {
+                Domobj.attr({"placeholder": text});
+                $("input[id='orderReview_sinp']").attr("name", selValue)
+            } else {
+                Domobj.attr("placeholder", "请选取搜索条件");
+            }
+        });
+    }
     exports('market_orderReview', {})
 });

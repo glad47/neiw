@@ -70,14 +70,13 @@
         <div class="layui-tab-content">
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
-                <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-                    <button class="layui-btn"  data-type="">退回</button>
-                    <button class="layui-btn"  data-type="">提交</button>
-                    <button class="layui-btn"  data-type="">查看合同</button>
-                    <!--<button class="layui-btn"  data-type="">删除</button>-->
-                    <!--<button class="layui-btn"  id="phone-operation">操作</button>-->
+                <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: -15px;">
+                    <button class="layui-btn"  id="phone-operation">隐藏操作栏</button>
                 </div>
                 <table class="layui-table" id="or_Tabpcb" lay-filter="or_Tabpcb"></table>
+                <script type="text/html" id="file">
+                    <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;"></i>
+                </script>
                 <script type="text/html" id="panelWay">
                     {{ d.panelWayX || ''}}
                     {{ if(d.panelWayY != null || d.panelWayY != ""){ }}
@@ -85,7 +84,9 @@
                     {{ } }}
                 </script>
                 <script type="text/html" id="Tabtb-orpcb">
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="search" id="supplier_search">查看</a>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="supplier_search">查看</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="submits">提交</a>
+                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="submits">退回</a>
                     <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">修改</a>
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                 </script>
@@ -102,7 +103,7 @@
                     <button class="layui-btn"  data-type="">查看合同</button>
                     <button class="layui-btn"  data-type="">删除</button>
                 </div>
-                <table class="layui-table" id="or_Tabsmt" lay-filter="or_Tabsmt"></table>
+                <table class="layui-table" id="gw_orderTab" lay-filter="or_Tabsmt"></table>
             </div>
         </div>
     </div>
@@ -152,8 +153,5 @@
     layui.use('market_orderReview', layui.factory('market_orderReview')).use(['market_orderReview', 'table', 'index','element','form'], function(){
         var form = layui.form;
         form.render();
-    });
-    layui.use('mobileterminal',layui.factory('mobileterminal')).use(['mobileterminal'],function () {
-
     });
 </script>
