@@ -19,7 +19,6 @@
                     <input type="text" id="orderReview_sinp" autocomplete="off" class="layui-input" placeholder="P/N">
                 </div>
             </div>
-
             <!--电脑端-->
             <div class="layui-inline" id="orderReview_pcsear">
                 <label class="layui-form-label">P/N：</label>
@@ -66,15 +65,18 @@
         <ul class="layui-tab-title">
             <li class="layui-this">PCB订单</li>
             <li>钢网订单</li>
+            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 0px;">
+                <button class="layui-btn layui-btn-primary layui-btn-sm"  id="phone-operation">隐藏操作栏</button>
+            </div>
         </ul>
         <div class="layui-tab-content">
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
-                <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: -15px;">
-                    <button class="layui-btn"  id="phone-operation">隐藏操作栏</button>
-                </div>
                 <table class="layui-table" id="or_Tabpcb" lay-filter="or_Tabpcb"></table>
-                <script type="text/html" id="file">
+                <script type="text/html" id="pcb-file">
+                    <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" id="pcbfile-i" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
+                </script>
+                <script type="text/html" id="stencil-file">
                     <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;"></i>
                 </script>
                 <script type="text/html" id="panelWay">
@@ -90,20 +92,50 @@
                     <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">修改</a>
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                 </script>
+                <script type="text/html" id="pcbor_status">
+                    {{# if(d.status === 1){ }}
+                    <a style="color: #1E9FFF">
+                        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待处理
+                    </a>
+                    {{# } else if(d.status === 2){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>已提交
+                    </a>
+                    {{# } else if(d.stats === 3){ }}
+                    <a style="color: #FF5722">
+                        <i class="layui-icon layui-icon-close"></i>已退回
+                    </a>
+                    {{# } }}
+                </script>
+                <script type="text/html" id="stencil-status">
+                    {{# if(d.status === 1){ }}
+                    <a style="color: #1E9FFF">
+                        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待处理
+                    </a>
+                    {{# } else if(d.status === 2){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>已提交
+                    </a>
+                    {{# } else if(d.stats === 3){ }}
+                    <a style="color: #FF5722">
+                        <i class="layui-icon layui-icon-close"></i>已退回
+                    </a>
+                    {{# } }}
+                </script>
             </div>
 
 
             <!--钢网订单-->
-            <div class="layui-tab-item">
-                <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-                    <button class="layui-btn"  data-type="">修改</button>
-                    <button class="layui-btn"  data-type="">查看</button>
-                    <button class="layui-btn"  data-type="">退回</button>
-                    <button class="layui-btn"  data-type="">提交</button>
-                    <button class="layui-btn"  data-type="">查看合同</button>
-                    <button class="layui-btn"  data-type="">删除</button>
-                </div>
-                <table class="layui-table" id="gw_orderTab" lay-filter="or_Tabsmt"></table>
+            <div class="layui-tab-item" id="stencil-orders">
+                <table class="layui-table" id="stencil_orderTab" lay-filter="stencil_orderTab"></table>
+                <!--钢网订单表格操作栏-->
+                <script type="text/html" id="Tabtb-orstencil">
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="submits">提交</a>
+                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="submits">退回</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                </script>
             </div>
         </div>
     </div>
@@ -146,7 +178,8 @@
         }
     }
 
-
+    i.layui-anim{display:inline-block}
+    #pcbfile-i:hover{color: #1E9FFF;cursor: pointer;}
 </style>
 
 <script>

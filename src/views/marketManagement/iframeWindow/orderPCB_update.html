@@ -707,11 +707,19 @@
         </div>
 
         <div class="layui-form-item">
-            <div class="layui-col-md12 layui-col-xs12 layui-col-sm12">
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">nofHoles：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="text" name="nofHoles" value="{{ d.params.nofHoles || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Status：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="status" value="{{ d.params.status || '' }}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
@@ -722,7 +730,7 @@
                 <label class="layui-form-label">Remark：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="deepMillRouting" value="{{ d.params.remark || '' }}" autocomplete="off" class="layui-input">
+                        <input type="text" name="remark" value="{{ d.params.remark || '' }}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
@@ -731,7 +739,7 @@
 
         <div class="layui-form-item layui-col-md-offset3">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="LAY-market-update-submit">立即提交</button>
+                <button class="layui-btn" lay-submit lay-filter="LAY-pcborder-update-submit">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -739,9 +747,6 @@
     </form>
 </div>
 
-<script>
-    layui.use('market_orderReview', layui.factory('market_orderReview')).use(['setter','market_orderReview','admin', 'table', 'index','element','jquery','form'], function(){
-        var form = layui.form;
-        form.render();
-    });
-</script>
+<style>
+
+</style>

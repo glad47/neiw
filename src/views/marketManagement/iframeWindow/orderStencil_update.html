@@ -1,0 +1,147 @@
+<title>报价订单编辑</title>
+<div class="layui-fluid">
+    <form class="layui-form" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 750px">
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">StencilType：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="id" value="{{ d.params.id || '' }}" autocomplete="off" class="layui-input" style="display: none;">
+                        <input type="text" name="stencilType" value="{{ d.params.stencilType || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">StencilSide：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="stencilSide" value="{{ d.params.stencilSide || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Size：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="size" value="{{ d.params.size || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Quantity：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="quantity" value="{{ d.params.quantity || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Thickness：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="thickness" value="{{ d.params.thickness || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">ExistingFiducials：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="existingFiducials" value="{{ d.params.existingFiducials || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Note：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="note" value="{{ d.params.note || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">StencilSizeX：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="stencilSizeX" value="{{ d.params.stencilSizeX || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">StencilAreaX：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="stencilAreaX" value="{{ d.params.stencilAreaX || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">TotalStencilFee：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="totalStencilFee" value="{{ d.params.totalStencilFee || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">StencilSizeY：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="stencilSizeY" value="{{ d.params.stencilSizeY || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">StencilAreaY：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="stencilAreaY" value="{{ d.params.stencilAreaY || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Weight：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="weight" value="{{ d.params.weight || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Status：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="status" value="{{ d.params.status || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="layui-form-item layui-col-md-offset3">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="LAY-stencilorder-update-submit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<style>
+
+</style>

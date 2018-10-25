@@ -85,7 +85,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                         ,btn:['提交']['取消']
                         ,id: 'userAdd_form'
                         ,area: ['766px', '510px']
-                        ,success: function (layero,index) {
+                        ,success: function (layero, index) {
                             view(this.id).render('/infoManagement/iframeWindow/user_edit_info',datainfo).done(function () {
                                 var status ;
                                 form.render(null,'user_editInfo_form');
