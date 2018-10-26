@@ -64,7 +64,21 @@
                     <td>Gerber Name:</td>
                     <td>{{ d.params.gerberName || ''}}</td>
                     <td>Status:</td>
-                    <td>{{ d.params.gerberName || ''}}</td>
+                    <td>
+                        {{# if(d.params.status === 1){ }}
+                        <a style="color: #1E9FFF">
+                            <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待处理
+                        </a>
+                        {{# } else if(d.params.status === 2){ }}
+                        <a style="color: green">
+                            <i class="layui-icon layui-icon-ok"></i>已提交
+                        </a>
+                        {{# } else if(d.params.stats === 3){ }}
+                        <a style="color: #FF5722">
+                            <i class="layui-icon layui-icon-close"></i>已退回
+                        </a>
+                        {{# } }}
+                    </td>
                 </tr>
                 </tbody>
             </table>

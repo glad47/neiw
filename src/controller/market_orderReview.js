@@ -5,14 +5,22 @@
  */
 
 
-layui.define(['admin', 'table', 'index','element','form'], function(exports){
+layui.define(['admin', 'table', 'index','element','form','laydate'], function(exports){
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
+        ,laydate = layui.laydate
         ,setter = layui.setter
         ,element = layui.element;
-    var $ = layui.jquery;
+        var $ = layui.jquery;
+
+    // layerdate.render({
+    //     elem: '#gmtCreate'
+    // })
+    laydate.render({
+        elem: '#gmtCreate'
+    });
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
@@ -110,7 +118,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             ,{field:'nofHoles', title: 'NofHoles', align:'center', width: 90}
             ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#Tabtb-orpcb'}
         ]]
-        ,done : function () {
+        ,done : function (res, curr, count) {
             //手机端
             if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) { //移动端
                 $("#LAY_app_body").each(function (e) {
@@ -181,33 +189,31 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                     })
                 }
             })
+        } else if (obj.event === 'pcb-submit') {
+            layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
+                // admin.req({
+                //     type: 'post'
+                //     ,url: 'PCB提交订单接口'
+                //     ,data: data.productNo
+                //     ,done: function () {
+                //         layer.msg('订单［'+data.productNo+'］提交成功！');
+                //     }
+                //     ,fail: function () {
+                //         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
+                //     }
+                // })
+                layer.msg('订单［'+data.productNo+'］提交成功！');
+                layui.table.reload('or_Tabpcb');
+                layer.close(index);
+            })
+        } else if (obj.event === 'pcb-sendback') {
+            layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
+                layer.msg('退回'+data.productNo);
+                layui.table.reload('or_Tabpcb');
+                layer.close(index);
+            })
         }
-        // else if (obj.event === 'downpcb-gerber'){
-        //     layer.msg('文件下载'+"\npath==>"+data.gerberPath+"\nFileName==>"+data.gerberName);
-        //     var regex = "\\[(.+?)\\]";
-        //     var arr = data.gerberPath.match(regex)
-        //     data.gerberPath = arr[1];
-        //     admin.req({
-        //         type: 'get'
-        //         ,url: 'http://192.168.0.155:8871/quote/gerberFileDownload'
-        //         ,data: {"filePathName":data.gerberPath,"fileName":data.gerberName}
-        //         ,done: function (res) {
-        //             layer.msg("正在下载gerber文件.....");
-        //         }
-        //         ,fail: function (res) {
-        //             layer.msg("未知错误，请重新下载文件！");
-        //             console.warn(data);
-        //         }
-        //     })
-        // }
     });
-    // table.on('row(or_Tabpcb)', function (obj) {
-    //     var data = obj.data;
-    //     var this_id = $(obj.target).attr('id');
-    //     layer.msg("id为："+this_id);
-    //     console.log("获取到的行数据为:"+JSON.stringify(data));
-    //     $()
-    // })
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 钢网订单
     table.render({
@@ -313,28 +319,47 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                })
                 layer.close(index);
             });
+        } else if (obj.event === 'stencil-submit') {
+            layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
+                layer.msg('提交'+data.productNo);
+                layui.table.reload('stencil_orderTab');
+                layer.close(index);
+            })
+        } else if (obj.event === 'stencil-sendback') {
+            layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
+                layer.msg('退回'+data.productNo);
+                layui.table.reload('stencil_orderTab');
+                layer.close(index);
+            })
         }
     })
 
-
-    //手机端
-    if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) { //移动端
-        // $("#orderReview_searll").css({"display":""});
-        // $("#orderReview_pcsear").css({"display":"none"});
-        //监听select并给input name赋值
-        form.on('select(orderReview-search-select)',function (data){
-            var selValue = data.value;
-            var index = data.elem.selectedIndex;
-            var text = data.elem.options[index].text; // 选中文本
-            var Domobj = $("#orderReview_sinp");
-            if (selValue != null || selValue != ""){
-                Domobj.attr({"placeholder":text});
-                $("input[id='orderReview_sinp']").attr("name",selValue)
-            } else {
-                Domobj.attr("placeholder","请选取搜索条件");
+    form.on('submit(LAY-app-orderReview-search)', function (data) {
+        var field = data.field;
+        delete field.quiz;
+            table.reload('or_Tabpcb',{
+                where: field
+            });
+    });
+    // 根据tab选项是否为pcb或者stencil监听表单，动态渲染表格
+    element.on('tab(pcdorstencil_tab)', function (data) {
+        var tabNum = data.index;
+        form.on('submit(LAY-app-orderReview-search)', function (data) {
+            var field = data.field;
+            delete field.quiz;
+            if (tabNum === 0) {
+                layer.msg('PCBOrders');
+                table.reload('or_Tabpcb',{
+                    where: field
+                });
+            } else if (tabNum === 1){
+                layer.msg('StencilOrders');
+                table.reload('stencil_orderTab',{
+                    where: field
+                });
             }
         });
-    }
+    })
 
 
 

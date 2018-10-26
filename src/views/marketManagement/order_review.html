@@ -9,6 +9,7 @@
                 <label class="layui-form-label">查询：</label>
                 <div class="layui-input-inline">
                     <select name="quiz" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
+                        <option value="">请选择</option>
                         <option value="P/N">P/N</option>
                         <option value="FileName">File Name</option>
                         <option value="OrderId">Order ID</option>
@@ -16,55 +17,56 @@
                     </select>
                 </div>
                 <div class="layui-input-inline">
-                    <input type="text" id="orderReview_sinp" autocomplete="off" class="layui-input" placeholder="P/N">
+                    <input type="text" name="P/N" id="orderReview_sinp" autocomplete="off" class="layui-input" placeholder="P/N">
                 </div>
             </div>
             <!--电脑端-->
             <div class="layui-inline" id="orderReview_pcsear">
                 <label class="layui-form-label">P/N：</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="supplier_id" autocomplete="off" class="layui-input">
+                    <input type="text" name="P/N" id="supplier_id" autocomplete="off" class="layui-input">
                 </div>
 
                 <label class="layui-form-label">File Name：</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="supplier_companyName" autocomplete="off" class="layui-input">
+                    <input type="text" name="gerberName" id="supplier_companyName" autocomplete="off" class="layui-input">
                 </div>
 
                 <label class="layui-form-label">Order ID：</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="supplier_type" autocomplete="off" class="layui-input">
+                    <input type="text" name="orderId" id="supplier_type" autocomplete="off" class="layui-input">
                 </div>
 
                 <label class="layui-form-label">Order Time:</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input">
+                    <!--<input type="text" name="gmtCreate" class="layui-input">-->
+                    <input type="text" name="gmtCreate" id="gmtCreate" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
             <div class="layui-inline">
                 <label class="layui-form-label">状态：</label>
                 <div class="layui-input-inline">
-                    <select name="quiz" id="orderReview_statusSel">
+                    <select name="status" id="orderReview_statusSel">
                         <option value="">请选择状态</option>
                         <option value="0">待评审</option>
                         <option value="1">修改中</option>
-                        <option value="1">退回中</option>
+                        <option value="2">退回中</option>
                     </select>
                 </div>
             </div>
             <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-orderReview-search" data-type="reload" id="orderReview_searchbtn">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-orderReview-search" style="margin-bottom: 3px;">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                 </button>
             </div>
         </div>
     </div>
     <!--卡片－表格信息-->
-    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" id="orderReview_card">
+    <div class="layui-tab layui-tab-brief" lay-filter="pcdorstencil_tab" id="orderReview_card">
         <ul class="layui-tab-title">
-            <li class="layui-this">PCB订单</li>
-            <li>钢网订单</li>
+            <li class="layui-this" id="pcborders-li">PCB订单</li>
+            <li id="stencilorders-li">钢网订单</li>
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 0px;">
                 <button class="layui-btn layui-btn-primary layui-btn-sm"  id="phone-operation">隐藏操作栏</button>
             </div>
@@ -74,10 +76,18 @@
             <div class="layui-tab-item layui-show">
                 <table class="layui-table" id="or_Tabpcb" lay-filter="or_Tabpcb"></table>
                 <script type="text/html" id="pcb-file">
-                    <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" id="pcbfile-i" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
+                    {{# var arr = d.gerberPath.slice(6,-1) }}
+                    {{# d.gerberPath = arr }}
+                    <a href="http://192.168.0.155:8871/quote/gerberFileDownload?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}">
+                        <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" id="pcbfile-i" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
+                    </a>
                 </script>
                 <script type="text/html" id="stencil-file">
-                    <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;"></i>
+                    {{# var arr = d.gerberPath.slice(6,-1) }}
+                    {{# d.gerberPath = arr }}
+                    <a href="http://192.168.0.155:8871/quote/gerberFileDownload?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}">
+                        <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
+                    </a>
                 </script>
                 <script type="text/html" id="panelWay">
                     {{ d.panelWayX || ''}}
@@ -87,8 +97,8 @@
                 </script>
                 <script type="text/html" id="Tabtb-orpcb">
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="supplier_search">查看</a>
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="submits">提交</a>
-                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="submits">退回</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pcb-submit">提交</a>
+                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="pcb-sendback">退回</a>
                     <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">修改</a>
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                 </script>
@@ -131,8 +141,8 @@
                 <!--钢网订单表格操作栏-->
                 <script type="text/html" id="Tabtb-orstencil">
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="submits">提交</a>
-                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="submits">退回</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stencil-submit">提交</a>
+                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">退回</a>
                     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                 </script>
