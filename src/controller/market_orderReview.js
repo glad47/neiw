@@ -191,10 +191,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             })
         } else if (obj.event === 'pcb-submit') {
             layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
+                data.status = 2;
                 admin.req({
                     type: 'post'
                     ,url: setter.baseUrl+'/market/quote/audit/update'
-                    ,data: {"status":2}
+                    ,data: {"id":data.id,"status":data.status}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
                     }
@@ -202,7 +203,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
                     }
                 })
-                layer.msg('订单［'+data.productNo+'］提交成功！');
                 layui.table.reload('or_Tabpcb');
                 layer.close(index);
             })
@@ -321,7 +321,19 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             });
         } else if (obj.event === 'stencil-submit') {
             layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
-                layer.msg('提交'+data.productNo);
+                data.status = 2;
+                admin.req({
+                    type: 'post'
+                    ,url: setter.baseUrl+'/market/stencil/audit/update'
+                    ,data: {"id":data.id,"status":data.status}
+                    ,done: function () {
+                        layer.msg('订单［'+data.productNo+'］提交成功！');
+                        console.log('提交的信息为'+JSON.stringify(data));
+                    }
+                    ,fail: function () {
+                        layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
+                    }
+                })
                 layui.table.reload('stencil_orderTab');
                 layer.close(index);
             })
