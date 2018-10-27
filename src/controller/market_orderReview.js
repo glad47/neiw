@@ -191,17 +191,17 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             })
         } else if (obj.event === 'pcb-submit') {
             layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
-                // admin.req({
-                //     type: 'post'
-                //     ,url: 'PCB提交订单接口'
-                //     ,data: data.productNo
-                //     ,done: function () {
-                //         layer.msg('订单［'+data.productNo+'］提交成功！');
-                //     }
-                //     ,fail: function () {
-                //         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
-                //     }
-                // })
+                admin.req({
+                    type: 'post'
+                    ,url: setter.baseUrl+'/market/quote/audit/update'
+                    ,data: {"status":2}
+                    ,done: function () {
+                        layer.msg('订单［'+data.productNo+'］提交成功！');
+                    }
+                    ,fail: function () {
+                        layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
+                    }
+                })
                 layer.msg('订单［'+data.productNo+'］提交成功！');
                 layui.table.reload('or_Tabpcb');
                 layer.close(index);
