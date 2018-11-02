@@ -6,7 +6,7 @@
                 <label class="layui-form-label">客户名称：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="userName" autocomplete="off" class="layui-input" value="{{ d.params.userName || ''}}" lay-verify="required">    
+                        <input type="text" name="userName" autocomplete="off" class="layui-input" value="{{ d.params.userName || ''}}">
                     </script>
                 </div>
             </div>
@@ -115,7 +115,7 @@
                 <label class="layui-form-label">业务类型：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                      <select name="businessType" lay-verify="required">
+                      <select name="businessType">
                         <option value="">请选择类型</option>
                         <option value="Manufacturer" {{ d.params.businessType === 'Manufacturer' ? 'selected' : '' }}>Manufacturer</option>
                         <option value="Trading Company" {{ d.params.businessType === 'Trading Company' ? 'selected' : '' }}>Trading Company</option>
@@ -156,7 +156,7 @@
                 <label class="layui-form-label">应用：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                      <select name="applications" lay-verify="required">
+                      <select name="applications">
                         <option value="">请选择应用</option>
                         <option value="Audio" {{ d.params.applications === 'Audio' ? 'selected' : ''}}>Audio</option>
                         <option value="Avionics &amp; Defense" {{ d.params.applications === 'Avionics &amp; Defense' ? 'selected' : ''}}>Avionics &amp; Defense</option>
