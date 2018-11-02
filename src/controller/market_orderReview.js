@@ -52,7 +52,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114}
             ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
             ,{field:'boardFee', title: 'BoardFee', align:'center', width: 114}
-
             ,{field:'userId', title: 'User ID',width: 80,hide: true}
             ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
             ,{field:'orderType', title: 'Order Type', align:'center', width: 109,hide: true}
@@ -237,29 +236,29 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             access_token: layui.data('layuiAdmin').access_token
         }
         ,cols: [[
-            {field: '', fixed: 'left', title:'File', templet: '#stencil-file', align:'center'}
-            ,{field: 'id', title: 'ID', hide: true}
-            ,{field: 'status', title: '状态', align:'center', width: 100, templet: '#stencil-status'}
-            ,{field: 'userId', title: 'User ID', align:'center', width: 100}
-            ,{field: 'productNo', title: 'Product No', align:'center', width: 114}
-            ,{field: 'quoteId', title: 'Quote ID', align:'center', width: 114}
+            {field: 'id', title: 'ID', hide: true}
+            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#stencil-status'}
+            ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
+            ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
+            ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
+            ,{field: 'productNo', title: 'Product No', align:'center', width: 134}
+            ,{field: 'totalStencilFee', title: 'TotalStencilFee($)', align:'center', width: 144}
             ,{field: 'stencilType', title: 'Stencil Type', align:'center', width: 124}
             ,{field: 'stencilSide', title: 'Stencil Side', align:'center', width: 124}
-            ,{field: 'size', title: 'Size', align:'center', width: 80}
             ,{field: 'quantity', title: 'Quantity', align:'center', width: 114}
-            ,{field: 'thickness', title: 'Thickness', align:'center', width: 114}
-            ,{field: 'existingFiducials', title: 'Existing Fiducials', align:'center', width: 145}
-            ,{field: 'stencilSizeX', title: 'stencilSizeX', align:'center', width: 124}
-            ,{field: 'stencilSizeY', title: 'stencilSizeY', align:'center', width: 124}
-            ,{field: 'stencilAreaX', title: 'stencilSizeY', align:'center', width: 124}
-            ,{field: 'stencilAreaY', title: 'stencilSizeY', align:'center', width: 124}
-            ,{field: 'totalStencilFee', title: 'TotalStencilFee', align:'center', width: 144}
-            ,{field: 'gmtCreate', title: 'gmtCreate', hide: true, width: 124}
+            ,{field: 'size', title: 'Size', align:'center', width: 80}
+            ,{field: 'quoteId', title: 'Quote ID', align:'center', width: 114, hide: true}
+            ,{field: 'thickness', title: 'Thickness', align:'center', width: 114, hide: true}
+            ,{field: 'existingFiducials', title: 'Existing Fiducials', align:'center', width: 145, hide: true}
+            ,{field: 'stencilSizeX', title: 'stencilSizeX', align:'center', width: 124, hide: true}
+            ,{field: 'stencilSizeY', title: 'stencilSizeY', align:'center', width: 124, hide: true}
+            ,{field: 'stencilAreaX', title: 'stencilSizeY', align:'center', width: 124, hide: true}
+            ,{field: 'stencilAreaY', title: 'stencilSizeY', align:'center', width: 124, hide: true}
+            ,{field: 'userId', title: 'User ID', align:'center', width: 100, hide: true}
             ,{field: 'gmtModified', title: 'gmtModified', hide: true, width: 124}
             ,{field: 'weight', title: 'Weight', align:'center', width: 85}
             ,{field: 'gerberPath', title: 'gerberPath', hide: true, width: 124}
-            ,{field: 'gerberName', title: 'gerberName', hide: true, width: 124}
-            ,{field: 'note', title: 'Note', align:'center', width: 80}
+            ,{field: 'note', title: 'Note', align:'center', width: 80, hide: true}
             ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-orstencil', width: 260}
         ]]
     })
