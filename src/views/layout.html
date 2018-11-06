@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
@@ -114,7 +115,11 @@
               }}
                 <dd  data-name="{{ item2.name || '' }}"  data-jump="{{ item2.jump || '' }}" 
                 {{ classSelected2() ? ('class="'+ classSelected2() +'"') : '' }}>
-                  <a href="javascript:;" {{ hasChildren2 ? '' : 'lay-href="'+ url2 +'"' }}>{{ item2.title }}</a>
+                <a class="border-dotted-aone"></a>
+                <a class="border-dotted-atwo"></a>
+                <a href="javascript:;" {{ hasChildren2 ? '' : 'lay-href="'+ url2 +'"' }}>{{ item2.title }}
+                  <i class="{{ item2.icon }}"></i>
+                </a>
                   {{# if(hasChildren2){ }}
                     <dl class="layui-nav-child">
                       {{# layui.each(item2.list, function(index3, item3){ 
@@ -180,6 +185,29 @@
   <div class="layadmin-body-shade" layadmin-event="shade"></div>
   
 </div>
+
+<style>
+  #LAY-system-side-menu .layui-nav-child dd .border-dotted-aone {
+    border-right: dotted 1px cornsilk;width: 5%;float: left;margin-left: 14px;
+  }
+  #LAY-system-side-menu .layui-nav-child dd .border-dotted-atwo {
+    border-top: dotted 1px cornsilk;width: 10px;padding-right: 0;margin-left: 26px;margin-top: 20px;height: 0;position: absolute;z-index: 999;
+  }
+  #LAY-system-side-menu .layui-nav-child dd .border-dotted-aone,#LAY-system-side-menu .layui-nav-child dd .border-dotted-atwo{
+    padding-left: 0;
+    padding-right: 0;
+    line-height: 0;
+    clear: display;
+  }
+  /*awesome图标样式和layui冲突修改*/
+  #LAY-system-side-menu .layui-nav-child dd .fa{
+    left: 20px;
+    position: absolute;
+    margin-top: -19px;
+    top: 100%;
+    line-height: 0;
+  }
+</style>
 
 <script>
   // layui.use(['admin','user'],function () {
