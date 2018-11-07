@@ -54,6 +54,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
             ,{field:'boardFee', title: 'BoardFee', align:'center', width: 114}
             ,{field:'userId', title: 'User ID',width: 80,hide: true}
+            ,{field:'isLock', title: 'Is Lock',width: 80,hide: true}
             ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
             ,{field:'orderType', title: 'Order Type', align:'center', width: 109,hide: true}
             ,{field:'dimensionsX', title: 'DimensionsX',templet: '#type', align:'center', width: 114,hide: true}
@@ -207,12 +208,24 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 layui.table.reload('or_Tabpcb');
                 layer.close(index);
             })
-        } else if (obj.event === 'pcb-sendback') {
-            layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
-                layer.msg('退回'+data.productNo);
+        } else if (obj.event === 'pcb-lock') {
+            layer.confirm('确定锁定订单［'+data.productNo+'］?',function (index) {
+                admin.req({
+                    type: 'post'
+                    ,url: setter.baseUrl+'/market/quote/audit/update'
+                    ,data: {"id":data.id,"isLock": 2}
+                    ,done: function () {
+                        layer.msg('订单［'+data.productNo+'］已锁定！');
+                    }
+                    ,fail: function () {
+                        layer.msg('订单［'+data.productNo+'］锁定失败，稍后再试！');
+                    }
+                })
                 layui.table.reload('or_Tabpcb');
                 layer.close(index);
             })
+        } else if (obj.event === 'pcb-beenLocked') {
+            layer.msg('订单［'+data.productNo+'］已锁定!!!');
         }
     });
 
@@ -250,6 +263,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'quantity', title: 'Quantity', align:'center', width: 114}
             ,{field: 'size', title: 'Size', align:'center', width: 80}
             ,{field: 'quoteId', title: 'Quote ID', align:'center', width: 114, hide: true}
+            ,{field: 'isLock', title: 'Is Lock', align:'center', width: 114, hide: true}
             ,{field: 'thickness', title: 'Thickness', align:'center', width: 114, hide: true}
             ,{field: 'existingFiducials', title: 'Existing Fiducials', align:'center', width: 145, hide: true}
             ,{field: 'stencilSizeX', title: 'stencilSizeX', align:'center', width: 124, hide: true}
@@ -339,12 +353,24 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 layui.table.reload('stencil_orderTab');
                 layer.close(index);
             })
-        } else if (obj.event === 'stencil-sendback') {
-            layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
-                layer.msg('退回'+data.productNo);
+        } else if (obj.event === 'stencil-lock') {
+            layer.confirm('确定锁定订单［'+data.productNo+'］?',function (index) {
+                admin.req({
+                    type: 'post'
+                    ,url: setter.baseUrl+'/market/stencil/audit/update'
+                    ,data: {"id":data.id,"isLock":2}
+                    ,done: function () {
+                        layer.msg('订单［'+data.productNo+'］已锁定！');
+                    }
+                    ,fail: function () {
+                        layer.msg('订单［'+data.productNo+'］锁定失败，稍后再试！');
+                    }
+                })
                 layui.table.reload('stencil_orderTab');
                 layer.close(index);
             })
+        } else if (obj.event === 'stencil-beenLocked') {
+            layer.msg('订单［'+data.productNo+'］已锁定!!!');
         }
     })
 

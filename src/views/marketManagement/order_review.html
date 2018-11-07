@@ -100,7 +100,15 @@
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_audit:submit") != -1){ }}
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pcb-submit">提交</a>
                     {{#  } }}
-                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="pcb-sendback">锁定</a>
+                    {{# if(d.isLock == 1 || d.isLock == null || d.isLock == ''){ }}
+                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="pcb-lock">
+                        <i class="fa fa-unlock" aria-hidden="true"></i> <!-- 锁定 -->
+                    </a>
+                    {{#}else if(d.isLock ==2){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="pcb-beenLocked">
+                        <i class="fa fa-lock" aria-hidden="true"></i> <!-- 已锁定 -->
+                    </a>
+                    {{# } }}
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_audit:update") != -1){ }}
                     <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">修改</a>
                     {{#  } }}
@@ -150,7 +158,15 @@
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:submit") != -1){ }}
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stencil-submit">提交</a>
                     {{#  } }}
-                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>
+                    {{# if(d.isLock == 1 || d.isLock == null || d.isLock == ''){ }}
+                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-lock">
+                        <i class="fa fa-unlock" aria-hidden="true"></i> <!-- 锁定 -->
+                    </a>
+                    {{#}else if(d.isLock ==2){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="stencil-beenLocked">
+                        <i class="fa fa-lock" aria-hidden="true"></i> <!-- 已锁定 -->
+                    </a>
+                    {{# } }}
                     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:delete") != -1){ }}
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
