@@ -42,7 +42,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
-            ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#pcbor_status',width: 110}
+            ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#pcbor_status',width: 150}
             ,{field: '', title:'File', toolbar: '#pcb-file', align:'center'}
             ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254}
             ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
@@ -118,7 +118,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'nofCore', title: 'NofCore', align:'center', width: 80,hide: true}
             ,{field:'nofPp', title: 'NofPp', align:'center', width: 80,hide: true}
             ,{field:'nofHoles', title: 'NofHoles', align:'center', width: 90,hide: true}
-            ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#Tabtb-orpcb'}
+            ,{title: '操作', width: 200, align:'center', fixed: 'right', toolbar: '#Tabtb-awaorpcb'}
         ]]
         ,done : function (res, curr, count) {
             //手机端

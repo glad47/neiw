@@ -118,7 +118,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'nofCore', title: 'NofCore', align:'center', width: 80,hide: true}
             ,{field:'nofPp', title: 'NofPp', align:'center', width: 80,hide: true}
             ,{field:'nofHoles', title: 'NofHoles', align:'center', width: 90,hide: true}
-            ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#Tabtb-orpcb'}
+            ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#Tabtb-seaorpcb'}
         ]]
         ,done : function (res, curr, count) {
             //手机端
@@ -193,13 +193,14 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             })
         } else if (obj.event === 'pcb-submit') {
             layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
-                data.status = 2;
+                data.status = 4;
                 admin.req({
                     type: 'post'
-                    ,url: setter.baseUrl+'/market/quote/audit/update'
+                    ,url: setter.baseUrl+'/market/quote/audit/submit'
                     ,data: {"id":data.id,"status":data.status}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
+                        layui.table.reload('or_Tabpcb_no_payment');
                     }
                     ,fail: function () {
                         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
@@ -262,7 +263,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'weight', title: 'Weight', align:'center', width: 85}
             ,{field: 'gerberPath', title: 'gerberPath', hide: true, width: 124}
             ,{field: 'note', title: 'Note', align:'center', width: 80, hide: true}
-            ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-orstencil', width: 260}
+            ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-seaorstencil', width: 260}
         ]]
     })
     // 监听stencil表格工具条

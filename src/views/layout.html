@@ -105,7 +105,7 @@
                   var match = (path[0] == item.name && path[1] == item2.name) 
                   || (item2.jump && pathURL == layui.admin.correctRouter(item2.jump)) || item2.spread;
                   if(match){
-                    return hasChildren2 ? 'layui-nav-itemed' : 'layui-this';
+                    return hasChildren2 ? 'layui-nav-itemed' : '';
                   }
                   return '';
                 }
