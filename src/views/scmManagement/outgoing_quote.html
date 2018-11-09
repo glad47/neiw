@@ -1,4 +1,4 @@
-<title>订单评审</title>
+<title>外发报价</title>
 
 <div class="layui-fluid">
     <input type="text" autocomplete="off" class="layui-input" placeholder="查询订单评审信息" style="display: none">
@@ -73,7 +73,7 @@
         <div class="layui-tab-content">
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="or_Tabpcb_ok_payment" lay-filter="or_Tabpcb_ok_payment"></table>
+                <table class="layui-table" id="scm_Tabpcb_outgoing_quote" lay-filter="scm_Tabpcb_outgoing_quote"></table>
                 <script type="text/html" id="pcb-file">
                     {{# var arr = d.gerberPath.slice(6,-1) }}
                     {{# d.gerberPath = arr }}
@@ -212,7 +212,7 @@
 </style>
 
 <script>
-    layui.use('market_orderOkPayment', layui.factory('market_orderOkPayment')).use(['market_orderOkPayment', 'table', 'index','element','form'], function(){
+    layui.use('scm_outgoingQuote', layui.factory('scm_outgoingQuote')).use(['scm_outgoingQuote', 'table', 'index','element','form'], function(){
         var form = layui.form;
         form.render();
     });

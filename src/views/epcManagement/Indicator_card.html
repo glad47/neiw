@@ -1,4 +1,4 @@
-<title>订单评审</title>
+<title>编写指示卡</title>
 
 <div class="layui-fluid">
     <input type="text" autocomplete="off" class="layui-input" placeholder="查询订单评审信息" style="display: none">
@@ -48,9 +48,9 @@
                 <div class="layui-input-inline">
                     <select name="status" id="orderReview_statusSel">
                         <option value="">请选择状态</option>
-                        <option value="0">待评审</option>
-                        <option value="1">修改中</option>
-                        <option value="2">退回中</option>
+                        <option value="1">d评审</option>
+                        <option value="2">修改中</option>
+                        <option value="3">退回中</option>
                     </select>
                 </div>
             </div>
@@ -65,7 +65,6 @@
     <div class="layui-tab layui-tab-brief" lay-filter="pcdorstencil_tab" id="orderReview_card">
         <ul class="layui-tab-title">
             <li class="layui-this" id="pcborders-li">PCB订单</li>
-            <li id="stencilorders-li">钢网订单</li>
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 0px;">
                 <button class="layui-btn layui-btn-primary layui-btn-sm"  id="phone-operation">隐藏操作栏</button>
             </div>
@@ -73,7 +72,7 @@
         <div class="layui-tab-content">
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="or_Tabpcb_ok_payment" lay-filter="or_Tabpcb_ok_payment"></table>
+                <table class="layui-table" id="epc_Tabpcb_ok_payment_order" lay-filter="epc_Tabpcb_ok_payment_order"></table>
                 <script type="text/html" id="pcb-file">
                     {{# var arr = d.gerberPath.slice(6,-1) }}
                     {{# d.gerberPath = arr }}
@@ -95,21 +94,26 @@
                     {{ } }}
                 </script>
                 <script type="text/html" id="Tabtb-seaorpcb">
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="supplier_search">查看</a>
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_ok_payment:submit") != -1){ }}
+                   
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborder:write") != -1){ }}
                         {{# if(d.isLock != 3) { }}
-                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pcb-submit">提交</a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pcb-submit">编写指示卡</a>
                         {{# } }}
                         {{# if(d.isLock == 3) {}}
-                            <a class="layui-btn layui-btn-normal layui-btn-xs" >已提交</a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" >查看指示卡</a>
                         {{# } }}
                     {{#  } }}
-                    <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="pcb-sendback">锁定</a>-->
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_audit:update") != -1 && d.isLock != 3){ }}
-                    <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">修改</a>
+
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborder:update") != -1 ){ }}
+                    <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">审核信息</a>
                     {{#  } }}
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_audit:delete") != -1 && d.isLock != 3){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborder:info") != -1 ){ }}
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="supplier_search">查看</a>
+                    {{#  } }}
+
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborder:delete") != -1 ){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">作废</a>
                     {{#  } }}
                 </script>
                 <script type="text/html" id="pcbor_status">
@@ -127,45 +131,8 @@
                     </a>
                     {{# } }}
                 </script>
-                <script type="text/html" id="stencil-status">
-                    {{# if(d.status === 1){ }}
-                    <a style="color: #1E9FFF">
-                        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
-                    </a>
-                    {{# } else if(d.status === 2){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>已审待支付
-                    </a>
-                    {{# } else if(d.status === 3){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>已支付
-                    </a>
-                    {{# } }}
-                </script>
             </div>
 
-
-            <!--钢网订单-->
-            <div class="layui-tab-item" id="stencil-orders">
-                <table class="layui-table" id="stencil_orderTab_ok_payment" lay-filter="stencil_orderTab_ok_payment"></table>
-                <!--钢网订单表格操作栏-->
-                <script type="text/html" id="Tabtb-seaorstencil">
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_ok_payment:submit") != -1){ }}
-                        {{# if(d.isLock != 3) { }}
-                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stencil-submit">提交</a>
-                        {{# } }}
-                        {{# if(d.isLock == 3) {}}
-                            <a class="layui-btn layui-btn-normal layui-btn-xs" >已提交</a>
-                        {{# } }}
-                    {{#  } }}
-                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>
-                    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:delete") != -1){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                    {{#  } }}
-                </script>
-            </div>
         </div>
     </div>
 </div>
@@ -212,7 +179,7 @@
 </style>
 
 <script>
-    layui.use('market_orderOkPayment', layui.factory('market_orderOkPayment')).use(['market_orderOkPayment', 'table', 'index','element','form'], function(){
+    layui.use('epc_indicatorCard', layui.factory('epc_indicatorCard')).use(['epc_indicatorCard', 'table', 'index','element','form'], function(){
         var form = layui.form;
         form.render();
     });

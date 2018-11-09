@@ -151,7 +151,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
 
                 admin.req({
                     type: 'post',
-                    url: setter.baseUrl+'/market/quote/audit/delete'
+                    url: setter.baseUrl+'market/quote/audit/delete'
                     ,data:{"ids":data.id}
                     ,done: function (res) {
                         layer.msg('删除成功')
@@ -175,7 +175,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                             console.log("提交的字段信息："+JSON.stringify(field));
                             admin.req({
                                 type: 'post'
-                                ,url: setter.baseUrl+'/market/quote/audit/update'
+                                ,url: setter.baseUrl+'market/quote/audit/update'
                                 ,data: field
                                 ,done: function (res) {
                                     layer.msg('订单信息修改成功');
@@ -196,7 +196,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 data.isLock = 3;
                 admin.req({
                     type: 'post'
-                    ,url: setter.baseUrl+'/market/quote/okPaymentList/submit'
+                    ,url: setter.baseUrl+'market/quote/okPaymentList/submit'
                     ,data: {"id":data.id,"isLock":data.isLock}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
@@ -222,7 +222,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     table.render({
         elem: '#stencil_orderTab_ok_payment'
         ,id: "stencil_orderTab_ok_payment"
-        ,url: setter.baseUrl+'/market/stencil/okPayment/list'
+        ,url: setter.baseUrl+'market/stencil/okPayment/list'
         ,page: true
         ,toolbar: true
         ,done: function () {
@@ -311,7 +311,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             layer.confirm('真的删除订单号为［'+data.productNo+'］吗', function(index){
                admin.popup({
                    type: 'post'
-                   ,url: setter.baseUrl+'/market/stencil/audit/delete'
+                   ,url: setter.baseUrl+'market/stencil/audit/delete'
                    ,data: {"ids":data.id}
                    ,done: function (res) {
                        layer.msg('删除成功')
@@ -328,7 +328,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 data.isLock = 3;
                 admin.req({
                     type: 'post'
-                    ,url: setter.baseUrl+'/market/stencil/okPayment/submit'
+                    ,url: setter.baseUrl+'market/stencil/okPayment/submit'
                     ,data: {"id":data.id,"isLock":data.isLock}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');

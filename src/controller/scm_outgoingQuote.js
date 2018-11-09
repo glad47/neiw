@@ -1,6 +1,6 @@
 /**
 
- @Name： 市场管理－－［订单评审］
+ @Name： 供应链管理－－［外发报价］
 
  */
 
@@ -22,19 +22,19 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         elem: '#gmtCreate'
     });
 
-
-//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单-网上待支付
+//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB内部订单-工程已审核
     table.render({
-        elem: '#or_Tabpcb_no_payment'
-        ,url: setter.baseUrl+'market/quote/noPaymentList'
+        elem: '#scm_Tabpcb_outgoing_quote'
+        ,url: setter.baseUrl+'scm/pcborder/outgoing/list'
         ,toolbar: true
         ,cellMinWidth: 80
-        ,id:"or_Tabpcb_no_payment"
+        ,id:"scm_Tabpcb_outgoing_quote"
         ,page: true
          ,parseData: function (res) {
             return{
                 "code": 0,
                 "data": res.page.list,
+                "count": res.page.totalCount
             }
         }
         ,where: {
@@ -42,7 +42,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
-            ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#pcbor_status',width: 150}
+            ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#pcbor_status',width: 110}
             ,{field: '', title:'File', toolbar: '#pcb-file', align:'center'}
             ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254}
             ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
@@ -118,7 +118,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'nofCore', title: 'NofCore', align:'center', width: 80,hide: true}
             ,{field:'nofPp', title: 'NofPp', align:'center', width: 80,hide: true}
             ,{field:'nofHoles', title: 'NofHoles', align:'center', width: 90,hide: true}
-            ,{title: '操作', width: 200, align:'center', fixed: 'right', toolbar: '#Tabtb-awaorpcb'}
+            ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#Tabtb-seaorpcb'}
         ]]
         ,done : function (res, curr, count) {
             //手机端
@@ -134,7 +134,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     });
 
     //监听工具条
-    table.on('tool(or_Tabpcb_no_payment)', function(obj){
+    table.on('tool(scm_Tabpcb_outgoing_quote)', function(obj){
         var data = obj.data;
         if(obj.event === 'detail'){
             admin.popup({
@@ -179,7 +179,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                 ,data: field
                                 ,done: function (res) {
                                     layer.msg('订单信息修改成功');
-                                    layui.table.reload('or_Tabpcb_no_payment');
+                                    layui.table.reload('scm_Tabpcb_outgoing_quote');
                                 }
                                 ,fail: function (res) {
                                     layer.msg("订单信息修改失败，请稍后再试！");
@@ -193,19 +193,20 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             })
         } else if (obj.event === 'pcb-submit') {
             layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
-                data.status = 2;
+                data.isLock = 3;
                 admin.req({
                     type: 'post'
-                    ,url: setter.baseUrl+'/market/quote/audit/update'
-                    ,data: {"id":data.id,"status":data.status}
+                    ,url: setter.baseUrl+'/market/quote/okPaymentList/submit'
+                    ,data: {"id":data.id,"isLock":data.isLock}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
+                        layui.table.reload('or_Tabpcb_no_payment');
                     }
                     ,fail: function () {
                         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
                     }
                 })
-                layui.table.reload('or_Tabpcb_no_payment');
+                layui.table.reload('scm_Tabpcb_outgoing_quote');
                 layer.close(index);
             })
         } else if (obj.event === 'pcb-sendback') {
@@ -217,11 +218,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
     });
 
-//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 钢网订单-网上待支付
+//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 钢网订单-网上已支付
     table.render({
-        elem: '#stencil_orderTab_no_payment'
-        ,id: "stencil_orderTab_no_payment"
-        ,url: setter.baseUrl+'market/stencil/noPayment/list'
+        elem: '#stencil_orderTab_ok_payment'
+        ,id: "stencil_orderTab_ok_payment"
+        ,url: setter.baseUrl+'market/stencil/okPayment/list'
         ,page: true
         ,toolbar: true
         ,done: function () {
@@ -262,11 +263,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'weight', title: 'Weight', align:'center', width: 85}
             ,{field: 'gerberPath', title: 'gerberPath', hide: true, width: 124}
             ,{field: 'note', title: 'Note', align:'center', width: 80, hide: true}
-            ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-orstencil', width: 260}
+            ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-seaorstencil', width: 260}
         ]]
     })
     // 监听stencil表格工具条
-    table.on('tool(stencil_orderTab_no_payment)',function (obj) {
+    table.on('tool(stencil_orderTab_ok_payment)',function (obj) {
         var data = obj.data;
         if (obj.event === 'detail'){
             admin.popup({
@@ -294,7 +295,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                 ,data: field
                                 ,done: function (res) {
                                     layer.msg('订单信息修改成功');
-                                    layui.table.reload('stencil_orderTab_no_payment');
+                                    layui.table.reload('stencil_orderTab_ok_payment');
                                 }
                                 ,fail: function (res) {
                                     layer.msg("订单信息修改失败，请稍后再试！");
@@ -324,11 +325,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             });
         } else if (obj.event === 'stencil-submit') {
             layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
-                data.status = 2;
+                data.isLock = 3;
                 admin.req({
                     type: 'post'
-                    ,url: setter.baseUrl+'market/stencil/audit/update'
-                    ,data: {"id":data.id,"status":data.status}
+                    ,url: setter.baseUrl+'market/stencil/okPayment/submit'
+                    ,data: {"id":data.id,"isLock":data.isLock}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
                         console.log('提交的信息为'+JSON.stringify(data));
@@ -337,13 +338,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
                     }
                 })
-                layui.table.reload('stencil_orderTab_no_payment');
+                layui.table.reload('stencil_orderTab_ok_payment');
                 layer.close(index);
             })
         } else if (obj.event === 'stencil-sendback') {
             layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
                 layer.msg('退回'+data.productNo);
-                layui.table.reload('stencil_orderTab_no_payment');
+                layui.table.reload('stencil_orderTab_ok_payment');
                 layer.close(index);
             })
         }
@@ -369,13 +370,12 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 });
             } else if (tabNum === 1){
                 layer.msg('StencilOrders');
-                table.reload('stencil_orderTab_no_payment',{
+                table.reload('stencil_orderTab_ok_payment',{
                     where: field
                 });
             }
         });
     })
-
 
     // 手机端，数据太多，这个页面单独写
     $("#phone-operation").on('click', function () {
@@ -401,5 +401,5 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         });
     }
 
-    exports('market_orderNoPayment', {})
+    exports('market_orderOkPayment', {})
 });
