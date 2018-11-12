@@ -145,24 +145,24 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
 
                 admin.req({
                     type: 'post',
-                    url: setter.baseUrl+'market/quote/audit/delete'
+                    url: setter.baseUrl+'epc/pcborder/delete'
                     ,data:{"ids":data.id}
                     ,done: function (res) {
                         layer.msg('删除成功')
                         obj.del();
                     }
-                    ,fail: function (res) {
+                    ,fail: function (res) { 
                         layer.msg('服务器异常，稍后再试！');
                     }
                 })
                 layer.close(index);
             });
-        } else if(obj.event === 'edit'){
+        } else if(obj.event === 'epc-write-indicator'){
             admin.popup({
-                title: '编辑PCB订单信息'
+                title: '编写指示卡'
                 ,area: ['45%', '561px']
                 ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
+                    view(this.id).render('epcManagement/Indicator_cardform', data).done(function () {
                         form.render(null, '')
                         form.on('submit(LAY-pcborder-update-submit)',function (data) {
                             var field = data.field;
@@ -185,13 +185,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     })
                 }
             })
-        } else if (obj.event === 'pcb-submit') {
-            layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
-                data.isLock = 3;
+        } else if (obj.event === 'edit') {
+            layer.confirm('确定审核通过该订单［'+data.productNo+'］?',function (index) {
+                data.status = 4;
                 admin.req({
                     type: 'post'
-                    ,url: setter.baseUrl+'/market/quote/okPaymentList/submit'
-                    ,data: {"id":data.id,"isLock":data.isLock}
+                    ,url: setter.baseUrl+'epc/pcborder/update'
+                    ,data: {"id":data.id,"status":data.status}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
                         layui.table.reload('or_Tabpcb_no_payment');
