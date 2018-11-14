@@ -42,7 +42,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
-            ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#pcbor_status',width: 110}
+            ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-okPayment-status',width: 110}
             ,{field: '', title:'File', toolbar: '#pcb-file', align:'center'}
             ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254}
             ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
@@ -118,7 +118,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'nofCore', title: 'NofCore', align:'center', width: 80,hide: true}
             ,{field:'nofPp', title: 'NofPp', align:'center', width: 80,hide: true}
             ,{field:'nofHoles', title: 'NofHoles', align:'center', width: 90,hide: true}
-            ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#Tabtb-seaorpcb'}
+            ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#Tabtb-pcb-market-okPayment-option'}
         ]]
         ,done : function (res, curr, count) {
             //手机端
@@ -241,7 +241,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
         ,cols: [[
              {field: 'id', title: 'ID', hide: true}
-            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#stencil-status'}
+            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-okPayment-status'}
             ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
             ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
@@ -263,7 +263,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'weight', title: 'Weight', align:'center', width: 85}
             ,{field: 'gerberPath', title: 'gerberPath', hide: true, width: 124}
             ,{field: 'note', title: 'Note', align:'center', width: 80, hide: true}
-            ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-seaorstencil', width: 260}
+            ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-stencil-market-okPayment-option', width: 260}
         ]]
     })
     // 监听stencil表格工具条
@@ -378,7 +378,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     })
 
     // 手机端，数据太多，这个页面单独写
-    $("#phone-operation").on('click', function () {
+    $("#okPayment-operation").on('click', function () {
         $(this).text($(this).text()=="隐藏操作"?"显示操作":"隐藏操作");
         $(".layui-table-fixed-r").toggle('slow');
     });

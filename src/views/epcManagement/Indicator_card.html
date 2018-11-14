@@ -66,7 +66,7 @@
         <ul class="layui-tab-title">
             <li class="layui-this" id="pcborders-li">PCB订单</li>
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 0px;">
-                <button class="layui-btn layui-btn-primary layui-btn-sm"  id="phone-operation">隐藏操作栏</button>
+                <button class="layui-btn layui-btn-primary layui-btn-sm"  id="indicatorCard-operation">隐藏操作栏</button>
             </div>
         </ul>
         <div class="layui-tab-content">
@@ -93,7 +93,7 @@
                     {{ d.panelWayY || ''}}
                     {{ } }}
                 </script>
-                <script type="text/html" id="Tabtb-seaorpcb">
+                <script type="text/html" id="Tabtb-pcb-epc-indicatorCard-option">
                    
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborder:write") != -1){ }}
                         {{# if(d.isExistIndicator == 1) { }}
@@ -116,7 +116,7 @@
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">作废</a>
                     {{#  } }}
                 </script>
-                <script type="text/html" id="pcbor_status">
+                <script type="text/html" id="Tabtb-pcb-epc-indicatorCard-status">
                     {{# if(d.status === 1){ }}
                     <a style="color: #1E9FFF">
                         <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
@@ -133,6 +133,11 @@
                     <a style="color: green">
                         <i class="layui-icon layui-icon-ok"></i>工程已审核
                     </a>
+                    {{# } }}
+                </script>
+                <script type="text/thml" id="quote_gerber_file">
+                    {{# if(d.isExistIndicator === 1){ }}
+                    <a style="color: green">上传报价gerber文件</a>
                     {{# } }}
                 </script>
             </div>

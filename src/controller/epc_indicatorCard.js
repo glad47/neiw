@@ -36,9 +36,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
-            ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#pcbor_status',width: 110}
+            ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
             ,{field: '', title:'File', toolbar: '#pcb-file', align:'center'}
             ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254}
+            ,{field:'quoteGerberName', title: 'Quote Gerber Name', align:'center', width: 254, templet:'#quote_gerber_file'}
             ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
             ,{field:'productNo', title: 'ProductNo', align:'center', width: 114}
             ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
@@ -112,7 +113,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'nofCore', title: 'NofCore', align:'center', width: 80,hide: true}
             ,{field:'nofPp', title: 'NofPp', align:'center', width: 80,hide: true}
             ,{field:'nofHoles', title: 'NofHoles', align:'center', width: 90,hide: true}
-            ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#Tabtb-seaorpcb'}
+            ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#Tabtb-pcb-epc-indicatorCard-option'}
         ]]
         ,done : function (res, curr, count) {
             //手机端
@@ -164,34 +165,33 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 ,success: function (layero, index) {
                     view(this.id).render('epcManagement/Indicator_cardform', data).done(function () {
                         form.render(null, '')
-                        form.on('submit(LAY-pcborder-update-submit)',function (data) {
-                            var field = data.field;
-                            console.log("提交的字段信息："+JSON.stringify(field));
-                            admin.req({
-                                type: 'post'
-                                ,url: setter.baseUrl+'/market/quote/audit/update'
-                                ,data: field
-                                ,done: function (res) {
-                                    layer.msg('订单信息修改成功');
-                                    layui.table.reload('epc_Tabpcb_ok_payment_order');
-                                }
-                                ,fail: function (res) {
-                                    layer.msg("订单信息修改失败，请稍后再试！");
-                                },
-                            });
-                            layer.close(index);
-                            return false;
-                        })
+                        // form.on('submit(LAY-pcborder-update-submit)',function (data) {
+                        //     var field = data.field;
+                        //     console.log("提交的字段信息："+JSON.stringify(field));
+                        //     admin.req({
+                        //         type: 'post'
+                        //         ,url: setter.baseUrl+'/market/quote/audit/update'
+                        //         ,data: field
+                        //         ,done: function (res) {
+                        //             layer.msg('订单信息修改成功');
+                        //             layui.table.reload('epc_Tabpcb_ok_payment_order');
+                        //         }
+                        //         ,fail: function (res) {
+                        //             layer.msg("订单信息修改失败，请稍后再试！");
+                        //         },
+                        //     });
+                        //     layer.close(index);
+                        //     return false;
+                        // })
                     })
                 }
             })
         } else if (obj.event === 'edit') {
             layer.confirm('确定审核通过该订单［'+data.productNo+'］?',function (index) {
-                data.status = 4;
                 admin.req({
                     type: 'post'
                     ,url: setter.baseUrl+'epc/pcborder/update'
-                    ,data: {"id":data.id,"status":data.status}
+                    ,data: {"id":data.id,"status":4}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
                         layui.table.reload('or_Tabpcb_no_payment');
@@ -212,5 +212,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
     });
 
-     exports('epc_indicatorCard', {})
+      // 手机端，数据太多，这个页面单独写
+    $("#indicatorCard-operation").on('click', function () {
+        $(this).text($(this).text()=="隐藏操作"?"显示操作":"隐藏操作");
+        $(".layui-table-fixed-r").toggle('slow');
+    });
+
+    exports('epc_indicatorCard', {})
 });
