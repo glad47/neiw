@@ -162,27 +162,32 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             admin.popup({
                 title: '编写指示卡'
                 ,area: ['45%', '561px']
+                ,btn:['提交','取消']
+                ,yes:function(index, layero){
+                    $("#LAY-pcborder-update-submit").click();
+                }
+                ,end:function(){}
                 ,success: function (layero, index) {
                     view(this.id).render('epcManagement/Indicator_cardform', data).done(function () {
                         form.render(null, '')
-                        // form.on('submit(LAY-pcborder-update-submit)',function (data) {
-                        //     var field = data.field;
-                        //     console.log("提交的字段信息："+JSON.stringify(field));
-                        //     admin.req({
-                        //         type: 'post'
-                        //         ,url: setter.baseUrl+'/market/quote/audit/update'
-                        //         ,data: field
-                        //         ,done: function (res) {
-                        //             layer.msg('订单信息修改成功');
-                        //             layui.table.reload('epc_Tabpcb_ok_payment_order');
-                        //         }
-                        //         ,fail: function (res) {
-                        //             layer.msg("订单信息修改失败，请稍后再试！");
-                        //         },
-                        //     });
-                        //     layer.close(index);
-                        //     return false;
-                        // })
+                        form.on('submit(LAY-pcborder-update-submit)',function (data) {
+                            var field = data.field;
+                            console.log("提交的字段信息："+JSON.stringify(field));
+                            // admin.req({
+                            //     type: 'post'
+                            //     ,url: setter.baseUrl+'/market/quote/audit/update'
+                            //     ,data: field
+                            //     ,done: function (res) {
+                            //         layer.msg('订单信息修改成功');
+                            //         layui.table.reload('epc_Tabpcb_ok_payment_order');
+                            //     }
+                            //     ,fail: function (res) {
+                            //         layer.msg("订单信息修改失败，请稍后再试！");
+                            //     },
+                            // });
+                            layer.close(index);
+                            return false;
+                        })
                     })
                 }
             })
