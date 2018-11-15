@@ -218,10 +218,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
     });
 
-//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 钢网订单-网上已支付
+//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 钢网订单-外发报价
     table.render({
-        elem: '#stencil_orderTab_ok_payment'
-        ,id: "stencil_orderTab_ok_payment"
+        elem: '#scm_Tabstencil_outgoing_quote'
+        ,id: "scm_Tabstencil_outgoing_quote"
         ,url: setter.baseUrl+'market/stencil/okPayment/list'
         ,page: true
         ,toolbar: true
@@ -267,7 +267,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ]]
     })
     // 监听stencil表格工具条
-    table.on('tool(stencil_orderTab_ok_payment)',function (obj) {
+    table.on('tool(scm_Tabstencil_outgoing_quote)',function (obj) {
         var data = obj.data;
         if (obj.event === 'detail'){
             admin.popup({
@@ -295,7 +295,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                 ,data: field
                                 ,done: function (res) {
                                     layer.msg('订单信息修改成功');
-                                    layui.table.reload('stencil_orderTab_ok_payment');
+                                    layui.table.reload('scm_Tabstencil_outgoing_quote');
                                 }
                                 ,fail: function (res) {
                                     layer.msg("订单信息修改失败，请稍后再试！");
@@ -338,13 +338,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
                     }
                 })
-                layui.table.reload('stencil_orderTab_ok_payment');
+                layui.table.reload('scm_Tabstencil_outgoing_quote');
                 layer.close(index);
             })
         } else if (obj.event === 'stencil-sendback') {
             layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
                 layer.msg('退回'+data.productNo);
-                layui.table.reload('stencil_orderTab_ok_payment');
+                layui.table.reload('scm_Tabstencil_outgoing_quote');
                 layer.close(index);
             })
         }
@@ -370,7 +370,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 });
             } else if (tabNum === 1){
                 layer.msg('StencilOrders');
-                table.reload('stencil_orderTab_ok_payment',{
+                table.reload('scm_Tabstencil_outgoing_quote',{
                     where: field
                 });
             }
