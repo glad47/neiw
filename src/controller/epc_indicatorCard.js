@@ -133,15 +133,37 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     table.on('tool(epc_Tabpcb_ok_payment_order)', function(obj){
         var data = obj.data;
         if(obj.event === 'detail'){
-            admin.popup({
-                title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
-                ,area: ['45%', '70%']
-                ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
+            if (data.isExistIndicator === 2) {
+                admin.req({
+                    type: 'GET',
+                    url: setter.baseUrl+'epc/pcborderprocess/infos/'+data.id,
+                    done: function(res){
+                        data.pop = res.pop;
+                        admin.popup({
+                            title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
+                            ,area: ['45%', '70%']
+                            ,success: function (layero, index) {
+                                view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
 
-                    })
-                }
-            })
+                                })
+                            }
+                        })
+                    },
+                    fail: function (res) { 
+                        layer.msg('服务器异常，稍后再试！');
+                    }
+                });
+            }else{
+                admin.popup({
+                    title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
+                    ,area: ['45%', '70%']
+                    ,success: function (layero, index) {
+                        view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
+
+                        })
+                    }
+                });
+            }
         } else if(obj.event === 'del'){
             layer.confirm('真的删除订单号为［'+data.productNo+'］吗', function(index){
 
