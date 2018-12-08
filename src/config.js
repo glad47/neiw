@@ -45,6 +45,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
     }
     ,baseUrl:'http://192.168.0.155:8080/renren-fast/'
     ,webSocketUrl: 'ws://192.168.0.108:2200/ws'
+    ,imUrl:'http://192.168.0.108:8899/lzimserver/'
     
     //独立页面路由，可随意添加（无需写参数）
     ,indPage: [

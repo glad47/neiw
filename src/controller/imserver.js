@@ -9,7 +9,7 @@ layui.define(function(exports) {
 
 		var websocketurl = setter.webSocketUrl;
 
-		var currentsession = layui.data('layuiAdmin').userId;
+		var currentsession = layui.data('layuiAdmin').userId+"";
 		console.log(currentsession);
 		var showmsg, lm;
 		var reconnectflag = false; //避免重复连接
@@ -21,33 +21,34 @@ layui.define(function(exports) {
 					window.WebSocket = window.MozWebSocket;
 				}
 				if (window.WebSocket) {
+					console.log('连接websocket:'+url);
 					socket = new WebSocket(url);
 					socket.binaryType = "arraybuffer";
 					callbak();
 				} else {
 					// layer.msg("你的浏览器不支持websocket！");
 					//当浏览器不支持websocket时 降级为http模式	  
-					var isClose = false;
-					window.onbeforeunload = function() {
-						if (!isClose) {
-							return "确定要离开当前聊天吗?";
-						} else {
-							return "";
-						}
-					}
-					window.onunload = function() {
-						if (!isClose) {
-							Imwebserver.closeconnect();
-						}
-					}
-					dwr.engine.setActiveReverseAjax(true);
-					dwr.engine.setNotifyServerOnPageUnload(true);
-					dwr.engine.setErrorHandler(function() {});
-					dwr.engine._errorHandler = function(message, ex) {
-						//alert("服务器出现错误");
-						//dwr.engine._debug("Error: " + ex.name + ", " + ex.message, true);
-					};
-					Imwebserver.serverconnect();
+					// var isClose = false;
+					// window.onbeforeunload = function() {
+					// 	if (!isClose) {
+					// 		return "确定要离开当前聊天吗?";
+					// 	} else {
+					// 		return "";
+					// 	}
+					// }
+					// window.onunload = function() {
+					// 	if (!isClose) {
+					// 		Imwebserver.closeconnect();
+					// 	}
+					// }
+					// dwr.engine.setActiveReverseAjax(true);
+					// dwr.engine.setNotifyServerOnPageUnload(true);
+					// dwr.engine.setErrorHandler(function() {});
+					// dwr.engine._errorHandler = function(message, ex) {
+					// 	//alert("服务器出现错误");
+					// 	//dwr.engine._debug("Error: " + ex.name + ", " + ex.message, true);
+					// };
+					// Imwebserver.serverconnect();
 
 				}
 			} catch (e) {
@@ -85,10 +86,12 @@ layui.define(function(exports) {
 		var showOfflineMsg = function(layim) {
 			$.ajax({
 				type: "post",
-				url: "getofflinemsg",
+				url: setter.imUrl+"getofflinemsg1",
+				data:{receiveruser:currentsession},
 				async: true,
 				success: function(data) {
 					var dataObj = eval("(" + data + ")");
+
 					if (dataObj != null && dataObj.length > 0) {
 						for (var i = 0; i < dataObj.length; i++) {
 							layim.getMessage({
@@ -107,6 +110,7 @@ layui.define(function(exports) {
 
 
 		showmsg = function(data) {
+			console.log(data);
 			var msg = eval("(" + data.user + ")");
 			var content = eval("(" + data.content + ")");
 			var cache = layui.layim.cache();
@@ -240,7 +244,7 @@ layui.define(function(exports) {
 				// });
 				// layim.msgbox(2); //模拟消息盒子有新消息，实际使用时，一般是动态获得 
 				//取得离线消息
-				//showOfflineMsg(layim)
+				showOfflineMsg(layim)
 				layim.setFriendStatus(currentsession, 'online');
 			});
 			//监听发送消息
@@ -266,14 +270,14 @@ layui.define(function(exports) {
 					}
 					return;
 				} else {
-					//if (socket.readyState == WebSocket.OPEN) {
+					if (socket.readyState == WebSocket.OPEN) {
 					//判断是发送好友消息还是群消息
 					if (To.type == "friend") {
 						sendMsg(message, receiver, null)
 					} else {
 						sendMsg(message, null, receiver)
 					}
-					//}
+					}
 				}
 
 			});
@@ -293,6 +297,8 @@ layui.define(function(exports) {
 						var username = "",
 							avatar = "",
 							friend = false;
+						console.log(msg);
+						console.log(msgCon);
 						layui.each(cache.friend, function(index1, item1) {
 							layui.each(item1.list, function(index, item) {
 								if (item.id == msg.getSender()) {
