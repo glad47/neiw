@@ -96,6 +96,16 @@
                     <td>Remark:</td>
                     <td colspan="3">{{ d.params.remark || '' }}</td>
                 </tr>
+                {{# 
+                    if( d.params.isExistIndicator != null && d.params.isExistIndicator === 2) { 
+                }}
+                {{# layui.each(d.params.pop, function(index, item){  }}
+                 <tr>
+                    <td colspan="1">{{ item.processEntity.processEname}}:</td>
+                    <td colspan="3">{{ item.processInfo}}</td>
+                </tr>
+                {{#  }); }}
+                {{# } }}
                 </tbody>
             </table>
         </script>

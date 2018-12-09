@@ -15,6 +15,14 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         ,element = layui.element
         var operationType;  //操作类型(新增&修改)
 
+    function bouncer(arr) {
+      // Don't show a false ID to this bouncer.
+      return arr.filter(function(val){
+        return !(!val || val === "");
+      });
+    }
+
+
     form.render(null, 'user_info_formlist')
     //监听搜索
     form.on('submit(LAY-user-info-search)', function (data) {
@@ -102,6 +110,8 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                                     var field = data.field;
                                     field.userId = userId;
                                     field.status = status;
+                                    // var s = field.roleIdList;
+                                    // console.log(bouncer(s));
                                     console.log("用户修改表单提交的信息为："+JSON.stringify(field));
                                     admin.req({
                                         type: 'post'

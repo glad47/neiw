@@ -68,7 +68,7 @@
             <li class="layui-this" id="pcborders-li">PCB订单</li>
             <li id="stencilorders-li">钢网订单</li>
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 0px;">
-                <button class="layui-btn layui-btn-primary layui-btn-sm"  id="phone-operation">隐藏操作栏</button>
+                <button class="layui-btn layui-btn-primary layui-btn-sm"  id="noPayment-operation">隐藏操作栏</button>
             </div>
         </ul>
         <div class="layui-tab-content">
@@ -95,7 +95,7 @@
                     {{ d.panelWayY || ''}}
                     {{ } }}
                 </script>
-                <script type="text/html" id="Tabtb-awaorpcb">
+                <script type="text/html" id="Tabtb-pcb-market-noPayment-option">
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="supplier_search">查看</a>
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_audit:submit") != -1){ }}
                     <!--<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pcb-submit">提交</a>-->
@@ -149,7 +149,7 @@
             <div class="layui-tab-item" id="stencil-orders">
                 <table class="layui-table" id="stencil_orderTab_no_payment" lay-filter="stencil_orderTab_no_payment"></table>
                 <!--钢网订单表格操作栏-->
-                <script type="text/html" id="Tabtb-awaorstencil">
+                <script type="text/html" id="Tabtb-stencil-market-noPayment-option">
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:submit") != -1){ }}
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stencil-submit">提交</a>

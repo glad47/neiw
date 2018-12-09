@@ -1,12 +1,44 @@
 
-  <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list"style="padding: 20px 30px 0 0;">
-    <div class="layui-form-item">
+  <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-listss"style="padding: 20px 30px 0 0;">
+    <div class="layui-card" lay-filter="addInfo">
+        <div class="layui-card-body">
+          <div class="layui-form-item layui-form" lay-filter="app-content-comment">
+              <div class="layui-inline">
+                  <label class="layui-form-label">模板名称</label>
+                  <div class="layui-input-inline">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}epc/processtemplate/list" lay-done="layui.data.done(d);">
+                      <select name="ids">
+                        <option></option>
+                        {{# layui.each(d.page.list, function(index, item){  }}
+                         <option value="{{ item.processIds }}" >{{ item.processTemplateName }}</option>
+                        {{#  }); }}
+                      </select>
+                    </script>
+                  </div>
+                 <!--  <div class="layui-input-inline">
+                      <input type="text" name="deptName" autocomplete="off" class="layui-input">
+                  </div> -->
+              </div>
+              <div class="layui-inline">
+                  <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-indicator-contlist-search">
+                      <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                  </button>
+              </div>
+          </div>
+            
+          <table class="layui-hide" id="indicator_listTab" lay-filter="indicator_listTab"></table>
+        </div>
+    </div>
+<!--     <div class="layui-form-item">
       <label class="layui-form-label">模板名称</label>
       <div class="layui-input-inline">
-        <script type="text/html" template lay-url="{{layui.setter.baseUrl}}epc/process/list" lay-done="layui.data.done(d);" lay-type="post">
-          
-          <input type="text" name="processTemplateName" value="{{ d.params.processTemplateName || '' }}" lay-verify="required" placeholder="请输入中文工序名称" autocomplete="off" class="layui-input">
-          
+        <script type="text/html" template lay-url="{{layui.setter.baseUrl}}epc/processtemplate/list" lay-done="layui.data.done(d);">
+          <select name="businessInfo" lay-verify="required">
+            {{# layui.each(d.page.list, function(index, item){  }}
+             <option></option>
+             <option value="{{ item.id }}" >{{ item.processTemplateName }}</option>
+            {{#  }); }}
+          </select>
         </script>
       </div>
     </div>
@@ -21,18 +53,37 @@
           </div>
         {{# }); }}
         </script>
-    </div>
+    </div> -->
+    <!--  <div class="layui-form-item">
+      <label class="layui-form-label">选择工序</label>
+      <input type="text" name="test" id="testTableSelect">
+    </div> -->
+    <!-- <table class="layui-hide" id="indicator_listTab" lay-filter="indicator_listTab"></table> -->
     <script type="text/html" template>
       <input type="hidden" name="id" value="{{ d.params.id || '' }}">
     </script>
     <div class="layui-form-item">
       <label class="layui-form-label"></label>
       <div class="layui-input-inline">
-        <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn" style="display: none;" id="layuiadmin-app-form-submit">
+        <input type="button" lay-submit lay-filter="LAY-pcborder-update-submit" value="确认" class="layui-btn" style="display: none;" id="LAY-pcborder-update-submit">
       </div>
     </div>
   </div>
 
   <script>
+  layui.data.done = function(d){
+    layui.use('epc_indicatorCardForm', layui.factory('epc_indicatorCardForm')).use(['epc_indicatorCardForm', 'table', 'index','element','form'],function(){
+        var $ = layui.jquery
+        ,table = layui.table
+        ,admin = layui.admin
+        ,setter = layui.setter
+        ,form = layui.form;
 
+      form.render();
+      
+    });
+     layui.use('mobileterminal',layui.factory('mobileterminal')).use(['mobileterminal'],function () {
+
+    });
+  }
   </script>

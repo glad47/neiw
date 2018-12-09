@@ -67,7 +67,7 @@
             <li class="layui-this" id="pcborders-li">PCB订单</li>
             <li id="stencilorders-li">钢网订单</li>
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 0px;">
-                <button class="layui-btn layui-btn-primary layui-btn-sm"  id="phone-operation">隐藏操作栏</button>
+                <button class="layui-btn layui-btn-primary layui-btn-sm"  id="outgoingQuote-operation">隐藏操作栏</button>
             </div>
         </ul>
         <div class="layui-tab-content">
@@ -94,7 +94,7 @@
                     {{ d.panelWayY || ''}}
                     {{ } }}
                 </script>
-                <script type="text/html" id="Tabtb-seaorpcb">
+                <script type="text/html" id="Tabtb-pcb-scm-outgoingQuote-option">
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="supplier_search">查看</a>
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_ok_payment:submit") != -1){ }}
                         {{# if(d.isLock != 3) { }}
@@ -112,7 +112,7 @@
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                     {{#  } }}
                 </script>
-                <script type="text/html" id="pcbor_status">
+                <script type="text/html" id="Tabtb-pcb-scm-outgoingQuote-status">
                     {{# if(d.status === 1){ }}
                     <a style="color: #1E9FFF">
                         <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
@@ -125,9 +125,13 @@
                     <a style="color: green">
                         <i class="layui-icon layui-icon-ok"></i>已支付
                     </a>
+                    {{# } else if(d.status === 4){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>工程已审核
+                    </a>
                     {{# } }}
                 </script>
-                <script type="text/html" id="stencil-status">
+                <script type="text/html" id="Tabtb-stencil-scm-outgoingQuote-status">
                     {{# if(d.status === 1){ }}
                     <a style="color: #1E9FFF">
                         <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
@@ -150,10 +154,10 @@
 
 
             <!--钢网订单-->
-            <div class="layui-tab-item" id="stencil-orders">
-                <table class="layui-table" id="stencil_orderTab_ok_payment" lay-filter="stencil_orderTab_ok_payment"></table>
+            <div class="layui-tab-item" >
+                <table class="layui-table" id="scm_Tabstencil_outgoing_quote" lay-filter="scm_Tabstencil_outgoing_quote"></table>
                 <!--钢网订单表格操作栏-->
-                <script type="text/html" id="Tabtb-seaorstencil">
+                <script type="text/html" id="Tabtb-stencil-scm-outgoingQuote-option">
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_ok_payment:submit") != -1){ }}
                         {{# if(d.isLock != 3) { }}
