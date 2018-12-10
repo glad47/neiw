@@ -297,8 +297,8 @@ layui.define(function(exports) {
 						var username = "",
 							avatar = "",
 							friend = false;
-						console.log(msg);
-						console.log(msgCon);
+
+						console.log(cache);
 						layui.each(cache.friend, function(index1, item1) {
 							layui.each(item1.list, function(index, item) {
 								if (item.id == msg.getSender()) {
