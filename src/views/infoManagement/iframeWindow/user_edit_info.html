@@ -20,7 +20,7 @@
             <div class="addcus-cusNum layui-col-md6 layui-col-sm6">
                 <label class="layui-form-label">部门：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/dept/list" lay-done="layui.data.done(d);">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dept/list" lay-done="layui.data.done(d);">
                         <!--<select name="deptId" id="user_edit_dep" name="bm">-->
                         <select name="deptId" id="user_edit_dep" name="bm">
                             <!--编辑部门自动回填-->
@@ -110,7 +110,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">角色：</label>
             <div class="layui-input-block">
-                <script type="text/html" template lay-url="http://192.168.0.155:8080/renren-fast/sys/role/list" lay-done="layui.data.done(d);">
+                <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/role/list" lay-done="layui.data.done(d);">
                     {{#
                     var plist = d.params.roleIdList;
                     layui.each(d.data, function(index, item){

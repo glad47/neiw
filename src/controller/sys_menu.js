@@ -80,7 +80,7 @@ layui.define(['table', 'form','element'], function(exports){
             layer.confirm('确定删除此菜单？', function(index){
                 admin.req({
                     type:'post',
-                    url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpdelete/'+menuId
+                    url: setter.baseUrl+'sys/menu/erpdelete/'+menuId
                     // ,data: obj.menuId
                     ,done : function (res) {
                         layer.msg('删除成功');
@@ -118,7 +118,7 @@ layui.define(['table', 'form','element'], function(exports){
                                     console.log(field);
                                     admin.req({
                                         type:'post',
-                                        url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpupdate'
+                                        url: setter.baseUrl+'sys/menu/erpupdate'
                                         ,data: field
                                         ,done: function(res){
                                             console.log(res);
@@ -142,7 +142,7 @@ layui.define(['table', 'form','element'], function(exports){
                                     console.log(field);
                                     admin.req({
                                         type:'post',
-                                        url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpupdate'
+                                        url: setter.baseUrl+'sys/menu/erpupdate'
                                         ,data: field
                                         ,done: function(res){
                                             console.log(res);
@@ -167,7 +167,7 @@ layui.define(['table', 'form','element'], function(exports){
                                     console.log(field);
                                     admin.req({
                                         type:'post',
-                                        url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpupdate'
+                                        url: setter.baseUrl+'sys/menu/erpupdate'
                                         ,data: field
                                         ,done: function(res){
                                             layer.msg('按钮修改成功');
@@ -229,7 +229,7 @@ layui.define(['table', 'form','element'], function(exports){
                                     console.log(field);
                                     admin.req({
                                         type:'post',
-                                        url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpsave' //实际使用请改成服务端真实接口
+                                        url: setter.baseUrl+'sys/menu/erpsave' //实际使用请改成服务端真实接口
                                         ,data: field
                                         ,done: function(res){
                                             console.log(res);
@@ -261,7 +261,7 @@ layui.define(['table', 'form','element'], function(exports){
                                     console.log("field.type==>"+field.type)
                                     admin.req({
                                         type:'post',
-                                        url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpsave' //实际使用请改成服务端真实接口
+                                        url: setter.baseUrl+'sys/menu/erpsave' //实际使用请改成服务端真实接口
                                         ,data: field
                                         ,done: function(res){
                                             console.log(res);
@@ -294,7 +294,7 @@ layui.define(['table', 'form','element'], function(exports){
                                         field.type = "2";
                                         admin.req({
                                             type:'post',
-                                            url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpsave' //实际使用请改成服务端真实接口
+                                            url: setter.baseUrl+'sys/menu/erpsave' //实际使用请改成服务端真实接口
                                             ,data: field
                                             ,done: function(res){
                                                 console.log(res);

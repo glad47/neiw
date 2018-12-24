@@ -15,7 +15,7 @@ layui.define(['table', 'form'], function(exports){
         table.render({
            elem: '#sys_menu'
             ,height: 521
-            ,url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erplist'
+            ,url: setter.baseUrl+'sys/menu/erplist'
             ,id: 'sys_menu'
             ,page: true
             ,limit: 10
@@ -129,7 +129,7 @@ layui.define(['table', 'form'], function(exports){
                             //$.ajax ({})
                             admin.req({
                                 type:'post',
-                                url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpsave' //实际使用请改成服务端真实接口
+                                url: setter.baseUrl+'sys/menu/erpsave' //实际使用请改成服务端真实接口
                                 // ,dataType: 'json'
                                 // ,contentType: 'application/json'
                                 ,data: field
