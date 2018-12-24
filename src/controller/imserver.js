@@ -4,6 +4,7 @@ layui.define(function(exports) {
 		var layer = layui.layer,
 			$ = layui.jquery,
 			setter = layui.setter;
+			
 			// message = layui.message,
 			// messagebody = layui.messagebody;
 

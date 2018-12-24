@@ -43,10 +43,17 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
       ,msgName: 'msg' //状态信息的字段名称
       ,dataName: 'data' //数据详情的字段名称
     }
+<<<<<<< HEAD
     ,baseUrl:'http://www.pcbonline.com:8080/renren-fast/'
     ,baseUrl1:"http://localhost:8871/"
     ,webSocketUrl: 'ws://localhost:2200/ws'
     ,imUrl:'http://localhost:8899/lzimserver/'
+=======
+    ,baseUrl:'http://192.168.0.155:8080/renren-fast/'
+    ,baseUrl1:"http://192.168.0.155:8871/"
+    ,webSocketUrl: 'ws://192.168.0.155:2200/ws'
+    ,imUrl:'http://192.168.0.155:8899/lzimserver/'
+>>>>>>> ebd61832b4e373a7f8f982aa4eb411f59a002d76
 
     //独立页面路由，可随意添加（无需写参数）
     ,indPage: [
