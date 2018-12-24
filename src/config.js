@@ -26,7 +26,8 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
 
     ,permissionsKeys: 'permissions' //用户权限key
     ,usernameKeys:'username'  //用户名
-    
+    ,userIdKeys:'userId'
+
     //自定义请求字段
     ,request: {
           tokenName: 'access_token' //自动携带 token 的字段名。可设置 false 不携带。
@@ -43,8 +44,9 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
       ,dataName: 'data' //数据详情的字段名称
     }
     ,baseUrl:'http://192.168.0.155:8080/renren-fast/'
-      ,baseUrl1:'http://192.168.0.155:8871/'
-    
+    ,webSocketUrl: 'ws://192.168.0.108:2200/ws'
+    ,imUrl:'http://192.168.0.108:8899/lzimserver/'
+
     //独立页面路由，可随意添加（无需写参数）
     ,indPage: [
       '/user/login' //登入页
@@ -61,7 +63,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
     //扩展的第三方模块
     ,extend: [
       'echarts', //echarts 核心包
-      'echartsTheme' //echarts 主题
+      'echartsTheme', //echarts 主题
     ]
     
     //主题配置
