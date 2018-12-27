@@ -27,7 +27,7 @@ layui.define(function(exports) {
 					socket.binaryType = "arraybuffer";
 					callbak();
 				} else {
-					// layer.msg("你的浏览器不支持websocket！");
+					layer.msg("你的浏览器不支持websocket！");
 					//当浏览器不支持websocket时 降级为http模式	  
 					// var isClose = false;
 					// window.onbeforeunload = function() {
@@ -50,7 +50,6 @@ layui.define(function(exports) {
 					// 	//dwr.engine._debug("Error: " + ex.name + ", " + ex.message, true);
 					// };
 					// Imwebserver.serverconnect();
-
 				}
 			} catch (e) {
 				reconnect(url, callbak);
@@ -183,12 +182,12 @@ layui.define(function(exports) {
 			layim.config({
 
 				init: {
-					url: setter.baseUrl + 'getusers' //接口地址（返回的数据格式见layim文档）
-						,
+					url: setter.imUrl + 'getAllFriend' //接口地址（返回的数据格式见layim文档）
+					,
 					type: 'get' //默认get，一般可不填
 						,
 					data: {
-						access_token: layui.data('layuiAdmin').access_token
+						bid: layui.data('layuiAdmin').userId
 					} //额外参数 
 
 				}, //获取主面板列表信息
@@ -229,23 +228,8 @@ layui.define(function(exports) {
 
 			layim.on('ready', function(res) {
 				lm = layui.layim;
-				//添加客服
-				// layim.addList({
-				// 	type: 'friend' //列表类型，只支持friend和group两种
-				// 		,
-				// 	avatar: "layui/images/0.jpg" //好友头像
-				// 		,
-				// 	username: '琪琪IM智能客服' //好友昵称
-				// 		,
-				// 	groupid: 1 //所在的分组id
-				// 		,
-				// 	id: "0" //好友id
-				// 		,
-				// 	sign: "有什么问题尽管问我把" //好友签名
-				// });
-				// layim.msgbox(2); //模拟消息盒子有新消息，实际使用时，一般是动态获得 
 				//取得离线消息
-				showOfflineMsg(layim)
+				//showOfflineMsg(layim)
 				layim.setFriendStatus(currentsession, 'online');
 			});
 			//监听发送消息
@@ -296,7 +280,7 @@ layui.define(function(exports) {
 						var cache = layui.layim.cache();
 						var local = layui.data('layim')[cache.mine.id];
 						var username = "",
-							avatar = "",
+							avatar = "/images/0.jpg",
 							friend = false;
 
 						console.log(cache);
