@@ -86,18 +86,18 @@ layui.define(function(exports) {
 		var showOfflineMsg = function(layim) {
 			$.ajax({
 				type: "post",
-				url: setter.imUrl+"getofflinemsg1",
-				data:{receiveruser:currentsession},
+				url: setter.imUrl+"getOfflineMsg",
+				data:{receiveUserId:currentsession},
 				async: true,
 				success: function(data) {
-					var dataObj = eval("(" + data + ")");
-
+					// var dataObj = eval("(" + data + ")");
+					var dataObj = data.data;
 					if (dataObj != null && dataObj.length > 0) {
 						for (var i = 0; i < dataObj.length; i++) {
 							layim.getMessage({
 								username: dataObj[i].sendusername,
 								avatar: dataObj[i].avatar + "?" + new Date().getTime(),
-								id: dataObj[i].senduser,
+								id: dataObj[i].sendUser,
 								type: "friend",
 								content: dataObj[i].content,
 								timestamp: dataObj[i].createdate
@@ -229,7 +229,7 @@ layui.define(function(exports) {
 			layim.on('ready', function(res) {
 				lm = layui.layim;
 				//取得离线消息
-				//showOfflineMsg(layim)
+				showOfflineMsg(layim);
 				layim.setFriendStatus(currentsession, 'online');
 			});
 			//监听发送消息
