@@ -1,4 +1,4 @@
-<title>订单评审</title>
+<title>网上订单审核</title>
 
 <div class="layui-fluid">
     <input type="text" autocomplete="off" class="layui-input" placeholder="查询订单评审信息" style="display: none">
@@ -66,6 +66,7 @@
         <ul class="layui-tab-title">
             <li class="layui-this" id="pcborders-li">PCB订单</li>
             <li id="stencilorders-li">钢网订单</li>
+            <li id="smtorders-li">SMT订单</li>
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 0px;">
                 <button class="layui-btn layui-btn-primary layui-btn-sm"  id="orderReview-operation">隐藏操作栏</button>
             </div>
@@ -147,13 +148,15 @@
                 </script>
             </div>
 
-
             <!--钢网订单-->
             <div class="layui-tab-item">
                 <table class="layui-table" id="stencil_orderTab" lay-filter="stencil_orderTab"></table>
                 <!--钢网订单表格操作栏-->
                 <script type="text/html" id="Tabtb-stencil-market-orderReview-option">
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_audit:submit") != -1){ }}
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pcb-submit">提交</a>
+                    {{#  } }}
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:submit") != -1){ }}
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stencil-submit">提交</a>
                     {{#  } }}
@@ -172,6 +175,32 @@
                     {{#  } }}
                 </script>
             </div>
+
+            <!--SMT－订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table" id="smt_orderTab" lay-filter="smt_orderTab"></table>
+                <!--SMT订单表格操作栏-->
+                <script type="text/html" id="Tabtb-smt-market-orderReview-option">
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:update") != -1){ }}
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="smt-submit">提交</a>
+                    {{#  } }}
+                    {{# if(d.isLock == 1 || d.isLock == null || d.isLock == ''){ }}
+                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="smt-lock">
+                        <i class="fa fa-unlock" aria-hidden="true"></i> <!-- 锁定 -->
+                    </a>
+                    {{#}else if(d.isLock ==2){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="smt-beenLocked">
+                        <i class="fa fa-lock" aria-hidden="true"></i> <!-- 已锁定 -->
+                    </a>
+                    {{# } }}
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:delete") != -1){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                    {{#  } }}
+                </script>
+            </div>
+
         </div>
     </div>
 </div>

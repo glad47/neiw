@@ -28,6 +28,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
         ,cols: [[
              {field:'id', title: 'id', sort: true}
             ,{field:'userName', title: '用户名'}
+            ,{field:'userSystemId', title: '用户系统id', sort: true}
             ,{field:'email', title: '邮箱', sort: true}
             ,{field:'skypeId', title: 'Skype', sort: true}
             ,{field:'mobilePhone', title: '电话', sort: true}
@@ -41,7 +42,6 @@ layui.define(['admin', 'table','element','form'], function(exports){
             ,{field:'applications', title: '应用', sort: true}
             ,{field:'gmtCreate', title: '注册时间', sort: true}
             ,{field:'gmtModified', title: '更新时间', sort: true}
-            ,{field:'userSystemId', title: '用户系统id', sort: true}
             ,{width:150, align:'center',align:'center',fixed: 'right',toolbar:'#role-table-operate-barDemo',title:'操作'}
         ]]
         ,page: true

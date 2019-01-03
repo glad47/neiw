@@ -42,7 +42,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254}
             ,{field:'quoteGerberName', title: 'Quote Gerber Name', align:'center', width: 254, templet:'#quote_gerber_file'}
             ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
-            ,{field:'productNo', title: 'ProductNo', align:'center', width: 114}
+            ,{field:'productNo', title: 'Product No', align:'center', width: 114}
             ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
             ,{field:'layerNum', title: 'Layer', align:'center', width: 114}
             ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}

@@ -401,6 +401,153 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         });
     });
 
+    //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ SMT订单
+    table.render({
+        elem: '#smt_orderTab'
+        ,id: "smt_orderTab"
+        ,url: setter.baseUrl+'market/assembly/listByStatus'
+        ,page: true
+        ,toolbar: true
+        ,done: function () {
+            $(window).resize();
+            $('.layui-table-fixed-r').removeClass('layui-hide');
+        }
+        ,parseData: function (res) {
+            return{
+                "code": 0,
+                "data": res.page.list,
+                "count": res.page.totalCount
+            }
+        }
+        ,where: {
+            access_token: layui.data('layuiAdmin').access_token,
+            status: 1,
+        }
+        ,cols: [[
+            {field: 'id', title: 'ID', hide: true},
+             {field: 'quoteId', title: 'ID', hide: true}
+            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-orderReview-status'}
+            ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
+            ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
+            ,{field: 'smtPartNum', title: 'SMT PartNum', align:'center', width: 124}
+            ,{field: 'throughHolePartNum', title: 'Through Hole PartNum', align:'center', width: 224}
+            // ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
+            ,{field: 'assemblySide', title: 'Assembly Side', align:'center', width: 165}
+            ,{field: 'productNo', title: 'Product No', align:'center', width: 134}
+            ,{field: 'invoiceNo', title: 'Invoice No', align:'center', width: 134}
+            ,{field: 'totalAssemblyFee', title: 'TotalAssemblyFee($)', align:'center', width: 144}
+            ,{field: 'assemblyType', title: 'Assembly Type', align:'center', width: 124}
+            ,{field: 'uniquePartNum', title: 'Unique PartNum', align:'center', width: 124}
+            ,{field: 'quantity', title: 'Quantity', align:'center', width: 114}
+            ,{field: 'orderId', title: 'Order ID', align:'center', width: 114, hide: true}
+            ,{field: 'orderNo', title: 'Order No', align:'center', width: 114, hide: true}
+            ,{field: 'isLock', title: 'Is Lock', align:'center', width: 114, hide: true}
+            ,{field: 'userId', title: 'User ID', align:'center', width: 100, hide: true}
+            ,{field: 'gmtModified', title: 'gmtModified',width: 124}
+            ,{field: 'gerberPath', title: 'gerberPath', hide: true, width: 124}
+            ,{field: 'ordertime', title: 'Order Time', width: 124}
+            ,{field: 'remark', title: 'Remark', align:'center', width: 80, hide: true}
+            ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-smt-market-orderReview-option', width: 260}
+        ]]
+    });
+
+    //监听工具条
+    table.on('tool(smt_orderTab)',function (obj) {
+        var data = obj.data;
+        if (obj.event === 'detail'){
+            admin.popup({
+                title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
+                ,area: ['45%', '70%']
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/order_smt_detail', data).done(function () {
+
+                    })
+                }
+            })
+        } else if (obj.event === 'del'){
+            layer.confirm('真的删除(SMT)订单号为［'+data.id+'］吗', function(index){
+
+                admin.req({
+                    type: 'post',
+                    url: setter.baseUrl+'market/assembly/delete'
+                    ,data:{"ids":data.id}
+                    ,done: function (res) {
+                        layer.msg('删除成功')
+                        obj.del();
+                    }
+                    ,fail: function (res) {
+                        layer.msg('服务器异常，稍后再试！');
+                    }
+                })
+                layer.close(index);
+            });
+        } else if (obj.event === 'edit'){
+            admin.popup({
+                title: '编辑SMT订单信息'
+                ,area: ['45%', '561px']
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/orderSMT_update', data).done(function () {
+                        form.render(null, '')
+                        form.on('submit(LAY-pcborder-update-submit)',function (data) {
+                            var field = data.field;
+                            console.log("提交的字段信息："+JSON.stringify(field));
+                            admin.req({
+                                type: 'post'
+                                ,url: setter.baseUrl+'market/assembly/update'
+                                ,data: field
+                                ,done: function (res) {
+                                    layer.msg('SMT订单信息修改成功');
+                                    layui.table.reload('smt_orderTab');
+                                }
+                                ,fail: function (res) {
+                                    layer.msg("订单信息修改失败，请稍后再试！");
+                                },
+                            });
+                            layer.close(index);
+                            return false;
+                        })
+                    })
+                }
+            })
+        } else if (obj.event === 'smt-submit') {
+            layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
+                data.status = 2;
+                admin.req({
+                    type: 'post'
+                    ,url: setter.baseUrl+'market/assembly/okPaymentList/submit'
+                    ,data: {"id":data.id,"status":data.status}
+                    ,done: function () {
+                        layer.msg('订单［'+data.productNo+'］提交成功！');
+                        layui.table.reload('smt_orderTab');
+                    }
+                    ,fail: function () {
+                        layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
+                    }
+                })
+                layui.table.reload('smt_orderTab');
+                layer.close(index);
+            })
+        } else if (obj.event === 'smt-lock') {
+            layer.confirm('确定锁定订单［'+data.productNo+'］?',function (index) {
+                admin.req({
+                    type: 'post'
+                    ,url: setter.baseUrl+'market/assembly/update'
+                    ,data: {"id":data.id,"isLock": 2}
+                    ,done: function () {
+                        layer.msg('订单［'+data.productNo+'］已锁定！');
+                    }
+                    ,fail: function () {
+                        layer.msg('订单［'+data.productNo+'］锁定失败，稍后再试！');
+                    }
+                })
+                layui.table.reload('smt_orderTab');
+                layer.close(index);
+            })
+        } else if (obj.event === 'smt-beenLocked') {
+            layer.msg('订单［'+data.productNo+'］已锁定!!!');
+        }
+    })
+
      // 手机端，数据太多，这个页面单独写
     $("#orderReview-operation").on('click', function () {
         $(this).text($(this).text()=="隐藏操作"?"显示操作":"隐藏操作");

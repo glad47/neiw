@@ -1,8 +1,8 @@
-<title>订单评审</title>
+<title>订单查看</title>
 
 <div class="layui-fluid">
     <input type="text" autocomplete="off" class="layui-input" placeholder="查询订单评审信息" style="display: none">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto" id="orderReview_form">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto">
         <div class="layui-form-item">
             <div class="layui-inline" id="orderReview_searll" style="display: none;">
                 <label class="layui-form-label">查询：</label>
@@ -66,6 +66,7 @@
         <ul class="layui-tab-title">
             <li class="layui-this" id="pcborders-li">PCB订单</li>
             <li id="stencilorders-li">钢网订单</li>
+            <li id="smtlorders-li">SMT订单</li>
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 0px;">
                 <button class="layui-btn layui-btn-primary layui-btn-sm"  id="okPayment-operation">隐藏操作栏</button>
             </div>
@@ -144,7 +145,6 @@
                 </script>
             </div>
 
-
             <!--钢网订单-->
             <div class="layui-tab-item" id="stencil-orders">
                 <table class="layui-table" id="stencil_orderTab_ok_payment" lay-filter="stencil_orderTab_ok_payment"></table>
@@ -160,6 +160,24 @@
                         {{# } }}
                     {{#  } }}
                     <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:delete") != -1){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                    {{#  } }}
+                </script>
+            </div>
+
+            <!--SMT订单-->
+            <!--SMT订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table" id="smt_orderTab_ok_payment" lay-filter="smt_orderTab_ok_payment"></table>
+                <!--SMT订单表格操作栏-->
+                <script type="text/html" id="Tabtb-smt-market-noPayment-option">
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:submit") != -1){ }}
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="smt-submit">提交</a>
+                    {{#  } }}
+                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="smt-sendback">锁定</a>
                     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:delete") != -1){ }}
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
