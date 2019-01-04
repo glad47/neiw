@@ -1,6 +1,11 @@
 <title>SMT订单编辑</title>
 <div class="layui-fluid smt-edit-info">
     <form class="layui-form" lay-filter="user_editInfo_form" id="user_editInfo_form">
+        <div class="layui-form-item" style="display: none;">
+            <script type="text/html" template>
+                <input type="text" name="id" value="{{ d.params.id || '' }}" autocomplete="off" class="layui-input">
+            </script>
+        </div>
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label" name="smtPartNum">SMT PartNum ：</label>
@@ -123,7 +128,7 @@
 
         <div class="layui-form-item layui-col-md-offset3">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="LAY-pcborder-update-submit">立即提交</button>
+                <button class="layui-btn" lay-submit lay-filter="LAY-smtorder-update-submit">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>

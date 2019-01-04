@@ -402,7 +402,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,cols: [[
             {field: 'id', title: 'ID', hide: true},
             {field: 'quoteId', title: 'ID', hide: true}
-            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-orderReview-status'}
+            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-smt-market-okPayment-status'}
             ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
             ,{field: 'smtPartNum', title: 'SMT PartNum', align:'center', width: 124}
@@ -423,10 +423,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'gerberPath', title: 'gerberPath', hide: true, width: 124}
             ,{field: 'ordertime', title: 'Order Time', width: 124}
             ,{field: 'remark', title: 'Remark', align:'center', width: 80, hide: true}
-            ,{title: '操作', fixed: 'right', align:'center', toolbar: '', width: 260,toolbar: '#smt_orderTab_ok_payment'}
+            ,{title: '操作', fixed: 'right', align:'center', width: 260,toolbar: '#Tabtb-smt-market-okPayment-option'}
         ]]
     })
-    // 监听stencil表格工具条
+    // 监听smt表格工具条
     table.on('tool(smt_orderTab_ok_payment)',function (obj) {
         var data = obj.data;
         if (obj.event === 'detail'){
@@ -444,9 +444,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 title: '编辑：订单号［'+data.productNo+']'
                 ,area: ['45%', '70%']
                 ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/orderStencil_update', data).done(function () {
+                    view(this.id).render('marketManagement/iframeWindow/orderSMT_update', data).done(function () {
                         form.render(null, '')
-                        form.on('submit(LAY-stencilorder-update-submit)',function (data) {
+                        form.on('submit(LAY-smtorder-update-submit)',function (data) {
                             var field = data.field;
                             console.log("提交的字段信息："+JSON.stringify(field));
                             admin.req({
@@ -455,7 +455,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                 ,data: field
                                 ,done: function (res) {
                                     layer.msg('订单信息修改成功');
-                                    layui.table.reload('stencil_orderTab_ok_payment');
+                                    layui.table.reload('smt_orderTab_ok_payment');
                                 }
                                 ,fail: function (res) {
                                     layer.msg("订单信息修改失败，请稍后再试！");
@@ -468,17 +468,18 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 }
             })
         } else if (obj.event === 'del') {
-            layer.confirm('真的删除订单号为［'+data.productNo+'］吗', function(index){
-                admin.popup({
-                    type: 'post'
-                    ,url: setter.baseUrl+'market/assembly/delete'
-                    ,data: {"ids":data.id}
+            layer.confirm('真的删除(SMT)订单号为［'+data.id+'］吗', function(index){
+
+                admin.req({
+                    type: 'post',
+                    url: setter.baseUrl+'market/assembly/delete'
+                    ,data:{"ids":data.id}
                     ,done: function (res) {
-                        layer.msg('删除成功')
+                        layer.msg('删除成功');
                         obj.del();
                     }
                     ,fail: function (res) {
-                        layer.msg('服务器异常，稍后重试！');
+                        layer.msg('服务器异常，稍后再试！');
                     }
                 })
                 layer.close(index);
