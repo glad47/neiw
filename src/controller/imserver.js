@@ -110,7 +110,7 @@ layui.define(function(exports) {
 
 
 		showmsg = function(data) {
-			console.log(data);
+			// console.log(data);
 			var msg = eval("(" + data.user + ")");
 			var content = eval("(" + data.content + ")");
 			var cache = layui.layim.cache();
@@ -283,7 +283,7 @@ layui.define(function(exports) {
 							avatar = "/images/0.jpg",
 							friend = false;
 
-						console.log(cache);
+						// console.log(cache);
 						layui.each(cache.friend, function(index1, item1) {
 							layui.each(item1.list, function(index, item) {
 								if (item.id == msg.getSender()) {

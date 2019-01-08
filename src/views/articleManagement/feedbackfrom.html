@@ -1,0 +1,64 @@
+
+  <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list"style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+      <label class="layui-form-label">文章标题</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template>
+          <input type="text" name="articleName" value="{{ d.params.articleName || '' }}" lay-verify="required" placeholder="请输入文章标题" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">文章分类</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template>
+           <select name="articleClassify" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
+              <option value="" {{ d.params.articleClassify === '' ? 'selected' : '' }}>请选择</option>
+              <option value="分类1" {{ d.params.articleClassify === '分类1' ? 'selected' : '' }}>分类1</option>
+              <option value="分类2" {{ d.params.articleClassify === '分类2' ? 'selected' : '' }}>分类2</option>
+              <option value="分类3" {{ d.params.articleClassify === '分类3' ? 'selected' : '' }}>分类3</option>
+              <option value="分类4" {{ d.params.articleClassify === '分类4' ? 'selected' : '' }}>分类4</option>
+          </select>
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">审核通过</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template>
+           <select name="articleStatus" lay-filter="orderReview-search-select">
+              <option value="" {{ d.params.articleStatus === '' ? 'selected' : '' }}>请选择</option>
+              <option value="1" {{ d.params.articleStatus === '1' ? 'selected' : '' }}>否</option>
+              <option value="2" {{ d.params.articleStatus === '2' ? 'selected' : '' }}>是</option>
+          </select>
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+       <script type="text/html" template>
+         <textarea class="layui-textarea" id="blogcontent" style="display: none">
+          {{ d == null && d.params.articleContent == '' ? '' : d.params.articleContent}}
+         </textarea>
+       </script>
+    </div>
+    <script type="text/html" template>
+      <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+    </script>
+    <div class="layui-form-item">
+      <label class="layui-form-label"></label>
+      <div class="layui-input-inline">
+        <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn" style="display: none;" id="layuiadmin-app-form-submit">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    layui.use(['jquery', 'form', 'admin','setter','layedit'], function(){
+      var $ = layui.jquery
+      ,authtree = layui.authtree
+      ,form = layui.form
+      ,admin = layui.admin
+      ,setter = layui.setter
+      ,layedit = layui.layedit;
+    });
+  </script>
