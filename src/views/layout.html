@@ -36,14 +36,13 @@
         </a>
       </li>
       <li class="layui-nav-item" lay-unselect style="margin-right: 30px;">
-        <script type="text/html" template lay-url="./json/user/session.js"
-        lay-done="layui.element.render('nav', 'layadmin-layout-right');">
+        <script type="text/html" template >
           <a href="javascript:;">
             <cite>{{ layui.data('layuiAdmin').username }}</cite>
           </a>
           <dl class="layui-nav-child">
-            <dd><a lay-href="set/user/info">基本资料</a></dd>
-            <dd><a lay-href="set/user/password">修改密码</a></dd>
+            <dd><a href="javascript:;" id="OP_jbxx">基本资料</a></dd>
+            <dd><a id="OP_xgmm">修改密码</a></dd>
             <hr>
             <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
           </dl>
@@ -208,32 +207,98 @@
     line-height: 0;
   }
 </style>
-<!-- <script type="text/javascript" src="http://192.168.0.108:8899/lzimserver/js/websocketconfig.js"></script> -->
-<!-- <script type="text/javascript" src="renren-/lib/extend/message.js"></script> -->
-<!-- <script type="text/javascript" src="/lib/extend/messagebody.js"></script> -->
+<script type="text/javascript">
+    layui.use(['admin','form','laydate','upload'],function () {
+      var $ = layui.$
+      ,admin = layui.admin
+      ,setter = layui.setter
+      ,form = layui.form
+      ,view = layui.view
+      ,upload = layui.upload;
+      
+      $("#OP_jbxx").on('click',function(){
+          console.log("ssss");
+          admin.req({
+              url: setter.baseUrl+'sys/user/info',
+              type: 'get',
+              success: function (res) {
+                  var data = res.data;
+                  admin.popup({
+                      title: '修改基本信息',
+                      area: ['750px', '750px'],
+                      btn: ['提交', '取消'],
+                      yes: function (index, layero) {
+                          $('#setmyinfo').click();
+                      },
+                      btn2: function (index, layero) {
+                      },
+                      end: function () {
+                          clickTr = {};
+                      },
+                      id: 'LAY-popup-user-info-set',
+                      success: function (layero, index) {
+                          view(this.id).render('set/user/info',data).done(function () {
+                              //清空form表单
+                              form.render(null,'layadmin-system-user-info-set');
+
+                              //上传头像
+                              var avatarSrc = $('#LAY_avatarSrc');
+                              upload.render({
+                                url: setter.imUrl+'file/fileupload'
+                                ,elem: '#LAY_avatarUpload'
+                                ,done: function(res){
+                                  if(res.code == 0){
+                                    avatarSrc.val(res.data.src);
+                                  } else {
+                                    layer.msg(res.msg, {icon: 5});
+                                  }
+                                }
+                              });
+                              
+                              //查看头像
+                              admin.events.avartatPreview = function(othis){
+                                var src = avatarSrc.val();
+                                layer.photos({
+                                  photos: {
+                                    "title": "查看头像" //相册标题
+                                    ,"data": [{
+                                      "src": src //原图地址
+                                    }]
+                                  }
+                                  ,shade: 0.01
+                                  ,closeBtn: 1
+                                  ,anim: 5
+                                });
+                              };
+                              //监听提交
+                              form.on('submit(setmyinfo)', function (data) {
+                                  var field = data.field;
+                                  admin.req({
+                                      url: setter.baseUrl + 'sys/user/updateBaseInfo',
+                                      type: 'POST',
+                                      //dataType:'json',
+                                      //contentType:'application/json',
+                                      data: field,
+                                      success: function (data) {
+                                          console.log(data);
+                                          // layui.table.reload('article_Table_blog'); //重载表格
+                                          layer.close(index); //执行关闭
+                                      }
+                                  })
+
+                              });
+                          });
+                      }
+                  });
+              },
+              fail: function () {
+                  console.log('权限标识未能添加成功');
+              }
+          });
+      });
+
+  })
+</script>
 <script>
-  // layui.use(['admin','user'],function () {
-  //     var $ = layui.$
-  //     admin = layui.admin
-  //     ,setter = layui.setter
-  //     ,router = layui.router()
-  //     ,search = router.search;
-  //
-  //     admin.req({
-  //         url: 'http://192.168.0.155:8080/renren-fast/sys/menu/erpnav',
-  //         data: '',
-  //         done: function (res) {
-  //             layui.data(setter.tableName, {
-  //                 key: setter.permissionsKeys
-  //                 ,value: res.permissions
-  //             });
-  //             layer.msg('权限标识添加成功');
-  //             // console.log("权限标示为："+layui.data('layuiAdmin').permissions);
-  //         },
-  //         fail: function () {
-  //             console.log('权限标识未能添加成功');
-  //         }
-  //     })
-  // })
-  layui.use('imserver', layui.factory('imserver'));
+  // layui.use('imserver', layui.factory('imserver'));
 </script>

@@ -13,7 +13,7 @@
     <label class="layui-form-label">手机号码</label>
     <div class="layui-input-inline">
       <script type="text/html" template>
-        <input type="text" name="phone" value="{{ d.params.phone || '' }}" lay-verify="phone" placeholder="请输入号码" autocomplete="off" class="layui-input">
+        <input type="text" name="mobile" value="{{ d.params.mobile || '' }}" lay-verify="phone" placeholder="请输入号码" autocomplete="off" class="layui-input">
       </script>
     </div>
   </div>
@@ -29,7 +29,7 @@
     <label class="layui-form-label">头像</label>
     <div class="layui-input-inline">
       <script type="text/html" template>
-        <input type="text" name="avatar" value="{{ d.params.avatar || '' }}" lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
+        <input type="text" name="profilePhoto" value="{{ d.params.profilePhoto || '' }}" lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
       </script>
     </div>
     <button style="float: left;" type="button" class="layui-btn" id="layuiadmin-upload-useradmin">上传图片</button> 
@@ -55,7 +55,8 @@
 layui.use(['admin', 'form', 'upload'], function(){
   var $ = layui.$
   ,form = layui.form
-  ,upload = layui.upload;
+  ,upload = layui.upload
+  ,setter = layui.setter;
   
   //上传头像
   upload.render({

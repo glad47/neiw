@@ -61,6 +61,7 @@ layui.define(['form', 'upload'], function(exports){
       ,data: obj.field
       ,success: function(){
         
+        
       }
     });
     */
@@ -86,51 +87,21 @@ layui.define(['form', 'upload'], function(exports){
   
   
   //设置我的资料
-  form.on('submit(setmyinfo)', function(obj){
-    layer.msg(JSON.stringify(obj.field));
+  // form.on('submit(setmyinfo)', function(obj){
+  //   layer.msg(JSON.stringify(obj.field));
     
-    //提交修改
-    /*
-    admin.req({
-      url: ''
-      ,data: obj.field
-      ,success: function(){
-        
-      }
-    });
-    */
-    return false;
-  });
+  //   //提交修改
+  //   admin.req({
+  //     url: setter.baseUrl+'sys/user/update'
+  //     ,type:'POST'
+  //     ,data: obj.field
+  //     ,success: function(data){
 
-  //上传头像
-  var avatarSrc = $('#LAY_avatarSrc');
-  upload.render({
-    url: '/api/upload/'
-    ,elem: '#LAY_avatarUpload'
-    ,done: function(res){
-      if(res.status == 0){
-        avatarSrc.val(res.url);
-      } else {
-        layer.msg(res.msg, {icon: 5});
-      }
-    }
-  });
-  
-  //查看头像
-  admin.events.avartatPreview = function(othis){
-    var src = avatarSrc.val();
-    layer.photos({
-      photos: {
-        "title": "查看头像" //相册标题
-        ,"data": [{
-          "src": src //原图地址
-        }]
-      }
-      ,shade: 0.01
-      ,closeBtn: 1
-      ,anim: 5
-    });
-  };
+  //     }
+  //   });
+  //   return false;
+  // });
+
   
   
   //设置密码

@@ -140,7 +140,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                         form.render(null,'layuiadmin-app-form-list');
                         var i = layedit.build('blogcontent',{
                             uploadImage:{
-                                url:''
+                                url:setter.imUrl+'file/fileupload'
                             }
                         });
                         //监听提交

@@ -24,8 +24,8 @@
     </div>
     <div class="layui-form-item">
        <script type="text/html" template>
-         <textarea class="layui-textarea" id="blogcontent" style="display: none">
-          {{ d == null && d.params.articleContent == '' ? '' : d.params.articleContent}}
+         <textarea class="layui-textarea" id="blogcontent" style="display: none" wrap="hard">
+          {{ d.params.articleContent == '' ? '' : d.params.articleContent}}
          </textarea>
        </script>
     </div>
