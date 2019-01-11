@@ -12,12 +12,14 @@ layui.define(function(exports) {
 
 		var currentsession = layui.data('layuiAdmin').userId+"";
 		console.log(currentsession);
-		var showmsg, lm;
-		var reconnectflag = false; //避免重复连接
-		var socket;
+		var showmsg, lm,reconnectflag = false,socket,gdy=["12","17","18"]; //避免重复连接
 
 		function createWebSocket(url, callbak) {
 			try {
+				if (gdy.indexOf(currentsession) == -1) {
+					console.log("不是跟单员不进行连接！！");
+					return;
+				}
 				if (!window.WebSocket) {
 					window.WebSocket = window.MozWebSocket;
 				}
@@ -28,28 +30,6 @@ layui.define(function(exports) {
 					callbak();
 				} else {
 					layer.msg("你的浏览器不支持websocket！");
-					//当浏览器不支持websocket时 降级为http模式	  
-					// var isClose = false;
-					// window.onbeforeunload = function() {
-					// 	if (!isClose) {
-					// 		return "确定要离开当前聊天吗?";
-					// 	} else {
-					// 		return "";
-					// 	}
-					// }
-					// window.onunload = function() {
-					// 	if (!isClose) {
-					// 		Imwebserver.closeconnect();
-					// 	}
-					// }
-					// dwr.engine.setActiveReverseAjax(true);
-					// dwr.engine.setNotifyServerOnPageUnload(true);
-					// dwr.engine.setErrorHandler(function() {});
-					// dwr.engine._errorHandler = function(message, ex) {
-					// 	//alert("服务器出现错误");
-					// 	//dwr.engine._debug("Error: " + ex.name + ", " + ex.message, true);
-					// };
-					// Imwebserver.serverconnect();
 				}
 			} catch (e) {
 				reconnect(url, callbak);
@@ -64,7 +44,7 @@ layui.define(function(exports) {
 			setTimeout(function() {
 				createWebSocket(url, callbak);
 				reconnectflag = false;
-			}, 2000);
+			}, 20000);
 		}
 
 		//发送消息
@@ -216,7 +196,7 @@ layui.define(function(exports) {
 				isAudio: true, //开启聊天工具栏音频
 				isVideo: true, //开启聊天工具栏视频
 				brief: false,
-				min: false,
+				min: true, //用于设定主面板是否在页面打开时，始终最小化展现
 				isgroup: true,
 				voice: false,
 				copyright: true,
@@ -365,10 +345,10 @@ layui.define(function(exports) {
 				//连接关闭
 				socket.onclose = function(event) {
 					layim.setFriendStatus(currentsession, 'offline');
-					layer.confirm('您已下线，重新上线?', function(index) {
+					//layer.confirm('您已下线，重新上线?', function(index) {
 						reconnect(websocketurl, initEventHandle);
-						layer.close(index);
-					});
+						//layer.close(index);
+					//});
 				};
 				socket.onerror = function() {
 					reconnect(websocketurl, initEventHandle);

@@ -105,8 +105,8 @@ layui.define(['form', 'upload'], function(exports){
   
   
   //设置密码
-  form.on('submit(setmypass)', function(obj){
-    layer.msg(JSON.stringify(obj.field));
+  //form.on('submit(setmypass)', function(obj){
+    // layer.msg(JSON.stringify(obj.field));
     
     //提交修改
     /*
@@ -118,8 +118,8 @@ layui.define(['form', 'upload'], function(exports){
       }
     });
     */
-    return false;
-  });
+    // return false;
+  // });
   
   //对外暴露的接口
   exports('set', {});

@@ -92,7 +92,12 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                     view(this.id).render('articleManagement/blogformadd',data).done(function () {
                         //清空form表单
                         form.render(null,'layuiadmin-app-form-list');
-                        var edit = layedit.build('blogcontent');
+                        var edit = layedit.build('blogcontent',{
+                            uploadImage:{
+                                url:setter.imUrl+'file/fileupload'
+                            }
+                        });
+                        // layedit.setContent(edit,data.articleContent);
                         //监听提交
                         form.on('submit(layuiadmin-app-form-submit)', function (data) {
                             var field = data.field;
@@ -101,8 +106,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                             admin.req({
                                 url: setter.baseUrl + 'article/update',
                                 type: 'POST',
-                                //dataType:'json',
-                                //contentType:'application/json',
                                 data: field,
                                 success: function (data) {
                                     console.log(data);

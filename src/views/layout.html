@@ -42,7 +42,7 @@
           </a>
           <dl class="layui-nav-child">
             <dd><a href="javascript:;" id="OP_jbxx">基本资料</a></dd>
-            <dd><a id="OP_xgmm">修改密码</a></dd>
+            <dd><a href="javascript:;" id="OP_xgmm">修改密码</a></dd>
             <hr>
             <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
           </dl>
@@ -216,8 +216,8 @@
       ,view = layui.view
       ,upload = layui.upload;
       
+      //修改基本信息
       $("#OP_jbxx").on('click',function(){
-          console.log("ssss");
           admin.req({
               url: setter.baseUrl+'sys/user/info',
               type: 'get',
@@ -290,15 +290,106 @@
                           });
                       }
                   });
-              },
-              fail: function () {
-                  console.log('权限标识未能添加成功');
               }
           });
+      });
+
+      //修改密码
+      $("#OP_xgmm").on('click',function(){
+          // admin.req({
+          //   url:setter.baseUrl+'sys/user/info',
+          //   type:'get',
+          //   success:function(res){
+          //       var data= res.data;
+          //       console.log(data);
+          //       admin.popup({
+          //               title: '修改基本信息',
+          //               area: ['750px', '750px'],
+          //               btn: ['提交', '取消'],
+          //               yes: function (index, layero) {
+          //                   $('#setmypass').click();
+          //               },
+          //               btn2: function (index, layero) {
+          //               },
+          //               end: function () {
+          //                   clickTr = {};
+          //               },
+          //               id: 'LAY-popup-user-info-set',
+          //               success: function (layero, index) {
+          //                   view(this.id).render('set/user/password',data).done(function () {
+          //                       //清空form表单
+          //                       form.render(null,'layadmin-system-user-pwssword-set');
+                              
+          //                       //监听提交
+          //                       form.on('submit(setmypass)', function (data) {
+          //                           var field = data.field;
+          //                           admin.req({
+          //                               url: setter.baseUrl + 'sys/user/updateBaseInfo',
+          //                               type: 'POST',
+          //                               data: field,
+          //                               success: function (data) {
+          //                                 if (data.code == 0) {
+          //                                     layer.msg(data.msg);
+          //                                 }else{
+          //                                     layer.msg(data.msg,{icon: 5});
+          //                                 }
+          //                                   // layui.table.reload('article_Table_blog'); //重载表格
+          //                                 layer.close(index); //执行关闭
+          //                               }
+          //                           })
+
+          //                       });
+          //                   });
+          //               }
+          //           });
+          //   }
+          // });
+
+          admin.popup({
+                  title: '修改基本信息',
+                  area: ['750px', '750px'],
+                  btn: ['提交', '取消'],
+                  yes: function (index, layero) {
+                      $('#setmypass').click();
+                  },
+                  btn2: function (index, layero) {
+                  },
+                  end: function () {
+                      clickTr = {};
+                  },
+                  id: 'LAY-popup-user-info-set',
+                  success: function (layero, index) {
+                      view(this.id).render('set/user/password').done(function () {
+                          //清空form表单
+                          form.render(null,'layadmin-system-user-pwssword-set');
+                        
+                          //监听提交
+                          form.on('submit(setmypass)', function (data) {
+                              var field = data.field;
+                              admin.req({
+                                  url: setter.baseUrl + 'sys/user/password',
+                                  type: 'POST',
+                                  data: field,
+                                  success: function (data) {
+                                    if (data.code == 0) {
+                                        layer.msg(data.msg);
+                                    }else{
+                                        layer.msg(data.msg,{icon: 5});
+                                    }
+                                      // layui.table.reload('article_Table_blog'); //重载表格
+                                    layer.close(index); //执行关闭
+                                  }
+                              })
+
+                          });
+                      });
+                  }
+              });
+          
       });
 
   })
 </script>
 <script>
-  // layui.use('imserver', layui.factory('imserver'));
+  layui.use('imserver', layui.factory('imserver'));
 </script>

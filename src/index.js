@@ -47,7 +47,7 @@ layui.extend({
         $('.layui-layer').each(function(){
           var othis = $(this),
           index = othis.attr('times');
-          if(!othis.hasClass('layui-layim')){
+          if(!othis.hasClass('layui-layim') && !othis.hasClass('layui-layim-min')){
             layer.close(index);
           }
         });
