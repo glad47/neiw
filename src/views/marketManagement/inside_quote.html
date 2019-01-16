@@ -1,0 +1,497 @@
+<title>内部报价</title>
+<div class="layui-fluid" id="app">
+    <div style="padding: 10px;">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                  <!-- <div class="layui-card-header">卡片面板</div> -->
+                  <!-- 显示各种报价 -->
+                  <div class="layui-card-body">
+                    <div>
+                        <div class="layui-collapse" lay-accordion>
+                          <div class="layui-colla-item">
+                            <h2 class="layui-colla-title">PCB Phototype</h2>
+                            <div class="layui-colla-content layui-show">
+                                <!-- pcb订单 -->
+                                <div>
+                                    <form class="layui-form">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Order type:</label>
+                                            <div class="layui-input-block">
+                                                <input type="radio" name="sex" value="" title="Single PCB" checked>
+                                                <input type="radio" name="sex" value="女" title="panel as design" >
+                                                <input type="radio" name="sex" value="男" title="panel by PCBonline">
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Single Size:</label>
+                                            <div class="layui-input-inline">
+                                                <div class="layui-input-inline" style="width: 50px;">
+                                                    <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
+                                                </div>
+                                                <div class="layui-form-mid">x</div>
+                                                <div class="layui-input-inline" style="width: 50px;">
+                                                    <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+                                                </div>
+                                                 <div class="layui-form-mid">mm</div>
+                                            </div>
+                                            <label class="layui-form-label">Quantity:</label>
+                                            <div class="layui-input-inline" style="width: 100px;">
+                                                <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
+                                            </div>
+                                            <div class="layui-form-mid">pcs</div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Panel Way:</label>
+                                            <div class="layui-input-inline">
+                                                <div class="layui-input-inline" style="width: 60px;">
+                                                    <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
+                                                </div>
+                                                <div class="layui-form-mid">x</div>
+                                                <div class="layui-input-inline" style="width: 60px;">
+                                                    <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+                                                 </div>
+                                            </div>
+                                            <label class="layui-form-label">Quantity:</label>
+                                            <div class="layui-input-inline" style="width: 100px;">
+                                                <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
+                                            </div>
+                                            <div class="layui-form-mid">panel</div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Panel Size:</label>
+                                            <div class="layui-input-inline">
+                                                <div class="layui-input-inline" style="width: 50px;">
+                                                    <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
+                                                </div>
+                                                <div class="layui-form-mid">x</div>
+                                                <div class="layui-input-inline" style="width: 50px;">
+                                                    <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+                                                </div>
+                                                 <div class="layui-form-mid">mm</div>
+                                            </div>
+                                            <label class="layui-form-label">Area sq:</label>
+                                            <div class="layui-input-inline" style="width: 100px;">
+                                                <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
+                                            </div>
+                                            <div class="layui-form-mid">㎡</div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">PCB type:</label>
+                                            <div class="layui-input-block">
+                                                <input type="radio" name="sex" value="" title="FR4" checked>
+                                                <input type="radio" name="sex" value="" title="Aluminum" >
+                                                <input type="radio" name="sex" value="" title="FR4+Aluminum">
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Layer:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                            <label class="layui-form-label">Finish Thickness:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="finishThickness" lay-verify="required"  v-model="quote.finishThickness">
+                                                    <option id="lds">0.4mm</option>
+                                                    <option id="ldl">0.6mm</option>
+                                                    <option id="ldb">0.8mm</option>
+                                                    <option id="1dl">1.0mm</option>
+                                                    <option id="yde">1.2mm</option>
+                                                    <option id="ydw">1.5mm</option>
+                                                    <option id="ydl">1.6mm</option>
+                                                    <option id="edl">2.0mm</option>
+                                                    <option id="eds">2.4mm</option>
+                                                    <option id="sdl">3.0mm</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">material:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                            <label class="layui-form-label">Product Code:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">TG:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="tg" v-model="quote.tg">
+                                                    <option value="135" id="ysw">135</option>
+                                                    <option value="140" id="ysl">140</option>
+                                                    <option value="150" id="ywl">150</option>
+                                                    <option value="170" id="yql">170</option>
+                                                    <option value="180" id="ybl">180</option>
+                                                </select>
+                                            </div>
+                                            <label class="layui-form-label">CTI:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="cti"  v-model="quote.cti">
+                                                    <option id="ewl">175≤CTI<250</option>
+                                                    <option id="sll">250≤CTI<400</option>
+                                                    <option id="lll">400≤CTI<600</option>
+                                                    <option id="dlll">CTI≥600</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Halogen-free:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" v-model="quote.halogenFree">
+                                                    <option>none</option>
+                                                    <option>NO</option>
+                                                    <option>YES</option>
+                                                </select>
+                                            </div>
+                                            <label class="layui-form-label">Heat Conductivity:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city"  v-model="quote.heatConductivity">
+                                                    <option>none</option>
+                                                    <option>1W</option>
+                                                    <option>2W</option>
+                                                    <option>3W</option>
+                                                    <option>PCBonline</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Inner layer copper:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" v-model="quote.innerLayerCopper">
+                                                     <option  value="none">none</option>
+                                                    <option value="1oz">1oz</option>
+                                                    <option value="2oz">2oz</option>
+                                                    <option value="3oz">3oz</option>
+                                                    <option value="4oz">4oz</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Min Track:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                            <label class="layui-form-label">N.of Core:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Min Spacing:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                            <label class="layui-form-label">N.of PP:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                        </div>                                        
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">outer layer copper:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                            <label class="layui-form-label">Min Track:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">BGA Size:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                            <label class="layui-form-label">Min Spacing:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Min Hole Size:</label>
+                                            <div class="layui-input-inline" style="width: 90px">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                            <label class="layui-form-label">N.of holes:</label>
+                                            <div class="layui-input-inline" style="width: 70px">
+                                                <input type="text" name="price_max" placeholder="" autocomplete="off" class="layui-input">
+                                            </div>
+                                            <label class="layui-form-label" style="width: 15%">PTH Copper:</label>
+                                            <div class="layui-input-inline" style="width: 90px">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Solder Mask color:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                            <label class="layui-form-label">VIA process:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Silk Screen color:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                            <label class="layui-form-label">Peelable:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Surface finish:</label>
+                                            <div class="layui-input-inline">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-form-item">
+                                            <!-- <label class="layui-form-label">CNC Routing:</label> -->
+                                            <div class="layui-input-inline">
+                                                <input type="radio" name="sex" value="男" title="CNC Routing">
+                                            </div>
+                                            <label class="layui-form-label" style="width: 20%">Paanel Routing Path:</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <!-- <label class="layui-form-label">Punching:</label> -->
+                                            <div class="layui-input-inline" style="width: 110px">
+                                                <input type="radio" name="sex" value="男" title="Punching">
+                                            </div>
+                                            <label class="layui-form-label">N.of holes:</label>
+                                            <div class="layui-input-inline" style="widows: 90px">
+                                                <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+                                            </div>
+                                            <label class="layui-form-label">N.of Slots:</label>
+                                            <div class="layui-input-inline" style="width: 90px">
+                                                <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Test Point:</label>
+                                            <div class="layui-input-inline" style="width: 80px">
+                                               <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+                                            </div>
+                                            <label class="layui-form-label">Test Cost:</label>
+                                            <div class="layui-input-inline" style="width: 90px">
+                                                <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+                                            </div>
+                                            <div class="layui-input-inline" style="width: 100px">
+                                                <select name="city" lay-verify="required">
+                                                    <option value=""></option>
+                                                    <option value="0">北京</option>
+                                                    <option value="1">上海</option>
+                                                    <option value="2">广州</option>
+                                                    <option value="3">深圳</option>
+                                                    <option value="4">杭州</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <input type="checkbox" name="" title="Blind holes" lay-skin="primary" checked>
+                                                <input type="checkbox" name="" title="Edge Plated" lay-skin="primary"> 
+                                                <input type="checkbox" name="" title="Half Hole Plated" lay-skin="primary" disabled> 
+                                                <input type="checkbox" name="" title="Contrl impeance" lay-skin="primary" checked>
+                                                <input type="checkbox" name="" title="Buried holes" lay-skin="primary" checked>
+                                                <input type="checkbox" name="" title="Carbo" lay-skin="primary" checked>
+                                                <input type="checkbox" name="" title="Bevelling(Camfer)" lay-skin="primary" checked>
+                                                <input type="checkbox" name="" title="Deep Mill Routing" lay-skin="primary" checked>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Different Design:</label>
+                                            <div class="layui-input-block">
+                                                <input type="radio" name="sex" value="1" title="1">
+                                                <input type="radio" name="sex" value="2" title="2">
+                                                <input type="radio" name="sex" value="3" title="3">
+                                                <input type="radio" name="sex" value="4" title="4" checked>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">Remark:</label>
+                                            <div class="layui-input-block">
+                                                <textarea name="desc" placeholder="请输入内容" class="layui-textarea" style="width: 100%"></textarea>
+                                            </div>
+                                        </div>
+                                       
+                                    </form>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="layui-colla-item">
+                            <h2 class="layui-colla-title">SMT-Stencil</h2>
+                            <div class="layui-colla-content">内容区域</div>
+                          </div>
+                          <div class="layui-colla-item">
+                            <h2 class="layui-colla-title">Assembly Service</h2>
+                            <div class="layui-colla-content">内容区域</div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                  <!-- <div class="layui-card-header">卡片面板</div> -->
+                  <div class="layui-card-body">
+                    卡片式面板面板通常用于非白色背景色的主体内<br>
+                    从而映衬出边框投影
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+layui.use(['admin','form','element','upload'], function(){
+  var $ = layui.$
+      ,admin = layui.admin
+      ,setter = layui.setter
+      ,form = layui.form
+      ,view = layui.view
+      ,upload = layui.upload
+      ,element = layui.element;
+
+      element.render();
+      form.render();
+  
+});
+</script>

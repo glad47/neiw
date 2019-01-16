@@ -29,6 +29,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
              {field:'id', title: 'id', sort: true}
             ,{field:'userName', title: '用户名'}
             ,{field:'userSystemId', title: '用户系统id', sort: true}
+            ,{field:'userIp',title:'注册ip',sort:true}
             ,{field:'email', title: '邮箱', sort: true}
             ,{field:'skypeId', title: 'Skype', sort: true}
             ,{field:'mobilePhone', title: '电话', sort: true}
