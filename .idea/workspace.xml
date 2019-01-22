@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="" />
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="修改1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/article_blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/article_blog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/sys_coustomer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/sys_coustomer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/articleManagement/feedback.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/articleManagement/feedback.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -13,151 +20,118 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7008032">
+    <splitter split-orientation="horizontal" split-proportion="0.52817273">
       <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="sys_menuAdd.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuAdd.html">
+        <splitter split-orientation="vertical" split-proportion="0.61791044">
+          <split-first>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="729">
+                      <caret line="483" column="141" selection-start-line="483" selection-start-column="141" selection-end-line="483" selection-end-column="141" />
+                      <folding>
+                        <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#14;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#14;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#label#2;n#div#14;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#14;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#label#0;n#div#18;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#19;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#19;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#19;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#20;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#20;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#20;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#textarea#0;n#div#0;n#div#23;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="425">
+                      <caret line="25" column="57" lean-forward="true" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-first>
+          <split-second>
+            <leaf>
+              <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="252">
+                      <caret line="128" column="48" selection-start-line="128" selection-start-column="48" selection-end-line="128" selection-end-column="48" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-second>
+        </splitter>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="permissions.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/controller/permissions.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="156">
-                  <caret line="31" column="107" selection-start-line="31" selection-start-column="100" selection-end-line="31" selection-end-column="107" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="user_edit_info.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/user_edit_info.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="156">
-                  <caret line="112" column="81" selection-start-line="112" selection-start-column="81" selection-end-line="112" selection-end-column="81" />
+                <state relative-caret-position="281">
+                  <caret line="32" column="48" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
                 </state>
               </provider>
             </entry>
           </file>
           <file leaf-file-name="sys_menu.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/sys_menu.js">
+            <entry file="file://$PROJECT_DIR$/src/controller/sys_menu.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="116">
-                  <caret line="131" column="53" selection-start-line="131" selection-start-column="53" selection-end-line="131" selection-end-column="53" />
+                <state relative-caret-position="204">
+                  <caret line="98" column="29" lean-forward="true" selection-start-line="98" selection-start-column="29" selection-end-line="98" selection-end-column="29" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="order_review.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/order_review.html">
+          <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="275">
-                  <caret line="87" column="54" selection-start-line="87" selection-start-column="54" selection-end-line="87" selection-end-column="54" />
+                <state relative-caret-position="581">
+                  <caret line="71" column="142" selection-start-line="71" selection-start-column="142" selection-end-line="71" selection-end-column="142" />
                   <folding>
-                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#button#0;n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="outgoing_quote.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/scmManagement/outgoing_quote.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="156">
-                  <caret line="87" column="83" selection-start-line="87" selection-start-column="83" selection-end-line="87" selection-end-column="83" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="reg.html" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/views/user/reg.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="163">
-                  <caret line="83" column="22" lean-forward="true" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="no_payment.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/no_payment.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="275">
-                  <caret line="87" column="29" lean-forward="true" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="54" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ok_payment.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/ok_payment.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="275">
-                  <caret line="86" column="54" selection-start-line="86" selection-start-column="54" selection-end-line="86" selection-end-column="54" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Indicator_card.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="78" column="54" lean-forward="true" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="54" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/config.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="277">
-                  <caret line="46" column="4" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/layout.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1360">
-                  <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="supplier_info.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/infoManagement/supplier_info.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1564">
-                  <caret line="92" column="20" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="market_orderOkPayment.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/controller/market_orderOkPayment.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="799">
-                  <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="market_orderReview.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/controller/market_orderReview.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="154">
-                  <caret line="235" column="39" lean-forward="true" selection-start-line="235" selection-start-column="39" selection-end-line="235" selection-end-column="39" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="order_review.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/order_review.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1972">
-                  <caret line="116" column="29" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
-                  <folding>
-                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#button#0;n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#14;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#14;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#label#2;n#div#14;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#2;n#div#14;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#label#0;n#div#18;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#19;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#19;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#2;n#div#19;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#20;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#20;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#2;n#div#20;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#textarea#0;n#div#0;n#div#23;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -170,43 +144,43 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>renderJson</find>
-      <find>lay-verify=&quot;required&quot;</find>
-      <find>title</find>
-      <find>确定</find>
-      <find>锁定</find>
-      <find>确定退回订单</find>
-      <find>ok_payment</find>
-      <find>confirm</find>
-      <find>提交</find>
-      <find>已提交</find>
-      <find>lay-event=&quot;pcb-sendback&quot;</find>
-      <find>Tabtb-orpcb</find>
-      <find>orstencil</find>
-      <find>pcb-sendback</find>
-      <find>or_Tabpcb_no_payment</find>
-      <find>Tabtb</find>
-      <find>layui-this</find>
-      <find>pcbor_status</find>
-      <find>media</find>
-      <find>手机</find>
-      <find>ajax</find>
-      <find>token</find>
-      <find>失效</find>
-      <find>192.168.0.155:8080</find>
-      <find>setter.baseUrl</find>
-      <find>192.168</find>
-      <find>192.</find>
-      <find>192</find>
-      <find>192.1</find>
-      <find>192.168.0.155</find>
+      <find>smt_orderTab_ok_payment</find>
+      <find>Tabtb-smt-market-orderReview-option</find>
+      <find>您已下线，重新上线?</find>
+      <find>layui-col-md6</find>
+      <find>// 监听stencil表格工具条</find>
+      <find>LAY-pcborder-update-submit</find>
+      <find>isLoc</find>
+      <find>Tabtb-stencil-market-orderReview-status</find>
+      <find>已退回</find>
+      <find>客户用户</find>
+      <find>修改blog</find>
+      <find>发布时间</find>
+      <find>新增</find>
+      <find>blog_add</find>
+      <find>test-table-operate-btn</find>
+      <find>file/fileupload</find>
+      <find>addArticle</find>
+      <find>v</find>
+      <find>v-model</find>
+      <find>v-</find>
+      <find>layuiadmin-app-form-submit</find>
+      <find>placeholder=&quot;￥&quot;</find>
+      <find>message</find>
+      <find>widget</find>
+      <find>finishThickness</find>
+      <find>sys_menu</find>
+      <find>single</find>
+      <find>render</find>
+      <find>FR4</find>
+      <find>method</find>
     </findStrings>
     <replaceStrings>
       <replace>useredit_role</replace>
@@ -218,7 +192,6 @@
       <replace>d.params.evaluateRate</replace>
       <replace>menu_add</replace>
       <replace>, align</replace>
-      <replace>layui-col-md4</replace>
       <replace>{{ d.params.material || '' }}</replace>
       <replace>d.params.material</replace>
       <replace>d.params.cti</replace>
@@ -231,6 +204,9 @@
       <replace>LAY-pcborder-update-submit</replace>
       <replace>order_pcb_search</replace>
       <replace />
+      <replace>Product No</replace>
+      <replace>layui-col-md4</replace>
+      <replace>name=&quot;btnCheckbox&quot;</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/views/marketManagement/iframeWindow</dir>
@@ -247,19 +223,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuEdit.html" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuSearch.html" />
-        <option value="$PROJECT_DIR$/start/json/menu.js" />
-        <option value="$PROJECT_DIR$/start/selectMenu.js" />
-        <option value="$PROJECT_DIR$/start/index.html" />
-        <option value="$PROJECT_DIR$/src/lib/view.js" />
-        <option value="$PROJECT_DIR$/src/controller/console.js" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_edit.html" />
-        <option value="$PROJECT_DIR$/src/controller/info_management.js" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/marketMana/order_review.html" />
         <option value="$PROJECT_DIR$/src/controller/mar.js" />
         <option value="$PROJECT_DIR$/src/controller/sys_supplier.js" />
-        <option value="$PROJECT_DIR$/src/controller/sys_coustomer.js" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/renderEdit/a.js" />
         <option value="$PROJECT_DIR$/src/controller/permissions.js" />
         <option value="$PROJECT_DIR$/src/views/customerManagement/customer_info.html" />
@@ -274,30 +240,40 @@
         <option value="$PROJECT_DIR$/src/controller/mobileterminal.js" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderOffer_update.html" />
         <option value="$PROJECT_DIR$/src/controller/sys_user.js" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderStencil_update.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_stencil_detail.html" />
         <option value="$PROJECT_DIR$/src/controller/user_edit_info.js" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/customer_edit_info.html" />
-        <option value="$PROJECT_DIR$/src/controller/market_orderReview.js" />
-        <option value="$PROJECT_DIR$/src/controller/market_orderNoPayment.js" />
-        <option value="$PROJECT_DIR$/src/controller/market_orderOkPayment.js" />
         <option value="$PROJECT_DIR$/src/style/admin.css" />
-        <option value="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" />
         <option value="$PROJECT_DIR$/src/views/user/login.html" />
         <option value="$PROJECT_DIR$/src/controller/sys_menu.js" />
         <option value="$PROJECT_DIR$/src/views/user/reg.html" />
         <option value="$PROJECT_DIR$/src/views/layout.html" />
         <option value="$PROJECT_DIR$/src/sys_menu.js" />
-        <option value="$PROJECT_DIR$/src/config.js" />
         <option value="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuAdd.html" />
+        <option value="$PROJECT_DIR$/src/views/scmManagement/outgoing_quote.html" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/user_edit_info.html" />
+        <option value="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" />
+        <option value="$PROJECT_DIR$/src/config.js" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/no_payment.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderStencil_update.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderSMT_update.html" />
+        <option value="$PROJECT_DIR$/src/controller/market_orderNoPayment.js" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_smt_detail.html" />
+        <option value="$PROJECT_DIR$/src/controller/market_orderOkPayment.js" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/ok_payment.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/order_review.html" />
-        <option value="$PROJECT_DIR$/src/views/scmManagement/outgoing_quote.html" />
+        <option value="$PROJECT_DIR$/src/controller/market_orderReview.js" />
+        <option value="$PROJECT_DIR$/src/controller/sys_coustomer.js" />
+        <option value="$PROJECT_DIR$/src/controller/article_blog.js" />
+        <option value="$PROJECT_DIR$/src/views/articleManagement/feedback.html" />
+        <option value="$PROJECT_DIR$/src/controller/article_feedback.js" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/vue.js" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" />
+        <option value="$PROJECT_DIR$/src/controller/quote.js" />
       </list>
     </option>
   </component>
@@ -315,11 +291,9 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="2" />
-    <option name="y" value="23" />
-    <option name="width" value="1858" />
-    <option name="height" value="1057" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -357,21 +331,18 @@
               <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="epcManagement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="marketManagement" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
               <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="start" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="start" type="462c0819:PsiDirectoryNode" />
+              <item name="quote" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -393,10 +364,11 @@
       <recent name="$PROJECT_DIR$/src/style" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/start" />
+      <recent name="$PROJECT_DIR$/src/controller" />
+      <recent name="$PROJECT_DIR$/src/views/marketManagement" />
       <recent name="$PROJECT_DIR$/src/views" />
       <recent name="$PROJECT_DIR$/src/style/res" />
-      <recent name="$PROJECT_DIR$/start/json" />
-      <recent name="$PROJECT_DIR$/src/views/infoManagement" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -411,23 +383,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.login.html">
+  <component name="RunManager" selected="Node.js.sys_menu.js">
     <configuration name="login.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:8089/ERP-PCBOnline/src/views/user/login.html" />
-    <configuration name="no_payment.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:8089/ERP-PCBOnline/src/views/marketManagement/no_payment.html" />
+    <configuration name="order_review.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:8089/ERP-PCBOnline/src/views/marketManagement/order_review.html" />
+    <configuration name="article_feedback.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="article_feedback.js" working-dir="$PROJECT_DIR$/src/controller" />
     <configuration name="market_orderReview.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="market_orderReview.js" working-dir="$PROJECT_DIR$/src/controller" />
-    <configuration name="sys_supplier.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="sys_supplier.js" working-dir="$PROJECT_DIR$/src/controller" />
+    <configuration name="sys_menu.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="sys_menu.js" working-dir="$PROJECT_DIR$/src/controller" />
     <list>
       <item itemvalue="Node.js.market_orderReview.js" />
-      <item itemvalue="JavaScript Debug.no_payment.html" />
-      <item itemvalue="Node.js.sys_supplier.js" />
       <item itemvalue="JavaScript Debug.login.html" />
+      <item itemvalue="JavaScript Debug.order_review.html" />
+      <item itemvalue="Node.js.article_feedback.js" />
+      <item itemvalue="Node.js.sys_menu.js" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.login.html" />
+        <item itemvalue="Node.js.sys_menu.js" />
+        <item itemvalue="Node.js.article_feedback.js" />
+        <item itemvalue="JavaScript Debug.order_review.html" />
         <item itemvalue="Node.js.market_orderReview.js" />
-        <item itemvalue="Node.js.sys_supplier.js" />
-        <item itemvalue="JavaScript Debug.no_payment.html" />
+        <item itemvalue="JavaScript Debug.login.html" />
       </list>
     </recent_temporary>
   </component>
@@ -497,42 +472,18 @@
       <workItem from="1545185328546" duration="183000" />
       <workItem from="1545271665984" duration="437000" />
       <workItem from="1545448412601" duration="2341000" />
-      <workItem from="1545621481987" duration="2574000" />
-    </task>
-    <task id="LOCAL-00006" summary="显示菜单">
-      <created>1537949147699</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1537949147699</updated>
-    </task>
-    <task id="LOCAL-00007" summary="permission.js 获取权限标示，每个页面加载自动加载这个js&#10;layuiout.htm请求类两次同名接口">
-      <created>1537961264479</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1537961264479</updated>
-    </task>
-    <task id="LOCAL-00008" summary="显示菜单">
-      <created>1538048027073</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1538048027073</updated>
-    </task>
-    <task id="LOCAL-00009" summary="菜单和编辑菜单本地json（离线测试用）">
-      <created>1538048384054</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1538048384054</updated>
-    </task>
-    <task id="LOCAL-00010" summary="1、菜单显示类型（数字转换为字符串）&#10;2、编辑菜单，判断点击菜单的类型自动选择tab标签">
-      <created>1538106518078</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1538106518078</updated>
+      <workItem from="1545621481987" duration="5175000" />
+      <workItem from="1545805665368" duration="559000" />
+      <workItem from="1546487727284" duration="20961000" />
+      <workItem from="1546524320889" duration="33000" />
+      <workItem from="1546564270477" duration="6067000" />
+      <workItem from="1546572193004" duration="369000" />
+      <workItem from="1546588466746" duration="998000" />
+      <workItem from="1546917817644" duration="177000" />
+      <workItem from="1547601354170" duration="1313000" />
+      <workItem from="1547879141731" duration="3995000" />
+      <workItem from="1548038859092" duration="9797000" />
+      <workItem from="1548118301881" duration="25193000" />
     </task>
     <task id="LOCAL-00011" summary="菜单：目录－菜单－按钮添加">
       <created>1538139596896</created>
@@ -842,11 +793,46 @@
       <option name="project" value="LOCAL" />
       <updated>1545624109913</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="1">
+      <created>1545631572681</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1545631572681</updated>
+    </task>
+    <task id="LOCAL-00056" summary="修改1">
+      <created>1545634564644</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1545634564645</updated>
+    </task>
+    <task id="LOCAL-00057" summary="贴片信息添加（差删除，更新）">
+      <created>1546524170245</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1546524170245</updated>
+    </task>
+    <task id="LOCAL-00058" summary="smt订单完善">
+      <created>1546572556965</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1546572556966</updated>
+    </task>
+    <task id="LOCAL-00059" summary="1">
+      <created>1546588621937</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1546588621938</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="561761000" />
+    <option name="totallyTimeSpent" value="633824000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -858,17 +844,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2" y="23" width="1858" height="1057" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18671748" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32935324" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.15323855" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.29479167" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5059653" side_tool="true" weight="0.16770834" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.41979167" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.16770834" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.340625" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50353837" side_tool="true" weight="0.41979167" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.41979167" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.16716418" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.3402985" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49836424" weight="0.18541667" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49836424" weight="0.20625" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -882,19 +869,19 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22643496" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32935324" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.497006" weight="0.16770834" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.340625" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49836424" weight="0.18541667" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.502994" side_tool="true" weight="0.16979167" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.497006" weight="0.16770834" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -941,9 +928,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、用户编辑部门默认选择&#10;2、显示用户部门" />
-    <MESSAGE value="1、解决用户编辑角色选定bug&#10;2、用户信息的搜索" />
-    <MESSAGE value="解决用户状态无法提交问题" />
     <MESSAGE value="1、权限permissions搭建&#10;2、js里面$(&quot;.btn&quot;).on('click',funcition)方法改为delegate()方法［之前未来都能调用］" />
     <MESSAGE value="salt表单添加" />
     <MESSAGE value="2" />
@@ -956,7 +940,6 @@
     <MESSAGE value="增删菜单动态刷新左侧菜单栏" />
     <MESSAGE value="PCB订单显示（编辑，查看）" />
     <MESSAGE value="钢网订单显示修改" />
-    <MESSAGE value="1" />
     <MESSAGE value="订单评审文件下载" />
     <MESSAGE value="订单提交" />
     <MESSAGE value="PCB Stencil订单提交100%" />
@@ -966,7 +949,11 @@
     <MESSAGE value="PCB/Stencil订单锁定" />
     <MESSAGE value="layui-this打开选中多个菜单bug" />
     <MESSAGE value="接口全局设置" />
-    <option name="LAST_COMMIT_MESSAGE" value="接口全局设置" />
+    <MESSAGE value="修改1" />
+    <MESSAGE value="贴片信息添加（差删除，更新）" />
+    <MESSAGE value="smt订单完善" />
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -974,80 +961,10 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/views/user/administrators/role.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="12" lean-forward="true" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/sys_role.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2128" />
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/common.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="120" column="18" selection-start-line="120" selection-start-column="18" selection-end-line="120" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4828">
-          <caret line="284" column="12" selection-start-line="284" selection-start-column="12" selection-end-line="284" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/renderEdit/a.js" />
-    <entry file="file://$PROJECT_DIR$/src/views/customerManagement/customer_info.html" />
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/role.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3519">
-          <caret line="207" column="7" selection-start-line="207" selection-start-column="7" selection-end-line="207" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/dept.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="54" column="100" lean-forward="true" selection-start-line="54" selection-start-column="100" selection-end-line="54" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/customer_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="80" column="11" selection-start-line="80" selection-start-column="11" selection-end-line="80" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="182" column="7" lean-forward="true" selection-start-line="182" selection-start-column="7" selection-end-line="182" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="119" column="6" lean-forward="true" selection-start-line="119" selection-start-column="6" selection-end-line="119" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/mobileterminal.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4">
           <caret line="21" column="11" lean-forward="true" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderStencil_update.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2312">
-          <caret line="136" column="95" lean-forward="true" selection-start-line="136" selection-start-column="65" selection-end-line="136" selection-end-column="95" />
         </state>
       </provider>
     </entry>
@@ -1058,43 +975,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/sys_coustomer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="31" column="58" lean-forward="true" selection-start-line="31" selection-start-column="58" selection-end-line="31" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="69" column="41" lean-forward="true" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12665">
-          <caret line="745" selection-start-line="745" selection-end-line="745" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_stencil_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/permissions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" selection-end-line="65" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/user_edit_role.html">
       <provider selected="true" editor-type-id="text-editor" />
@@ -1148,20 +1030,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/market_orderNoPayment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="120" column="91" selection-start-line="120" selection-start-column="91" selection-end-line="120" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/market_orderOkPayment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/style/admin.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
@@ -1204,27 +1072,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/market_orderReview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="235" column="39" lean-forward="true" selection-start-line="235" selection-start-column="39" selection-end-line="235" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/epc_indicatorCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="255" column="18" selection-start-line="255" selection-start-column="18" selection-end-line="255" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/sys_menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="155" column="39" lean-forward="true" selection-start-line="155" selection-start-column="39" selection-end-line="155" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/user/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
@@ -1239,77 +1086,254 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="46" column="4" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sys_menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="131" column="53" selection-start-line="131" selection-start-column="53" selection-end-line="131" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
-          <caret line="78" column="54" lean-forward="true" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuAdd.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="31" column="107" selection-start-line="31" selection-start-column="100" selection-end-line="31" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/user_edit_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="112" column="81" selection-start-line="112" selection-start-column="81" selection-end-line="112" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/ok_payment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="86" column="54" selection-start-line="86" selection-start-column="54" selection-end-line="86" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/no_payment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="87" column="29" lean-forward="true" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/order_review.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="87" column="54" selection-start-line="87" selection-start-column="54" selection-end-line="87" selection-end-column="54" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+          <caret line="78" column="54" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/scmManagement/outgoing_quote.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
+        <state relative-caret-position="1479">
           <caret line="87" column="83" selection-start-line="87" selection-start-column="83" selection-end-line="87" selection-end-column="83" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/user/reg.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="83" column="22" lean-forward="true" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
+        <state relative-caret-position="1700">
+          <caret line="100" column="4" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sys_menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1972">
+          <caret line="116" column="54" selection-start-line="116" selection-start-column="54" selection-end-line="116" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/epc_indicatorCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="43" column="55" lean-forward="true" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/user_edit_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="85" column="18" selection-start-line="85" selection-start-column="18" selection-end-line="85" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuAdd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="31" column="107" selection-start-line="31" selection-start-column="100" selection-end-line="31" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_stencil_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/no_payment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderStencil_update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="106" selection-start-line="2" selection-start-column="106" selection-end-line="2" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="704" column="22" lean-forward="true" selection-start-line="704" selection-start-column="22" selection-end-line="704" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderSMT_update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2210">
+          <caret line="130" column="72" selection-start-line="130" selection-start-column="72" selection-end-line="130" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/market_orderNoPayment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6851">
+          <caret line="403" column="28" selection-start-line="403" selection-start-column="22" selection-end-line="403" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_smt_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="59" column="41" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/ok_payment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2788">
+          <caret line="164" column="53" selection-start-line="164" selection-start-column="53" selection-end-line="164" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/market_orderOkPayment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6783">
+          <caret line="399" column="20" selection-start-line="399" selection-start-column="20" selection-end-line="399" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/order_review.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="236" column="31" lean-forward="true" selection-start-line="236" selection-start-column="31" selection-end-line="236" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/market_orderReview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6290">
+          <caret line="370" column="35" selection-start-line="370" selection-start-column="35" selection-end-line="370" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/sys_coustomer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="107" column="43" selection-start-line="107" selection-start-column="43" selection-end-line="107" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/articleManagement/blog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="65" column="13" lean-forward="true" selection-start-line="57" selection-start-column="8" selection-end-line="65" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/articleManagement/blogformadd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="41" lean-forward="true" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/article_blog.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2533">
+          <caret line="149" column="66" selection-start-line="149" selection-start-column="66" selection-end-line="149" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/article_feedback.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="62" column="54" selection-start-line="62" selection-start-column="54" selection-end-line="62" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start/vue.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/articleManagement/feedbackfrom.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="42" column="10" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/articleManagement/feedback.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/permissions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="32" column="48" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/sys_menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="98" column="29" lean-forward="true" selection-start-line="98" selection-start-column="29" selection-end-line="98" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="483" column="141" selection-start-line="483" selection-start-column="141" selection-end-line="483" selection-end-column="141" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#14;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#14;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#2;n#div#14;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#14;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#18;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#19;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#19;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#19;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#20;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#20;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#20;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#div#0;n#div#23;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="57" lean-forward="true" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
         </state>
       </provider>
     </entry>
