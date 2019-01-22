@@ -118,6 +118,18 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                     });
                 }
             });
+        } else if (obj.event === 'del') {
+            layer.confirm('确定删除此博客？', function(index){
+                admin.req({
+                    url:setter.baseUrl+'article/delete',
+                    type:'POST',
+                    data:{ids:data.id},
+                    success:function(data){
+                        layui.table.reload('article_Table_blog'); //重载表格
+                        layer.msg('已删除');
+                    }
+                });
+            });
         }
     });
 
