@@ -107,7 +107,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
                 shadeClose: true,
                 shade: false,
                 maxmin: false, //开启最大化最小化按钮
-                area: ['720px', '780px'],
+                area: ['40%', '85%'],
                 content:'<div class="layui-row" id="customer_edit_info"></div>',
                 btn:['确定','取消'],
                 yes: function(index, layero) {
