@@ -3,11 +3,12 @@
  * _def_disableIn 默认值
  **/
 
-layui.define(['laytpl','layer','setter','form','element'], function (exports) {
+layui.define(['form','element','laytpl','layer','setter'], function (exports) {
     var $ = layui.jquery
         ,form = layui.form
-        ,element = layui.element;
-
+        ,element = layui.element
+        ,layer = layui.layer;
+    element.render();
     var arr_layer_options = [{text: 1,value: 1},{text: 2,value: 2},{text: 4,value: 4},{text: 6,value: 6},{text: 8,value: 8}];
     var arr_layer_optionst = [{text: 1,value: 1},{text: 2,value: 2}];
     var arr_layer_optionss = [{text: 4,value: 4},{text: 6,value: 6},{text: 8,value: 8}];
