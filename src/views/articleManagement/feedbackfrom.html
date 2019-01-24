@@ -14,10 +14,14 @@
         <script type="text/html" template>
            <select name="articleClassify" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
               <option value="" {{ d.params.articleClassify === '' ? 'selected' : '' }}>请选择</option>
-              <option value="分类1" {{ d.params.articleClassify === '分类1' ? 'selected' : '' }}>分类1</option>
-              <option value="分类2" {{ d.params.articleClassify === '分类2' ? 'selected' : '' }}>分类2</option>
-              <option value="分类3" {{ d.params.articleClassify === '分类3' ? 'selected' : '' }}>分类3</option>
-              <option value="分类4" {{ d.params.articleClassify === '分类4' ? 'selected' : '' }}>分类4</option>
+              <option value="PCB prototype " {{ d.params.articleClassify === 'PCB prototype ' ? 'selected' : '' }}>PCB prototype</option>
+              <option value="SMT" {{ d.params.articleClassify === 'SMT' ? 'selected' : '' }}>SMT</option>
+              <option value="Assembly" {{ d.params.articleClassify === 'Assembly' ? 'selected' : '' }}>Assembly</option>
+              <option value="PCB Technology" {{ d.params.articleClassify === 'PCB Technology' ? 'selected' : '' }}>PCB Technology</option>
+              <option value="PCB Flow" {{ d.params.articleClassify === 'PCB Flow' ? 'selected' : '' }}>PCB Flow</option>
+              <option value="PCB News" {{ d.params.articleClassify === 'PCB News' ? 'selected' : '' }}>PCB News</option>
+              <option value="SMT Technology" {{ d.params.articleClassify === 'SMT Technology' ? 'selected' : '' }}>SMT Technology</option>
+              <option value="SMT Flow" {{ d.params.articleClassify === 'SMT Flow' ? 'selected' : '' }}>SMT Flow</option>
           </select>
         </script>
       </div>
