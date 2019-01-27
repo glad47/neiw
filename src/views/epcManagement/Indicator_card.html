@@ -112,28 +112,20 @@
                     {{#  } }}
                 </script>
                 <script type="text/html" id="Tabtb-pcb-epc-indicatorCard-status">
-                    {{# if(d.status === 1){ }}
-                    <a style="color: #1E9FFF">
-                        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
-                    </a>
-                    {{# } else if(d.status === 2){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>已审待支付
-                    </a>
-                    {{# } else if(d.status === 3){ }}
+                   {{# if(d.status === 5){ }}
                     <a style="color: green">
                         {{# if(d.isExistIndicator === 2){ }}
-                        <i class="layui-icon layui-icon-ok"></i>已支付(已编)
+                        <i class="layui-icon layui-icon-ok"></i>已编未审
                         {{# } else { }}
-                        <i class="layui-icon layui-icon-ok"></i>已支付
+                        <i class="layui-icon layui-icon-ok"></i>未编未审
                         {{# } }} 
                     </a>
-                    {{# } else if(d.status === 4){ }}
+                    {{# } else if(d.status === 6){ }}
                     <a style="color: green">
                         {{# if(d.isExistIndicator === 2){ }}
-                        <i class="layui-icon layui-icon-ok"></i>工程已审核(已编)
+                        <i class="layui-icon layui-icon-ok"></i>已编已审
                         {{# } else { }}
-                        <i class="layui-icon layui-icon-ok"></i>工程已审核
+                        <i class="layui-icon layui-icon-ok"></i>未编已审
                         {{# } }} 
                     </a>
                     {{# } }}

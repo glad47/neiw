@@ -115,17 +115,25 @@
                 <script type="text/html" id="Tabtb-pcb-scm-outgoingQuote-status">
                     {{# if(d.status === 1){ }}
                     <a style="color: #1E9FFF">
-                        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
+                        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待报价
                     </a>
                     {{# } else if(d.status === 2){ }}
                     <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>已审待支付
+                        <i class="layui-icon layui-icon-ok"></i>待确认
                     </a>
                     {{# } else if(d.status === 3){ }}
                     <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>已支付
+                        <i class="layui-icon layui-icon-ok"></i>待支付
                     </a>
                     {{# } else if(d.status === 4){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>已支付
+                    </a>
+                    {{# } else if(d.status === 5){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>编写指示卡
+                    </a>
+                    {{# } else if(d.status === 6){ }}
                     <a style="color: green">
                         <i class="layui-icon layui-icon-ok"></i>工程已审核
                     </a>
