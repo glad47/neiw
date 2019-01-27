@@ -221,6 +221,7 @@
           admin.req({
               url: setter.baseUrl+'sys/user/info',
               type: 'get',
+              async:false,
               success: function (res) {
                   var data = res.data;
                   admin.popup({

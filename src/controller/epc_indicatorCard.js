@@ -245,7 +245,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 admin.req({
                     type: 'post'
                     ,url: setter.baseUrl+'epc/pcborder/update'
-                    ,data: {"id":data.id,"status":4}
+                    ,data: {"id":data.id,"status":6}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
                         layui.table.reload('or_Tabpcb_no_payment');
