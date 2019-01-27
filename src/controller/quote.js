@@ -43,7 +43,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     var public_data = {
         shippingCost: '',
         customerAid:'',
-        ids:[],
+        ids:'',
     };
 
     /**
@@ -52,16 +52,19 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
      */
     //右侧 pcb 明细容器
     var pcb_container = {
-        projectQuoteToUSD: '',
-        totalBoardQuoteToUSD: '',
-        newTestQuoteTOUSD: '',
-        cncAndPunchingQuoteToUSD: '',
-        urgentFee: '',  //加急费
-        totalQuoteWeight: '',
+        engineeringFee: '',
+        boardFee: '',
+        testCostFee: '',
+        toolingFee: '',
+        overworkFee: '',  //加急费
+        weight: '',
         shippingCost: '',
-        totalPrice: '', //总价
+        subtotal: '', //总价
+        quoteConfigIds:'',
+        userId: '', //用户id
         // pcbCost: '',
-    }
+    };
+    var pcb_rigdetaily = {};
     // 右侧 SMT-Stencil 明细容器
     var stmStencil_container = {
         stencilWeight: '',
@@ -240,7 +243,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     form.on("radio(buildTimeRadio)", function (data) {
         var this_price = data.value;
         // 给pcb明细容器赋值
-        pcb_container.urgentFee = this_price;
+        pcb_container.overworkFee = this_price;
         $("#urgentFee").val("$"+this_price);
         quotePCBCost();
     });
@@ -269,6 +272,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     form.on('select(filterCustomer)',function (data) {
         // $("#inCustomer").val($(data.elem).find("option:selected").text());
         public_data.customerAid = data.value;
+        pcb_container.userId = data.value;
         form.render('','checkCustomer');
     });
 
@@ -562,7 +566,8 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
      */
     form.on('submit(quoteForm)',function (data) {
         var data = data.field;
-        data.isExistSmt = false;
+        pcb_rigdetaily = data;
+        data.isExistSmt = 0;
         data.stackUp = "none";
         data.innerMinTrack = data.innerMinSpacing;
         data.outerMinSpacing = data.outerMinTrack;
@@ -581,14 +586,21 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
             url: setter.imUrl+'quote/countAdditionInfo',
             data: data,
             success: function (data) {
-                public_data.ids = data.data.pcbPriceDetail.qcidList;
+                if (data.data.pcbPriceDetail.qcidList != null || data.data.pcbPriceDetail.qcidList != ""){
+                    public_data.ids = data.data.pcbPriceDetail.qcidList;
+                    var aa;
+                    var bb;
+                    pcb_container.quoteConfigIds = data.data.pcbPriceDetail.qcidList.join(',');
+                    public_data.ids = data.data.pcbPriceDetail.qcidList;
+                    console.log(public_data.ids);
+                }
                 console.log(data);
                 // 给pcb明细容器赋值
-                pcb_container.projectQuoteToUSD = data.data.projectQuoteToUSD;
-                pcb_container.totalBoardQuoteToUSD = data.data.totalBoardQuoteToUSD;
-                pcb_container.newTestQuoteTOUSD = data.data.newTestQuoteTOUSD;
-                pcb_container.cncAndPunchingQuoteToUSD = data.data.cncAndPunchingQuoteToUSD;
-                pcb_container.totalQuoteWeight = data.data.totalQuoteWeight;
+                pcb_container.engineeringFee = data.data.projectQuoteToUSD;
+                pcb_container.boardFee = data.data.totalBoardQuoteToUSD;
+                pcb_container.testCostFee = data.data.newTestQuoteTOUSD;
+                pcb_container.toolingFee= data.data.cncAndPunchingQuoteToUSD;
+                pcb_container.weight = data.data.totalQuoteWeight;
                 //给页面元素赋值
                 post_data.totalWeight = data.data.totalQuoteWeight;
                 $("#boardFee").val(" $ "+data.data.totalBoardQuoteToUSD);
@@ -765,10 +777,10 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
      * 计算PCB Cost 价格
      */
     function quotePCBCost() {
-        if (pcb_container.urgentFee == null || pcb_container.urgentFee == ""){
-            pcb_container.urgentFee = 0;
+        if (pcb_container.overworkFee == null || pcb_container.overworkFee == ""){
+            pcb_container.overworkFee = 0;
         }
-        var pcbCost = parseFloat(pcb_container.projectQuoteToUSD+pcb_container.totalBoardQuoteToUSD+pcb_container.newTestQuoteTOUSD+pcb_container.cncAndPunchingQuoteToUSD)+parseFloat(pcb_container.urgentFee);
+        var pcbCost = parseFloat(pcb_container.engineeringFee+pcb_container.boardFee+pcb_container.testCostFee+pcb_container.toolingFee)+parseFloat(pcb_container.overworkFee);
         $("#pcbCost").val(pcbCost.toFixed(2));
     }
 
@@ -779,7 +791,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     function quoteSMTStencil() {
         var totalPrice = parseFloat(stencil_data.stencilSize_price+public_data.shippingCost);
         // 给pcb明细容器赋值
-        pcb_container.totalPrice = totalPrice;
+        pcb_container.subtotal = totalPrice;
         $("#totalPrice").val("$"+totalPrice);
     }
 
@@ -811,42 +823,54 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         },
         // 添加当前报价
         addThisQuote: function () {
-            layer.msg("添加当前报价");
-            admin.req({
-                type: 'post',
-                data: '',
-                url: setter.imUrl+"epc/pcborder/save",
-                success: function (data) {
-                    
-                }
-            })
-        },
-        // 查看报价详情
-        lookQuote: function () {
-            var data = public_data.ids;
-            console.log(data);
-            if (public_data.customerAid == null || public_data.customerAid == ""){
-                layer.msg("情选择对应的客户");
+            var quote_data = Object.assign(pcb_rigdetaily,pcb_container);
+            console.log("userId:"+pcb_container.userId);
+            if (pcb_container.userId == null || pcb_container.userId == ""){
+                layer.msg("请先选择客户");
             } else {
                 admin.req({
                     type: 'post',
-                    dataType: 'json',
-                    data: {data},
+                    data: quote_data,
+                    url: setter.baseUrl+"epc/pcborder/save",
+                    success: function (data) {
+
+                    }
+                });
+            }
+        },
+        // 查看报价详情
+        lookQuote: function () {
+            var ids = pcb_container.quoteConfigIds;
+            if (public_data.customerAid == null || public_data.customerAid == ""){
+                layer.msg("请选择对应的客户");
+            } else {
+                admin.req({
+                    type: 'post',
+                    // dataType: 'json',
+                    // contentType:'application/json;charset=utf-8',
+                    data: {"ids":pcb_container.quoteConfigIds},
                     url: setter.imUrl+'getQuoteDetail',
                     success: function (data) {
-                        datas = data;
-                        admin.popup({
-                            title: '产看报价详情',
-                            area: ['60%', '85%'],
-                            btn: ['确定', '取消'],
-                            yes: function (layero, index) {
-                                layer.closeAll();
-                            },
-                            success: function (layero, index) {
-                                view(this.id).render("marketManagement/iframeWindow/quote_detaily",datas).done(function () {
+                        // datas = data;
 
-                                });
-                            }
+                    }
+                });
+                admin.popup({
+                    title: '产看报价详情',
+                    area: ['60%', '85%'],
+                    btn: ['确定', '取消'],
+                    yes: function (layero, index) {
+                        layer.closeAll();
+                    },
+                    success: function (layero, index) {
+                        var data = {ids: ''};
+                        data.ids = pcb_container.quoteConfigIds;
+                        view(this.id).render("marketManagement/iframeWindow/quote_detaily",data).done(function () {
+                            $("#sss").text(ids);
+                            $("#sss").attr("name",ids);
+                            console.log(data);
+                            layer.msg('打开');
+
                         });
                     }
                 });

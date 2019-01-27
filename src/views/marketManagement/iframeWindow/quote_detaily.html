@@ -1,65 +1,65 @@
 <div class="layui-fluid">
-    <script type="text/html" template id="test">
-        <input type="text" value="{{ d.params.aid }}" id="{{ d.params.aid }}" class="aid">
+    <script type="text/html" template id="test" lay-done="layui.data.done(d);">
+        <input type="text" value="{{ d.params.ids }}" id="{{ d.params.ids }}" class="aid" style="display: none;">
     </script>
-    <table class="layui-table" id="stencilSize" lay-filter="stencilList"></table>
-    <input type="text" value="999" id="stenContainer" style="display: none;">
+    <table class="layui-table" id="quoteDetaily" lay-filter="quoteDetaily"></table>
 </div>
+<a id="sss" name="" style="display: none;"></a>
 <script type="text/javascript">
-    layui.use(['form','table','admin','setter'], function(){
-        var $ = layui.$
-            ,form = layui.form
-            ,admin = layui.admin
-            ,setter = layui.setter
-            ,table = layui.table;
-        // table.render({
-        //     elem: '#stencilSize'
-        //     ,url: setter.imUrl+'quote/getStencilSize'
-        //     ,toolbar: true
-        //     ,cellMinWidth: 80
-        //     ,id: 'stencilSize'
-        //     ,page: true
-        //     ,where: {
-        //         access_token: layui.data('layuiAdmin').access_token,
-        //         // at:2
-        //     }
-        //     ,cols: [[
-        //         {type:'radio',title: 'Check'},
-        //         {field: 'id',title: 'id', hide: true},
-        //         {field: 'materialName',title: 'Type', align: 'center',width: 135},
-        //         {field: 'stencilSizex',title: 'stencilSizex', align: 'center',width: 130},
-        //         {field: 'stencilSizey',title: 'stencilSizey', align: 'center',width: 130},
-        //         {field: 'stencilAreax',title: 'stencilAreax', align: 'center',width: 130},
-        //         {field: 'stencilAreay',title: 'stencilAreay', align: 'center',width: 130},
-        //         {field: 'weight',title: 'weight', align: 'center',width: 130},
-        //         {field: 'priceToUSD',title: 'price($)', align: 'center',width: 130}
-        //     ]]
-        // });
-        // //监听行单击事件
-        // table.on('row(stencilList)', function (obj) {
-        //     var data = obj.data;
-        //     // Farmework 736*736(Valid area 500*500mm)
-        //     $("#stenContainer").attr("data-id",data.priceToUSD); //价格
-        //     $("#stenContainer").attr("name",data.weight); //重量
-        //     $("#stenContainer").val(data.materialName+" "+ data.stencilSizex+"*"+data.stencilSizey+"(Valid area"+data.stencilAreax+"*"+data.stencilAreay+"mm)");
-        //     //标注选中样式
-        //     obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
-        //     //选中此行的radio
-        //     obj.tr.find('input[lay-type="layTableRadio"]').prop("checked",true);
-        //     form.render('radio');
-        // })
-        var aid = $(".aid").attr("id");
-        console.log($(".aid").html());
-        // admin.req({
-        //     type: 'post',
-        //     dataType: 'json',
-        //     data: [{aid:aid}],
-        //     url: setter.imUrl+'getQuoteDetail',
-        //     success: function (data) {
-        //         console.log(data);
-        //     }
-        // })
-        form.render();
-    });
+    layui.data.done = function(params){
+        layui.use(['form','jquery','table','setter'], function(){
+            var form = layui.form;
+            var $ = layui.jquery;
+            var admin = layui.admin;
+            var table = layui.table;
+            var setter = layui.setter;
+            //获取父页传过来的json对象
+            var aid = $(".aid").val();
+           console.log("aid=====>"+aid);
+                table.render({
+                    elem: '#quoteDetaily'
+                    ,url: setter.imUrl+'getQuoteDetail'
+                    ,toolbar: true
+                    ,cellMinWidth: 80
+                    ,id: 'stencilSize'
+                    ,method: 'get'
+                    // ,page: true
+                    ,where: {
+                        page: '',
+                        limit: '',
+                        access_token: layui.data('layuiAdmin').access_token,
+                        ids: {"ids":aid}
+                    }
+                    ,cols: [[
+                        {field: 'id',title: 'id', hide: true},
+                        {field: 'adjustedQuote',title: 'adjustedQuote', align: 'center',width: 135},
+                        {field: 'areaParameterName',title: 'areaParameterName', align: 'center',width: 130},
+                        {field: 'areaSqId',title: 'areaSqId', align: 'center',width: 130},
+                        {field: 'consumerAdjustQuoteId',title: 'consumerAdjustQuoteId', align: 'center',width: 130},
+                        {field: 'layerNum',title: 'layerNum', align: 'center',width: 130},
+                        {field: 'layerNumId',title: 'layerNumId', align: 'center',width: 130},
+                        {field: 'parameterName',title: 'parameterName', align: 'center',width: 130},
+                        {field: 'parameterNameId',title: 'parameterNameId', align: 'center',width: 130},
+                        {field: 'parameterTypeId',title: 'parameterTypeId', align: 'center',width: 130},
+                        {field: 'parameterTypeName',title: 'parameterTypeName', align: 'center',width: 130},
+                        {field: 'parameterValue',title: 'parameterValue', align: 'center',width: 130},
+                        {field: 'parameterValueId',title: 'parameterValueId', align: 'center',width: 130},
+                        {field: 'pcbTypeId',title: 'pcbTypeId', align: 'center',width: 130},
+                        {field: 'pcbTypeName',title: 'pcbTypeName', align: 'center',width: 130},
+                        {field: 'premiumType',title: 'premiumType', align: 'center',width: 130},
+                        {field: 'premiumTypeId',title: 'premiumTypeId', align: 'center',width: 130},
+                        {field: 'quote',title: 'quote', align: 'center',width: 130},
+                        {field: 'quoteCondition',title: 'quoteCondition', align: 'center',width: 130},
+                        {field: 'urgentType',title: 'urgentType', align: 'center',width: 130},
+                        {field: 'urgentTypeId',title: 'urgentTypeId', align: 'center',width: 130},
+                        {field: 'userEmail',title: 'userEmail', align: 'center',width: 130},
+                        {field: 'userEmail',title: 'userEmail', align: 'center',width: 130},
+                        {field: 'userId',title: 'userId', align: 'center',width: 130},
+                        {field: 'userSysName',title: 'userSysName', align: 'center',width: 130}
+                    ]]
+                });
+
+        });
+    };
 
 </script>
