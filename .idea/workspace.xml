@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="修改1">
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="内部系统差保存客户资料，显示列表，">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/quote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_detaily.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_detaily.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/internal_quote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/internal_quote.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,60 +20,32 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.770665">
+    <splitter split-orientation="horizontal" split-proportion="0.5513866">
       <split-first>
-        <splitter split-orientation="vertical" split-proportion="0.5353234">
+        <splitter split-orientation="vertical" split-proportion="0.31458333">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
+              <file leaf-file-name="internal_quote.html" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/internal_quote.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="92">
-                      <caret line="539" column="107" selection-start-line="539" selection-start-column="107" selection-end-line="539" selection-end-column="107" />
-                      <folding>
-                        <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#2;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#3;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#label#0;n#div#0;n#form#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#5;n#div#0;n#form#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#4;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#form#4;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#5;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                      </folding>
+                    <state relative-caret-position="136">
+                      <caret line="8" column="13" lean-forward="true" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="customer_quote_config_form.html" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/customer_quote_config_form.html">
+              <file leaf-file-name="market_internalQuote.js" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/controller/market_internalQuote.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="211">
-                      <caret line="222" column="31" lean-forward="true" selection-start-line="222" selection-start-column="31" selection-end-line="222" selection-end-column="31" />
+                    <state relative-caret-position="504">
+                      <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-3432">
-                      <caret line="67" column="26" lean-forward="true" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
-                    </state>
-                  </provider>
+              <file leaf-file-name="mobileterminal.js" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/controller/mobileterminal.js">
+                  <provider selected="true" editor-type-id="text-editor" />
                 </entry>
               </file>
             </leaf>
@@ -81,8 +55,8 @@
               <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="346">
-                      <caret line="870" column="7" selection-start-line="870" selection-start-column="7" selection-end-line="870" selection-end-column="7" />
+                    <state relative-caret-position="312">
+                      <caret line="23" column="4" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="26" selection-end-column="73" />
                     </state>
                   </provider>
                 </entry>
@@ -90,8 +64,8 @@
               <file leaf-file-name="stencil_size_list.html" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/stencil_size_list.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="337">
-                      <caret line="30" column="56" selection-start-line="30" selection-start-column="56" selection-end-line="30" selection-end-column="56" />
+                    <state relative-caret-position="595">
+                      <caret line="35" column="57" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
                       <folding>
                         <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
                       </folding>
@@ -104,132 +78,187 @@
         </splitter>
       </split-first>
       <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="663" column="94" selection-start-line="663" selection-start-column="81" selection-end-line="663" selection-end-column="94" />
-                  <folding>
-                    <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#2;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#3;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#label#0;n#div#0;n#form#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#5;n#div#0;n#form#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#4;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#form#2;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#5;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="quote_detaily.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_detaily.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="775">
-                  <caret line="60" column="13" lean-forward="true" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
-                  <folding>
-                    <element signature="n#style#0;n#input#1;n#div#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="quote.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="617">
-                  <caret line="46" column="6" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="orderStencil_update.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderStencil_update.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="519">
-                  <caret line="128" column="18" lean-forward="true" selection-start-line="128" selection-start-column="18" selection-end-line="128" selection-end-column="18" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="sys_menuAdd.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuAdd.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2881">
-                  <caret line="31" column="107" selection-start-line="31" selection-start-column="100" selection-end-line="31" selection-end-column="107" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="supplier_edit.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_edit.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="524">
-                  <caret line="146" column="78" selection-start-line="146" selection-start-column="57" selection-end-line="146" selection-end-column="78" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
+        <splitter split-orientation="vertical" split-proportion="0.571875">
+          <split-first>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file leaf-file-name="market_orderReview.js" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/controller/market_orderReview.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="199">
+                      <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="416">
+                      <caret line="346" column="57" lean-forward="true" selection-start-line="346" selection-start-column="57" selection-end-line="346" selection-end-column="57" />
+                      <folding>
+                        <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#22;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#3;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#label#0;n#div#0;n#form#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="e#45624#45630#0" expanded="true" />
+                        <element signature="e#45632#45638#0" expanded="true" />
+                        <element signature="n#style#0;n#div#5;n#div#0;n#form#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#4;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#5;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="order_review.html" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/order_review.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="-300">
+                      <caret line="176" column="18" lean-forward="true" selection-start-line="176" selection-start-column="18" selection-end-line="176" selection-end-column="18" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="quote.js" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="119">
+                      <caret line="884" column="30" selection-start-line="884" selection-start-column="30" selection-end-line="884" selection-end-column="30" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="blog.html" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/views/articleManagement/blog.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="255">
+                      <caret line="66" column="39" lean-forward="true" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="sys_menuAdd.html" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuAdd.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="496">
+                      <caret line="223" column="34" selection-start-line="223" selection-start-column="4" selection-end-line="223" selection-end-column="34" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="quote_detaily.html" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_detaily.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="147">
+                      <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+                      <folding>
+                        <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-first>
+          <split-second>
+            <leaf>
+              <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="186">
+                      <caret line="770" column="65" lean-forward="true" selection-start-line="770" selection-start-column="65" selection-end-line="770" selection-end-column="65" />
+                      <folding>
+                        <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#22;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#2;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#3;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#label#0;n#div#0;n#form#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="e#45588#45594#0" expanded="true" />
+                        <element signature="e#45596#45602#0" expanded="true" />
+                        <element signature="n#style#0;n#div#5;n#div#0;n#form#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#4;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#5;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#button#2;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-second>
+        </splitter>
       </split-second>
     </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CNC</find>
-      <find>cncAndPunch</find>
-      <find>重置报价</find>
-      <find>active[type]</find>
-      <find>layui-btn</find>
-      <find>batchdel</find>
-      <find>lay-filter</find>
-      <find>shipping</find>
-      <find>Engineering Fee:</find>
-      <find>Board Fee:</find>
-      <find>Test Fixture:</find>
       <find>Tooling fee:</find>
-      <find>Urgent fee:</find>
-      <find>Shipping</find>
-      <find>projectQuoteToUSD</find>
-      <find>totalBoardQuoteToUSD</find>
-      <find>urgentFee</find>
-      <find>enginnerFee</find>
-      <find>选择客户</find>
-      <find>price/PCS</find>
-      <find>shippingCost</find>
-      <find>inCustomer</find>
-      <find>evaluateCompatibility</find>
-      <find>135</find>
+      <find>layui.data.done</find>
+      <find>supplier_ids</find>
+      <find>aid</find>
+      <find>where</find>
+      <find>getBuildTime</find>
+      <find>getQuoteDetail</find>
+      <find>selCompany</find>
+      <find>blogD</find>
+      <find>company</find>
+      <find>quoteSMTStencil</find>
+      <find>country</find>
       <find>getShippingCost</find>
-      <find>Weight:</find>
-      <find>stencilWeight</find>
-      <find>inStencilCost</find>
-      <find>提交表单</find>
-      <find>Number of Unique Parts</find>
+      <find>companyId</find>
+      <find>getCountrys</find>
+      <find>Thickness</find>
+      <find>thickness</find>
+      <find>重置报价表</find>
+      <find>post_data</find>
+      <find>立即提交</find>
+      <find>getShipping</find>
+      <find>boardFee</find>
+      <find>boardQuoteToUSD</find>
+      <find>detail</find>
+      <find>readonly</find>
+      <find>查看报价</find>
+      <find>Remark</find>
+      <find>quote_detail</find>
+      <find>areaParameterName</find>
+      <find>filterCustomer</find>
     </findStrings>
     <replaceStrings>
       <replace>menu_add</replace>
@@ -253,7 +282,6 @@
       <replace>;</replace>
       <replace>selOutMintrack</replace>
       <replace>true</replace>
-      <replace />
       <replace>FR4</replace>
       <replace>FR4+Aluminum</replace>
       <replace>$</replace>
@@ -262,6 +290,7 @@
       <replace>140</replace>
       <replace>135</replace>
       <replace>130</replace>
+      <replace />
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/views/marketManagement/iframeWindow</dir>
@@ -278,8 +307,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/controller/permissions.js" />
-        <option value="$PROJECT_DIR$/src/views/customerManagement/customer_info.html" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/user_info.html" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/supplier_info.html" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/role.html" />
@@ -294,7 +321,6 @@
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_stencil_detail.html" />
         <option value="$PROJECT_DIR$/src/controller/user_edit_info.js" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/customer_edit_info.html" />
         <option value="$PROJECT_DIR$/src/style/admin.css" />
         <option value="$PROJECT_DIR$/src/views/user/login.html" />
         <option value="$PROJECT_DIR$/src/controller/sys_menu.js" />
@@ -326,8 +352,11 @@
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/merchandiser_info.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/customer_info.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/stencil_size_list.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" />
+        <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/customer_edit_info.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/internal_quote.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_detaily.html" />
+        <option value="$PROJECT_DIR$/src/controller/market_internalQuote.js" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" />
         <option value="$PROJECT_DIR$/src/controller/quote.js" />
       </list>
     </option>
@@ -346,10 +375,10 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="147" />
-    <option name="y" value="58" />
-    <option name="width" value="1855" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="24" />
+    <option name="y" value="23" />
+    <option name="width" value="1860" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -358,6 +387,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -387,6 +417,13 @@
               <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="articleManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="infoManagement" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -403,14 +440,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="marketManagement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="marketManagement" type="462c0819:PsiDirectoryNode" />
-              <item name="iframeWindow" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
@@ -421,7 +450,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -562,21 +590,12 @@
       <workItem from="1548205454614" duration="31129000" />
       <workItem from="1548291968580" duration="12017000" />
       <workItem from="1548377710514" duration="25215000" />
-      <workItem from="1548465238587" duration="31955000" />
-    </task>
-    <task id="LOCAL-00014" summary="菜单修改完成">
-      <created>1538740830967</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1538740830967</updated>
-    </task>
-    <task id="LOCAL-00015" summary="添加按钮判断。表单类型判断(undefinded清除表单内容)">
-      <created>1538795301363</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1538795301363</updated>
+      <workItem from="1548465238587" duration="32143000" />
+      <workItem from="1548551406953" duration="16782000" />
+      <workItem from="1548591528888" duration="134000" />
+      <workItem from="1549933974166" duration="3960000" />
+      <workItem from="1549961140634" duration="610000" />
+      <workItem from="1550021493375" duration="16727000" />
     </task>
     <task id="LOCAL-00016" summary="1、显示用户名&#10;2、顶部导航修改&#10;3、图标修改（登录页面－左侧导航小图标－网页ico图标）">
       <created>1538815920027</created>
@@ -907,11 +926,25 @@
       <option name="project" value="LOCAL" />
       <updated>1548336859432</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="内部系统差保存客户资料，显示列表，">
+      <created>1548513038190</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1548513038191</updated>
+    </task>
+    <task id="LOCAL-00064" summary="报价详情报错，多传了limit/page">
+      <created>1548590905411</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1548590905413</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="734242000" />
+    <option name="totallyTimeSpent" value="772643000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -923,10 +956,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <frame x="24" y="23" width="1860" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15271196" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.16748233" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.29479167" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50353837" side_tool="true" weight="0.41979167" />
@@ -948,19 +981,19 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22643496" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32935324" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.497006" weight="0.16770834" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.340625" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49836424" weight="0.18541667" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.502994" side_tool="true" weight="0.16979167" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.497006" weight="0.16770834" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -1007,8 +1040,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加权限" />
-    <MESSAGE value="编辑去除密码验证" />
     <MESSAGE value="1、菜单无法点击bug修改&#10;2、新增手机端表格收缩功能" />
     <MESSAGE value="菜单下拉回显" />
     <MESSAGE value="菜单显示bug" />
@@ -1032,7 +1063,9 @@
     <MESSAGE value="quote,模块一" />
     <MESSAGE value="内部系统报价表单联动完成" />
     <MESSAGE value="quote表单" />
-    <option name="LAST_COMMIT_MESSAGE" value="quote表单" />
+    <MESSAGE value="内部系统差保存客户资料，显示列表，" />
+    <MESSAGE value="报价详情报错，多传了limit/page" />
+    <option name="LAST_COMMIT_MESSAGE" value="报价详情报错，多传了limit/page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1040,23 +1073,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/user_edit_role.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/user_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/sys_user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/user_edit_info.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -1218,20 +1234,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/order_review.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="236" column="31" lean-forward="true" selection-start-line="236" selection-start-column="31" selection-end-line="236" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/market_orderReview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6290">
-          <caret line="370" column="35" selection-start-line="370" selection-start-column="35" selection-end-line="370" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/articleManagement/blogformadd.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -1275,24 +1277,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/customer_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="6" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/customer_info.html" />
     <entry file="file://$PROJECT_DIR$/src/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="106">
           <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/customer_edit_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="107" column="37" lean-forward="true" selection-start-line="107" selection-start-column="37" selection-end-line="107" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1310,20 +1299,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/articleManagement/blog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="69" column="41" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/customer_quote_config_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="222" column="31" lean-forward="true" selection-start-line="222" selection-start-column="31" selection-end-line="222" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/article_feedback.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="773">
@@ -1331,58 +1306,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderStencil_update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2176">
+          <caret line="128" column="18" lean-forward="true" selection-start-line="128" selection-start-column="18" selection-end-line="128" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2482">
+          <caret line="146" column="78" selection-start-line="146" selection-start-column="57" selection-end-line="146" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-86">
+          <caret line="30" column="51" lean-forward="true" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/customer_edit_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="187" column="43" lean-forward="true" selection-start-line="187" selection-start-column="43" selection-end-line="187" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/stencil_size_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="30" column="56" selection-start-line="30" selection-start-column="56" selection-end-line="30" selection-end-column="56" />
+        <state relative-caret-position="595">
+          <caret line="35" column="57" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
           <folding>
             <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderStencil_update.html">
+    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/customer_quote_config_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="128" column="18" lean-forward="true" selection-start-line="128" selection-start-column="18" selection-end-line="128" selection-end-column="18" />
+        <state relative-caret-position="310">
+          <caret line="222" column="31" selection-start-line="222" selection-start-column="31" selection-end-line="222" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_search.html">
+    <entry file="file://$PROJECT_DIR$/src/controller/mobileterminal.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/market_internalQuote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="46" lean-forward="true" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
+        <state relative-caret-position="504">
+          <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuAdd.html">
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/order_review.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2881">
-          <caret line="31" column="107" selection-start-line="31" selection-start-column="100" selection-end-line="31" selection-end-column="107" />
+        <state relative-caret-position="-300">
+          <caret line="176" column="18" lean-forward="true" selection-start-line="176" selection-start-column="18" selection-end-line="176" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_edit.html">
+    <entry file="file://$PROJECT_DIR$/src/views/articleManagement/blog.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="146" column="78" selection-start-line="146" selection-start-column="57" selection-end-line="146" selection-end-column="78" />
+        <state relative-caret-position="255">
+          <caret line="66" column="39" lean-forward="true" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/market_orderReview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_detaily.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="60" column="13" lean-forward="true" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
+        <state relative-caret-position="147">
+          <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
           <folding>
-            <element signature="n#style#0;n#input#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuAdd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="223" column="34" selection-start-line="223" selection-start-column="4" selection-end-line="223" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/internal_quote.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="13" lean-forward="true" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="539" column="107" selection-start-line="539" selection-start-column="107" selection-end-line="539" selection-end-column="107" />
+        <state relative-caret-position="416">
+          <caret line="346" column="57" lean-forward="true" selection-start-line="346" selection-start-column="57" selection-end-line="346" selection-end-column="57" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -1394,6 +1421,7 @@
             <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#22;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -1401,9 +1429,10 @@
             <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#label#0;n#div#0;n#form#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#45624#45630#0" expanded="true" />
+            <element signature="e#45632#45638#0" expanded="true" />
             <element signature="n#style#0;n#div#5;n#div#0;n#form#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#4;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#form#4;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#5;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
@@ -1412,8 +1441,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="870" column="7" selection-start-line="870" selection-start-column="7" selection-end-line="870" selection-end-column="7" />
+        <state relative-caret-position="312">
+          <caret line="23" column="4" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="26" selection-end-column="73" />
         </state>
       </provider>
     </entry>

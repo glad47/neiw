@@ -329,6 +329,8 @@
                                                     <option value="HASL_with_lead">HASL with lead</option>
                                                     <option value="HASL_lead_free">HASL lead free</option>
                                                     <option value="Immersion_Gold">Immersion Gold</option>
+                                                    <option value="Immersion_tin">Immersion tin</option>
+                                                    <option value="Immersion_silver">Immersion silver</option>
                                                     <option value="OSP">OSP</option>
                                                 </select>
                                             </div>
@@ -338,6 +340,10 @@
                                                     <option value="1u">Ni:120-150u"  Au:1u</option>
                                                     <option value="2u">Ni:120-150u"  Au:2u</option>
                                                     <option value="3u">Ni:120-150u"  Au:3u"</option>
+                                                    <option value="2.54-25.4um">2.54-25.4um</option>
+                                                    <option value="0.5um-0.7um">0.5um-0.7um</option>
+                                                    <option value="≥0.05um">≥0.05um</option>
+                                                    <option value="0.25-0.5um">0.25-0.5um</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -412,9 +418,16 @@
                                         </div>
 
                                         <div class="layui-form-item">
+                                            <label class="layui-form-label">customerId:</label>
                                             <div class="layui-input-block">
-                                                <button class="layui-btn" lay-filter="quoteForm" lay-submit>立即提交</button>
-                                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                                <input type="text" name="customerId"  autocomplete="off" class="layui-input mto-input" id="customerId">
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-form-item" style="display: none;">
+                                            <div class="layui-input-block">
+                                                <button class="layui-btn bot-subbtn" lay-filter="quoteForm" lay-submit>立即提交</button>
+                                                <button type="reset" data-type="resetQuoteTab" class="layui-btn layui-btn-primary bot-rsetbtn">重置</button>
                                             </div>
                                         </div>
 
@@ -446,26 +459,26 @@
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">Thickness:</label>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input type="radio" class="layui-input" value="0.1" title="0.10MM">
+                                            <input name="thickness" type="radio" class="layui-input" value="0.1" title="0.10MM">
                                         </div>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input type="radio" class="layui-input" value="0.1" title="0.10MM">
+                                            <input name="thickness" type="radio" class="layui-input" value="0.1" title="0.10MM">
                                         </div>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input type="radio" class="layui-input" value="0.1" title="0.10MM">
+                                            <input name="thickness" type="radio" class="layui-input" value="0.1" title="0.10MM">
                                         </div>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input type="radio" class="layui-input" value="0.1" title="0.10MM">
+                                            <input name="thickness" type="radio" class="layui-input" value="0.1" title="0.10MM">
                                         </div>
                                     </div>
 
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">Existing Fiducials:</label>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input type="radio" class="layui-input" value="0.1" title="0.10MM">
+                                            <input name="existingFiducials" type="radio" class="layui-input" value="0.1" title="0.10MM">
                                         </div>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input type="radio" class="layui-input" value="0.12" title="0.12MM">
+                                            <input name="existingFiducials" type="radio" class="layui-input" value="0.12" title="0.12MM">
                                         </div>
                                     </div>
 
@@ -473,6 +486,13 @@
                                         <label class="layui-form-label">Quantity:</label>
                                         <div class="layui-input-block">
                                             <input type="text" class="layui-input" placeholder="1">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-filter="assemblyService" lay-submit>立即提交</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                                         </div>
                                     </div>
                                 </form>
@@ -530,7 +550,7 @@
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">price/PCS:</label>
                                         <div class="layui-input-block">
-                                            <input type="text" class="layui-input" readonly id="pricePCS" placeholder=" $ 0.00">
+                                            <input type="text" class="layui-input"  id="pricePCS" placeholder=" $ 0.00">
                                         </div>
                                     </div>
 
@@ -581,6 +601,10 @@
                                   </select>
                               </div>
                               <button class="layui-btn" data-type="lookQuote">查看报价详情</button>
+                              <div class="sub-group">
+                                  <a class="up-subbtn">报价</a>
+                                  <a type="resetbtn" class="up-rsetbtn">&nbsp;重置&nbsp;</a>
+                              </div>
                           </div>
                       </form>
 
@@ -590,35 +614,35 @@
                               <div class="layui-form-item">
                                   <label class="layui-form-label">Engineering Fee:</label>
                                   <div class="layui-input-block">
-                                      <input class="layui-input" name="engineeringFee" id="enginnerFee" type="text" value=" $ 0.00">
+                                      <input class="layui-input" name="engineeringFee" id="enginnerFee" type="text" placeholder=" $ 0.00" >
                                   </div>
                               </div>
 
                               <div class="layui-form-item">
                                   <label class="layui-form-label">Board Fee:</label>
                                   <div class="layui-input-block">
-                                      <input class="layui-input" type="text" id="boardFee" value=" $ 0.00">
+                                      <input class="layui-input" type="text" id="boardFee" placeholder=" $ 0.00" >
                                   </div>
                               </div>
 
                               <div class="layui-form-item">
                                   <label class="layui-form-label">Test Fixture:</label>
                                   <div class="layui-input-block">
-                                      <input class="layui-input" type="text" id="testFee" value=" $ 0.00">
+                                      <input class="layui-input" type="text" id="testFee" placeholder=" $ 0.00" >
                                   </div>
                               </div>
 
                               <div class="layui-form-item">
                                   <label class="layui-form-label">Tooling fee:</label>
                                   <div class="layui-input-block">
-                                      <input class="layui-input" type="text" id="toolingFee" value=" $ 0.00">
+                                      <input class="layui-input" type="text" id="toolingFee" placeholder=" $ 0.00" >
                                   </div>
                               </div>
 
                               <div class="layui-form-item">
                                   <label class="layui-form-label">Urgent fee:</label>
                                   <div class="layui-input-block">
-                                      <input class="layui-input" name="overworkFee" type="text" id="urgentFee" value=" $ 0.00">
+                                      <input class="layui-input" name="overworkFee" type="text" id="urgentFee" placeholder=" $ 0.00" >
                                   </div>
                               </div>
 
@@ -634,14 +658,14 @@
                               <div class="layui-form-item">
                                   <label class="layui-form-label">PCB Cost:</label>
                                   <div class="layui-input-block">
-                                      <input class="layui-input" type="text" id="pcbCost" value=" $ 0.00">
+                                      <input class="layui-input" type="text" id="pcbCost" placeholder=" $ 0.00" >
                                   </div>
                               </div>
 
                               <div class="layui-form-item">
                                   <label class="layui-form-label">Weight:</label>
                                   <div class="layui-input-block">
-                                      <input class="layui-input" type="text" id="pcbWeight" value=" 0.00 KG">
+                                      <input class="layui-input" type="text" id="pcbWeight" placeholder=" 0.00 KG" >
                                   </div>
                               </div>
                           </div>
@@ -652,7 +676,7 @@
                               <div class="layui-form-item">
                                   <label class="layui-form-label">Weight:</label>
                                   <div class="layui-input-block">
-                                      <input class="layui-input" type="text" id="stencilWeight" value=" $ 0.00">
+                                      <input class="layui-input" type="text" id="stencilWeight" placeholder=" $ 0.00" >
                                   </div>
                               </div>
                           </div>
@@ -661,7 +685,7 @@
                               <div class="layui-form-item">
                                   <label class="layui-form-label">Stencil Cost:</label>
                                   <div class="layui-input-block">
-                                      <input class="layui-input" type="text" id="inStencilCost" value=" $ 0.00">
+                                      <input class="layui-input" type="text" id="inStencilCost" placeholder=" $ 0.00" >
                                   </div>
                               </div>
                           </div>
@@ -672,7 +696,7 @@
                               <div class="layui-form-item">
                                   <label class="layui-form-label">Assembly Cost:</label>
                                   <div class="layui-input-block">
-                                      <input class="layui-input" type="text" id="assemblyCost" value=" $ 0.00">
+                                      <input class="layui-input" type="text" id="assemblyCost" placeholder=" $ 0.00" >
                                   </div>
                               </div>
                           </div>
@@ -681,7 +705,7 @@
                               <div class="layui-form-item">
                                   <label class="layui-form-label">Weight:</label>
                                   <div class="layui-input-block">
-                                      <input class="layui-input" type="text" id="assemblyWeight" value=" $ 0.00">
+                                      <input class="layui-input" type="text" id="assemblyWeight" placeholder=" $ 0.00" >
                                   </div>
                               </div>
                           </div>
@@ -702,7 +726,7 @@
                                   </div>
                                   <label class="layui-form-label" style="width: 112px">Shipping:</label>
                                   <div class="layui-input-inline text-input" style="width: 120px;">
-                                      <input class="layui-input" type="text" id="shippingPrice">
+                                      <input class="layui-input" type="text" id="shippingPrice" placeholder=" $ 0.00" >
                                   </div>
                               </div>
                           </div>
@@ -713,7 +737,7 @@
                               <div class="layui-form-item">
                                   <label class="layui-form-label" style="width: 126px;">Total Price:</label>
                                   <div class="layui-input-block">
-                                      <input class="layui-input" type="text" id="totalPrice" value=" $ 0.00">
+                                      <input class="layui-input" type="text" id="totalPrice" placeholder=" $ 0.00" >
                                   </div>
                               </div>
                           </div>
@@ -722,7 +746,7 @@
                       <div class="submit-group" style="text-align: center;margin-top: 50px;">
                           <button class="layui-btn" data-type="addCustomerFile" id="addFile">添加客户资料</button>
                           <button class="layui-btn" data-type="addThisQuote">添加当前报价</button>
-                          <button class="layui-btn" data-type="resetQuoteTab">重置报价表</button>
+                          <button class="layui-btn" data-type="resetQuoteTab" style="margin-left: 0;">重置报价表</button>
                       </div>
 
                   </div>
@@ -749,6 +773,11 @@
 
     .rig-price,#assemblyForm,#stencilForm{display: none;width: 100%;}
     .quote-avtive{display: inline-block !important;}
+    .sub-group{float: right;margin-top: 7px;margin-left: 4px;}
+    .up-subbtn,.up-rsetbtn{border-radius: 2px;padding: 11px 30px;color: #f7ffff;cursor: pointer;width: 87px;}
+    .up-subbtn:hover,.up-rsetbtn:hover{color: white;}
+    .up-subbtn{background-color: #009588;}
+    .up-rsetbtn{background-color: #FF5722;}
 </style>
 <script>
     //layui.use('inside_quote', layui.factory('inside_quote'));

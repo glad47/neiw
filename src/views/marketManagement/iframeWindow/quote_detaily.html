@@ -22,40 +22,39 @@
                     ,toolbar: true
                     ,cellMinWidth: 80
                     ,id: 'stencilSize'
-                    ,method: 'get'
+                    ,method: 'post'
                     // ,page: true
                     ,where: {
                         page: '',
                         limit: '',
                         access_token: layui.data('layuiAdmin').access_token,
-                        ids: {"ids":aid}
+                        ids: aid
                     }
                     ,cols: [[
                         {field: 'id',title: 'id', hide: true},
-                        {field: 'adjustedQuote',title: 'adjustedQuote', align: 'center',width: 135},
-                        {field: 'areaParameterName',title: 'areaParameterName', align: 'center',width: 130},
-                        {field: 'areaSqId',title: 'areaSqId', align: 'center',width: 130},
-                        {field: 'consumerAdjustQuoteId',title: 'consumerAdjustQuoteId', align: 'center',width: 130},
-                        {field: 'layerNum',title: 'layerNum', align: 'center',width: 130},
-                        {field: 'layerNumId',title: 'layerNumId', align: 'center',width: 130},
-                        {field: 'parameterName',title: 'parameterName', align: 'center',width: 130},
-                        {field: 'parameterNameId',title: 'parameterNameId', align: 'center',width: 130},
-                        {field: 'parameterTypeId',title: 'parameterTypeId', align: 'center',width: 130},
-                        {field: 'parameterTypeName',title: 'parameterTypeName', align: 'center',width: 130},
-                        {field: 'parameterValue',title: 'parameterValue', align: 'center',width: 130},
-                        {field: 'parameterValueId',title: 'parameterValueId', align: 'center',width: 130},
-                        {field: 'pcbTypeId',title: 'pcbTypeId', align: 'center',width: 130},
-                        {field: 'pcbTypeName',title: 'pcbTypeName', align: 'center',width: 130},
-                        {field: 'premiumType',title: 'premiumType', align: 'center',width: 130},
-                        {field: 'premiumTypeId',title: 'premiumTypeId', align: 'center',width: 130},
-                        {field: 'quote',title: 'quote', align: 'center',width: 130},
-                        {field: 'quoteCondition',title: 'quoteCondition', align: 'center',width: 130},
-                        {field: 'urgentType',title: 'urgentType', align: 'center',width: 130},
-                        {field: 'urgentTypeId',title: 'urgentTypeId', align: 'center',width: 130},
-                        {field: 'userEmail',title: 'userEmail', align: 'center',width: 130},
-                        {field: 'userEmail',title: 'userEmail', align: 'center',width: 130},
-                        {field: 'userId',title: 'userId', align: 'center',width: 130},
-                        {field: 'userSysName',title: 'userSysName', align: 'center',width: 130}
+                        // {field: 'adjustedQuote',title: 'adjustedQuote', align: 'center',width: 135},
+                        {field: 'areaParameterName',title: '平米数', align: 'center',width: 130},
+                        // {field: 'areaSqId',title: 'areaSqId', align: 'center',width: 130},
+                        // {field: 'consumerAdjustQuoteId',title: 'consumerAdjustQuoteId', align: 'center',width: 130},
+                        {field: 'layerNum',title: '层数', align: 'center',width: 130},
+                        // {field: 'layerNumId',title: 'layerNumId', align: 'center',width: 130},
+                        {field: 'parameterName',title: '类型', align: 'center',width: 180},
+                        // {field: 'parameterNameId',title: 'parameterNameId', align: 'center',width: 130},
+                        // {field: 'parameterTypeId',title: 'parameterTypeId', align: 'center',width: 130},
+                        {field: 'parameterTypeName',title: '信息', align: 'center',width: 130},
+                        {field: 'parameterValue',title: '数值', align: 'center',width: 130},
+                        // {field: 'parameterValueId',title: 'parameterValueId', align: 'center',width: 130},
+                        // {field: 'pcbTypeId',title: 'pcbTypeId', align: 'center',width: 130},
+                        {field: 'pcbTypeName',title: '板材类型', align: 'center',width: 130},
+                        {field: 'premiumType',title: '加价类型', align: 'center',width: 130},
+                        // {field: 'premiumTypeId',title: 'premiumTypeId', align: 'center',width: 130},
+                        {field: 'quote',title: '价格', align: 'center',width: 130},
+                        // {field: 'quoteCondition',title: 'quoteCondition', align: 'center',width: 130},
+                        // {field: 'urgentType',title: 'urgentType', align: 'center',width: 130},
+                        // {field: 'urgentTypeId',title: 'urgentTypeId', align: 'center',width: 130},
+                        // {field: 'userEmail',title: 'userEmail', align: 'center',width: 130},
+                        // {field: 'userId',title: 'userId', align: 'center',width: 130},
+                        // {field: 'userSysName',title: 'userSysName', align: 'center',width: 130}
                     ]]
                 });
 
