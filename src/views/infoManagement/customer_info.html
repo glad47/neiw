@@ -55,6 +55,13 @@
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                  {{# } }}       
             </script>
+             <script type="text/html" id="userType">
+                {{#  if(d.userType ===0){ }}
+                    <span style="color: orangered;">否</span>
+                {{#  } else { }}
+                    <span>是</span>
+                {{#  } }}
+            </script>
         </div>
     </div>
 
