@@ -325,7 +325,7 @@
                                         <div class="layui-form-item">
                                             <label class="layui-form-label">Surface finish:</label>
                                             <div class="layui-input-inline">
-                                                <select name="surfaceFinish" id="selSurfacefinish">
+                                                <select name="surfaceFinish" id="selSurfacefinish" lay-filter="selSurfacefinish">
                                                     <option value="HASL_with_lead">HASL with lead</option>
                                                     <option value="HASL_lead_free">HASL lead free</option>
                                                     <option value="Immersion_Gold">Immersion Gold</option>
@@ -337,10 +337,10 @@
                                             <label class="layui-form-label">Surface Thickness:</label>
                                             <div class="layui-input-inline">
                                                 <select name="thickness" id="selSurfacethickness">
-                                                    <option value="1u">Ni:120-150u"  Au:1u</option>
-                                                    <option value="2u">Ni:120-150u"  Au:2u</option>
-                                                    <option value="3u">Ni:120-150u"  Au:3u"</option>
-                                                    <option value="2.54-25.4um">2.54-25.4um</option>
+                                                    <option value="1u">Ni:120-150u''  Au:1u</option>
+                                                    <option value="2u">Ni:120-150u''  Au:2u</option>
+                                                    <option value="3u">Ni:120-150u''  Au:3u"</option>
+                                                    <option value="2.54-25.4um" selected>2.54-25.4um</option>
                                                     <option value="0.5um-0.7um">0.5um-0.7um</option>
                                                     <option value="≥0.05um">≥0.05um</option>
                                                     <option value="0.25-0.5um">0.25-0.5um</option>
@@ -391,14 +391,14 @@
                                         </div>
                                         <div class="layui-form-item">
                                             <div class="layui-input-block">
-                                                <input type="checkbox" name="blindHoles" title="Blind holes" lay-skin="primary">
-                                                <input type="checkbox" name="edgePlated" title="Edge Plated" lay-skin="primary">
-                                                <input type="checkbox" name="halfHoleLated" title="Half Hole Plated" lay-skin="primary">
-                                                <input type="checkbox" name="contrlImpeance" title="Contrl impeance" lay-skin="primary">
-                                                <input type="checkbox" name="buriedHoles" title="Buried holes" lay-skin="primary">
-                                                <input type="checkbox" name="carbon" title="Carbo" lay-skin="primary">
-                                                <input type="checkbox" name="bevellingCamfer" title="Bevelling(Camfer)" lay-skin="primary">
-                                                <input type="checkbox" name="deepMillRouting" title="Deep Mill Routing" lay-skin="primary">
+                                                <input value="1" type="checkbox" name="blindHoles" title="Blind holes" lay-skin="primary">
+                                                <input value="1" type="checkbox" name="edgePlated" title="Edge Plated" lay-skin="primary">
+                                                <input value="1" type="checkbox" name="halfHoleLated" title="Half Hole Plated" lay-skin="primary">
+                                                <input value="1" type="checkbox" name="contrlImpeance" title="Contrl impeance" lay-skin="primary">
+                                                <input value="1" type="checkbox" name="buriedHoles" title="Buried holes" lay-skin="primary">
+                                                <input value="1" type="checkbox" name="carbon" title="Carbo" lay-skin="primary">
+                                                <input value="1" type="checkbox" name="bevellingCamfer" title="Bevelling(Camfer)" lay-skin="primary">
+                                                <input value="1" type="checkbox" name="deepMillRouting" title="Deep Mill Routing" lay-skin="primary">
                                             </div>
                                         </div>
                                        <!--  <div class="layui-form-item">
@@ -417,10 +417,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="layui-form-item">
+                                        <div class="layui-form-item" style="display: none;">
                                             <label class="layui-form-label">customerId:</label>
                                             <div class="layui-input-block">
                                                 <input type="text" name="customerId"  autocomplete="off" class="layui-input mto-input" id="customerId">
+                                                <input type="text" name="customerSysName"  autocomplete="off" class="layui-input mto-input" id="customerSysName">
                                             </div>
                                         </div>
 
@@ -595,15 +596,29 @@
                       <!--</form>-->
                       <form class="layui-form top-button-form" lay-filter="checkCustomer">
                           <div class="layui-inline">
-                              <div class="layui-input-inline" id="selCustomer_container" data="">
-                                  <select id="selCustomer" lay-filter="filterCustomer">
-                                      <option value="none" id="0">选择客户</option>
+                              <div class="layui-input-inline" id="" data="" style="width: 100px;">
+                                  <select  lay-filter="filterOrderType" name="orderType">
+                                      <option value="">选择订单类型</option>
+                                      <option value="1">新单</option>
+                                      <option value="2">返单</option>
+                                      <option value="3">返单有改</option>
                                   </select>
                               </div>
+                              <div class="layui-input-inline" id="selCustomer_container" data="">
+                                  <select id="selCustomer" lay-filter="filterCustomer">
+                                      <option value="" id="0">选择客户</option>
+                                  </select>
+                              </div>
+                              <div class="layui-input-inline">
+                                  <input type="text" class="layui-input" id="orderPN" readonly>
+                              </div>
+                          </div>
+
+                          <div class="layui-input-inline" style="margin-top: 20px;width: 100%;text-align: center;">
                               <button class="layui-btn" data-type="lookQuote">查看报价详情</button>
                               <div class="sub-group">
                                   <a class="up-subbtn">报价</a>
-                                  <a type="resetbtn" class="up-rsetbtn">&nbsp;重置&nbsp;</a>
+                                  <!--<a type="resetbtn" class="up-rsetbtn">&nbsp;重置&nbsp;</a>-->
                               </div>
                           </div>
                       </form>
@@ -773,7 +788,7 @@
 
     .rig-price,#assemblyForm,#stencilForm{display: none;width: 100%;}
     .quote-avtive{display: inline-block !important;}
-    .sub-group{float: right;margin-top: 7px;margin-left: 4px;}
+    .sub-group{display: inline-block;margin-top: 7px;margin-left: 4px;}
     .up-subbtn,.up-rsetbtn{border-radius: 2px;padding: 11px 30px;color: #f7ffff;cursor: pointer;width: 87px;}
     .up-subbtn:hover,.up-rsetbtn:hover{color: white;}
     .up-subbtn{background-color: #009588;}

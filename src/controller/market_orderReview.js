@@ -143,9 +143,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
 
-                    })
+                    });
                 }
-            })
+            });
         } else if(obj.event === 'del'){
             layer.confirm('真的删除订单号为［'+data.productNo+'］吗', function(index){
 
@@ -160,7 +160,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     ,fail: function (res) {
                         layer.msg('服务器异常，稍后再试！');
                     }
-                })
+                });
                 layer.close(index);
             });
         } else if(obj.event === 'edit'){
@@ -187,10 +187,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                             });
                             layer.close(index);
                             return false;
-                        })
-                    })
+                        });
+                    });
                 }
-            })
+            });
         } else if (obj.event === 'pcb-submit') {
             layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
                 data.status = 2;

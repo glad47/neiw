@@ -11,6 +11,16 @@
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
                 <table class="layui-table" id="iquote_Tabpcb" lay-filter="iquote_Tabpcb"></table>
+                <script type="text/html" id="tbiquotePcb">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">生成报价合同</button>
+                        <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>-->
+                        <!--<button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>-->
+                    </div>
+                </script>
+                <script type="text/html" id="iqpcbBar">
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                </script>
             </div>
             <!--钢网订单-->
             <div class="layui-tab-item">

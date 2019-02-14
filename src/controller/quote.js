@@ -21,6 +21,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     var arr_selkbsy_kb = [{text: 'KB6160', value: 'KB6160'}, {text: 'KB6150', value: 'KB6150'}, {text: 'KB6165', value: 'KB6165'}, {text: 'KB6167', value: 'KB6167'}];
     var arr_selkbsy_sy = [{text: 'SY1130', value: 'SY1130'}, {text: 'SY1141', value: 'SY1141'}, {text: 'SY1150', value: 'SY1150'}, {text: 'SY1170', value: 'SY1170'}, {text: 'SY1180', value: 'SY1180'}, {text: 'SY1000', value: 'SY1000'}, {text: 'SY1000-2', value: 'SY1000-2'}, {text: 'SY1600', value: 'SY1600'}];
     var arr_selkbsy_yg = [{text: 'YG0001', value: 'YG0001'}, {text: 'YG0002', value: 'YG0002'}, {text: 'YG0003', value: 'YG0003'}, {text: 'YG0004', value: 'YG0004'}];
+    // var arr_surfinish = [{text: 'HASL with lead', value: 'HASL_with_lead'},{text: 'HASL lead free', value: 'HASL_lead_free'},{text: 'Immersion Gold', value: 'Immersion_Gold'},{text: 'Immersion tin', value: 'Immersion_tin'},{text: 'Immersion silver', value: 'Immersion_silver'},{text: 'OSP', value: 'OSP'}];
     // var arr_selsurf_Hash_width_lead = [{text: '2.54-25.4um', value: '2.54-25.4um'}];
     // var arr_selsurf_Immer_tin = [{text: '0.5um-0.7um', value: '0.5um-0.7um'}];
     // var arr_selsurf_Immer_sil = [{text: '≥0.05um', value: '≥0.05um'}];
@@ -73,6 +74,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         subtotal: '', //总价
         quoteConfigIds:'',
         userId: '', //用户id
+        orderType: '',  //订单类型（新单/返单/返单有效）
         // pcbCost: '',
     };
     var pcb_rigdetaily = {};
@@ -145,6 +147,22 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         } else if (this_type == "YG"){
             _kbsy_linkage("yg");
         }
+    });
+
+    form.on('select(selSurfacefinish)', function (data) {   //Surface finis
+        var this_checkVal = data.value;
+        if (this_checkVal == "HASL_with_lead" || this_checkVal == "HASL_lead_free") {
+            $("#selSurfacethickness").val("2.54-25.4um");
+        } else if (this_checkVal == "Immersion_Gold") {
+            $("#selSurfacethickness").val("2u");
+        } else if (this_checkVal == "Immersion_tin") {
+            $("#selSurfacethickness").val("0.5um-0.7um");
+        } else if (this_checkVal == "Immersion_silver") {
+            $("#selSurfacethickness").val("≥0.05um");
+        } else if (this_checkVal == "OSP") {
+            $("#selSurfacethickness").val("0.25-0.5um");
+        }
+        form.render('select','quoteForm');
     });
 
     //监听element==> 订单类型(PCB/Stencil/SMT)
@@ -281,8 +299,15 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         public_data.customerAid = data.value;
         pcb_container.userId = data.value;
         $("#customerId").val(data.value);
+        $("#customerSysName").val($(data.elem).find("option:selected").text());
         console.log("选择客户customerAid："+data.value);
         form.render('','checkCustomer');
+    });
+
+    //监听   ==>选择订单类型（新单/返单/返单有效）
+    form.on('select(filterOrderType)', function (data) {
+        pcb_container.orderType = data.value;
+        layer.msg("订单类型为："+data.value);
     });
 
     //监听Assembly 表单
@@ -304,7 +329,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                 var totalAssemblyQuote = data.data.totalAssemblyQuote;
                 var totalAssemblyWeight = data.data.totalAssemblyWeight;
             }
-        })
+        });
         return false;
     })
 
@@ -849,6 +874,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         // 添加当前报价
         addThisQuote: function () {
             var quote_data = Object.assign(pcb_rigdetaily,pcb_container);
+            console.log(quote_data);
             console.log("userId:"+pcb_container.userId);
             if (pcb_container.userId == null || pcb_container.userId == ""){
                 layer.msg("请先选择客户");
@@ -858,7 +884,9 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                     data: quote_data,
                     url: setter.baseUrl+"epc/pcborder/save",
                     success: function (data) {
-
+                        $("#orderPN").val(data.pn);
+                        layer.alert("你已成功添加当前报价！");
+                        form.render(null,'checkCustomer');
                     }
                 });
             }
@@ -869,17 +897,6 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
             if (public_data.customerAid == null || public_data.customerAid == ""){
                 layer.msg("请选择对应的客户");
             } else {
-                // admin.req({
-                //     type: 'post',
-                //     // dataType: 'json',
-                //     // contentType:'application/json;charset=utf-8',
-                //     data: {"ids":pcb_container.quoteConfigIds},
-                //     url: setter.imUrl+'getQuoteDetail',
-                //     success: function (data) {
-                //         // datas = data;
-                //
-                //     }
-                // });
                 admin.popup({
                     title: '产看报价详情',
                     area: ['70%', '85%'],
@@ -895,7 +912,6 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                             $("#sss").attr("name",ids);
                             console.log(data);
                             layer.msg('打开');
-
                         });
                     }
                 });
