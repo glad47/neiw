@@ -29,12 +29,14 @@ layui.define(['admin', 'table','element','form'], function(exports){
              {field:'id', title: 'id', sort: true}
             ,{field:'userName', title: '用户名'}
             ,{field:'userSystemId', title: '用户系统id', sort: true}
+            ,{field:'userType',title:'内部用户',sort:true, templet:'#userType'}
             ,{field:'userIp',title:'注册ip',sort:true}
             ,{field:'email', title: '邮箱', sort: true}
             ,{field:'skypeId', title: 'Skype', sort: true}
             ,{field:'mobilePhone', title: '电话', sort: true}
             ,{field:'googleId', title: 'Google', sort: true, align: 'right'} //单元格内容水平居中
             ,{field:'facebookId', title: 'Facebook', sort: true, align: 'right'}
+            ,{field:'companName',title:'公司名',sort:true, align:'right'}
             ,{field:'address', title: '地址', sort: true, align: 'right'}
             ,{field:'country', title: '国家', sort: true}
             ,{field:'city', title: '城市', sort: true}
@@ -64,11 +66,33 @@ layui.define(['admin', 'table','element','form'], function(exports){
                 end:function(){},
                 success:function(layero,index){
                     view(this.id).render('/infoManagement/iframeWindow/customer_edit_info',data).done(function(){
-                        form.render(null,'layuiadmin-app-form-list');
+                        form.render(null,'customer-add-edit-form-list');
+                        var invalidMark;
+                        form.on('switch(optionUser)',function (data) {
+                            if (data.elem.checked == true){
+                                layer.msg('已启用');
+                                invalidMark =0;
+                            } else {
+                                layer.msg('停用');
+                                invalidMark =1;
+                            }
+                        });
 
+                        var userType;
+                        form.on('switch(isneibuUser)',function (data) {
+                            if (data.elem.checked == true){
+                                layer.msg('内部用户');
+                                userType =1;
+                            } else {
+                                layer.msg('客户系统用户');
+                                userType =0;
+                            }
+                        });
                         //监听提交
                         form.on('submit(layuiadmin-app-form-submit)',function(data){
                             var field = data.field;
+                            field.invalidMark = invalidMark;   
+                            field.userType = userType;
                             admin.req({
                                 url:setter.baseUrl+'sys/consumer/user/update',
                                 type:'POST',
@@ -118,10 +142,34 @@ layui.define(['admin', 'table','element','form'], function(exports){
                     .then(function (value) {
                         //视图文件请求完毕，视图内容渲染前的回调
                     }).done(function(){
-                        form.render(null,'layuiadmin-app-form-list');
+                        form.render(null,'customer-add-edit-form-list');
                         //监听提交
+                        var invalidMark;
+                        form.on('switch(optionUser)',function (data) {
+                            if (data.elem.checked == true){
+                                layer.msg('已启用');
+                                invalidMark =0;
+                            } else {
+                                layer.msg('停用');
+                                invalidMark =1;
+                            }
+                        });
+
+                        var userType;
+                        form.on('switch(isneibuUser)',function (data) {
+                            if (data.elem.checked == true){
+                                layer.msg('内部用户');
+                                userType =1;
+                            } else {
+                                layer.msg('客户系统用户');
+                                userType =0;
+                            }
+                        });
+
                         form.on('submit(layuiadmin-app-form-submit)',function(data){
                             var field = data.field;
+                            field.invalidMark = invalidMark;
+                            field.userType = userType;
                             // console.log(field);
                             admin.req({
                                 url: setter.baseUrl+'sys/consumer/user/save',
