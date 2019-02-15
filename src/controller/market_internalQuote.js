@@ -140,9 +140,25 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     title: '报价合同'
                     ,area: ['60%', '90%']
                     ,btn: ['提交', '取消']
+                    ,yes:function(index, layero){
+                        layer.alert("提交");
+                    }
                     ,success: function (layero, index) {
                         view(this.id).render('marketManagement/iframeWindow/quote_contract', data).done(function () {
-
+                            console.log(data);
+                            // layui.each遍历的数据，td最少为6条，没有数据的显示空白
+                            var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
+                            var dataLength = data.length;
+                            for (var i=tdSize;i<7;i++){
+                                $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
+                            }
+                            // 实时时间设置
+                            let date = new Date();
+                            let chinaDate = date.toDateString();
+                            let chinaDateArray = chinaDate.split(' ');
+                            let displayDate = `${chinaDateArray[1]} ${chinaDateArray[2]}, ${chinaDateArray[3]}`;
+                            $("#contractBotDate").text(displayDate);
+                            $("#topDate").text(displayDate);
                         });
                     }
                 });

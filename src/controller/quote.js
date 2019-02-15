@@ -921,7 +921,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
 
     var uploadInst = upload.render({
         elem: '#addFile' //绑定元素
-        ,url: setter.baseUrl+'sys/oss/upload/geber' //上传接口
+        ,url: setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token//上传接口
         ,field: 'file'  //文件上传的字段名
         ,accept: 'file'
         ,exts: 'zip|rar|7z'

@@ -21,9 +21,13 @@
                 </ul>
             </div>
             <div class="module-one-rig layui-col-md6">
-                <ul>
+                <ul class="layui-col-md3">
                     <li>Quotation No:</li>
                     <li>Date:</li>
+                </ul>
+                <ul class="layui-col-md6">
+                    <li>合同号</li>
+                    <li id="topDate">Feb 15, 2010</li>
                 </ul>
             </div>
         </div>
@@ -35,31 +39,210 @@
 
         <!--模块二 contract-module-two，DESCRIPTION-->
         <div class="contract-module-two layui-col-md12">
-            <div class="module-two-lef layui-col-md6">
+            <script type="text/html" template>
+                <div class="module-two-lef layui-col-md6">
+                    <ul class="module-two-lef-title layui-col-md3">
+                        <li>Pcb material:</li>
+                        <li>No.of Layer:</li>
+                        <li>Thickness Cu:</li>
+                        <li>Board Finish:</li>
+                    </ul>
+                    <ul class="layui-col-md6">
+                        <li><a>{{ d.params[0].pcbType }}</a></li>
+                        <li><a>{{ d.params[0].layerNum }}</a></li>
+                        <li><a>{{ d.params[0].outerLayerCopper }}</a></li>
+                        <li><a>{{ d.params[0].finishThickness }}</a></li>
+                    </ul>
+                </div>
+                <div class="module-two-rig layui-col-md6">
+                    <ul class="module-two-rig-title layui-col-md3">
+                        <li>Size:</li>
+                        <li>PCB Thickness:</li>
+                        <li>Solder Mask:</li>
+                        <li>Legend Color:</li>
+                    </ul>
+                    <ul class="layui-col-md6">
+                        <li>
+                            {{# if(d.params[0].panelSizeX != null){ }}
+                            {{# var panelWay = d.params[0].panelWayX*d.params[0].panelWayY }}
+                            <a>{{ d.params[0].panelSizeX }} * {{ d.params[0].panelSizeY }}mm / {{ panelWay }}</a>
+                            {{# }else if(d.params[0].dimensionsX != null){ }}
+                            <a>{{ d.params[0].dimensionsX}} * {{ d.params[0].dimensionsY}}mm /1</a>
+                            {{# }else{ }}
+                            <a>都为空</a>
+                            {{# } }}
+                        </li>
+                        <li><a>{{ d.params[0].finishThickness }}</a></li>
+                        <li><a>{{ d.params[0].solderMaskTopColor }}</a></li>
+                        <li><a>{{ d.params[0].silkScreenTopColor }}</a></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </script>
+        </div>
+
+        <!--模块三 contract-module-three，表格明细-->
+        <div class="contract-module-three layui-col-md12">
+            <script type="text/html" template>
+                <table class="contract-module-three-tab">
+                    <tbody>
+                        <tr>
+                            <td>Order QTY(PCS):</td>
+                            {{# layui.each(d.params, function(index, item){  }}
+                            <td value="{{ item.id }}">{{ item.quantityPcs }}</td>
+                            {{#  }); }}
+                        </tr>
+                        <tr>
+                            <td>Unit price:US/pcs:</td>
+                            {{# layui.each(d.params, function(index, item){  }}
+                            <!--单价，还没传，先占个位-->
+                            <td value="{{ item.id }}">{{ item.areaSq }}</td>
+                            {{#  }); }}
+                        </tr>
+                        <tr>
+                            <td>Engineering Charge:</td>
+                            {{# layui.each(d.params, function(index, item){  }}
+                            <td value="{{ item.id }}">{{ item.engineeringFee }}</td>
+                            {{#  }); }}
+                        </tr>
+                        <tr>
+                            <td>Test Fixture Charge:</td>
+                            {{# layui.each(d.params, function(index, item){  }}
+                            <!--测试费-->
+                            <td value="{{ item.id }}">{{ item.areaSq }}</td>
+                            {{#  }); }}
+                        </tr>
+                        <tr>
+                            <td>Flying probe test Charge:</td>
+                            {{# layui.each(d.params, function(index, item){  }}
+                            <td value="{{ item.id }}">{{ item.areaSq }}</td>
+                            {{#  }); }}
+                        </tr>
+                        <tr>
+                            <td>Mould Charge:</td>
+                            {{# layui.each(d.params, function(index, item){  }}
+                            <td value="{{ item.id }}">{{ item.toolingFee }}</td>
+                            {{#  }); }}
+                        </tr>
+                        <tr>
+                            <td>Freight Charge:</td>
+                            <!--运费，还没传过来-->
+                            {{# layui.each(d.params, function(index, item){  }}
+                            <td value="{{ item.id }}">{{ item.areaSq }}</td>
+                            {{#  }); }}
+                        </tr>
+                        <tr>
+                            <td>Total Price(US):</td>
+                            {{# layui.each(d.params, function(index, item){  }}
+                            <td value="{{ item.id }}">{{ item.subtotal }}</td>
+                            {{#  }); }}
+                        </tr>
+                        <tr>
+                            <td>Lead Days:</td>
+                            <!--没传  没返回-->
+                            {{# layui.each(d.params, function(index, item){  }}
+                            <td value="{{ item.id }}">{{ item.areaSq }}</td>
+                            {{#  }); }}
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="contract-module-remark">
+                    <a>Remark: setup charge only need to pay once, if repeat order not reach MOQ(3 smq2) engineering charge still need to pay</a>
+                </div>
+            </script>
+        </div>
+
+        <!--模块四 contract-module-four，tips-->
+        <div class="contract-module-four layui-col-md12">
+            <div class="contract-module-four-lef layui-col-md6">
                 <ul>
-                    <li>Pcb material:</li>
-                    <li>No.of Layer:</li>
-                    <li>NThickness Cu:</li>
-                    <li>Board Finish:</li>
+                    <li>1. This above quoted is based on USD;</li>
+                    <li>2. Valid of 30 days upon issued date;</li>
+                    <li>3. Payment terms: TT in advance;</li>
+                    <li>4. shipment terms: DHL BY AIR;</li>
+                    <li>5. Acceptable x-out: international;</li>
+                    <li>6. Customer Note points;</li>
                 </ul>
             </div>
-            <div class="module-two-rig layui-col-md6">
+            <div class="contract-module-four-rig layui-col-md6">
+                <div class="top-info">
+                    <a id="contractCusName">Add Hong</a>
+                    <a id="contractBotDate">February 07, 2018</a>
+                </div>
+                <div class="bot-intro">
+                    <a>Authorized by</a>
+                    <a>Date</a>
+                </div>
+            </div>
+        </div>
+
+        <!--模块五 contract-module-five，底部信息-->
+        <div class="contract-module-five layui-col-md12">
+            <div class="layui-col-md5">
                 <ul>
-                    <li>Size:</li>
-                    <li>PCB Thickness:</li>
-                    <li>Solder Mask:</li>
-                    <li>Legend Colour:</li>
-                    <li>Special request:</li>
+                    <li><strong>GLOBAL SUCCESS</strong></li>
+                    <li>Area 2, Huaidecuigang industrial zone ,Fuyong road,</li>
+                    <li>Bao'an district, Shenzhen, China.</li>
+                    <li>Tel: +86 0755-27398155<a>Fax: +86 0755-27398355</a></li>
+                    <li>Sales@globalsuccess.com.cn<a>www.pcbonline.com</a></li>
+                </ul>
+            </div>
+            <div class="layui-col-md2">
+                <ul>
+                    <li>Bank Name:</li>
+                    <li>Bank Code Name:</li>
+                    <li>Company Name:</li>
+                    <li>Bank Address:</li>
+                    <li>Account No:</li>
+                    <li>Swift Address:</li>
+                </ul>
+            </div>
+            <div class="layui-col-md5">
+                <ul>
+                    <li>HANG SENG BANK Limited</li>
+                    <li>024</li>
+                    <li>GLOBAL SUCCESS ELECTRONICS CO, LIMITED</li>
+                    <li>83 Des Voeux Road Cental Hong Kong</li>
+                    <li>364-308718-883</li>
+                    <li>HASEHKHH</li>
                 </ul>
             </div>
         </div>
     </div>
+    <!--<script type="text/html" template>-->
+    <!--<a>{{ d.params[0].boardFee}}</a>-->
+    <!--</script>-->
 </div>
 <style>
     .contract-top-logo .lef-logo img{width: 190px;}
     .contract-top-logo .rig-text{text-align: right;}
     .contract-top-logo .rig-text a{font-size: 20px;font-weight: 600;}
     .contract-module-one{margin-top: 60px;}
-    .moudle-description{background-color: #01aaed40;text-align: center;margin-top: 20px;margin-bottom: 20px;padding: 4px;}
+    /*模块二*/
+    .moudle-description{background-color: #086aaf59;text-align: center;margin-top: 20px;margin-bottom: 20px;padding: 4px;}
     .moudle-description span{color: black;font-weight: 500;}
+    /*左边padding*/
+    .contract-module-remark a{padding-left: 10px;}
+    /*表格*/
+    .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 50px;}
+    .contract-module-three-tab tbody tr td:first-of-type{width: 18%;text-align: left;line-height: 40px;padding-left: 10px;}
+    .contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;width: 13.6%;}
+    /*模块四 tips*/
+    .contract-module-four{margin-top: 50px;}
+    .contract-module-four-rig{padding: 48px 0;}
+    .contract-module-four-rig .top-info{width: 100%;border-bottom: solid 2px black;}
+    .contract-module-four-rig a{font-weight: 500;font-size: 15px;}
+    .contract-module-four-rig a:last-of-type{float: right;}
+    /*模块五 底部信息*/
+    .contract-module-five{margin-top: 50px;color: #2b7dbcad;}
+    .contract-module-five a{color: #2b7dbcad;}
+    .contract-module-five ul li,.contract-module-four ul li,.contract-module-two ul li,.contract-module-one ul li{padding-left: 10px;}
 </style>
+<script>
+    layui.use(['form','jquery'], function(){
+        var form = layui.form;
+        $ = layui.jquery
+
+
+    });
+</script>
