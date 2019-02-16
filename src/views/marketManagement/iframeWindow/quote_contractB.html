@@ -41,13 +41,40 @@
         <div class="contract-module-three layui-col-md12">
             <script type="text/html" template>
                 <table class="contract-module-three-tab">
-                    <th>File Name</th>
-                    <th>P/N&Description</th>
-                    <th>Order QTY(PCS)</th>
-                    <th>Unit price:US/pcs</th>
-                    <th>Engineering Charge</th>
-                    <th>Test Fixture Charge</th>
-                    <th>Amount(USD)</th>
+                    <thead>
+                        <th>File Name</th>
+                        <th>P/N&Description</th>
+                        <th>Order QTY(PCS)</th>
+                        <th>Unit price:US/pcs</th>
+                        <th>Engineering Charge</th>
+                        <th>Test Fixture Charge</th>
+                        <th>Amount(USD)</th>
+                    </thead>
+                    <tbody>
+                    <tr rowspan="6">
+                        <td>文件名</td>
+                    </tr>
+                    <tr>
+                        <td>占位1</td>
+                        <td>占位2</td>
+                        <td>占位3</td>
+                        <td>占位4</td>
+                        <td>占位5</td>
+                        <td>占位6</td>
+                    </tr>
+                    <tr rowspan="6">
+                        <td>pcs数量</td>
+                    </tr>
+                    <tr rowspan="6">
+                        <td>单价</td>
+                    </tr>
+                    <tr rowspan="6">
+                        <td>工程费</td>
+                    </tr>
+                    <tr rowspan="6">
+
+                    </tr>
+                    </tbody>
                 </table>
             </script>
         </div>
@@ -64,7 +91,7 @@
     .moudle-description span{color: black;font-weight: 500;}
     /*表格*/
     .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 50px;}
-    .contract-module-three-tab th{background-color: #e0edfa;line-height: 40px;}
+    .contract-module-three-tab thead th{background-color: #e0edfa;line-height: 40px;}
     .contract-module-three-tab tbody tr td:first-of-type{width: 18%;text-align: left;line-height: 40px;padding-left: 10px;}
     .contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;width: 13.6%;}
 </style>
