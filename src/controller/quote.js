@@ -47,7 +47,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     };
     //公共数据
     var public_data = {
-        shippingCost: '',
+        postFee: '',
         customerAid:'',
         ids:'',
     };
@@ -68,13 +68,17 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         boardFee: '',
         testCostFee: '',
         toolingFee: '',
-        overworkFee: '',  //加急费
+        overworkFee: 0,  //加急费
+        buildTime: '',
         weight: '',
-        shippingCost: '',
+        postFee: 0,
         subtotal: '', //总价
         quoteConfigIds:'',
+        productNo:'',   //客户编号
         userId: '', //用户id
         orderType: '',  //订单类型（新单/返单/返单有效）
+        gerberName: '',
+        gerberPath: '',
         // pcbCost: '',
     };
     var pcb_rigdetaily = {};
@@ -271,9 +275,11 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     //监听==>构造时间的radio
     form.on("radio(buildTimeRadio)", function (data) {
         var this_price = data.value;
+        console.log(data);
         // 给pcb明细容器赋值
         pcb_container.overworkFee = this_price;
-        $("#urgentFee").val("$"+this_price);
+        pcb_container.buildTime = $("input[name='buildTime']").attr("title");
+        $("#urgentFee").val(" $ "+this_price);
         quotePCBCost();
     });
 
@@ -287,7 +293,6 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     form.on("select(countrys)",function (data) {
         post_data.countrysId = $(data.elem).find("option:selected").attr("value");
         if (post_data.bordType === 2){
-            // getShippingCost();
             quoteSMTStencil();
         }
         getShippingCost();
@@ -610,8 +615,8 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         data.surfaceArea = '';
         data.differentDesign = '';      //原来注释掉的
         // data.panelRoutingPath = '';
-        data.gerberPath = '';   //还未写的字段
-        data.gerberName = '';   //还未写的字段
+        // data.gerberPath = '';   //还未写的字段
+        // data.gerberName = '';   //还未写的字段
         console.log(data);
         //发送请求获取价格
         admin.req({
@@ -736,9 +741,6 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                     console.log("国家的选中id值为："+def_expressCountry.countryId);
                 }
                 form.render();
-                // var trigger = setTimeout(function () {
-                //     getShippingCost();
-                // },2000);
             },
             error: function () {
                 layer.msg("Get Countrys Fail!!!");
@@ -763,8 +765,8 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
             success: function (data) {
                 if (data.data != null){
                     // 给pcb明细容器赋值
-                    pcb_container.shippingCost = data.data.shippingCost;
-                    public_data.shippingCost = data.data.shippingCost;
+                    pcb_container.postFee = data.data.shippingCost;
+                    public_data.postFee = data.data.shippingCost;
                     $("#shippingPrice").val(" $ "+data.data.shippingCost);
                 } else {
                     $("#shippingPrice").val("不支持该配送");
@@ -839,7 +841,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
      * 计算SMT-Stencil总价
      */
     function quoteSMTStencil() {
-        var totalPrice = parseFloat(stencil_data.stencilSize_price+public_data.shippingCost);
+        var totalPrice = parseFloat(stencil_data.stencilSize_price+public_data.postFee);
         // 给pcb明细容器赋值
         pcb_container.subtotal = totalPrice;
         $("#totalPrice").val("$"+totalPrice);
@@ -878,6 +880,13 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
             console.log("userId:"+pcb_container.userId);
             if (pcb_container.userId == null || pcb_container.userId == ""){
                 layer.msg("请先选择客户");
+                return false;
+            } else if (pcb_container.gerberName == null || pcb_container.gerberName == ""){
+                layer.tips('请先上传Gerber资料再添加当前报价 !', '#addFile', {
+                    tips: [1, '#3595CC'],
+                    time: 2000
+                });
+                return false;
             } else {
                 admin.req({
                     type: 'post',
@@ -885,8 +894,11 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                     url: setter.baseUrl+"epc/pcborder/save",
                     success: function (data) {
                         $("#orderPN").val(data.pn);
-                        layer.alert("你已成功添加当前报价！");
+                        pcb_container.productNo = data.pn;
                         form.render(null,'checkCustomer');
+                        if (data.code != "500"){
+                            layer.alert("你已成功添加当前报价！");
+                        }
                     }
                 });
             }
@@ -925,9 +937,23 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         ,field: 'file'  //文件上传的字段名
         ,accept: 'file'
         ,exts: 'zip|rar|7z'
+        ,before: function (obj) {
+            obj.preview(function (index, file, result) {
+                var fileName = file.name;   //文件名
+                pcb_container.gerberName = fileName;
+                console.log("上传的文件名为："+fileName);
+            });
+        }
         ,done: function(res, index,upload){
             //上传完毕回调
             layer.msg("文件上传成功！");
+            var url = res.url;
+            var r = /\[(.+?)\]/g;
+            var filePatha = url.match(r);
+            console.log("未处理的路径为："+filePatha);
+            var filePath = filePatha[0].replace(/\[|]/g,'');    //去除前后两端的中括号
+            pcb_container.gerberPath = filePath;
+            console.log("处理完的路径为："+filePath);
         }
         ,error: function(){
             layer.msg("文件上传失败！");

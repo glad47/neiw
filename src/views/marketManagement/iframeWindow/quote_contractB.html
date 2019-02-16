@@ -1,0 +1,70 @@
+<title>报价合同B</title>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <!--顶部logo-->
+        <div class="contract-top-logo layui-col-md12">
+            <div class="lef-logo layui-col-md6">
+                <img src="../../../src/style/res/logoMax.png">
+            </div>
+            <div class="rig-text layui-col-md6">
+                <a>QUOTATION</a>
+            </div>
+        </div>
+
+        <!--模块一 contract-module-one, 顶部信息-->
+        <div class="contract-module-one layui-col-md12">
+            <div class="module-one-lef layui-col-md6">
+                <ul>
+                    <li>Importer:</li>
+                    <li>Company Name:</li>
+                    <li>Addr:</li>
+                </ul>
+            </div>
+            <div class="module-one-rig layui-col-md6">
+                <ul class="layui-col-md3">
+                    <li>Quotation No:</li>
+                    <li>Date:</li>
+                </ul>
+                <ul class="layui-col-md6">
+                    <li>合同号</li>
+                    <li id="topDate">Feb 15, 2010</li>
+                </ul>
+            </div>
+        </div>
+
+        <!--DESCRIPTION 标题-->
+        <div class="moudle-description layui-col-md12">
+            <span>DESCRIPTION</span>
+        </div>
+
+        <!--模块三 contract-module-three，表格明细-->
+        <div class="contract-module-three layui-col-md12">
+            <script type="text/html" template>
+                <table class="contract-module-three-tab">
+                    <th>File Name</th>
+                    <th>P/N&Description</th>
+                    <th>Order QTY(PCS)</th>
+                    <th>Unit price:US/pcs</th>
+                    <th>Engineering Charge</th>
+                    <th>Test Fixture Charge</th>
+                    <th>Amount(USD)</th>
+                </table>
+            </script>
+        </div>
+    </div>
+</div>
+
+<style>
+    .contract-top-logo .lef-logo img{width: 190px;}
+    .contract-top-logo .rig-text{text-align: right;}
+    .contract-top-logo .rig-text a{font-size: 20px;font-weight: 600;}
+    .contract-module-one{margin-top: 60px;}
+    /*模块二*/
+    .moudle-description{background-color: #086aaf59;text-align: center;margin-top: 20px;margin-bottom: 20px;padding: 4px;}
+    .moudle-description span{color: black;font-weight: 500;}
+    /*表格*/
+    .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 50px;}
+    .contract-module-three-tab th{background-color: #e0edfa;line-height: 40px;}
+    .contract-module-three-tab tbody tr td:first-of-type{width: 18%;text-align: left;line-height: 40px;padding-left: 10px;}
+    .contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;width: 13.6%;}
+</style>

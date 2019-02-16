@@ -6,7 +6,9 @@
       <change beforePath="$PROJECT_DIR$/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/market_internalQuote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/market_internalQuote.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/quote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contract.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/user/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/user/login.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,16 +21,25 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.55573684">
+    <splitter split-orientation="horizontal" split-proportion="0.81779885">
       <split-first>
-        <splitter split-orientation="vertical" split-proportion="0.709375">
+        <splitter split-orientation="horizontal" split-proportion="0.71005154">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="internal_quote.html" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/internal_quote.html">
+              <file leaf-file-name="quote.js" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="40">
-                      <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
+                    <state relative-caret-position="532">
+                      <caret line="69" column="23" lean-forward="true" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="quote_contractA.html" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="1016">
+                      <caret line="141" column="53" lean-forward="true" selection-start-line="141" selection-start-column="53" selection-end-line="141" selection-end-column="53" />
                     </state>
                   </provider>
                 </entry>
@@ -36,8 +47,17 @@
               <file leaf-file-name="market_internalQuote.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/controller/market_internalQuote.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="526">
-                      <caret line="161" selection-start-line="161" selection-end-line="161" />
+                    <state relative-caret-position="249">
+                      <caret line="137" column="44" lean-forward="true" selection-start-line="137" selection-start-column="44" selection-end-line="137" selection-end-column="44" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="quote_contractB.html" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="310">
+                      <caret line="35" column="55" lean-forward="true" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
                     </state>
                   </provider>
                 </entry>
@@ -45,30 +65,12 @@
             </leaf>
           </split-first>
           <split-second>
-            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="quote.js" pinned="false" current-in-tab="false">
+            <leaf>
+              <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="181">
-                      <caret line="517" column="44" lean-forward="true" selection-start-line="517" selection-start-column="44" selection-end-line="517" selection-end-column="44" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="order_smt_detail.html" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_smt_detail.html">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-59">
-                      <caret line="59" column="41" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="41" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="order_stencil_detail.html" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_stencil_detail.html">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="73">
-                      <caret line="61" column="21" lean-forward="true" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
+                    <state relative-caret-position="816">
+                      <caret line="958" column="33" lean-forward="true" selection-start-line="958" selection-start-column="33" selection-end-line="958" selection-end-column="33" />
                     </state>
                   </provider>
                 </entry>
@@ -79,11 +81,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="291">
-                  <caret line="68" column="87" selection-start-line="68" selection-start-column="77" selection-end-line="68" selection-end-column="87" />
+                <state relative-caret-position="170">
+                  <caret line="604" selection-start-line="603" selection-end-line="604" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -115,20 +117,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="quote_contract.html" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contract.html">
+          <file leaf-file-name="quote_contractA.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="293">
-                  <caret line="94" column="28" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="quote.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="158">
-                  <caret line="42" column="9" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="9" />
+                <state relative-caret-position="255">
+                  <caret line="223" column="6" lean-forward="true" selection-start-line="223" selection-start-column="6" selection-end-line="223" selection-end-column="6" />
                 </state>
               </provider>
             </entry>
@@ -147,27 +140,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Carbo</find>
-      <find>display</find>
-      <find>立即</find>
-      <find>customerId:</find>
-      <find>form</find>
-      <find>Layer</find>
-      <find>admin</find>
-      <find>isExistIndicator</find>
-      <find>filterCustomer</find>
-      <find>customerId</find>
-      <find>pcb_container</find>
-      <find>pcb_rigdetaily</find>
-      <find>customer</find>
-      <find>save</find>
-      <find>form.render</find>
-      <find>l</find>
-      <find>logo</find>
-      <find>sub-group</find>
-      <find>contra</find>
-      <find>wher</find>
-      <find>uplo</find>
       <find>pop</find>
       <find>wh</find>
       <find>each</find>
@@ -177,10 +149,29 @@
       <find>admin.popup</find>
       <find>Pcb material</find>
       <find>panelSizeX</find>
+      <find>upload</find>
+      <find>add</find>
+      <find>添加客户</find>
+      <find>Add Hong</find>
+      <find>gerberPath</find>
+      <find>添加当前报价</find>
+      <find>构造天数占位</find>
+      <find>buildTimeRadio</find>
+      <find>contract-top-logo</find>
+      <find>Shipping</find>
+      <find>shippingPrice</find>
+      <find>Urgen</find>
+      <find>overworkFee</find>
+      <find>shipping</find>
+      <find>postFee</find>
+      <find>当前报价</find>
+      <find>engineeringFee</find>
+      <find>shippingCost</find>
+      <find>contract-module-one</find>
+      <find>moudle-description</find>
+      <find>contract-module-three-tab</find>
     </findStrings>
     <replaceStrings>
-      <replace>menu_add</replace>
-      <replace>, align</replace>
       <replace>{{ d.params.material || '' }}</replace>
       <replace>d.params.material</replace>
       <replace>d.params.cti</replace>
@@ -209,6 +200,8 @@
       <replace>135</replace>
       <replace>130</replace>
       <replace />
+      <replace>postFee</replace>
+      <replace>engineeringFee</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/views/marketManagement/iframeWindow</dir>
@@ -225,8 +218,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/views/infoManagement/supplier_info.html" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/role.html" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/customer_info.html" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/dept.html" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/sys_menu.html" />
@@ -239,7 +230,6 @@
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_stencil_detail.html" />
         <option value="$PROJECT_DIR$/src/controller/user_edit_info.js" />
         <option value="$PROJECT_DIR$/src/style/admin.css" />
-        <option value="$PROJECT_DIR$/src/views/user/login.html" />
         <option value="$PROJECT_DIR$/src/controller/sys_menu.js" />
         <option value="$PROJECT_DIR$/src/views/user/reg.html" />
         <option value="$PROJECT_DIR$/src/views/layout.html" />
@@ -271,10 +261,13 @@
         <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/customer_edit_info.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_detaily.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/internal_quote.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" />
         <option value="$PROJECT_DIR$/src/controller/market_orderReview.js" />
-        <option value="$PROJECT_DIR$/src/controller/quote.js" />
+        <option value="$PROJECT_DIR$/src/views/user/login.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contract.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" />
+        <option value="$PROJECT_DIR$/src/controller/quote.js" />
         <option value="$PROJECT_DIR$/src/controller/market_internalQuote.js" />
       </list>
     </option>
@@ -293,10 +286,10 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="25" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="896" />
     <option name="y" value="23" />
-    <option name="width" value="1860" />
+    <option name="width" value="1858" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -366,6 +359,13 @@
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="marketManagement" type="462c0819:PsiDirectoryNode" />
               <item name="iframeWindow" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
@@ -523,14 +523,8 @@
       <workItem from="1549961140634" duration="610000" />
       <workItem from="1550021493375" duration="17174000" />
       <workItem from="1550106170525" duration="18525000" />
-      <workItem from="1550192381329" duration="18229000" />
-    </task>
-    <task id="LOCAL-00018" summary="小bug">
-      <created>1538822972330</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1538822972331</updated>
+      <workItem from="1550192381329" duration="18519000" />
+      <workItem from="1550278713349" duration="15091000" />
     </task>
     <task id="LOCAL-00019" summary="1">
       <created>1538823379987</created>
@@ -868,11 +862,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550142336650</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="报价合同">
+      <created>1550229601206</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1550229601207</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="809844000" />
+    <option name="totallyTimeSpent" value="825225000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -884,13 +885,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="25" y="23" width="1860" height="1057" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.16745655" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.1910724" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.29479167" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50353837" side_tool="true" weight="0.41979167" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.39402986" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.16716418" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.3402985" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -903,24 +903,25 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.39402986" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22643496" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32935324" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.497006" weight="0.16770834" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.340625" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49836424" weight="0.18541667" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.502994" side_tool="true" weight="0.16979167" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.497006" weight="0.16770834" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -967,7 +968,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="菜单显示bug" />
     <MESSAGE value="菜单显示bug解决" />
     <MESSAGE value="增删菜单动态刷新左侧菜单栏" />
     <MESSAGE value="PCB订单显示（编辑，查看）" />
@@ -992,7 +992,8 @@
     <MESSAGE value="报价详情报错，多传了limit/page" />
     <MESSAGE value="内部报价修改" />
     <MESSAGE value="1、内部计价系统显示生产编号&#10;2、报价合同" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、内部计价系统显示生产编号&#10;2、报价合同" />
+    <MESSAGE value="报价合同" />
+    <option name="LAST_COMMIT_MESSAGE" value="报价合同" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1000,13 +1001,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/infoManagement/sys_menu.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1053,13 +1047,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1479">
           <caret line="87" column="30" selection-start-line="87" selection-start-column="30" selection-end-line="87" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/user/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="65" column="35" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1275,13 +1262,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/internal_quote.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/order_review.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="592">
@@ -1293,9 +1273,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
           <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1303,23 +1280,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="39" lean-forward="true" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="42" column="9" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_smt_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-59">
-          <caret line="59" column="41" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1330,10 +1290,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/user/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="103" column="6" selection-start-line="103" selection-start-column="6" selection-end-line="103" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_smt_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="59" column="41" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/internal_quote.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="35" column="55" lean-forward="true" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="68" column="87" selection-start-line="68" selection-start-column="77" selection-end-line="68" selection-end-column="87" />
+        <state relative-caret-position="170">
+          <caret line="604" selection-start-line="603" selection-end-line="604" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -1364,17 +1352,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/market_internalQuote.js">
+    <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="161" selection-start-line="161" selection-end-line="161" />
+        <state relative-caret-position="532">
+          <caret line="69" column="23" lean-forward="true" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contract.html">
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="94" column="28" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
+        <state relative-caret-position="1016">
+          <caret line="141" column="53" lean-forward="true" selection-start-line="141" selection-start-column="53" selection-end-line="141" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/market_internalQuote.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="137" column="44" lean-forward="true" selection-start-line="137" selection-start-column="44" selection-end-line="137" selection-end-column="44" />
         </state>
       </provider>
     </entry>

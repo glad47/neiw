@@ -37,6 +37,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             {type:'checkbox'}
             ,{field: 'id', title: 'ID',hide:true}
             ,{field: 'userId', title: 'User ID'}
+            ,{field: 'productNo', title: '客户编码',width: 130}
             // ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-iQuote-status',width: 110}
             ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-iQuote-status',width: 110}
             ,{field: 'areaSq',title: '面积',edit: 'text'}
@@ -135,33 +136,55 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         switch(obj.event){
             case 'getCheckData':
                 var data = checkStatus.data;
-                // layer.alert(JSON.stringify(data));
-                admin.popup({
-                    title: '报价合同'
-                    ,area: ['60%', '90%']
-                    ,btn: ['提交', '取消']
-                    ,yes:function(index, layero){
-                        layer.alert("提交");
-                    }
-                    ,success: function (layero, index) {
-                        view(this.id).render('marketManagement/iframeWindow/quote_contract', data).done(function () {
-                            console.log(data);
-                            // layui.each遍历的数据，td最少为6条，没有数据的显示空白
-                            var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
-                            var dataLength = data.length;
-                            for (var i=tdSize;i<7;i++){
-                                $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
-                            }
-                            // 实时时间设置
-                            let date = new Date();
-                            let chinaDate = date.toDateString();
-                            let chinaDateArray = chinaDate.split(' ');
-                            let displayDate = `${chinaDateArray[1]} ${chinaDateArray[2]}, ${chinaDateArray[3]}`;
-                            $("#contractBotDate").text(displayDate);
-                            $("#topDate").text(displayDate);
-                        });
-                    }
-                });
+                var checkedLength = data.length;
+                var productNo;
+                var viewName;
+                var contractType = 2;
+                if (checkedLength >6){
+                    layer.msg("最多只能选中6条数据");
+                    return false;
+                } else {
+                    $.each(data, function (idx, obj) {
+                        if (productNo == null || productNo == ""){
+                            productNo = obj.productNo;
+                            viewName = "marketManagement/iframeWindow/quote_contractA";
+                            contractType = 1;
+                        }
+                        if (productNo != null && productNo != obj.productNo){
+                            contractType = 2;
+                            viewName = "marketManagement/iframeWindow/quote_contractB";
+                            layer.msg("选择了不同型号");
+                        }
+                    });
+                    admin.popup({
+                        title: '报价合同'
+                        ,area: ['60%', '90%']
+                        ,btn: ['提交', '取消']
+                        ,yes:function(index, layero){
+                            layer.alert("提交");
+                        }
+                        ,success: function (layero, index) {
+                            view(this.id).render(viewName, data).done(function () {
+                                console.log(data);
+                                if (contractType === 1){
+                                    // layui.each遍历的数据，td最少为6条，没有数据的显示空白
+                                    var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
+                                    var dataLength = data.length;
+                                    for (var i=tdSize;i<7;i++){
+                                        $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
+                                    }
+                                }
+                                // 实时时间设置
+                                let date = new Date();
+                                let chinaDate = date.toDateString();
+                                let chinaDateArray = chinaDate.split(' ');
+                                let displayDate = `${chinaDateArray[1]} ${chinaDateArray[2]}, ${chinaDateArray[3]}`;
+                                $("#contractBotDate").text(displayDate);
+                                $("#topDate").text(displayDate);
+                            });
+                        }
+                    });
+                }
                 break;
             case 'getCheckLength':
                 var data = checkStatus.data;

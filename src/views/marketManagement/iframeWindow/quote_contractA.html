@@ -1,4 +1,4 @@
-<title>报价合同</title>
+<title>报价合同A</title>
 <div class="layui-fluid">
     <div class="layui-row">
         <!--顶部logo-->
@@ -96,7 +96,7 @@
                             <td>Unit price:US/pcs:</td>
                             {{# layui.each(d.params, function(index, item){  }}
                             <!--单价，还没传，先占个位-->
-                            <td value="{{ item.id }}">{{ item.areaSq }}</td>
+                            <td value="{{ item.id }}">单价占位</td>
                             {{#  }); }}
                         </tr>
                         <tr>
@@ -108,14 +108,21 @@
                         <tr>
                             <td>Test Fixture Charge:</td>
                             {{# layui.each(d.params, function(index, item){  }}
-                            <!--测试费-->
-                            <td value="{{ item.id }}">{{ item.areaSq }}</td>
+                            {{# if(item.testPointType === 1){ }}
+                            <td></td>
+                            {{# }else{ }}
+                            <td value="{{ item.id }}">{{ item.testCostFee }}</td>
+                            {{# } }}
                             {{#  }); }}
                         </tr>
                         <tr>
                             <td>Flying probe test Charge:</td>
                             {{# layui.each(d.params, function(index, item){  }}
-                            <td value="{{ item.id }}">{{ item.areaSq }}</td>
+                            {{# if(item.testPointType === 1){ }}
+                            <td value="{{ item.id }}">{{ item.testCostFee }}</td>
+                            {{# }else{ }}
+                            <td></td>
+                            {{# } }}
                             {{#  }); }}
                         </tr>
                         <tr>
@@ -128,7 +135,7 @@
                             <td>Freight Charge:</td>
                             <!--运费，还没传过来-->
                             {{# layui.each(d.params, function(index, item){  }}
-                            <td value="{{ item.id }}">{{ item.areaSq }}</td>
+                            <td value="{{ item.id }}">运费占位</td>
                             {{#  }); }}
                         </tr>
                         <tr>
@@ -139,9 +146,9 @@
                         </tr>
                         <tr>
                             <td>Lead Days:</td>
-                            <!--没传  没返回-->
+                            <!--构造天数没传  没返回-->
                             {{# layui.each(d.params, function(index, item){  }}
-                            <td value="{{ item.id }}">{{ item.areaSq }}</td>
+                            <td value="{{ item.id }}">{{ item.buildTime }}</td>
                             {{#  }); }}
                         </tr>
                     </tbody>
@@ -166,7 +173,9 @@
             </div>
             <div class="contract-module-four-rig layui-col-md6">
                 <div class="top-info">
-                    <a id="contractCusName">Add Hong</a>
+                    <script type="text/html" template>
+                        <a id="contractCusName">{{ sessionStorage.getItem("userName") }}</a>
+                    </script>
                     <a id="contractBotDate">February 07, 2018</a>
                 </div>
                 <div class="bot-intro">

@@ -90,6 +90,8 @@
                     }, function(obj){
                         location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
                     });
+                    // 登录成功保存用户名
+                    window.sessionStorage.userName=TabUsername;
                 }
                 ,fail: function (res) {
                     console.log(res);
