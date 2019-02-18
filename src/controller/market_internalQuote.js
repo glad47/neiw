@@ -13,7 +13,17 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         // ,laydate = layui.laydate
         ,setter = layui.setter
         ,element = layui.element;
-    var $ = layui.jquery;
+        var $ = layui.jquery;
+
+    // 全局变量
+    var defVal = {
+        orderType: 0,
+    };
+
+    // 监听tab选项卡
+    element.on('tab(tab-internalQuote)', function (data) {
+        defVal.orderType = data.index;
+    });
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
@@ -137,72 +147,96 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'getCheckData':
-                var data = checkStatus.data;
-                var checkedLength = data.length;
+                var tabdata = checkStatus.data;
+                var userData = {
+                    userName: '',
+                    companName: '',
+                    country: '',
+                    city: '',
+                    address: ''
+                };
+                tabdata.tabType = defVal.orderType;
+                var checkedLength = tabdata.length;
                 var productNo;
                 var viewName;
                 var contractType = 2;
-                if (checkedLength >6){
-                    layer.msg("最多只能选中6条数据");
-                    return false;
-                } else {
-                    $.each(data, function (idx, obj) {
-                        if (productNo == null || productNo == ""){
-                            productNo = obj.productNo;
-                            viewName = "marketManagement/iframeWindow/quote_contractA";
-                            contractType = 1;
-                        }
-                        if (productNo != null && productNo != obj.productNo){
-                            contractType = 2;
-                            viewName = "marketManagement/iframeWindow/quote_contractB";
-                            layer.msg("选择了不同型号");
-                        }
-                    });
-                    admin.popup({
-                        title: '报价合同'
-                        ,area: ['60%', '90%']
-                        ,btn: ['提交', '取消']
-                        ,yes:function(index, layero){
-                            layer.alert("提交");
-                        }
-                        ,success: function (layero, index) {
-                            view(this.id).render("marketManagement/iframeWindow/quote_contractA", data).done(function () {
-                                console.log(data);
-                                if (contractType === 1){
-                                    // layui.each遍历的数据，td最少为6条，没有数据的显示空白
-                                    var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
-                                    var dataLength = data.length;
-                                    var addTrNum;
-                                    if (dataLength <= 3){
-                                        addTrNum = 4;
-                                    } else if (dataLength > 3) {
-                                        addTrNum = 7;
-                                    }
-                                    for (var i=tdSize;i<addTrNum;i++){
-                                        console.log("增加td："+i);
-                                        $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
-                                    }
-                                    if (addTrNum == 4){
-                                        for (var i=1;i<addTrNum;i++){
-                                            $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"27.3%"});
+                // 获取地址，公司名
+                admin.req({
+                    type: 'get',
+                    data: '',
+                    url: setter.baseUrl+"sys/consumer/user/info/"+tabdata[0].userId,
+                    success: function (data) {
+                        tabdata.userName = data.user.userName;
+                        tabdata.companName = data.user.companName;
+                        tabdata.country = data.user.country;
+                        tabdata.city = data.user.city;
+                        tabdata.address = data.user.address;
+                        if (checkedLength >6){
+                            layer.msg("最多只能选中6条数据");
+                            return false;
+                        } else {
+                            $.each(tabdata, function (idx, obj) {
+                                if (productNo == null || productNo == ""){
+                                    productNo = obj.productNo;
+                                    viewName = "marketManagement/iframeWindow/quote_contractA";
+                                    contractType = 1;
+                                }
+                                if (productNo != null && productNo != obj.productNo){
+                                    contractType = 2;
+                                    viewName = "marketManagement/iframeWindow/quote_contractB";
+                                    layer.msg("选择了不同型号");
+                                }
+                            });
+                            admin.popup({
+                                title: '报价合同'
+                                ,area: ['60%', '90%']
+                                ,btn: ['提交', '取消']
+                                ,yes:function(index, layero){
+                                    layer.alert("提交");
+
+                                }
+                                ,success: function (layero, index) {
+                                    view(this.id).render(viewName, tabdata).done(function () {
+                                        console.log(tabdata);
+                                        if (contractType === 1){
+                                            // layui.each遍历的数据，td最少为6条，没有数据的显示空白
+                                            var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
+                                            var dataLength = tabdata.length;
+                                            var addTrNum;
+                                            if (dataLength < 4){
+                                                addTrNum = 4;
+                                            } else if (dataLength > 4) {
+                                                addTrNum = 7;
+                                            }
+                                            for (var i=tdSize;i<addTrNum;i++){
+                                                console.log("增加td："+i);
+                                                $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
+                                            }
+                                            if (addTrNum == 4){
+                                                for (var i=1;i<addTrNum;i++){
+                                                    $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"27.3%"});
+                                                }
+                                            } else {
+                                                for (var i=1;i<addTrNum;i++){
+                                                    $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"13.6%"});
+                                                }
+                                            }
+                                        } else if (contractType === 2){
+
                                         }
-                                    } else {
-                                        for (var i=1;i<addTrNum;i++){
-                                            $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"13.6%"});
-                                        }
-                                    }
-                                    }
-                                // 实时时间设置
-                                let date = new Date();
-                                let chinaDate = date.toDateString();
-                                let chinaDateArray = chinaDate.split(' ');
-                                let displayDate = `${chinaDateArray[1]} ${chinaDateArray[2]}, ${chinaDateArray[3]}`;
-                                $("#contractBotDate").text(displayDate);
-                                $("#topDate").text(displayDate);
+                                        // 实时时间设置
+                                        let date = new Date();
+                                        let chinaDate = date.toDateString();
+                                        let chinaDateArray = chinaDate.split(' ');
+                                        let displayDate = `${chinaDateArray[1]} ${chinaDateArray[2]}, ${chinaDateArray[3]}`;
+                                        $("#contractBotDate").text(displayDate);
+                                        $("#topDate").text(displayDate);
+                                    });
+                                }
                             });
                         }
-                    });
-                }
+                    }
+                });
                 break;
             case 'getCheckLength':
                 var data = checkStatus.data;
