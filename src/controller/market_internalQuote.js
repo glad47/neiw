@@ -17,7 +17,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
     // 全局变量
     var defVal = {
-        orderType: 0,
+        orderType: 0,   //订单类型
+        customerSn: null, //客户编号 如：a11
     };
 
     // 监听tab选项卡
@@ -186,14 +187,33 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                     viewName = "marketManagement/iframeWindow/quote_contractB";
                                     layer.msg("选择了不同型号");
                                 }
+                                if (defVal.customerSn == null){
+                                    defVal.customerSn = obj.productNo.substring(0,3);
+                                } else if (defVal.customerSn != obj.productNo.substring(0,3)){
+                                    layer.alert("请选择同一个客户的订单！");
+                                    return false;
+                                }
                             });
                             admin.popup({
                                 title: '报价合同'
                                 ,area: ['60%', '90%']
                                 ,btn: ['提交', '取消']
                                 ,yes:function(index, layero){
-                                    layer.alert("提交");
+                                    layer.confirm('确定提交此订单合同？', function (index) {
+                                       admin.req({
+                                           type: 'post',
+                                           data: {'qids':tabdata[0].id,'cid':tabdata[0].userId},
+                                           url: setter.baseUrl+"epc/pcborder/createContractNo",
+                                           success: function (data) {
+                                               if (data.code != "444"){
+                                                   layer.alert("合同提交成功！");
+                                                   layui.table.reload('iquote_Tabpcb');
+                                                   layer.closeAll();
+                                               }
+                                           }
+                                       });
 
+                                    });
                                 }
                                 ,success: function (layero, index) {
                                     view(this.id).render(viewName, tabdata).done(function () {
@@ -209,7 +229,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                                 addTrNum = 7;
                                             }
                                             for (var i=tdSize;i<addTrNum;i++){
-                                                console.log("增加td："+i);
                                                 $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
                                             }
                                             if (addTrNum == 4){
