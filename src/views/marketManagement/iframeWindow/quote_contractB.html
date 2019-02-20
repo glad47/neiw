@@ -60,7 +60,13 @@
                 <img src="../../../src/style/res/logoMax.png">
             </div>
             <div class="rig-text layui-col-md6">
-                <a>QUOTATION</a>
+                <script type="text/html" template>
+                    {{# if(d.params.htmlType === 0){ }}
+                    <a>QUOTATION</a>
+                    {{# } else{ }}
+                    <a>INVOICE</a>
+                    {{# }}}
+                </script>
             </div>
         </div>
 
@@ -192,7 +198,7 @@
                             {{# }}}
                             {{#  }); }}
                     </div>
-                    <div class="total" style="width: 15%;color: orangered;">
+                    <div class="total" style="width: 15%;color: orangered;text-align: right;">
                         <span>Total:</span>
                         {{# var total = (d.params.total).toFixed(2) }}
                         {{ total }}

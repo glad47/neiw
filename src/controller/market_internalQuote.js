@@ -15,7 +15,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,element = layui.element;
         var $ = layui.jquery;
 
-        $.getScript("../../../src/controller/otherJS/jquery.PrintArea.min.js");
     // 全局变量
     var defVal = {
         orderType: 0,   //订单类型
@@ -151,6 +150,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         switch(obj.event){
             case 'getCheckData':
                 var tabdata = checkStatus.data;
+                // productNo = tabdata[0].productNo;   //给订单编号赋值
+                defVal.customerSn = tabdata[0].productNo.substring(0,3);
                 var userData = {
                     userName: '',
                     companName: '',
@@ -164,32 +165,39 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 var viewName;
                 var contractType = 2;
                 var contractTotal = 0;
+                var qidsPost;
                 $.each(tabdata, function (idx, obj) {
                     contractTotal = parseFloat(contractTotal+obj.subtotal);
                     tabdata.total = contractTotal;
-                    if (productNo == null || productNo == ""){
+                    if (qidsPost == null){
+                        qidsPost = obj.id;
+                    } else {
+                        qidsPost += ","+obj.id;
+                    }
+                    if (productNo == null || productNo == "") {
                         productNo = obj.productNo;
                         viewName = "marketManagement/iframeWindow/quote_contractA";
                         contractType = 1;
                         defVal.canOpenView = true;
-                    } else if (productNo != null && productNo != obj.productNo){
+                    } else if (productNo != null && productNo != obj.productNo) {
                         contractType = 2;
                         viewName = "marketManagement/iframeWindow/quote_contractB";
                         layer.msg("选择了不同型号");
                         defVal.canOpenView = true;
                     }
-                    if (defVal.customerSn == null){
-                        defVal.customerSn = obj.productNo.substring(0,3);
-                    } else if (defVal.customerSn != obj.productNo.substring(0,3)){
+                    if (defVal.customerSn != null && defVal.customerSn != obj.productNo.substring(0,3)) {
                         layer.alert("请选择同一个客户的订单！");
+                        defVal.customerSn = null;   //初始化客户编号 如a11
                         defVal.canOpenView = false;
                         return false;
                     }
+                });
+                if (defVal.canOpenView == true) {
                     // 获取地址，公司名
                     admin.req({
                         type: 'get',
                         data: '',
-                        url: setter.baseUrl+"sys/consumer/user/info/"+tabdata[0].userId,
+                        url: setter.baseUrl+'sys/consumer/user/info/'+tabdata[0].userId,
                         success: function (data) {
                             tabdata.userName = data.user.userName;
                             tabdata.companName = data.user.companName;
@@ -208,7 +216,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                         layer.confirm('确定提交此订单合同？', function (index) {
                                             admin.req({
                                                 type: 'post',
-                                                data: {'qids':tabdata[0].id,'cid':tabdata[0].userId},
+                                                data: {'qids':qidsPost,'cid':tabdata[0].userId},
                                                 url: setter.baseUrl+"epc/pcborder/createContractNo",
                                                 success: function (data) {
                                                     if (data.code != "444"){
@@ -232,7 +240,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                         window.print();
                                     }
                                     ,success: function (layero, index) {
+                                        tabdata.htmlType = 1;     //页面标识 0为报价明细合同 主要用于判断头部左侧标题
                                         view(this.id).render(viewName, tabdata).done(function () {
+                                            productNo = null; // 初始化订单号
+                                            defVal.customerSn = null;   //初始化客户编号 如a11
                                             console.log(tabdata);
                                             if (contractType === 1){
                                                 // layui.each遍历的数据，td最少为6条，没有数据的显示空白
@@ -273,7 +284,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                             }
                         }
                     });
-                });
+                }
                 break;
             case 'getCheckLength':
                 var data = checkStatus.data;

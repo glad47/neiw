@@ -66,7 +66,13 @@
                 <img src="../../../src/style/res/logoMax.png">
             </div>
             <div class="rig-text layui-col-md6">
-                <a>QUOTATION</a>
+                <script type="text/html" template>
+                    {{# if(d.params.htmlType === 0){ }}
+                    <a>QUOTATION</a>
+                    {{# } else{ }}
+                    <a>INVOICE</a>
+                    {{# }}}
+                </script>
             </div>
         </div>
 
@@ -249,13 +255,14 @@
                     </tbody>
                 </table>
                 <div class="contract-module-remark">
-                    <a>Remark:
+                    <div class="remark" style="width: 85%;">
+                        <span style="position: absolute;">Remark:</span>
                         {{# layui.each(d.params, function(index, item){  }}
-                            {{# if(item.remark != null){}}
-                                {{ item.productNo}} : {{ item.remark}}
-                            {{# }}}
+                        {{# if(item.remark != null){}}
+                        <a style="margin-left: 80px;color: #1E9FFF;">{{ item.productNo}}:</a> {{ item.remark}}<br>
+                        {{# }}}
                         {{#  }); }}
-                    </a>
+                    </div>
                 </div>
             </script>
         </div>
