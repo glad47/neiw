@@ -50,6 +50,46 @@ layui.define(['admin', 'table','element','form'], function(exports){
         });
     });
 
+    //编辑联动数据回显
+    function echoLinkageData(ptid,pnid,pvid){
+        console.log(ptid + " "+ pnid + " "+pvid);
+        $.ajaxSettings.async = false;
+        $.get(setter.imUrl+"getAllParameter",{parameterTypeId:ptid},function(data){
+            $("select[name='g']").empty();
+            $("select[name='h']").empty();
+            $.each(data.data, function (i, d) {
+                if (d.id === pnid) {
+                     $("select[name='g']").append(
+                    "<option value='" + d.id + "' selected>" + d.parameterName + "</option>");
+                }else{
+                     $("select[name='g']").append(
+                    "<option value='" + d.id + "'>" + d.parameterName + "</option>");
+                }
+               
+            });
+            // form.render();
+        });
+        // $.ajaxSettings.async = true;
+        // $.ajaxSettings.async = false;
+        $.get(setter.imUrl+"getAllParameterValue",{parameterId:pnid},function(data){
+            var _this = $("select[name='h']");
+            _this.empty();
+            $.each(data.data, function (i, d) {
+                if (d.id === pvid) {
+                    $("select[name='h']").append(
+                    "<option value='" + d.id + "' selected>" + d.parameterValue + "</option>");
+                }else{
+                    $("select[name='h']").append(
+                    "<option value='" + d.id + "'>" + d.parameterValue + "</option>");
+                }
+                
+            });
+            // form.render();
+        });
+        $.ajaxSettings.async = true;
+        form.render();
+    }
+
     table.render({
         elem: '#customer_quote_config_listTab'
         ,url: setter.imUrl+'getAllQuoteConfigByConsumerAdjusten'
@@ -83,6 +123,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
         var data = obj.data;
         console.log(data);
         if (obj.event === 'edit') {
+           
             admin.popup({
                 title:'编辑客户报价配置',
                 area:['850px', '440px'],
@@ -95,16 +136,17 @@ layui.define(['admin', 'table','element','form'], function(exports){
                 success:function(layero,index){
                     view(this.id).render('/infoManagement/iframeWindow/customer_quote_config_form',data).done(function(){
                         form.render(null,'layuiadmin-app-form-list');
-
+                         //回显下拉联动
+                        echoLinkageData(data.parameterTypeId,data.parameterNameId,data.parameterValueId);
                         //监听提交
                         form.on('submit(layuiadmin-app-form-submit)',function(data){
                             var field = data.field;
                             admin.req({
-                                url:setter.baseUrl+'sys/consumer/user/update',
+                                url:setter.baseUrl+'sys/consumeradjustenquote/update',
                                 type:'POST',
                                 data:field,
                                 success:function(data){
-                                    layui.table.reload('customer_listTab'); //重载表格
+                                    layui.table.reload('customer_quote_config_listTab'); //重载表格
                                     layer.close(index); //执行关闭 
                                 }
                             });
@@ -160,45 +202,53 @@ layui.define(['admin', 'table','element','form'], function(exports){
                             console.log(field);
 
                             var field = data.field;
-                            if (field.quote === "") {//查询标准报价
-                                admin.req({
-                                    url:setter.imUrl+"findQuoteConfig",
-                                    type:"POST",
-                                    data:{
-                                        areaSq: field.a
-                                        ,pcbtype: field.b
-                                        ,layerNum: field.c
-                                        ,urgentType: field.d
-                                        ,parameterType: field.f
-                                        ,parameterName: field.g
-                                        ,parameter: field.h
-                                        ,premiumType: field.e,
-                                    },
-                                    success:function(data){
-                                        if (data.code == 0 & data.data != null) {
-                                            field.id = data.data.id;
+                            admin.req({
+                                url:setter.imUrl+"findQuoteConfig",
+                                type:"POST",
+                                data:{
+                                    areaSq: field.a
+                                    ,pcbtype: field.b
+                                    ,layerNum: field.c
+                                    ,urgentType: field.d
+                                    ,parameterType: field.f
+                                    ,parameterName: field.g
+                                    ,parameter: field.h
+                                    ,premiumType: field.e,
+                                },
+                                success:function(data){
+                                    if (data.code == 0 & data.data != null) {
+                                        field.quoteConfigId = data.data.id;
 
-                                            $("#imgtalk").attr("value",data.data.quote);
-                                        }else{
-                                            layer.msg("没有该报价！");
-                                        }
+                                        $("#imgtalk").attr("value",data.data.quote);
+                                    }else{
+                                        layer.msg("没有该报价！");
                                     }
-                                });
+                                },
+                                async:false
+                            });
+                            console.log(field);
+                            if (field.quote !== "") {//查询标准报价
+                                if (field.adjustedQuote !== "") {
+                                    admin.req({
+                                        url: setter.baseUrl+'sys/consumeradjustenquote/save',
+                                        type:'POST',
+                                        //dataType:'json',
+                                        //contentType:'application/json',
+                                        data: field,
+                                        success:function(data){
+                                            console.log(data);
+                                            if (data.code === 0) {
+                                                layui.table.reload('customer_quote_config_listTab'); //重载表格
+                                                layer.close(index); //执行关闭 
+                                            }else{
+                                                layer.msg(data.msg);
+                                            }
+                                            
+                                            
+                                        }
+                                    });    
+                                }
                             }
-                            
-                            // admin.req({
-                            //     url: setter.baseUrl+'sys/consumer/user/save',
-                            //     type:'POST',
-                            //     //dataType:'json',
-                            //     //contentType:'application/json',
-                            //     data: field,
-                            //     success:function(data){
-                            //         console.log(data);
-                            //         layui.table.reload('customer_listTab'); //重载表格
-                            //         layer.close(index); //执行关闭 
-                            //     }
-                            // })
-
                         });
 
                     });
