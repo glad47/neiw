@@ -17,7 +17,7 @@
                 .contract-bank-ul li span{float: left;width: 30%;}
                 .contract-bank-ul li a{float: right;width: 70%;}
                 /*打印字体大小*/
-                .contract-module-one,.contract-module-four,.contract-module-five{font-size: 18px;}
+                .contract-module-one,.contract-module-four,.contract-module-five,.contrackB-tabBot{font-size: 18px;}
             }
             .contract-top-logo .rig-text{text-align: right;}
             .contract-top-logo .rig-text a{font-size: 20px;font-weight: 600;}
@@ -185,15 +185,17 @@
                 </table>
                 <div class="contrackB-tabBot" style="display: flex;margin-top: 10px;">
                     <div class="remark" style="width: 85%;">
-                        <span>Remark:</span>
-                        {{# layui.each(d.params, function(index, item){  }}
+                            <span style="position: absolute;">Remark:</span>
+                            {{# layui.each(d.params, function(index, item){  }}
                             {{# if(item.remark != null){}}
-                                {{ item.productNo}} : {{ item.remark}}<br>
+                            <a style="margin-left: 80px;color: #1E9FFF;">{{ item.productNo}}:</a> {{ item.remark}}<br>
                             {{# }}}
-                        {{#  }); }}
+                            {{#  }); }}
                     </div>
                     <div class="total" style="width: 15%;color: orangered;">
                         <span>Total:</span>
+                        {{# var total = (d.params.total).toFixed(2) }}
+                        {{ total }}
                     </div>
                 </div>
             </script>
