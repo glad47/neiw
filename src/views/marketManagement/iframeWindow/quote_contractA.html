@@ -1,6 +1,65 @@
 <title>报价合同A</title>
 <div class="layui-fluid">
-    <div class="layui-row">
+    <div class="layui-row" id="quoteContract_AllA">
+        <style media="all">
+            .contract-top-logo .lef-logo img{width: 190px;}
+            @media print {
+                #quoteContract_AllA{background-color: white;}
+                /*div{background-color: white;}*/
+                /*.contract-top-logo,.contract-module-one,.contract-module-two,.contract-module-three,.contract-module-four,.contract-module-five,.contract-module-remark,.contract-bank-ul{background-color: white;}*/
+                .contract-top-logo .lef-logo img{margin-top: 20px;}
+                .contract-top-logo .rig-text{margin-top: -30px;}
+                .contract-module-three-tab{margin-top: 260px;}
+                .contract-module-four{pading-top: -40px;}
+                .contract-module-four-lef{float: left;width: 50%;}
+                .contract-module-four-rig{float: right;width: 45%;margin-right: 50px;margin-top: -20px;}
+                .contract-module-five{padding-top: 130px;}
+                .contract-module-five .bot-info-lef{float: left;width: 40%;}
+                .contract-module-five .bot-info-rig{float: right;width: 60%;}
+                .contract-module-five li,.contract-module-four li{line-height: 20px;}
+                .contract-bank-ul li span{float: left;width: 30%;}
+                .contract-bank-ul li a{float: right;width: 70%;}
+                .contract-module-four-rig{margin-top: -120px;}
+                .module-two-lef{float: left;width: 50%;}
+                .module-two-rig{float: right;width: 50%;}
+                .contract-module-five .module-1{width: 48%;float: left;}
+                .contract-module-five .module-2{width: 52%;float: right;}
+            }
+            .contract-top-logo .rig-text{text-align: right;}
+            .contract-top-logo .rig-text a{font-size: 20px;font-weight: 600;}
+            .contract-module-one{margin-top: 20px;}
+            /*模块二*/
+            .contract-module-two{padding-bottom: 20px;}
+            .moudle-description{background-color: #086aaf59;text-align: center;margin-top: 20px;margin-bottom: 20px;padding: 4px;}
+            .moudle-description span{color: black;font-weight: 500;}
+            /*表格*/
+            .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 20px;}
+            .contract-module-three-tab thead th{background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
+            .contract-module-three-tab tbody tr td:first-of-type{width: 15%;text-align: left;line-height: 20px;padding-left: 10px;min-width: 145px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(2){width: 15%;min-width: 145px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(3){width: 7%;min-width: 59px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(4){width: 7%;min-width: 59px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(5){width: 12%;min-width: 115px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(6){width: 12%;min-width: 101px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(7){width: 12%;min-width: 103px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(8){width: 12%;min-width: 108px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(9){width: 5%;min-width: 92px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(10){width: 5%;min-width: 102px;}
+            .contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;}
+            .tr-orderInfo,.tr-orderTotal{border-bottom: solid 1px #086aafdb;}
+            /*.tr-orderTotal*/
+            /*模块四 tips*/
+            .contract-module-four{margin-top: 50px;}
+            .contract-module-four-rig{padding: 48px 0;}
+            .contract-module-four-rig .top-info{width: 100%;border-bottom: solid 2px black;}
+            .contract-module-four-rig a{font-weight: 500;font-size: 15px;}
+            .contract-module-four-rig a:last-of-type{float: right;}
+            /*模块五 底部信息*/
+            .contract-module-five{margin-top: 50px;color: #2b7dbcad;}
+            .contract-module-five a{color: #2b7dbcad;}
+            .contract-module-five ul li,.contract-module-four ul li,.contract-module-two ul li,.contract-module-one ul li{padding-left: 10px;}
+            /*.contract-bank-ul li a{text-align: right;}*/
+        </style>
         <!--顶部logo-->
         <div class="contract-top-logo layui-col-md12">
             <div class="lef-logo layui-col-md6">
@@ -12,35 +71,39 @@
         </div>
 
         <!--模块一 contract-module-one, 顶部信息-->
-        <div class="contract-module-one layui-col-md12">
-            <div class="module-one-lef layui-col-md6">
-                <script type="text/html" template>
-                <ul>
-                    <li>
-                        <span class="layui-col-md4">Importer:</span>
-                        <a class="layui-col-md8">{{ d.params.userName }}</a>
-                    </li>
-                    <li>
-                        <span class="layui-col-md4">Company Name:</span>
-                        <a class="layui-col-md8">{{ d.params.companName }}</a>
-                    </li>
-                    <li>
-                        <span class="layui-col-md4">Addr:</span>
-                        <a class="layui-col-md8">{{ d.params.address }}</a>
-                    </li>
-                </ul>
-                </script>
-            </div>
-            <div class="module-one-rig layui-col-md6">
-                <ul class="layui-col-md3">
-                    <li>Quotation No:</li>
-                    <li>Date:</li>
-                </ul>
-                <ul class="layui-col-md6">
-                    <li>合同号</li>
-                    <li id="topDate">Feb 15, 2010</li>
-                </ul>
-            </div>
+        <div class="contract-module-one layui-col-md12 layui-col-xs12">
+            <script type="text/html" template>
+                <table style="width: 100%;">
+                    <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <strong>Importer:</strong>
+                            <!--<a>{{ d.params.userName }}</a>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Company Name:
+                            <a>{{ d.params.companName }}</a>
+                        </td>
+                        <td>
+                            Quotation No:
+                            <a></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Addr:
+                            <a>{{ d.params.address }}</a>
+                        </td>
+                        <td>
+                            Date:
+                            <a id="topDate">Feb 15, 2010</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </script>
         </div>
 
         <!--DESCRIPTION 标题-->
@@ -54,28 +117,28 @@
                 <div class="module-two-lef layui-col-md6">
                     <ul class="module-two-lef-title">
                         <li>
-                            <span class="layui-col-md4">Pcb material:</span>
-                            <a class="layui-col-md8">{{ d.params[0].pcbType }}</a>
+                            <span>Pcb material:</span>
+                            <a>{{ d.params[0].pcbType }}</a>
                         </li>
                         <li>
-                            <span class="layui-col-md4">No.of Layer:</span>
-                            <a class="layui-col-md8">{{ d.params[0].layerNum }}</a>
+                            <span>No.of Layer:</span>
+                            <a>{{ d.params[0].layerNum }}</a>
                         </li>
                         <li>
-                            <span class="layui-col-md4">Thickness Cu:</span>
-                            <a class="layui-col-md8">{{ d.params[0].outerLayerCopper }}</a>
+                            <span>Thickness Cu:</span>
+                            <a>{{ d.params[0].outerLayerCopper }}</a>
                         </li>
                         <li>
-                            <span class="layui-col-md4">Board Finish:</span>
-                            <a class="layui-col-md8">{{ d.params[0].finishThickness }}</a>
+                            <span>Board Finish:</span>
+                            <a>{{ d.params[0].finishThickness }}</a>
                         </li>
                     </ul>
                 </div>
                 <div class="module-two-rig layui-col-md6">
                     <ul class="module-two-rig-title">
                         <li>
-                            <span class="layui-col-md4">Size:</span>
-                            <a class="layui-col-md8">
+                            <span>Size:</span>
+                            <a>
                                 {{# if(d.params[0].panelSizeX != null){ }}
                                 {{# var panelWay = d.params[0].panelWayX*d.params[0].panelWayY }}
                                 <a>{{ d.params[0].panelSizeX }} * {{ d.params[0].panelSizeY }}mm / {{ panelWay }}</a>
@@ -88,16 +151,16 @@
                         </li>
                         <li>
                             <span class="layui-col-md4"></span>
-                            <span class="layui-col-md4">PCB Thickness:</span>
-                            <a class="layui-col-md8">{{ d.params[0].finishThickness }}</a>
+                            <span>PCB Thickness:</span>
+                            <a>{{ d.params[0].finishThickness }}</a>
                         </li>
                         <li>
-                            <span class="layui-col-md4">Solder Mask:</span>
-                            <a class="layui-col-md8">{{ d.params[0].solderMaskTopColor }}</a>
+                            <span>Solder Mask:</span>
+                            <a>{{ d.params[0].solderMaskTopColor }}</a>
                         </li>
                         <li>
-                            <span class="layui-col-md4">Legend Color:</span>
-                            <a class="layui-col-md8">{{ d.params[0].silkScreenTopColor }}</a>
+                            <span>Legend Color:</span>
+                            <a>{{ d.params[0].silkScreenTopColor }}</a>
                         </li>
                     </ul>
                 </div>
@@ -119,7 +182,10 @@
                             <td>Unit price:US/pcs:</td>
                             {{# layui.each(d.params, function(index, item){  }}
                             <!--单价，还没传，先占个位-->
-                            <td value="{{ item.id }}">单价占位</td>
+                            <td value="{{ item.id }}">
+                                {{# var unitPrice = parseFloat(item.boardFee/item.quantityPcs).toFixed(2) }}
+                                {{ unitPrice }}
+                            </td>
                             {{#  }); }}
                         </tr>
                         <tr>
@@ -158,7 +224,13 @@
                             <td>Freight Charge:</td>
                             <!--运费，还没传过来-->
                             {{# layui.each(d.params, function(index, item){  }}
-                            <td value="{{ item.id }}">运费占位</td>
+                            <td value="{{ item.id }}">
+                                {{# if(item.postFee == null){}}
+                                0
+                                {{# }else{}}
+                                    {{ item.postFee }}
+                                {{# }}}
+                            </td>
                             {{#  }); }}
                         </tr>
                         <tr>
@@ -177,7 +249,13 @@
                     </tbody>
                 </table>
                 <div class="contract-module-remark">
-                    <a>Remark: setup charge only need to pay once, if repeat order not reach MOQ(3 smq2) engineering charge still need to pay</a>
+                    <a>Remark:
+                        {{# layui.each(d.params, function(index, item){  }}
+                            {{# if(item.remark != null){}}
+                                {{ item.productNo}} : {{ item.remark}}
+                            {{# }}}
+                        {{#  }); }}
+                    </a>
                 </div>
             </script>
         </div>
@@ -210,7 +288,7 @@
 
         <!--模块五 contract-module-five，底部信息-->
         <div class="contract-module-five layui-col-md12">
-            <div class="layui-col-md6">
+            <div class="layui-col-md6 module-1">
                 <ul>
                     <li><strong>PCBonline</strong></li>
                     <li>Area 2, Huaidecuigang industrial zone ,Fuyong road,</li>
@@ -219,7 +297,7 @@
                     <li>Sales@globalsuccess.com.cn<a>www.pcbonline.com</a></li>
                 </ul>
             </div>
-            <div class="layui-col-md6">
+            <div class="layui-col-md6 module-2">
                 <ul class="contract-bank-ul">
                     <li>
                         <span class="layui-col-md4">Bank Name:</span>
@@ -253,31 +331,31 @@
     <!--<a>{{ d.params[0].boardFee}}</a>-->
     <!--</script>-->
 </div>
-<style>
-    .contract-top-logo .lef-logo img{width: 190px;}
-    .contract-top-logo .rig-text{text-align: right;}
-    .contract-top-logo .rig-text a{font-size: 20px;font-weight: 600;}
-    .contract-module-one{margin-top: 60px;}
-    /*模块二*/
-    .moudle-description{background-color: #086aaf59;text-align: center;margin-top: 20px;margin-bottom: 20px;padding: 4px;}
-    .moudle-description span{color: black;font-weight: 500;}
-    /*左边padding*/
-    .contract-module-remark a{padding-left: 10px;}
-    /*表格*/
-    .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 2ss0px;}
-    .contract-module-three-tab tbody tr td:first-of-type{width: 18%;text-align: left;line-height: 40px;padding-left: 10px;}
-    .contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;}
-    /*模块四 tips*/
-    .contract-module-four{margin-top: 50px;}
-    .contract-module-four-rig{padding: 48px 0;}
-    .contract-module-four-rig .top-info{width: 100%;border-bottom: solid 2px black;}
-    .contract-module-four-rig a{font-weight: 500;font-size: 15px;}
-    .contract-module-four-rig a:last-of-type{float: right;}
-    /*模块五 底部信息*/
-    .contract-module-five{margin-top: 50px;color: #2b7dbcad;}
-    .contract-module-five a{color: #2b7dbcad;}
-    .contract-module-five ul li,.contract-module-four ul li,.contract-module-two ul li,.contract-module-one ul li{padding-left: 10px;}
-</style>
+<!--<style>-->
+    <!--.contract-top-logo .lef-logo img{width: 190px;}-->
+    <!--.contract-top-logo .rig-text{text-align: right;}-->
+    <!--.contract-top-logo .rig-text a{font-size: 20px;font-weight: 600;}-->
+    <!--.contract-module-one{margin-top: 60px;}-->
+    <!--/*模块二*/-->
+    <!--.moudle-description{background-color: #086aaf59;text-align: center;margin-top: 20px;margin-bottom: 20px;padding: 4px;}-->
+    <!--.moudle-description span{color: black;font-weight: 500;}-->
+    <!--/*左边padding*/-->
+    <!--.contract-module-remark a{padding-left: 10px;}-->
+    <!--/*表格*/-->
+    <!--.contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 2ss0px;}-->
+    <!--.contract-module-three-tab tbody tr td:first-of-type{width: 18%;text-align: left;line-height: 40px;padding-left: 10px;}-->
+    <!--.contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;}-->
+    <!--/*模块四 tips*/-->
+    <!--.contract-module-four{margin-top: 50px;}-->
+    <!--.contract-module-four-rig{padding: 48px 0;}-->
+    <!--.contract-module-four-rig .top-info{width: 100%;border-bottom: solid 2px black;}-->
+    <!--.contract-module-four-rig a{font-weight: 500;font-size: 15px;}-->
+    <!--.contract-module-four-rig a:last-of-type{float: right;}-->
+    <!--/*模块五 底部信息*/-->
+    <!--.contract-module-five{margin-top: 50px;color: #2b7dbcad;}-->
+    <!--.contract-module-five a{color: #2b7dbcad;}-->
+    <!--.contract-module-five ul li,.contract-module-four ul li,.contract-module-two ul li,.contract-module-one ul li{padding-left: 10px;}-->
+<!--</style>-->
 <script>
     layui.use(['form','jquery'], function(){
         var form = layui.form;
