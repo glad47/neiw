@@ -150,6 +150,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         switch(obj.event){
             case 'getCheckData':
                 var tabdata = checkStatus.data;
+                // 给对象进行排序
+                tabdata = tabdata.sort(compare('quantityPcs'));
                 // productNo = tabdata[0].productNo;   //给订单编号赋值
                 defVal.customerSn = tabdata[0].productNo.substring(0,3);
                 var userData = {
@@ -331,6 +333,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
         });
     });
+
+    // 排序方法
+    function compare(property){
+        return function(a,b){
+            var value1 = a[property];
+            var value2 = b[property];
+            return value1 - value2;
+        }
+    }
 
     exports('market_internalQuote', {});
 });

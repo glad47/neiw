@@ -301,6 +301,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     //监听 ==>选择客户
     form.on('select(filterCustomer)',function (data) {
         // $("#inCustomer").val($(data.elem).find("option:selected").text());
+        $("#orderPN").val('');  //重新选择客户的时候，内部型号清空
         public_data.customerAid = data.value;
         pcb_container.userId = data.value;
         $("#customerId").val(data.value);

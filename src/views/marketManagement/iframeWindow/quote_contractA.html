@@ -88,19 +88,27 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            Company Name:
-                            <a>{{ d.params.companName }}</a>
+                        <td style="width: 50%;">
+                            <!--Company Name:-->
+                            <a>
+                                {{# if(d.params.companName != null){ }}
+                                    {{ d.params.companName }}
+                                {{# }}}
+                            </a>
                         </td>
-                        <td>
+                        <td style="width: 50%;">
                             Quotation No:
                             <a></a>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Addr:
-                            <a>{{ d.params.address }}</a>
+                            <!--Addr:-->
+                            <a>
+                                {{# if(d.params.address != null){ }}
+                                    {{ d.params.address }}
+                                {{# } }}
+                            </a>
                         </td>
                         <td>
                             Date:
@@ -123,6 +131,10 @@
                 <div class="module-two-lef layui-col-md6">
                     <ul class="module-two-lef-title">
                         <li>
+                            <span>P/O:</span>
+                            <a>&nnbsp;</a>
+                        </li>
+                        <li>
                             <span>Pcb material:</span>
                             <a>{{ d.params[0].pcbType }}</a>
                         </li>
@@ -142,6 +154,10 @@
                 </div>
                 <div class="module-two-rig layui-col-md6">
                     <ul class="module-two-rig-title">
+                        <li>
+                            <span>P/N:</span>
+                            <a>{{ d.params[0].productNo }}</a>
+                        </li>
                         <li>
                             <span>Size:</span>
                             <a>
@@ -195,13 +211,13 @@
                             {{#  }); }}
                         </tr>
                         <tr>
-                            <td>Engineering Charge:</td>
+                            <td>Engineering Fee:</td>
                             {{# layui.each(d.params, function(index, item){  }}
                             <td value="{{ item.id }}">{{ item.engineeringFee }}</td>
                             {{#  }); }}
                         </tr>
                         <tr>
-                            <td>Test Fixture Charge:</td>
+                            <td>Test Fixture Fee:</td>
                             {{# layui.each(d.params, function(index, item){  }}
                             {{# if(item.testPointType === 1){ }}
                             <td></td>
@@ -211,7 +227,7 @@
                             {{#  }); }}
                         </tr>
                         <tr>
-                            <td>Flying probe test Charge:</td>
+                            <td>Flying probe test Fee:</td>
                             {{# layui.each(d.params, function(index, item){  }}
                             {{# if(item.testPointType === 1){ }}
                             <td value="{{ item.id }}">{{ item.testCostFee }}</td>
@@ -221,13 +237,13 @@
                             {{#  }); }}
                         </tr>
                         <tr>
-                            <td>Mould Charge:</td>
+                            <td>Mould Fee:</td>
                             {{# layui.each(d.params, function(index, item){  }}
                             <td value="{{ item.id }}">{{ item.toolingFee }}</td>
                             {{#  }); }}
                         </tr>
                         <tr>
-                            <td>Freight Charge:</td>
+                            <td>Freight Fee:</td>
                             <!--运费，还没传过来-->
                             {{# layui.each(d.params, function(index, item){  }}
                             <td value="{{ item.id }}">

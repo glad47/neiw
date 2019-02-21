@@ -45,7 +45,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             access_token: layui.data('layuiAdmin').access_token
         }
         ,cols: [[
-            // {type:'checkbox'}
+            {type:'checkbox'}
             ,{field: 'orderType',title: '订单类型',edit: 'text'}    //1=新单  2=返单    3=返单有改
             ,{field: 'productNo', title: '内部编码',width: 130}
             ,{field: 'invoiceNo',title: '合同号',edit: 'text'}
@@ -175,6 +175,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     var productNo = null;
                     var contractType;
                     popupData = data.data;
+                    alert(1);
+                    console.log = popupData.sort(compare('quantityPcs'));
                     $.each(data.data, function (idx, obj) {
                         if (productNo == null || productNo == "") {
                             contractType = 1;
@@ -262,6 +264,14 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
         });
     });
+
+    function compare(property){
+        return function(a,b){
+            var value1 = a[property];
+            var value2 = b[property];
+            return value1 - value2;
+        }
+    }
 
     exports('market_insideContract', {});
 });
