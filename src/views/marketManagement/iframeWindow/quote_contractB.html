@@ -53,6 +53,9 @@
             .contract-module-five a{color: #2b7dbcad;}
             .contract-module-five ul li,.contract-module-four ul li,.contract-module-two ul li,.contract-module-one ul li{padding-left: 10px;}
             /*.contract-bank-ul li a{text-align: right;}*/
+            .cmo-lable,.cmo-strong{display: inline-block;width: 100px;}
+            .contract-module-one a{padding-left: 20px;}
+            /*.contract-module-two span{display: inline-block;width: 100px;}*/
         </style>
         <!--顶部logo-->
         <div class="contract-top-logo layui-col-md12">
@@ -77,27 +80,38 @@
                     <tbody>
                     <tr>
                         <td colspan="2">
-                            <strong>Importer:</strong>
+                            <strong class="cmo-strong">Importer</strong>
+                            :
                             <!--<a>{{ d.params.userName }}</a>-->
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            Company Name:
-                            <a>{{ d.params.companName }}</a>
+                        <td style="width: 50%;">
+                            <!--Company Name:-->
+                            <strong>
+                                {{# if(d.params.companName != null){ }}
+                                {{ d.params.companName }}
+                                {{# }}}
+                            </strong>
                         </td>
-                        <td>
-                            Quotation No:
+                        <td style="width: 50%;">
+                            <label class="cmo-lable">Quotation No</label>
+                            :
                             <a></a>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Addr:
-                            <a>{{ d.params.address }}</a>
+                            <!--Addr:-->
+                            <a>
+                                {{# if(d.params.address != null){ }}
+                                {{ d.params.address }}
+                                {{# } }}
+                            </a>
                         </td>
                         <td>
-                            Date:
+                            <label class="cmo-lable">Date</label>
+                            :
                             <a id="topDate">Feb 15, 2010</a>
                         </td>
                     </tr>

@@ -56,7 +56,16 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         courierId: '',
         countryId: '',
         totalWeight: ''
-    }
+    };
+    // 计算得出的价格
+    var quote_price_group = {
+        shipping: ''
+    };
+    // 计算总价数据
+    var quote_total = {
+        pcbCost: '',
+        totalPrice: ''
+    };
 
     /**
      * 报存当前报价需要传输的字段 所有对象
@@ -281,6 +290,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         pcb_container.buildTime = $("input[name='buildTime']").attr("title");
         $("#urgentFee").val(" $ "+this_price);
         quotePCBCost();
+        quotePCBTotalPrice();
     });
 
     //监听==>选择快递
@@ -768,7 +778,9 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                     // 给pcb明细容器赋值
                     pcb_container.postFee = data.data.shippingCost;
                     public_data.postFee = data.data.shippingCost;
-                    $("#shippingPrice").val(" $ "+data.data.shippingCost);
+                    quote_price_group.shipping = data.data.shippingCost
+                    $("#shippingPrice").val(" $ "+quote_price_group.shipping);
+                    quotePCBTotalPrice();
                 } else {
                     $("#shippingPrice").val("不支持该配送");
                 }
@@ -834,9 +846,17 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
             pcb_container.overworkFee = 0;
         }
         var pcbCost = parseFloat(pcb_container.engineeringFee+pcb_container.boardFee+pcb_container.testCostFee+pcb_container.toolingFee)+parseFloat(pcb_container.overworkFee);
-        $("#pcbCost").val(pcbCost.toFixed(2));
+        quote_total.pcbCost = pcbCost;
+        $("#pcbCost").val("$ "+pcbCost.toFixed(2));
     }
 
+    /**
+     * 计算PCB Phototype 总价
+     */
+    function quotePCBTotalPrice() {
+        quote_total.totalPrice = parseFloat(quote_total.pcbCost+quote_price_group.shipping).toFixed(2);
+        $("#totalPrice").val("$"+quote_total.totalPrice);
+    }
 
     /**
      * 计算SMT-Stencil总价
@@ -860,7 +880,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         $("#shippingPrice").val('');
         $("#totalPrice").val('');
         form.render();
-        $("button[type='reset']").click();
+        // $("button[type='reset']").click();
     }
     
 
@@ -980,5 +1000,19 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     $('.up-rsetbtn').on('click', function () {
         $('.bot-rsetbtn').click();
     });
+
+    /**
+     * 数据监听
+     */
+    // Object.defineProperty(quote_price_group, 'shipping',{
+    //     set: function (newShipping) {
+    //
+    //     },
+    //     get: function (newShipping) {
+    //         this._shipping = newShipping;
+    //         console.log("get修改后的shipping为==========>>>>>>>"+this._shipping);
+    //     }
+    // });
+
     exports('quote',{})
 });

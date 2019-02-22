@@ -36,15 +36,6 @@
             .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 20px;}
             .contract-module-three-tab thead th{background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
             .contract-module-three-tab tbody tr td:first-of-type{width: 15%;text-align: left;line-height: 20px;padding-left: 10px;min-width: 145px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(2){width: 15%;min-width: 145px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(3){width: 7%;min-width: 59px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(4){width: 7%;min-width: 59px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(5){width: 12%;min-width: 115px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(6){width: 12%;min-width: 101px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(7){width: 12%;min-width: 103px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(8){width: 12%;min-width: 108px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(9){width: 5%;min-width: 92px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(10){width: 5%;min-width: 102px;}
             .contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;}
             .tr-orderInfo,.tr-orderTotal{border-bottom: solid 1px #086aafdb;}
             /*.tr-orderTotal*/
@@ -59,6 +50,10 @@
             .contract-module-five a{color: #2b7dbcad;}
             .contract-module-five ul li,.contract-module-four ul li,.contract-module-two ul li,.contract-module-one ul li{padding-left: 10px;}
             /*.contract-bank-ul li a{text-align: right;}*/
+            .cmo-lable,.cmo-strong{display: inline-block;width: 100px;}
+            .contract-module-one a{padding-left: 20px;}
+            .contract-module-two span{display: inline-block;width: 100px;}
+            .contract-module-two a{padding-left: 20px;}
         </style>
         <!--顶部logo-->
         <div class="contract-top-logo layui-col-md12">
@@ -83,21 +78,23 @@
                     <tbody>
                     <tr>
                         <td colspan="2">
-                            <strong>Importer:</strong>
+                            <strong class="cmo-strong">Importer</strong>
+                            :
                             <!--<a>{{ d.params.userName }}</a>-->
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 50%;">
                             <!--Company Name:-->
-                            <a>
+                            <strong>
                                 {{# if(d.params.companName != null){ }}
-                                    {{ d.params.companName }}
+                                {{ d.params.companName }}
                                 {{# }}}
-                            </a>
+                            </strong>
                         </td>
                         <td style="width: 50%;">
-                            Quotation No:
+                            <label class="cmo-lable">Quotation No</label>
+                            :
                             <a></a>
                         </td>
                     </tr>
@@ -106,12 +103,13 @@
                             <!--Addr:-->
                             <a>
                                 {{# if(d.params.address != null){ }}
-                                    {{ d.params.address }}
+                                {{ d.params.address }}
                                 {{# } }}
                             </a>
                         </td>
                         <td>
-                            Date:
+                            <label class="cmo-lable">Date</label>
+                            :
                             <a id="topDate">Feb 15, 2010</a>
                         </td>
                     </tr>
@@ -131,23 +129,28 @@
                 <div class="module-two-lef layui-col-md6">
                     <ul class="module-two-lef-title">
                         <li>
-                            <span>P/O:</span>
+                            <span>P/O</span>
+                            :
                             <a>&nnbsp;</a>
                         </li>
                         <li>
-                            <span>Pcb material:</span>
+                            <span>PCB material</span>
+                            :
                             <a>{{ d.params[0].pcbType }}</a>
                         </li>
                         <li>
-                            <span>No.of Layer:</span>
+                            <span>No.of Layer</span>
+                            :
                             <a>{{ d.params[0].layerNum }}</a>
                         </li>
                         <li>
-                            <span>Thickness Cu:</span>
+                            <span>Thickness Cu</span>
+                            :
                             <a>{{ d.params[0].outerLayerCopper }}</a>
                         </li>
                         <li>
-                            <span>Board Finish:</span>
+                            <span>Board Finish</span>
+                            :
                             <a>{{ d.params[0].finishThickness }}</a>
                         </li>
                     </ul>
@@ -155,33 +158,38 @@
                 <div class="module-two-rig layui-col-md6">
                     <ul class="module-two-rig-title">
                         <li>
-                            <span>P/N:</span>
+                            <span>P/N</span>
+                            :
                             <a>{{ d.params[0].productNo }}</a>
                         </li>
                         <li>
-                            <span>Size:</span>
+                            <span>Size</span>
+                            :
                             <a>
                                 {{# if(d.params[0].panelSizeX != null){ }}
                                 {{# var panelWay = d.params[0].panelWayX*d.params[0].panelWayY }}
-                                <a>{{ d.params[0].panelSizeX }} * {{ d.params[0].panelSizeY }}mm / {{ panelWay }}</a>
+                                    {{ d.params[0].panelSizeX }} * {{ d.params[0].panelSizeY }}mm / {{ panelWay }}
                                 {{# }else if(d.params[0].dimensionsX != null){ }}
-                                <a>{{ d.params[0].dimensionsX}} * {{ d.params[0].dimensionsY}}mm /1</a>
+                                    {{ d.params[0].dimensionsX}} * {{ d.params[0].dimensionsY}}mm /1
                                 {{# }else{ }}
-                                <a>都为空</a>
+                                    都为空
                                 {{# } }}
                             </a>
                         </li>
                         <li>
                             <span class="layui-col-md4"></span>
-                            <span>PCB Thickness:</span>
+                            <span>PCB Thickness</span>
+                            :
                             <a>{{ d.params[0].finishThickness }}</a>
                         </li>
                         <li>
-                            <span>Solder Mask:</span>
+                            <span>Solder Mask</span>
+                            :
                             <a>{{ d.params[0].solderMaskTopColor }}</a>
                         </li>
                         <li>
-                            <span>Legend Color:</span>
+                            <span>Legend Color</span>
+                            :
                             <a>{{ d.params[0].silkScreenTopColor }}</a>
                         </li>
                     </ul>

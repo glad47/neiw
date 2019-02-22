@@ -252,9 +252,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                                 var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
                                                 var dataLength = tabdata.length;
                                                 var addTrNum;
-                                                if (dataLength < 4){
+                                                if (dataLength < 3){
                                                     addTrNum = 4;
-                                                } else if (dataLength > 4) {
+                                                } else if (dataLength >= 4) {
                                                     addTrNum = 7;
                                                 }
                                                 for (var i=tdSize;i<addTrNum;i++){
