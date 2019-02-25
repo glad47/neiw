@@ -595,8 +595,8 @@
                           <!--</div>-->
                       <!--</form>-->
                       <form class="layui-form top-button-form" lay-filter="checkCustomer">
-                          <div class="layui-inline">
-                              <div class="layui-input-inline layui-col-md3" id="" data="">
+                          <div class="layui-inline layui-col-md6">
+                              <div class="layui-input-inline layui-col-md5" id="" data="" style="width: 47%;">
                                   <select  lay-filter="filterOrderType" name="orderType">
                                       <option value="">选择订单类型</option>
                                       <option value="1">新单</option>
@@ -604,28 +604,31 @@
                                       <option value="3">返单有改</option>
                                   </select>
                               </div>
-                              <div class="layui-input-inline layui-col-md3" id="selCustomer_container" data="">
+                              <div class="layui-input-inline layui-col-md5" id="selCustomer_container" data="" style="width: 47%;margin-left: 2%;">
                                   <select id="selCustomer" lay-filter="filterCustomer">
                                       <option value="" id="0">选择客户</option>
                                   </select>
                               </div>
-                              <div class="layui-input-inline layui-col-md3">
-                                  <input type="text" class="layui-input" id="orderPN" placeholder="客户PO" readonly>
+                          </div>
+
+                          <div class="layui-inline layui-col-md6">
+                              <div class="layui-input-inline layui-col-md9">
+                                  <input type="text" class="layui-input" id="orderPN" placeholder="内部型号" readonly>
                               </div>
-                              <div class="layui-input-inline">
+                              <div class="layui-input-inline layui-col-md2" style="margin-left: 2%;">
                                   <button class="layui-btn" data-type="lookQuote">详情</button>
                               </div>
                           </div>
 
-                          <div class="layui-input-inline" style="margin-top: 20px;width: 100%;">
-                              <div class="layui-input-inline">
-                                  <input type="text" class="layui-input" placeholder="内部型号" readonly>
+                          <div class="layui-input-inline" style="margin-top: 12px;width: 100%;">
+                              <div class="layui-input-inline layui-col-md6 layui-col-sm12" style="width: 48%;">
+                                  <input type="text" class="layui-input" placeholder="客户PO" readonly>
                               </div>
-                              <div class="layui-input-inline">
-                                  <input type="text" class="layui-input" placeholder="客户型号" readonly>
+                              <div class="layui-input-inline layui-col-md6 layui-col-sm12" style="width: 37.5%;margin-left: 2%;">
+                                  <input type="text" class="layui-input" placeholder="客户型号">
                               </div>
-                              <div class="layui-input-inline">
-                                  <a class="up-subbtn">报价</a>
+                              <div class="layui-input-inline" style="margin-left: 1%;">
+                                  <button class="layui-btn up-subbtn" data-type="upSubbtn">报价</button>
                               </div>
                               <div class="sub-group"></div>
                           </div>
@@ -635,10 +638,7 @@
 
                           <div class="top-price-one">
                               <div class="layui-form-item">
-                                  <div class="layui-input-inline">
-                                      <input class="layui-input" name="engineeringFee"  type="text" placeholder="P/O">
-                                  </div>
-                                  <div class="rig-price-input">
+                                  <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label">Engineering Fee:</label>
                                       <div class="layui-input-inline">
                                           <input class="layui-input" name="engineeringFee" id="enginnerFee" type="text" placeholder=" $ 0.00" >
@@ -647,67 +647,100 @@
                               </div>
 
                               <div class="layui-form-item">
-                                  <div class="rig-price-input">
+                                  <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label">Board Fee:</label>
                                       <div class="layui-input-inline">
                                           <input class="layui-input" type="text" id="boardFee" placeholder=" $ 0.00" >
                                       </div>
                                   </div>
+                                  <div class="rig-others layui-col-md6">
+                                      <label class="layui-form-label" style="padding: 9px 12px 0px 0px;"><strong>平米价</strong>:</label>
+                                      <div class="layui-input-inline">
+                                          <input class="layui-input" type="text" id="mPrice" placeholder=" $ 0.00" >
+                                      </div>
+                                  </div>
                               </div>
 
                               <div class="layui-form-item">
-                                  <div class="rig-price-input">
+                                  <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label">Test Fixture:</label>
                                       <div class="layui-input-inline">
                                           <input class="layui-input" type="text" id="testFee" placeholder=" $ 0.00" >
                                       </div>
                                   </div>
+                                  <div class="rig-others layui-col-md6">
+                                      <div class="shipping-item-list">
+                                          <div class="layui-form-item shipping-item">
+                                              <div class="layui-input-inline shipping-input-company">
+                                                  <select name="courierCompany" id="selCompany" lay-filter="company">
+                                                      <option value="">请选择</option>
+                                                  </select>
+                                              </div>
+                                              <div class="layui-input-inline shipping-input-countrys">
+                                                  <select name="quiz2" id="selCountrys" lay-filter="countrys">
+                                                      <option value="">请选择</option>
+                                                  </select>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
                               </div>
 
                               <div class="layui-form-item">
-                                  <div class="rig-price-input">
+                                  <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label">Tooling fee:</label>
                                       <div class="layui-input-inline">
                                           <input class="layui-input" type="text" id="toolingFee" placeholder=" $ 0.00" >
                                       </div>
                                   </div>
-                              </div>
-
-                              <div class="layui-form-item">
-                                  <div class="rig-price-input">
-                                      <label class="layui-form-label">Urgent fee:</label>
-                                      <div class="layui-input-inline">
-                                          <input class="layui-input" name="engineeringFee" type="text" id="urgentFee" placeholder=" $ 0.00" >
-                                      </div>
-                                  </div>
-                              </div>
-
-
-                              <div class="layui-form-item build-time-item" style="display: none;">
-                                  <div class="layui-input-block build-time-block">
-                                      <!--<input type="radio" name="buildTime" value="3days" title="3days">-->
-                                      <!--<input type="radio" name="buildTime" value="48hours" title="48hours">-->
-                                      <!--<input type="radio" name="buildTime" value="24hours" title="24hours">-->
-                                  </div>
-                              </div>
-
-                              <div class="layui-form-item">
-                                  <div class="rig-price-input">
-                                      <label class="layui-form-label">PCB Cost:</label>
-                                      <div class="layui-input-inline">
-                                          <input class="layui-input" type="text" id="pcbCost" placeholder=" $ 0.00" >
-                                      </div>
-                                  </div>
-                              </div>
-
-                              <div class="layui-form-item">
-                                  <div class="rig-price-input">
-                                      <label class="layui-form-label">Weight:</label>
+                                  <div class="rig-others layui-col-md6">
+                                      <label class="layui-form-label" style="padding: 9px 12px 0px 0px;">Weight:</label>
                                       <div class="layui-input-inline">
                                           <input class="layui-input" type="text" id="pcbWeight" placeholder=" 0.00 KG" >
                                       </div>
                                   </div>
                               </div>
+
+                              <div class="layui-form-item">
+                                  <div class="rig-price-input layui-col-md6">
+                                      <label class="layui-form-label">Urgent fee:</label>
+                                      <div class="layui-input-inline">
+                                          <input class="layui-input" name="engineeringFee" type="text" id="urgentFee" placeholder=" $ 0.00" >
+                                      </div>
+                                  </div>
+                                  <div class="rig-others build-time-item layui-col-md6" style="display: none">
+                                      <div class="layui-input-block build-time-block"></div>
+                                  </div>
+                              </div>
+
+
+                              <!--<div class="layui-form-item build-time-item" style="display: none;">-->
+                                  <!--<div class="layui-input-block build-time-block"></div>-->
+                              <!--</div>-->
+
+                              <div class="layui-form-item">
+                                  <div class="rig-price-input layui-col-md6">
+                                      <label class="layui-form-label">PCB Cost:</label>
+                                      <div class="layui-input-inline">
+                                          <input class="layui-input" type="text" id="pcbCost" placeholder=" $ 0.00" >
+                                      </div>
+                                  </div>
+                                  <div class="rig-others layui-col-md6">
+                                      <label class="layui-form-label" style="padding: 9px 12px 0px 0px;">Shipping:</label>
+                                      <div class="layui-input-inline">
+                                          <input class="layui-input" type="text" id="shippingPrice" placeholder=" $ 0.00" >
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <!--<div class="layui-form-item">-->
+                                  <!--<div class="rig-price-input">-->
+                                      <!--<label class="layui-form-label">Weight:</label>-->
+                                      <!--<div class="layui-input-inline">-->
+                                          <!--<input class="layui-input" type="text" id="pcbWeight" placeholder=" 0.00 KG" >-->
+                                      <!--</div>-->
+                                  <!--</div>-->
+                              <!--</div>-->
                           </div>
                       </form>
 
@@ -751,39 +784,36 @@
                           </div>
                       </form>
 
-                      <form class="layui-form">
-                          <div class="shipping-item-list">
-                              <div class="layui-form-item shipping-item">
-                                  <div class="layui-input-inline shipping-input-company">
-                                      <select name="courierCompany" id="selCompany" lay-filter="company">
-                                          <option value="">请选择</option>
-                                      </select>
-                                  </div>
-                                  <div class="layui-input-inline shipping-input-countrys">
-                                      <select name="quiz2" id="selCountrys" lay-filter="countrys">
-                                          <option value="">请选择</option>
-                                      </select>
-                                  </div>
-                                  <label class="layui-form-label" style="width: 112px">Shipping:</label>
-                                  <div class="layui-input-inline text-input" style="width: 190px;">
-                                      <input class="layui-input" type="text" id="shippingPrice" placeholder=" $ 0.00" >
-                                  </div>
-                              </div>
-                          </div>
-                      </form>
+                      <!--<form class="layui-form">-->
+                          <!--<div class="shipping-item-list">-->
+                              <!--<div class="layui-form-item shipping-item">-->
+                                  <!--<div class="layui-input-inline shipping-input-company">-->
+                                      <!--<select name="courierCompany" id="selCompany" lay-filter="company">-->
+                                          <!--<option value="">请选择</option>-->
+                                      <!--</select>-->
+                                  <!--</div>-->
+                                  <!--<div class="layui-input-inline shipping-input-countrys">-->
+                                      <!--<select name="quiz2" id="selCountrys" lay-filter="countrys">-->
+                                          <!--<option value="">请选择</option>-->
+                                      <!--</select>-->
+                                  <!--</div>-->
+                              <!--</div>-->
+                          <!--</div>-->
+                      <!--</form>-->
 
                       <form class="layui-form" id="totalForm" lay-filter="totalFrom">
-                          <div class="layui-col-md-offset5 stencil-form">
+                          <div class="stencil-form layui-col-md6">
                               <div class="layui-form-item">
-                                  <label class="layui-form-label" style="width: 123px;">Total Price:</label>
-                                  <div class="layui-input-block" style="width: 89%;">
+                                  <label class="layui-form-label" style="width: 105px;">Total Price:</label>
+                                  <div class="layui-input-inline" style="width: 132px;">
                                       <input class="layui-input" type="text" id="totalPrice" placeholder=" $ 0.00" >
                                   </div>
                               </div>
                           </div>
+
                       </form>
 
-                      <div class="submit-group" style="text-align: center;margin-top: 50px;">
+                      <div class="submit-group" style="text-align: center;">
                           <button class="layui-btn" data-type="addCustomerFile" id="addFile">添加客户资料</button>
                           <button class="layui-btn" data-type="addThisQuote">添加当前报价</button>
                           <button class="layui-btn" data-type="resetQuoteTab" style="margin-left: 0;">重置报价表</button>
@@ -799,11 +829,13 @@
 
 <style>
     input:disabled{background-color: #d4d3d366;cursor: not-allowed;}
-    .top-price-one,#stencilForm,#assemblyForm{margin-top: 30px;}
-    .top-price-one .layui-form-label,#stencilForm .layui-form-label,#assemblyForm .layui-form-label{width: 120px !important;}
+    #stencilForm,#assemblyForm{margin-top: 30px;}
+    #stencilForm .layui-form-label,#assemblyForm .layui-form-label{width: 120px !important;}
+    .rig-price-input .layui-form-label{width: 105px;}
+    .rig-others .layui-form-label{width: 46px;}
     .build-time-item .layui-input-block{width: 100% !important;margin-left: unset;}
     .top-price-one .layui-input-block,.top-price-one .layui-input-block>.layui-input,.stencil-form .layui-input-block, .stencil-form .layui-input-block>.layui-input{width: 60%;}
-    /*.top-price-one .layui-input-block>.layui-input,.stencil-form .layui-input-block>.layui-input{border: none;border-bottom: solid 1px silver;}*/
+    .top-price-one .layui-input,.stencil-form .layui-input-block>.layui-input,#totalPrice{border: none;border-bottom: solid 1px silver;}
     /*shipping*/
     .shipping-item-list .layui-input-inline{width: 20%;}
     /*.shipping-item-list .text-input>.layui-input{border: none;border-bottom: solid 1px silver;}*/
@@ -814,12 +846,14 @@
     .rig-price,#assemblyForm,#stencilForm{display: none;width: 100%;}
     .quote-avtive{display: inline-block !important;}
     .sub-group{display: inline-block;margin-top: 7px;margin-left: 4px;}
-    .up-subbtn,.up-rsetbtn{border-radius: 2px;padding: 11px 30px;color: #f7ffff;cursor: pointer;width: 87px;}
+    /*.up-subbtn,.up-rsetbtn{border-radius: 2px;padding: 11px 30px;color: #f7ffff;cursor: pointer;width: 87px;}*/
     .up-subbtn:hover,.up-rsetbtn:hover{color: white;}
     .up-subbtn{background-color: #009588;}
     .up-rsetbtn{background-color: #FF5722;}
-    .rig-price-input{float: right;}
+    /*.rig-price-input{float: right;}*/
     .rig-price-cardbody{width: 90%;margin: auto;}
+    .rig-price .layui-input-inline{width: 132px;}
+    .submit-group .layui-btn{width: 16%;padding: 0;}
     @media screen and (max-width: 800px) {
 
     }

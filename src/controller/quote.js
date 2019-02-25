@@ -949,6 +949,17 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                     }
                 });
             }
+        },
+        // 报价
+        upSubbtn: function () {
+            if (public_data.customerAid == null || public_data.customerAid == ""){
+                layer.tips('请先选择客户 !', '#selCustomer_container', {
+                    tips: [1, '#3595CC'],
+                    time: 2000
+                });
+                return false;
+            }
+            $('.bot-subbtn').click();
         }
     };
 
@@ -987,16 +998,16 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         active[type] ? active[type].call(this) : '';
     });
 
-    $('.up-subbtn').on('click', function () {
-        if (public_data.customerAid == null || public_data.customerAid == ""){
-            layer.tips('请先选择客户 !', '#selCustomer_container', {
-                tips: [1, '#3595CC'],
-                time: 2000
-            });
-            return false;
-        }
-        $('.bot-subbtn').click();
-    });
+    // $('.up-subbtn').on('click', function () {
+    //     if (public_data.customerAid == null || public_data.customerAid == ""){
+    //         layer.tips('请先选择客户 !', '#selCustomer_container', {
+    //             tips: [1, '#3595CC'],
+    //             time: 2000
+    //         });
+    //         return false;
+    //     }
+    //     $('.bot-subbtn').click();
+    // });
     $('.up-rsetbtn').on('click', function () {
         $('.bot-rsetbtn').click();
     });
