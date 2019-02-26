@@ -1,0 +1,159 @@
+<title>报价协同编辑(PCB)</title>
+<div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+        <form class="layui-form">
+           <table class="layui-table">
+               <tbody>
+               <tr>
+                   <td>报价单号</td>
+                   <td>{{ d.params.productNo }}</td>
+                   <td>报价时间</td>
+                   <td>{{ d.params.gmtCreate }}</td>
+               </tr>
+               <tr>
+                   <td>供应商编号</td>
+                   <td>{{ d.params.supplierNo }}</td>
+                   <td>数量(PCS)</td>
+                   <td id="qt_pcb_quantityPcs">{{ d.params.quantityPcs }}</td>
+               </tr>
+               <tr>
+                   <td>供应商厂编</td>
+                   <td>
+                       {{# if(d.params.supplierQuoteNo == null || d.params.supplierQuoteNo == ''){ }}
+                            <input class="layui-input" type="text" value="">
+                       {{# } else{ }}
+                            <input class="layui-input" type="text" value="{{ d.params.supplierQuoteNo}}">
+                       {{# } }}
+                   </td>
+                   <td>单价</td>
+                   <td>
+                       {{# if(d.params.unitPrice == null || d.params.unitPrice == ''){ }}
+                            <input class="layui-input" type="text" value="0" id="qt_pcb_unitPrice">
+                       {{# } else{ }}
+                            <input class="layui-input" type="text" value="{{ d.params.unitPrice }}" id="qt_pcb_unitPrice">
+                       {{# } }}
+                   </td>
+               </tr>
+               <tr>
+                   <td>聚谷订单号</td>
+                   <td></td>
+                   <td>工程费</td>
+                   <td>
+                       {{# if(d.params.engineeringFee == null || d.params.engineeringFee == ''){ }}
+                            <input class="layui-input" type="text" value="0" id="qt_pcb_engineeringFee">
+                       {{# } else{ }}
+                            <input class="layui-input" type="text" value="{{ d.params.engineeringFee }}" id="qt_pcb_engineeringFee">
+                       {{# } }}
+                   </td>
+               </tr>
+               <tr>
+                   <td>聚谷P/N</td>
+                   <td></td>
+                   <td>
+                       <select class="layui-select">
+                           <option value="0">飞针费</option>
+                           <option value="1">新开测试架</option>
+                           <option value="2">客供测试架</option>
+                       </select>
+                   </td>
+                   <td>
+                       {{# if(d.params.testCostFee == null || d.params.testCostFee == ''){ }}
+                            <input class="layui-input" type="text" value="0" id="qt_pcb_testCostFee">
+                       {{# } else{ }}
+                            <input class="layui-input" type="text" value="{{ d.params.testCostFee }}" id="qt_pcb_testCostFee">
+                       {{# } }}
+                   </td>
+               </tr>
+               <tr>
+                   <td>聚谷产品型号</td>
+                   <td></td>
+                   <td>模具费</td>
+                   <td>
+                       {{# if(d.params.toolingFee == null || d.params.toolingFee == ''){ }}
+                            <input class="layui-input" type="text" value="0" id="qt_pcb_toolingFee">
+                       {{# } else{ }}
+                            <input class="layui-input" type="text" value="{{ d.params.toolingFee }}" id="qt_pcb_toolingFee">
+                       {{# } }}
+                   </td>
+               </tr>
+               <tr>
+                   <td>层别</td>
+                   <td></td>
+                   <td>合计</td>
+                   <td id="qt_pcb_totalFee">0</td>
+               </tr>
+               <tr>
+                   <td>出货尺寸</td>
+                   <td></td>
+                   <td>交期</td>
+                   <td><input class="layui-input" type="text" id="pcbDeliveryDate"></td>
+               </tr>
+               <tr>
+                   <td>订单备注</td>
+                   <td></td>
+                   <td>报价备注</td>
+                   <td>
+                       {{# if(d.params.remark == null || d.params.remark == ''){ }}
+                            <input class="layui-input" type="text" value="0">
+                       {{# } else{ }}
+                            <input class="layui-input" type="text" value="{{ d.params.remark}}">
+                       {{# } }}
+                   </td>
+               </tr>
+               </tbody>
+           </table>
+        </form>
+    <!--<div class="quotation-bot-btn">-->
+        <!--<button class="layui-btn" data-type="downloadFile">-->
+            <!--<a href="">下载资料</a>-->
+        <!--</button>-->
+        <!--<button class="layui-btn" data-type="lookPanel">查看拼板</button>-->
+        <!--<button class="layui-btn" data-type="lookStrack">查看压合</button>-->
+    <!--</div>-->
+    </script>
+</div>
+
+<style>
+    table tbody tr td:nth-of-type(1){width: 20%;}
+    table tbody tr td:nth-of-type(2){width: 30%;}
+    table tbody tr td:nth-of-type(3){width: 20%;}
+    table tbody tr td:nth-of-type(4){width: 30%;}
+    .quotation-bot-btn{text-align: center;margin-top: 20px;}
+</style>
+
+<script>
+    layui.data.done = function(d) {
+        layui.use(['admin', 'table', 'form', 'laydate'], function () {
+            var laydate = layui.laydate,
+                $ = layui.jquery,
+                layer = layui.layer;
+            var form = layui.form;
+            form.render();
+            laydate.render({
+                elem: '#pcbDeliveryDate'
+            });
+            // input表单及时反应
+            $("#qt_pcb_quantityPcs,#qt_pcb_unitPrice,#qt_pcb_engineeringFee,#qt_pcb_testCostFee,#qt_pcb_toolingFee").bind("input propertychange", function () {
+               _quote_total(); 
+            });
+            function _quote_total() {
+                layer.msg('触发_quote_total');
+                var quantityPcs = $("#qt_pcb_quantityPcs").text();              // PCS数
+                var unitPrice = $("#qt_pcb_unitPrice").val();                  // 单价
+                var engineeringFee = $("#qt_pcb_engineeringFee").val();       // 工程费
+                var testCostFee = $("#qt_pcb_testCostFee").val();            // 工程费
+                var toolingFee = $("#qt_pcb_toolingFee").val();             // 模具费
+                var totalFee = $("#qt_pcb_totalFee").text();               // 总价
+                var a = parseFloat(quantityPcs*unitPrice);
+                var b = parseFloat(quantityPcs*unitPrice)+parseFloat(engineeringFee) + parseFloat(testCostFee) + parseFloat(toolingFee);
+                totalFee = parseFloat(b);
+                $("#qt_pcb_totalFee").text(totalFee);
+            }
+            var active = {};
+            $('.layui-btn').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+        });
+    };
+</script>

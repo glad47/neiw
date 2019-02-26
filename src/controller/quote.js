@@ -88,6 +88,8 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         orderType: '',  //订单类型（新单/返单/返单有效）
         gerberName: '',
         gerberPath: '',
+        pcbName: '',     //客户型号
+        orderNo: ''     //客户订单编号
         // pcbCost: '',
     };
     var pcb_rigdetaily = {};
@@ -974,6 +976,9 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                 var fileName = file.name;   //文件名
                 pcb_container.gerberName = fileName;
                 console.log("上传的文件名为："+fileName);
+                pcb_container.pcbName = fileName.substring(0,fileName.indexOf("."));
+                $("#pcbName").val(pcb_container.pcbName);
+                form.render('checkCustomer');
             });
         }
         ,done: function(res, index,upload){

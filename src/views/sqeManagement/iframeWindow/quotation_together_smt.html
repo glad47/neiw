@@ -1,0 +1,81 @@
+<title>报价协同编辑(PCB)</title>
+<div class="layui-fluid">
+    <div class="quotation-top-btn">
+        <button class="layui-btn">报价</button>
+        <button class="layui-btn">查看</button>
+        <button class="layui-btn">下载资料</button>
+    </div>
+    <table class="layui-table">
+        <tbody>
+        <tr>
+            <td>报价单号</td>
+            <td></td>
+            <td>报价时间</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>供应商编号</td>
+            <td></td>
+            <td>钢网面向</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>供应商厂编</td>
+            <td><input class="layui-input" type="text"></td>
+            <td>钢网厚度</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>聚谷订单号</td>
+            <td></td>
+            <td>数量（PCS）</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>聚谷P/N</td>
+            <td></td>
+            <td>单价</td>
+            <td><input class="layui-input" type="text"></td>
+        </tr>
+        <tr>
+            <td>聚谷产品型号</td>
+            <td></td>
+            <td>合计</td>
+            <td><input class="layui-input" type="text"></td>
+        </tr>
+        <tr>
+            <td>钢网类型</td>
+            <td></td>
+            <td>交期</td>
+            <td><input class="layui-input" type="text" id="smtDeliveryDate"></td>
+        </tr>
+        <tr>
+            <td>订单备注</td>
+            <td></td>
+            <td>报价备注</td>
+            <td><input class="layui-input" type="text"></td>
+        </tr>
+        <tr>
+            <td>产品描述</td>
+            <td colspan="3"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<style>
+    table tbody tr td:nth-of-type(1){width: 20%;}
+    table tbody tr td:nth-of-type(2){width: 30%;}
+    table tbody tr td:nth-of-type(3){width: 20%;}
+    table tbody tr td:nth-of-type(4){width: 30%;}
+</style>
+
+<script>
+    layui.use(['admin', 'table','form', 'laydate'], function(){
+        var laydate = layui.laydate;
+        form.render();
+        laydate.render({
+            elem: '#smtDeliveryDate'
+        });
+    });
+</script>
