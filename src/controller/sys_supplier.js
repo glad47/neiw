@@ -151,7 +151,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
          * 动态获取id，并且传到下一个view子页面（子页面根据此id，动态渲染操作页面）
          */
         //供应商信息页面
-        supplier_add:function(data){
+        supplier_add_but:function(data){
             var this_id = $(this).attr('id');
             admin.popup({
                 title: '添加供应商信息'

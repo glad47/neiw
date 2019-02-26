@@ -136,86 +136,57 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     //监听工具条
     table.on('tool(scm_Tabpcb_outgoing_quote)', function(obj){
         var data = obj.data;
-        if(obj.event === 'detail'){
+        if(obj.event === 'assign'){
             admin.popup({
-                title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
+                title: '指定供应商'
                 ,area: ['45%', '70%']
-                ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
+                ,btn:['提交','取消']
+                ,yes:function(index, layero){
+                    var checkStatus = table.checkStatus('scm_assign_supplier_table'),checkdata = checkStatus.data;
+                    var ids = checkdata.map(function(elem){return elem.id}).join(",");
+                    admin.req({
+                        url:setter.baseUrl+"scm/pcborder/assignOrderToSupplier",
+                        type:"POST",
+                        data:{
+                            orderId: data.id
+                            ,supplierIds: ids
+                        },
+                        success:function(data){
+                            if (data.code == 0 ) {
+                                layer.msg("指派成功！");
+                                layer.close(index); 
+                            }else{
+                                layer.msg(data.msg);
+                            }
+                        }
+                    });
 
+                }
+                ,end:function(){}
+                ,success: function (layero, index) {
+                    view(this.id).render('scmManagement/assign_supplier').done(function () {
+                        table.render({
+                            elem: '#scm_assign_supplier_table'
+                            ,url: setter.baseUrl+'scm/pcborder/allSupplier'
+                            ,toolbar: true
+                            ,cellMinWidth: 80
+                            ,page:false
+                            ,id:"scm_assign_supplier_table"
+                            ,where: {
+                                access_token: layui.data('layuiAdmin').access_token
+                            }
+                            ,cols: [[
+                                {type:'checkbox'}
+                                ,{field:'id', title: 'ID',hide: true}
+                                ,{field:'supplierId', title: '供应商编号', hide: false, align:'center',width: 130}
+                                ,{field:'companyName', title:'公司名', align:'center', hide: false}
+                            ]]
+                            
+                        });
                     })
                 }
             })
-        } else if(obj.event === 'del'){
-            layer.confirm('真的删除订单号为［'+data.productNo+'］吗', function(index){
-
-                admin.req({
-                    type: 'post',
-                    url: setter.baseUrl+'/market/quote/audit/delete'
-                    ,data:{"ids":data.id}
-                    ,done: function (res) {
-                        layer.msg('删除成功')
-                        obj.del();
-                    }
-                    ,fail: function (res) {
-                        layer.msg('服务器异常，稍后再试！');
-                    }
-                })
-                layer.close(index);
-            });
-        } else if(obj.event === 'edit'){
-            admin.popup({
-                title: '编辑PCB订单信息'
-                ,area: ['45%', '561px']
-                ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
-                        form.render(null, '')
-                        form.on('submit(LAY-pcborder-update-submit)',function (data) {
-                            var field = data.field;
-                            console.log("提交的字段信息："+JSON.stringify(field));
-                            admin.req({
-                                type: 'post'
-                                ,url: setter.baseUrl+'/market/quote/audit/update'
-                                ,data: field
-                                ,done: function (res) {
-                                    layer.msg('订单信息修改成功');
-                                    layui.table.reload('scm_Tabpcb_outgoing_quote');
-                                }
-                                ,fail: function (res) {
-                                    layer.msg("订单信息修改失败，请稍后再试！");
-                                },
-                            });
-                            layer.close(index);
-                            return false;
-                        })
-                    })
-                }
-            })
-        } else if (obj.event === 'pcb-submit') {
-            layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
-                data.isLock = 3;
-                admin.req({
-                    type: 'post'
-                    ,url: setter.baseUrl+'/market/quote/okPaymentList/submit'
-                    ,data: {"id":data.id,"isLock":data.isLock}
-                    ,done: function () {
-                        layer.msg('订单［'+data.productNo+'］提交成功！');
-                        layui.table.reload('or_Tabpcb_no_payment');
-                    }
-                    ,fail: function () {
-                        layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
-                    }
-                })
-                layui.table.reload('scm_Tabpcb_outgoing_quote');
-                layer.close(index);
-            })
-        } else if (obj.event === 'pcb-sendback') {
-            layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
-                layer.msg('退回'+data.productNo);
-                layui.table.reload('or_Tabpcb_no_payment');
-                layer.close(index);
-            })
-        }
+        } 
     });
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 钢网订单-外发报价
@@ -269,7 +240,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     // 监听stencil表格工具条
     table.on('tool(scm_Tabstencil_outgoing_quote)',function (obj) {
         var data = obj.data;
-        if (obj.event === 'detail'){
+        if (obj.event === 'assign'){
             admin.popup({
                 title: '订单号［'+data.productNo+']---'+'订单时间［'+data.gmtCreate+'］'
                 ,area: ['45%', '70%']
@@ -279,75 +250,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 }
 
             })
-        } else if (obj.event === 'edit') {
-            admin.popup({
-                title: '编辑：订单号［'+data.productNo+']'
-                ,area: ['45%', '70%']
-                ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/orderStencil_update', data).done(function () {
-                        form.render(null, '')
-                        form.on('submit(LAY-stencilorder-update-submit)',function (data) {
-                            var field = data.field;
-                            console.log("提交的字段信息："+JSON.stringify(field));
-                            admin.req({
-                                type: 'post'
-                                ,url: setter.baseUrl+'/market/stencil/audit/update'
-                                ,data: field
-                                ,done: function (res) {
-                                    layer.msg('订单信息修改成功');
-                                    layui.table.reload('scm_Tabstencil_outgoing_quote');
-                                }
-                                ,fail: function (res) {
-                                    layer.msg("订单信息修改失败，请稍后再试！");
-                                },
-                            });
-                            layer.close(index);
-                            return false;
-                        })
-                    })
-                }
-            })
-        } else if (obj.event === 'del') {
-            layer.confirm('真的删除订单号为［'+data.productNo+'］吗', function(index){
-               admin.popup({
-                   type: 'post'
-                   ,url: setter.baseUrl+'market/stencil/audit/delete'
-                   ,data: {"ids":data.id}
-                   ,done: function (res) {
-                       layer.msg('删除成功')
-                       obj.del();
-                   }
-                   ,fail: function (res) {
-                       layer.msg('服务器异常，稍后重试！');
-                   }
-               })
-                layer.close(index);
-            });
-        } else if (obj.event === 'stencil-submit') {
-            layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
-                data.isLock = 3;
-                admin.req({
-                    type: 'post'
-                    ,url: setter.baseUrl+'market/stencil/okPayment/submit'
-                    ,data: {"id":data.id,"isLock":data.isLock}
-                    ,done: function () {
-                        layer.msg('订单［'+data.productNo+'］提交成功！');
-                        console.log('提交的信息为'+JSON.stringify(data));
-                    }
-                    ,fail: function () {
-                        layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
-                    }
-                })
-                layui.table.reload('scm_Tabstencil_outgoing_quote');
-                layer.close(index);
-            })
-        } else if (obj.event === 'stencil-sendback') {
-            layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
-                layer.msg('退回'+data.productNo);
-                layui.table.reload('scm_Tabstencil_outgoing_quote');
-                layer.close(index);
-            })
-        }
+        } 
     })
 
     form.on('submit(LAY-app-orderReview-search)', function (data) {
