@@ -3,6 +3,7 @@
     <div style="padding: 10px;">
         <div class="layui-row layui-col-space15" id="inside_quote_all">
             <div class="layui-col-md7">
+            <!--<div class="layui-col-md7" style="width: 40%;">-->
                 <div class="layui-card">
                   <!-- <div class="layui-card-header">卡片面板</div> -->
                   <!-- 显示各种报价 -->
@@ -657,7 +658,7 @@
                               <div class="layui-input-inline layui-col-md6 layui-col-sm12" style="width: 37.5%;margin-left: 2%;">
                                   <input type="text" class="layui-input" placeholder="客户型号" id="pcbName">
                               </div>
-                              <div class="layui-input-inline" style="margin-left: 1%;">
+                              <div class="layui-input-inline" style="margin-left: 1%;position: absolute;">
                                   <button class="layui-btn up-subbtn" data-type="upSubbtn">报价</button>
                               </div>
                               <div class="sub-group"></div>
@@ -832,7 +833,7 @@
                       <!--</form>-->
 
                       <form class="layui-form" id="totalForm" lay-filter="totalFrom">
-                          <div class="stencil-form layui-col-md6">
+                          <div class="stencil-form">
                               <div class="layui-form-item">
                                   <label class="layui-form-label" style="width: 105px;">Total Price:</label>
                                   <div class="layui-input-inline" style="width: 132px;">
@@ -842,14 +843,12 @@
                           </div>
 
                       </form>
-
-                      <div class="submit-group" style="text-align: center;">
-                          <button class="layui-btn" data-type="addCustomerFile" id="addFile">添加客户资料</button>
-                          <button class="layui-btn" data-type="addThisQuote">添加当前报价</button>
-                          <button class="layui-btn" data-type="resetQuoteTab" style="margin-left: 0;">重置报价表</button>
-                      </div>
-
                   </div>
+                    <div class="submit-group" style="text-align: center;padding-bottom: 15px;">
+                        <button class="layui-btn" data-type="addCustomerFile" id="addFile">添加客户资料</button>
+                        <button class="layui-btn" data-type="addThisQuote">添加当前报价</button>
+                        <button class="layui-btn" data-type="resetQuoteTab" style="margin-left: 0;">重置报价表</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -881,8 +880,8 @@
     .up-subbtn{background-color: #009588;}
     .up-rsetbtn{background-color: #FF5722;}
     /*.rig-price-input{float: right;}*/
-    .rig-price-cardbody{width: 90%;margin: auto;}
-    .rig-price .layui-input-inline{width: 132px;}
+    .rig-price-cardbody{width: 400px;}
+    .rig-price .layui-input-inline{width: 60px;}
     .submit-group .layui-btn{width: 15%;padding: 0;}
     /*2019-02-26*/
     /*顶部模块==>输入计算*/
@@ -893,6 +892,8 @@
     .test-sel .layui-form-select{width: 128px;display: flex;}
     .lots-checkbox-group .layui-form-checkbox[lay-skin=primary]{padding-left: 22px;}
     .lots-checkbox-group .layui-form-checkbox{width: 115px;}
+    .rig-price-input.layui-col-md6{width: 62%;}
+    .rig-others.layui-col-md6{width: 38%;}
     @media screen and (max-width: 800px) {
 
     }

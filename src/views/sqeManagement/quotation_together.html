@@ -1,7 +1,7 @@
 <title>报价协同</title>
 <div class="layui-fluid">
     <!--卡片－表格信息-->
-    <div class="layui-tab layui-tab-brief" lay-filter="tab-internalQuote">
+    <div class="layui-tab layui-tab-brief" lay-filter="tab-quotationToger">
         <ul class="layui-tab-title">
             <li class="layui-this">PCB订单</li>
             <li>钢网订单</li>
@@ -13,7 +13,7 @@
                 <table class="layui-table" id="quotatgt_tabPcb" lay-filter="quotatgt_tabPcb"></table>
                 <script type="text/html" id="interior_order_option">
                     <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">新增</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="submitPcb">提交</button>
                     </div>
                 </script>
                 <script type="text/html" id="quotatgt_tabbar">

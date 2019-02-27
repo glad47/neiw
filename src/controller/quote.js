@@ -981,7 +981,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                 form.render('checkCustomer');
             });
         }
-        ,done: function(res, index,upload){
+        ,done: function(res, index, upload){
             //上传完毕回调
             layer.msg("文件上传成功！");
             var url = res.url;

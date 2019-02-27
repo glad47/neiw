@@ -132,7 +132,7 @@
                 </script>
                 <script type="text/thml" id="quote_gerber_file">
                     {{# if(d.quoteGerberName === null){ }}
-                    <a style="color: green">上传报价gerber文件</a>
+                    <button class="layui-btn layui-btn-sm" data-type="indicatorAddFile" id="indicatorAddFile">添加客户资料</button>
                     {{# } else{ }}
                     {{d.quoteGerberName}}
                     {{# } }}

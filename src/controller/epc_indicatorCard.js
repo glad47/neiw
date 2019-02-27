@@ -1,18 +1,20 @@
 
-layui.define(['admin', 'table', 'index','element','form','laydate'], function(exports){
+layui.define(['admin', 'table', 'index','element','form','laydate','upload'], function(exports){
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
         ,laydate = layui.laydate
         ,setter = layui.setter
-        ,element = layui.element;
+        ,element = layui.element
+        ,upload = layui.upload
         var $ = layui.jquery;
 
     var requestData = [];
     // layerdate.render({
     //     elem: '#gmtCreate'
     // })
+    var _click_lineId;      //点击表格行===id
     laydate.render({
         elem: '#gmtCreate'
     });
@@ -126,7 +128,49 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     $(".laytable-cell-1-0-22").css({"width":"130px"});
                 })
             }
+            var _this_fileName;
+            var indicatorAddFile = upload.render({
+                elem: '#indicatorAddFile'
+                ,url: setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token//上传接口
+                ,field: 'file'  //文件上传的字段名
+                ,accept: 'file'
+                ,exts: 'zip|rar|7z'
+                ,before: function (obj) {
+                    obj.preview(function (index, file, result) {
+                        var fileName = file.name;   //文件名
+                        _this_fileName = fileName;
+                        console.log("上传的文件名为："+fileName);
+                    });
+                }
+                ,done: function (res, index, upload) {
+                    var url = res.url;
+                    var r = /\[(.+?)\]/g;
+                    var filePatha = url.match(r);
+                    console.log("未处理的路径为："+filePatha);
+                    var filePath = filePatha[0].replace(/\[|]/g,'');    //去除前后两端的中括号
+                    console.log("处理完的路径为："+filePath);
+                    admin.req({
+                        type: 'post',
+                        data: {'quoteGerberName':_this_fileName,'quoteGerberPath':filePath,'id':_click_lineId},
+                        url:  setter.baseUrl+'epc/pcborder/update',
+                        success: function (data) {
+                            layer.alert("文件已上传并且保存到数据库！");
+                            table.reload('epc_Tabpcb_ok_payment_order');
+                        }
+                    });
+                }
+                ,error: function(){
+                    layer.msg("文件上传失败！");
+                    //请求异常回调
+                }
+            });
         }
+    });
+
+    //监听行单击事件（单击事件为：rowDouble）
+    table.on('row(epc_Tabpcb_ok_payment_order)', function(obj){
+        var data = obj.data;
+        _click_lineId = data.id;
     });
 
     //监听工具条
@@ -264,6 +308,17 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 layer.close(index);
             })
         }
+    });
+
+    var active = {
+        indicatorAddFile: function () {
+            layer.msg('文件上传！');
+        }
+    };
+
+    $('.layui-btn').on('click', function () {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
     });
 
     //数组去重
