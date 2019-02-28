@@ -19,6 +19,7 @@
                 <script type="text/html" id="scmMana_tabbar">
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="eevScmedit">编辑</a>
                     <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="eevScmdel">删除</a>
                 </script>
             </div>
             <!--钢网订单-->
@@ -34,7 +35,7 @@
 </div>
 
 <script>
-    layui.use('scmManagement', layui.factory('scmManagement')).use(['scmManagement', 'table', 'index','element','form'], function(){
+    layui.use('scmManagement_quoteDetail', layui.factory('scmManagement_quoteDetail')).use(['scmManagement_quoteDetail', 'table', 'index','element','form'], function(){
         var form = layui.form;
         form.render();
     });

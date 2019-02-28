@@ -36,7 +36,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     //发送的数据
     var post_data = {
         bordType: '',
-        companyId: '',
+        companyId: 1,
         countrysId: '',
         totalWeight: '',
     };
@@ -50,6 +50,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         postFee: '',
         customerAid:'',
         ids:'',
+        orderNo:'',
     };
     // 快递/国家/重量 默认选中
     var def_expressCountry = {
@@ -129,11 +130,11 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         if (topRadioType === 1){    //Single PCB
             _get_topQuoteParam("1");
             var areasq = parseFloat(singleSizeX*singleSizeY*quantityPCS)/1000000;
-            $("#areasq").val(areasq.toFixed(2));
+            $("#areasq").val(areasq.toFixed(3));
         } else if (topRadioType === 2){ //Panel as design
             _get_topQuoteParam("2");
             var areasq = parseFloat(panelSizeX*panelSizeY*quantityPanel)/1000000;
-            $("#areasq").val(areasq.toFixed(2));
+            $("#areasq").val(areasq.toFixed(3));
             if (quantityPanel != "" && panelWayX != "" && panelWayY != ""){
                 var quantityPcs = Math.ceil(quantityPanel*panelWayX*panelWayY);
                 $("#quantityPCS").val(quantityPcs);
@@ -287,9 +288,21 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     form.on("radio(buildTimeRadio)", function (data) {
         var this_price = data.value;
         console.log(data);
+        console.log(data);
         // 给pcb明细容器赋值
         pcb_container.overworkFee = this_price;
-        pcb_container.buildTime = $("input[name='buildTime']").attr("title");
+        // pcb_container.buildTime = $("input[name='buildTime']").attr("title");
+        $("#urgentFee").val(" $ "+this_price);
+        quotePCBCost();
+        quotePCBTotalPrice();
+    });
+
+    //监听==>构造时间的 select
+    form.on("select(selBuildTime)", function (data) {   //构造时间天数
+        var this_price = data.value;
+        var optionText = $("#selBuildTime").find("option[value="+data.value+"]").text();
+        pcb_container.overworkFee = this_price;
+        pcb_container.buildTime = optionText;
         $("#urgentFee").val(" $ "+this_price);
         quotePCBCost();
         quotePCBTotalPrice();
@@ -298,6 +311,9 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     //监听==>选择快递
     form.on("select(company)",function (data) {
         post_data.companyId = $(data.elem).find("option:selected").attr("value");
+        var courierId = post_data.companyId;
+        var countryId = post_data.countrysId;
+        getShippingCost(courierId,countryId);
         getShippingCost();
     });
 
@@ -307,7 +323,9 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         if (post_data.bordType === 2){
             quoteSMTStencil();
         }
-        getShippingCost();
+        var courierId = post_data.companyId;
+        var countryId = post_data.countrysId;
+        getShippingCost(courierId,countryId);
     });
 
     //监听 ==>选择客户
@@ -319,13 +337,12 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         $("#customerId").val(data.value);
         $("#customerSysName").val($(data.elem).find("option:selected").text());
         console.log("选择客户customerAid："+data.value);
-        form.render('','checkCustomer');
+        form.render('');
     });
 
     //监听   ==>选择订单类型（新单/返单/返单有效）
     form.on('select(filterOrderType)', function (data) {
         pcb_container.orderType = data.value;
-        layer.msg("订单类型为："+data.value);
     });
 
     //监听Assembly 表单
@@ -627,10 +644,19 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         data.solderMaskBotColor = data.solderMaskTopColor;
         data.surfaceArea = '';
         data.differentDesign = '';      //原来注释掉的
-        // data.panelRoutingPath = '';
-        // data.gerberPath = '';   //还未写的字段
-        // data.gerberName = '';   //还未写的字段
+        data.orderNo = $("#orderNo").val();//客户PO号
+        pcb_container.orderNo = data.orderNo;
+        data.pcbName = pcb_container.pcbName;
         console.log(data);
+        if (topRadioType===2){
+            if (data.panelWayX == null || data.panelWayX == "" || data.panelWayY == null || data.panelWayY == "") {
+                layer.tips('请输入拼版方式 !', '#panelWayX', {
+                    tips: [1, '#3595CC'],
+                    time: 5000
+                });
+                return false;
+            }
+        }
         //发送请求获取价格
         admin.req({
             type: 'post',
@@ -661,17 +687,26 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                 $("#toolingFee").val(" $ "+data.data.cncAndPunchingQuoteToUSD);
                 $("#pcbWeight").val(data.data.totalQuoteWeight+" KG");
                 def_expressCountry.totalWeight = data.data.totalQuoteWeight;
-
+                post_data.totalWeight = data.data.totalQuoteWeight;
                 quotePCBCost();
+                getBuildTime();
+                if (def_expressCountry.courierId == null || def_expressCountry.courierId == "") {
+                    getCouriers();
+                }
+                if (def_expressCountry.countryId == null || def_expressCountry.countryId == "") {
+                    getCountrys();
+                }
+                if (post_data.companyId != null && post_data.companyId != "" && post_data.countrysId != null && post_data.countrysId != ""){
+                    var courierId = post_data.companyId;
+                    var countryId = post_data.countrysId;
+                    getShippingCost(courierId,countryId);
+                }
             },
             error: function (data) {
                 alert("Services Error!!!");
             }
         });
         form.render();
-        getBuildTime();
-        getCouriers();
-        getCountrys();
         return false;
     });
 
@@ -690,8 +725,10 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
             data: {areaSq:areaSq,layerNum: layerNum},
             success: function (data) {
                 $(".build-time-item").css("display","");
+                $('#selBuildTime').children().remove();
                 for (var i=0;i<data.data.length;i++){
-                    $(".build-time-block").append("<input type=\"radio\" lay-filter=\"buildTimeRadio\" name=\"buildTime\" value="+data.data[i].price+" title="+data.data[i].dayNumber+">");
+                    // $(".build-time-block").append("<input type=\"radio\" lay-filter=\"buildTimeRadio\" name=\"buildTime\" value="+data.data[i].price+" title="+data.data[i].dayNumber+">");
+                    $("#selBuildTime").append("<option value="+data.data[i].price+">"+data.data[i].dayNumber+"</option>");
                 }
                 //去掉天数为none的
                 $(".build-time-item input").each(function () {
@@ -726,6 +763,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                 for (var i=0;i<data.data.length;i++){
                     $("#selCompany").append("<option value="+data.data[i].id+">"+data.data[i].courierName+"</option>");
                     def_expressCountry.courierId = data.data[0].id;  //默认选中 快递id赋值
+                    post_data.companyId = def_expressCountry.courierId;
                     console.log("快递的选中id值为："+def_expressCountry.express);
                 }
             },
@@ -751,6 +789,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                 for (var i=0;i<data.data.length;i++){
                     $("#selCountrys").append("<option value="+data.data[i].id+">"+data.data[i].name+"</option>");
                     def_expressCountry.countryId = data.data[0].id; //默认选中 国家id
+                    post_data.countrysId = def_expressCountry.countryId;
                     console.log("国家的选中id值为："+def_expressCountry.countryId);
                 }
                 form.render();
@@ -764,7 +803,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     /**
      * 发送请求获取快递的费用
      */
-    function getShippingCost(e){
+    function getShippingCost(courierId,countryId){
         var this_weight;
         if (post_data.bordType === 2){
             this_weight = stencil_data.stencilWeight;
@@ -774,7 +813,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         admin.req({
             type: 'post',
             url: setter.imUrl+'quote/getShippingCost',
-            data: {courierId:post_data.companyId,countryId:post_data.countrysId,totalWeight:this_weight},
+            data: {courierId:courierId,countryId:countryId,totalWeight:this_weight},
             success: function (data) {
                 if (data.data != null){
                     // 给pcb明细容器赋值
@@ -977,7 +1016,9 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                 pcb_container.gerberName = fileName;
                 console.log("上传的文件名为："+fileName);
                 pcb_container.pcbName = fileName.substring(0,fileName.indexOf("."));
-                $("#pcbName").val(pcb_container.pcbName);
+                if ($("#pcbName").val != null || $("#pcbName").val != ""){
+                    $("#pcbName").val(pcb_container.pcbName);
+                }
                 form.render('checkCustomer');
             });
         }
@@ -1020,7 +1061,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     /**
      * 数据监听
      */
-    // Object.defineProperty(quote_price_group, 'shipping',{
+    // Object.defineProperty(post_data, 'totalWeight',{
     //     set: function (newShipping) {
     //
     //     },

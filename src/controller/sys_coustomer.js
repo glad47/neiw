@@ -57,7 +57,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
         if (obj.event === 'edit') {
             admin.popup({
                 title:'编辑客户',
-                area:['720px', '780px'],
+                area:['40%', '85%'],
                 id:'LAY-popup-customer-edit',
                 btn:['提交','取消'],
                 yes:function(index, layero){
@@ -127,7 +127,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
             var that = this;
             admin.popup({
                 type: 1,
-                title: '客户用户新增',
+                title: '客户新增',
                 shadeClose: true,
                 shade: false,
                 maxmin: false, //开启最大化最小化按钮

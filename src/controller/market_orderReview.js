@@ -45,7 +45,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-orderReview-status',width: 110}
             ,{field: '', title:'File', toolbar: '#pcb-file', align:'center'}
             ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254}
-            ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
             ,{field:'productNo', title: 'ProductNo', align:'center', width: 114}
             ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
             ,{field:'layerNum', title: 'Layer', align:'center', width: 114}
@@ -53,6 +52,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114}
             ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
             ,{field:'boardFee', title: 'BoardFee', align:'center', width: 114}
+            ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
             ,{field:'userId', title: 'User ID',width: 80,hide: true}
             ,{field:'isLock', title: 'Is Lock',width: 80,hide: true}
             ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
@@ -139,7 +139,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         if(obj.event === 'detail'){
             admin.popup({
                 title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
-                ,area: ['45%', '70%']
+                ,area: ['60%', '90%']
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
 
@@ -166,7 +166,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         } else if(obj.event === 'edit'){
             admin.popup({
                 title: '编辑PCB订单信息'
-                ,area: ['45%', '561px']
+                ,area: ['66%', '90%']
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
                         form.render(null, '')
@@ -284,7 +284,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         if (obj.event === 'detail'){
             admin.popup({
                 title: '订单号［'+data.productNo+']---'+'订单时间［'+data.gmtCreate+'］'
-                ,area: ['45%', '70%']
+                ,area: ['45%', '90%']
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/order_stencil_detail', data).done(function () {
                     })
@@ -294,7 +294,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         } else if (obj.event === 'edit') {
             admin.popup({
                 title: '编辑：订单号［'+data.productNo+']'
-                ,area: ['45%', '70%']
+                ,area: ['66%', '90%']
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderStencil_update', data).done(function () {
                         form.render(null, '')
@@ -366,7 +366,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     ,fail: function () {
                         layer.msg('订单［'+data.productNo+'］锁定失败，稍后再试！');
                     }
-                })
+                });
+                $("a[title='刷新']").click();
                 layui.table.reload('stencil_orderTab');
                 layer.close(index);
             })
@@ -458,7 +459,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         if (obj.event === 'detail'){
             admin.popup({
                 title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
-                ,area: ['45%', '70%']
+                ,area: ['45%', '90%']
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/order_smt_detail', data).done(function () {
 
@@ -485,7 +486,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         } else if (obj.event === 'edit'){
             admin.popup({
                 title: '编辑SMT订单信息'
-                ,area: ['45%', '561px']
+                ,area: ['66%', '90%']
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderSMT_update', data).done(function () {
                         form.render(null, '')

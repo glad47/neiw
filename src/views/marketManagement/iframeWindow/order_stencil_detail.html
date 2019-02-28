@@ -1,87 +1,91 @@
 <!--查看钢网订单信息-->
 <html lang="en">
 <div class="layui-fluid">
-    <a class="layui-btn" lay-event="edit">查看合同</a>
-    <div class="order_review_search">
-        <script type="text/html" template>
-            <table class="layui-table" lay-skin="row" lay-even="">
-                <colgroup>
-                    <col width="100">
-                    <col width="100">
-                    <col width="100">
-                    <col width="100">
-                </colgroup>
-                <tbody>
-                <tr>
-                    <td>User ID:</td>
-                    <td>{{ d.params.userId || ''}}</td>
-                    <td>Stencil Type:</td>
-                    <td>{{ d.params.stencilType || ''}}</td>
-                </tr>
-                <tr>
-                    <td>Quote ID:</td>
-                    <td>{{ d.params.quoteId || ''}}</td>
-                    <td>Stencil Side:</td>
-                    <td>{{ d.params.stencilSide || ''}}</td>
-                </tr>
-                <tr>
-                    <td>Size:</td>
-                    <td>{{ d.params.size || ''}}</td>
-                    <td>Quantity:</td>
-                    <td>{{ d.params.quantity || ''}}</td>
-                </tr>
-                <tr>
-                    <td>Thickness:</td>
-                    <td>{{ d.params.thickness || ''}}</td>
-                    <td>existingFiducials:</td>
-                    <td>{{ d.params.existingFiducials || ''}}</td>
-                </tr>
-                <tr>
-                    <td>Note:</td>
-                    <td>{{ d.params.note || ''}}</td>
-                    <td>Stencil Size(x*y)</td>
-                    <td>{{ d.params.stencilSizeX || ''}} * {{ d.params.stencilSizeY || ''}}</td>
-                </tr>
-                <tr>
-                    <td>IstencilArea(x*y):</td>
-                    <td>{{ d.params.stencilAreaX || ''}} *{{ d.params.stencilAreaY || ''}}</td>
-                    <td>TotalStencilFee:</td>
-                    <td>{{ d.params.totalStencilFee || ''}}</td>
-                </tr>
-                <tr>
-                    <td>Product No:</td>
-                    <td>{{ d.params.productNo || ''}}</td>
-                    <td>Weight:</td>
-                    <td>{{ d.params.weight || ''}}</td>
-                </tr>
-                <tr>
-                    <td>gmtCreate:</td>
-                    <td>{{ d.params.gmtCreate || ''}}</td>
-                    <td>gmtModified:</td>
-                    <td>{{ d.params.gmtModified || ''}}</td>
-                </tr>
-                <tr>
-                    <td>Gerber Name:</td>
-                    <td>{{ d.params.gerberName || ''}}</td>
-                    <td>Status:</td>
-                    <td>
-                        {{# if(d.params.status === 1){ }}
-                        <a style="color: #1E9FFF">
-                            <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
-                        </a>
-                        {{# } else if(d.params.status === 2){ }}
-                        <a style="color: green">
-                            <i class="layui-icon layui-icon-ok"></i>已提交
-                        </a>
-                        {{# } else if(d.params.stats === 3){ }}
-                        <a style="color: #FF5722">
-                            <i class="layui-icon layui-icon-close"></i>已退回
-                        </a>
-                        {{# } }}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </script>
-    </div>
+    <!--<a class="layui-btn" lay-event="edit">查看合同</a>-->
+    <form>
+        <div class="order_review_search">
+            <script type="text/html" template>
+                <table class="layui-table" lay-skin="row" lay-even="">
+                    <colgroup>
+                        <col width="100">
+                        <col width="100">
+                        <col width="100">
+                        <col width="100">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <td>User ID:</td>
+                        <td>{{ d.params.userId || ''}}</td>
+                        <td>Stencil Type:</td>
+                        <td>{{ d.params.stencilType || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>Quote ID:</td>
+                        <td>{{ d.params.quoteId || ''}}</td>
+                        <td>Stencil Side:</td>
+                        <td>{{ d.params.stencilSide || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Quantity:</td>
+                        <td>{{ d.params.quantity || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>Thickness:</td>
+                        <td>
+                            {{ d.params.thickness || ''}}
+                        </td>
+                        <td>existingFiducials:</td>
+                        <td>{{ d.params.existingFiducials || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>Note:</td>
+                        <td>{{ d.params.note || ''}}</td>
+                        <td>Stencil Size(x*y)</td>
+                        <td>{{ d.params.stencilSizeX || ''}} * {{ d.params.stencilSizeY || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>TotalStencilFee:</td>
+                        <td>{{ d.params.totalStencilFee || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>Product No:</td>
+                        <td>{{ d.params.productNo || ''}}</td>
+                        <td>Weight:</td>
+                        <td>{{ d.params.weight || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>gmtCreate:</td>
+                        <td>{{ d.params.gmtCreate || ''}}</td>
+                        <td>gmtModified:</td>
+                        <td>{{ d.params.gmtModified || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>Gerber Name:</td>
+                        <td>{{ d.params.gerberName || ''}}</td>
+                        <td>Status:</td>
+                        <td>
+                            {{# if(d.params.status === 1){ }}
+                            <a style="color: #1E9FFF">
+                                <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
+                            </a>
+                            {{# } else if(d.params.status === 2){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>已提交
+                            </a>
+                            {{# } else if(d.params.stats === 3){ }}
+                            <a style="color: #FF5722">
+                                <i class="layui-icon layui-icon-close"></i>已退回
+                            </a>
+                            {{# } }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </script>
+        </div>
+    </form>
 </div>

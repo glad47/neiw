@@ -144,9 +144,22 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
         }
     });
+    //监听行单击事件（单击事件为：rowDouble）
+    // table.on('row(test)', function(obj){
+    //     var data = obj.data;
+    //
+    //     layer.alert(JSON.stringify(data), {
+    //         title: '当前行数据：'
+    //     });
+    //
+    //     //标注选中样式
+    //     obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+    // });
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(inside_cotract_Tabpcb)', function(obj){
         var data = obj.data;
+        var lineData = data;
+        console.log(obj.data)
         var invoiceNo = data.invoiceNo;
         //console.log(obj)
         if(obj.event === 'del'){
@@ -164,7 +177,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 });
             });
         } else if(obj.event === 'search-contract'){
-            var popupData;
+            var popupData = [];
             layer.msg("查看合同操作");
             admin.req({
                 type: 'post',
@@ -174,9 +187,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     var viewName;
                     var productNo = null;
                     var contractType;
-                    popupData = data.data;
-                    alert(1);
-                    console.log = popupData.sort(compare('quantityPcs'));
+                    popupData[0] = lineData;
+                    popupData.total = lineData.subtotal;
+                    console.log(popupData);
+                    // console.log = popupData.sort(compare('quantityPcs'));
                     $.each(data.data, function (idx, obj) {
                         if (productNo == null || productNo == "") {
                             contractType = 1;
@@ -206,9 +220,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                         // btn2: function(index, layero){}
                         ,success: function (layero, index) {
                             popupData.htmlType = 1;     //页面标识 1为内部合同 主要用于判断头部左侧标题
+                            console.log(popupData);
                             view(this.id).render(viewName, popupData).done(function () {
                                 productNo = null; // 初始化订单号
-                                console.log(popupData);
                                 // 表格样式设置
                                 if (contractType === 1){
                                     // layui.each遍历的数据，td最少为6条，没有数据的显示空白

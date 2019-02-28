@@ -105,7 +105,7 @@
                             <!--Addr:-->
                             <a>
                                 {{# if(d.params.address != null){ }}
-                                {{ d.params.address }}
+                                {{ d.params.address }},{{ d.params.city }},{{ d.params.country }}
                                 {{# } }}
                             </a>
                         </td>
@@ -125,14 +125,14 @@
             <script type="text/html" template>
                 <table class="contract-module-three-tab">
                     <thead>
-                        <th>File Name</th>
+                        <th>P/O&File Name</th>
                         <th>P/N&Description</th>
                         <th style="width: 70px;">QTY</th>
                         <th style="width: 70px;">Price</th>
                         <th>Engineering Fee</th>
                         <th>Board Fee</th>
                         <th>Tooling Fee</th>
-                        <th>Overwork Fee</th>
+                        <th>Expedited fee</th>
                         <th>Post Fee</th>
                         <th>Amount(USD)</th>
                     </thead>
@@ -141,9 +141,18 @@
                     <tr class="tr-orderInfo">
                         <!--客户资料名-->
                         <td>
-                            {{# if(item.gerberName != null){ }}
+                            {{# if(item.orderNo != null){ }}
+                                <strong>P/O：</strong>{{ item.orderNo }}
+                            {{# } }}
+
+                            <br>
+
+                            {{# if(item.pcbName != null){ }}
+                                {{ item.pcbName }}
+                            {{# } else if(item.gerberName != null){ }}
                                 {{ item.gerberName }}
                             {{# } }}
+
                         </td>
                         <td>
                             <!--P/N-->

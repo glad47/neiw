@@ -62,7 +62,7 @@
             </div>
             <div class="rig-text layui-col-md6">
                 <script type="text/html" template>
-                    {{# if(d.params.htmlType === 0){ }}
+                    {{# if(d.params.htmlType === 1){ }}
                     <a>QUOTATION</a>
                     {{# } else{ }}
                     <a>INVOICE</a>
@@ -103,7 +103,7 @@
                             <!--Addr:-->
                             <a>
                                 {{# if(d.params.address != null){ }}
-                                {{ d.params.address }}
+                                    {{ d.params.address }},{{ d.params.city }},{{ d.params.country }}
                                 {{# } }}
                             </a>
                         </td>
@@ -131,7 +131,11 @@
                         <li>
                             <span>P/O</span>
                             :
-                            <a>&nnbsp;</a>
+                            {{# if(d.params[0].orderNo != null){ }}
+                                <a>{{ d.params[0].orderNo}}</a>
+                            {{# }else{ }}
+                                <a>&nbsp;</a>
+                            {{# } }}
                         </li>
                         <li>
                             <span>PCB material</span>
@@ -228,7 +232,7 @@
                             <td>Test Fixture Fee:</td>
                             {{# layui.each(d.params, function(index, item){  }}
                             {{# if(item.testPointType === 1){ }}
-                            <td></td>
+                            <td>0</td>
                             {{# }else{ }}
                             <td value="{{ item.id }}">{{ item.testCostFee }}</td>
                             {{# } }}

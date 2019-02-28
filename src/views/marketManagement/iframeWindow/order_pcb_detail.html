@@ -1,7 +1,7 @@
 <!--查看PCB订单信息-->
 <html lang="en">
 <div class="layui-fluid">
-    <a class="layui-btn" lay-event="edit">查看合同</a>
+    <!--<a class="layui-btn" lay-event="edit">查看合同</a>-->
     <div class="order_review_search">
         <script type="text/html" template>
             <table class="layui-table" lay-skin="row" lay-even="">
@@ -13,8 +13,8 @@
                 </colgroup>
                 <tbody>
                 <tr>
-                    <td>Order Type:</td>
-                    <td>{{ d.params.orderType || ''}}</td>
+                    <td>Layers:</td>
+                    <td>{{ d.params.layerNum || ''}}</td>
                     <td>Type:</td>
                     <td>{{ d.params.pcbType || ''}}</td>
                 </tr>
@@ -25,34 +25,29 @@
                     <td>{{ d.params.productNo || ''}}</td>
                 </tr>
                 <tr>
-                    <td>Layers:</td>
-                    <td>{{ d.params.layerNum || ''}}</td>
+                    <td>Thickness:</td>
+                    <td>{{ d.params.finishThickness || ''}}</td>
                     <td>PCB Size:</td>
-                    <td>{{ d.params.dimensionsX || ''}} * {{ d.params.dimensionsY || ''}} mm</td>
+                    <td>
+                        {{# if(d.params.panelWayX == null){}}
+                            {{ d.params.dimensionsX || ''}} * {{ d.params.dimensionsY || ''}} mm/1
+                        {{# }else{ }}
+                            {{# var panelPcs = parseFloat(d.params.panelWayX*d.params.panelWayY) }}
+                            {{ d.params.panelSizeX || ''}} * {{ d.params.panelSizeY || ''}} mm/{{ panelPcs }}
+                        {{# } }}
+                    </td>
                 </tr>
                 <tr>
                     <td>Material:</td>
                     <td>{{ d.params.pcbType || ''}},TG:{{ d.params.tg }},{{ d.params.cti || ''}}</td>
-                    <td>Panel Way:</td>
-                    <td>{{ d.params.panelWayX || ''}} * {{ d.params.panelWayX || ''}} mm</td>
-                </tr>
-                <tr>
-                    <td>Thickness:</td>
-                    <td>{{ d.params.finishThickness || ''}}</td>
-                    <td>Min hole Size:</td>
-                    <td>{{ d.params.minHoleSize || ''}}</td>
+                    <td>pthCopper:</td>
+                    <td>{{ d.params.pthCopper }}</td>
                 </tr>
                 <tr>
                     <td>Inner Finished Copper:</td>
                     <td>{{ d.params.innerLayerCopper || ''}}</td>
-                    <td>Stack/Spacing(inner):</td>
-                    <td>{{ d.params.innerMinTrack || ''}}</td>
-                </tr>
-                <tr>
                     <td>Outer Finished Copper:</td>
                     <td>{{ d.params.outerLayerCopper || ''}}</td>
-                    <td>Stack/Spacing(outer):</td>
-                    <td>{{ d.params.outerMinTrack || ''}}</td>
                 </tr>
                 <tr>
                     <td>Solder Mask Color:</td>
@@ -65,32 +60,6 @@
                     <td>{{ d.params.surfaceFinish || ''}}</td>
                     <td>Test Tooling:</td>
                     <td>{{ d.params.surfaceFinish || ''}}</td>
-                </tr>
-                <tr>
-                    <td>gmtModified:</td>
-                    <td>{{ d.params.gmtModified || ''}}</td>
-                    <td>gmtCreate:</td>
-                    <td>{{ d.params.gmtCreate || ''}}</td>
-                </tr>
-                <tr>
-                    <td>gerberName:</td>
-                    <td>{{ d.params.gerberName || ''}}</td>
-                    <td>Status:</td>
-                    <td>
-                        {{# if(d.params.status === 1){ }}
-                        <a style="color: #1E9FFF">
-                            <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待处理
-                        </a>
-                        {{# } else if(d.params.status === 2){ }}
-                        <a style="color: green">
-                            <i class="layui-icon layui-icon-ok"></i>已提交
-                        </a>
-                        {{# } else if(d.params.stats === 3){ }}
-                        <a style="color: #FF5722">
-                            <i class="layui-icon layui-icon-close"></i>已退回
-                        </a>
-                        {{# } }}
-                    </td>
                 </tr>
                 <tr style="border: solid silver 1px;">
                     <td>Remark:</td>
@@ -108,6 +77,46 @@
                 {{# } }}
                 </tbody>
             </table>
+            <h3>Fee Detail:</h3>
+            <table class="layui-table" lay-skin="row" lay-even="" id="tab-fee">
+                <tbody>
+                <tr>
+                    <td>Eng Fee:</td>
+                    <td>{{ d.params.engineeringFee }}</td>
+                    <td>Board Fee:</td>
+                    <td>{{ d.params.boardFee }}</td>
+                    <td>TestCost Fee:</td>
+                    <td>{{ d.params.testCostFee }}</td>
+                    <td>Expedited Fee:</td>
+                    <td>{{ d.params.overworkFee }}</td>
+                </tr>
+                <tr>
+                    {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+d.params.testCostFee+d.params.overworkFee)}}
+                    <td>Weight:</td>
+                    <td>{{ d.params.weight }}</td>
+                    <td>Build Time:</td>
+                    <td>{{ d.params.buildTime }}</td>
+                    <td>Shipping Fee:</td>
+                    <td>/</td>
+                    <td>PCB Cost:</td>
+                    <td>
+                        {{ pcbcost }}
+                    </td>
+                </tr>
+                <!--<tr>-->
+                    <!--<td colspan="6"></td>-->
+                    <!--<td>Total:</td>-->
+                    <!--<td>{{ d.params.subtotal }}</td>-->
+                <!--</tr>-->
+                </tbody>
+            </table>
         </script>
     </div>
 </div>
+
+<style>
+    #tab-fee tr td:nth-of-type(1){width: 6%;}
+    #tab-fee tr td:nth-of-type(3){width: 6%;}
+    #tab-fee tr td:nth-of-type(5){width: 6%;}
+    #tab-fee tr td:nth-of-type(7){width: 6%;}
+</style>

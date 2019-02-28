@@ -169,6 +169,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 var contractTotal = 0;
                 var qidsPost;
                 $.each(tabdata, function (idx, obj) {
+                    console.log("obj.subtotal===>"+obj.subtotal);
+                    console.log(obj);
                     contractTotal = parseFloat(contractTotal+obj.subtotal);
                     tabdata.total = contractTotal;
                     if (qidsPost == null){
@@ -300,10 +302,18 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(iquote_Tabpcb)', function(obj){
         var data = obj.data;
-        //console.log(obj)
+        console.log(data)
         if(obj.event === 'del'){
             layer.confirm('真的删除行么', function(index){
                 obj.del();
+                admin.req({
+                    type: 'post',
+                    data: {'ids':data.id},
+                    url: setter.baseUrl+ '/epc/pcborder/delete',
+                    success: function () {
+                        layer.alert("删除成功！");
+                    }
+                });
                 layer.close(index);
             });
         } else if(obj.event === 'edit'){

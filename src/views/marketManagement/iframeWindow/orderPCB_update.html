@@ -3,7 +3,7 @@
     <form class="layui-form" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 750px">
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label" name="dimensionsX">DimensionsX：</label>
+                <label class="layui-form-label" name="dimensionsX">Pcs X：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="text" name="id" value="{{ d.params.id || '' }}" autocomplete="off" class="layui-input" style="display: none;">
@@ -12,15 +12,15 @@
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">PanelSizeY：</label>
+                <label class="layui-form-label" name="dimensionsX">Panel X：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="panelSizeY" value="{{ d.params.panelSizeY || '' }}" autocomplete="off" class="layui-input">
+                        <input type="text" name="panelSizeX" value="{{ d.params.panelSizeX || '' }}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label" name="dimensionsX">PanelWayX：</label>
+                <label class="layui-form-label" name="dimensionsX">Array X：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="text" name="panelWayX" value="{{ d.params.panelWayX || '' }}" autocomplete="off" class="layui-input">
@@ -31,7 +31,7 @@
 
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">DimensionsY：</label>
+                <label class="layui-form-label">Pcs Y：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="text" name="dimensionsY" value="{{ d.params.dimensionsY || '' }}" autocomplete="off" class="layui-input">
@@ -39,15 +39,15 @@
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label" name="dimensionsX">PanelSizeX：</label>
+                <label class="layui-form-label">Panel Y：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="panelSizeX" value="{{ d.params.panelSizeX || '' }}" autocomplete="off" class="layui-input">
+                        <input type="text" name="panelSizeY" value="{{ d.params.panelSizeY || '' }}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">PanelWayY：</label>
+                <label class="layui-form-label">Array Y：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="text" name="panelWayY" value="{{ d.params.panelWayY || '' }}" autocomplete="off" class="layui-input">
@@ -58,7 +58,7 @@
 
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label" name="dimensionsX">Quantity Pcs：</label>
+                <label class="layui-form-label" name="dimensionsX">Qty Pcs：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="text" name="quantityPcs" value="{{ d.params.quantityPcs || '' }}" autocomplete="off" class="layui-input">
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Quantity Panel：</label>
+                <label class="layui-form-label">Qty Panel：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="text" name="quantityPanel" value="{{ d.params.quantityPanel || '' }}" autocomplete="off" class="layui-input">
@@ -111,10 +111,16 @@
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Material：</label>
+                <label class="layui-form-label">Layer：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="material" value="{{ d.params.material || '' }}" autocomplete="off" class="layui-input">
+                        <select name="layer">
+                            <option value="{{ d.params.layerNum || '' }}"  {{ d.params.layerNum === '1' ? 'selected' : '' }}>1</option>
+                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum === '2' ? 'selected' : '' }}>2</option>
+                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum === '4' ? 'selected' : '' }}>4</option>
+                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum === '6' ? 'selected' : '' }}>6</option>
+                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum === '8' ? 'selected' : '' }}>8</option>
+                        </select>
                     </script>
                 </div>
             </div>
@@ -135,34 +141,7 @@
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Product Code：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="productCode" value="{{ d.params.productCode || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Layer Num：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="layerNum" value="{{ d.params.layerNum || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">HalogenFree：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="halogenFree" value="{{ d.params.halogenFree || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Finish Thickness：</label>
+                <label class="layui-form-label">Thickness：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="finishThickness">
@@ -179,7 +158,18 @@
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">HeatConductivity：</label>
+                <label class="layui-form-label">Hal'-Free：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="halogenFree" value="{{ d.params.halogenFree || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Heat-Con'：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="heatConductivity">
@@ -189,126 +179,6 @@
                             <option value="{{ d.params.heatConductivity || '' }}"  {{ d.params.heatConductivity === '3W' ? 'selected' : '' }}>3W</option>
                             <option value="{{ d.params.heatConductivity || '' }}"  {{ d.params.heatConductivity === 'PCBOnline' ? 'selected' : '' }}>PCBOnline</option>
                         </select>
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Inner Layer Copper：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <select name="heatConductivity">
-                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === 'none' ? 'selected' : '' }}>none</option>
-                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === '1oz' ? 'selected' : '' }}>1oz</option>
-                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === '2oz' ? 'selected' : '' }}>2oz</option>
-                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === '3oz' ? 'selected' : '' }}>3oz</option>
-                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === '4oz' ? 'selected' : '' }}>4oz</option>
-                        </select>
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Stack Up：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="stackUp" value="{{ d.params.stackUp || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Inner MinTrack：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <select name="heatConductivity">
-                            <option value="{{ d.params.innerMinTrack || '' }}"  {{ d.params.innerMinTrack === 'none' ? 'selected' : '' }}>none</option>
-                            <option value="{{ d.params.innerMinTrack || '' }}"  {{ d.params.innerMinTrack === '3mil' ? 'selected' : '' }}>3mil</option>
-                            <option value="{{ d.params.innerMinTrack || '' }}"  {{ d.params.innerMinTrack === '4mil' ? 'selected' : '' }}>4mil</option>
-                            <option value="{{ d.params.innerMinTrack || '' }}"  {{ d.params.innerMinTrack === '5mil' ? 'selected' : '' }}>5mil</option>
-                            <option value="{{ d.params.innerMinTrack || '' }}"  {{ d.params.innerMinTrack === '6mil' ? 'selected' : '' }}>6mil</option>
-                            <option value="{{ d.params.innerMinTrack || '' }}"  {{ d.params.innerMinTrack === '7mil' ? 'selected' : '' }}>7mil</option>
-                        </select>
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Outer Layer Copper：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="outerLayerCopper" value="{{ d.params.outerLayerCopper || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Outer MinTrack：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="outerMinTrack" value="{{ d.params.outerMinTrack || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Inner MinSpacing：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <select name="innerMinSpacing">
-                            <option value="{{ d.params.innerMinSpacing || '' }}"  {{ d.params.innerMinSpacing === 'none' ? 'selected' : '' }}>none</option>
-                            <option value="{{ d.params.innerMinSpacing || '' }}"  {{ d.params.innerMinSpacing === '3mil' ? 'selected' : '' }}>3mil</option>
-                            <option value="{{ d.params.innerMinSpacing || '' }}"  {{ d.params.innerMinSpacing === '4mil' ? 'selected' : '' }}>4mil</option>
-                            <option value="{{ d.params.innerMinSpacing || '' }}"  {{ d.params.innerMinSpacing === '5mil' ? 'selected' : '' }}>5mil</option>
-                            <option value="{{ d.params.innerMinSpacing || '' }}"  {{ d.params.innerMinSpacing === '6mil' ? 'selected' : '' }}>6mil</option>
-                            <option value="{{ d.params.innerMinSpacing || '' }}"  {{ d.params.innerMinSpacing === '7mil' ? 'selected' : '' }}>7mil</option>
-                        </select>
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Outer Layer Copper：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <select name="outerLayerCopper">
-                            <option value="{{ d.params.outerLayerCopper || '' }}"  {{ d.params.outerLayerCopper === '1oz' ? 'selected' : '' }}>1oz</option>
-                            <option value="{{ d.params.outerLayerCopper || '' }}"  {{ d.params.outerLayerCopper === '2oz' ? 'selected' : '' }}>2oz</option>
-                            <option value="{{ d.params.outerLayerCopper || '' }}"  {{ d.params.outerLayerCopper === '3oz' ? 'selected' : '' }}>3oz</option>
-                        </select>
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Outer MinTrack：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="outerMinTrack" value="{{ d.params.outerMinTrack || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Bga Size：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <select name="bgaSize">
-                            <option value="{{ d.params.bgaSize || '' }}"  {{ d.params.bgaSize === 0.22 ? 'selected' : '' }}>0.22</option>
-                            <option value="{{ d.params.bgaSize || '' }}"  {{ d.params.bgaSize === 0.25 ? 'selected' : '' }}>0.25</option>
-                            <option value="{{ d.params.bgaSize || '' }}"  {{ d.params.bgaSize === 0.3 ? 'selected' : '' }}>0.3</option>
-                        </select>
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Outer MinSpacing：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="outerMinSpacing" value="{{ d.params.outerMinSpacing || '' }}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
@@ -328,7 +198,7 @@
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Pth Copper：</label>
+                <label class="layui-form-label">Pth Cop'：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="pthCopper">
@@ -343,7 +213,56 @@
 
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">SolderMask Top Color：</label>
+                <label class="layui-form-label">I/L Cop'：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="heatConductivity">
+                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === 'none' ? 'selected' : '' }}>none</option>
+                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === '1oz' ? 'selected' : '' }}>1oz</option>
+                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === '2oz' ? 'selected' : '' }}>2oz</option>
+                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === '3oz' ? 'selected' : '' }}>3oz</option>
+                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === '4oz' ? 'selected' : '' }}>4oz</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">O/L Cop'：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="outerLayerCopper">
+                            <option value="{{ d.params.outerLayerCopper || '' }}"  {{ d.params.outerLayerCopper === '1oz' ? 'selected' : '' }}>1oz</option>
+                            <option value="{{ d.params.outerLayerCopper || '' }}"  {{ d.params.outerLayerCopper === '2oz' ? 'selected' : '' }}>2oz</option>
+                            <option value="{{ d.params.outerLayerCopper || '' }}"  {{ d.params.outerLayerCopper === '3oz' ? 'selected' : '' }}>3oz</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">O/L Track：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="outerMinTrack" value="{{ d.params.outerMinTrack || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Bga Size：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="bgaSize">
+                            <option value="{{ d.params.bgaSize || '' }}"  {{ d.params.bgaSize === 0.22 ? 'selected' : '' }}>0.22</option>
+                            <option value="{{ d.params.bgaSize || '' }}"  {{ d.params.bgaSize === 0.25 ? 'selected' : '' }}>0.25</option>
+                            <option value="{{ d.params.bgaSize || '' }}"  {{ d.params.bgaSize === 0.3 ? 'selected' : '' }}>0.3</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Sold' Color：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="solderMaskTopColor">
@@ -361,42 +280,7 @@
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Via Process：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <select name="viaProcess">
-                            <option value="{{ d.params.viaProcess || '' }}"  {{ d.params.viaProcess === 'none' ? 'selected' : '' }}>none</option>
-                            <option value="{{ d.params.viaProcess || '' }}"  {{ d.params.viaProcess === 'Tenting' ? 'selected' : '' }}>Tenting</option>
-                            <option value="{{ d.params.viaProcess || '' }}"  {{ d.params.viaProcess === 'Plugged' ? 'selected' : '' }}>Plugged</option>
-                            <option value="{{ d.params.viaProcess || '' }}"  {{ d.params.viaProcess === 'vias_not_covered' ? 'selected' : '' }}>vias not covered</option>
-                            <option value="{{ d.params.viaProcess || '' }}"  {{ d.params.viaProcess === 'Follow_gerber' ? 'selected' : '' }}>Follow gerber</option>
-                        </select>
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">SolderMask BotColor：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <select name="solderMaskBotColor">
-                            <option value="{{ d.params.solderMaskBotColor || '' }}"  {{ d.params.solderMaskBotColor === 'none' ? 'selected' : '' }}>none</option>
-                            <option value="{{ d.params.solderMaskBotColor || '' }}"  {{ d.params.solderMaskBotColor === 'green' ? 'selected' : '' }}>green</option>
-                            <option value="{{ d.params.solderMaskBotColor || '' }}"  {{ d.params.solderMaskBotColor === 'black' ? 'selected' : '' }}>black</option>
-                            <option value="{{ d.params.solderMaskBotColor || '' }}"  {{ d.params.solderMaskBotColor === 'white' ? 'selected' : '' }}>white</option>
-                            <option value="{{ d.params.solderMaskBotColor || '' }}"  {{ d.params.solderMaskBotColor === 'yellow' ? 'selected' : '' }}>yellow</option>
-                            <option value="{{ d.params.solderMaskBotColor || '' }}"  {{ d.params.solderMaskBotColor === 'red' ? 'selected' : '' }}>red</option>
-                            <option value="{{ d.params.solderMaskBotColor || '' }}"  {{ d.params.solderMaskBotColor === 'blue' ? 'selected' : '' }}>blue</option>
-                            <option value="matte_black"  {{ d.params.solderMaskBotColor === 'matte black' ? 'selected' : '' }}>matte black</option>
-                            <option value="matte_green"  {{ d.params.solderMaskBotColor === 'matte green' ? 'selected' : '' }}>matte green</option>
-                        </select>
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">SilkScreen TopColor：</label>
+                <label class="layui-form-label">Silk' Color：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="silkScreenTopColor">
@@ -406,40 +290,9 @@
                     </script>
                 </div>
             </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Peelable：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <select name="peelable">
-                            <option value="{{ d.params.peelable || '' }}"  {{ d.params.peelable === 'none' ? 'selected' : '' }}>none</option>
-                            <option value="{{ d.params.peelable || '' }}"  {{ d.params.peelable === 'TOP' ? 'selected' : '' }}>TOP</option>
-                            <option value="{{ d.params.peelable || '' }}"  {{ d.params.peelable === 'BOT' ? 'selected' : '' }}>BOT</option>
-                        </select>
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">SilkScreen BotColor：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <select name="silkScreenTopColor">
-                            <option value="{{ d.params.silkScreenBotColor || '' }}"  {{ d.params.silkScreenBotColor === 'black' ? 'selected' : '' }}>black</option>
-                            <option value="{{ d.params.silkScreenBotColor || '' }}"  {{ d.params.silkScreenBotColor === 'white' ? 'selected' : '' }}>white</option>
-                        </select>
-                    </script>
-                </div>
-            </div>
         </div>
 
         <div class="layui-form-item">
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">PeelableBrand：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="peelableBrand" value="{{ d.params.peelableBrand || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Surface Finish：</label>
                 <div class="layui-input-block">
@@ -463,28 +316,65 @@
             </div>
         </div>
 
+        <!--<div class="layui-form-item">-->
+            <!--<div class="layui-col-md4 layui-col-xs12 layui-col-sm12">-->
+                <!--<label class="layui-form-label">SurfaceArea：</label>-->
+                <!--<div class="layui-input-block">-->
+                    <!--<script type="text/html" template>-->
+                        <!--<input type="text" name="surfaceArea" value="{{ d.params.surfaceArea || '' }}" autocomplete="off" class="layui-input">-->
+                    <!--</script>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="layui-col-md4 layui-col-xs12 layui-col-sm12">-->
+                <!--<label class="layui-form-label">Panel Routing Path：</label>-->
+                <!--<div class="layui-input-block">-->
+                    <!--<script type="text/html" template>-->
+                        <!--<input type="text" name="panelRoutingPath" value="{{ d.params.panelRoutingPath || '' }}" autocomplete="off" class="layui-input">-->
+                    <!--</script>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="layui-col-md4 layui-col-xs12 layui-col-sm12">-->
+                <!--<label class="layui-form-label">Punching Holes：</label>-->
+                <!--<div class="layui-input-block">-->
+                    <!--<script type="text/html" template>-->
+                        <!--<input type="text" name="punchingHoles" value="{{ d.params.punchingHoles || '' }}" autocomplete="off" class="layui-input">-->
+                    <!--</script>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">SurfaceArea：</label>
+                <label class="layui-form-label">Blind Holes：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="surfaceArea" value="{{ d.params.surfaceArea || '' }}" autocomplete="off" class="layui-input">
+                        <!--<input type="text" name="blindHoles" value="{{ d.params.blindHoles || 'No' }}" autocomplete="off" class="layui-input">-->
+                        <select name="blindHoles">
+                            <option value="{{ d.params.blindHoles || '' }}"  {{ d.params.blindHoles === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.blindHoles || '' }}" {{ d.params.blindHoles === '1' ? 'selected' : '' }}>Yes</option>
+                        </select>
                     </script>
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Panel Routing Path：</label>
+                <label class="layui-form-label">EdgePlated：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="panelRoutingPath" value="{{ d.params.panelRoutingPath || '' }}" autocomplete="off" class="layui-input">
+                        <select name="edgePlated">
+                            <option value="{{ d.params.edgePlated || '' }}"  {{ d.params.edgePlated === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.edgePlated || '' }}" {{ d.params.edgePlated === '1' ? 'selected' : '' }}>Yes</option>
+                        </select>
                     </script>
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Punching Holes：</label>
+                <label class="layui-form-label">HalfHoleLated：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="punchingHoles" value="{{ d.params.punchingHoles || '' }}" autocomplete="off" class="layui-input">
+                        <select name="halfHoleLated">
+                            <option value="{{ d.params.halfHoleLated || '' }}"  {{ d.params.halfHoleLated === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.halfHoleLated || '' }}" {{ d.params.halfHoleLated === '1' ? 'selected' : '' }}>Yes</option>
+                        </select>
                     </script>
                 </div>
             </div>
@@ -492,18 +382,98 @@
 
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">PunchingSlots：</label>
+                <label class="layui-form-label">Impeance：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="punchingSlots" value="{{ d.params.punchingSlots || '' }}" autocomplete="off" class="layui-input">
+                        <select name="contrlImpeance">
+                            <option value="{{ d.params.contrlImpeance || '' }}"  {{ d.params.contrlImpeance === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.contrlImpeance || '' }}" {{ d.params.contrlImpeance === '1' ? 'selected' : '' }}>Yes</option>
+                        </select>
                     </script>
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Test Point：</label>
+                <label class="layui-form-label">BuriedHoles：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="testPoint" value="{{ d.params.testPoint || '' }}" autocomplete="off" class="layui-input">
+                        <select name="buriedHoles">
+                            <option value="{{ d.params.buriedHoles || '' }}"  {{ d.params.buriedHoles === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.buriedHoles || '' }}" {{ d.params.buriedHoles === '1' ? 'selected' : '' }}>Yes</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Carbon：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="carbon">
+                            <option value="{{ d.params.carbon || '' }}"  {{ d.params.carbon === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.carbon || '' }}" {{ d.params.carbon === '1' ? 'selected' : '' }}>Yes</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">DeepMill：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="deepMillRouting">
+                            <option value="{{ d.params.deepMillRouting || '' }}"  {{ d.params.deepMillRouting === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.deepMillRouting || '' }}" {{ d.params.deepMillRouting === '1' ? 'selected' : '' }}>Yes</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Bevelling：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="bevellingCamfer">
+                            <option value="{{ d.params.bevellingCamfer || '' }}"  {{ d.params.bevellingCamfer === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.bevellingCamfer || '' }}" {{ d.params.bevellingCamfer === '1' ? 'selected' : '' }}>Yes</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">P/N：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="productNo" value="{{ d.params.productNo || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="layui-form-item">-->
+            <!--<div class="layui-col-md4 layui-col-xs12 layui-col-sm12">-->
+                <!--<label class="layui-form-label">UuId：</label>-->
+                <!--<div class="layui-input-block">-->
+                    <!--<script type="text/html" template>-->
+                        <!--<input type="text" name="uuid" value="{{ d.params.uuid || '' }}" autocomplete="off" class="layui-input">-->
+                    <!--</script>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Eng' Fee：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="engfee" value="{{ d.params.engineeringFee || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">BoardFee：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="boardFee" value="{{ d.params.boardFee || '' }}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
@@ -519,142 +489,7 @@
 
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Blind Holes：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="blindHoles" value="{{ d.params.blindHoles || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">EdgePlated：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="edgePlated" value="{{ d.params.edgePlated || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">HalfHoleLated：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="halfHoleLated" value="{{ d.params.halfHoleLated || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">ContrlImpeance：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="contrlImpeance" value="{{ d.params.contrlImpeance || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">BuriedHoles：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="buriedHoles" value="{{ d.params.buriedHoles || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Carbon：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="carbon" value="{{ d.params.carbon || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">BevellingCamfer：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="bevellingCamfer" value="{{ d.params.bevellingCamfer || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">DeepMillRouting：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="deepMillRouting" value="{{ d.params.deepMillRouting || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">BevellingCamfer：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="bevellingCamfer" value="{{ d.params.bevellingCamfer || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">DifferentDesign：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="differentDesign" value="{{ d.params.differentDesign || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">UuId：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="uuid" value="{{ d.params.uuid || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">TestPoinType：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="testPoinType" value="{{ d.params.testPoinType || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">BoardFee：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="boardFee" value="{{ d.params.boardFee || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">BoardFee：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="boardFee" value="{{ d.params.boardFee || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">StencilFee：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="stencilFee" value="{{ d.params.stencilFee || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">OverWorkFee：</label>
+                <label class="layui-form-label">Exp' fee：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="text" name="overworkFee" value="{{ d.params.overworkFee || '' }}" autocomplete="off" class="layui-input">
@@ -662,68 +497,25 @@
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">ProductNo：</label>
+                <label class="layui-form-label">Weight：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="productNo" value="{{ d.params.productNo || '' }}" autocomplete="off" class="layui-input">
+                        <input type="text" name="weight" value="{{ d.params.weight || '' }}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">TestPointType：</label>
+                <label class="layui-form-label">PCB Cost：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="testPointType" value="{{ d.params.testPointType || '' }}" autocomplete="off" class="layui-input">
+                        {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+d.params.testCostFee+d.params.overworkFee)}}
+                        <input type="text" name="weight" value="{{ pcbcost || '' }}" autocomplete="off" class="layui-input" readonly>
                     </script>
                 </div>
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">isExistSmt：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="isExistSmt" value="{{ d.params.isExistSmt || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">nofCore：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="nofCore" value="{{ d.params.nofCore || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">nofPp：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="nofPp" value="{{ d.params.nofPp || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-        </div>
 
-        <div class="layui-form-item">
-            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">nofHoles：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="nofHoles" value="{{ d.params.nofHoles || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Status：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="status" value="{{ d.params.status || '' }}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-        </div>
 
         <div class="layui-form-item">
             <div class="layui-col-md12 layui-col-xs12 layui-col-sm12">

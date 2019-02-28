@@ -81,7 +81,7 @@ layui.define(['admin','table','index','element','form'], function (exports) {
             ,{field: 'subtotal', title: 'subtotal', hide: true}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmMana_tabbar',width: 130}
+            ,{fixed: 'right', title:'操作', toolbar: '#scmMana_tabbar',width: 160}
         ]]
         ,done: function (res, curr, count) {
 
@@ -89,7 +89,6 @@ layui.define(['admin','table','index','element','form'], function (exports) {
     });
     table.on('toolbar(scmMana_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
-        layer.alert(123);
         if(obj.event === 'evScmSubmit'){
             var data = checkStatus.data;
             var ids = null;
@@ -119,7 +118,6 @@ layui.define(['admin','table','index','element','form'], function (exports) {
     });
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(scmMana_tabPcb)', function (obj) {
-        layer.alert(123);
         var data = obj.data;
         if (obj.event == 'eevScmedit'){
             layer.msg('编辑操作');
@@ -176,7 +174,20 @@ layui.define(['admin','table','index','element','form'], function (exports) {
             });
         } else if (obj.event == 'search'){
             layer.msg('查看订单协同');
+        } else if (obj.event == 'eevScmdel'){
+            layer.confirm('真的删除行么', function(index){
+                obj.del();
+                admin.req({
+                    type: 'post',
+                    data: {'ids':data.id},
+                    url: setter.baseUrl+ '/scm/ordersupplier/delete',
+                    success: function () {
+                        layer.alert("删除成功！");
+                    }
+                });
+                layer.close(index);
+            });
         }
-    })
-    exports('scmManagement', {});
+    });
+    exports('scmManagement_quoteDetail', {});
 });
