@@ -350,8 +350,8 @@
                     <script type="text/html" template>
                         <!--<input type="text" name="blindHoles" value="{{ d.params.blindHoles || 'No' }}" autocomplete="off" class="layui-input">-->
                         <select name="blindHoles">
-                            <option value="{{ d.params.blindHoles || '' }}"  {{ d.params.blindHoles === '' ? 'selected' : '' }}>No</option>
-                            <option value="{{ d.params.blindHoles || '' }}" {{ d.params.blindHoles === '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="{{ d.params.blindHoles || '0' }}"  {{ d.params.blindHoles === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.blindHoles || '1' }}" {{ d.params.blindHoles == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -361,8 +361,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="edgePlated">
-                            <option value="{{ d.params.edgePlated || '' }}"  {{ d.params.edgePlated === '' ? 'selected' : '' }}>No</option>
-                            <option value="{{ d.params.edgePlated || '' }}" {{ d.params.edgePlated === '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="{{ d.params.edgePlated || '0' }}"  {{ d.params.edgePlated === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.edgePlated || '1' }}" {{ d.params.edgePlated == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -372,8 +372,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="halfHoleLated">
-                            <option value="{{ d.params.halfHoleLated || '' }}"  {{ d.params.halfHoleLated === '' ? 'selected' : '' }}>No</option>
-                            <option value="{{ d.params.halfHoleLated || '' }}" {{ d.params.halfHoleLated === '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="{{ d.params.halfHoleLated || '0' }}"  {{ d.params.halfHoleLated === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.halfHoleLated || '1' }}" {{ d.params.halfHoleLated == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -386,8 +386,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="contrlImpeance">
-                            <option value="{{ d.params.contrlImpeance || '' }}"  {{ d.params.contrlImpeance === '' ? 'selected' : '' }}>No</option>
-                            <option value="{{ d.params.contrlImpeance || '' }}" {{ d.params.contrlImpeance === '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="{{ d.params.contrlImpeance || '0' }}"  {{ d.params.contrlImpeance === '0' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.contrlImpeance || '1' }}" {{ d.params.contrlImpeance == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -397,8 +397,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="buriedHoles">
-                            <option value="{{ d.params.buriedHoles || '' }}"  {{ d.params.buriedHoles === '' ? 'selected' : '' }}>No</option>
-                            <option value="{{ d.params.buriedHoles || '' }}" {{ d.params.buriedHoles === '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="{{ d.params.buriedHoles || '0' }}"  {{ d.params.buriedHoles === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.buriedHoles || '1' }}" {{ d.params.buriedHoles == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -408,8 +408,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="carbon">
-                            <option value="{{ d.params.carbon || '' }}"  {{ d.params.carbon === '' ? 'selected' : '' }}>No</option>
-                            <option value="{{ d.params.carbon || '' }}" {{ d.params.carbon === '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="{{ d.params.carbon || '0' }}"  {{ d.params.carbon === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.carbon || '1' }}" {{ d.params.carbon == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -422,8 +422,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="deepMillRouting">
-                            <option value="{{ d.params.deepMillRouting || '' }}"  {{ d.params.deepMillRouting === '' ? 'selected' : '' }}>No</option>
-                            <option value="{{ d.params.deepMillRouting || '' }}" {{ d.params.deepMillRouting === '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="{{ d.params.deepMillRouting || '0' }}"  {{ d.params.deepMillRouting === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.deepMillRouting || '1' }}" {{ d.params.deepMillRouting == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -433,8 +433,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="bevellingCamfer">
-                            <option value="{{ d.params.bevellingCamfer || '' }}"  {{ d.params.bevellingCamfer === '' ? 'selected' : '' }}>No</option>
-                            <option value="{{ d.params.bevellingCamfer || '' }}" {{ d.params.bevellingCamfer === '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="{{ d.params.bevellingCamfer || '0' }}"  {{ d.params.bevellingCamfer === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.bevellingCamfer || '1' }}" {{ d.params.bevellingCamfer == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>

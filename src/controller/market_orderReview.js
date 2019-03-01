@@ -169,7 +169,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 ,area: ['66%', '90%']
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
-                        form.render(null, '')
+                        form.render(null, '');
                         form.on('submit(LAY-pcborder-update-submit)',function (data) {
                             var field = data.field;
                             console.log("提交的字段信息："+JSON.stringify(field));
@@ -298,24 +298,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderStencil_update', data).done(function () {
                         form.render(null, '')
-                        form.on('submit(LAY-stencilorder-update-submit)',function (data) {
-                            var field = data.field;
-                            console.log("提交的字段信息："+JSON.stringify(field));
-                            admin.req({
-                                type: 'post'
-                                ,url: setter.baseUrl+'market/stencil/audit/update'
-                                ,data: field
-                                ,done: function (res) {
-                                    layer.msg('订单信息修改成功');
-                                    layui.table.reload('stencil_orderTab');
-                                }
-                                ,fail: function (res) {
-                                    layer.msg("订单信息修改失败，请稍后再试！");
-                                },
-                            });
-                            layer.close(index);
-                            return false;
-                        })
+
                     })
                 }
             })
