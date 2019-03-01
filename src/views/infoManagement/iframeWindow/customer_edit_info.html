@@ -194,7 +194,7 @@
           <input type="hidden" name="id" value="{{ d.params.id || '' }}">
         </script>
         <div class="layui-form-item">
-            <div class="addcus-cusNum layui-col-md6">
+            <div class="addcus-cusNum layui-col-md4">
                 <label class="layui-form-label">操作：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template lay-done="layui.data.done(d);">
@@ -202,11 +202,20 @@
                     </script>
                 </div>
             </div>
-            <div class="addcus-cusNum layui-col-md6">
+            <div class="addcus-cusNum layui-col-md4">
                 <label class="layui-form-label">内部用户：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template lay-done="layui.data.done(d);">
                         <input type="checkbox" name="userType" lay-skin="switch" lay-text="是|否" {{ d.params.userType === undefined || d.params.userType === 0 ? '' : 'checked' }} lay-filter="isneibuUser">
+                    </script>
+                </div>
+            </div>
+
+            <div class="addcus-cusNum layui-col-md4">
+                <label class="layui-form-label">需要审核：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-done="layui.data.done(d);">
+                        <input type="checkbox" name="auditMark" lay-skin="switch" lay-text="是|否" {{ d.params.auditMark === undefined || d.params.auditMark === 1 ? '' : 'checked' }} lay-filter="isAuditMark">
                     </script>
                 </div>
             </div>

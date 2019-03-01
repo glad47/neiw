@@ -88,11 +88,23 @@ layui.define(['admin', 'table','element','form'], function(exports){
                                 userType =0;
                             }
                         });
+                        var auditMark;
+                        form.on('switch(isAuditMark)',function(data){
+                            if (data.elem.checked == true) {
+                                layer.msg('需要审核');
+                                auditMark = 0;
+                            }else{
+                                layer.msg('不需审核');
+                                auditMark = 1;
+                            }
+                        });
+
                         //监听提交
                         form.on('submit(layuiadmin-app-form-submit)',function(data){
                             var field = data.field;
                             field.invalidMark = invalidMark;   
                             field.userType = userType;
+                            field.auditMark = auditMark;
                             admin.req({
                                 url:setter.baseUrl+'sys/consumer/user/update',
                                 type:'POST',
@@ -166,10 +178,22 @@ layui.define(['admin', 'table','element','form'], function(exports){
                             }
                         });
 
+                        var auditMark;
+                        form.on('switch(isAuditMark)',function(data){
+                            if (data.elem.checked == true) {
+                                layer.msg('需要审核');
+                                auditMark = 0;
+                            }else{
+                                layer.msg('不需审核');
+                                auditMark = 1;
+                            }
+                        });
+
                         form.on('submit(layuiadmin-app-form-submit)',function(data){
                             var field = data.field;
                             field.invalidMark = invalidMark;
                             field.userType = userType;
+                            field.auditMark = auditMark;
                             // console.log(field);
                             admin.req({
                                 url: setter.baseUrl+'sys/consumer/user/save',
