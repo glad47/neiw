@@ -1,0 +1,21 @@
+<title>Stencil Size</title>
+<div class="layui-fluid">
+    <table class="layui-table">
+        <tbody>
+        <tr>
+            {{# layui.each(d.params, function(index, item){  }}
+            {{# if(item.id != null){}}
+            <a style="margin-left: 80px;color: #1E9FFF;">{{ item.id}}</a><br>
+            {{# }}}
+            {{#  }); }}
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    layui.use(['form','jquery'], function(){
+        var form = layui.form;
+        $ = layui.jquery
+    });
+</script>

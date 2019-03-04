@@ -67,6 +67,8 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         pcbCost: '',
         totalPrice: ''
     };
+    // 报价后判断是否为样板   1为样板 2不是
+    var areaType = null;
 
     /**
      * 报存当前报价需要传输的字段 所有对象
@@ -86,7 +88,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         quoteConfigIds:'',
         productNo:'',   //客户编号
         userId: '', //用户id
-        orderType: '',  //订单类型（新单/返单/返单有效）
+        orderType: 1,  //订单类型（新单/返单/返单有效）
         gerberName: '',
         gerberPath: '',
         pcbName: '',     //客户型号
@@ -125,6 +127,40 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     });
     $("#panelWayX,#panelWayY,#quantityPanel").bind("input propertychange", function (even) {
         _top_quote();
+    });
+    $("input[name='testPoint']").bind("input propertychange", function (even) {
+        var trigger = setTimeout(function () {
+            $(".up-subbtn").click();    //重新报价
+        },1800);
+    });
+    $("input[name='panelRoutingPath']").bind("input propertychange", function (even) {
+        var trigger = setTimeout(function () {
+            $(".up-subbtn").click();    //重新报价
+        },1800);
+    });
+    $("input[name='punchingHoles']").bind("input propertychange", function (even) {
+        var trigger = setTimeout(function () {
+            $(".up-subbtn").click();    //重新报价
+        },1800);
+    });
+    $("input[name='punchingSlots']").bind("input propertychange", function (even) {
+        var trigger = setTimeout(function () {
+            $(".up-subbtn").click();    //重新报价
+        },1800);
+    });
+    $("input[name='surfaceArea']").bind("input propertychange", function (even) {
+        var trigger = setTimeout(function () {
+            $(".up-subbtn").click();    //重新报价
+        },1800);
+    });
+    $("#mPrice").bind("input propertychange", function (even) {
+        var a = $("#mPrice").val();
+        var c = $("#areasq").val();
+        var d = parseFloat(a*c).toFixed(2);
+        var f = $("#boardFee").val()
+        $("#unitPrice").val(parseFloat(f/c).toFixed(2));
+        $("#boardFee").val(d);
+        layer.msg(d);
     });
     function _top_quote(e) {
         if (topRadioType === 1){    //Single PCB
@@ -178,7 +214,32 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         } else if (this_checkVal == "OSP") {
             $("#selSurfacethickness").val("0.25-0.5um");
         }
+        if (this_checkVal == "Immersion_Gold"){
+            $("input[name='surfaceArea']").removeAttr("disabled");
+        } else {
+            $("input[name='surfaceArea']").attr("disabled",true);
+        }
         form.render('select','quoteForm');
+        form.render(null,'quoteForm');
+    });
+
+    form.on('select(testPointType)', function (data) {
+        $(".up-subbtn").click();    //重新报价
+    });
+
+    form.on('radio(routingType)', function(data){
+        var this_val = data.value;
+        if (this_val == "1"){
+            $("input[name='panelRoutingPath']").removeAttr("disabled");
+            $("input[name='punchingHoles']").attr("disabled",true);
+            $("input[name='punchingSlots']").attr("disabled",true);
+        } else {
+            $("input[name='panelRoutingPath']").attr("disabled",true);
+            $("input[name='punchingHoles']").removeAttr("disabled");
+            $("input[name='punchingSlots']").removeAttr("disabled");
+        }
+        $(".up-subbtn").click();    //重新报价
+        form.render();
     });
 
     //监听element==> 订单类型(PCB/Stencil/SMT)
@@ -292,7 +353,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         // 给pcb明细容器赋值
         pcb_container.overworkFee = this_price;
         // pcb_container.buildTime = $("input[name='buildTime']").attr("title");
-        $("#urgentFee").val(" $ "+this_price);
+        $("#urgentFee").val(this_price);
         quotePCBCost();
         quotePCBTotalPrice();
     });
@@ -303,7 +364,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         var optionText = $("#selBuildTime").find("option[value="+data.value+"]").text();
         pcb_container.overworkFee = this_price;
         pcb_container.buildTime = optionText;
-        $("#urgentFee").val(" $ "+this_price);
+        $("#urgentFee").val(this_price);
         quotePCBCost();
         quotePCBTotalPrice();
     });
@@ -355,10 +416,10 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
             success: function (data) {
                 var pcbQuantity = $("#pcbQuantity").val();
                 var pricePCS = parseFloat(data.data.totalAssemblyQuote/pcbQuantity);
-                $("#pricePCS").val(" $ "+pricePCS.toFixed(2));
-                $("#assemblyCost").val(" $ "+data.data.totalAssemblyQuote);
+                $("#pricePCS").val(pricePCS.toFixed(2));
+                $("#assemblyCost").val(data.data.totalAssemblyQuote);
                 if (data.data.totalAssemblyWeight != null && data.data.totalAssemblyWeight != ""){
-                    $("#assemblyWeight").val(" $ "+data.data.totalAssemblyWeight);
+                    $("#assemblyWeight").val(data.data.totalAssemblyWeight);
                 }
                 console.log(data);
                 var totalAssemblyQuote = data.data.totalAssemblyQuote;
@@ -635,6 +696,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
      */
     form.on('submit(quoteForm)',function (data) {
         var data = data.field;
+        var cncAndPunchType = data.cncAndPunch;
         pcb_rigdetaily = data;
         data.isExistSmt = 0;
         data.stackUp = "none";
@@ -642,7 +704,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         data.outerMinSpacing = data.outerMinTrack;
         data.silkScreenBotColor = data.solderMaskTopColor;
         data.solderMaskBotColor = data.solderMaskTopColor;
-        data.surfaceArea = '';
+        data.surfaceArea = data.surfaceArea;
         data.differentDesign = '';      //原来注释掉的
         data.orderNo = $("#orderNo").val();//客户PO号
         pcb_container.orderNo = data.orderNo;
@@ -681,13 +743,32 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                 pcb_container.weight = data.data.totalQuoteWeight;
                 //给页面元素赋值
                 post_data.totalWeight = data.data.totalQuoteWeight;
-                $("#boardFee").val(" $ "+data.data.totalBoardQuoteToUSD);
-                $("#enginnerFee").val("$ "+data.data.projectQuoteToUSD);
-                $("#testFee").val(" $ "+data.data.newTestQuoteTOUSD);
-                $("#toolingFee").val(" $ "+data.data.cncAndPunchingQuoteToUSD);
+                $("#boardFee").val(data.data.totalBoardQuoteToUSD);
+                $("#enginnerFee").val(data.data.projectQuoteToUSD);
                 $("#pcbWeight").val(data.data.totalQuoteWeight+" KG");
+                $("#testFee").val(data.data.totalTestPointToUSD);
+                $("#flyingTest").val(data.data.totalTestPointToUSD);
+                $("#routingCost").val(data.data.cncAndPunchingQuoteToUSD);
+                $("#unitPrice").val(data.data.unitPrice);
+                // $("input[name='punchingHoles']").val(data.data.punchingHoles);
+                // $("input[name='punchingSlots']").val(data.data.punchingSlots);
                 def_expressCountry.totalWeight = data.data.totalQuoteWeight;
                 post_data.totalWeight = data.data.totalQuoteWeight;
+                areaType = data.data.areaType;  //是否为样板标识
+                console.log("areaType:"+areaType);
+                if (cncAndPunchType == "1") {
+                    $("#toolingFee").val(0);
+                } else {
+                    $("#toolingFee").val(data.data.cncAndPunchingQuoteToUSD);
+                }
+                if (areaType == "1"){
+                    $("#mPrice").val("");
+                    $("#mPrice").attr("disabled",true);
+                } else {
+                    var _mPrice = parseFloat(data.data.totalBoardQuoteToUSD/$("#areasq").val()).toFixed(2);
+                    $("#mPrice").val(_mPrice);
+                    $("#mPrice").removeAttr("disabled");
+                }
                 quotePCBCost();
                 getBuildTime();
                 if (def_expressCountry.courierId == null || def_expressCountry.courierId == "") {
@@ -820,7 +901,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                     pcb_container.postFee = data.data.shippingCost;
                     public_data.postFee = data.data.shippingCost;
                     quote_price_group.shipping = data.data.shippingCost
-                    $("#shippingPrice").val(" $ "+quote_price_group.shipping);
+                    $("#shippingPrice").val(quote_price_group.shipping);
                     quotePCBTotalPrice();
                 } else {
                     $("#shippingPrice").val("不支持该配送");
@@ -865,7 +946,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                stmStencil_container.stencilWeight = stencil_data.stencilWeight; // 右侧 SMT-Stencil 明细容器
                $("#stencilWeight").val(stencil_data.stencilWeight+" KG ");  //页面重量
                stmStencil_container.stencilWeight = stencil_data.stencilSize_price; // 右侧 SMT-Stencil 明细容器
-               $("#inStencilCost").val(" $ "+stencil_data.stencilSize_price);
+               $("#inStencilCost").val(stencil_data.stencilSize_price);
                $("#inStencilSize").val($("#stenContainer").val());
                getCouriers();
                getCountrys();
@@ -888,7 +969,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         }
         var pcbCost = parseFloat(pcb_container.engineeringFee+pcb_container.boardFee+pcb_container.testCostFee+pcb_container.toolingFee)+parseFloat(pcb_container.overworkFee);
         quote_total.pcbCost = pcbCost;
-        $("#pcbCost").val("$ "+pcbCost.toFixed(2));
+        $("#pcbCost").val(pcbCost.toFixed(2));
     }
 
     /**
@@ -906,7 +987,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         var totalPrice = parseFloat(stencil_data.stencilSize_price+public_data.postFee);
         // 给pcb明细容器赋值
         pcb_container.subtotal = totalPrice;
-        $("#totalPrice").val("$"+totalPrice);
+        $("#totalPrice").val(totalPrice);
     }
 
     /**
@@ -1057,6 +1138,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     $('.up-rsetbtn').on('click', function () {
         $('.bot-rsetbtn').click();
     });
+
 
     /**
      * 数据监听

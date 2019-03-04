@@ -100,15 +100,15 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                 }
             }
             console.log(ids);
-            layer.confirm('确认提交 ['+ids+'] ?', function(index){
+            layer.confirm('是否生成合同?', function(index){
                 admin.req({
                     type: 'post',
                     data: {ids},
-                    url: setter.baseUrl+'sqe/pcborder/batch/submit',
+                    url: setter.baseUrl+'/scm/pcborder/createContractBeOt',
                     success: function (data) {
                         if (data.code == '0'){
                             layer.alert("提交成功！！");
-                            table.reload('scmManaTablePCB');
+                            table.reload('scmMana_tabPcb');
                             layer.close(index);
                         }
                     }
@@ -172,8 +172,20 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                     });
                 }
             });
-        } else if (obj.event == 'search'){
-            layer.msg('查看订单协同');
+        } else if (obj.event == 'rollback'){
+            layer.msg('回退操作');
+            layer.confirm('确定退回订单['+data.productNo+']?', function (index) {
+               obj.del();
+               admin.req({
+                  type: 'post',
+                  data: {'ids':data.id},
+                   url: setter.baseUrl+'/scm/pcborder/rollbackQuoteBeOt',
+                   success: function () {
+                       layer.alert("已退回["+data.productNo+']');
+                       table.reload('scmMana_tabPcb');
+                   }
+               });
+            });
         } else if (obj.event == 'eevScmdel'){
             layer.confirm('真的删除行么', function(index){
                 obj.del();
@@ -183,6 +195,7 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                     url: setter.baseUrl+ '/scm/ordersupplier/delete',
                     success: function () {
                         layer.alert("删除成功！");
+                        table.reload('scmMana_tabPcb');
                     }
                 });
                 layer.close(index);

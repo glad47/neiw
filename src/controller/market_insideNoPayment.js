@@ -138,7 +138,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'quoteGerberPath',title: 'quoteGerberPath',edit: 'text',hide: true}
             ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',edit: 'text',hide: true}
             ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',edit: 'text',hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#inside_cotract_Bar', width:70}
+            ,{fixed: 'right', title:'操作', toolbar: '#inside_no_payment_Bar', width:120}
         ]]
         ,done: function (res, curr, count) {
 
@@ -149,6 +149,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'confirmCheckData':
+                layer.msg(111)
                 var tabdata = checkStatus.data;
                 var userData = {
                     userName: '',
@@ -268,7 +269,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         };
     });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(inside_no_payment_Bar)', function(obj){
+    table.on('tool(inside_no_payment_Tabpcb)', function(obj){
         var data = obj.data;
         //console.log(obj)
         if(obj.event === 'del'){

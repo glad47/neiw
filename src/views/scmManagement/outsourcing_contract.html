@@ -10,16 +10,16 @@
         <div class="layui-tab-content">
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="scmMana_tabPcb" lay-filter="scmMana_tabPcb"></table>
-                <script type="text/html" id="scmMana_toolbar">
+                <table class="layui-table" id="scmManaOutSC_tabPcb" lay-filter="scmManaOutSC_tabPcb"></table>
+                <script type="text/html" id="scmManaOutSC_toolbar">
                     <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-sm" lay-event="evScmSubmit">提交</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="evScmSubmit">提交/回签</button>
                     </div>
                 </script>
-                <script type="text/html" id="scmMana_tabbar">
+                <script type="text/html" id="scmManaOutsource_tabbar">
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="eevScmedit">编辑</a>
                     <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
-                    <a class="layui-btn layui-btn-xs" lay-event="eevScmdel">删除</a>
+                    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="signBack">退回</a>
                 </script>
             </div>
             <!--钢网订单-->

@@ -33,11 +33,11 @@ layui.define(['admin','table','index','element','form'], function (exports) {
 
     //▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ PCB订单
     table.render({
-        elem: '#scmMana_tabPcb'
-        ,url: setter.baseUrl+'/scm/pcborder/quoteDetail/list'
-        ,toolbar: "#scmMana_toolbar"
+        elem: '#scmManaOutSC_tabPcb'
+        ,url: setter.baseUrl+'/scm/pcborder/outsourcingContract/list'
+        ,toolbar: "#scmManaOutSC_toolbar"
         ,cellMinWidth: 80
-        ,id: "scmMana_tabPcb"
+        ,id: "scmManaOutSC_tabPcb"
         ,page: true
         ,parseData: function (res) {
             return{
@@ -81,34 +81,41 @@ layui.define(['admin','table','index','element','form'], function (exports) {
             ,{field: 'subtotal', title: 'subtotal', hide: true}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmMana_tabbar',width: 160}
+            ,{fixed: 'right', title:'操作', toolbar: '#scmManaOutsource_tabbar',width: 160}
         ]]
         ,done: function (res, curr, count) {
 
         }
     });
-    table.on('toolbar(scmMana_tabPcb)', function (obj) {
+    table.on('toolbar(scmManaOutSC_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         if(obj.event === 'evScmSubmit'){
             var data = checkStatus.data;
+            console.log(data);
+            var supplierContractNo = null;
             var ids = null;
             for (var i=0;i<data.length;i++){
                 if (ids == null){
-                    ids = ids + data[i].id;
+                    ids += + data[i].id;
                 } else {
-                    ids = ids + ',' + data[i].id;
+                    ids += ',' + data[i].id;
+                }
+                if (supplierContractNo == null){
+                    supplierContractNo = data[i].supplierContractNo;
+                } else {
+                    supplierContractNo += ',' + data[i].supplierContractNo;
                 }
             }
             console.log(ids);
-            layer.confirm('确认提交 ['+ids+'] ?', function(index){
+            layer.confirm('确认回签 ['+supplierContractNo+'] ?', function(index){
                 admin.req({
                     type: 'post',
-                    data: {ids},
-                    url: setter.baseUrl+'sqe/pcborder/batch/submit',
+                    data: {'supplierContractNo':supplierContractNo},
+                    url: setter.baseUrl+'scm/pcborder/signBackByOc',
                     success: function (data) {
                         if (data.code == '0'){
                             layer.alert("提交成功！！");
-                            table.reload('scmManaTablePCB');
+                            table.reload('scmManaOutSC_tabPcb');
                             layer.close(index);
                         }
                     }
@@ -117,8 +124,9 @@ layui.define(['admin','table','index','element','form'], function (exports) {
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(scmMana_tabPcb)', function (obj) {
+    table.on('tool(scmManaOutSC_tabPcb)', function (obj) {
         var data = obj.data;
+        var supplierContractNo = data.supplierContractNo;
         if (obj.event == 'eevScmedit'){
             layer.msg('编辑操作');
             admin.popup({
@@ -156,7 +164,7 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                         success: function (data) {
                             layer.alert("供应商报价修改成功");
                             // layer.closeAll();
-                            table.reload('scmMana_tabPcb');
+                            table.reload('scmManaOutSC_tabPcb');
                             layer.close(index);
                         }
                     });
@@ -174,20 +182,20 @@ layui.define(['admin','table','index','element','form'], function (exports) {
             });
         } else if (obj.event == 'search'){
             layer.msg('查看订单协同');
-        } else if (obj.event == 'eevScmdel'){
-            layer.confirm('真的删除行么', function(index){
-                obj.del();
+        } else if (obj.event == 'signBack'){
+            layer.confirm('确定退回？', function(index){
                 admin.req({
                     type: 'post',
-                    data: {'ids':data.id},
-                    url: setter.baseUrl+ '/scm/ordersupplier/delete',
+                    data: {'supplierContractNo':supplierContractNo},
+                    url: setter.baseUrl+ 'scm/pcborder/rollbackOrderByOc',
                     success: function () {
-                        layer.alert("删除成功！");
+                        layer.alert("退回成功！");
+                        table.reload('scmManaOutSC_tabPcb');
                     }
                 });
                 layer.close(index);
             });
         }
     });
-    exports('scmManagement_quoteDetail', {});
+    exports('scmManagement_outContract', {});
 });
