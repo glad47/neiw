@@ -89,9 +89,9 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="pcbType">
-                            <option value="{{ d.params.pcbType || '' }}"  {{ d.params.pcbType === 'FR4' ? 'selected' : '' }}>FR4</option>
-                            <option value="{{ d.params.pcbType || '' }}" {{ d.params.department === 'Aluminum' ? 'selected' : '' }}>Aluminum</option>
-                            <option value="{{ d.params.pcbType || '' }}" {{ d.params.department === 'FR4+Aluminum' ? 'selected' : '' }}>FR4+Aluminum</option>
+                            <option value="{{ d.params.pcbType || '' }}"  {{ d.params.pcbType == 'FR4' ? 'selected' : '' }}>FR4</option>
+                            <option value="{{ d.params.pcbType || '' }}" {{ d.params.department == 'Aluminum' ? 'selected' : '' }}>Aluminum</option>
+                            <option value="{{ d.params.pcbType || '' }}" {{ d.params.department == 'FR4+Aluminum' ? 'selected' : '' }}>FR4+Aluminum</option>
                         </select>
                     </script>
                 </div>
@@ -101,25 +101,25 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="tg">
-                            <option value="{{ d.params.tg || '' }}"  {{ d.params.tg === '135' ? 'selected' : '' }}>135</option>
-                            <option value="{{ d.params.tg || '' }}" {{ d.params.tg === '140' ? 'selected' : '' }}>140</option>
-                            <option value="{{ d.params.tg || '' }}" {{ d.params.tg === '150' ? 'selected' : '' }}>150</option>
-                            <option value="{{ d.params.tg || '' }}" {{ d.params.tg === '170' ? 'selected' : '' }}>170</option>
-                            <option value="{{ d.params.tg || '' }}" {{ d.params.tg === '180' ? 'selected' : '' }}>180</option>
+                            <option value="{{ d.params.tg || '' }}"  {{ d.params.tg == '135' ? 'selected' : '' }}>135</option>
+                            <option value="{{ d.params.tg || '' }}" {{ d.params.tg == '140' ? 'selected' : '' }}>140</option>
+                            <option value="{{ d.params.tg || '' }}" {{ d.params.tg == '150' ? 'selected' : '' }}>150</option>
+                            <option value="{{ d.params.tg || '' }}" {{ d.params.tg == '170' ? 'selected' : '' }}>170</option>
+                            <option value="{{ d.params.tg || '' }}" {{ d.params.tg == '180' ? 'selected' : '' }}>180</option>
                         </select>
                     </script>
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Layer：</label>
+                <label class="layui-form-label">Layer：{{ d.params.layerNum }}</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="layer">
-                            <option value="{{ d.params.layerNum || '' }}"  {{ d.params.layerNum === '1' ? 'selected' : '' }}>1</option>
-                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum === '2' ? 'selected' : '' }}>2</option>
-                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum === '4' ? 'selected' : '' }}>4</option>
-                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum === '6' ? 'selected' : '' }}>6</option>
-                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum === '8' ? 'selected' : '' }}>8</option>
+                            <option value="{{ d.params.layerNum || '' }}"  {{ d.params.layerNum == '1' ? 'selected' : '' }}>1</option>
+                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum == '2' ? 'selected' : '' }}>2</option>
+                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum == '4' ? 'selected' : '' }}>4</option>
+                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum == '6' ? 'selected' : '' }}>6</option>
+                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum == '8' ? 'selected' : '' }}>8</option>
                         </select>
                     </script>
                 </div>
@@ -132,10 +132,10 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="cti">
-                            <option value="{{ d.params.cti || '' }}"  {{ d.params.cti === '175≤CTI<250' ? 'selected' : '' }}>175≤CTI<250</option>
-                            <option value="{{ d.params.cti || '' }}" {{ d.params.cti === '175≤CTI<400' ? 'selected' : '' }}>175≤CTI<400</option>
-                            <option value="{{ d.params.cti || '' }}" {{ d.params.cti === '400≤CTI<600' ? 'selected' : '' }}>400≤CTI<600</option>
-                            <option value="{{ d.params.cti || '' }}" {{ d.params.cti === 'CTI≥600' ? 'selected' : '' }}>CTI≥600</option>
+                            <option value="{{ d.params.cti || '' }}"  {{ d.params.cti == '175≤CTI<250' ? 'selected' : '' }}>175≤CTI<250</option>
+                            <option value="{{ d.params.cti || '' }}" {{ d.params.cti == '175≤CTI<400' ? 'selected' : '' }}>175≤CTI<400</option>
+                            <option value="{{ d.params.cti || '' }}" {{ d.params.cti == '400≤CTI<600' ? 'selected' : '' }}>400≤CTI<600</option>
+                            <option value="{{ d.params.cti || '' }}" {{ d.params.cti == 'CTI≥600' ? 'selected' : '' }}>CTI≥600</option>
                         </select>
                     </script>
                 </div>
@@ -145,14 +145,14 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="finishThickness">
-                            <option value="{{ d.params.finishThickness || '' }}"  {{ d.params.finishThickness === '0.4mm' ? 'selected' : '' }}>0.4mm</option>
-                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness === '0.6mm' ? 'selected' : '' }}>0.6mm</option>
-                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness === '0.8mm' ? 'selected' : '' }}>0.8mm</option>
-                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness === '1.0mm' ? 'selected' : '' }}>1.0mm</option>
-                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness === '1.2mm' ? 'selected' : '' }}>1.2mm</option>
-                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness === '1.5mm' ? 'selected' : '' }}>1.5mm</option>
-                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness === '1.6mm' ? 'selected' : '' }}>1.6mm</option>
-                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness === '2.0mm' ? 'selected' : '' }}>2.0mm</option>
+                            <option value="{{ d.params.finishThickness || '' }}"  {{ d.params.finishThickness == '0.4mm' ? 'selected' : '' }}>0.4mm</option>
+                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness == '0.6mm' ? 'selected' : '' }}>0.6mm</option>
+                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness == '0.8mm' ? 'selected' : '' }}>0.8mm</option>
+                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness == '1.0mm' ? 'selected' : '' }}>1.0mm</option>
+                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness == '1.2mm' ? 'selected' : '' }}>1.2mm</option>
+                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness == '1.5mm' ? 'selected' : '' }}>1.5mm</option>
+                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness == '1.6mm' ? 'selected' : '' }}>1.6mm</option>
+                            <option value="{{ d.params.finishThickness || '' }}" {{ d.params.finishThickness == '2.0mm' ? 'selected' : '' }}>2.0mm</option>
                         </select>
                     </script>
                 </div>
@@ -173,11 +173,11 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="heatConductivity">
-                            <option value="{{ d.params.heatConductivity || '' }}"  {{ d.params.heatConductivity === 'none' ? 'selected' : '' }}>none</option>
-                            <option value="{{ d.params.heatConductivity || '' }}"  {{ d.params.heatConductivity === '1W' ? 'selected' : '' }}>1W</option>
-                            <option value="{{ d.params.heatConductivity || '' }}"  {{ d.params.heatConductivity === '2W' ? 'selected' : '' }}>2W</option>
-                            <option value="{{ d.params.heatConductivity || '' }}"  {{ d.params.heatConductivity === '3W' ? 'selected' : '' }}>3W</option>
-                            <option value="{{ d.params.heatConductivity || '' }}"  {{ d.params.heatConductivity === 'PCBOnline' ? 'selected' : '' }}>PCBOnline</option>
+                            <option value="{{ d.params.heatConductivity || '' }}"  {{ d.params.heatConductivity == 'none' ? 'selected' : '' }}>none</option>
+                            <option value="{{ d.params.heatConductivity || '' }}"  {{ d.params.heatConductivity == '1W' ? 'selected' : '' }}>1W</option>
+                            <option value="{{ d.params.heatConductivity || '' }}"  {{ d.params.heatConductivity == '2W' ? 'selected' : '' }}>2W</option>
+                            <option value="{{ d.params.heatConductivity || '' }}"  {{ d.params.heatConductivity == '3W' ? 'selected' : '' }}>3W</option>
+                            <option value="{{ d.params.heatConductivity || '' }}"  {{ d.params.heatConductivity == 'PCBOnline' ? 'selected' : '' }}>PCBOnline</option>
                         </select>
                     </script>
                 </div>
@@ -187,12 +187,12 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="minHoleSize">
-                            <option value="{{ d.params.minHoleSize || '' }}"  {{ d.params.minHoleSize === 0.2 ? 'selected' : '' }}>0.2</option>
-                            <option value="{{ d.params.minHoleSize || '' }}"  {{ d.params.minHoleSize === 0.3 ? 'selected' : '' }}>0.3</option>
-                            <option value="{{ d.params.minHoleSize || '' }}"  {{ d.params.minHoleSize === 0.35 ? 'selected' : '' }}>0.35</option>
-                            <option value="{{ d.params.minHoleSize || '' }}"  {{ d.params.minHoleSize === '0.4↑' ? 'selected' : '' }}>0.4</option>
-                            <option value="{{ d.params.minHoleSize || '' }}"  {{ d.params.minHoleSize === '0.5↑' ? 'selected' : '' }}>0.5</option>
-                            <option value="{{ d.params.minHoleSize || '' }}"  {{ d.params.minHoleSize === '1.5↑' ? 'selected' : '' }}>1.5</option>
+                            <option value="{{ d.params.minHoleSize || '' }}"  {{ d.params.minHoleSize == 0.2 ? 'selected' : '' }}>0.2</option>
+                            <option value="{{ d.params.minHoleSize || '' }}"  {{ d.params.minHoleSize == 0.3 ? 'selected' : '' }}>0.3</option>
+                            <option value="{{ d.params.minHoleSize || '' }}"  {{ d.params.minHoleSize == 0.35 ? 'selected' : '' }}>0.35</option>
+                            <option value="{{ d.params.minHoleSize || '' }}"  {{ d.params.minHoleSize == '0.4↑' ? 'selected' : '' }}>0.4</option>
+                            <option value="{{ d.params.minHoleSize || '' }}"  {{ d.params.minHoleSize == '0.5↑' ? 'selected' : '' }}>0.5</option>
+                            <option value="{{ d.params.minHoleSize || '' }}"  {{ d.params.minHoleSize == '1.5↑' ? 'selected' : '' }}>1.5</option>
                         </select>
                     </script>
                 </div>
@@ -202,9 +202,9 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="pthCopper">
-                            <option value="{{ d.params.pthCopper || '' }}"  {{ d.params.pthCopper === 'none' ? 'selected' : '' }}>none</option>
-                            <option value="{{ d.params.pthCopper || '' }}"  {{ d.params.pthCopper === 'min18um' ? 'selected' : '' }}>min18um</option>
-                            <option value="{{ d.params.pthCopper || '' }}"  {{ d.params.pthCopper === 'min20um' ? 'selected' : '' }}>min20um</option>
+                            <option value="{{ d.params.pthCopper || '' }}"  {{ d.params.pthCopper == 'none' ? 'selected' : '' }}>none</option>
+                            <option value="{{ d.params.pthCopper || '' }}"  {{ d.params.pthCopper == 'min18um' ? 'selected' : '' }}>min18um</option>
+                            <option value="{{ d.params.pthCopper || '' }}"  {{ d.params.pthCopper == 'min20um' ? 'selected' : '' }}>min20um</option>
                         </select>
                     </script>
                 </div>
@@ -217,11 +217,11 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="heatConductivity">
-                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === 'none' ? 'selected' : '' }}>none</option>
-                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === '1oz' ? 'selected' : '' }}>1oz</option>
-                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === '2oz' ? 'selected' : '' }}>2oz</option>
-                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === '3oz' ? 'selected' : '' }}>3oz</option>
-                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper === '4oz' ? 'selected' : '' }}>4oz</option>
+                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper == 'none' ? 'selected' : '' }}>none</option>
+                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper == '1oz' ? 'selected' : '' }}>1oz</option>
+                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper == '2oz' ? 'selected' : '' }}>2oz</option>
+                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper == '3oz' ? 'selected' : '' }}>3oz</option>
+                            <option value="{{ d.params.innerLayerCopper || '' }}"  {{ d.params.innerLayerCopper == '4oz' ? 'selected' : '' }}>4oz</option>
                         </select>
                     </script>
                 </div>
@@ -231,9 +231,9 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="outerLayerCopper">
-                            <option value="{{ d.params.outerLayerCopper || '' }}"  {{ d.params.outerLayerCopper === '1oz' ? 'selected' : '' }}>1oz</option>
-                            <option value="{{ d.params.outerLayerCopper || '' }}"  {{ d.params.outerLayerCopper === '2oz' ? 'selected' : '' }}>2oz</option>
-                            <option value="{{ d.params.outerLayerCopper || '' }}"  {{ d.params.outerLayerCopper === '3oz' ? 'selected' : '' }}>3oz</option>
+                            <option value="{{ d.params.outerLayerCopper || '' }}"  {{ d.params.outerLayerCopper == '1oz' ? 'selected' : '' }}>1oz</option>
+                            <option value="{{ d.params.outerLayerCopper || '' }}"  {{ d.params.outerLayerCopper == '2oz' ? 'selected' : '' }}>2oz</option>
+                            <option value="{{ d.params.outerLayerCopper || '' }}"  {{ d.params.outerLayerCopper == '3oz' ? 'selected' : '' }}>3oz</option>
                         </select>
                     </script>
                 </div>
@@ -254,9 +254,9 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="bgaSize">
-                            <option value="{{ d.params.bgaSize || '' }}"  {{ d.params.bgaSize === 0.22 ? 'selected' : '' }}>0.22</option>
-                            <option value="{{ d.params.bgaSize || '' }}"  {{ d.params.bgaSize === 0.25 ? 'selected' : '' }}>0.25</option>
-                            <option value="{{ d.params.bgaSize || '' }}"  {{ d.params.bgaSize === 0.3 ? 'selected' : '' }}>0.3</option>
+                            <option value="{{ d.params.bgaSize || '' }}"  {{ d.params.bgaSize == 0.22 ? 'selected' : '' }}>0.22</option>
+                            <option value="{{ d.params.bgaSize || '' }}"  {{ d.params.bgaSize == 0.25 ? 'selected' : '' }}>0.25</option>
+                            <option value="{{ d.params.bgaSize || '' }}"  {{ d.params.bgaSize == 0.3 ? 'selected' : '' }}>0.3</option>
                         </select>
                     </script>
                 </div>
@@ -266,15 +266,15 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="solderMaskTopColor">
-                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor === 'none' ? 'selected' : '' }}>none</option>
-                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor === 'green' ? 'selected' : '' }}>green</option>
-                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor === 'black' ? 'selected' : '' }}>black</option>
-                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor === 'white' ? 'selected' : '' }}>white</option>
-                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor === 'yellow' ? 'selected' : '' }}>yellow</option>
-                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor === 'red' ? 'selected' : '' }}>red</option>
-                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor === 'blue' ? 'selected' : '' }}>blue</option>
-                            <option value="matte_black"  {{ d.params.solderMaskTopColor === 'matte black' ? 'selected' : '' }}>matte black</option>
-                            <option value="matte_green"  {{ d.params.solderMaskTopColor === 'matte green' ? 'selected' : '' }}>matte green</option>
+                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor == 'none' ? 'selected' : '' }}>none</option>
+                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor == 'green' ? 'selected' : '' }}>green</option>
+                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor == 'black' ? 'selected' : '' }}>black</option>
+                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor == 'white' ? 'selected' : '' }}>white</option>
+                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor == 'yellow' ? 'selected' : '' }}>yellow</option>
+                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor == 'red' ? 'selected' : '' }}>red</option>
+                            <option value="{{ d.params.solderMaskTopColor || '' }}"  {{ d.params.solderMaskTopColor == 'blue' ? 'selected' : '' }}>blue</option>
+                            <option value="matte_black"  {{ d.params.solderMaskTopColor == 'matte black' ? 'selected' : '' }}>matte black</option>
+                            <option value="matte_green"  {{ d.params.solderMaskTopColor == 'matte green' ? 'selected' : '' }}>matte green</option>
                         </select>
                     </script>
                 </div>
@@ -284,8 +284,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="silkScreenTopColor">
-                            <option value="{{ d.params.silkScreenTopColor || '' }}"  {{ d.params.silkScreenTopColor === 'black' ? 'selected' : '' }}>black</option>
-                            <option value="{{ d.params.silkScreenTopColor || '' }}"  {{ d.params.silkScreenTopColor === 'white' ? 'selected' : '' }}>white</option>
+                            <option value="{{ d.params.silkScreenTopColor || '' }}"  {{ d.params.silkScreenTopColor == 'black' ? 'selected' : '' }}>black</option>
+                            <option value="{{ d.params.silkScreenTopColor || '' }}"  {{ d.params.silkScreenTopColor == 'white' ? 'selected' : '' }}>white</option>
                         </select>
                     </script>
                 </div>
@@ -298,10 +298,10 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="surfaceFinish">
-                            <option value="{{ d.params.surfaceFinish || '' }}"  {{ d.params.surfaceFinish === 'HASL_with_lead' ? 'selected' : '' }}>HASL with lead</option>
-                            <option value="{{ d.params.surfaceFinish || '' }}"  {{ d.params.surfaceFinish === 'HASL_lead_free' ? 'selected' : '' }}>HASL lead free</option>
-                            <option value="{{ d.params.surfaceFinish || '' }}"  {{ d.params.surfaceFinish === 'Immersion_Gold' ? 'selected' : '' }}>Immersion Gold</option>
-                            <option value="{{ d.params.surfaceFinish || '' }}"  {{ d.params.surfaceFinish === 'OSP' ? 'selected' : '' }}>OSP</option>
+                            <option value="{{ d.params.surfaceFinish || '' }}"  {{ d.params.surfaceFinish == 'HASL_with_lead' ? 'selected' : '' }}>HASL with lead</option>
+                            <option value="{{ d.params.surfaceFinish || '' }}"  {{ d.params.surfaceFinish == 'HASL_lead_free' ? 'selected' : '' }}>HASL lead free</option>
+                            <option value="{{ d.params.surfaceFinish || '' }}"  {{ d.params.surfaceFinish == 'Immersion_Gold' ? 'selected' : '' }}>Immersion Gold</option>
+                            <option value="{{ d.params.surfaceFinish || '' }}"  {{ d.params.surfaceFinish == 'OSP' ? 'selected' : '' }}>OSP</option>
                         </select>
                     </script>
                 </div>
@@ -350,8 +350,8 @@
                     <script type="text/html" template>
                         <!--<input type="text" name="blindHoles" value="{{ d.params.blindHoles || 'No' }}" autocomplete="off" class="layui-input">-->
                         <select name="blindHoles">
-                            <option value="{{ d.params.blindHoles || '0' }}"  {{ d.params.blindHoles === '' ? 'selected' : '' }}>No</option>
-                            <option value="{{ d.params.blindHoles || '1' }}" {{ d.params.blindHoles == '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="{{ d.params.blindHoles || '0' }}"  {{ d.params.blindHoles == '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.blindHoles || '1' }}" {{ d.params.blindHoles = '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -361,7 +361,7 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="edgePlated">
-                            <option value="{{ d.params.edgePlated || '0' }}"  {{ d.params.edgePlated === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.edgePlated || '0' }}"  {{ d.params.edgePlated == '' ? 'selected' : '' }}>No</option>
                             <option value="{{ d.params.edgePlated || '1' }}" {{ d.params.edgePlated == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
@@ -372,7 +372,7 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="halfHoleLated">
-                            <option value="{{ d.params.halfHoleLated || '0' }}"  {{ d.params.halfHoleLated === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.halfHoleLated || '0' }}"  {{ d.params.halfHoleLated == '' ? 'selected' : '' }}>No</option>
                             <option value="{{ d.params.halfHoleLated || '1' }}" {{ d.params.halfHoleLated == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
@@ -386,7 +386,7 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="contrlImpeance">
-                            <option value="{{ d.params.contrlImpeance || '0' }}"  {{ d.params.contrlImpeance === '0' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.contrlImpeance || '0' }}"  {{ d.params.contrlImpeance == '0' ? 'selected' : '' }}>No</option>
                             <option value="{{ d.params.contrlImpeance || '1' }}" {{ d.params.contrlImpeance == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
@@ -397,7 +397,7 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="buriedHoles">
-                            <option value="{{ d.params.buriedHoles || '0' }}"  {{ d.params.buriedHoles === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.buriedHoles || '0' }}"  {{ d.params.buriedHoles == '' ? 'selected' : '' }}>No</option>
                             <option value="{{ d.params.buriedHoles || '1' }}" {{ d.params.buriedHoles == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
@@ -408,7 +408,7 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="carbon">
-                            <option value="{{ d.params.carbon || '0' }}"  {{ d.params.carbon === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.carbon || '0' }}"  {{ d.params.carbon == '' ? 'selected' : '' }}>No</option>
                             <option value="{{ d.params.carbon || '1' }}" {{ d.params.carbon == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
@@ -422,7 +422,7 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="deepMillRouting">
-                            <option value="{{ d.params.deepMillRouting || '0' }}"  {{ d.params.deepMillRouting === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.deepMillRouting || '0' }}"  {{ d.params.deepMillRouting == '' ? 'selected' : '' }}>No</option>
                             <option value="{{ d.params.deepMillRouting || '1' }}" {{ d.params.deepMillRouting == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
@@ -433,7 +433,7 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="bevellingCamfer">
-                            <option value="{{ d.params.bevellingCamfer || '0' }}"  {{ d.params.bevellingCamfer === '' ? 'selected' : '' }}>No</option>
+                            <option value="{{ d.params.bevellingCamfer || '0' }}"  {{ d.params.bevellingCamfer == '' ? 'selected' : '' }}>No</option>
                             <option value="{{ d.params.bevellingCamfer || '1' }}" {{ d.params.bevellingCamfer == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>

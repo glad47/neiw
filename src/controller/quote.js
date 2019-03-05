@@ -224,6 +224,12 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     });
 
     form.on('select(testPointType)', function (data) {
+        var this_checkVal = data.value;
+        if (this_checkVal == "1") {
+            $("#testPointT").text("飞针费：");
+        }  else {
+            $("#testPointT").text("测试架：");
+        }
         $(".up-subbtn").click();    //重新报价
     });
 
@@ -719,6 +725,18 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                 return false;
             }
         }
+        if (data.testPoint == null || data.testPoint == "") {
+            // $("#testPoint").focus();
+            $('html,body').animate({scrollTop:200},'slow');
+            layer.msg('请输入测试点数量 !');
+            return false;
+        }
+        console.log('surfaceFinish:'+data.surfaceFinish+'\nsurfaceArea:'+data.surfaceArea);
+        // if (data.surfaceFinish == "Immersion_Gold" && data.surfaceArea == null) {
+        if (data.surfaceFinish == "Immersion_Gold" && data.surfaceArea == "") {
+            layer.msg('请输入沉金面积！');
+            return false;
+        }
         //发送请求获取价格
         admin.req({
             type: 'post',
@@ -806,11 +824,13 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
             data: {areaSq:areaSq,layerNum: layerNum},
             success: function (data) {
                 $(".build-time-item").css("display","");
+                var def_buildTime;
                 $('#selBuildTime').children().remove();
                 for (var i=0;i<data.data.length;i++){
-                    // $(".build-time-block").append("<input type=\"radio\" lay-filter=\"buildTimeRadio\" name=\"buildTime\" value="+data.data[i].price+" title="+data.data[i].dayNumber+">");
                     $("#selBuildTime").append("<option value="+data.data[i].price+">"+data.data[i].dayNumber+"</option>");
+                    def_buildTime = data.data[0].dayNumber;
                 }
+                pcb_container.buildTime = def_buildTime;
                 //去掉天数为none的
                 $(".build-time-item input").each(function () {
                    var flag = $(this).attr("title");
@@ -977,7 +997,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
      */
     function quotePCBTotalPrice() {
         quote_total.totalPrice = parseFloat(quote_total.pcbCost+quote_price_group.shipping).toFixed(2);
-        $("#totalPrice").val("$"+quote_total.totalPrice);
+        $("#totalPrice").val(quote_total.totalPrice);
     }
 
     /**

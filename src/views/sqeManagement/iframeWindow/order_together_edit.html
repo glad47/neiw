@@ -34,7 +34,10 @@
                 <div class="layui-form-item layui-col-md12">
                     <label class="layui-form-label">交期：</label>
                     <div class="layui-input-inline">
-                        <input name="deliveryTime" class="layui-input" type="text" id="deliveryDate">
+                        <!--日期处理-->
+                        {{# var deliveryTime=d.params.deliveryTime }}
+                        {{# var newDeliveryTime=/\d{4}-\d{1,2}-\d{1,2}/g.exec(deliveryTime) }}
+                        <input name="deliveryTime" class="layui-input" type="text" id="deliveryDate" value="{{ d.params.deliveryTime }}">
                     </div>
                 </div>
             </script>

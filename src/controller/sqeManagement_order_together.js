@@ -128,10 +128,14 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
                 ,success: function (layero, index) {
                     var id = data.id;
+                    var supplierId = data.supplierId;
+                    var orderId = data.orderId;
                     view(this.id).render('sqeManagement/iframeWindow/order_together_edit',data).done(function () {
                         form.on('submit(otEdit)', function (data) {
                             var field = data.field;
                             field.id = id;
+                            field.orderId = orderId;
+                            field.supplierId = supplierId;
                             console.log(field);
                             admin.req({
                                 type: 'post',

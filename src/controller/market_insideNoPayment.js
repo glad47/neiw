@@ -145,11 +145,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
     });
     //pcb订单头工具栏事件
-    table.on('toolbar(inside_no_payment_option)', function(obj){
+    table.on('toolbar(inside_no_payment_Tabpcb)', function(obj){
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'confirmCheckData':
-                layer.msg(111)
                 var tabdata = checkStatus.data;
                 var userData = {
                     userName: '',

@@ -209,24 +209,18 @@
                         <!--总价格-->
                         <td>{{ item.subtotal}}</td>
                     </tr>
+                    <tr>
+                        <td>remark:</td>
+                        <td colspan="7">{{ item.remark || ''}}</td>
+                        <td>Total:</td>
+                        <td>
+                            {{# var total = (d.params.total).toFixed(2) }}
+                            {{ total }}
+                        </td>
+                    </tr>
                     {{#  }); }}
                     </tbody>
                 </table>
-                <div class="contrackB-tabBot" style="display: flex;margin-top: 10px;">
-                    <div class="remark" style="width: 85%;">
-                            <span style="position: absolute;">Remark:</span>
-                            {{# layui.each(d.params, function(index, item){  }}
-                            {{# if(item.remark != null){}}
-                            <a style="margin-left: 80px;color: #1E9FFF;">{{ item.productNo}}:</a> {{ item.remark}}<br>
-                            {{# }}}
-                            {{#  }); }}
-                    </div>
-                    <div class="total" style="width: 15%;color: orangered;text-align: right;">
-                        <span>Total:</span>
-                        {{# var total = (d.params.total).toFixed(2) }}
-                        {{ total }}
-                    </div>
-                </div>
             </script>
         </div>
 
@@ -261,10 +255,10 @@
             <div class="layui-col-md6 bot-info-lef">
                 <ul>
                     <li><strong>PCBonline</strong></li>
-                    <li>Area 2, Huaidecuigang industrial zone ,Fuyong road,</li>
-                    <li>Bao'an district, Shenzhen, China.</li>
+                    <li>Compass No.8299, Bao'an Avenue,Shajin Road,</li>
+                    <li>Bao'an District,Shenzhen, China.</li>
                     <li>Tel: +86 0755-27398155<a>Fax: +86 0755-27398355</a></li>
-                    <li>Sales@globalsuccess.com.cn<a>www.pcbonline.com</a></li>
+                    <li>info@pcbonline.com<a>www.pcbonline.com</a></li>
                 </ul>
             </div>
             <div class="layui-col-md6 bot-info-rig">

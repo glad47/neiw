@@ -166,7 +166,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         } else if(obj.event === 'edit'){
             admin.popup({
                 title: '编辑PCB订单信息'
-                ,area: ['66%', '90%']
+                ,area: ['76%', '90%']
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
                         form.render(null, '');

@@ -399,11 +399,11 @@
                                                     <label class="layui-form-label" style="width: 80px;">Test Type:</label>
                                                     <select name="testPointType" id="selTestcost" lay-filter="testPointType">
                                                         <option value="0">none</option>
-                                                        <option value="1">flying probe test</option>
-                                                        <option value="2">Test Fee:</option>
+                                                        <option value="1">flying probe</option>
+                                                        <option value="2">Test Fixture</option>
                                                     </select>
                                                 </div>
-                                                <label class="layui-form-label">Test Fixture:</label>
+                                                <label class="layui-form-label">Test Fee:</label>
                                                 <div class="layui-input-inline" style="width: 128px">
                                                     <input type="text" name="testCost"  autocomplete="off" class="layui-input" id="flyingTest">
                                                 </div>
@@ -412,7 +412,7 @@
                                             <div class="layui-form-item">
                                                 <label class="layui-form-label" style="width: 80px;">Test Point:</label>
                                                 <div class="layui-input-inline" style="width: 128px">
-                                                    <input type="text" name="testPoint"  autocomplete="off" class="layui-input">
+                                                    <input type="text" name="testPoint"  autocomplete="off" class="layui-input" id="testPoint">
                                                 </div>
                                             </div>
                                             <div class="layui-form-item lots-checkbox-group">
@@ -639,7 +639,7 @@
 
                           <div class="layui-inline layui-col-md6">
                               <div class="layui-input-inline layui-col-md9">
-                                  <input type="text" class="layui-input" id="orderPN" placeholder="内部型号" readonly>
+                                  <input type="text" class="layui-input" id="orderPN" placeholder="内部型号自动生成">
                               </div>
                               <div class="layui-input-inline layui-col-md2" style="margin-left: 2%;">
                                   <!--<button class="layui-btn" data-type="lookQuote">详情</button>-->
@@ -696,7 +696,7 @@
 
                               <div class="layui-form-item">
                                   <div class="rig-price-input layui-col-md6">
-                                      <label class="layui-form-label">测试费：</label>
+                                      <label class="layui-form-label" id="testPointT">飞针费：</label>
                                       <div class="layui-input-inline">
                                           <input class="layui-input" type="text" id="testFee" placeholder="0.00" >
                                       </div>
@@ -738,7 +738,9 @@
                                   </div>
                                   <div class="rig-others build-time-item layui-col-md6" style="display: none;width: 146px;">
                                       <div class="layui-input-block build-time-block">
-                                          <select name="selBuildTime" lay-filter="selBuildTime" lay-verify="required" id="selBuildTime"></select>
+                                          <select name="selBuildTime" lay-filter="selBuildTime" lay-verify="required" id="selBuildTime">
+                                              <option value="">请选择</option>
+                                          </select>
                                       </div>
                                   </div>
                               </div>
