@@ -215,6 +215,16 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 layui.table.reload('or_Tabpcb_no_payment');
                 layer.close(index);
             })
+        } else if (obj.event === 'info_pact') {
+            layer.open({
+                type: 2
+                ,title: 'Look Invoice'
+                ,content: setter.imUrl+'order/invoicePage?orderId='+ data.orderId
+                ,maxmin: true
+                ,area: ['75%', '70%']
+                ,btn: ['确定', '取消']
+                ,yes: function(index, layero){}
+            });
         }
     });
 
