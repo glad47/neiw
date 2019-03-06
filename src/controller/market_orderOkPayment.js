@@ -45,8 +45,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-okPayment-status',width: 110}
             ,{field: '', title:'File', toolbar: '#pcb-file', align:'center'}
             ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254}
-            ,{field:'productNo', title: 'ProductNo', align:'center', width: 114}
             ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
+            ,{field:'productNo', title: 'ProductNo', align:'center', width: 114}
             ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
             ,{field:'layerNum', title: 'Layer', align:'center', width: 114}
             ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}
@@ -407,7 +407,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
         ,where: {
             access_token: layui.data('layuiAdmin').access_token,
-            status:3
+            statusMark:3
         }
         ,cols: [[
             {field: 'id', title: 'ID', hide: true},

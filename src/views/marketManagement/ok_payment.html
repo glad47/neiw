@@ -127,6 +127,26 @@
                     <a style="color: green">
                         <i class="layui-icon layui-icon-ok"></i>已支付
                     </a>
+                    {{# } else if(d.status === 4){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>待出货
+                    </a>
+                    {{# } else if(d.status === 5){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>待运输
+                    </a>
+                    {{# } else if(d.status === 6){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>订单完成
+                    </a>
+                    {{# } else if(d.status === 7){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>订单取消
+                    </a>
+                    {{# } else if(d.status === 8){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>订单投诉
+                    </a>
                     {{# } }}
                 </script>
                 <script type="text/html" id="Tabtb-stencil-market-okPayment-status">
@@ -141,6 +161,26 @@
                     {{# } else if(d.status === 3){ }}
                     <a style="color: green">
                         <i class="layui-icon layui-icon-ok"></i>已支付
+                    </a>
+                    {{# } else if(d.status === 4){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>待出货
+                    </a>
+                    {{# } else if(d.status === 5){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>待运输
+                    </a>
+                    {{# } else if(d.status === 6){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>订单完成
+                    </a>
+                    {{# } else if(d.status === 7){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>订单取消
+                    </a>
+                    {{# } else if(d.status === 8){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>订单投诉
                     </a>
                     {{# } }}
                 </script>
