@@ -91,7 +91,6 @@
                     <td>{{ d.params.overworkFee }}</td>
                 </tr>
                 <tr>
-                    {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+d.params.testCostFee+d.params.overworkFee)}}
                     <td>Weight:</td>
                     <td>{{ d.params.weight }}</td>
                     <td>Build Time:</td>
@@ -100,7 +99,7 @@
                     <td>/</td>
                     <td>PCB Cost:</td>
                     <td>
-                        {{ pcbcost }}
+                        {{ d.params.subtotal }}
                     </td>
                 </tr>
                 <!--<tr>-->

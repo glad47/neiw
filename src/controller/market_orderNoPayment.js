@@ -45,7 +45,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#pcbor_status',width: 150}
             ,{field: '', title:'File', toolbar: '#pcb-file', align:'center'}
             ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254}
-            ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
             ,{field:'productNo', title: 'ProductNo', align:'center', width: 114}
             ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
             ,{field:'layerNum', title: 'Layer', align:'center', width: 114}
@@ -53,7 +52,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114}
             ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
             ,{field:'boardFee', title: 'BoardFee', align:'center', width: 114}
-
+            ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
             ,{field:'userId', title: 'User ID',width: 80,hide: true}
             ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
             ,{field:'orderType', title: 'Order Type', align:'center', width: 109,hide: true}
@@ -243,13 +242,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#stencil-status'}
             ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
-            ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
             ,{field: 'productNo', title: 'Product No', align:'center', width: 134}
             ,{field: 'totalStencilFee', title: 'TotalStencilFee($)', align:'center', width: 144}
             ,{field: 'stencilType', title: 'Stencil Type', align:'center', width: 124}
             ,{field: 'stencilSide', title: 'Stencil Side', align:'center', width: 124}
             ,{field: 'quantity', title: 'Quantity', align:'center', width: 114}
             ,{field: 'size', title: 'Size', align:'center', width: 80}
+            ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
             ,{field: 'quoteId', title: 'Quote ID', align:'center', width: 114, hide: true}
             ,{field: 'thickness', title: 'Thickness', align:'center', width: 114, hide: true}
             ,{field: 'existingFiducials', title: 'Existing Fiducials', align:'center', width: 145, hide: true}
@@ -406,7 +405,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
             ,{field: 'smtPartNum', title: 'SMT PartNum', align:'center', width: 124}
             ,{field: 'throughHolePartNum', title: 'Through Hole PartNum', align:'center', width: 224}
-            ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
             ,{field: 'assemblySide', title: 'Assembly Side', align:'center', width: 165}
             ,{field: 'productNo', title: 'Product No', align:'center', width: 134}
             ,{field: 'invoiceNo', title: 'Invoice No', align:'center', width: 134}
@@ -414,6 +412,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'assemblyType', title: 'Stencil Type', align:'center', width: 124}
             ,{field: 'uniquePartNum', title: 'Unique PartNum', align:'center', width: 124}
             ,{field: 'quantity', title: 'Quantity', align:'center', width: 114}
+            ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
             ,{field: 'orderId', title: 'Order ID', align:'center', width: 114, hide: true}
             ,{field: 'orderNo', title: 'Order No', align:'center', width: 114, hide: true}
             ,{field: 'isLock', title: 'Is Lock', align:'center', width: 114, hide: true}

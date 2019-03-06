@@ -26,23 +26,23 @@ layui.define(['admin', 'table','element','form'], function(exports){
         }
         ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,cols: [[
-             {field:'id', title: 'id', sort: true}
+             {field:'id', title: 'id', sort: true, minWidth: 80}
             ,{field:'userName', title: '用户名'}
-            ,{field:'userSystemId', title: '用户系统id', sort: true}
-            ,{field:'userType',title:'内部用户',sort:true, templet:'#userType'}
-            ,{field:'userIp',title:'注册ip',sort:true}
-            ,{field:'email', title: '邮箱', sort: true}
-            ,{field:'skypeId', title: 'Skype', sort: true}
+            ,{field:'userSystemId', title: '客户ID', sort: true}
+            ,{field:'userType',title:'内外',sort:true, templet:'#userType', minWidth: 80}
+            ,{field:'userIp',title:'注册IP',sort:true}
+            ,{field:'email', title: '邮箱', sort: true, minWidth: 196}
+            ,{field:'skypeId', title: 'Skype', sort: true, hide: true}
             ,{field:'mobilePhone', title: '电话', sort: true}
-            ,{field:'googleId', title: 'Google', sort: true, align: 'right'} //单元格内容水平居中
-            ,{field:'facebookId', title: 'Facebook', sort: true, align: 'right'}
+            ,{field:'googleId', title: 'Google', sort: true, align: 'right', hide: true} //单元格内容水平居中
+            ,{field:'facebookId', title: 'Facebook', sort: true, align: 'right', hide: true}
             ,{field:'companName',title:'公司名',sort:true, align:'right'}
             ,{field:'address', title: '地址', sort: true, align: 'right'}
             ,{field:'country', title: '国家', sort: true}
             ,{field:'city', title: '城市', sort: true}
-            ,{field:'jobrole', title: '工作角色', sort: true}
-            ,{field:'businessType', title: '业务类型', sort: true}
-            ,{field:'applications', title: '应用', sort: true}
+            ,{field:'jobrole', title: '工作角色', sort: true, hide: true}
+            ,{field:'businessType', title: '业务类型', sort: true, hide: true}
+            ,{field:'applications', title: '应用', sort: true, hide: true}
             ,{field:'gmtCreate', title: '注册时间', sort: true}
             ,{field:'gmtModified', title: '更新时间', sort: true}
             ,{width:150, align:'center',align:'center',fixed: 'right',toolbar:'#role-table-operate-barDemo',title:'操作'}

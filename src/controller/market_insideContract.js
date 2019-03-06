@@ -20,7 +20,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         orderType: 0,   //订单类型
         customerSn: null, //客户编号 如：a11
     };
-
+    // 表格对象
+    var pcbtabObj;
     // 监听tab选项卡
     element.on('tab(tab-internalQuote)', function (data) {
         defVal.orderType = data.index;
@@ -29,7 +30,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
         elem: '#inside_cotract_Tabpcb'
-        ,url: setter.baseUrl+'/epc/pcborder/internalContract'
+        ,url: setter.baseUrl+'epc/pcborder/internalContract'
         ,toolbar: "#inside_cotract_option"
         ,cellMinWidth: 80
         ,id: "inside_cotract_Tabpcb"
@@ -48,7 +49,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             {type:'checkbox'}
             ,{field: 'orderType',title: '订单类型',edit: 'text'}    //1=新单  2=返单    3=返单有改
             ,{field: 'productNo', title: '内部编码',width: 130}
-            ,{field: 'invoiceNo',title: '合同号',edit: 'text'}
+            ,{field: 'invoiceNo',title: '合同号',edit: 'text',minWidth: 140}
             ,{field: 'gerberName',title: '文件名',edit: 'text',width: 160}
             ,{field: 'pcbType',title: 'PCB类型',edit: 'text',width: 130}
             // 型号占位
@@ -141,7 +142,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{fixed: 'right', title:'操作', toolbar: '#inside_cotract_Bar', width:112}
         ]]
         ,done: function (res, curr, count) {
-
+            var data = res.data;    //获取表格所有数据对象
+            pcbtabObj = data;
         }
     });
     //监听行单击事件（单击事件为：rowDouble）
@@ -159,7 +161,19 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     table.on('tool(inside_cotract_Tabpcb)', function(obj){
         var data = obj.data;
         var lineData = data;
-        console.log(obj.data)
+        var this_invoiceNo = data.invoiceNo;
+        var sameData = new Object();
+        var sd_len = 0;
+        for(var i=0;i<pcbtabObj.length;i++){
+            if (this_invoiceNo == pcbtabObj[i].invoiceNo) {
+                console.log('sd_len:'+sd_len);
+                sameData[sd_len] = pcbtabObj[i]
+                sd_len += 1;
+            }
+            console.log('pcbtabObj[i].invoiceNo:'+pcbtabObj[i].invoiceNo);
+        }
+        console.log(sameData);
+        console.log(pcbtabObj)
         var invoiceNo = data.invoiceNo;
         //console.log(obj)
         if(obj.event === 'del'){
@@ -177,7 +191,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 });
             });
         } else if(obj.event === 'search-contract'){
-            var popupData = [];
+            var popupData = {data:{}};
             layer.msg("查看合同操作");
             admin.req({
                 type: 'post',
@@ -187,7 +201,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     var viewName;
                     var productNo = null;
                     var contractType;
-                    popupData[0] = lineData;
+                    popupData.data = sameData;
                     popupData.total = lineData.subtotal;
                     console.log(popupData);
                     // console.log = popupData.sort(compare('quantityPcs'));
@@ -203,7 +217,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                         }
                     });
                     admin.popup({
-                        title: '查看报价合同'
+                        title: '内部合同'
                         ,area: ['60%', '90%']
                         ,btn: ['打印','关闭']
                         ,yes:function(index, layero){
@@ -227,7 +241,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                 if (contractType === 1){
                                     // layui.each遍历的数据，td最少为6条，没有数据的显示空白
                                     var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
-                                    var dataLength = popupData.length;
+                                    var dataLength = popupData.data.length;
                                     var addTrNum;
                                     if (dataLength < 4){
                                         addTrNum = 4;

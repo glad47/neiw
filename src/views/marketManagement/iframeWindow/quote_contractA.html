@@ -131,8 +131,8 @@
                         <li>
                             <span>P/O</span>
                             :
-                            {{# if(d.params[0].orderNo != null){ }}
-                                <a>{{ d.params[0].orderNo}}</a>
+                            {{# if(d.params.data[0].orderNo != null){ }}
+                                <a>{{ d.params.data[0].orderNo}}</a>
                             {{# }else{ }}
                                 <a>&nbsp;</a>
                             {{# } }}
@@ -140,22 +140,22 @@
                         <li>
                             <span>PCB material</span>
                             :
-                            <a>{{ d.params[0].pcbType }}</a>
+                            <a>{{ d.params.data[0].pcbType }}</a>
                         </li>
                         <li>
                             <span>No.of Layer</span>
                             :
-                            <a>{{ d.params[0].layerNum }}</a>
+                            <a>{{ d.params.data[0].layerNum }}</a>
                         </li>
                         <li>
                             <span>Thickness Cu</span>
                             :
-                            <a>{{ d.params[0].outerLayerCopper }}</a>
+                            <a>{{ d.params.data[0].outerLayerCopper }}</a>
                         </li>
                         <li>
                             <span>Board Finish</span>
                             :
-                            <a>{{ d.params[0].finishThickness }}</a>
+                            <a>{{ d.params.data[0].finishThickness }}</a>
                         </li>
                     </ul>
                 </div>
@@ -164,17 +164,17 @@
                         <li>
                             <span>P/N</span>
                             :
-                            <a>{{ d.params[0].productNo }}</a>
+                            <a>{{ d.params.data[0].productNo }}</a>
                         </li>
                         <li>
                             <span>Size</span>
                             :
                             <a>
-                                {{# if(d.params[0].panelSizeX != null){ }}
-                                {{# var panelWay = d.params[0].panelWayX*d.params[0].panelWayY }}
-                                    {{ d.params[0].panelSizeX }} * {{ d.params[0].panelSizeY }}mm / {{ panelWay }}
-                                {{# }else if(d.params[0].dimensionsX != null){ }}
-                                    {{ d.params[0].dimensionsX}} * {{ d.params[0].dimensionsY}}mm /1
+                                {{# if(d.params.data[0].panelSizeX != null){ }}
+                                {{# var panelWay = d.params.data[0].panelWayX*d.params.data[0].panelWayY }}
+                                    {{ d.params.data[0].panelSizeX }} * {{ d.params.data[0].panelSizeY }}mm / {{ panelWay }}
+                                {{# }else if(d.params.data[0].dimensionsX != null){ }}
+                                    {{ d.params.data[0].dimensionsX}} * {{ d.params.data[0].dimensionsY}}mm /1
                                 {{# }else{ }}
                                     都为空
                                 {{# } }}
@@ -184,17 +184,17 @@
                             <span class="layui-col-md4"></span>
                             <span>PCB Thickness</span>
                             :
-                            <a>{{ d.params[0].finishThickness }}</a>
+                            <a>{{ d.params.data[0].finishThickness }}</a>
                         </li>
                         <li>
                             <span>Solder Mask</span>
                             :
-                            <a>{{ d.params[0].solderMaskTopColor }}</a>
+                            <a>{{ d.params.data[0].solderMaskTopColor }}</a>
                         </li>
                         <li>
                             <span>Legend Color</span>
                             :
-                            <a>{{ d.params[0].silkScreenTopColor }}</a>
+                            <a>{{ d.params.data[0].silkScreenTopColor }}</a>
                         </li>
                     </ul>
                 </div>
@@ -208,13 +208,13 @@
                     <tbody>
                         <tr>
                             <td>Order QTY(PCS):</td>
-                            {{# layui.each(d.params, function(index, item){  }}
+                            {{# layui.each(d.params.data, function(index, item){  }}
                             <td value="{{ item.id }}">{{ item.quantityPcs }}</td>
                             {{#  }); }}
                         </tr>
                         <tr>
                             <td>Unit price:US/pcs:</td>
-                            {{# layui.each(d.params, function(index, item){  }}
+                            {{# layui.each(d.params.data, function(index, item){  }}
                             <!--单价，还没传，先占个位-->
                             <td value="{{ item.id }}">
                                 {{# var unitPrice = parseFloat(item.boardFee/item.quantityPcs).toFixed(2) }}
@@ -224,13 +224,13 @@
                         </tr>
                         <tr>
                             <td>Engineering Fee:</td>
-                            {{# layui.each(d.params, function(index, item){  }}
+                            {{# layui.each(d.params.data, function(index, item){  }}
                             <td value="{{ item.id }}">{{ item.engineeringFee }}</td>
                             {{#  }); }}
                         </tr>
                         <tr>
                             <td>Test Fixture Fee:</td>
-                            {{# layui.each(d.params, function(index, item){  }}
+                            {{# layui.each(d.params.data, function(index, item){  }}
                             {{# if(item.testPointType === 1){ }}
                             <td>0</td>
                             {{# }else{ }}
@@ -240,7 +240,7 @@
                         </tr>
                         <tr>
                             <td>Flying probe test Fee:</td>
-                            {{# layui.each(d.params, function(index, item){  }}
+                            {{# layui.each(d.params.data, function(index, item){  }}
                             {{# if(item.testPointType === 1){ }}
                             <td value="{{ item.id }}">{{ item.testCostFee }}</td>
                             {{# }else{ }}
@@ -250,14 +250,14 @@
                         </tr>
                         <tr>
                             <td>Mould Fee:</td>
-                            {{# layui.each(d.params, function(index, item){  }}
+                            {{# layui.each(d.params.data, function(index, item){  }}
                             <td value="{{ item.id }}">{{ item.toolingFee }}</td>
                             {{#  }); }}
                         </tr>
                         <tr>
                             <td>Freight Fee:</td>
                             <!--运费，还没传过来-->
-                            {{# layui.each(d.params, function(index, item){  }}
+                            {{# layui.each(d.params.data, function(index, item){  }}
                             <td value="{{ item.id }}">
                                 {{# if(item.postFee == null){}}
                                 0
@@ -269,14 +269,14 @@
                         </tr>
                         <tr>
                             <td>Total Price(US):</td>
-                            {{# layui.each(d.params, function(index, item){  }}
+                            {{# layui.each(d.params.data, function(index, item){  }}
                             <td value="{{ item.id }}">{{ item.subtotal }}</td>
                             {{#  }); }}
                         </tr>
                         <tr>
                             <td>Lead Days:</td>
                             <!--构造天数没传  没返回-->
-                            {{# layui.each(d.params, function(index, item){  }}
+                            {{# layui.each(d.params.data, function(index, item){  }}
                             <td value="{{ item.id }}">{{ item.buildTime }}</td>
                             {{#  }); }}
                         </tr>
@@ -285,7 +285,7 @@
                 <div class="contract-module-remark">
                     <div class="remark" style="width: 85%;">
                         <span style="position: absolute;">Remark:</span>
-                        {{# layui.each(d.params, function(index, item){  }}
+                        {{# layui.each(d.params.data, function(index, item){  }}
                         {{# if(item.remark != null){}}
                         <a style="margin-left: 80px;color: #1E9FFF;">{{ item.productNo}}:</a> {{ item.remark}}<br>
                         {{# }}}

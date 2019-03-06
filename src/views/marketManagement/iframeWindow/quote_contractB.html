@@ -39,7 +39,7 @@
             .contract-module-three-tab tbody tr td:nth-of-type(8){width: 12%;min-width: 108px;}
             .contract-module-three-tab tbody tr td:nth-of-type(9){width: 5%;min-width: 92px;}
             .contract-module-three-tab tbody tr td:nth-of-type(10){width: 5%;min-width: 102px;}
-            .contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;}
+            .contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;border-bottom: solid #086aafdb 1px;}
             .tr-orderInfo,.tr-orderTotal{border-bottom: solid 1px #086aafdb;}
             /*.tr-orderTotal*/
             /*模块四 tips*/
@@ -137,7 +137,15 @@
                         <th>Amount(USD)</th>
                     </thead>
                     <tbody>
-                    {{# layui.each(d.params, function(index, item){  }}
+                    {{#}}
+                    {{# var data = d.params.data }}
+                    {{# if(d.params.htmlType == '1'){ }}
+                        {{# data = d.params.data }}
+                    {{# } else{ }}
+                        {{# data = d.params }}
+                    {{# } }}
+
+                    {{# layui.each(d.params.data, function(index, item){  }}
                     <tr class="tr-orderInfo">
                         <!--客户资料名-->
                         <td>
@@ -207,18 +215,24 @@
                             {{# } }}
                         </td>
                         <!--总价格-->
-                        <td>{{ item.subtotal}}</td>
+                        <td>{{ item.subtotal }}</td>
                     </tr>
+                    {{#  }); }}
+
+
                     <tr>
                         <td>remark:</td>
-                        <td colspan="7">{{ item.remark || ''}}</td>
+                        <td colspan="7">
+                            {{# layui.each(d.params.data, function(index, item){  }}
+                                {{ item.remark || ''}}
+                            {{#  }); }}
+                        </td>
                         <td>Total:</td>
                         <td>
                             {{# var total = (d.params.total).toFixed(2) }}
                             {{ total }}
                         </td>
                     </tr>
-                    {{#  }); }}
                     </tbody>
                 </table>
             </script>

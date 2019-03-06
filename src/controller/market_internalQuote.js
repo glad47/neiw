@@ -149,11 +149,12 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'getCheckData':
-                var tabdata = checkStatus.data;
+                var tabdata = {data:{}};
+                tabdata.data = checkStatus.data;
                 // 给对象进行排序
-                tabdata = tabdata.sort(compare('quantityPcs'));
+                tabdata.data = tabdata.data.sort(compare('quantityPcs'));
                 // productNo = tabdata[0].productNo;   //给订单编号赋值
-                defVal.customerSn = tabdata[0].productNo.substring(0,3);
+                defVal.customerSn = tabdata.data[0].productNo.substring(0,3);
                 var userData = {
                     userName: '',
                     companName: '',
@@ -162,13 +163,13 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     address: ''
                 };
                 tabdata.tabType = defVal.orderType;
-                var checkedLength = tabdata.length;
+                var checkedLength = tabdata.data.length;
                 var productNo;
                 var viewName;
                 var contractType = 2;
                 var contractTotal = 0;
                 var qidsPost;
-                $.each(tabdata, function (idx, obj) {
+                $.each(tabdata.data, function (idx, obj) {
                     console.log("obj.subtotal===>"+obj.subtotal);
                     console.log(obj);
                     contractTotal = parseFloat(contractTotal+obj.subtotal);
@@ -201,7 +202,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     admin.req({
                         type: 'get',
                         data: '',
-                        url: setter.baseUrl+'sys/consumer/user/info/'+tabdata[0].userId,
+                        url: setter.baseUrl+'sys/consumer/user/info/'+tabdata.data[0].userId,
                         success: function (data) {
                             tabdata.userName = data.user.userName;
                             tabdata.companName = data.user.companName;
@@ -220,7 +221,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                         layer.confirm('确定提交此订单合同？', function (index) {
                                             admin.req({
                                                 type: 'post',
-                                                data: {'qids':qidsPost,'cid':tabdata[0].userId},
+                                                data: {'qids':qidsPost,'cid':tabdata.data[0].userId},
                                                 url: setter.baseUrl+"epc/pcborder/createContractNo",
                                                 success: function (data) {
                                                     if (data.code != "444"){
@@ -252,7 +253,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                             if (contractType === 1){
                                                 // layui.each遍历的数据，td最少为6条，没有数据的显示空白
                                                 var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
-                                                var dataLength = tabdata.length;
+                                                var dataLength = tabdata.data.length;
                                                 var addTrNum;
                                                 if (dataLength < 3){
                                                     addTrNum = 4;
