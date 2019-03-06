@@ -36,7 +36,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     table.render({
         elem: '#sqeManaOrderT_tabPcb'
         ,url: setter.baseUrl+'/sqe/pcborder/orderTogether/list'
-        ,toolbar: "#interior_order_option"
+        ,toolbar: "#ord_tother_tb"
         ,cellMinWidth: 80
         ,id: "sqeManaOrderT_tabPcb"
         ,page: true

@@ -21,6 +21,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         customerSn: null, //客户编号 如：a11
     };
 
+    // 表格对象
+    var pcbtabObj;
     // 监听tab选项卡
     element.on('tab(tab-internalQuote)', function (data) {
         defVal.orderType = data.index;
@@ -138,10 +140,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'quoteGerberPath',title: 'quoteGerberPath',edit: 'text',hide: true}
             ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',edit: 'text',hide: true}
             ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',edit: 'text',hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#inside_cotract_Bar', width:70}
+            ,{fixed: 'right', title:'操作', toolbar: '#interior_order_Bar', width:200}
         ]]
         ,done: function (res, curr, count) {
-
+            var data = res.data;    //获取表格所有数据对象
+            pcbtabObj = data;
         }
     });
     //pcb订单头工具栏事件
@@ -149,7 +152,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'confirmCheckData':
-                var tabdata = checkStatus.data;
+                var tabdata = {data:{}};
+                tabdata.data = checkStatus.data;
                 var userData = {
                     userName: '',
                     companName: '',
@@ -158,7 +162,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     address: ''
                 };
                 tabdata.tabType = defVal.orderType;
-                var checkedLength = tabdata.length;
+                var checkedLength = tabdata.data.length;
                 var productNo;
                 var viewName;
                 var contractType = 2;
@@ -166,7 +170,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 admin.req({
                     type: 'get',
                     data: '',
-                    url: setter.baseUrl+"sys/consumer/user/info/"+tabdata[0].userId,
+                    url: setter.baseUrl+"sys/consumer/user/info/"+tabdata.data[0].userId,
                     success: function (data) {
                         tabdata.userName = data.user.userName;
                         tabdata.companName = data.user.companName;
@@ -177,7 +181,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                             layer.msg("最多只能选中6条数据");
                             return false;
                         } else {
-                            $.each(tabdata, function (idx, obj) {
+                            $.each(tabdata.data, function (idx, obj) {
                                 if (productNo == null || productNo == ""){
                                     productNo = obj.productNo;
                                     viewName = "marketManagement/iframeWindow/quote_contractA";
@@ -203,7 +207,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                     layer.confirm('确定提交此订单合同？', function (index) {
                                        admin.req({
                                            type: 'post',
-                                           data: {'qids':tabdata[0].id,'cid':tabdata[0].userId},
+                                           data: {'qids':tabdata.data[0].id,'cid':tabdata.data[0].userId},
                                            url: setter.baseUrl+"epc/pcborder/createContractNo",
                                            success: function (data) {
                                                if (data.code != "444"){
@@ -222,7 +226,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                         if (contractType === 1){
                                             // layui.each遍历的数据，td最少为6条，没有数据的显示空白
                                             var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
-                                            var dataLength = tabdata.length;
+                                            var dataLength = tabdata.data.length;
                                             var addTrNum;
                                             if (dataLength < 4){
                                                 addTrNum = 4;
@@ -268,24 +272,144 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         };
     });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(interior_order_Bar)', function(obj){
+    table.on('tool(interior_order_Tabpcb)', function(obj){
         var data = obj.data;
-        //console.log(obj)
-        if(obj.event === 'del'){
+        console.log(obj)
+        if(obj.event == 'del'){
             layer.confirm('真的删除行么', function(index){
                 obj.del();
                 layer.close(index);
             });
-        } else if(obj.event === 'edit'){
-            layer.prompt({
-                formType: 2
-                ,value: data.email
-            }, function(value, index){
-                obj.update({
-                    email: value
-                });
-                layer.close(index);
+        } else if(obj.event == 'edit'){
+            admin.popup({
+                title: '编辑PCB订单信息'
+                ,area: ['76%', '90%']
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
+                        form.render(null, '');
+                        form.on('submit(LAY-pcborder-update-submit)',function (data) {
+                            var field = data.field;
+                            console.log("提交的字段信息："+JSON.stringify(field));
+                            admin.req({
+                                type: 'post'
+                                ,url: setter.baseUrl+'/market/quote/audit/update'
+                                ,data: field
+                                ,done: function (res) {
+                                    layer.msg('订单信息修改成功');
+                                    layui.table.reload('or_Tabpcb');
+                                }
+                                ,fail: function (res) {
+                                    layer.msg("订单信息修改失败，请稍后再试！");
+                                },
+                            });
+                            layer.close(index);
+                            return false;
+                        });
+                    });
+                }
             });
+        } else if(obj.event == 'search'){
+            layer.msg('search');
+            var invoiceNo = data.invoiceNo;
+            var this_invoiceNo = data.invoiceNo;
+            var sameData = new Object();
+            var sd_len = 0;
+            for(var i=0;i<pcbtabObj.length;i++){
+                if (this_invoiceNo == pcbtabObj[i].invoiceNo) {
+                    console.log('sd_len:'+sd_len);
+                    sameData[sd_len] = pcbtabObj[i]
+                    sd_len += 1;
+                }
+                console.log('pcbtabObj[i].invoiceNo:'+pcbtabObj[i].invoiceNo);
+            }
+            var popupData = {data:{}};
+            admin.req({
+                type: 'post',
+                data: {'contractNo': invoiceNo},
+                url: setter.baseUrl+'epc/pcborder/infoByContractNo',
+                success: function (data) {
+                    var viewName;
+                    var productNo = null;
+                    var contractType;
+                    popupData.data = sameData;
+                    popupData.total = data.subtotal;
+                    console.log(popupData);
+                    // console.log = popupData.sort(compare('quantityPcs'));
+                    $.each(data, function (idx, obj) {
+                        if (productNo == null || productNo == "") {
+                            contractType = 1;
+                            productNo = obj.productNo;
+                            viewName = "marketManagement/iframeWindow/quote_contractA";
+                        } else if (productNo != null && productNo != obj.productNo) {
+                            contractType = 2;
+                            viewName = "marketManagement/iframeWindow/quote_contractB";
+                            layer.msg("选择了不同型号");
+                        }
+                    });
+                    admin.popup({
+                        title: '内部合同'
+                        ,area: ['100%', '100%']
+                        ,btn: ['打印','关闭']
+                        ,maxmin: true
+                        ,yes:function(index, layero){
+                            var printId;
+                            if (contractType == "1"){
+                                printId = "quoteContract_AllA";
+                            } else if (contractType == "2"){
+                                printId = "quoteContract_AllB";
+                            }
+                            layer.alert(printId);
+                            window.location.reload();
+                            document.body.innerHTML=document.getElementById(printId).innerHTML;
+                            window.print();
+                        }
+                        // btn2: function(index, layero){}
+                        ,success: function (layero, index) {
+                            popupData.htmlType = 1;     //页面标识 1为内部合同 主要用于判断头部左侧标题
+                            console.log(popupData);
+                            view(this.id).render(viewName, popupData).done(function () {
+                                productNo = null; // 初始化订单号
+                                // 表格样式设置
+                                if (contractType === 1){
+                                    // layui.each遍历的数据，td最少为6条，没有数据的显示空白
+                                    var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
+                                    var dataLength = popupData.data.length;
+                                    console.log("dataLength:"+dataLength);
+                                    var addTrNum;
+                                    if (dataLength < 4){
+                                        addTrNum = 4;
+                                    } else if (dataLength > 4) {
+                                        addTrNum = 7;
+                                    }
+                                    for (var i=tdSize;i<addTrNum;i++){
+                                        $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
+                                    }
+                                    if (addTrNum == 4){
+                                        for (var i=1;i<addTrNum;i++){
+                                            $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"27.3%"});
+                                        }
+                                    } else {
+                                        for (var i=1;i<addTrNum;i++){
+                                            $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"13.6%"});
+                                        }
+                                    }
+                                } else if (contractType === 2){
+
+                                }
+                                // 实时时间设置
+                                let date = new Date();
+                                let chinaDate = date.toDateString();
+                                let chinaDateArray = chinaDate.split(' ');
+                                let displayDate = `${chinaDateArray[1]} ${chinaDateArray[2]}, ${chinaDateArray[3]}`;
+                                $("#contractBotDate").text(displayDate);
+                                $("#topDate").text(displayDate);
+                            });
+                        }
+                    });
+                }
+            });
+        } else if(obj.event == 'submit'){
+            layer.msg('submit');
         }
     });
     //监听单元格编辑

@@ -220,12 +220,27 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     ,fail: function () {
                         layer.msg('订单［'+data.productNo+'］锁定失败，稍后再试！');
                     }
-                })
-                layui.table.reload('or_Tabpcb');
+                });
+                table.reload('or_Tabpcb');
                 layer.close(index);
-            })
+            });
         } else if (obj.event === 'pcb-beenLocked') {
             layer.msg('订单［'+data.productNo+'］已锁定!!!');
+            layer.confirm('确定解锁锁定订单［'+data.productNo+'］?',function (index) {
+                admin.req({
+                    type: 'post'
+                    ,url: setter.baseUrl+'market/quote/audit/update'
+                    ,data: {"id":data.id,"isLock": 1}
+                    ,done: function () {
+                        layer.msg('订单［'+data.productNo+'］已接触锁定！');
+                    }
+                    ,fail: function () {
+                        layer.msg('订单［'+data.productNo+'］接触失败，稍后再试！');
+                    }
+                });
+                table.reload('or_Tabpcb');
+                layer.close(index);
+            });
         }
     });
 

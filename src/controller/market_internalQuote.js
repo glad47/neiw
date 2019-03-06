@@ -215,7 +215,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                             } else {
                                 admin.popup({
                                     title: '报价合同'
-                                    ,area: ['60%', '90%']
+                                    ,area: ['100%', '100%']
+                                    ,maxmin: true
                                     ,btn: ['提交','打印', '取消']
                                     ,yes:function(index, layero){
                                         layer.confirm('确定提交此订单合同？', function (index) {
@@ -241,6 +242,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                             printId = "quoteContract_AllB";
                                         }
                                         layer.alert(printId);
+                                        window.location.reload();
                                         document.body.innerHTML=document.getElementById(printId).innerHTML;
                                         window.print();
                                     }

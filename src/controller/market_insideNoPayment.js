@@ -48,7 +48,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             {type:'checkbox'}
             ,{field: 'orderType',title: '订单类型',edit: 'text'}    //1=新单  2=返单    3=返单有改
             ,{field: 'productNo', title: '内部编码',width: 130}
-            ,{field: 'invoiceNo',title: '合同号',edit: 'text'}
+            ,{field: 'invoiceNo',title: '合同号',edit: 'text', width: 134}
             ,{field: 'gerberName',title: '文件名',edit: 'text',width: 160}
             ,{field: 'pcbType',title: 'PCB类型',edit: 'text',width: 130}
             // 型号占位
@@ -149,7 +149,19 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'confirmCheckData':
-                var tabdata = checkStatus.data;
+                var tabdata = {data:{}};
+                tabdata.data = checkStatus.data;
+                tabdata.total = 0;
+                var contractNos = null;
+                for (var i=0;i<checkStatus.data.length;i++){
+                    tabdata.total += checkStatus.data[i].subtotal;
+                    if (contractNos == null){
+                        contractNos =  checkStatus.data[i].invoiceNo
+                    } else if (contractNos != null && contractNos.indexOf(checkStatus.data[i].invoiceNo) == "-1") {
+                        contractNos += ","+data[i].invoiceNo;
+                    }
+                }
+                console.log(checkStatus);
                 var userData = {
                     userName: '',
                     companName: '',
@@ -166,7 +178,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 admin.req({
                     type: 'get',
                     data: '',
-                    url: setter.baseUrl+"sys/consumer/user/info/"+tabdata[0].userId,
+                    url: setter.baseUrl+"sys/consumer/user/info/"+tabdata.data[0].userId,
                     success: function (data) {
                         tabdata.userName = data.user.userName;
                         tabdata.companName = data.user.companName;
@@ -177,7 +189,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                             layer.msg("最多只能选中6条数据");
                             return false;
                         } else {
-                            $.each(tabdata, function (idx, obj) {
+                            $.each(tabdata.data, function (idx, obj) {
                                 if (productNo == null || productNo == ""){
                                     productNo = obj.productNo;
                                     viewName = "marketManagement/iframeWindow/quote_contractA";
@@ -203,14 +215,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                     layer.confirm('确定提交此订单合同？', function (index) {
                                        admin.req({
                                            type: 'post',
-                                           data: {'qids':tabdata[0].id,'cid':tabdata[0].userId},
-                                           url: setter.baseUrl+"epc/pcborder/createContractNo",
+                                           data: {'contractNos':contractNos},
+                                           url: setter.baseUrl+"epc/pcborder/confirmQuoteInInternalNoPay",
                                            success: function (data) {
                                                if (data.code != "444"){
                                                    layer.alert("合同提交成功！");
-                                                   layui.table.reload('iquote_Tabpcb');
+                                                   table.reload('iquote_Tabpcb');
                                                    layer.closeAll();
                                                }
+                                               table.reload('inside_no_payment_Tabpcb');
                                            }
                                        });
 
@@ -222,7 +235,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                         if (contractType === 1){
                                             // layui.each遍历的数据，td最少为6条，没有数据的显示空白
                                             var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
-                                            var dataLength = tabdata.length;
+                                            var dataLength = tabdata.data.length;
                                             var addTrNum;
                                             if (dataLength < 4){
                                                 addTrNum = 4;

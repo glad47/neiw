@@ -139,24 +139,46 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'quoteGerberPath',title: 'quoteGerberPath',edit: 'text',hide: true}
             ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',edit: 'text',hide: true}
             ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',edit: 'text',hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#inside_cotract_Bar', width:112}
+            ,{fixed: 'right', title:'操作', toolbar: '#inside_cotract_Bar', width:162}
         ]]
         ,done: function (res, curr, count) {
             var data = res.data;    //获取表格所有数据对象
             pcbtabObj = data;
         }
     });
-    //监听行单击事件（单击事件为：rowDouble）
-    // table.on('row(test)', function(obj){
-    //     var data = obj.data;
-    //
-    //     layer.alert(JSON.stringify(data), {
-    //         title: '当前行数据：'
-    //     });
-    //
-    //     //标注选中样式
-    //     obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
-    // });
+    // 监听订单头工具栏事件
+    table.on('toolbar(inside_cotract_Tabpcb)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        switch(obj.event){
+            case 'submit':
+                var invoiceNo = null;
+                for (var i=0;i<data.length;i++){
+                    if (invoiceNo == null){
+                        invoiceNo = data[i].invoiceNo;
+                    } else if (invoiceNo != null && invoiceNo.indexOf(data[i].invoiceNo) == "-1") {
+                        invoiceNo += ","+data[i].invoiceNo;
+                    }
+                }
+                if (invoiceNo != null || invoiceNo != ""){
+                    layer.confirm('确定提交合同['+invoiceNo+']', function (index) {
+                        admin.req({
+                            type: 'post',
+                            data: {'contractNos':invoiceNo},
+                            url: setter.baseUrl+'epc/pcborder/submitInternalContractNo',
+                            success: function (data) {
+                                layer.alert("内部合同["+invoiceNo+"]提交成功");
+                                table.reload('inside_cotract_Tabpcb');
+                                layer.close(index);
+                            }
+                        });
+                    });
+                } else {
+                    layer.alert("请选择一条数据再提交");
+                    return false;
+                }
+        }
+    });
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(inside_cotract_Tabpcb)', function(obj){
         var data = obj.data;
@@ -218,8 +240,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     });
                     admin.popup({
                         title: '内部合同'
-                        ,area: ['60%', '90%']
+                        ,area: ['100%', '100%']
                         ,btn: ['打印','关闭']
+                        ,maxmin: true
                         ,yes:function(index, layero){
                             var printId;
                             if (contractType == "1"){
@@ -228,6 +251,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                 printId = "quoteContract_AllB";
                             }
                             layer.alert(printId);
+                            window.location.reload();
                             document.body.innerHTML=document.getElementById(printId).innerHTML;
                             window.print();
                         }
@@ -272,6 +296,35 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                 $("#topDate").text(displayDate);
                             });
                         }
+                    });
+                }
+            });
+        } else if(obj.event === 'search-list'){
+            layer.msg("查看数据明细");
+            admin.popup({
+                title: '编辑PCB订单信息'
+                ,area: ['76%', '90%']
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
+                        form.render(null, '');
+                        form.on('submit(LAY-pcborder-update-submit)',function (data) {
+                            var field = data.field;
+                            console.log("提交的字段信息："+JSON.stringify(field));
+                            admin.req({
+                                type: 'post'
+                                ,url: setter.baseUrl+'/market/quote/audit/update'
+                                ,data: field
+                                ,done: function (res) {
+                                    layer.msg('订单信息修改成功');
+                                    layui.table.reload('or_Tabpcb');
+                                }
+                                ,fail: function (res) {
+                                    layer.msg("订单信息修改失败，请稍后再试！");
+                                },
+                            });
+                            layer.close(index);
+                            return false;
+                        });
                     });
                 }
             });
