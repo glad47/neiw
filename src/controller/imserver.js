@@ -12,7 +12,7 @@ layui.define(function(exports) {
 
 		var currentsession = layui.data('layuiAdmin').userId+"";
 		console.log(currentsession);
-		var showmsg, lm,reconnectflag = false,socket,gdy=["12","17","18"]; //避免重复连接
+		var showmsg, lm,reconnectflag = false,socket,gdy=["12","17","18","20"]; //避免重复连接
 
 		function createWebSocket(url, callbak) {
 			try {
