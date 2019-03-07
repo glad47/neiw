@@ -316,11 +316,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             var sd_len = 0;
             for(var i=0;i<pcbtabObj.length;i++){
                 if (this_invoiceNo == pcbtabObj[i].invoiceNo) {
-                    console.log('sd_len:'+sd_len);
                     sameData[sd_len] = pcbtabObj[i]
                     sd_len += 1;
                 }
-                console.log('pcbtabObj[i].invoiceNo:'+pcbtabObj[i].invoiceNo);
             }
             var popupData = {data:{}};
             admin.req({
@@ -333,8 +331,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     var contractType;
                     popupData.data = sameData;
                     popupData.total = data.subtotal;
-                    console.log(popupData);
-                    // console.log = popupData.sort(compare('quantityPcs'));
+                    console.log(popupData.data.length);
                     $.each(data, function (idx, obj) {
                         if (productNo == null || productNo == "") {
                             contractType = 1;
@@ -358,7 +355,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                             } else if (contractType == "2"){
                                 printId = "quoteContract_AllB";
                             }
-                            layer.alert(printId);
                             window.location.reload();
                             document.body.innerHTML=document.getElementById(printId).innerHTML;
                             window.print();
@@ -374,9 +370,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                     // layui.each遍历的数据，td最少为6条，没有数据的显示空白
                                     var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
                                     var dataLength = popupData.data.length;
-                                    console.log("dataLength:"+dataLength);
                                     var addTrNum;
-                                    if (dataLength < 4){
+                                    if (sd_len < 4){
                                         addTrNum = 4;
                                     } else if (dataLength > 4) {
                                         addTrNum = 7;
@@ -409,6 +404,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
             });
         } else if(obj.event == 'submit'){
+            layer.confirm('确定要提交此订单？', function () {
+               admin.req({
+
+               })
+            });
             layer.msg('submit');
         }
     });

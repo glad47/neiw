@@ -167,6 +167,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             admin.popup({
                 title: '编辑PCB订单信息'
                 ,area: ['45%', '561px']
+                ,btn:['立即提交', '取消']
+                ,yes: function () {
+                    $(".submit-ok").click();
+                    layer.msg('yes');
+                }
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
                         form.render(null, '')

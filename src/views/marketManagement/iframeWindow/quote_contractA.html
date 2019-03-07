@@ -87,9 +87,7 @@
                         <td style="width: 50%;">
                             <!--Company Name:-->
                             <strong>
-                                {{# if(d.params.companName != null){ }}
-                                {{ d.params.companName }}
-                                {{# }}}
+                                {{ d.params.companyName || '' }}
                             </strong>
                         </td>
                         <td style="width: 50%;">
@@ -102,9 +100,7 @@
                         <td>
                             <!--Addr:-->
                             <a>
-                                {{# if(d.params.address != null){ }}
-                                    {{ d.params.address }},{{ d.params.city }},{{ d.params.country }}
-                                {{# } }}
+                                {{ d.params.address || '' }},{{ d.params.city || '' }},{{ d.params.country || ''}}
                             </a>
                         </td>
                         <td>
@@ -242,7 +238,7 @@
                             <td>Flying probe test Fee:</td>
                             {{# layui.each(d.params.data, function(index, item){  }}
                             {{# if(item.testPointType === 1){ }}
-                            <td value="{{ item.id }}">{{ item.testCostFee }}</td>
+                            <td value="{{ item.id }}">{{ item.testCostFee || '0' }}</td>
                             {{# }else{ }}
                             <td></td>
                             {{# } }}
@@ -251,7 +247,7 @@
                         <tr>
                             <td>Mould Fee:</td>
                             {{# layui.each(d.params.data, function(index, item){  }}
-                            <td value="{{ item.id }}">{{ item.toolingFee }}</td>
+                            <td value="{{ item.id }}">{{ item.toolingFee || '0' }}</td>
                             {{#  }); }}
                         </tr>
                         <tr>
@@ -259,11 +255,7 @@
                             <!--运费，还没传过来-->
                             {{# layui.each(d.params.data, function(index, item){  }}
                             <td value="{{ item.id }}">
-                                {{# if(item.postFee == null){}}
-                                0
-                                {{# }else{}}
-                                    {{ item.postFee }}
-                                {{# }}}
+                                {{ item.postFee || '0' }}
                             </td>
                             {{#  }); }}
                         </tr>

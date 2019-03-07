@@ -89,11 +89,16 @@ layui.define(['admin','table','index','element','form'], function (exports) {
     });
     table.on('toolbar(scmManaOutSC_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
         if(obj.event === 'evScmSubmit'){
             var data = checkStatus.data;
             console.log(data);
             var supplierContractNo = null;
             var ids = null;
+            if(data.length < 1){
+                layer.msg("至少选择一条数据！");
+                return false;
+            }
             for (var i=0;i<data.length;i++){
                 if (ids == null){
                     ids += + data[i].id;
@@ -106,7 +111,6 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                     supplierContractNo += ',' + data[i].supplierContractNo;
                 }
             }
-            console.log(ids);
             layer.confirm('确认回签 ['+supplierContractNo+'] ?', function(index){
                 admin.req({
                     type: 'post',
@@ -120,6 +124,26 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                         }
                     }
                 });
+            });
+        } else if (obj.event == 'confirmDate') {
+            var supplierContractNo = null;
+            for (var i=0;i<data.length;i++) {
+                if (supplierContractNo == null){
+                    supplierContractNo = data[i].supplierQuoteNo;
+                } else {
+                    supplierContractNo += ","+data[i].supplierQuoteNo;
+                }
+            }
+            layer.confirm('是否确认交期？', function () {
+               admin.req({
+                   type: 'post',
+                   data: {'supplierContractNo':supplierContractNo},
+                   url: setter.baseUrl+'scm/pcborder/confirmDeliveryByOc',
+                   success: function () {
+                       table.reload('scmManaOutSC_tabPcb');
+                       layer.close(index);
+                   }
+               })
             });
         }
     });

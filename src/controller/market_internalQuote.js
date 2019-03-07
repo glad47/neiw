@@ -223,7 +223,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                             admin.req({
                                                 type: 'post',
                                                 data: {'qids':qidsPost,'cid':tabdata.data[0].userId},
-                                                url: setter.baseUrl+"epc/pcborder/createContractNo",
+                                                url: setter.baseUrl+"epc/pcborder/createQuoteOrderNo",    //3-7 之前的版本 epc/pcborder/createContractNo
                                                 success: function (data) {
                                                     if (data.code != "444"){
                                                         layer.alert("合同提交成功！");

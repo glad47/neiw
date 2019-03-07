@@ -89,24 +89,22 @@
                         <td style="width: 50%;">
                             <!--Company Name:-->
                             <strong>
-                                {{# if(d.params.companName != null){ }}
-                                {{ d.params.companName }}
-                                {{# }}}
+                                {{ d.params.companyName || '' }}
                             </strong>
                         </td>
                         <td style="width: 50%;">
                             <label class="cmo-lable">Quotation No</label>
                             :
-                            <a></a>
+                            <a>
+                                {{ d.params.data[0].invoiceNo || '' }}
+                            </a>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <!--Addr:-->
                             <a>
-                                {{# if(d.params.address != null){ }}
-                                {{ d.params.address }},{{ d.params.city }},{{ d.params.country }}
-                                {{# } }}
+                                {{ d.params.address || '' }},{{ d.params.city || '' }},{{ d.params.country || '' }}
                             </a>
                         </td>
                         <td>
@@ -202,7 +200,7 @@
                         <!--板费-->
                         <td>{{ item.boardFee }}</td>
                         <!--工具费-->
-                        <td>{{ item.toolingFee }}</td>
+                        <td>{{ item.toolingFee || '' }}</td>
                         <!--加急费-->
                         <td>{{ item.overworkFee }}</td>
                         <!--邮费-->

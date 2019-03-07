@@ -114,12 +114,12 @@
                 <label class="layui-form-label">Layer：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <select name="layer">
-                            <option value="{{ d.params.layerNum || '' }}"  {{ d.params.layerNum == '1' ? 'selected' : '' }}>1</option>
-                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum == '2' ? 'selected' : '' }}>2</option>
-                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum == '4' ? 'selected' : '' }}>4</option>
-                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum == '6' ? 'selected' : '' }}>6</option>
-                            <option value="{{ d.params.layerNum || '' }}" {{ d.params.layerNum == '8' ? 'selected' : '' }}>8</option>
+                        <select name="layerNum">
+                            <option value="1"  {{ d.params.layerNum == '1' ? 'selected' : '' }}>1</option>
+                            <option value="2" {{ d.params.layerNum == '2' ? 'selected' : '' }}>2</option>
+                            <option value="4" {{ d.params.layerNum == '4' ? 'selected' : '' }}>4</option>
+                            <option value="6" {{ d.params.layerNum == '6' ? 'selected' : '' }}>6</option>
+                            <option value="8" {{ d.params.layerNum == '8' ? 'selected' : '' }}>8</option>
                         </select>
                     </script>
                 </div>
@@ -508,7 +508,7 @@
                 <label class="layui-form-label">PCB Cost：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+d.params.testCostFee+d.params.overworkFee)}}
+                        {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+d.params.testCostFee+d.params.overworkFee).toFixed(2)}}
                         <input type="text" name="weight" value="{{ pcbcost || '' }}" autocomplete="off" class="layui-input" readonly>
                     </script>
                 </div>
@@ -529,9 +529,9 @@
         </div>
 
 
-        <div class="layui-form-item layui-col-md-offset3">
+        <div class="layui-form-item layui-col-md-offset3" style="display: none;">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="LAY-pcborder-update-submit">立即提交</button>
+                <button class="layui-btn submit-ok" lay-submit lay-filter="LAY-pcborder-update-submit">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
