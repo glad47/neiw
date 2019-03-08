@@ -55,99 +55,100 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field: 'orderType',title: '订单类型'}    //1=新单  2=返单    3=返单有改
-            ,{field: 'productNo', title: '内部编码',width: 130}
-            // ,{field: 'invoiceNo',title: '合同号',minWidth: 140}
-            ,{field: 'quoteOrderNo',title: '报价单号',minWidth: 160}
-            ,{field: 'gerberName',title: '文件名',width: 160}
-            ,{field: 'pcbType',title: 'PCB类型',width: 130}
+            ,{field: 'orderType',title: '订单类型',edit: 'text', Width: 110, templet: '#order_type'}    //1=新单  2=返单    3=返单有改
+            ,{field: 'productNo', title: '内部编码',minWidth: 130}
+            ,{field: 'gerberName',title: '文件名',edit: 'text',minWidth: 160}
+            ,{field: 'pcbName',title: 'F/N',edit: 'text',minWidth: 130}
+            ,{field: 'orderNo',title: '客户PO',edit: 'text'}
+            ,{field: 'quoteOrderNo',title: '报价单号',edit: 'text',minWidth: 130}
+            ,{field: 'gmtCreate',title: '创建时间',edit: 'text'}
+            ,{field: 'gmtModified',title: '修改时间',edit: 'text'}
             // 型号占位
-            ,{field: 'dimensionsX',title: '单只(X)'}
-            ,{field: 'dimensionsY',title: '单只(Y)'}
-            ,{field: 'panelSizeX',title: 'Panel(X)',width: 90}
-            ,{field: 'panelSizeY',title: 'Panel(Y)',width: 90}
-            ,{field: 'panelWayX',title: 'PanelWay(X)',width: 110}
-            ,{field: 'panelWayY',title: 'PanelWay(Y)',width: 110}
-            ,{field: 'finishThickness',title: '板厚'}
-            ,{field: 'layerNum',title: '层数',width: 80}
-            ,{field: 'surfaceFinish',title: '表面处理'}
-            ,{field: 'quantityPcs',title: 'PCS数量'}
-            ,{field: 'quantityPanel',title: 'Panel数量'}
-            ,{field: 'engineeringFee',title: '工程费'}
-            ,{field: 'boardFee',title: '板费'}
-            ,{field: 'testCostFee',title: '测试费'}
-            ,{field: 'toolingFee',title: '工具费'}
-            ,{field: 'overworkFee',title: '加急费'}
-            ,{field: 'postFee',title: '运费'}
-            ,{field: 'subtotal',title: '总价'}
-            ,{field: 'boardType',title: '出货方式'}    // 1=单只 2=拼板
+            ,{field: 'pcbType',title: 'PCB类型',edit: 'text',minWidth: 130, hide: true}
+            ,{field: 'dimensionsX',title: '单只(X)',edit: 'text', hide: true}
+            ,{field: 'dimensionsY',title: '单只(Y)',edit: 'text', hide: true}
+            ,{field: 'panelSizeX',title: 'Panel(X)',edit: 'text',width: 90, hide: true}
+            ,{field: 'panelSizeY',title: 'Panel(Y)',edit: 'text',width: 90, hide: true}
+            ,{field: 'panelWayX',title: 'PanelWay(X)',edit: 'text',width: 110, hide: true}
+            ,{field: 'panelWayY',title: 'PanelWay(Y)',edit: 'text',width: 110, hide: true}
+            ,{field: 'finishThickness',title: '板厚',edit: 'text', hide: true}
+            ,{field: 'layerNum',title: '层数',edit: 'text',width: 80, hide: true}
+            ,{field: 'surfaceFinish',title: '表面处理',edit: 'text', hide: true}
+            ,{field: 'quantityPcs',title: 'PCS数量',edit: 'text', hide: true}
+            ,{field: 'quantityPanel',title: 'Panel数量',edit: 'text', hide: true}
+            ,{field: 'engineeringFee',title: '工程费',edit: 'text', hide: true}
+            ,{field: 'boardFee',title: '板费',edit: 'text', hide: true}
+            ,{field: 'testCostFee',title: '测试费',edit: 'text', hide: true}
+            ,{field: 'toolingFee',title: '工具费',edit: 'text', hide: true}
+            ,{field: 'overworkFee',title: '加急费',edit: 'text', hide: true}
+            ,{field: 'postFee',title: '运费',edit: 'text', hide: true}
+            ,{field: 'subtotal',title: '总价',edit: 'text', hide: true}
+            ,{field: 'boardType',title: '出货方式',edit: 'text', hide: true}    // 1=单只 2=拼板
             // ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-iQuote-status',width: 110}
-            ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-iQuote-status',width: 110,hide: true}
-            ,{field: 'areaSq',title: '面积'}
-            ,{field: 'material',title: '材料'}
-            ,{field: 'productCode',title: '材料型号'}
-            ,{field: 'productNo',title: '材料商'}
-            ,{field: 'tg',title: 'TG'}
-            ,{field: 'cti',title: 'CTI'}
-            ,{field: 'halogenFree',title: '无卤素'}
-            ,{field: 'outerLayerCopper',title: '外层铜厚'}
-            ,{field: 'innerLayerCopper',title: '内层铜厚'}
-            ,{field: 'heatConductivity',title: '导热系数'}
-            ,{field: 'silkScreenTopColor',title: '字符颜色'}
-            ,{field: 'solderMaskTopColor',title: '阻焊颜色'}
-            ,{field: 'pthCopper',title: '孔铜'}
-            ,{field: 'remark',title: '备注'}
-            ,{field: 'buildTime',title: '交期'}
-            ,{field: 'weight',title: '重量'}
-            ,{field: 'thickness',title: '表面处理厚度'}
-            ,{field: 'surfaceArea',title: '沉金面积'}
-            ,{field: 'gmtCreate',title: '创建时间'}
-            ,{field: 'gmtModified',title: '修改时间'}
-            // ,{field: 'innerMinTrack',title: 'innerMinTrack',hide: true}
-            ,{field: 'minHoleSize',title: '最小孔'}
-            ,{field: 'nofHoles',title: '孔数'}
-            ,{field: 'viaProcess',title: '过孔方式'}
-            ,{field: 'stackUp',title: '压合'}
-            ,{field: 'status',title: '状态'}
-            ,{field: 'nofCore',title: '芯板数量'}
-            ,{field: 'nofPp',title: 'PP数量'}
-            ,{field: 'innerMinSpacing',title: '内层(线宽/线距)'}
-            ,{field: 'outerMinSpacing',title: '外层最小(线宽/线距)'}
-            ,{field: 'bgaSize',title: 'BGA大小'}
-            // ,{field: 'outerMinTrack',title: 'outerMinTrack',hide: true}
-            ,{field: 'testPoinType',title: '测试类型'}
-            ,{field: 'testPoint',title: '测试点'}
-            ,{field: 'testPointType',title: '测试方式'}
-            ,{field: 'userId',title: '用户ID'}
-            ,{field: 'uuid',title: 'uuid'}
-            ,{field: 'panelRoutingPath',title: '锣程'}
-            ,{field: 'bevellingCamfer',title: '斜边'}
-            ,{field: 'blindHoles',title: '盲孔'}
-            ,{field: 'buriedHoles',title: '埋孔'}
-            ,{field: 'carbon',title: '碳油'}
-            ,{field: 'contrlImpeance',title: '阻抗'}
-            ,{field: 'deepMillRouting',title: '控深锣'}
-            ,{field: 'punchingHoles',title: '冲孔数'}
-            ,{field: 'punchingSlots',title: '冲槽数'}
-            ,{field: 'peelable',title: '兰胶'}
-            ,{field: 'peelableBrand',title: '兰胶型号'}
-            // ,{field: 'differentDesign',title: 'differentDesign',hide: true}
-            ,{field: 'edgePlated',title: '金属边'}
-            ,{field: 'halfHoleLated',title: '半孔板'}
-            ,{field: 'orderId',title: '订单ID'}
-            ,{field: 'orderNo',title: '订单号'}
-          
+            ,{field:'status', title: '状态', align:'center',templet: '#Tabtb-pcb-market-iQuote-status',width: 110,hide: true}
+            ,{field: 'areaSq',title: '面积',edit: 'text', hide: true}
+            ,{field: 'material',title: '材料',edit: 'text', hide: true}
+            ,{field: 'productCode',title: '材料型号',edit: 'text', hide: true}
+            ,{field: 'productNo',title: '材料商',edit: 'text', hide: true}
+            ,{field: 'tg',title: 'TG',edit: 'text', hide: true}
+            ,{field: 'cti',title: 'CTI',edit: 'text', hide: true}
+            ,{field: 'halogenFree',title: '无卤素',edit: 'text', hide: true}
+            ,{field: 'outerLayerCopper',title: '外层铜厚',edit: 'text', hide: true}
+            ,{field: 'innerLayerCopper',title: '内层铜厚',edit: 'text', hide: true}
+            ,{field: 'heatConductivity',title: '导热系数',edit: 'text', hide: true}
+            ,{field: 'silkScreenTopColor',title: '字符颜色',edit: 'text', hide: true}
+            ,{field: 'solderMaskTopColor',title: '阻焊颜色',edit: 'text', hide: true}
+            ,{field: 'pthCopper',title: '孔铜',edit: 'text', hide: true}
+            ,{field: 'remark',title: '备注',edit: 'text', hide: true}
+            ,{field: 'buildTime',title: '交期',edit: 'text', hide: true}
+            ,{field: 'weight',title: '重量',edit: 'text', hide: true}
+            ,{field: 'thickness',title: '表面处理厚度',edit: 'text', hide: true}
+            ,{field: 'surfaceArea',title: '沉金面积',edit: 'text', hide: true}
+            // ,{field: 'innerMinTrack',title: 'innerMinTrack',edit: 'text',hide: true}
+            ,{field: 'minHoleSize',title: '最小孔',edit: 'text', hide: true}
+            ,{field: 'nofHoles',title: '孔数',edit: 'text', hide: true}
+            ,{field: 'viaProcess',title: '过孔方式',edit: 'text', hide: true}
+            ,{field: 'stackUp',title: '压合',edit: 'text', hide: true}
+            ,{field: 'status',title: '状态',edit: 'text', hide: true}
+            ,{field: 'nofCore',title: '芯板数量',edit: 'text', hide: true}
+            ,{field: 'nofPp',title: 'PP数量',edit: 'text', hide: true}
+            ,{field: 'innerMinSpacing',title: '内层(线宽/线距)',edit: 'text', hide: true}
+            ,{field: 'outerMinSpacing',title: '外层最小(线宽/线距)',edit: 'text', hide: true}
+            ,{field: 'bgaSize',title: 'BGA大小',edit: 'text', hide: true}
+            // ,{field: 'outerMinTrack',title: 'outerMinTrack',edit: 'text',hide: true}
+            ,{field: 'testPoinType',title: '测试类型',edit: 'text', hide: true}
+            ,{field: 'testPoint',title: '测试点',edit: 'text', hide: true}
+            ,{field: 'testPointType',title: '测试方式',edit: 'text', hide: true}
+            ,{field: 'userId',title: '用户ID',edit: 'text', hide: true}
+            ,{field: 'uuid',title: 'uuid',edit: 'text', hide: true}
+            ,{field: 'panelRoutingPath',title: '锣程',edit: 'text', hide: true}
+            ,{field: 'bevellingCamfer',title: '斜边',edit: 'text', hide: true}
+            ,{field: 'blindHoles',title: '盲孔',edit: 'text', hide: true}
+            ,{field: 'buriedHoles',title: '埋孔',edit: 'text', hide: true}
+            ,{field: 'carbon',title: '碳油',edit: 'text', hide: true}
+            ,{field: 'contrlImpeance',title: '阻抗',edit: 'text', hide: true}
+            ,{field: 'deepMillRouting',title: '控深锣',edit: 'text', hide: true}
+            ,{field: 'punchingHoles',title: '冲孔数',edit: 'text', hide: true}
+            ,{field: 'punchingSlots',title: '冲槽数',edit: 'text', hide: true}
+            ,{field: 'peelable',title: '兰胶',edit: 'text', hide: true}
+            ,{field: 'peelableBrand',title: '兰胶型号',edit: 'text', hide: true}
+            // ,{field: 'differentDesign',title: 'differentDesign',edit: 'text',hide: true}
+            ,{field: 'edgePlated',title: '金属边',edit: 'text', hide: true}
+            ,{field: 'halfHoleLated',title: '半孔板',edit: 'text', hide: true}
+            ,{field: 'orderId',title: '订单ID',edit: 'text', hide: true}
+            ,{field: 'orderNo',title: '订单号',edit: 'text', hide: true}
+            ,{field: 'invoiceNo',title: '合同号',edit: 'text', hide: true}
             ,{field: 'id', title: 'ID',hide:true}
             ,{field: 'userId', title: 'User ID',hide: true}
-            ,{field: 'gerberPath',title: 'gerberPath',hide: true}
-            ,{field: 'isExistIndicator',title: 'isExistIndicator',hide: true}
-            ,{field: 'isExistSmt',title: 'isExistSmt',hide: true}
-            ,{field: 'quoteConfigIdList',title: 'quoteConfigIdList',hide: true}
-            ,{field: 'quoteConfigIds',title: 'quoteConfigIds',hide: true}
-            ,{field: 'quoteGerberName',title: 'quoteGerberName',hide: true}
-            ,{field: 'quoteGerberPath',title: 'quoteGerberPath',hide: true}
-            ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',hide: true}
-            ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',hide: true}
+            ,{field: 'gerberPath',title: 'gerberPath',edit: 'text',hide: true}
+            ,{field: 'isExistIndicator',title: 'isExistIndicator',edit: 'text',hide: true}
+            ,{field: 'isExistSmt',title: 'isExistSmt',edit: 'text',hide: true}
+            ,{field: 'quoteConfigIdList',title: 'quoteConfigIdList',edit: 'text',hide: true}
+            ,{field: 'quoteConfigIds',title: 'quoteConfigIds',edit: 'text',hide: true}
+            ,{field: 'quoteGerberName',title: 'quoteGerberName',edit: 'text',hide: true}
+            ,{field: 'quoteGerberPath',title: 'quoteGerberPath',edit: 'text',hide: true}
+            ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',edit: 'text',hide: true}
+            ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',edit: 'text',hide: true}
             ,{fixed: 'right', title:'操作', toolbar: '#inside_cotract_Bar', width:192}
         ]]
         ,done: function (res, curr, count) {

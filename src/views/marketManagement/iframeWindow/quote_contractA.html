@@ -24,12 +24,18 @@
                 .module-two-rig{float: right;width: 50%;}
                 .contract-module-five .module-1{width: 48%;float: left;}
                 .contract-module-five .module-2{width: 52%;float: right;}
+                .moudle-description{background-color: #086aaf59;text-align: center;margin-top: 25px;margin-bottom: 20px;padding: 4px;}
+                .moudle-description span{color: black;font-weight: 500;}
+                /*高度*/
+                .contract-module-two{height: 80px !important;}
+                /*间距*/
+                .contract-module-two,.contract-module-one{margin-top: 25px;}
             }
             .contract-top-logo .rig-text{text-align: right;}
             .contract-top-logo .rig-text a{font-size: 20px;font-weight: 600;}
             .contract-module-one{margin-top: 20px;}
             /*模块二*/
-            .contract-module-two{padding-bottom: 20px;}
+            .contract-module-two{padding-bottom: 20px;height: 180px;}
             .moudle-description{background-color: #086aaf59;text-align: center;margin-top: 20px;margin-bottom: 20px;padding: 4px;}
             .moudle-description span{color: black;font-weight: 500;}
             /*表格*/
@@ -62,17 +68,17 @@
             </div>
             <div class="rig-text layui-col-md6">
                 <script type="text/html" template>
-                    {{# if(d.params.htmlType === 1){ }}
-                    <a>QUOTATION</a>
+                    {{# if(d.params.htmlType == '1'){ }}
+                        <a>QUOTATION</a>
                     {{# } else{ }}
-                    <a>INVOICE</a>
+                        <a>INVOICE</a>
                     {{# }}}
                 </script>
             </div>
         </div>
 
         <!--模块一 contract-module-one, 顶部信息-->
-        <div class="contract-module-one layui-col-md12 layui-col-xs12">
+        <div class="contract-module-one">
             <script type="text/html" template>
                 <table style="width: 100%;">
                     <tbody>
@@ -91,9 +97,21 @@
                             </strong>
                         </td>
                         <td style="width: 50%;">
-                            <label class="cmo-lable">Quotation No</label>
+                            <label class="cmo-lable">
+                                {{# if(d.params.htmlType == '1'){ }}
+                                Quotation No
+                                {{# } else{ }}
+                                Invoice No
+                                {{# }}}
+                            </label>
                             :
-                            <a></a>
+                            <a>
+                                {{# if(d.params.htmlType == '1'){ }}
+                                {{ d.params.data[0].quoteOrderNo || '' }}
+                                {{# } else{ }}
+                                {{ d.params.data[0].invoiceNo || '' }}
+                                {{# }}}
+                            </a>
                         </td>
                     </tr>
                     <tr>
@@ -120,7 +138,7 @@
         </div>
 
         <!--模块二 contract-module-two，DESCRIPTION-->
-        <div class="contract-module-two layui-col-md12">
+        <div class="contract-module-two">
             <script type="text/html" template>
                 <div class="module-two-lef layui-col-md6">
                     <ul class="module-two-lef-title">
@@ -153,14 +171,25 @@
                             :
                             <a>{{ d.params.data[0].finishThickness }}</a>
                         </li>
+                        <li>
+                            <span>Surface Finish</span>
+                            :
+                            <a>
+                                {{# if(d.params.data[0].surfaceFinish == 'Immersion_Gold'){ }}
+                                    {{ d.params.data[0].surfaceFinish }}&nbsp;{{ d.params.data[0].thickness }}''
+                                {{# } else {}}
+                                    {{ d.params.data[0].surfaceFinish }}
+                                {{# } }}
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="module-two-rig layui-col-md6">
                     <ul class="module-two-rig-title">
                         <li>
-                            <span>P/N</span>
+                            <span>F/N</span>
                             :
-                            <a>{{ d.params.data[0].productNo }}</a>
+                            <a>{{ d.params.data[0].pcbName || d.params.data[0].gerberName }}</a>
                         </li>
                         <li>
                             <span>Size</span>
@@ -177,7 +206,6 @@
                             </a>
                         </li>
                         <li>
-                            <span class="layui-col-md4"></span>
                             <span>PCB Thickness</span>
                             :
                             <a>{{ d.params.data[0].finishThickness }}</a>
@@ -192,13 +220,18 @@
                             :
                             <a>{{ d.params.data[0].silkScreenTopColor }}</a>
                         </li>
+                        <li>
+                            <span>P/N</span>
+                            :
+                            <a>{{ d.params.data[0].productNo }}</a>
+                        </li>
                     </ul>
                 </div>
             </script>
         </div>
 
         <!--模块三 contract-module-three，表格明细-->
-        <div class="contract-module-three layui-col-md12">
+        <div class="contract-module-three">
             <script type="text/html" template>
                 <table class="contract-module-three-tab">
                     <tbody>
@@ -275,11 +308,11 @@
                     </tbody>
                 </table>
                 <div class="contract-module-remark">
-                    <div class="remark" style="width: 85%;">
+                    <div class="remark" style="width: 85%;">PC
                         <span style="position: absolute;">Remark:</span>
                         {{# layui.each(d.params.data, function(index, item){  }}
                         {{# if(item.remark != null){}}
-                        <a style="margin-left: 80px;color: #1E9FFF;">{{ item.productNo}}:</a> {{ item.remark}}<br>
+                        <a style="margin-left: 80px;color: #1E9FFF;">{{ item.pcbName || item.gerberName }}:</a> {{ item.remark}}<br>
                         {{# }}}
                         {{#  }); }}
                     </div>
@@ -301,10 +334,12 @@
             </div>
             <div class="contract-module-four-rig layui-col-md6">
                 <div class="top-info">
+                    <!--<a id="contractCusName">{{ sessionStorage.getItem("userName") }}</a>-->
                     <script type="text/html" template>
-                        <a id="contractCusName">{{ sessionStorage.getItem("userName") }}</a>
+                        <a id="contractCusName">{{ layui.data('userInfo').uname }}</a>
+                        <!--<a id="contractBotDate">February 07, 2018</a>-->
+                        <a>{{ d.params.data[0].gmtModified || d.params.data[0].gmtCreate }}</a>
                     </script>
-                    <a id="contractBotDate">February 07, 2018</a>
                 </div>
                 <div class="bot-intro">
                     <a>Authorized by</a>

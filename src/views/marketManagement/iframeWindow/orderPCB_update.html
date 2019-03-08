@@ -3,6 +3,33 @@
     <form class="layui-form" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 750px">
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label" name="orderNo">PO：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="orderNo" value="{{ d.params.orderNo || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label" name="pcbName">F/N：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="pcbName" value="{{ d.params.pcbName || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label" name="gerberName">G/N：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="gerberName" value="{{ d.params.gerberName || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label" name="dimensionsX">Pcs X：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
@@ -161,7 +188,10 @@
                 <label class="layui-form-label">Hal'-Free：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="halogenFree" value="{{ d.params.halogenFree || '' }}" autocomplete="off" class="layui-input">
+                        <select name="halogenFree">
+                            <option value="{{ d.params.halogenFree || '' }}"  {{ d.params.halogenFree == 'NO' ? 'selected' : '' }}>NO</option>
+                            <option value="{{ d.params.halogenFree || '' }}"  {{ d.params.halogenFree == 'YES' ? 'selected' : '' }}>YES</option>
+                        </select>
                     </script>
                 </div>
             </div>
@@ -510,6 +540,33 @@
                     <script type="text/html" template>
                         {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+d.params.testCostFee+d.params.overworkFee).toFixed(2)}}
                         <input type="text" name="weight" value="{{ pcbcost || '' }}" autocomplete="off" class="layui-input" readonly>
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Tool' fee：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="toolingFee" value="{{ d.params.toolingFee || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Post fee：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="postFee" value="{{ d.params.postFee || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Total：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="total" value="{{ d.params.subtotal || '' }}" autocomplete="off" class="layui-input" readonly>
                     </script>
                 </div>
             </div>

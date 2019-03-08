@@ -34,11 +34,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
-        elem: '#sqeManaPlan_tabPcb'
-        ,url: setter.baseUrl+'sqe/pcborder/planTogether/list'
-        ,toolbar: "#ord_sqpManaPlan_tb"
+        elem: '#sqeManaShip_tabPcb'
+        ,url: setter.baseUrl+'sqe/pcborder/shipmentTogether/list'
+        ,toolbar: "#ord_sqpManaShip_tb"
         ,cellMinWidth: 80
-        ,id: "sqeManaPlan_tabPcb"
+        ,id: "sqeManaShip_tabPcb"
         ,page: true
         ,parseData: function (res) {
             return{
@@ -79,7 +79,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'gerberPath', title: 'gerberPath', hide: true}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',width: 150}
+            ,{fixed: 'right', title:'操作', toolbar: '#scmManaShip_tabbar',width: 150}
         ]]
         ,done: function (res, curr, count) {
 
@@ -105,7 +105,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     success: function (data) {
                         if (data.code == '0'){
                             layer.alert("提交成功！！");
-                            table.reload('sqeManaPlan_tabPcb');
+                            table.reload('ord_sqpManaShip_tb');
                             layer.close(index);
                         }
                     }
@@ -158,5 +158,5 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('查看订单协同');
         }
     });
-    exports('sqeManagement_plan_together', {});
+    exports('sqeManagement_shipment_together', {});
 });

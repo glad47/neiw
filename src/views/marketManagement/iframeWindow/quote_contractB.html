@@ -5,9 +5,9 @@
             .contract-top-logo .lef-logo img{width: 190px;}
             @media print {
                 .contract-module-one{padding:50px 0 50px 0;}
-                .contract-top-logo .lef-logo img{margin-top: 20px;}
-                .contract-top-logo .rig-text{margin-top: -30px;}
-                .contract-module-three-tab{padding-top: 260px;}
+                .contract-top-logo .lef-logo img{margin-top: 20px;width: 300px !important;}
+                .contract-top-logo .rig-text{margin-top: -30px;font-size: 36px;}
+                .contract-module-three-tab{padding-top: 260px;word-break: break-all;}
                 .contract-module-four-lef{float: left;width: 50%;}
                 .contract-module-four-rig{float: right;width: 45%;margin-right: 50px;margin-top: -20px;}
                 .contract-module-five{padding-top: 130px;}
@@ -18,6 +18,8 @@
                 .contract-bank-ul li a{float: right;width: 70%;}
                 /*打印字体大小*/
                 .contract-module-one,.contract-module-four,.contract-module-five,.contrackB-tabBot{font-size: 18px;}
+                /*表格明细*/
+                .contract-module-three{max-width: 500px !important;}
             }
             .contract-top-logo .rig-text{text-align: right;}
             .contract-top-logo .rig-text a{font-size: 20px;font-weight: 600;}
@@ -27,9 +29,9 @@
             .moudle-description{background-color: #086aaf59;text-align: center;margin-top: 20px;margin-bottom: 20px;padding: 4px;}
             .moudle-description span{color: black;font-weight: 500;}
             /*表格*/
-            .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 20px;}
+            .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 20px;word-break: break-all;}
             .contract-module-three-tab thead th{background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
-            .contract-module-three-tab tbody tr td:first-of-type{width: 15%;text-align: left;line-height: 20px;padding-left: 10px;min-width: 145px;}
+            .contract-module-three-tab tbody tr td:first-of-type{width: 13%;text-align: left;line-height: 20px;padding-left: 10px;min-width: 145px;overflow: hidden;}
             .contract-module-three-tab tbody tr td:nth-of-type(2){width: 15%;min-width: 145px;}
             .contract-module-three-tab tbody tr td:nth-of-type(3){width: 7%;min-width: 59px;}
             .contract-module-three-tab tbody tr td:nth-of-type(4){width: 7%;min-width: 59px;}
@@ -64,10 +66,10 @@
             </div>
             <div class="rig-text layui-col-md6">
                 <script type="text/html" template>
-                    {{# if(d.params.htmlType === 0){ }}
-                    <a>QUOTATION</a>
+                    {{# if(d.params.htmlType == '1'){ }}
+                        <a>QUOTATION</a>
                     {{# } else{ }}
-                    <a>INVOICE</a>
+                        <a>INVOICE</a>
                     {{# }}}
                 </script>
             </div>
@@ -93,10 +95,20 @@
                             </strong>
                         </td>
                         <td style="width: 50%;">
-                            <label class="cmo-lable">Quotation No</label>
+                            <label class="cmo-lable" style="text-align: left;">
+                                {{# if(d.params.htmlType == '1'){ }}
+                                    Quotation No
+                                {{# } else{ }}
+                                    Invoice No
+                                {{# }}}
+                            </label>
                             :
                             <a>
+                                {{# if(d.params.htmlType == '1'){ }}
+                                {{ d.params.data[0].quoteOrderNo || '' }}
+                                {{# } else{ }}
                                 {{ d.params.data[0].invoiceNo || '' }}
+                                {{# }}}
                             </a>
                         </td>
                     </tr>
@@ -110,7 +122,8 @@
                         <td>
                             <label class="cmo-lable">Date</label>
                             :
-                            <a id="topDate">Feb 15, 2010</a>
+                            <!--<a id="topDate">Feb 15, 2010</a>-->
+                            <a>{{ d.params.data[0].gmtModified || '' }} </a>
                         </td>
                     </tr>
                     </tbody>
@@ -169,7 +182,7 @@
                             {{# }else if(d.params.tabType == '1'){ }}
                                 [钢网订单]<br>
                             {{# } else { }}
-                                [SMT订单]<br>
+                                [PCB Prototype]<br>
                             {{# } }}
                             <!--FinishThickness 完成板厚-->
                             {{ item.finishThickness }}
@@ -200,7 +213,7 @@
                         <!--板费-->
                         <td>{{ item.boardFee }}</td>
                         <!--工具费-->
-                        <td>{{ item.toolingFee || '' }}</td>
+                        <td>{{ item.toolingFee || '0' }}</td>
                         <!--加急费-->
                         <td>{{ item.overworkFee }}</td>
                         <!--邮费-->
@@ -225,7 +238,7 @@
                                 {{ item.remark || ''}}
                             {{#  }); }}
                         </td>
-                        <td>Total:</td>
+                        <td>Total(USD):</td>
                         <td>
                             {{# var total = (d.params.total).toFixed(2) }}
                             {{ total }}
@@ -250,10 +263,12 @@
             </div>
             <div class="contract-module-four-rig layui-col-md6">
                 <div class="top-info">
+                    <!--<a id="contractCusName">{{ sessionStorage.getItem("userName") }}</a>-->
                     <script type="text/html" template>
-                        <a id="contractCusName">{{ sessionStorage.getItem("userName") }}</a>
+                        <a id="contractCusName">{{ layui.data('userInfo').uname }}</a>
+                        <!--<a id="contractBotDate">February 07, 2018</a>-->
+                        <a>{{ d.params.data[0].gmtModified || '' }} </a>
                     </script>
-                    <a id="contractBotDate">February 07, 2018</a>
                 </div>
                 <div class="bot-intro">
                     <a>Authorized by</a>

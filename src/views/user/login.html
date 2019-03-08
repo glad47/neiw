@@ -91,7 +91,10 @@
                         location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
                     });
                     // 登录成功保存用户名
-                    window.sessionStorage.userName=TabUsername;
+                    layui.data('userInfo',{
+                        key: 'uname',
+                        value: TabUsername
+                    });
                 }
                 ,fail: function (res) {
                     console.log(res);

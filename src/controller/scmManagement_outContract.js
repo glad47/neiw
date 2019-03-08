@@ -51,11 +51,11 @@ layui.define(['admin','table','index','element','form'], function (exports) {
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field: 'status',title: '状态',templet: '#pcb'}      // 1 ＝ 待报价
+            ,{field: 'status',title: '状态',templet: '<div>{{ d.status == 6 ? "已确认交期" : "未确认" }}</div>', minWidth: 104}      // 1 ＝ 待报价
             ,{field: '',title: '报价单号', width: 125}
             ,{field: 'gmtCreate',title: '报价时间', width: 166}
             ,{field: 'supplierNo', title: '供应商编号', width: 124}
-            ,{field: 'supplierQuoteNo', title: '供应商厂编', width: 117}
+            ,{field: 'supplierQuoteNo', title: '供应商厂编', minWidth: 190}
             ,{field: 'productNo', title: '聚谷P/N', width: 124}
             ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
@@ -129,9 +129,9 @@ layui.define(['admin','table','index','element','form'], function (exports) {
             var supplierContractNo = null;
             for (var i=0;i<data.length;i++) {
                 if (supplierContractNo == null){
-                    supplierContractNo = data[i].supplierQuoteNo;
+                    supplierContractNo = data[i].supplierContractNo;
                 } else {
-                    supplierContractNo += ","+data[i].supplierQuoteNo;
+                    supplierContractNo += ","+data[i].supplierContractNo;
                 }
             }
             layer.confirm('是否确认交期？', function () {
@@ -140,10 +140,11 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                    data: {'supplierContractNo':supplierContractNo},
                    url: setter.baseUrl+'scm/pcborder/confirmDeliveryByOc',
                    success: function () {
+                       layer.alert('已确认');
                        table.reload('scmManaOutSC_tabPcb');
-                       layer.close(index);
                    }
-               })
+               });
+            layer.closeAll();
             });
         }
     });

@@ -1,7 +1,7 @@
 <title>计划协同</title>
 <div class="layui-fluid">
     <!--卡片－表格信息-->
-    <div class="layui-tab layui-tab-brief" lay-filter="tab-scmManagement">
+    <div class="layui-tab layui-tab-brief" lay-filter="tab-planToger">
         <ul class="layui-tab-title">
             <li class="layui-this">PCB订单</li>
             <li>钢网订单</li>
@@ -10,13 +10,13 @@
         <div class="layui-tab-content">
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="sqeManaOrderT_tabPcb" lay-filter="sqeManaOrderT_tabPcb"></table>
-                <script type="text/html" id="ord_tother_tb">
+                <table class="layui-table" id="sqeManaPlan_tabPcb" lay-filter="sqeManaPlan_tabPcb"></table>
+                <script type="text/html" id="ord_sqpManaPlan_tb">
                     <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-sm" lay-event="submit">提交</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="submit">通知出货</button>
                     </div>
                 </script>
-                <script type="text/html" id="scmManaOrderT_tabbar">
+                <script type="text/html" id="scmManaPlan_tabbar">
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
                     <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
                     <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
@@ -35,7 +35,7 @@
 </div>
 
 <script>
-    layui.use('sqeManagement_order_together', layui.factory('sqeManagement_order_together')).use(['sqeManagement_order_together', 'table', 'index','element','form'], function(){
+    layui.use('sqeManagement_plan_together', layui.factory('sqeManagement_plan_together')).use(['sqeManagement_plan_together', 'table', 'index','element','form'], function(){
         var form = layui.form;
         form.render();
     });
