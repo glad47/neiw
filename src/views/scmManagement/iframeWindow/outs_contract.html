@@ -1,0 +1,145 @@
+<title>外协采购合同</title>
+<div class="layui-fluid">
+    <div class="layui-row" id="outsContract">
+        <!--样式-->
+        <style media="all">
+            @media print {
+                .modul-three table thead th{}
+            }
+            .modul-top{margin: 20px auto;text-align: center;display: flex;min-width: 485px;width: 600px;}
+            .modul-top .lef-logo img{width: 190px;}
+            .rig-company{font-size: 20px;margin: 0 17px;line-height: 33px;}
+            /*模块间距*/
+            .modul-two，.modul-three{margin-top: 30px;}
+            .modul-two{display: flex;width: 100%;}
+            .modul-two .lef-j{width: 70%;}
+            .modul-two .rig-y{width: 30%;}
+            .modul-three table{text-align: center;}
+            .modul-three table thead th,.modul-three table tbody td{background-color: white;text-align: center;padding: 0;border-color: black;}
+        </style>
+        <div class="all-contract">
+            <div class="modul-top">
+                <div class="lef-logo">
+                    <img src="../../../src/style/res/logoMax.png">
+                </div>
+                <div class="rig-company">
+                    <a style="letter-spacing: 12px;">深圳聚谷科技有限公司</a><br>
+                    <a>采购合同</a>
+                </div>
+            </div>
+            <!--抬头-->
+            <div class="modul-two">
+                <div class="lef-j">
+                    <label>
+                        甲方：深圳聚谷科技有限公司
+                    </label>
+                    <p>
+                        经双方友好协议达成一致，订立本合同
+                    </p>
+                </div>
+                <div class="rig-y">
+                    <label>
+                        合同编号：JG2019030500001
+                    </label>
+                    <p>
+                        <label>
+                            乙方：供应商公司名
+                        </label>
+                    </p>
+                </div>
+            </div>
+            <!--表格数据-->
+            <div class="modul-three">
+                <script type="text/html" template>
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th rowspan="2">序号</th>
+                        <th rowspan="2">聚谷型号</th>
+                        <th rowspan="2">供应商编号</th>
+                        <th colspan="9" style="text-align: center;">成品工艺表</th>
+                        <th rowspan="2">数量PCS</th>
+                        <th rowspan="2">单价</th>
+                        <th rowspan="2">工程费</th>
+                        <th rowspan="2">测试架费</th>
+                        <th rowspan="2">飞针测试费</th>
+                        <th rowspan="2">模具费</th>
+                        <th rowspan="2">其他费</th>
+                        <th rowspan="2">合计金额</th>
+                        <th rowspan="2">交期</th>
+                        <th rowspan="2">备注</th>
+                    </tr>
+                    <tr>
+                        <th lay-data="{field:'province', width:120}">交货尺寸(mm)</th>
+                        <th lay-data="{field:'city', width:120}">拼版</th>
+                        <th lay-data="{field:'zone', width:200}">板厚</th>
+                        <th lay-data="{field:'zone', width:200}">铜厚</th>
+                        <th lay-data="{field:'zone', width:200}">板材</th>
+                        <th lay-data="{field:'zone', width:200}">层数</th>
+                        <th lay-data="{field:'zone', width:200}">表面处理</th>
+                        <th lay-data="{field:'zone', width:200}">阻焊</th>
+                        <th lay-data="{field:'zone', width:200}">字符</th>
+                    </tr>
+                    </thead>
+                <tbody>
+                {{# layui.each(d.params.data, function(index, item){  }}
+                <tr>
+                    <!--序号-->
+                    <td>{{ index }}</td>
+                    <!--聚谷型号-->
+                    <td>{{ item.pcbName || item.gerberName }}</td>
+                    <!--交货尺寸-->
+                    <td>
+                        {{# if(item.panelSizeX != null){ }}
+                        {{ item.panelSizeX }}*{{ item.panelSizeY }}
+                        {{# } else{ }}
+                        {{ item.dimensionsX }}*{{ item.dimensionsX }}
+                        {{# } }}
+                    </td>
+                    <!--拼版-->
+                    <td>
+                        {{ item.panelWayX || '1' }}*{{ item.panelWayY || '1' }}
+                    </td>
+                    <!--板厚-->
+                    <td>{{ item.finishThickness }}</td>
+                    <!--铜厚-->
+                    <td>{{ item.outerLayerCopper }}</td>
+                    <!--板材-->
+                    <td>{{ item.pcbType }}</td>
+                    <!--层数-->
+                    <td>{{ item.layerNum }}</td>
+                    <!--表面处理-->
+                    <td>{{ item.layerNum }}</td>
+                    <!--阻焊-->
+                    <td>{{ item.solderMaskBotColor }}</td>
+                    <!--字符-->
+                    <td>{{ item.silkScreenTopColor }}</td>
+                    <!--数量pcs-->
+                    <td>{{ item.quantityPcs }}</td>
+                    <!--单价-->
+                    <td>{{ item.unitPrice || '0' }}</td>
+                    <!--工程费-->
+                    <td>{{ item.engineeringFee || '0' }}</td>
+                    <!--测试架费-->
+                    <td>{{ item.testCostFee || '0' }}</td>
+                    <!--飞针测试费-->
+                    <td>{{ item.testPoint || '0' }}</td>
+                    <!--模具费-->
+                    <td>{{ item.toolingFee || '0' }}</td>
+                    <!--其他费-->
+                    <td>{{ item.toolingFee || '0' }}</td>
+                    <!--合计金额-->
+                    <td>{{ item.subtotal || '0' }}</td>
+                    <!--交期-->
+                    <td>{{ item.subtotal || '0' }}</td>
+                    <!--备注-->
+                    <td>{{ item.remark || '0' }}123</td>
+                </tr>
+                {{#  }); }}
+                </tbody>
+                </table>
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

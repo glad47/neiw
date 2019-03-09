@@ -127,20 +127,21 @@
                     <td></td>
                     <td>交期</td>
                     <td><input class="layui-input" type="text" id="pcbDeliveryDate"></td>
-                    <td></td>
+                    <td title="客户交期">
+                        {{# var deliveryTime = d.params.deliveryTime.substring(0,10) }}
+                        {{ deliveryTime }}
+                    </td>
                 </tr>
                 <tr>
                     <td>订单备注</td>
                     <td></td>
                     <td>报价备注</td>
                     <td>
-                        {{# if(d.params.remark == null || d.params.remark == ''){ }}
-                        <input class="layui-input" type="text" value="0" id="qRemark">
-                        {{# } else{ }}
-                        <input class="layui-input" type="text" value="{{ d.params.remark}}" id="qRemark">
-                        {{# } }}
+                        <input class="layui-input" type="text" value="{{ d.params.remark || '' }}" id="qRemark">
                     </td>
-                    <td></td>
+                    <td title="客户备注">
+                        {{ d.params.remarkCustomer || '' }}
+                    </td>
                 </tr>
                 </tbody>
             </table>

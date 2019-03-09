@@ -166,7 +166,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 tabdata.tabType = defVal.orderType;
                 var checkedLength = tabdata.data.length;
                 var productNo;
-                var viewName;
+                var viewName = "marketManagement/iframeWindow/quote_contractB";
                 var contractType = 2;
                 // 获取地址，公司名
                 admin.req({
@@ -186,12 +186,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                             $.each(tabdata.data, function (idx, obj) {
                                 if (productNo == null || productNo == ""){
                                     productNo = obj.productNo;
-                                    viewName = "marketManagement/iframeWindow/quote_contractA";
                                     contractType = 1;
                                 }
                                 if (productNo != null && productNo != obj.productNo){
                                     contractType = 2;
-                                    viewName = "marketManagement/iframeWindow/quote_contractB";
                                     layer.msg("选择了不同型号");
                                 }
                                 if (defVal.customerSn == null){

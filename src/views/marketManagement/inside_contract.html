@@ -19,6 +19,15 @@
                 <script type="text/html" id="inside_cotract_option">
                     <button class="layui-btn" lay-event="submit">提交</button>
                 </script>
+                <script type="text/html" id="order_type">
+                    {{#  if(d.orderType =='1'){ }}
+                    <a style="color: green;">新单</a>
+                    {{#  } else if (d.orderType == '2'){ }}
+                    <a>返单</a>
+                    {{#  } else{ }}
+                    <a>返单有改</a>
+                    {{# } }}
+                </script>
             </div>
             <!--钢网订单-->
             <div class="layui-tab-item">

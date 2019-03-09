@@ -21,6 +21,15 @@
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                 </script>
+                <script type="text/html" id="order_type">
+                    {{#  if(d.orderType =='1'){ }}
+                    <a style="color: green;">新单</a>
+                    {{#  } else if (d.orderType == '2'){ }}
+                    <a>返单</a>
+                    {{#  } else{ }}
+                    <a>返单有改</a>
+                    {{# } }}
+                </script>
             </div>
             <!--钢网订单-->
             <div class="layui-tab-item">

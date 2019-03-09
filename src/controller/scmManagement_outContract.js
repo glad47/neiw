@@ -18,7 +18,7 @@ layui.define(['admin','table','index','element','form'], function (exports) {
     var _public_val = {
         orderType: 1        //订单类型 （1 pcb 2钢网）
     };
-
+    var pcbtabObj;  // PCB表格数据对象
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-scmManagement)', function(data){
         console.log(data.index);
@@ -84,7 +84,8 @@ layui.define(['admin','table','index','element','form'], function (exports) {
             ,{fixed: 'right', title:'操作', toolbar: '#scmManaOutsource_tabbar',width: 160}
         ]]
         ,done: function (res, curr, count) {
-
+            var data = res.data;    //获取表格所有数据对象
+            pcbtabObj = data;
         }
     });
     table.on('toolbar(scmManaOutSC_tabPcb)', function (obj) {
@@ -206,6 +207,32 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                 }
             });
         } else if (obj.event == 'search'){
+            var popupData = {data:{}};
+            var lineData = obj.data;
+            var supplierContractNo = lineData.supplierContractNo;
+            var sd_len = 0;
+            for (var i=0;i<pcbtabObj.length;i++) {
+                if (supplierContractNo == pcbtabObj[i].supplierContractNo) {
+                    sd_len += 1;
+                    popupData.data[sd_len] = pcbtabObj[i];
+                }
+            }
+            admin.popup({
+                title: '外协合同'
+                ,area: ['100%', '100%']
+                ,btn: ['打印','关闭']
+                ,yes: function () {
+                    var printId = "outsContract";
+                    window.location.reload();
+                    document.body.innerHTML = document.getElementById(printId).innerHTML;
+                    window.print();
+                }
+                ,success: function () {
+                    view(this.id).render('scmManagement/iframeWindow/outs_contract', popupData).done(function () {
+
+                    })
+                }
+            });
             layer.msg('查看订单协同');
         } else if (obj.event == 'signBack'){
             layer.confirm('确定退回？', function(index){
