@@ -372,6 +372,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
         });
     });
+    //监听搜索
+    form.on('submit(internal-quote-search)', function(data){
+        var field = data.field;
+        console.log(field);
+        //执行重载
+        table.reload('iquote_Tabpcb', {
+            where: field
+        });
+    });
 
     // 排序方法
     function compare(property){

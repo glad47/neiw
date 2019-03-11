@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form'], function (exports) {
+layui.define(['admin','table','index','element','form','convertCurrency'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -13,12 +13,13 @@ layui.define(['admin','table','index','element','form'], function (exports) {
         ,setter = layui.setter
         ,element = layui.element;
     var $ = layui.jquery;
+    var convertCurrency = layui.convertCurrency;
 
     // 全局变量
     var _public_val = {
         orderType: 1        //订单类型 （1 pcb 2钢网）
     };
-
+    var pcbtabObj;  // PCB表格数据对象
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-scmManagement)', function(data){
         console.log(data.index);
@@ -84,7 +85,8 @@ layui.define(['admin','table','index','element','form'], function (exports) {
             ,{fixed: 'right', title:'操作', toolbar: '#scmManaOutsource_tabbar',width: 160}
         ]]
         ,done: function (res, curr, count) {
-
+            var data = res.data;    //获取表格所有数据对象
+            pcbtabObj = data;
         }
     });
     table.on('toolbar(scmManaOutSC_tabPcb)', function (obj) {
@@ -206,6 +208,49 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                 }
             });
         } else if (obj.event == 'search'){
+            var popupData = {};
+            var lineData = obj.data;
+            var supplierContractNo = lineData.supplierContractNo;
+            var sd_len = 0;
+            var subtotal = 0;
+            var convertSubtotal;
+            console.log(pcbtabObj);
+            for (var i=0;i<pcbtabObj.length;i++) {
+                if (supplierContractNo == pcbtabObj[i].supplierContractNo) {
+                    sd_len += 1;
+                    var forData = pcbtabObj[i]
+                    popupData.data = forData;
+                    console.log(popupData.data);
+                }
+            }
+            console.log(popupData);
+            for (var i=0;i<popupData.data.length;i++){
+                console.log("开始循环");
+                var forSt = popupData.data[i].subtotal;
+                subtotal += forSt;
+                console.log("sd_len:"+sd_len);
+            }
+            // 金额转换为中文大写
+            convertSubtotal = convertCurrency.conversion(subtotal);
+            popupData.subtotal = subtotal;
+            popupData.convertSubtotal = convertSubtotal;
+            admin.popup({
+                title: '外协合同'
+                ,area: ['100%', '100%']
+                ,btn: ['打印','关闭']
+                ,yes: function () {
+                    var printId = "outsContract";
+                    window.location.reload();
+                    document.body.innerHTML = document.getElementById(printId).innerHTML;
+                    window.print();
+                }
+                ,success: function () {
+                    view(this.id).render('scmManagement/iframeWindow/outs_contract', popupData).done(function () {
+                        // var str = convertCurrency.conversion(12.03);
+                        // layer.alert(str);
+                    })
+                }
+            });
             layer.msg('查看订单协同');
         } else if (obj.event == 'signBack'){
             layer.confirm('确定退回？', function(index){

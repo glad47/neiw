@@ -184,6 +184,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 break;
         };
     });
+    //监听搜索
+    form.on('submit(nopayment-search)', function(data){
+        var field = data.field;
+        console.log(field);
+        //执行重载
+        table.reload('inside_no_payment_Tabpcb', {
+            where: field
+        });
+    });
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(inside_no_payment_Tabpcb)', function(obj){
         var data = obj.data;
@@ -270,7 +279,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                         data: {'quoteOrderNo': quoteOrderNo},
                         url: setter.baseUrl+'epc/pcborder/infoByQuoteOrderNo', //3-7之前的版本 epc/pcborder/infoByContractNo
                         success: function (data) {
-                            var viewName;
+                            var viewName = "marketManagement/iframeWindow/quote_contractB";
                             var productNo = null;
                             var contractType;
                             popupData.data = sameData;
@@ -281,10 +290,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                 if (productNo == null || productNo == "") {
                                     contractType = 1;
                                     productNo = obj.productNo;
-                                    viewName = "marketManagement/iframeWindow/quote_contractA";
                                 } else if (productNo != null && productNo != obj.productNo) {
                                     contractType = 2;
-                                    viewName = "marketManagement/iframeWindow/quote_contractB";
                                     layer.msg("选择了不同型号");
                                 }
                             });
