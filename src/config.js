@@ -44,9 +44,9 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
       ,dataName: 'data' //数据详情的字段名称
     }
     ,baseUrl:'http://www.pcbonline.com:8080/renren-fast/'
-    ,baseUrl1:"http://www.pcbonline.com:8871/"
-    ,webSocketUrl: 'ws://47.89.176.26:2200/ws'
-    ,imUrl:'http://47.89.176.26:8899/lzimserver/'
+    ,baseUrl1:"https://www.pcbonline.com/"
+    ,webSocketUrl: 'wss://www.pcbonline.com:8887/ws'
+    ,imUrl:'https://www.pcbonline.com/'
 
     //独立页面路由，可随意添加（无需写参数）
     ,indPage: [
