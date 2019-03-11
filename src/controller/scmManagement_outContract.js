@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form'], function (exports) {
+layui.define(['admin','table','index','element','form','convertCurrency'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -13,6 +13,7 @@ layui.define(['admin','table','index','element','form'], function (exports) {
         ,setter = layui.setter
         ,element = layui.element;
     var $ = layui.jquery;
+    var convertCurrency = layui.convertCurrency;
 
     // 全局变量
     var _public_val = {
@@ -207,16 +208,32 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                 }
             });
         } else if (obj.event == 'search'){
-            var popupData = {data:{}};
+            var popupData = {};
             var lineData = obj.data;
             var supplierContractNo = lineData.supplierContractNo;
             var sd_len = 0;
+            var subtotal = 0;
+            var convertSubtotal;
+            console.log(pcbtabObj);
             for (var i=0;i<pcbtabObj.length;i++) {
                 if (supplierContractNo == pcbtabObj[i].supplierContractNo) {
                     sd_len += 1;
-                    popupData.data[sd_len] = pcbtabObj[i];
+                    var forData = pcbtabObj[i]
+                    popupData.data = forData;
+                    console.log(popupData.data);
                 }
             }
+            console.log(popupData);
+            for (var i=0;i<popupData.data.length;i++){
+                console.log("开始循环");
+                var forSt = popupData.data[i].subtotal;
+                subtotal += forSt;
+                console.log("sd_len:"+sd_len);
+            }
+            // 金额转换为中文大写
+            convertSubtotal = convertCurrency.conversion(subtotal);
+            popupData.subtotal = subtotal;
+            popupData.convertSubtotal = convertSubtotal;
             admin.popup({
                 title: '外协合同'
                 ,area: ['100%', '100%']
@@ -229,7 +246,8 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                 }
                 ,success: function () {
                     view(this.id).render('scmManagement/iframeWindow/outs_contract', popupData).done(function () {
-
+                        // var str = convertCurrency.conversion(12.03);
+                        // layer.alert(str);
                     })
                 }
             });

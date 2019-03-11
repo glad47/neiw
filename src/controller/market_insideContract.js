@@ -463,6 +463,16 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         });
     });
 
+    //监听搜索
+    form.on('submit(inside-contract-search)', function(data){
+        var field = data.field;
+        console.log(field);
+        //执行重载
+        table.reload('inside_cotract_Tabpcb', {
+            where: field
+        });
+    });
+
 
     function compare(property){
         return function(a,b){

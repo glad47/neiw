@@ -65,6 +65,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
     ,extend: [
       'echarts', //echarts 核心包
       'echartsTheme', //echarts 主题
+      'convertCurrency', //货币转换
     ]
     
     //主题配置
