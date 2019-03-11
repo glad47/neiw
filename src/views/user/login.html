@@ -95,6 +95,11 @@
                         key: 'uname',
                         value: TabUsername
                     });
+                    // 登录成功保存用户名--中文
+                    layui.data('userInfo',{
+                        key: 'userChinaName',
+                        value: res.data.userChinaName
+                    });
                 }
                 ,fail: function (res) {
                     console.log(res);

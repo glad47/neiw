@@ -1,5 +1,43 @@
 <title>内部订单</title>
 <div class="layui-fluid">
+    <div class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">订单类型</label>
+                <div class="layui-input-inline">
+                    <select name="orderType">
+                        <option value="">请选择</option>
+                        <option value="1">新单</option>
+                        <option value="2">返单</option>
+                        <option value="3">返单有改</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">内部编码</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">文件名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="gerberName" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">F/N</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pcbName" class="layui-input" id="customer_orderTime">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn" lay-submit lay-filter="interior-order-search">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     <!--卡片－表格信息-->
     <div class="layui-tab layui-tab-brief" lay-filter="tab-internalQuote">
         <ul class="layui-tab-title">

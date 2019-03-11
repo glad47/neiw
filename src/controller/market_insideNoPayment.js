@@ -184,6 +184,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 break;
         };
     });
+    //监听搜索
+    form.on('submit(nopayment-search)', function(data){
+        var field = data.field;
+        console.log(field);
+        //执行重载
+        table.reload('inside_no_payment_Tabpcb', {
+            where: field
+        });
+    });
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(inside_no_payment_Tabpcb)', function(obj){
         var data = obj.data;
