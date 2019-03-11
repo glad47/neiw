@@ -8,8 +8,8 @@
                 .modul-three table thead th,.modul-three table tbody td{background-color: white;text-align: center;padding: 0;border-color: black;}
             }
             .modul-top{margin: 20px auto;text-align: center;display: flex;min-width: 485px;width: 600px;}
-            .modul-top .lef-logo img{width: 190px;}
-            .rig-company{font-size: 20px;margin: 0 17px;line-height: 33px;}
+            .modul-top .lef-logo img{width: 66px;}
+            .rig-company{font-size: 20px;margin: 14px 17px;line-height: 33px;}
             /*模块间距*/
             .modul-two，.modul-three,.modul-four,.modul-bot{margin-top: 30px;}
             .modul-two{display: flex;width: 100%;}
@@ -18,12 +18,12 @@
             .modul-three table{text-align: center;}
             .modul-three table thead th,.modul-three table tbody td{background-color: white;text-align: center;padding: 0;border-color: black;}
             .modul-four,.modul-bot{display: flex;}
-            .modul-four ul li{line-height: 36px;}
+            .modul-four ul li{line-height: 28px;}
         </style>
         <div class="all-contract">
             <div class="modul-top">
                 <div class="lef-logo">
-                    <img src="../../../src/style/res/logoMax.png">
+                    <img src="../../../src/style/res/template/CAPABILITIESicon04.png">
                 </div>
                 <div class="rig-company">
                     <a style="letter-spacing: 12px;">深圳聚谷科技有限公司</a><br>
@@ -146,12 +146,10 @@
                 <tr>
                     <td colspan="13" style="text-align: left;padding-left: 10px;">
                         总金额：
+                        {{ d.params.convertSubtotal}}
                     </td>
                     <td colspan="11" style="text-align: left;padding-left: 10px;">
-                        {{# layui.each(d.params.data, function(index, item){  }}
-                            {{# var subtotal=0; }}
-                            {{ subtotal += item.subtotal }}
-                        {{#  }); }}
+                        {{ d.params.subtotal }}
                     </td>
                 </tr>
                 </tbody>

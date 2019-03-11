@@ -208,32 +208,33 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
                 }
             });
         } else if (obj.event == 'search'){
-            var popupData = {};
+            var popupData = {data:{}};
             var lineData = obj.data;
             var supplierContractNo = lineData.supplierContractNo;
             var sd_len = 0;
             var subtotal = 0;
             var convertSubtotal;
-            console.log(pcbtabObj);
             for (var i=0;i<pcbtabObj.length;i++) {
                 if (supplierContractNo == pcbtabObj[i].supplierContractNo) {
                     sd_len += 1;
-                    var forData = pcbtabObj[i]
-                    popupData.data = forData;
-                    console.log(popupData.data);
+                    var forData = pcbtabObj[i];
+                    popupData.data[sd_len] = forData;
+                    subtotal += pcbtabObj[i].subtotal;
                 }
             }
-            console.log(popupData);
             for (var i=0;i<popupData.data.length;i++){
                 console.log("开始循环");
                 var forSt = popupData.data[i].subtotal;
                 subtotal += forSt;
+                console.log("subtotal:"+subtotal);
                 console.log("sd_len:"+sd_len);
             }
             // 金额转换为中文大写
             convertSubtotal = convertCurrency.conversion(subtotal);
+            console.log("convertSubtotal:"+convertSubtotal);
             popupData.subtotal = subtotal;
             popupData.convertSubtotal = convertSubtotal;
+            console.log(popupData);
             admin.popup({
                 title: '外协合同'
                 ,area: ['100%', '100%']
