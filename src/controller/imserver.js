@@ -183,9 +183,9 @@ layui.define(function(exports) {
 				},
 				//上传图片接口（返回的数据格式见下文）
 				uploadImage: {
-					url: 'imgupload' //接口地址
+					url: setter.imUrl +'file/fileupload' //接口地址
 						,
-					type: 'post' //默认post
+					type: setter.imUrl +'file/fileupload' //默认post
 				},
 				//上传文件接口（返回的数据格式见下文）
 				uploadFile: {
@@ -193,12 +193,12 @@ layui.define(function(exports) {
 						,
 					type: 'post' //默认post
 				},
-				isAudio: true, //开启聊天工具栏音频
-				isVideo: true, //开启聊天工具栏视频
-				brief: false,
+				isAudio: false, //开启聊天工具栏音频
+				isVideo: false, //开启聊天工具栏视频
+				brief: false, //简约模式
 				min: true, //用于设定主面板是否在页面打开时，始终最小化展现
-				isgroup: true,
-				voice: false,
+				isgroup: true, //是否开启群组
+				voice: false,//设定消息提醒的声音文件
 				copyright: true,
 				msgbox: 'message' //消息盒子页面地址，若不开启，剔除该项即可
 				//,find: layui.cache.dir + 'css/modules/layim/html/find.html' //发现页面地址，若不开启，剔除该项即可
