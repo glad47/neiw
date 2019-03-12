@@ -1010,7 +1010,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
             if (_val == "" || _val == null || isNaN(_val)) {
                 obj[i] = 0;
             } else {
-                pcbTo.pcbCost = +parseFloat(pcbTo.pcbCost+_val).toFixed(2);
+                pcbTo.pcbCost = parseFloat(pcbTo.pcbCost+_val).toFixed(2);
             }
         });
         $("#pcbCost").val(pcbTo.pcbCost);

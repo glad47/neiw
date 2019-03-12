@@ -5,10 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/quote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/sqeManagement_plan_together.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/sqeManagement_plan_together.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/outs_contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/outs_contract.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,14 +18,23 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.44181147">
+    <splitter split-orientation="horizontal" split-proportion="0.36703527">
       <split-first>
         <leaf>
+          <file leaf-file-name="orderPCB_update.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="357">
+                  <caret line="452" column="52" selection-start-line="452" selection-start-column="45" selection-end-line="452" selection-end-column="52" />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="7395">
-                  <caret line="1196" selection-start-line="1196" selection-end-line="1196" />
+                <state relative-caret-position="555">
+                  <caret line="1048" column="41" selection-start-line="1048" selection-start-column="31" selection-end-line="1048" selection-end-column="41" />
                 </state>
               </provider>
             </entry>
@@ -40,7 +46,7 @@
           <file leaf-file-name="quote.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1656">
+                <state relative-caret-position="-2239">
                   <caret line="391" column="32" lean-forward="true" selection-start-line="390" selection-start-column="8" selection-end-line="391" selection-end-column="32" />
                 </state>
               </provider>
@@ -49,8 +55,8 @@
           <file leaf-file-name="orderPCB_update.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="680">
-                  <caret line="608" column="74" lean-forward="true" selection-start-line="608" selection-start-column="74" selection-end-line="608" selection-end-column="74" />
+                <state relative-caret-position="534">
+                  <caret line="531" column="62" lean-forward="true" selection-start-line="531" selection-start-column="62" selection-end-line="531" selection-end-column="62" />
                 </state>
               </provider>
             </entry>
@@ -69,12 +75,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>testCostFee</find>
-      <find>测试费</find>
-      <find>HTML</find>
-      <find>inner</find>
-      <find>飞针费</find>
-      <find>testPointType</find>
       <find>Test Fee</find>
       <find>totalTestPointToUSD</find>
       <find>boardFee</find>
@@ -89,16 +89,22 @@
       <find>mPrice</find>
       <find>quotePCBTotalPrice</find>
       <find>quote_total</find>
-      <find>pcbTo</find>
       <find>quotePCBCost</find>
       <find>编辑PCB</find>
       <find>subtotal</find>
       <find>countAdd</find>
       <find>getS</find>
       <find>est Cos</find>
-      <find>assign</find>
       <find>yes</find>
       <find>testFee</find>
+      <find>Weight</find>
+      <find>assign</find>
+      <find>&lt;script type=&quot;text/html&quot; template&gt;</find>
+      <find>layui.data.done</find>
+      <find>&lt;/script&gt;</find>
+      <find>NAN</find>
+      <find>PCB Co</find>
+      <find>pcbTo</find>
     </findStrings>
     <replaceStrings>
       <replace>$</replace>
@@ -463,14 +469,7 @@
       <workItem from="1552007237165" duration="23059000" />
       <workItem from="1552094114888" duration="12914000" />
       <workItem from="1552266390084" duration="18002000" />
-      <workItem from="1552352275695" duration="19959000" />
-    </task>
-    <task id="LOCAL-00042" summary="菜单显示bug解决">
-      <created>1540345809102</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1540345809102</updated>
+      <workItem from="1552352275695" duration="23040000" />
     </task>
     <task id="LOCAL-00043" summary="增删菜单动态刷新左侧菜单栏">
       <created>1540348378497</created>
@@ -808,11 +807,18 @@
       <option name="project" value="LOCAL" />
       <updated>1552306909799</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="1、计价页右侧修改">
+      <created>1552389892177</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1552389892179</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1197292000" />
+    <option name="totallyTimeSpent" value="1200373000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -908,7 +914,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="内部报价修改" />
     <MESSAGE value="1、内部计价系统显示生产编号&#10;2、报价合同" />
     <MESSAGE value="报价合同" />
     <MESSAGE value="内部合同判断" />
@@ -933,7 +938,8 @@
     <MESSAGE value=" 外协合同" />
     <MESSAGE value="1、合同页条件查询&#10;2、货币转换方法封装" />
     <MESSAGE value="外协合同完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="外协合同完成" />
+    <MESSAGE value="1、计价页右侧修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、计价页右侧修改" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1277,15 +1283,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1656">
+        <state relative-caret-position="-2239">
           <caret line="391" column="32" lean-forward="true" selection-start-line="390" selection-start-column="8" selection-end-line="391" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="608" column="74" lean-forward="true" selection-start-line="608" selection-start-column="74" selection-end-line="608" selection-end-column="74" />
+        <state relative-caret-position="534">
+          <caret line="531" column="62" lean-forward="true" selection-start-line="531" selection-start-column="62" selection-end-line="531" selection-end-column="62" />
         </state>
       </provider>
     </entry>
