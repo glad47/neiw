@@ -52,7 +52,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field: 'status',title: '状态',templet: '#pcb'}      // 1 ＝ 待报价
+            ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
             ,{field: '',title: '报价单号', width: 125}
             ,{field: 'gmtCreate',title: '报价时间', width: 166}
             ,{field: 'supplierNo', title: '供应商编号', width: 124}

@@ -14,12 +14,22 @@
                 <script type="text/html" id="ord_sqpManaPlan_tb">
                     <div class="layui-btn-container">
                         <button class="layui-btn layui-btn-sm" lay-event="submit">通知出货</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="innerLable">内标签</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="outLable">外标签</button>
                     </div>
                 </script>
                 <script type="text/html" id="scmManaPlan_tabbar">
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
-                    <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
-                    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">包装要求</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="search">查看明细</a>
+                </script>
+                <script type="text/html" id="planStatus">
+                    {{# if(d.status == '6') {}}
+                    已确认交期
+                    {{# } else if(d.status == '5'){ }}
+                    交期已回复
+                    {{# } else if(d.status == '4'){ }}
+                    待确认交期
+                    {{# } }}
                 </script>
             </div>
             <!--钢网订单-->

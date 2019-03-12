@@ -52,9 +52,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field: 'status',title: '状态',templet: '#pcb'}      // 1 ＝ 待报价
-            ,{field: '',title: '报价单号', width: 125}
-            ,{field: 'gmtCreate',title: '报价时间', width: 166}
+            ,{field: 'status',title: '状态',templet: '#planStatus', width: 110}      // 1 ＝ 待报价
+            ,{field: 'deliveryTime',title: '交期', width: 110}      // 1 ＝ 待报价
             ,{field: 'supplierNo', title: '供应商编号', width: 124}
             ,{field: 'supplierQuoteNo', title: '供应商厂编', width: 117}
             ,{field: 'productNo', title: '聚谷P/N', width: 124}
@@ -77,6 +76,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'panelWayY', title: 'panelWayY', hide: true}
             ,{field: 'gerberName', title: 'gerberName', hide: true}
             ,{field: 'gerberPath', title: 'gerberPath', hide: true}
+            ,{field: '',title: '报价单号', width: 125, hide: true}
+            ,{field: 'gmtCreate',title: '报价时间', width: 166, hide: true}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
             ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',width: 150}
@@ -89,25 +90,21 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         var checkStatus = table.checkStatus(obj.config.id);
         if(obj.event === 'submit'){     //通知出货
             var data = checkStatus.data;
-            var supplierContractNo = null;
+            console.log(data);
             if (data.length < 1) {
                 layer.msg('请选择一条数据');
                 return false;
-            }
-            for (var i=0;i<data.length;i++){
-                if (supplierContractNo == null){
-                    supplierContractNo = data[i].supplierContractNo;
-                } else {
-                    supplierContractNo += ',' + data[i].supplierContractNo;
-                }
+            } else if (data.length >= 2) {
+                layer.msg('最多只能选择一条数据！');
+                return false;
             }
             admin.popup({
                 title: '交货明细'
                 ,area: ['702px','547px']
-                ,btn: ['生产送货单', '取消']
+                ,btn: ['出货', '取消']
                 ,yes: function (index, layero) {
                     layer.confirm('确定要生产送货单？', function () {
-                       layer.msg("生产送货单");
+                       layer.msg("出货");
                        admin.req({
                           type: 'post',
                           data: '',
@@ -120,7 +117,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
                 ,success: function (layero, index) {
                     var id = data.id;
-                    view(this.id).render('sqeManagement/iframeWindow/details_delivery', data).done(function () {
+                    view(this.id).render('sqeManagement/iframeWindow/details_delivery', data[0]).done(function () {
 
                     });
                 }
