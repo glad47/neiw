@@ -87,9 +87,13 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     });
     table.on('toolbar(sqeManaPlan_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
-        if(obj.event === 'submit'){
+        if(obj.event === 'submit'){     //通知出货
             var data = checkStatus.data;
             var supplierContractNo = null;
+            if (data.length < 1) {
+                layer.msg('请选择一条数据');
+                return false;
+            }
             for (var i=0;i<data.length;i++){
                 if (supplierContractNo == null){
                     supplierContractNo = data[i].supplierContractNo;
@@ -97,21 +101,31 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     supplierContractNo += ',' + data[i].supplierContractNo;
                 }
             }
-            layer.confirm('确认提交 ['+supplierContractNo+'] ?', function(index){
-                admin.req({
-                    type: 'post',
-                    data: {'supplierContractNo':supplierContractNo},
-                    url: setter.baseUrl+'sqe/pcborder/submitByOt',
-                    success: function (data) {
-                        if (data.code == '0'){
-                            layer.alert("提交成功！！");
-                            table.reload('sqeManaPlan_tabPcb');
-                            layer.close(index);
-                        }
-                    }
-                });
-                table.reload('sqeManaPlan_tabPcb');
+            admin.popup({
+                title: '交货明细'
+                ,area: ['702px','547px']
+                ,btn: ['生产送货单', '取消']
+                ,yes: function (index, layero) {
+                    layer.confirm('确定要生产送货单？', function () {
+                       layer.msg("生产送货单");
+                       admin.req({
+                          type: 'post',
+                          data: '',
+                          url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
+                          success: function () {
+                              
+                          } 
+                       });
+                    });
+                }
+                ,success: function (layero, index) {
+                    var id = data.id;
+                    view(this.id).render('sqeManagement/iframeWindow/details_delivery', data).done(function () {
+
+                    });
+                }
             });
+
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单

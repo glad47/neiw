@@ -380,8 +380,8 @@
                     <script type="text/html" template>
                         <!--<input type="text" name="blindHoles" value="{{ d.params.blindHoles || 'No' }}" autocomplete="off" class="layui-input">-->
                         <select name="blindHoles">
-                            <option value="No"  {{ d.params.blindHoles == '' ? 'selected' : '' }}>No</option>
-                            <option value="Yes" {{ d.params.blindHoles = '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="0"  {{ d.params.blindHoles == '' ? 'selected' : '' }}>No</option>
+                            <option value="1" {{ d.params.blindHoles = '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -391,8 +391,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="edgePlated">
-                            <option value="No"  {{ d.params.edgePlated == '' ? 'selected' : '' }}>No</option>
-                            <option value="Yes" {{ d.params.edgePlated == '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="0"  {{ d.params.edgePlated == '' ? 'selected' : '' }}>No</option>
+                            <option value="1" {{ d.params.edgePlated == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -402,8 +402,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="halfHoleLated">
-                            <option value="No"  {{ d.params.halfHoleLated == '' ? 'selected' : '' }}>No</option>
-                            <option value="Yes" {{ d.params.halfHoleLated == '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="0"  {{ d.params.halfHoleLated == '' ? 'selected' : '' }}>No</option>
+                            <option value="1" {{ d.params.halfHoleLated == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -416,8 +416,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="contrlImpeance">
-                            <option value="No"  {{ d.params.contrlImpeance == '0' ? 'selected' : '' }}>No</option>
-                            <option value="Yes" {{ d.params.contrlImpeance == '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="0"  {{ d.params.contrlImpeance == '0' ? 'selected' : '' }}>No</option>
+                            <option value="1" {{ d.params.contrlImpeance == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -427,8 +427,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="buriedHoles">
-                            <option value="No"  {{ d.params.buriedHoles == '' ? 'selected' : '' }}>No</option>
-                            <option value="Yes" {{ d.params.buriedHoles == '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="0"  {{ d.params.buriedHoles == '' ? 'selected' : '' }}>No</option>
+                            <option value="1" {{ d.params.buriedHoles == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -438,8 +438,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="carbon">
-                            <option value="No"  {{ d.params.carbon == '' ? 'selected' : '' }}>No</option>
-                            <option value="Yes" {{ d.params.carbon == '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="0"  {{ d.params.carbon == '' ? 'selected' : '' }}>No</option>
+                            <option value="1" {{ d.params.carbon == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -452,8 +452,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="deepMillRouting">
-                            <option value="No"  {{ d.params.deepMillRouting == '' ? 'selected' : '' }}>No</option>
-                            <option value="Yes" {{ d.params.deepMillRouting == '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="0"  {{ d.params.deepMillRouting == '' ? 'selected' : '' }}>No</option>
+                            <option value="1" {{ d.params.deepMillRouting == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -463,8 +463,8 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="bevellingCamfer">
-                            <option value="No"  {{ d.params.bevellingCamfer == '' ? 'selected' : '' }}>No</option>
-                            <option value="Yes" {{ d.params.bevellingCamfer == '1' ? 'selected' : '' }}>Yes</option>
+                            <option value="0"  {{ d.params.bevellingCamfer == '' ? 'selected' : '' }}>No</option>
+                            <option value="1" {{ d.params.bevellingCamfer == '1' ? 'selected' : '' }}>Yes</option>
                         </select>
                     </script>
                 </div>
@@ -511,7 +511,7 @@
                 <label class="layui-form-label">Test Cost：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="testCost" value="{{ d.params.testCost || '' }}" autocomplete="off" class="layui-input">
+                        <input type="text" name="testCostFee" value="{{ d.params.testCostFee || '' }}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
@@ -527,10 +527,10 @@
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Weight：</label>
+                <label class="layui-form-label">Tool' fee：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="weight" value="{{ d.params.weight || '' }}" autocomplete="off" class="layui-input">
+                        <input type="text" name="toolingFee" value="{{ d.params.toolingFee || '' }}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
@@ -547,10 +547,10 @@
 
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Tool' fee：</label>
+                <label class="layui-form-label">Weight：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="toolingFee" value="{{ d.params.toolingFee || '' }}" autocomplete="off" class="layui-input">
+                        <input type="text" name="weight" value="{{ d.params.weight || '' }}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
@@ -595,6 +595,23 @@
 
     </form>
 </div>
+
+<script>
+    layui.use(['admin', 'table', 'form', 'laydate'], function () {
+        var $ = layui.jquery,
+        layer = layui.layer;
+        var form = layui.form;
+
+        function get_qObj() {
+            var _quote_obj = new Object();
+            _quote_obj.engfee = $("input[name='engfee']").val();
+            _quote_obj.boardFee = $("input[name='boardFee']").val();
+            _quote_obj.testCostFee = $("input[name='testCostFee']").val();
+            _quote_obj.overworkFee = $("input[name='overworkFee']").val();
+            _quote_obj.toolingFee = $("input[name='toolingFee']").val();
+        }
+    });
+</script>
 
 <style>
     .pcb-edit-info>.layui-form>.layui-form-item>.layui-col-md4>.layui-form-label{text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
