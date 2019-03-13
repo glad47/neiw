@@ -1,6 +1,6 @@
 /**
 
- @Name:    供应商管理－－［报价协同］
+ @Name:    品质管理－－［来料检验］
 
  */
 
@@ -34,11 +34,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
-        elem: '#sqeManaPlan_tabPcb'
-        ,url: setter.baseUrl+'sqe/pcborder/planTogether/list'
+        elem: '#iqcIncom_auditor'
+        ,url: setter.baseUrl+'iqc/pcborder/incomingAuditor/list'
         ,toolbar: "#ord_sqpManaPlan_tb"
         ,cellMinWidth: 80
-        ,id: "sqeManaPlan_tabPcb"
+        ,id: "iqcIncom_auditor"
         ,page: true
         ,parseData: function (res) {
             return{
@@ -86,7 +86,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
         }
     });
-    table.on('toolbar(sqeManaPlan_tabPcb)', function (obj) {
+    table.on('toolbar(iqcIncom_auditor)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var Pdata = {data:{},result:{}};     // data为表格数据/result为请求到的数据
         Pdata.data = checkStatus.data[0];
@@ -133,12 +133,12 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                         data: data,
                                         url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
                                         success: function (result) {
-                                         layer.alert("提交成功！");
-                                         table.reload('sqeManaPlan_tabPcb');
-                                         layer.closeAll();
+                                            layer.alert("提交成功！");
+                                            table.reload('iqcIncom_auditor');
+                                            layer.closeAll();
                                         }
                                     });
-                                   return false;
+                                    return false;
                                 });
                             });
                         }
@@ -148,7 +148,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(sqeManaPlan_tabPcb)', function (obj) {
+    table.on('tool(iqcIncom_auditor)', function (obj) {
         var data = obj.data;
         if (obj.event == 'edit'){
             layer.msg('编辑操作');
@@ -178,7 +178,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                 success: function (data) {
                                     layer.alert("订单协同修改成功");
                                     // layer.closeAll();
-                                    table.reload('sqeManaPlan_tabPcb');
+                                    table.reload('iqcIncom_auditor');
                                     layer.close(index);
                                 }
                             });
@@ -191,5 +191,5 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('查看订单协同');
         }
     });
-    exports('sqeManagement_plan_together', {});
+    exports('iqcManagement_incoming_auditor', {});
 });
