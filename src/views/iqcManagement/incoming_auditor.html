@@ -1,4 +1,4 @@
-<title>计划协同</title>
+<title>来料检验</title>
 <div class="layui-fluid">
     <!--卡片－表格信息-->
     <div class="layui-tab layui-tab-brief" lay-filter="tab-planToger">
@@ -19,16 +19,25 @@
                     </div>
                 </script>
                 <script type="text/html" id="scmManaPlan_tabbar">
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">包装要求</a>
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="search">查看明细</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="search">查看</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="backto">退回</a>
                 </script>
-                <script type="text/html" id="planStatus">
-                    {{# if(d.status == '6') {}}
-                    已确认交期
-                    {{# } else if(d.status == '5'){ }}
-                    交期已回复
+                <script type="text/html" id="iqcMana_ia">
+                    {{# if(d.status == '1') {}}
+                        已指派
+                    {{# } else if(d.status == '2'){ }}
+                        已报价
+                    {{# } else if(d.status == '3'){ }}
+                        生成外协合同
                     {{# } else if(d.status == '4'){ }}
-                    待确认交期
+                        回签
+                    {{# } else if(d.status == '5'){ }}
+                        供应商修改确认
+                    {{# } else if(d.status == '6'){ }}
+                        供应链确认
+                    {{# } else if(d.status == '7'){ }}
+                        出货通知
                     {{# } }}
                 </script>
             </div>

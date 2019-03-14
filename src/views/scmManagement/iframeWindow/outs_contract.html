@@ -43,7 +43,14 @@
                 </div>
                 <div class="rig-y">
                     <label>
-                        合同编号：{{ d.params.data.invoiceNo || '' }}
+                        合同编号：
+                        {{# var invoiceNo = null }}
+                        {{# layui.each(d.params.data, function(index, item){  }}
+                            {{# if(invoiceNo == null){ }}
+                                {{# invoiceNo = item.invoiceNo }}
+                                {{ invoiceNo  }}
+                            {{# } }}
+                        {{#  }); }}
                     </label>
                     <p>
                         <label>
@@ -138,7 +145,13 @@
                     <!--合计金额-->
                     <td>{{ item.subtotal || '0' }}</td>
                     <!--交期-->
-                    <td>{{ item.deliveryTime.substring(0,10) || '0' }}</td>
+                    <td>
+                        {{# if(item.deliveryTime != null){ }}
+                            {{ item.deliveryTime.substring(0,10) }}
+                        {{# } else{ }}
+                            交期未定
+                        {{# } }}
+                    </td>
                     <!--备注-->
                     <td>{{ item.remark || '0' }}</td>
                 </tr>
@@ -149,7 +162,7 @@
                         {{ d.params.convertSubtotal}}
                     </td>
                     <td colspan="11" style="text-align: left;padding-left: 10px;">
-                        {{ d.params.subtotal }}
+                        总计：￥{{ d.params.subtotal }}
                     </td>
                 </tr>
                 </tbody>

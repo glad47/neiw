@@ -23,12 +23,16 @@
                     <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="signBack">退回</a>
                 </script>
                 <script type="text/html" id="og_status">
-                    {{# if(d.status == '6') {}}
+                    {{# if(d.status == '6') { }}
                         已确认交期
                     {{# } else if(d.status == '5'){ }}
                         交期已回复
                     {{# } else if(d.status == '4'){ }}
                         待确认交期
+                    {{# } else if(d.status == '3'){ }}
+                        已生成合同
+                    {{# } else if(d.status == null || d.status == '' ){ }}
+                        合同未回签
                     {{# } }}
                 </script>
             </div>

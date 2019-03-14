@@ -147,6 +147,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     postData.testPointType = $("#hiddenTestPoint").val();     //侧孔方式
                     postData.totalFee = $("#qt_pcb_totalFee").text();          //总价
                     console.log(postData);
+                    if (postData.deliveryTime == null || postData.deliveryTime == '') {
+                        layer.msg('交期不能为空！！！');
+                        return false;
+                    }
                     admin.req({
                         type: 'post',
                         data: postData,

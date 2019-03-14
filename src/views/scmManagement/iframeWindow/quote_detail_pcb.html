@@ -128,8 +128,12 @@
                     <td>交期</td>
                     <td><input class="layui-input" type="text" id="pcbDeliveryDate"></td>
                     <td title="客户交期">
-                        {{# var deliveryTime = d.params.deliveryTime.substring(0,10) }}
-                        {{ deliveryTime }}
+                        {{# if(d.params.deliveryTime != null){ }}
+                            {{# var deliveryTime = d.params.deliveryTime.substring(0,10) }}
+                            {{ deliveryTime }}
+                        {{# } else{ }}
+                            交期未定
+                        {{# } }}
                     </td>
                 </tr>
                 <tr>

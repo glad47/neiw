@@ -165,6 +165,17 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 ,end:function(){}
                 ,success: function (layero, index) {
                     view(this.id).render('scmManagement/assign_supplier').done(function () {
+                        var cid_list;
+                        admin.req({
+                            type: 'post',
+                            url: setter.baseUrl+'scm/pcborder/assignedSupplierIds',
+                            data: {'oid':data.id},
+                            async: false,
+                            success: function (result) {
+                                cid_list = result.data;
+                            }
+                        });
+                        console.log(cid_list);
                         table.render({
                             elem: '#scm_assign_supplier_table'
                             ,url: setter.baseUrl+'scm/pcborder/allSupplier'
@@ -180,12 +191,56 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                 ,{field:'id', title: 'ID',hide: true}
                                 ,{field:'supplierId', title: '供应商编号', hide: false, align:'center',width: 130}
                                 ,{field:'companyName', title:'公司名', align:'center', hide: false}
-                            ]]
+                            ]],
+                            done: function (res, curr, count) {
+                                var tableId = this.id;
+                                // 原dom
+                                var tableElem = this.elem;
+                                // layui渲染出来的表格dom
+                                var tableViewElem = tableElem.next();
+                                //var data = this.url ? res:res.data;
+                                // 当前页面的数据
+                                var data = table.cache[tableId];
+
+                                // 遍历tbody的tr
+                                layui.each(tableViewElem.find('.layui-table-main').find('tr'), function (index, trElem) {
+                                    // 行节点
+                                    trElem = $(trElem);
+                                    // 行下标
+                                    var trIndex = trElem.data('index');
+                                    // 行数据
+                                    var trData = data[trIndex];
+                                    // 判断是否选中的逻辑这个根据自己的实际情况处理
+                                    console.log("进入");
+                                    for (var i=0;i<cid_list.length;i++){
+                                        console.log(cid_list[i]);
+                                        if (trData.id == cid_list[i]){
+                                            console.log("aaa:"+cid_list[i])
+                                            // 只加属性并不能在获得选中行中得到数据
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('checked', 'checked');
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('disabled', 'disabled');
+                                            console.log(tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').text());
+                                            // 把cache的LAY_CHECKED设置成true才能在获得表格选中的数据中得到当前选中的行
+                                            trData[table.config.checkName] = true;
+                                        }
+                                    }
+                                    // if (trData.id == '2') {
+                                    //     // 只加属性并不能在获得选中行中得到数据
+                                    //     tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('checked', 'checked');
+                                    //     tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('disabled', 'disabled');
+                                    //     console.log(tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').text());
+                                    //     // 把cache的LAY_CHECKED设置成true才能在获得表格选中的数据中得到当前选中的行
+                                    //     trData[table.config.checkName] = true;
+                                    // }
+                                });
+                                // 最后渲染。参数看具体环境，如果有filter之类的尽量具体渲染到某一个form。
+                                form.render(null, tableViewElem.attr('lay-filter'));
+                            }
                             
                         });
                     })
                 }
-            })
+            });
         } 
     });
 

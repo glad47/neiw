@@ -21,6 +21,15 @@
                     <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="rollback">退回</a>
                     <a class="layui-btn layui-btn-xs" lay-event="eevScmdel">删除</a>
                 </script>
+                <script type="text/html" id="scmManaquo_status">
+                    {{# if(d.status == '1') { }}
+                        已指派
+                    {{# } else if(d.status == '2' && d.invoiceNo != null){ }}
+                        合同被退回
+                    {{# } else if(d.status == '2' && d.invoiceNo == null){ }}
+                        已报价
+                    {{# }  }}
+                </script>
             </div>
             <!--钢网订单-->
             <div class="layui-tab-item">

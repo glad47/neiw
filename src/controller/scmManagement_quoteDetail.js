@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form'], function (exports) {
+layui.define(['admin','table','index','element','form', 'convertCurrency'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -13,6 +13,7 @@ layui.define(['admin','table','index','element','form'], function (exports) {
         ,setter = layui.setter
         ,element = layui.element;
     var $ = layui.jquery;
+    var convertCurrency = layui.convertCurrency;
 
     // 全局变量
     var _public_val = {
@@ -51,11 +52,11 @@ layui.define(['admin','table','index','element','form'], function (exports) {
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field: 'status',title: '状态',templet: '#pcb'}      // 1 ＝ 待报价
-            ,{field: '',title: '报价单号', width: 125}
+            ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115, minWidth: 115}      // 1 ＝ 待报价
+            ,{field: 'supplierQuoteNo',title: '报价单号', width: 172,minWidth: 172}
             ,{field: 'gmtCreate',title: '报价时间', width: 166}
             ,{field: 'supplierNo', title: '供应商编号', width: 124}
-            ,{field: 'supplierQuoteNo', title: '供应商厂编', width: 117}
+            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
             ,{field: 'productNo', title: '聚谷P/N', width: 124}
             ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
@@ -89,31 +90,53 @@ layui.define(['admin','table','index','element','form'], function (exports) {
     });
     table.on('toolbar(scmMana_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        var subtotal = 0;
         if(obj.event === 'evScmSubmit'){
-            var data = checkStatus.data;
             var ids = null;
+            var popupData = {data:{}};
+            popupData.data = data;
             for (var i=0;i<data.length;i++){
+                var forSt = data[i].subtotal;
                 if (ids == null){
                     ids = ids + data[i].id;
                 } else {
                     ids = ids + ',' + data[i].id;
                 }
+                subtotal += forSt;
             }
-            console.log(ids);
-            layer.confirm('是否生成合同?', function(index){
-                admin.req({
-                    type: 'post',
-                    data: {ids},
-                    url: setter.baseUrl+'/scm/pcborder/createContractBeOt',
-                    success: function (data) {
-                        if (data.code == '0'){
-                            layer.alert("提交成功！！");
-                            table.reload('scmMana_tabPcb');
-                            layer.close(index);
-                        }
-                    }
+            console.log("subtotal:"+subtotal);
+            // 金额转换为中文大写
+            convertSubtotal = convertCurrency.conversion(subtotal);
+            popupData.subtotal = subtotal;
+            popupData.convertSubtotal = convertSubtotal;
+            console.log(popupData);
+            admin.popup({
+                title: '是否生成合同查看'
+                ,area: ['100%', '100%']
+                ,btn: ['生成合同', '取消']
+                ,yes: function (index, layero) {
+                    layer.confirm('是否生成合同?', function(index){
+                        admin.req({
+                            type: 'post',
+                            data: {ids},
+                            url: setter.baseUrl+'/scm/pcborder/createContractBeOt',
+                            success: function (data) {
+                                if (data.code == '0'){
+                                    layer.alert("提交成功！！");
+                                    table.reload('scmMana_tabPcb');
+                                    layer.closeAll();
+                                }
+                            }
+                        });
+                    });
+                }
+                ,success: function (layero, index) {
+                view(this.id).render('scmManagement/iframeWindow/outs_contract',popupData).done(function () {
+
                 });
-            });
+            }
+            })
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单

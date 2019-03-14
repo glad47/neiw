@@ -166,7 +166,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         var f = $("#boardFee").val()
         $("#unitPrice").val(parseFloat(f/c).toFixed(2));
         $("#boardFee").val(d);
-        quotePCBTotalPrice();
+        // quotePCBTotalPrice();
         layer.msg(d);
     });
 
@@ -174,7 +174,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     $("#rPcbForm").bind('input propertychange', function () {       //监听右侧所有费用的变化
         var obj = getRig_obj(); //获取右侧费用对象
         quotePCBCost(obj);      //计算右侧费用的小计
-        quotePCBTotalPrice();      //计算总价
+        // quotePCBTotalPrice();      //计算总价
         pcb_container = Object.assign(pcb_container,obj);   //修改后合并对象
         console.log(pcb_container);
     });
@@ -378,18 +378,20 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         // pcb_container.buildTime = $("input[name='buildTime']").attr("title");
         $("#urgentFee").val(this_price);
         quotePCBCost();
-        quotePCBTotalPrice();
+        // quotePCBTotalPrice();
     });
 
     //监听==>构造时间的 select
     form.on("select(selBuildTime)", function (data) {   //构造时间天数
         var this_price = data.value;
         var optionText = $("#selBuildTime").find("option[value="+data.value+"]").text();
+        pcbTo.shippingPrice = this_price;
         pcb_container.overworkFee = this_price;
         pcb_container.buildTime = optionText;
         $("#urgentFee").val(this_price);
-        // quotePCBCost();
-        // quotePCBTotalPrice();
+        var obj = getRig_obj(); //获取右侧费用对象
+        quotePCBCost(obj);      //计算右侧费用的小计
+
     });
 
     //监听==>选择快递
@@ -819,7 +821,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                 }
                 var obj = getRig_obj(); //获取右侧费用对象
                 quotePCBCost(obj);      //计算右侧费用的小计
-                quotePCBTotalPrice();      //计算总价
+                // quotePCBTotalPrice();      //计算总价
             },
             error: function (data) {
                 alert("Services Error!!!");
@@ -1004,30 +1006,40 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
      * 计算PCB Cost 价格
      */
     function quotePCBCost(obj) {
-        pcbTo.pcbCost = 0;
+        // pcbTo.pcbCost = 0;
+        var pcbCost = 0;
         $.each(obj, function (i, val) {
             var _val = parseFloat(val);
             if (_val == "" || _val == null || isNaN(_val)) {
                 obj[i] = 0;
-            } else {
-                pcbTo.pcbCost = parseFloat(pcbTo.pcbCost+_val).toFixed(2);
+                _val = 0;
             }
+            pcbCost += _val;
         });
+        pcbTo.pcbCost = pcbCost.toFixed(2);
+        console.log(pcbTo);
         $("#pcbCost").val(pcbTo.pcbCost);
+        quotePCBTotalPrice();
     }
 
     /**
      * 计算PCB Phototype 总价
      */
     function quotePCBTotalPrice() {
+        console.log("计算总价");
         var shippingPrice = $("#shippingPrice").val();
         pcbTo.shippingPrice = parseFloat(shippingPrice);
+        // console.log("pcbTo.shippingPrice:"+pcbTo.shippingPrice);
         $.each(pcbTo, function (i, val) {
             if (val == "" || val == null || isNaN(val)) {
                 pcbTo[i] = 0;
             }
         });
-        pcbTo.totalPrice = parseFloat(pcbTo.pcbCost+pcbTo.shippingPrice).toFixed(2);
+        var pcbCost = parseFloat(pcbTo.pcbCost);
+        var shippingPrice = parseFloat(pcbTo.shippingPrice);
+        var totalPrice = (pcbCost+shippingPrice).toFixed(2);
+        pcbTo.totalPrice = totalPrice;
+        console.log("totalPrice:"+totalPrice);
         pcb_container.subtotal = pcbTo.totalPrice;
         $("#totalPrice").val(pcbTo.totalPrice);
     }

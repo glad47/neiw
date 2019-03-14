@@ -142,7 +142,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'quoteGerberPath',title: 'quoteGerberPath',edit: 'text',hide: true}
             ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',edit: 'text',hide: true}
             ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',edit: 'text',hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#interior_order_Bar', width:200}
+            ,{fixed: 'right', title:'操作', toolbar: '#interior_order_Bar', minWidth:160, width: 160}
         ]]
         ,done: function (res, curr, count) {
             var data = res.data;    //获取表格所有数据对象
@@ -284,12 +284,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     table.on('tool(interior_order_Tabpcb)', function(obj){
         var data = obj.data;
         console.log(obj)
-        if(obj.event == 'del'){
-            layer.confirm('真的删除行么', function(index){
-                obj.del();
-                layer.close(index);
-            });
-        } else if(obj.event == 'edit'){
+        if(obj.event == 'edit'){
             admin.popup({
                 title: '编辑PCB订单信息'
                 ,area: ['76%', '90%']
@@ -415,10 +410,16 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         } else if(obj.event == 'submit'){
             layer.confirm('确定要提交此订单？', function () {
                admin.req({
-
-               })
+                   type: 'post',
+                   data: {'contractNos':data.invoiceNo},
+                   url: setter.baseUrl+'epc/pcborder/submitInternalOrder',
+                   success: function (result) {
+                       layer.alert("订单提交成功");
+                       table.reload('interior_order_Tabpcb');
+                       layer.closeAll();
+                   }
+               });
             });
-            layer.msg('submit');
         }
     });
     //监听单元格编辑

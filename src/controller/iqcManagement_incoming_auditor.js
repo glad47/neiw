@@ -52,34 +52,20 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field: 'status',title: '状态',templet: '#planStatus', width: 110}      // 1 ＝ 待报价
-            ,{field: 'deliveryTime',title: '交期', width: 110}      // 1 ＝ 待报价
-            ,{field: 'supplierNo', title: '供应商编号', width: 124}
-            ,{field: 'supplierQuoteNo', title: '供应商厂编', width: 117}
-            ,{field: 'productNo', title: '聚谷P/N', width: 124}
-            ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
-            ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-            ,{field: 'unitPrice', title: '单价', width: 96}
-            ,{field: 'engineeringFee', title: '工程费', width: 96}
-            ,{field: 'testCostFee', title: '飞针费', width: 96}
-            ,{field: 'testCostFee', title: '测试架费', width: 96}
-            ,{field: 'toolingFee', title: '模具', width: 96}
-            ,{field: 'subtotal', title: '合计', width: 96}
-            ,{field: 'remark', title: '订单备注', width: 168}
-            ,{field: 'remark', title: '订单备注', width: 168}
-            ,{field: 'remark', title: '订单备注', width: 168}
-            ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
-            ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
-            ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
-            ,{field: 'panelSizeY', title: 'panelSizeY', hide: true}
-            ,{field: 'panelWayX', title: 'panelWayX', hide: true}
-            ,{field: 'panelWayY', title: 'panelWayY', hide: true}
-            ,{field: 'gerberName', title: 'gerberName', hide: true}
-            ,{field: 'gerberPath', title: 'gerberPath', hide: true}
-            ,{field: '',title: '报价单号', width: 125, hide: true}
-            ,{field: 'gmtCreate',title: '报价时间', width: 166, hide: true}
-            // ,{field: 'gerberName',title: '文件名'}
-            // ,{field: 'pcbType',title: 'PCB类型'}
+            ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}      // 1 ＝ 已指派  2= 已报价
+            ,{field: 'id',title: 'ID', hide: true}
+            ,{field: 'deliveryTime',title: '交期', width: 110, templet: ' <a>{{ d.deliveryTime.substring(0,10) }}</a> '}
+            ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117}// 1 ＝ 待报价
+            ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117}
+            ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117}
+            ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133}
+            ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117}
+            ,{field: 'courierCompany', title: '快递公司', width: 124}
+            ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
+            ,{field: 'deliveryNo', title: '交货批次', width: 144}
+            ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122}
+            ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
+            ,{field: 'gmtModified', title: 'gmtModified', hide: true}
             ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',width: 150}
         ]]
         ,done: function (res, curr, count) {
@@ -149,22 +135,67 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     });
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(iqcIncom_auditor)', function (obj) {
-        var data = obj.data;
+        var data = {data:{}};
+        data.data = obj.data;
+        var d_data = {};        // 公共发送的对象
+        d_data.orderSupplierId = obj.data.id;
+        d_data.supplierNo = obj.data.supplierNo;
+        d_data.orderPcsNumber = obj.data.orderPcsNumber;
+        console.log(d_data);
         if (obj.event == 'edit'){
             layer.msg('编辑操作');
             admin.popup({
-                title: '订单协同编辑'
-                ,area: ['434px','448px']
-                ,btn: ['保存', '取消']
-                ,yes: function (index, layero) {
-                    layer.msg('提交信息');
+                title: '此批来料检验'
+                ,area: ['624px','494px']
+                ,btn: ['NG评审', 'NG批退', 'OK入库', '返回']
+                ,btn1: function (index, layero) {
+                    layer.confirm('确定评审？', function () {
+                        admin.req({
+                            type: 'post',
+                            data: data,
+                            url: setter.baseUrl+'iqc/pcborder/statusBack',
+                            success: function (result) {
+
+                            }
+                        });
+                    });
                     $(".otEdit").click();
+                },
+                btn2: function () {
+                    layer.confirm('确定批退？', function () {
+                        admin.req({
+                            type: 'post',
+                            data: data,
+                            url: setter.baseUrl+'iqc/pcborder/statusBack',
+                            success: function (result) {
+
+                            }
+                        });
+                    });
+                    return false;
+                },
+                btn3: function () {
+                    layer.confirm('确定入库？', function () {
+                        admin.req({
+                            type: 'post',
+                            data: data,
+                            url: setter.baseUrl+'iqc/pcborder/statusOk',
+                            success: function (result) {
+
+                            }
+                        });
+                    });
+                    return false;
+                },
+                btn4: function () {
+                    layer.msg('分回');
+                    return false;
                 }
                 ,success: function (layero, index) {
                     var id = data.id;
                     var supplierId = data.supplierId;
                     var orderId = data.orderId;
-                    view(this.id).render('sqeManagement/iframeWindow/order_together_edit',data).done(function () {
+                    view(this.id).render('iqcManagement/iframeWindow/incoming_auditor_edit',data).done(function () {
                         form.on('submit(otEdit)', function (data) {
                             var field = data.field;
                             field.id = id;
