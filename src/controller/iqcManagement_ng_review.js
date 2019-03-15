@@ -1,6 +1,6 @@
 /**
 
- @Name:    品质管理－－［来料检验］
+ @Name:    供应商管理－－［尾数管理］
 
  */
 
@@ -34,11 +34,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
-        elem: '#iqcIncom_auditor'
-        ,url: setter.baseUrl+'iqc/pcborder/incomingAuditor/list'
+        elem: '#iqcMana_ngReview'
+        ,url: setter.baseUrl+'iqc/pcborder/mantissaManagement/list'
         ,toolbar: "#ord_sqpManaPlan_tb"
         ,cellMinWidth: 80
-        ,id: "iqcIncom_auditor"
+        ,id: "iqcMana_ngReview"
         ,page: true
         ,parseData: function (res) {
             return{
@@ -52,27 +52,39 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}      // 1 ＝ 已指派  2= 已报价
-            ,{field: 'id',title: 'ID', hide: true}
-            ,{field: 'deliveryTime',title: '交期', width: 110, templet: ' <a>{{ d.deliveryTime.substring(0,10) }}</a> '}
-            ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117}// 1 ＝ 待报价
-            ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117}
-            ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117}
-            ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133}
-            ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117}
-            ,{field: 'courierCompany', title: '快递公司', width: 124}
-            ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
-            ,{field: 'deliveryNo', title: '交货批次', width: 144}
-            ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122}
-            ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
-            ,{field: 'gmtModified', title: 'gmtModified', hide: true}
+            ,{field: 'status',title: '状态', width: 110}      // 1 ＝ 待报价
+            ,{field: 'deliveryTime',title: '交期', width: 110}      // 1 ＝ 待报价
+            ,{field: 'supplierNo', title: '供应商编号', width: 124}
+            ,{field: 'supplierQuoteNo', title: '供应商厂编', width: 117}
+            ,{field: 'productNo', title: '聚谷P/N', width: 124}
+            ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
+            ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
+            ,{field: 'unitPrice', title: '单价', width: 96}
+            ,{field: 'engineeringFee', title: '工程费', width: 96}
+            ,{field: 'testCostFee', title: '飞针费', width: 96}
+            ,{field: 'testCostFee', title: '测试架费', width: 96}
+            ,{field: 'toolingFee', title: '模具', width: 96}
+            ,{field: 'subtotal', title: '合计', width: 96}
+            ,{field: 'remark', title: '订单备注', width: 168}
+            ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
+            ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
+            ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
+            ,{field: 'panelSizeY', title: 'panelSizeY', hide: true}
+            ,{field: 'panelWayX', title: 'panelWayX', hide: true}
+            ,{field: 'panelWayY', title: 'panelWayY', hide: true}
+            ,{field: 'gerberName', title: 'gerberName', hide: true}
+            ,{field: 'gerberPath', title: 'gerberPath', hide: true}
+            ,{field: '',title: '报价单号', width: 125, hide: true}
+            ,{field: 'gmtCreate',title: '报价时间', width: 166, hide: true}
+            // ,{field: 'gerberName',title: '文件名'}
+            // ,{field: 'pcbType',title: 'PCB类型'}
             ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',width: 150}
         ]]
         ,done: function (res, curr, count) {
 
         }
     });
-    table.on('toolbar(iqcIncom_auditor)', function (obj) {
+    table.on('toolbar(iqcMana_ngReview)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var Pdata = {data:{},result:{}};     // data为表格数据/result为请求到的数据
         Pdata.data = checkStatus.data[0];
@@ -111,6 +123,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                     data.supplierNo = Pdata.data.supplierNo;                            // 供应商编号
                                     data.deliveryTime = new Date().toLocaleDateString();                // 交期
                                     data.orderPcsNumber = Pdata.data.quantityPcs;                       // 订单PCS数
+                                    data.orderId = Pdata.data.orderId;                                  // 订单id
                                     data.donePcsNumber = parseInt($("#donePcsNumber").text());          // 已交PCS数
                                     data.surplusPcsNumber = parseInt($("#surplusPcsNumber").text());    // 未交PCS数
                                     console.log(data);
@@ -120,7 +133,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                         url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
                                         success: function (result) {
                                             layer.alert("提交成功！");
-                                            table.reload('iqcIncom_auditor' );
+                                            table.reload('iqcMana_ngReview');
                                             layer.closeAll();
                                         }
                                     });
@@ -134,79 +147,23 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(iqcIncom_auditor)', function (obj) {
-        var data = {data:{}};
-        data.data = obj.data;
-        var d_data = {};        // 公共发送的对象
-        d_data.id = obj.data.id;               // 供应商订单id
-        d_data.orderSupplierId = obj.data.orderSupplierId;    // 供应商订单id
-        d_data.supplierId = obj.data.supplierId;              // 供应商编号
-        d_data.factoryMake = obj.data.factoryMake;            // 供应商厂编
-        d_data.orderPcsNumber = obj.data.orderPcsNumber;      // 订单PCS数
-        d_data.donePcsNumber = obj.data.donePcsNumber;        // 已交PCS数
-        d_data.currPcsNumber = obj.data.currPcsNumber;        // 此次数量
-        d_data.orderPeriod = "";    // 订单周期
-        // d_data.totalPcsNumber = "";   // 总计 PCS
-        console.log(d_data);
+    table.on('tool(iqcMana_ngReview)', function (obj) {
+        var data = obj.data;
         if (obj.event == 'edit'){
+            layer.msg('编辑操作');
             admin.popup({
-                title: '此批来料检验'
-                ,area: ['624px','494px']
-                ,btn: ['NG评审', 'NG批退', 'OK入库', '返回']
-                ,btn1: function (index, layero) {
-                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
-                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
-                    console.log(d_data);
-                    layer.confirm('确定评审？', function () {
-                        // admin.req({
-                        //     type: 'post',
-                        //     data: d_data,
-                        //     url: setter.baseUrl+'iqc/pcborder/statusReview',
-                        //     success: function (result) {
-                        //         table.reload('iqcIncom_auditor');
-                        //         layer.closeAll();
-                        //     }
-                        // });
-                    });
-                },
-                btn2: function () {
-                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
-                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
-                    layer.confirm('确定批退？', function () {
-                        admin.req({
-                            type: 'post',
-                            data: d_data,
-                            url: setter.baseUrl+'iqc/pcborder/statusBack',
-                            success: function (result) {
-
-                            }
-                        });
-                    });
-                    return false;
-                },
-                btn3: function () {
-                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
-                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
-                    layer.confirm('确定入库？', function () {
-                        admin.req({
-                            type: 'post',
-                            data: d_data,
-                            url: setter.baseUrl+'iqc/pcborder/statusOk',
-                            success: function (result) {
-
-                            }
-                        });
-                    });
-                    return false;
-                },
-                btn4: function () {
-                    layer.msg('退出');
+                title: '订单协同编辑'
+                ,area: ['434px','448px']
+                ,btn: ['保存', '取消']
+                ,yes: function (index, layero) {
+                    layer.msg('提交信息');
+                    $(".otEdit").click();
                 }
                 ,success: function (layero, index) {
                     var id = data.id;
                     var supplierId = data.supplierId;
                     var orderId = data.orderId;
-                    view(this.id).render('iqcManagement/iframeWindow/incoming_auditor_edit',data).done(function () {
+                    view(this.id).render('sqeManagement/iframeWindow/order_together_edit',data).done(function () {
                         form.on('submit(otEdit)', function (data) {
                             var field = data.field;
                             field.id = id;
@@ -220,7 +177,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                 success: function (data) {
                                     layer.alert("订单协同修改成功");
                                     // layer.closeAll();
-                                    table.reload('iqcIncom_auditor');
+                                    table.reload('iqcMana_ngReview');
                                     layer.close(index);
                                 }
                             });
@@ -233,5 +190,5 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('查看订单协同');
         }
     });
-    exports('iqcManagement_incoming_auditor', {});
+    exports('productManagement_mantissa_management', {});
 });

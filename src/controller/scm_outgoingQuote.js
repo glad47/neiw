@@ -136,6 +136,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     //监听工具条
     table.on('tool(scm_Tabpcb_outgoing_quote)', function(obj){
         var data = obj.data;
+        var dIds_arr;
         if(obj.event === 'assign'){
             admin.popup({
                 title: '指定供应商'
@@ -144,22 +145,47 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 ,yes:function(index, layero){
                     var checkStatus = table.checkStatus('scm_assign_supplier_table'),checkdata = checkStatus.data;
                     var ids = checkdata.map(function(elem){return elem.id}).join(",");
-                    admin.req({
-                        url:setter.baseUrl+"scm/pcborder/assignOrderToSupplier",
-                        type:"POST",
-                        data:{
-                            orderId: data.id
-                            ,supplierIds: ids
-                        },
-                        success:function(data){
-                            if (data.code == 0 ) {
-                                layer.msg("指派成功！");
-                                layer.close(index); 
-                            }else{
-                                layer.msg(data.msg);
+                    var ids_arr = [ids.split(',')];
+                    var same_result = new Array();
+                    var c = dIds_arr.toString();
+                    for (var i = 0; i < ids_arr[0].length; i++) {
+                        if (c.indexOf(ids_arr[0][i].toString()) > -1) {
+                            for (var j = 0; j < dIds_arr.length; j++) {
+                                if (ids_arr[0][i] == parseInt(dIds_arr[j])) {
+                                    same_result.push(parseInt(ids_arr[0][i]));
+                                    break;
+                                }
                             }
                         }
-                    });
+                    }
+                    for (var i=0;i<ids_arr[0].length;i++) {
+                        for (var s=0;s<same_result.length;s++) {
+                            if (parseInt(ids_arr[0][i]) == same_result[s]) {
+                                ids_arr[0].splice(i,1);
+                            }
+                        }
+                        var new_ids = ids_arr[0][i]+',';
+                        if (new_ids.length > 0) {
+                            new_ids = new_ids.substr(0, new_ids.length - 1);
+                         }
+                         ids = new_ids;
+                    }
+                    admin.req({
+                    url:setter.baseUrl+"scm/pcborder/assignOrderToSupplier",
+                    type:"POST",
+                    data:{
+                        orderId: data.id
+                        ,supplierIds: ids
+                    },
+                    success:function(data){
+                        if (data.code == 0 ) {
+                            layer.msg("指派成功！");
+                            layer.close(index);
+                        }else{
+                            layer.msg(data.msg);
+                        }
+                    }
+                });
 
                 }
                 ,end:function(){}
@@ -173,6 +199,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                             async: false,
                             success: function (result) {
                                 cid_list = result.data;
+                                dIds_arr = result.data;
                             }
                         });
                         console.log(cid_list);
@@ -211,27 +238,20 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                     // 行数据
                                     var trData = data[trIndex];
                                     // 判断是否选中的逻辑这个根据自己的实际情况处理
-                                    console.log("进入");
                                     for (var i=0;i<cid_list.length;i++){
-                                        console.log(cid_list[i]);
                                         if (trData.id == cid_list[i]){
-                                            console.log("aaa:"+cid_list[i])
+                                            // 如果存在禁用选项，则移除全选
+                                            $(".layui-table-header thead").find("input[name = 'layTableCheckbox'][lay-filter='layTableAllChoose']").remove();
+                                            $(".layui-table-header thead").find(".layui-form-checkbox").remove();
                                             // 只加属性并不能在获得选中行中得到数据
                                             tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('checked', 'checked');
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('value', '');
                                             tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('disabled', 'disabled');
                                             console.log(tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').text());
                                             // 把cache的LAY_CHECKED设置成true才能在获得表格选中的数据中得到当前选中的行
                                             trData[table.config.checkName] = true;
                                         }
                                     }
-                                    // if (trData.id == '2') {
-                                    //     // 只加属性并不能在获得选中行中得到数据
-                                    //     tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('checked', 'checked');
-                                    //     tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('disabled', 'disabled');
-                                    //     console.log(tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').text());
-                                    //     // 把cache的LAY_CHECKED设置成true才能在获得表格选中的数据中得到当前选中的行
-                                    //     trData[table.config.checkName] = true;
-                                    // }
                                 });
                                 // 最后渲染。参数看具体环境，如果有filter之类的尽量具体渲染到某一个form。
                                 form.render(null, tableViewElem.attr('lay-filter'));

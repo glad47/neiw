@@ -53,22 +53,22 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,cols: [[
             {type:'checkbox'}
             ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
-            ,{field: '',title: '报价单号', width: 125}
             ,{field: 'gmtCreate',title: '报价时间', width: 166}
             ,{field: 'supplierNo', title: '供应商编号', width: 124}
-            ,{field: 'supplierQuoteNo', title: '供应商厂编', width: 117}
+            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
             ,{field: 'productNo', title: '聚谷P/N', width: 124}
             ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
             ,{field: 'unitPrice', title: '单价', width: 96}
-            ,{field: 'engineeringFee', title: '工程费', width: 96}
-            ,{field: 'testCostFee', title: '飞针费', width: 96}
-            ,{field: 'testCostFee', title: '测试架费', width: 96}
-            ,{field: 'toolingFee', title: '模具', width: 96}
             ,{field: 'subtotal', title: '合计', width: 96}
             ,{field: 'remark', title: '订单备注', width: 168}
             ,{field: 'remark', title: '订单备注', width: 168}
             ,{field: 'remark', title: '订单备注', width: 168}
+            ,{field: 'engineeringFee', title: '工程费', width: 96, hide: true}
+            ,{field: 'testCostFee', title: '飞针费', width: 96, hide: true}
+            ,{field: 'testCostFee', title: '测试架费', width: 96, hide: true}
+            ,{field: 'toolingFee', title: '模具', width: 96, hide: true}
+            ,{field: 'supplierQuoteNo',title: '报价单号', hide: true}
             ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
             ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
             ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
@@ -98,9 +98,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
             }
             layer.confirm('确认提交 ['+supplierContractNo+'] ?', function(index){
+                console.log(data);
                 admin.req({
                     type: 'post',
-                    data: {'supplierContractNo':supplierContractNo},
+                    data: {'supplierContractNo':supplierContractNo,'orderId':data[0].orderId},
                     url: setter.baseUrl+'sqe/pcborder/submitByOt',
                     success: function (data) {
                         if (data.code == '0'){

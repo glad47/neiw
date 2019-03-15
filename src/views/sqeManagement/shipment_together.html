@@ -21,6 +21,13 @@
                     <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
                     <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
                 </script>
+                <script type="text/html" template id="sqeMan_shipto">
+                    {{# if(d.status == '1') { }}
+                        <a style="color: green;">待出货</a>
+                    {{# } else if(d.status == '3') { }}
+                        <a style="color: orangered;">回退</a>
+                    {{# } }}
+                </script>
             </div>
             <!--钢网订单-->
             <div class="layui-tab-item">

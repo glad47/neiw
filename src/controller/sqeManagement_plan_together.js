@@ -53,29 +53,18 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,cols: [[
             {type:'checkbox'}
             ,{field: 'status',title: '状态',templet: '#planStatus', width: 110}      // 1 ＝ 待报价
-            ,{field: 'deliveryTime',title: '交期', width: 110}      // 1 ＝ 待报价
-            ,{field: 'supplierNo', title: '供应商编号', width: 124}
-            ,{field: 'supplierQuoteNo', title: '供应商厂编', width: 117}
+            ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
+            ,{field: '',title: '签约日期', width: 110}
+            ,{field: 'supplierNo', title: '供应商编号', width: 117}
+            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
+            ,{field: 'productNo', title: '聚谷订单号', width: 124}
             ,{field: 'productNo', title: '聚谷P/N', width: 124}
             ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-            ,{field: 'unitPrice', title: '单价', width: 96}
-            ,{field: 'engineeringFee', title: '工程费', width: 96}
-            ,{field: 'testCostFee', title: '飞针费', width: 96}
-            ,{field: 'testCostFee', title: '测试架费', width: 96}
-            ,{field: 'toolingFee', title: '模具', width: 96}
-            ,{field: 'subtotal', title: '合计', width: 96}
-            ,{field: 'remark', title: '订单备注', width: 168}
-            ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
-            ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
-            ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
-            ,{field: 'panelSizeY', title: 'panelSizeY', hide: true}
-            ,{field: 'panelWayX', title: 'panelWayX', hide: true}
-            ,{field: 'panelWayY', title: 'panelWayY', hide: true}
-            ,{field: 'gerberName', title: 'gerberName', hide: true}
-            ,{field: 'gerberPath', title: 'gerberPath', hide: true}
-            ,{field: '',title: '报价单号', width: 125, hide: true}
-            ,{field: 'gmtCreate',title: '报价时间', width: 166, hide: true}
+            ,{field: 'remark', title: '在线数量(PCS)', width: 168}
+            ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt'}
+            ,{field: '',title: '当前工序', width: 110}
+            ,{field: '',title: '进度', width: 110}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
             ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',width: 150}
@@ -123,6 +112,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                     data.supplierNo = Pdata.data.supplierNo;                            // 供应商编号
                                     data.deliveryTime = new Date().toLocaleDateString();                // 交期
                                     data.orderPcsNumber = Pdata.data.quantityPcs;                       // 订单PCS数
+                                    data.orderId = Pdata.data.orderId;                                  // 订单id
                                     data.donePcsNumber = parseInt($("#donePcsNumber").text());          // 已交PCS数
                                     data.surplusPcsNumber = parseInt($("#surplusPcsNumber").text());    // 未交PCS数
                                     console.log(data);

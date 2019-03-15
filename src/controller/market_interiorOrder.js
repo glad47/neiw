@@ -283,7 +283,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(interior_order_Tabpcb)', function(obj){
         var data = obj.data;
-        console.log(obj)
         if(obj.event == 'edit'){
             admin.popup({
                 title: '编辑PCB订单信息'
@@ -330,20 +329,23 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 data: {'contractNo': invoiceNo},
                 url: setter.baseUrl+'epc/pcborder/infoByContractNo',
                 success: function (data) {
-                    var viewName;
+                    var viewName = "marketManagement/iframeWindow/quote_contractB";
                     var productNo = null;
+                    var pTotala = 0;
                     var contractType;
                     popupData.data = sameData;
-                    popupData.total = data.subtotal;
-                    console.log(popupData.data.length);
+                    for (var i=0;i<data.data.length;i++){
+                        pTotala += parseFloat(data.data[i].subtotal);
+                    }
+                    popupData.total = pTotala;
                     $.each(data, function (idx, obj) {
                         if (productNo == null || productNo == "") {
                             contractType = 1;
-                            productNo = obj.productNo;
-                            viewName = "marketManagement/iframeWindow/quote_contractA";
+                            // productNo = obj.productNo;
+                            // viewName = "marketManagement/iframeWindow/quote_contractA";
                         } else if (productNo != null && productNo != obj.productNo) {
                             contractType = 2;
-                            viewName = "marketManagement/iframeWindow/quote_contractB";
+                            // viewName = "marketManagement/iframeWindow/quote_contractB";
                             layer.msg("选择了不同型号");
                         }
                     });
@@ -366,7 +368,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                         // btn2: function(index, layero){}
                         ,success: function (layero, index) {
                             popupData.htmlType = 2;     //页面标识 1为内部合同 主要用于判断头部左侧标题
-                            console.log(popupData);
                             view(this.id).render(viewName, popupData).done(function () {
                                 productNo = null; // 初始化订单号
                                 // 表格样式设置

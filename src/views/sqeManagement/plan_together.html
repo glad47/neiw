@@ -31,6 +31,13 @@
                     待确认交期
                     {{# } }}
                 </script>
+                <script type="text/html" id="sqeManaDt">
+                    {{# if(d.deliveryTime != null && d.deliveryTime != '') {}}
+                        {{ d.deliveryTime.substring(0, 10) }}
+                    {{# } else { }}
+                        交期未定
+                    {{# } }}
+                </script>
             </div>
             <!--钢网订单-->
             <div class="layui-tab-item">
