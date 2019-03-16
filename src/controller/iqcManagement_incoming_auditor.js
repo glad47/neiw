@@ -66,7 +66,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122}
             ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
             ,{field: 'gmtModified', title: 'gmtModified', hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',width: 150}
+            ,{fixed: 'right', title:'操作', toolbar: '#iqcManaIncau_tabbar',width: 160}
         ]]
         ,done: function (res, curr, count) {
 
@@ -158,15 +158,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
                     console.log(d_data);
                     layer.confirm('确定评审？', function () {
-                        // admin.req({
-                        //     type: 'post',
-                        //     data: d_data,
-                        //     url: setter.baseUrl+'iqc/pcborder/statusReview',
-                        //     success: function (result) {
-                        //         table.reload('iqcIncom_auditor');
-                        //         layer.closeAll();
-                        //     }
-                        // });
+                        admin.req({
+                            type: 'post',
+                            data: d_data,
+                            url: setter.baseUrl+'iqc/pcborder/statusReview',
+                            success: function (result) {
+                                table.reload('iqcIncom_auditor');
+                                layer.closeAll();
+                            }
+                        });
                     });
                 },
                 btn2: function () {
@@ -178,7 +178,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                             data: d_data,
                             url: setter.baseUrl+'iqc/pcborder/statusBack',
                             success: function (result) {
-
+                                table.reload('iqcIncom_auditor');
+                                layer.closeAll();
                             }
                         });
                     });
@@ -193,7 +194,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                             data: d_data,
                             url: setter.baseUrl+'iqc/pcborder/statusOk',
                             success: function (result) {
-
+                                table.reload('iqcIncom_auditor');
+                                layer.closeAll();
                             }
                         });
                     });

@@ -53,10 +53,10 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
         ,cols: [[
             {type:'checkbox'}
             ,{field: 'status',title: '状态',templet: '#og_status', minWidth: 104}      // 1 ＝ 待报价
-            ,{field: 'invoiceNo',title: '合同编号', width: 125}
+            ,{field: 'supplierContractNo',title: '合同编号', minWidth: 171}
             ,{field: 'gmtCreate',title: '创建时间', width: 166}
             ,{field: 'supplierNo', title: '供应商编号', width: 124}
-            ,{field: 'supplierQuoteNo', title: '供应商厂编', minWidth: 190}
+            ,{field: 'factoryMake', title: '供应商厂编', minWidth: 190}
             ,{field: 'productNo', title: '聚谷P/N', width: 124}
             ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}

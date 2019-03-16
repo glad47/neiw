@@ -54,7 +54,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             {type:'checkbox'}
             ,{field: 'status',title: '状态',templet: '#planStatus', width: 110}      // 1 ＝ 待报价
             ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
-            ,{field: '',title: '签约日期', width: 110}
+            ,{field: 'gmtCreate',title: '签约日期', minWidth: 172}
             ,{field: 'supplierNo', title: '供应商编号', width: 117}
             ,{field: 'factoryMake', title: '供应商厂编', width: 117}
             ,{field: 'productNo', title: '聚谷订单号', width: 124}
@@ -67,7 +67,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: '',title: '进度', width: 110}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',width: 150}
+            ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',minWidth: 160}
         ]]
         ,done: function (res, curr, count) {
 

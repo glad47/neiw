@@ -1,6 +1,6 @@
 /**
 
- @Name:    供应商管理－－［报价协同］
+ @Name:    供应商管理－－［订单协同］
 
  */
 
@@ -61,8 +61,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
             ,{field: 'unitPrice', title: '单价', width: 96}
             ,{field: 'subtotal', title: '合计', width: 96}
-            ,{field: 'remark', title: '订单备注', width: 168}
-            ,{field: 'remark', title: '订单备注', width: 168}
             ,{field: 'remark', title: '订单备注', width: 168}
             ,{field: 'engineeringFee', title: '工程费', width: 96, hide: true}
             ,{field: 'testCostFee', title: '飞针费', width: 96, hide: true}
