@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form', 'convertCurrency'], function (exports) {
+layui.define(['admin','table','index','element','form','convertCurrency'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -19,7 +19,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
     var _public_val = {
         orderType: 1        //订单类型 （1 pcb 2钢网）
     };
-
+    var pcbtabObj;  // PCB表格数据对象
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-scmManagement)', function(data){
         console.log(data.index);
@@ -34,11 +34,11 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
 
     //▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ PCB订单
     table.render({
-        elem: '#scmMana_tabPcb'
-        ,url: setter.baseUrl+'/scm/pcborder/quoteDetail/list'
-        ,toolbar: "#scmMana_toolbar"
+        elem: '#scmManaOutSC_tabPcb'
+        ,url: setter.baseUrl+'/scm/pcborder/outsourcingContract/list'
+        ,toolbar: "#scmManaOutSC_toolbar"
         ,cellMinWidth: 80
-        ,id: "scmMana_tabPcb"
+        ,id: "scmManaOutSC_tabPcb"
         ,page: true
         ,parseData: function (res) {
             return{
@@ -52,11 +52,11 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115, minWidth: 115}      // 1 ＝ 待报价
-            ,{field: 'supplierQuoteNo',title: '报价单号', width: 172,minWidth: 172}
-            ,{field: 'gmtCreate',title: '报价时间', width: 166}
+            ,{field: 'status',title: '状态',templet: '#og_status', minWidth: 104}      // 1 ＝ 待报价
+            ,{field: 'supplierContractNo',title: '合同编号', minWidth: 171}
+            ,{field: 'gmtCreate',title: '创建时间', width: 166}
             ,{field: 'supplierNo', title: '供应商编号', width: 124}
-            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
+            ,{field: 'factoryMake', title: '供应商厂编', minWidth: 190}
             ,{field: 'productNo', title: '聚谷P/N', width: 124}
             ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
@@ -82,66 +82,78 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
             ,{field: 'subtotal', title: 'subtotal', hide: true}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmMana_tabbar',width: 160}
+            ,{fixed: 'right', title:'操作', toolbar: '#scmManaOutsource_tabbar',width: 160}
         ]]
         ,done: function (res, curr, count) {
-
+            var data = res.data;    //获取表格所有数据对象
+            pcbtabObj = data;
         }
     });
-    table.on('toolbar(scmMana_tabPcb)', function (obj) {
+    table.on('toolbar(scmManaOutSC_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
-        var subtotal = 0;
         if(obj.event === 'evScmSubmit'){
+            var data = checkStatus.data;
+            console.log(data);
+            var supplierContractNo = null;
             var ids = null;
-            var popupData = {data:{}};
-            popupData.data = data;
+            if(data.length < 1){
+                layer.msg("至少选择一条数据！");
+                return false;
+            }
             for (var i=0;i<data.length;i++){
-                var forSt = data[i].subtotal;
                 if (ids == null){
-                    ids = ids + data[i].id;
+                    ids += + data[i].id;
                 } else {
-                    ids = ids + ',' + data[i].id;
+                    ids += ',' + data[i].id;
                 }
-                subtotal += forSt;
+                if (supplierContractNo == null){
+                    supplierContractNo = data[i].supplierContractNo;
+                } else {
+                    supplierContractNo += ',' + data[i].supplierContractNo;
+                }
             }
-            console.log("subtotal:"+subtotal);
-            // 金额转换为中文大写
-            convertSubtotal = convertCurrency.conversion(subtotal);
-            popupData.subtotal = subtotal;
-            popupData.convertSubtotal = convertSubtotal;
-            console.log(popupData);
-            admin.popup({
-                title: '是否生成合同查看'
-                ,area: ['100%', '100%']
-                ,btn: ['生成合同', '取消']
-                ,yes: function (index, layero) {
-                    layer.confirm('是否生成合同?', function(index){
-                        admin.req({
-                            type: 'post',
-                            data: {ids},
-                            url: setter.baseUrl+'/scm/pcborder/createContractBeOt',
-                            success: function (data) {
-                                if (data.code == '0'){
-                                    layer.alert("提交成功！！");
-                                    table.reload('scmMana_tabPcb');
-                                    layer.closeAll();
-                                }
-                            }
-                        });
-                    });
-                }
-                ,success: function (layero, index) {
-                view(this.id).render('scmManagement/iframeWindow/outs_contract',popupData).done(function () {
-
+            layer.confirm('确认回签 ['+supplierContractNo+'] ?', function(index){
+                admin.req({
+                    type: 'post',
+                    data: {'supplierContractNo':supplierContractNo},
+                    url: setter.baseUrl+'scm/pcborder/signBackByOc',
+                    success: function (data) {
+                        if (data.code == '0'){
+                            layer.alert("提交成功！！");
+                            table.reload('scmManaOutSC_tabPcb');
+                            layer.close(index);
+                        }
+                    }
                 });
+            });
+        } else if (obj.event == 'confirmDate') {
+            var supplierContractNo = null;
+            for (var i=0;i<data.length;i++) {
+                if (supplierContractNo == null){
+                    supplierContractNo = data[i].supplierContractNo;
+                } else {
+                    supplierContractNo += ","+data[i].supplierContractNo;
+                }
             }
-            })
+            layer.confirm('是否确认交期？', function () {
+               admin.req({
+                   type: 'post',
+                   data: {'supplierContractNo':supplierContractNo},
+                   url: setter.baseUrl+'scm/pcborder/confirmDeliveryByOc',
+                   success: function () {
+                       layer.alert('已确认');
+                       table.reload('scmManaOutSC_tabPcb');
+                   }
+               });
+            layer.closeAll();
+            });
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(scmMana_tabPcb)', function (obj) {
+    table.on('tool(scmManaOutSC_tabPcb)', function (obj) {
         var data = obj.data;
+        var supplierContractNo = data.supplierContractNo;
         if (obj.event == 'eevScmedit'){
             layer.msg('编辑操作');
             admin.popup({
@@ -179,7 +191,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
                         success: function (data) {
                             layer.alert("供应商报价修改成功");
                             // layer.closeAll();
-                            table.reload('scmMana_tabPcb');
+                            table.reload('scmManaOutSC_tabPcb');
                             layer.close(index);
                         }
                     });
@@ -195,35 +207,66 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
                     });
                 }
             });
-        } else if (obj.event == 'rollback'){
-            layer.msg('回退操作');
-            layer.confirm('确定退回订单['+data.productNo+']?', function (index) {
-               obj.del();
-               admin.req({
-                  type: 'post',
-                  data: {'ids':data.id},
-                   url: setter.baseUrl+'/scm/pcborder/rollbackQuoteBeOt',
-                   success: function () {
-                       layer.alert("已退回["+data.productNo+']');
-                       table.reload('scmMana_tabPcb');
-                   }
-               });
+        } else if (obj.event == 'search'){
+            var popupData = {data:{}};
+            var lineData = obj.data;
+            var supplierContractNo = lineData.supplierContractNo;
+            var sd_len = 0;
+            var subtotal = 0;
+            var convertSubtotal;
+            for (var i=0;i<pcbtabObj.length;i++) {
+                if (supplierContractNo == pcbtabObj[i].supplierContractNo) {
+                    sd_len += 1;
+                    var forData = pcbtabObj[i];
+                    popupData.data[sd_len] = forData;
+                    subtotal += pcbtabObj[i].subtotal;
+                }
+            }
+            for (var i=0;i<popupData.data.length;i++){
+                console.log("开始循环");
+                var forSt = popupData.data[i].subtotal;
+                subtotal += forSt;
+                console.log("subtotal:"+subtotal);
+                console.log("sd_len:"+sd_len);
+            }
+            // 金额转换为中文大写
+            convertSubtotal = convertCurrency.conversion(subtotal);
+            console.log("convertSubtotal:"+convertSubtotal);
+            popupData.subtotal = subtotal;
+            popupData.convertSubtotal = convertSubtotal;
+            console.log(popupData);
+            admin.popup({
+                title: '外协合同'
+                ,area: ['100%', '100%']
+                ,btn: ['打印','关闭']
+                ,yes: function () {
+                    var printId = "outsContract";
+                    window.location.reload();
+                    document.body.innerHTML = document.getElementById(printId).innerHTML;
+                    window.print();
+                }
+                ,success: function () {
+                    view(this.id).render('scmManagement/iframeWindow/outs_contract', popupData).done(function () {
+                        // var str = convertCurrency.conversion(12.03);
+                        // layer.alert(str);
+                    })
+                }
             });
-        } else if (obj.event == 'eevScmdel'){
-            layer.confirm('真的删除行么', function(index){
-                obj.del();
+            layer.msg('查看订单协同');
+        } else if (obj.event == 'signBack'){
+            layer.confirm('确定退回？', function(index){
                 admin.req({
                     type: 'post',
-                    data: {'ids':data.id},
-                    url: setter.baseUrl+ '/scm/ordersupplier/delete',
+                    data: {'supplierContractNo':supplierContractNo},
+                    url: setter.baseUrl+ 'scm/pcborder/rollbackOrderByOc',
                     success: function () {
-                        layer.alert("删除成功！");
-                        table.reload('scmMana_tabPcb');
+                        layer.alert("退回成功！");
+                        table.reload('scmManaOutSC_tabPcb');
                     }
                 });
                 layer.close(index);
             });
         }
     });
-    exports('scmManagement_quoteDetail', {});
+    exports('scmMana_outContract', {});
 });

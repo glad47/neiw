@@ -284,6 +284,12 @@
                             {{#  }); }}
                         </tr>
                         <tr>
+                            <td>Overwork Fee:</td>
+                            {{# layui.each(d.params.data, function(index, item){  }}
+                            <td value="{{ item.id }}">{{ item.overworkFee || '0' }}</td>
+                            {{#  }); }}
+                        </tr>
+                        <tr>
                             <td>Freight Fee:</td>
                             <!--运费，还没传过来-->
                             {{# layui.each(d.params.data, function(index, item){  }}

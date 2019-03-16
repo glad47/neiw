@@ -150,117 +150,23 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
     });
     //pcb订单头工具栏事件
-    table.on('toolbar(interior_order_option)', function(obj){
+    table.on('toolbar(interior_order_Tabpcb)', function(obj){
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
-            case 'confirmCheckData':
-                var tabdata = {data:{}};
-                tabdata.data = checkStatus.data;
-                var userData = {
-                    userName: '',
-                    companName: '',
-                    country: '',
-                    city: '',
-                    address: ''
-                };
-                tabdata.tabType = defVal.orderType;
-                var checkedLength = tabdata.data.length;
-                var productNo;
-                var viewName = "marketManagement/iframeWindow/quote_contractB";
-                var contractType = 2;
-                // 获取地址，公司名
-                admin.req({
-                    type: 'get',
-                    data: '',
-                    url: setter.baseUrl+"sys/consumer/user/info/"+tabdata.data[0].userId,
-                    success: function (data) {
-                        tabdata.userName = data.user.userName;
-                        tabdata.companName = data.user.companName;
-                        tabdata.country = data.user.country;
-                        tabdata.city = data.user.city;
-                        tabdata.address = data.user.address;
-                        if (checkedLength >6){
-                            layer.msg("最多只能选中6条数据");
-                            return false;
-                        } else {
-                            $.each(tabdata.data, function (idx, obj) {
-                                if (productNo == null || productNo == ""){
-                                    productNo = obj.productNo;
-                                    contractType = 1;
-                                }
-                                if (productNo != null && productNo != obj.productNo){
-                                    contractType = 2;
-                                    layer.msg("选择了不同型号");
-                                }
-                                if (defVal.customerSn == null){
-                                    defVal.customerSn = obj.productNo.substring(0,3);
-                                } else if (defVal.customerSn != obj.productNo.substring(0,3)){
-                                    layer.alert("请选择同一个客户的订单！");
-                                    return false;
-                                }
-                            });
-                            admin.popup({
-                                title: '报价合同'
-                                ,area: ['60%', '90%']
-                                ,btn: ['提交', '取消']
-                                ,yes:function(index, layero){
-                                    layer.confirm('确定提交此订单合同？', function (index) {
-                                       admin.req({
-                                           type: 'post',
-                                           data: {'qids':tabdata.data[0].id,'cid':tabdata.data[0].userId},
-                                           url: setter.baseUrl+"epc/pcborder/createContractNo",
-                                           success: function (data) {
-                                               if (data.code != "444"){
-                                                   layer.alert("合同提交成功！");
-                                                   layui.table.reload('iquote_Tabpcb');
-                                                   layer.closeAll();
-                                               }
-                                           }
-                                       });
-
-                                    });
-                                }
-                                ,success: function (layero, index) {
-                                    view(this.id).render(viewName, tabdata).done(function () {
-                                        console.log(tabdata);
-                                        if (contractType === 1){
-                                            // layui.each遍历的数据，td最少为6条，没有数据的显示空白
-                                            var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
-                                            var dataLength = tabdata.data.length;
-                                            var addTrNum;
-                                            if (dataLength < 4){
-                                                addTrNum = 4;
-                                            } else if (dataLength > 4) {
-                                                addTrNum = 7;
-                                            }
-                                            for (var i=tdSize;i<addTrNum;i++){
-                                                $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
-                                            }
-                                            if (addTrNum == 4){
-                                                for (var i=1;i<addTrNum;i++){
-                                                    $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"27.3%"});
-                                                }
-                                            } else {
-                                                for (var i=1;i<addTrNum;i++){
-                                                    $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"13.6%"});
-                                                }
-                                            }
-                                        } else if (contractType === 2){
-
-                                        }
-                                        // 实时时间设置
-                                        let date = new Date();
-                                        let chinaDate = date.toDateString();
-                                        let chinaDateArray = chinaDate.split(' ');
-                                        let displayDate = `${chinaDateArray[1]} ${chinaDateArray[2]}, ${chinaDateArray[3]}`;
-                                        $("#contractBotDate").text(displayDate);
-                                        $("#topDate").text(displayDate);
-                                    });
-                                }
-                            });
-                        }
-                    }
-                });
+            case 'okquote':
+                var contractNos = checkStatus.data.map(function(elem){return elem.invoiceNo}).join(",");
+                   layer.confirm('确定提交？', function () {
+                      admin.req({
+                          type: 'post',
+                          data: contractNos,
+                          url: setter.baseUrl+'epc/pcborder/submitInternalOrder',
+                          success: function (result) {
+                              layer.alert("订单提交成功");
+                              table.reload('interior_order_Tabpcb');
+                              layer.closeAll();
+                          }
+                      });
+                   });
                 break;
             case 'getCheckLength':
                 var data = checkStatus.data;

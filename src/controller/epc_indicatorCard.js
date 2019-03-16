@@ -40,9 +40,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload'], fu
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
             ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
-            ,{field: '', title:'File', toolbar: '#pcb-file', align:'center'}
-            ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254}
-            ,{field:'quoteGerberName', title: 'Quote Gerber Name', align:'center', width: 254, templet:'#quote_gerber_file'}
+            ,{field: '', title:'下载', toolbar: '#pcb-file', align:'center', minWidth: 106}
+            ,{field:'gerberName', title: '原始资料', align:'center', width: 254}
+            ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_file'}
             ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
             ,{field:'productNo', title: 'Product No', align:'center', width: 114}
             ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
@@ -130,7 +130,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload'], fu
             }
             var _this_fileName;
             var indicatorAddFile = upload.render({
-                elem: '#indicatorAddFile'
+                elem: '.indicatorAddFile'
                 ,url: setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token//上传接口
                 ,field: 'file'  //文件上传的字段名
                 ,accept: 'file'

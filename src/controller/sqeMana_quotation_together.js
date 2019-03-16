@@ -1,6 +1,6 @@
 /**
 
- @Name:    供应链管理－－［外协合同］
+ @Name:    供应商管理－－［报价协同］
 
  */
 
@@ -21,7 +21,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     };
 
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
-    element.on('tab(tab-outsourcing-contrgct)', function(data){
+    element.on('tab(tab-quotationToger)', function(data){
         console.log(data.index);
         if (data.index === 0){
             _public_val.orderType = 1;       //pcb
@@ -34,11 +34,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
-        elem: '#outsourcing_contrgct_tabPcb'
-        ,url: setter.baseUrl+'scm/pcborder/outsourcingContract/list'
-        ,toolbar: "#outsourcing_contrgct_tabPcb"
+        elem: '#quotatgt_tabPcb'
+        ,url: setter.baseUrl+'/sqe/pcborder/quotationTogether/list'
+        ,toolbar: "#quo_tother_tb"
         ,cellMinWidth: 80
-        ,id: "outsourcing_contrgct_tabPcb"
+        ,id: "quotatgt_tabPcb"
         ,page: true
         ,parseData: function (res) {
             return{
@@ -53,10 +53,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,cols: [[
             {type:'checkbox'}
             ,{field: 'status',title: '状态',templet: '#pcb'}      // 1 ＝ 待报价
-            ,{field: '',title: '报价单号', width: 125}
+            ,{field: 'supplierQuoteNo',title: '报价单号', width: 125}
             ,{field: 'gmtCreate',title: '报价时间', width: 166}
             ,{field: 'supplierNo', title: '供应商编号', width: 124}
-            ,{field: 'supplierQuoteNo', title: '供应商厂编', width: 117}
+            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
             ,{field: 'productNo', title: '聚谷P/N', width: 124}
             ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
@@ -66,8 +66,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'testCostFee', title: '测试架费', width: 96}
             ,{field: 'toolingFee', title: '模具', width: 96}
             ,{field: 'subtotal', title: '合计', width: 96}
-            ,{field: 'remark', title: '订单备注', width: 168}
-            ,{field: 'remark', title: '订单备注', width: 168}
             ,{field: 'remark', title: '订单备注', width: 168}
             ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
             ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
@@ -85,7 +83,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
         }
     });
-    table.on('toolbar(outsourcing_contrgct_tabPcb)', function (obj) {
+    table.on('toolbar(quotatgt_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         if(obj.event === 'submitPcb'){
             var data = checkStatus.data;
@@ -147,6 +145,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     postData.testPointType = $("#hiddenTestPoint").val();     //侧孔方式
                     postData.totalFee = $("#qt_pcb_totalFee").text();          //总价
                     console.log(postData);
+                    if (postData.deliveryTime == null || postData.deliveryTime == '') {
+                        layer.msg('交期不能为空！！！');
+                        return false;
+                    }
                     admin.req({
                         type: 'post',
                         data: postData,
@@ -174,5 +176,5 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('查看订单协同');
         }
     })
-    exports('scm_outsourcing_contract', {});
+    exports('sqeMana_quotation_together', {});
 });

@@ -1,6 +1,6 @@
 /**
 
- @Name:    供应商管理－－［报价协同］
+ @Name:    供应商管理－－［尾数管理］
 
  */
 
@@ -34,11 +34,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
-        elem: '#sqeManaPlan_tabPcb'
-        ,url: setter.baseUrl+'sqe/pcborder/planTogether/list'
+        elem: '#proMana_MantissaMana'
+        ,url: setter.baseUrl+'iqc/pcborder/mantissaManagement/list'
         ,toolbar: "#ord_sqpManaPlan_tb"
         ,cellMinWidth: 80
-        ,id: "sqeManaPlan_tabPcb"
+        ,id: "proMana_MantissaMana"
         ,page: true
         ,parseData: function (res) {
             return{
@@ -52,28 +52,39 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field: 'status',title: '状态',templet: '#planStatus', width: 110}      // 1 ＝ 待报价
-            ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
-            ,{field: 'gmtCreate',title: '签约日期', minWidth: 172}
-            ,{field: 'supplierNo', title: '供应商编号', width: 117}
-            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-            ,{field: 'productNo', title: '聚谷订单号', width: 124}
+            ,{field: 'status',title: '状态', width: 110}      // 1 ＝ 待报价
+            ,{field: 'deliveryTime',title: '交期', width: 110}      // 1 ＝ 待报价
+            ,{field: 'supplierNo', title: '供应商编号', width: 124}
+            ,{field: 'supplierQuoteNo', title: '供应商厂编', width: 117}
             ,{field: 'productNo', title: '聚谷P/N', width: 124}
             ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-            ,{field: 'remark', title: '在线数量(PCS)', width: 168}
-            ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt'}
-            ,{field: '',title: '当前工序', width: 110}
-            ,{field: '',title: '进度', width: 110}
+            ,{field: 'unitPrice', title: '单价', width: 96}
+            ,{field: 'engineeringFee', title: '工程费', width: 96}
+            ,{field: 'testCostFee', title: '飞针费', width: 96}
+            ,{field: 'testCostFee', title: '测试架费', width: 96}
+            ,{field: 'toolingFee', title: '模具', width: 96}
+            ,{field: 'subtotal', title: '合计', width: 96}
+            ,{field: 'remark', title: '订单备注', width: 168}
+            ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
+            ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
+            ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
+            ,{field: 'panelSizeY', title: 'panelSizeY', hide: true}
+            ,{field: 'panelWayX', title: 'panelWayX', hide: true}
+            ,{field: 'panelWayY', title: 'panelWayY', hide: true}
+            ,{field: 'gerberName', title: 'gerberName', hide: true}
+            ,{field: 'gerberPath', title: 'gerberPath', hide: true}
+            ,{field: '',title: '报价单号', width: 125, hide: true}
+            ,{field: 'gmtCreate',title: '报价时间', width: 166, hide: true}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',minWidth: 160}
+            ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',width: 150}
         ]]
         ,done: function (res, curr, count) {
 
         }
     });
-    table.on('toolbar(sqeManaPlan_tabPcb)', function (obj) {
+    table.on('toolbar(proMana_MantissaMana)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var Pdata = {data:{},result:{}};     // data为表格数据/result为请求到的数据
         Pdata.data = checkStatus.data[0];
@@ -121,12 +132,12 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                         data: data,
                                         url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
                                         success: function (result) {
-                                         layer.alert("提交成功！");
-                                         table.reload('sqeManaPlan_tabPcb');
-                                         layer.closeAll();
+                                            layer.alert("提交成功！");
+                                            table.reload('proMana_MantissaMana');
+                                            layer.closeAll();
                                         }
                                     });
-                                   return false;
+                                    return false;
                                 });
                             });
                         }
@@ -136,7 +147,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(sqeManaPlan_tabPcb)', function (obj) {
+    table.on('tool(proMana_MantissaMana)', function (obj) {
         var data = obj.data;
         if (obj.event == 'edit'){
             layer.msg('编辑操作');
@@ -166,7 +177,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                 success: function (data) {
                                     layer.alert("订单协同修改成功");
                                     // layer.closeAll();
-                                    table.reload('sqeManaPlan_tabPcb');
+                                    table.reload('proMana_MantissaMana');
                                     layer.close(index);
                                 }
                             });
@@ -179,5 +190,5 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('查看订单协同');
         }
     });
-    exports('sqeManagement_plan_together', {});
+    exports('proMana_mantissa_management', {});
 });

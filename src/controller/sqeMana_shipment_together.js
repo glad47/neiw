@@ -145,5 +145,5 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('查看订单协同');
         }
     });
-    exports('sqeManagement_shipment_together', {});
+    exports('sqeMana_shipment_together', {});
 });

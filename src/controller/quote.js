@@ -175,6 +175,8 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         var obj = getRig_obj(); //获取右侧费用对象
         quotePCBCost(obj);      //计算右侧费用的小计
         // quotePCBTotalPrice();      //计算总价
+        pcb_container.postFee = parseFloat($("#shippingPrice").val());
+        pcb_container.engineeringFee = parseFloat($("#enginnerFee").val());
         pcb_container = Object.assign(pcb_container,obj);   //修改后合并对象
         console.log(pcb_container);
     });
@@ -1039,6 +1041,8 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         var shippingPrice = parseFloat(pcbTo.shippingPrice);
         var totalPrice = (pcbCost+shippingPrice).toFixed(2);
         pcbTo.totalPrice = totalPrice;
+        // pcb_container.postFee = data.data.shippingCost;
+        // public_data.postFee = data.data.shippingCost;
         console.log("totalPrice:"+totalPrice);
         pcb_container.subtotal = pcbTo.totalPrice;
         $("#totalPrice").val(pcbTo.totalPrice);

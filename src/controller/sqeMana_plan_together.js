@@ -1,6 +1,6 @@
 /**
 
- @Name:    供应商管理－－［尾数管理］
+ @Name:    供应商管理－－［报价协同］
 
  */
 
@@ -34,11 +34,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
-        elem: '#iqcMana_ngReview'
-        ,url: setter.baseUrl+'iqc/pcborder/ngReview/list'
+        elem: '#sqeManaPlan_tabPcb'
+        ,url: setter.baseUrl+'sqe/pcborder/planTogether/list'
         ,toolbar: "#ord_sqpManaPlan_tb"
         ,cellMinWidth: 80
-        ,id: "iqcMana_ngReview"
+        ,id: "sqeManaPlan_tabPcb"
         ,page: true
         ,parseData: function (res) {
             return{
@@ -52,24 +52,28 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field: 'status',title: '状态', width: 110}      // 1 ＝ 待报价
-
-            ,{field: 'orderPcsNumber',title: '订单PCS数', minWidth: 110}
-            ,{field: 'donePcsNumber',title: '已交PCS数', minWidth: 110}
-            ,{field: 'surplusPcsNumber',title: '未交PCS数', minWidth: 110}
-            ,{field: 'currPcsNumber',title: '当前PCS数', minWidth: 110}
-            ,{field: 'totalPcsNumber',title: '总PCS数', minWidth: 110}
-            ,{field: 'deliveryNo',title: '交货批次', minWidth: 110}
-            ,{field: 'deliveryTime',title: '交期', minWidth: 110}
-            ,{field: 'courierCompany',title: '快递公司', minWidth: 110}
-            ,{field: 'courierOrderNo',title: '快递单号', minWidth: 110}
-            ,{fixed: 'right', title:'操作', toolbar: '#iqcManaNgveiw_tabbar',width: 150}
+            ,{field: 'status',title: '状态',templet: '#planStatus', width: 110}      // 1 ＝ 待报价
+            ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
+            ,{field: 'gmtCreate',title: '签约日期', minWidth: 172}
+            ,{field: 'supplierNo', title: '供应商编号', width: 117}
+            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
+            ,{field: 'productNo', title: '聚谷订单号', width: 124}
+            ,{field: 'productNo', title: '聚谷P/N', width: 124}
+            ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
+            ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
+            ,{field: 'remark', title: '在线数量(PCS)', width: 168}
+            ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt'}
+            ,{field: '',title: '当前工序', width: 110}
+            ,{field: '',title: '进度', width: 110}
+            // ,{field: 'gerberName',title: '文件名'}
+            // ,{field: 'pcbType',title: 'PCB类型'}
+            ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',minWidth: 160}
         ]]
         ,done: function (res, curr, count) {
 
         }
     });
-    table.on('toolbar(iqcMana_ngReview)', function (obj) {
+    table.on('toolbar(sqeManaPlan_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var Pdata = {data:{},result:{}};     // data为表格数据/result为请求到的数据
         Pdata.data = checkStatus.data[0];
@@ -117,12 +121,12 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                         data: data,
                                         url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
                                         success: function (result) {
-                                            layer.alert("提交成功！");
-                                            table.reload('iqcMana_ngReview');
-                                            layer.closeAll();
+                                         layer.alert("提交成功！");
+                                         table.reload('sqeManaPlan_tabPcb');
+                                         layer.closeAll();
                                         }
                                     });
-                                    return false;
+                                   return false;
                                 });
                             });
                         }
@@ -132,7 +136,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(iqcMana_ngReview)', function (obj) {
+    table.on('tool(sqeManaPlan_tabPcb)', function (obj) {
         var data = obj.data;
         if (obj.event == 'edit'){
             layer.msg('编辑操作');
@@ -162,7 +166,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                 success: function (data) {
                                     layer.alert("订单协同修改成功");
                                     // layer.closeAll();
-                                    table.reload('iqcMana_ngReview');
+                                    table.reload('sqeManaPlan_tabPcb');
                                     layer.close(index);
                                 }
                             });
@@ -175,5 +179,5 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('查看订单协同');
         }
     });
-    exports('iqcManagement_ng_review', {});
+    exports('sqeMana_plan_together', {});
 });
