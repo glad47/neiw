@@ -54,17 +54,16 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             {type:'checkbox'}
             ,{field: 'status',title: '状态',templet: '#planStatus', width: 110}      // 1 ＝ 待报价
             ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
-            ,{field: 'gmtCreate',title: '签约日期', minWidth: 172}
+            ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt'}
             ,{field: 'supplierNo', title: '供应商编号', width: 117}
             ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-            ,{field: 'productNo', title: '聚谷订单号', width: 124}
-            ,{field: 'productNo', title: '聚谷P/N', width: 124}
-            ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
+            ,{field: 'productNo', title: '聚谷型号', width: 124}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-            ,{field: 'remark', title: '在线数量(PCS)', width: 168}
-            ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt'}
+            ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
+            ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
             ,{field: '',title: '当前工序', width: 110}
             ,{field: '',title: '进度', width: 110}
+            ,{field: 'gmtCreate',title: '签约日期', minWidth: 172}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
             ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',minWidth: 160}
@@ -95,16 +94,23 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     admin.popup({
                         title: '交货明细'
                         ,area: ['702px','547px']
-                        ,btn: ['出货', '取消']
+                        ,btn: ['保存', '取消']
                         ,yes: function (index, layero) {
-                            layer.confirm('确定要生产送货单？', function () {
-                                $("#subdetailsDelivery").click();
-                            });
+                            $("#subdetailsDelivery").click();
                         }
                         ,success: function (layero, index) {
                             var id = Pdata.data.id;
                             view(this.id).render('sqeManagement/iframeWindow/details_delivery', Pdata).done(function () {
                                 form.render();
+                                // 监听快递选择
+                                form.on('select(courierCompany)', function(data){
+                                    if (data.value == '送货') {
+                                        $("input[name='courierOrderNo']").attr('disabled',true);
+                                    } else {
+                                        $("input[name='courierOrderNo']").attr('disabled',false);
+                                    }
+                                    form.render();
+                                });
                                 form.on('submit(detailsDelivery)', function (data) {
                                     layer.msg("提交");
                                     var data = data.field;
@@ -115,16 +121,28 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                     data.orderId = Pdata.data.orderId;                                  // 订单id
                                     data.donePcsNumber = parseInt($("#donePcsNumber").text());          // 已交PCS数
                                     data.surplusPcsNumber = parseInt($("#surplusPcsNumber").text());    // 未交PCS数
+                                    if (data.courierCompany == '' || data.courierCompany == null) {
+                                        data.courierCompany = "送货";
+                                    }
+                                    if (data.deliveryOrderNo == null || data.deliveryOrderNo == "" || typeof data.deliveryOrderNo == 'undefined') {
+                                        layer.alert('送货单号不能为空');
+                                        return false;
+                                    } else if (data.currPcsNumber == null || data.currPcsNumber == "" || typeof data.currPcsNumber == 'undefined') {
+                                        layer.alert('此次数量不能为空');
+                                        return false;
+                                    }
                                     console.log(data);
-                                    admin.req({
-                                        type: 'post',
-                                        data: data,
-                                        url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
-                                        success: function (result) {
-                                         layer.alert("提交成功！");
-                                         table.reload('sqeManaPlan_tabPcb');
-                                         layer.closeAll();
-                                        }
+                                    layer.confirm('确定要生产送货单？', function () {
+                                        admin.req({
+                                            type: 'post',
+                                            data: data,
+                                            url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
+                                            success: function (result) {
+                                                layer.alert("提交成功！");
+                                                table.reload('sqeManaPlan_tabPcb');
+                                                layer.closeAll();
+                                            }
+                                        });
                                     });
                                    return false;
                                 });

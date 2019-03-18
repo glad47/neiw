@@ -54,16 +54,19 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             {type:'checkbox'}
             ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}      // 1 ＝ 已指派  2= 已报价
             ,{field: 'id',title: 'ID', hide: true}
+            ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
             ,{field: 'deliveryTime',title: '交期', width: 110, templet: ' <a>{{ d.deliveryTime.substring(0,10) }}</a> '}
-            ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117}// 1 ＝ 待报价
-            ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117}
-            ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117}
-            ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133}
-            ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117}
+            ,{field: 'supplierId', title: '供应商编号', width: 117}
+            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
+            ,{field: 'productNo', title: '聚谷型号', width: 124}
+            ,{field: 'orderPcsNumber', title: '订单数量(PCS)', width: 134}
+            ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
+            ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
+            ,{field: 'currPcsNumber', title: '送货数量', minWidth: 133}
             ,{field: 'courierCompany', title: '快递公司', width: 124}
             ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
+            ,{field: 'deliveryOrderNo', title: '送货单号', width: 117}
             ,{field: 'deliveryNo', title: '交货批次', width: 144}
-            ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122}
             ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
             ,{field: 'gmtModified', title: 'gmtModified', hide: true}
             ,{fixed: 'right', title:'操作', toolbar: '#iqcManaIncau_tabbar',width: 160}
@@ -74,62 +77,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     });
     table.on('toolbar(iqcIncom_auditor)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
-        var Pdata = {data:{},result:{}};     // data为表格数据/result为请求到的数据
-        Pdata.data = checkStatus.data[0];
-        if(obj.event === 'submit'){     //通知出货
-            if (checkStatus.data.length < 1) {
-                layer.msg('请选择一条数据');
-                return false;
-            } else if (checkStatus.data.length >= 2) {
-                layer.msg('最多只能选择一条数据！');
-                return false;
-            }
-            admin.req({
-                type: 'post',
-                data: {'oid':checkStatus.data[0].id},
-                url: setter.baseUrl+'scm/ordershipment/infoByOid',
-                success: function (result) {
-                    Pdata.result = result.data;
-                    console.log(Pdata);
-                    admin.popup({
-                        title: '交货明细'
-                        ,area: ['702px','547px']
-                        ,btn: ['出货', '取消']
-                        ,yes: function (index, layero) {
-                            layer.confirm('确定要生产送货单？', function () {
-                                $("#subdetailsDelivery").click();
-                            });
-                        }
-                        ,success: function (layero, index) {
-                            var id = Pdata.data.id;
-                            view(this.id).render('sqeManagement/iframeWindow/details_delivery', Pdata).done(function () {
-                                form.render();
-                                form.on('submit(detailsDelivery)', function (data) {
-                                    layer.msg("提交");
-                                    var data = data.field;
-                                    data.orderSupplierId = Pdata.data.id;                               // 供应商订单id
-                                    data.supplierNo = Pdata.data.supplierNo;                            // 供应商编号
-                                    data.deliveryTime = new Date().toLocaleDateString();                // 交期
-                                    data.orderPcsNumber = Pdata.data.quantityPcs;                       // 订单PCS数
-                                    data.donePcsNumber = parseInt($("#donePcsNumber").text());          // 已交PCS数
-                                    data.surplusPcsNumber = parseInt($("#surplusPcsNumber").text());    // 未交PCS数
-                                    console.log(data);
-                                    admin.req({
-                                        type: 'post',
-                                        data: data,
-                                        url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
-                                        success: function (result) {
-                                            layer.alert("提交成功！");
-                                            table.reload('iqcIncom_auditor' );
-                                            layer.closeAll();
-                                        }
-                                    });
-                                    return false;
-                                });
-                            });
-                        }
-                    });
-                }
+        var data = checkStatus.data;
+        if(obj.event === 'plrk'){     //通知出货
+            layer.confirm('确定入库？', function () {
+                layer.msg('入库成功');
             });
         }
     });
@@ -152,7 +103,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             admin.popup({
                 title: '此批来料检验'
                 ,area: ['624px','494px']
-                ,btn: ['NG评审', 'NG批退', 'OK入库', '返回']
+                ,btn: ['NG评审', 'NG批退', 'OK入库', '保存']
                 ,btn1: function (index, layero) {
                     d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
                     d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
@@ -202,7 +153,19 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     return false;
                 },
                 btn4: function () {
-                    layer.msg('退出');
+                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
+                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
+                    layer.confirm('确定保存？', function () {
+                        admin.req({
+                            type: 'post',
+                            data: d_data,
+                            url: setter.baseUrl+'iqc/pcborder/updateOrderShipment',
+                            success: function () {
+                                table.reload('iqcIncom_auditor');
+                                layer.closeAll();
+                            }
+                        });
+                    });
                 }
                 ,success: function (layero, index) {
                     var id = data.id;

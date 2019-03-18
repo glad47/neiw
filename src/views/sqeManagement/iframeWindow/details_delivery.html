@@ -23,17 +23,28 @@
                 <td>
                     {{ d.params.data.supplierContractNo || '' }}
                 </td>
+                <td>供应商编号</td>
+                <td>
+                    {{ d.params.data.supplierNo || '' }}
+                </td>
+            </tr>
+            <tr>
+                <td>聚谷型号</td>
+                <td>
+                    {{ d.params.data.productNo || '' }}
+                </td>
+                <td>供应商厂编</td>
+                <td>
+                    {{ d.params.data.factoryMake || '' }}
+                </td>
+
+            </tr>
+            <tr>
                 <td>交货日期</td>
                 <td>
                     {{# var t = new Date() }}
                     {{# var deliveryTime = t.toLocaleDateString() }}
                     {{ deliveryTime }}
-                </td>
-            </tr>
-            <tr>
-                <td>供应商编号</td>
-                <td>
-                    {{ d.params.data.supplierNo || '' }}
                 </td>
                 <td>订单数量(PCS)</td>
                 <td id="orderPcsNumber">
@@ -41,9 +52,19 @@
                 </td>
             </tr>
             <tr>
-                <td>供应商厂编</td>
+                <td>快递公司</td>
                 <td>
-                    {{ d.params.data.factoryMake || '' }}
+                    <select class="layui-select" name="courierCompany" lay-filter="courierCompany">
+                        <option value="送货" {{ courierCompany == '送货' ? 'selected' : '' }}>送货</option>
+                        <option value="中通" {{ courierCompany == '中通' ? 'selected' : '' }}>中通</option>
+                        <option value="圆通" {{ courierCompany == '圆通' ? 'selected' : '' }}>圆通</option>
+                        <option value="申通" {{ courierCompany == '申通' ? 'selected' : '' }}>申通</option>
+                        <option value="韵达" {{ courierCompany == '韵达' ? 'selected' : '' }}>韵达</option>
+                        <option value="优速" {{ courierCompany == '优速' ? 'selected' : '' }}>优速</option>
+                        <option value="速尔" {{ courierCompany == '速尔' ? 'selected' : '' }}>速尔</option>
+                        <option value="顺丰" {{ courierCompany == '顺丰' ? 'selected' : '' }}>顺丰</option>
+                        <option value="跨越" {{ courierCompany == '跨越' ? 'selected' : '' }}>跨越</option>
+                    </select>
                 </td>
                 <td>已交数量(PCS)</td>
                 <td id="donePcsNumber">
@@ -51,46 +72,23 @@
                 </td>
             </tr>
             <tr>
-                <td>聚谷订单号</td>
+                <td>快递单号</td>
                 <td>
-                    {{ d.params.data.factoryMake || '' }}
+                    <input class="layui-input" type="number" value="{{ courierOrderNo || '' }}" name="courierOrderNo" disabled>
                 </td>
                 <td>未交数量(PCS)</td>
                 <td id="surplusPcsNumber">
-                    {{ surplusPcsNumber }}
+                    {{ surplusPcsNumber || '' }}
                 </td>
             </tr>
             <tr>
-                <td>聚谷产品型号</td>
+                <td>送货单号</td>
                 <td>
-                    {{ d.params.data.productNo || '' }}
+                    <input class="layui-input" type="number" name="deliveryOrderNo" value="{{ d.params.deliveryOrderNo || '' }}">
                 </td>
                 <td>此次数量(PCS)</td>
                 <td>
                     <input class="layui-input" type="number" name="currPcsNumber" lay-verify="cPnum">
-                </td>
-            </tr>
-            <tr>
-                <td>聚谷P/N</td>
-                <td>
-                    {{ d.params.data.factoryMake || '' }}
-                </td>
-                <td>送货单号</td>
-                <td>
-                    <input class="layui-input" type="number" name="deliveryOrderNo" value="{{ deliveryOrderNo }}">
-                </td>
-            </tr>
-            <tr>
-                <td>快递公司</td>
-                <td>
-                    <select class="layui-select" name="courierCompany">
-                        <option value="" {{ courierCompany == ''? 'selected' : '' }}>请选择快递</option>
-                        <option value="DHL" {{ courierCompany == 'DHL' ? 'selected' : '' }}>DHL</option>
-                    </select>
-                </td>
-                <td>快递单号</td>
-                <td>
-                    <input class="layui-input" type="number" value="{{ courierOrderNo || '' }}" name="courierOrderNo">
                 </td>
             </tr>
             </tbody>
