@@ -48,7 +48,12 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
     ,webSocketUrl: 'ws://192.168.0.155:2200/ws'
     ,imUrl:'https://192.168.0.155:8871/'
 
-    //独立页面路由，可随意添加（无需写参数）
+//       ,baseUrl:'http://www.pcbonline.com:8080/renren-fast/'
+//       ,baseUrl1:"https://www.pcbonline.com/"
+//       ,webSocketUrl: 'wss://www.pcbonline.com:8887/ws'
+//       ,imUrl:'https://www.pcbonline.com/'
+
+      //独立页面路由，可随意添加（无需写参数）
     ,indPage: [
       '/user/login' //登入页
       ,'/user/reg' //注册页
@@ -66,6 +71,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
       'echarts', //echarts 核心包
       'echartsTheme', //echarts 主题
       'convertCurrency', //货币转换
+      'uploadCommon', //文件上传进度
     ]
     
     //主题配置

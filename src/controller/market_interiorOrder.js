@@ -156,16 +156,18 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             case 'okquote':
                 var contractNos = checkStatus.data.map(function(elem){return elem.invoiceNo}).join(",");
                    layer.confirm('确定提交？', function () {
-                      admin.req({
-                          type: 'post',
-                          data: contractNos,
-                          url: setter.baseUrl+'epc/pcborder/submitInternalOrder',
-                          success: function (result) {
-                              layer.alert("订单提交成功");
-                              table.reload('interior_order_Tabpcb');
-                              layer.closeAll();
-                          }
-                      });
+                       admin.req({
+                           type: 'post'
+                           ,url: setter.baseUrl+'epc/pcborder/submitInternalOrder'
+                           ,data: {contractNos}
+                           ,success: function (res) {
+                               layer.msg('订单信息修改成功');
+                               layui.table.reload('interior_order_Tabpcb');
+                           }
+                           ,error: function (res) {
+                               layer.msg("订单信息修改失败，请稍后再试！");
+                           },
+                       });
                    });
                 break;
             case 'getCheckLength':

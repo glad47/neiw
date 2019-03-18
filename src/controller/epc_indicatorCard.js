@@ -1,5 +1,5 @@
 
-layui.define(['admin', 'table', 'index','element','form','laydate','upload'], function(exports){
+layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'uploadCommon'], function(exports){
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -9,6 +9,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload'], fu
         ,element = layui.element
         ,upload = layui.upload
         var $ = layui.jquery;
+        var uploadCommon = layui.uploadCommon;
 
     var requestData = [];
     // layerdate.render({
@@ -23,7 +24,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload'], fu
     table.render({
         elem: '#epc_Tabpcb_ok_payment_order'
         ,url: setter.baseUrl+'epc/pcborder/list'
-        ,toolbar: true
+        ,toolbar: '#tbarIndcard'
         ,cellMinWidth: 80
         ,id:"epc_Tabpcb_ok_payment_order"
         ,page: true
@@ -38,7 +39,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload'], fu
             access_token: layui.data('layuiAdmin').access_token
         }
         ,cols: [[
-            {field:'id', title: 'ID',hide: true}
+            {type: 'checkbox', fixed: 'left'}
+             ,{field:'id', title: 'ID',hide: true}
             ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
             ,{field: '', title:'下载', toolbar: '#pcb-file', align:'center', minWidth: 106}
             ,{field:'gerberName', title: '原始资料', align:'center', width: 254}
@@ -128,40 +130,46 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload'], fu
                     $(".laytable-cell-1-0-22").css({"width":"130px"});
                 })
             }
-            var _this_fileName;
-            var indicatorAddFile = upload.render({
-                elem: '.indicatorAddFile'
-                ,url: setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token//上传接口
-                ,field: 'file'  //文件上传的字段名
-                ,accept: 'file'
-                ,exts: 'zip|rar|7z'
-                ,before: function (obj) {
-                    obj.preview(function (index, file, result) {
-                        var fileName = file.name;   //文件名
-                        _this_fileName = fileName;
-                        console.log("上传的文件名为："+fileName);
+            var addVersionBtn=$('#addVersionBtn');
+            var cancelUploadBtn=$('#cancelUploadBtn');
+            var fileInput=$(".filewareFile");
+
+            var speedLab = $("#showSpeed");
+            var url = setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token;        // 上传文件接口
+            fileInput.change(function () {
+                var indexFileInput = ".filewareFile"+_click_lineId;
+                indexFileInput = $(indexFileInput);
+                var fileObj = indexFileInput.get(0).files[0]; // js获取文件对象
+                var saveObj = {
+                    data: {'quoteGerberName':fileObj.name,'quoteGerberPath':'','id':_click_lineId,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
+                    url: setter.baseUrl+'epc/pcborder/update',      // 将字段保存到数据库的接口
+                    retab: 'epc_Tabpcb_ok_payment_order'            // 表格对象，请求成功后重新渲染表格
+                };
+                var ss = ".uploadPercentage"+_click_lineId;
+                var defbtn = ".btn-fileupload"+_click_lineId;
+                var processBar = $(ss); //div
+                //获取文件上传实例
+                var upload=uploadCommon.uploadcommon(url,processBar,speedLab,addVersionBtn,cancelUploadBtn, saveObj);
+                console.log(fileObj);
+                if (fileObj) {
+                    $(".file-tips").text('Gerber Name：' + fileObj.name);
+                    $(defbtn).css("display","none");
+                    $(ss).css("display","block");
+                    $(".upload-container").css("display","block");
+                    addVersionBtn.attr('disabled', false);
+                    var file = fileInput.get(0).files[0]
+                    if(file==null){
+                        alert("固件文件不能为空")
+                        return
+                    }
+                    // 创建提交数据
+                    var formData = new FormData();
+                    formData.append('file', fileInput.get(0).files[0]);
+                    // 上传文件
+                    upload.uploadFile(formData, function (e) {
+                        alert(1);
+                        console.log(e);
                     });
-                }
-                ,done: function (res, index, upload) {
-                    var url = res.url;
-                    var r = /\[(.+?)\]/g;
-                    var filePatha = url.match(r);
-                    console.log("未处理的路径为："+filePatha);
-                    var filePath = filePatha[0].replace(/\[|]/g,'');    //去除前后两端的中括号
-                    console.log("处理完的路径为："+filePath);
-                    admin.req({
-                        type: 'post',
-                        data: {'quoteGerberName':_this_fileName,'quoteGerberPath':filePath,'id':_click_lineId},
-                        url:  setter.baseUrl+'epc/pcborder/update',
-                        success: function (data) {
-                            layer.alert("文件已上传并且保存到数据库！");
-                            table.reload('epc_Tabpcb_ok_payment_order');
-                        }
-                    });
-                }
-                ,error: function(){
-                    layer.msg("文件上传失败！");
-                    //请求异常回调
                 }
             });
         }
@@ -285,22 +293,26 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload'], fu
                 }
             })
         } else if (obj.event === 'edit') {
-            layer.confirm('确定审核通过该订单［'+data.productNo+'］?',function (index) {
-                admin.req({
-                    type: 'post'
-                    ,url: setter.baseUrl+'epc/pcborder/update'
-                    ,data: {"id":data.id,"status":6}
-                    ,done: function () {
-                        layer.msg('订单［'+data.productNo+'］提交成功！');
-                        layui.table.reload('or_Tabpcb_no_payment');
-                    }
-                    ,fail: function () {
-                        layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
-                    }
-                })
-                layui.table.reload('epc_Tabpcb_ok_payment_order');
-                layer.close(index);
-            })
+            if (data.quoteGerberName != "" && data.quoteGerberName != null && typeof data.quoteGerberName != 'undefined') {
+                layer.confirm('确定审核通过该订单［'+data.productNo+'］?',function (index) {
+                    admin.req({
+                        type: 'post'
+                        ,url: setter.baseUrl+'epc/pcborder/update'
+                        ,data: {"id":data.id,"status":6}
+                        ,done: function () {
+                            layer.msg('订单［'+data.productNo+'］提交成功！');
+                            layui.table.reload('or_Tabpcb_no_payment');
+                        }
+                        ,fail: function () {
+                            layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
+                        }
+                    });
+                    layui.table.reload('epc_Tabpcb_ok_payment_order');
+                    layer.close(index);
+                });
+            } else {
+                layer.alert('请先上传正式资料！！！');
+            }
         } else if (obj.event === 'pcb-sendback') {
             layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
                 layer.msg('退回'+data.productNo);
@@ -308,6 +320,39 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload'], fu
                 layer.close(index);
             })
         }
+    });
+
+    // 监听 pcb 头订单工具栏
+    //头工具栏事件
+    table.on('toolbar(epc_Tabpcb_ok_payment_order)', function(obj){
+        var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        switch(obj.event){
+            case 'fileyzz':
+                console.log('选择了'+data.length+'条数据！');
+                if (data.length==1) {
+                    var lineId = data[0].id;   // 行id
+                    var gerberName = data[0].gerberName;   // 原始资料
+                    var gerberPath = data[0].gerberPath;   // 原始资料路径
+                    admin.req({
+                        type: 'post',
+                        data: {'quoteGerberName':gerberName,'quoteGerberPath':gerberPath,'id':lineId},
+                        url:  setter.baseUrl+'epc/pcborder/update',
+                        success: function (data) {
+                            layer.alert("原始资料已成功转为正式资料！");
+                            table.reload('epc_Tabpcb_ok_payment_order');
+                            var trigger = setTimeout(function () {
+                                layer.closeAll();
+                            }, 1000);
+                        }
+                    });
+                } else if (data.length == 0) {
+                    layer.msg('最少选择一条数据！！！');
+                } else if (data.length>1) {
+                    layer.msg('最多只能选择一条数据！！！');
+                }
+                break;
+        };
     });
 
     var active = {
