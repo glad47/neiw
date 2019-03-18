@@ -93,6 +93,12 @@
                     {{ d.panelWayY || ''}}
                     {{ } }}
                 </script>
+                <!--头部工具栏-->
+                <script type="text/html" id="tbarIndcard">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="fileyzz">(资料)原始==>正式</button>
+                    </div>
+                </script>
                 <script type="text/html" id="Tabtb-pcb-epc-indicatorCard-option">
                    
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborderprocess:write") != -1){ }}
@@ -130,15 +136,28 @@
                     </a>
                     {{# } }}
                 </script>
+                <!--<button class="layui-btn layui-btn-sm indicatorAddFile" data-type="indicatorAddFile" ">添加客户资料</button>-->
                 <script type="text/thml" id="quote_gerber_file">
                     {{# if(d.quoteGerberName === null){ }}
-                    <button class="layui-btn layui-btn-sm indicatorAddFile" data-type="indicatorAddFile" ">添加客户资料</button>
+                        <a class="btn-fileupload btn-fileupload{{ d.id }}">
+                            <span class="fileupload-btn">
+                                <i class="layui-icon layui-icon-add-1"></i>
+                                <span id="uploadFile_name">
+                                    添加客户资料
+                                </span>
+                                <input type="file" class="filewareFile filewareFile{{ d. id }}" name="file" multiple/>
+                            </span>
+                        </a>
+                        <div class="cc uploadPercentage{{ d.id }}">
+                            <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe63e;</i>
+                            上传中....
+                            <a>0%</a>
+                        </div>
                     {{# } else{ }}
                     {{d.quoteGerberName}}
                     {{# } }}
                 </script>
             </div>
-
         </div>
     </div>
 </div>
@@ -182,6 +201,11 @@
 
     i.layui-anim{display:inline-block}
     #pcbfile-i:hover{color: #1E9FFF;cursor: pointer;}
+    /*上传文件*/
+    .fileupload-btn{position: relative;cursor: pointer;}
+    .filewareFile{position: absolute;opacity: 0;left: -3px;height: 54px;width: 82px;}
+    a.btn-fileupload {background-color: rgb(255, 86, 4);color: #ffffff;padding: 5px;border-radius: 3px;font-size: 0.7em;}
+    .cc{float: left;font-size: 0.9em;background-color: #00FF00;width: 100%;display: none;}
 </style>
 
 <script>
