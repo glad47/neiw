@@ -5,15 +5,17 @@
  */
 
 
-layui.define(['admin','table','index','element','form','laydate'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate','convertCurrency'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
         // ,laydate = layui.laydate
         ,setter = layui.setter
+        ,laydate = layui.laydate
         ,element = layui.element;
-    var $ = layui.jquery;
+        var $ = layui.jquery;
+        var convertCurrency = layui.convertCurrency;
 
     // 全局变量
     var _public_val = {
@@ -30,6 +32,14 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         } else if (data.index === 2){
             _public_val.orderType = 3;      //贴片
         }
+    });
+    //日期
+    laydate.render({
+        elem: '#todzDate'
+    });
+    //日期
+    laydate.render({
+        elem: '#fromdzDate'
     });
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
@@ -57,7 +67,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'gmtCreate',title: '报价时间', width: 166}
             ,{field: 'supplierNo', title: '供应商编号', width: 124}
             ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-            ,{field: 'productNo', title: '聚谷P/N', width: 124}
+            ,{field: 'productNo', title: '聚谷型号', width: 124}
             ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
             ,{field: 'unitPrice', title: '单价', width: 96}
@@ -83,6 +93,79 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
         }
     });
+
+    //监听提交
+    form.on('submit(generateStatement)', function(data){
+        var field = data.field; //获取提交的字段
+        var startTime = field.startTime.replace(/-/g,'');   // 时间去除横杠
+        var endTime = field.endTime.replace(/-/g,'');
+        var reconciliationNo = 'BJDH'+startTime+'-'+endTime;
+        admin.req({
+            type: 'post',
+            data: field,
+            url: setter.baseUrl+'sqe/pcborder/createReconciliation',
+            success: function (result) {
+                var popData = {data:{}};
+                popData.data = result.data;
+                if (result.data != null && result.data.length > 0) {
+                    // 所有订单总价计算
+                    var subtotal = 0;
+                    $.each(popData.data, function (i, d) {
+                        subtotal += d.totalFee;
+                    });
+                    popData.subtotal = subtotal;        // 金额小写
+                    popData.convertSubtotal = convertCurrency.conversion(subtotal);     // 金额转换为中文大写
+                    popData.reconciliationNo = reconciliationNo;     // 对账编号
+                    admin.popup({
+                        title: '对账协同',
+                        area: ['100%','100%'],
+                        btn: ['保存', '打印', '取消'],
+                        yes: function () {
+                            var orderSupplierIds = popData.data.map(function(elem){return elem.id}).join(",");
+                            var supplierId = popData.data[0].supplierId;
+                            var saveData = {supplierId: supplierId, reconciliationNo:reconciliationNo,orderSupplierIds:orderSupplierIds};
+                            layer.confirm('确定保存信息？', function () {
+                                admin.req({
+                                    type: 'post',
+                                    data: saveData,
+                                    url: setter.baseUrl+'fms/reconciliation/save',
+                                    success: function (res) {
+                                        if (res.code != '500') {
+                                            layer.alert('对账协同保存成功');
+                                            var trigger = setTimeout(function () {
+                                                table.reload('sqeMana_reconPcbTab');
+                                                layer.closeAll();
+                                            },1500);
+                                        } else {
+                                            layer.alert('服务器异常！');
+                                        }
+                                    }
+                                });
+                            });
+                        },
+                        btn2: function () {
+                            layer.msg('打印');
+                            var printId = "statements_detail";
+                            window.location.reload();
+                            document.body.innerHTML = document.getElementById(printId).innerHTML;
+                            window.print();
+                        },
+                        btn3: function () {
+                            layer.msg('取消操作！');
+                            layer.closeAll();
+                        }
+                        ,success: function (layero, index) {
+                            view(this.id).render('sqeManagement/iframeWindow/statements',popData).done(function () {
+                            });
+                        }
+                    });
+                } else {
+                    layer.alert(field.startTime+'到'+field.endTime+'没有数据！');
+                }
+            }
+        });
+        return false;
+    });
     table.on('toolbar(sqeMana_reconPcbTab)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         if(obj.event === 'submitPcb'){
@@ -95,7 +178,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     ids = ids + ',' + data[i].id;
                 }
             }
-            console.log(ids);
             layer.confirm('确认提交 ['+ids+'] ?', function(index){
                 admin.req({
                     type: 'post',
@@ -107,19 +189,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                             table.reload('sqeMana_reconPcbTab');
                             layer.close(index);
                         }
-                    }
-                });
-            });
-        } else if (obj.event == 'generateStatement') {
-            layer.confirm('确定生成对账单？', function () {
-                admin.req({
-                    type: 'post',
-                    data: '',
-                    url: setter.baseUrl+'sqe/pcborder/createReconciliation',
-                    success: function () {
-                        layer.alert('成功生成对账协同');
-                        table.reload('sqeMana_reconPcbTab');
-                        layer.closeAll();
                     }
                 });
             });

@@ -7,15 +7,28 @@
             <li>钢网订单</li>
             <li>SMT订单</li>
         </ul>
-        <div class="layui-tab-content">
+        <form class="layui-form" style="padding: 16px 10px;">
+            <div class="layui-form-item" style="margin-bottom: unset;">
+                <div class="layui-inline">
+                    <div class="layui-input-inline" style="width: 100px;">
+                        <input type="text" name="startTime" id="todzDate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" style="height: 32px;">
+                    </div>
+                    <div class="layui-form-mid" style="padding: 5px 0!important">-</div>
+                    <div class="layui-input-inline" style="width: 100px;">
+                        <input type="text" name="endTime" id="fromdzDate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" style="height: 32px;">
+                    </div>
+                    <div class="layui-input-inline" style="width: 100px;">
+                        <button class="layui-btn layui-btn-sm" type="button" lay-submit  lay-filter="generateStatement">生成报价单</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="layui-tab-content" style="padding: unset;">
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
                 <table class="layui-table" id="sqeMana_reconPcbTab" lay-filter="sqeMana_reconPcbTab"></table>
                 <script type="text/html" id="sqeMana_reconPcbTb">
-                    <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-sm" lay-event="submitPcb">提交</button>
-                        <button class="layui-btn layui-btn-sm" lay-event="generateStatement">生成对账单</button>
-                    </div>
+                    <button class="layui-btn layui-btn-sm" lay-event="submitPcb" type="button">提交</button>
                 </script>
                 <script type="text/html" id="sqeMana_reconPcbTabbar">
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>

@@ -1,6 +1,6 @@
 /**
 
- @Name:    供应商管理－－［订单协同］
+ @Name:    财务管理  - 【供应商对账］
 
  */
 
@@ -34,11 +34,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
-        elem: '#sqeManaOrderT_tabPcb'
-        ,url: setter.baseUrl+'/sqe/pcborder/orderTogether/list'
-        ,toolbar: "#ord_tother_tb"
+        elem: '#finManaSupRe_tabPcb'
+        ,url: setter.baseUrl+'fms/reconciliation/list'
+        ,toolbar: "#finManaSupRe_tb"
         ,cellMinWidth: 80
-        ,id: "sqeManaOrderT_tabPcb"
+        ,id: "finManaSupRe_tabPcb"
         ,page: true
         ,parseData: function (res) {
             return{
@@ -77,43 +77,43 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'gerberPath', title: 'gerberPath', hide: true}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmManaOrderT_tabbar',width: 150}
+            ,{fixed: 'right', title:'操作', toolbar: '#finManaSupRe_tbar',width: 150}
         ]]
         ,done: function (res, curr, count) {
 
         }
     });
-    table.on('toolbar(sqeManaOrderT_tabPcb)', function (obj) {
+    table.on('toolbar(finManaSupRe_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         if(obj.event === 'submit'){
             var data = checkStatus.data;
-            var supplierContractNo = null;
-            for (var i=0;i<data.length;i++){
-                if (supplierContractNo == null){
-                    supplierContractNo = data[i].supplierContractNo;
-                } else {
-                    supplierContractNo += ',' + data[i].supplierContractNo;
-                }
-            }
-            layer.confirm('确认提交 ['+supplierContractNo+'] ?', function(index){
-                console.log(data);
-                admin.req({
-                    type: 'post',
-                    data: {'supplierContractNo':supplierContractNo,'orderId':data[0].orderId},
-                    url: setter.baseUrl+'sqe/pcborder/submitByOt',
-                    success: function (data) {
-                        if (data.code == '0'){
-                            layer.alert("提交成功！！");
-                            table.reload('sqeManaOrderT_tabPcb');
-                            layer.close(index);
+            if (data.length < 1) {
+                layer.msg('最少选择一条数据！');
+            } else {
+                layer.confirm('确认提交？', function(index){
+                    var reconciliationNos = data.map(function (elem) {
+                        return elem.reconciliationNo
+                    }).join(',');
+                    admin.req({
+                        type: 'post',
+                        data: {reconciliationId:reconciliationNos},
+                        url: setter.baseUrl+'sqe/pcborder/submitByOt',
+                        success: function (data) {
+                            if (data.code != '500'){
+                                layer.alert("提交成功！！");
+                                var trigger = setTimeout(function () {
+                                    table.reload('finManaSupRe_tabPcb');
+                                    layer.close(index);
+                                },1200);
+                            }
                         }
-                    }
+                    });
                 });
-            });
+            }
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(sqeManaOrderT_tabPcb)', function (obj) {
+    table.on('tool(finManaSupRe_tabPcb)', function (obj) {
         var data = obj.data;
         if (obj.event == 'edit'){
             layer.msg('编辑操作');
@@ -143,7 +143,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                 success: function (data) {
                                     layer.alert("订单协同修改成功");
                                     // layer.closeAll();
-                                    table.reload('sqeManaOrderT_tabPcb');
+                                    table.reload('finManaSupRe_tabPcb');
                                     layer.close(index);
                                 }
                             });
@@ -156,5 +156,5 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('查看订单协同');
         }
     });
-    exports('sqeMana_order_together', {});
+    exports('finMana_supplier_reconciliation', {});
 });

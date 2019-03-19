@@ -92,7 +92,6 @@ layui.define(function (exports) {
                 chineseStr += cnInteger;
             }
             $("input[name='price']").val(chineseStr);
-            console.log("chineseStr:"+chineseStr);
             return chineseStr;
         }
     }

@@ -57,7 +57,7 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
             ,{field: 'gmtCreate',title: '创建时间', width: 166}
             ,{field: 'supplierNo', title: '供应商编号', width: 124}
             ,{field: 'factoryMake', title: '供应商厂编', minWidth: 190}
-            ,{field: 'productNo', title: '聚谷P/N', width: 124}
+            ,{field: 'productNo', title: '聚谷型号', width: 124}
             ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
             ,{field: 'unitPrice', title: '单价', width: 96}
@@ -252,7 +252,6 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
                     })
                 }
             });
-            layer.msg('查看订单协同');
         } else if (obj.event == 'signBack'){
             layer.confirm('确定退回？', function(index){
                 admin.req({
