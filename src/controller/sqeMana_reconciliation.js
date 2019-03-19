@@ -34,11 +34,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
-        elem: '#quotatgt_tabPcb'
+        elem: '#sqeMana_reconPcbTab'
         ,url: setter.baseUrl+'sqe/pcborder/reconciliation/list'
-        ,toolbar: "#quo_tother_tb"
+        ,toolbar: "#sqeMana_reconPcbTb"
         ,cellMinWidth: 80
-        ,id: "quotatgt_tabPcb"
+        ,id: "sqeMana_reconPcbTab"
         ,page: true
         ,parseData: function (res) {
             return{
@@ -77,13 +77,13 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'gerberPath', title: 'gerberPath', hide: true}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
-            ,{fixed: 'right', title:'操作', toolbar: '#quotatgt_tabbar',width: 130}
+            ,{fixed: 'right', title:'操作', toolbar: '#sqeMana_reconPcbTabbar',width: 130}
         ]]
         ,done: function (res, curr, count) {
 
         }
     });
-    table.on('toolbar(quotatgt_tabPcb)', function (obj) {
+    table.on('toolbar(sqeMana_reconPcbTab)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         if(obj.event === 'submitPcb'){
             var data = checkStatus.data;
@@ -104,16 +104,29 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     success: function (data) {
                         if (data.code == '0'){
                             layer.alert("提交成功！！");
-                            table.reload('quotatgt_tabPcb');
+                            table.reload('sqeMana_reconPcbTab');
                             layer.close(index);
                         }
+                    }
+                });
+            });
+        } else if (obj.event == 'generateStatement') {
+            layer.confirm('确定生成对账单？', function () {
+                admin.req({
+                    type: 'post',
+                    data: '',
+                    url: setter.baseUrl+'sqe/pcborder/createReconciliation',
+                    success: function () {
+                        layer.alert('成功生成对账协同');
+                        table.reload('sqeMana_reconPcbTab');
+                        layer.closeAll();
                     }
                 });
             });
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(quotatgt_tabPcb)', function (obj) {
+    table.on('tool(sqeMana_reconPcbTab)', function (obj) {
         var data = obj.data;
         if (obj.event == 'edit'){
             layer.msg('编辑操作');
@@ -156,7 +169,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                         success: function (data) {
                             layer.alert("供应商报价修改成功");
                             // layer.closeAll();
-                            table.reload('quotatgt_tabPcb');
+                            table.reload('sqeMana_reconPcbTab');
                             layer.close(index);
                         }
                     });
@@ -176,5 +189,5 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('查看订单协同');
         }
     })
-    exports('sqeMana_quotation_together', {});
+    exports('sqeMana_reconciliation', {});
 });

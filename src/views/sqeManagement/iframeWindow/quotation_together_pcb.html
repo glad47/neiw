@@ -12,9 +12,9 @@
                </tr>
                <tr>
                    <td>供应商编号</td>
-                   <td>{{ d.params.supplierNo }}</td>
+                   <td>{{ d.params.supplierNo || '' }}</td>
                    <td>数量(PCS)</td>
-                   <td id="qt_pcb_quantityPcs">{{ d.params.quantityPcs }}</td>
+                   <td id="qt_pcb_quantityPcs">{{ d.params.quantityPcs || '' }}</td>
                </tr>
                <tr>
                    <td>供应商厂编</td>

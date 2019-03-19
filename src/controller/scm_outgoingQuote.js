@@ -145,6 +145,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 ,yes:function(index, layero){
                     var checkStatus = table.checkStatus('scm_assign_supplier_table'),checkdata = checkStatus.data;
                     var ids = checkdata.map(function(elem){return elem.id}).join(",");
+                    console.log("ids:"+ids);
                     var ids_arr = [ids.split(',')];
                     var same_result = new Array();
                     var c = dIds_arr.toString();
@@ -157,25 +158,18 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                 }
                             }
                         }
-                    }
-                    for (var i=0;i<ids_arr[0].length;i++) {
                         for (var s=0;s<same_result.length;s++) {
                             if (parseInt(ids_arr[0][i]) == same_result[s]) {
                                 ids_arr[0].splice(i,1);
                             }
                         }
-                        var new_ids = ids_arr[0][i]+',';
-                        if (new_ids.length > 0) {
-                            new_ids = new_ids.substr(0, new_ids.length - 1);
-                         }
-                         ids = new_ids;
                     }
                     admin.req({
                     url:setter.baseUrl+"scm/pcborder/assignOrderToSupplier",
                     type:"POST",
                     data:{
                         orderId: data.id
-                        ,supplierIds: ids
+                        ,supplierIds: ids_arr[0].toString()
                     },
                     success:function(data){
                         if (data.code == 0 ) {

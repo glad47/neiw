@@ -1,0 +1,42 @@
+<title>供应商管理-对账协同</title>
+<div class="layui-fluid">
+    <!--卡片－表格信息-->
+    <div class="layui-tab layui-tab-brief" lay-filter="tab-quotationToger">
+        <ul class="layui-tab-title">
+            <li class="layui-this">PCB订单</li>
+            <li>钢网订单</li>
+            <li>SMT订单</li>
+        </ul>
+        <div class="layui-tab-content">
+            <!--PCB订单-->
+            <div class="layui-tab-item layui-show">
+                <table class="layui-table" id="sqeMana_reconPcbTab" lay-filter="sqeMana_reconPcbTab"></table>
+                <script type="text/html" id="sqeMana_reconPcbTb">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="submitPcb">提交</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="generateStatement">生成对账单</button>
+                    </div>
+                </script>
+                <script type="text/html" id="sqeMana_reconPcbTabbar">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
+                </script>
+            </div>
+            <!--钢网订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table" id="sqeMana_reconStencilTab" lay-filter="sqeMana_reconStencilTab"></table>
+            </div>
+            <!--SMT订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table" id="sqeMana_reconSmtTab" lay-filter="sqeMana_reconSmtTab"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('sqeMana_reconciliation', layui.factory('sqeMana_reconciliation')).use(['sqeMana_reconciliation', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>

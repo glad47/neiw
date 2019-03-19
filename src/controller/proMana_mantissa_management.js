@@ -52,33 +52,26 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field: 'status',title: '状态', width: 110}      // 1 ＝ 待报价
-            ,{field: 'deliveryTime',title: '交期', width: 110}      // 1 ＝ 待报价
-            ,{field: 'supplierNo', title: '供应商编号', width: 124}
-            ,{field: 'supplierQuoteNo', title: '供应商厂编', width: 117}
-            ,{field: 'productNo', title: '聚谷P/N', width: 124}
-            ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
-            ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-            ,{field: 'unitPrice', title: '单价', width: 96}
-            ,{field: 'engineeringFee', title: '工程费', width: 96}
-            ,{field: 'testCostFee', title: '飞针费', width: 96}
-            ,{field: 'testCostFee', title: '测试架费', width: 96}
-            ,{field: 'toolingFee', title: '模具', width: 96}
-            ,{field: 'subtotal', title: '合计', width: 96}
-            ,{field: 'remark', title: '订单备注', width: 168}
-            ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
-            ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
-            ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
-            ,{field: 'panelSizeY', title: 'panelSizeY', hide: true}
-            ,{field: 'panelWayX', title: 'panelWayX', hide: true}
-            ,{field: 'panelWayY', title: 'panelWayY', hide: true}
-            ,{field: 'gerberName', title: 'gerberName', hide: true}
-            ,{field: 'gerberPath', title: 'gerberPath', hide: true}
-            ,{field: '',title: '报价单号', width: 125, hide: true}
-            ,{field: 'gmtCreate',title: '报价时间', width: 166, hide: true}
-            // ,{field: 'gerberName',title: '文件名'}
-            // ,{field: 'pcbType',title: 'PCB类型'}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',width: 150}
+            ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}      // 1 ＝ 已指派  2= 已报价
+            ,{field: 'productNo', title: '聚谷型号', width: 124}
+            ,{field: '', title: '周期', width: 124}
+            ,{field: '', title: '摆放位置', width: 124}
+            ,{field: 'id',title: 'ID', hide: true}
+            ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
+            ,{field: 'deliveryTime',title: '交期', width: 110, templet: ' <a>{{ d.deliveryTime.substring(0,10) }}</a> '}
+            ,{field: 'supplierId', title: '供应商编号', width: 117}
+            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
+            ,{field: 'orderPcsNumber', title: '订单数量(PCS)', width: 134}
+            ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
+            ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
+            ,{field: 'currPcsNumber', title: '送货数量', minWidth: 133}
+            ,{field: 'courierCompany', title: '快递公司', width: 124}
+            ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
+            ,{field: 'deliveryOrderNo', title: '送货单号', width: 117}
+            ,{field: 'deliveryNo', title: '交货批次', width: 144}
+            ,{field: 'gmtModified', title: '修改时间'}
+            ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
+            ,{fixed: 'right', title:'操作', toolbar: '#iqcManaIncau_tabbar',width: 160}
         ]]
         ,done: function (res, curr, count) {
 

@@ -36,7 +36,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     table.render({
         elem: '#iqcIncom_auditor'
         ,url: setter.baseUrl+'iqc/pcborder/incomingAuditor/list'
-        ,toolbar: "#ord_sqpManaPlan_tb"
+        ,toolbar: "#sqeMana_incoAuTb"
         ,cellMinWidth: 80
         ,id: "iqcIncom_auditor"
         ,page: true
@@ -79,8 +79,19 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
         if(obj.event === 'plrk'){     //通知出货
-            layer.confirm('确定入库？', function () {
-                layer.msg('入库成功');
+            var ids = data.map(function(elem){return elem.id}).join(",");
+            layer.confirm('确定批量入库？', function () {
+                admin.req({
+                    type: 'post',
+                    data: ids,
+                    url: setter.baseUrl+'iqc/pcborder/batchStatusOk',
+                    success: function () {
+                        layer.msg('批量入库成功');
+                        table.reload('iqcIncom_auditor');
+                        layer.closeAll();
+                    }
+                });
+
             });
         }
     });
