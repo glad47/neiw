@@ -47,6 +47,7 @@
       <div class="layui-input-inline">
         <script type="text/html" template>
           <input type="text" name="articleDescribe" value="{{ d.params.articleDescribe || '' }}" lay-verify="required" placeholder="请输入文章描述" autocomplete="off" class="layui-input">
+          <input type="checkbox" name="articleKing" lay-skin="primary" title="置顶" {{ d.params.articleKing == '1' ? 'checked' : '' }}>
         </script>
       </div>
     </div>

@@ -103,6 +103,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                             var field = data.field;
                             var c = layedit.getContent(edit);
                             field.articleContent = c;
+                            if (field.articleKing == 'on') {
+                                field.articleKing = 1;
+                            } else {
+                                field.articleKing = 0;
+                            }
                             admin.req({
                                 url: setter.baseUrl + 'article/update',
                                 type: 'POST',
@@ -112,8 +117,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                                     layui.table.reload('article_Table_blog'); //重载表格
                                     layer.close(index); //执行关闭
                                 }
-                            })
-
+                            });
                         });
                     });
                 }
