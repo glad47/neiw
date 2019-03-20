@@ -68,15 +68,16 @@
         </div>
 
         <div class="layui-form-item">
+            <script type="text/html" template>
             <div class="addcus-cusNum layui-col-md4">
                 <label class="layui-form-label">付款方式：</label>
                 <div class="layui-input-block">
                     <select name="paymentType">
-                        <option value="0"></option>
-                        <option value="1">银联</option>
-                        <option value="2">PayPal</option>
-                        <option value="3">支付宝</option>
-                        <option value="4">微信</option>
+                        <option value="0" {{ d.params.paymentType == '0' ? 'selected' : '' }}></option>
+                        <option value="1" {{ d.params.paymentType == '1' ? 'selected' : '' }}>现金</option>
+                        <option value="2" {{ d.params.paymentType == '2' ? 'selected' : '' }}>当月结</option>
+                        <option value="3" {{ d.params.paymentType == '3' ? 'selected' : '' }}>月结30天</option>
+                        <option value="4" {{ d.params.paymentType == '4' ? 'selected' : '' }}>月结60天</option>
                     </select>
                 </div>
             </div>
@@ -84,9 +85,9 @@
                 <label class="layui-form-label">是否含税：</label>
                 <div class="layui-input-block">
                     <select name="taxe">
-                        <option value="0"></option>
-                        <option value="1">是</option>
-                        <option value="2">否</option>
+                        <option value="0" {{ d.params.taxe == '0' ? 'selected' : '' }}></option>
+                        <option value="1" {{ d.params.taxe == '1' ? 'selected' : '' }}>是</option>
+                        <option value="2" {{ d.params.taxe == '2' ? 'selected' : '' }}>否</option>
                     </select>
                 </div>
             </div>
@@ -94,13 +95,14 @@
                 <label class="layui-form-label">发票类型：</label>
                 <div class="layui-input-block">
                     <select name="invoiceType">
-                        <option value="0"></option>
-                        <option value="1">收据</option>
-                        <option value="2">普票</option>
-                        <option value="3">增值税16%</option>
+                        <option value="0" {{ d.params.invoiceType == '0' ? 'selected' : '' }}></option>
+                        <option value="1"  {{ d.params.invoiceType == '1' ? 'selected' : '' }}>收据</option>
+                        <option value="2"  {{ d.params.invoiceType == '2' ? 'selected' : '' }}>普票</option>
+                        <option value="3"  {{ d.params.invoiceType == '3' ? 'selected' : '' }}>增值税13%</option>
                     </select>
                 </div>
             </div>
+            </script>
         </div>
 
         <div class="layui-form-item">

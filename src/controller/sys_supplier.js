@@ -43,8 +43,8 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             ,{field:'officePhone', title: '办公电话', sort: true,width: 120}
             ,{field:'phone', title: '手机', align: 'center', sort: true,width: 120} //单元格内容水平居中
             ,{field:'email', title: 'Email', sort: true,width:200} //单元格内容水平居中
-            ,{field:'paymentType', title: '付款方式', sort: true,templet:'#paymentType'}
-            ,{field:'taxe', title: '是否含税', sort: true,templet:'#taxe'}
+            ,{field:'paymentType', title: '付款方式', sort: true,templet:'#paymentType', minWidth: 104}
+            ,{field:'taxe', title: '是否含税', sort: true,templet:'#taxe', minWidth: 110}
             ,{field:'invoiceType', title: '发票类型', sort: true,templet:'#invoiceType'}
             ,{field:'strengths', title: '强项类型', sort: true,templet: '#strengths',width: 110}
             ,{field:'evaluateDdelivery', title: '交期', sort: true,templet: '#evaluateDdelivery'}

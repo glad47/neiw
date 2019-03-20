@@ -68,9 +68,13 @@
                 {{#  if(d.paymentType ===0){ }}
                     <span style="color: orangered;">类型：0</span>
                 {{#  } else if (d.paymentType ===1){ }}
-                    <span>类型：1</span>
+                    <span>现金</span>
                 {{#  } else if (d.paymentType ===2){ }}
-                    <span>类型：2</span>
+                    <span>当月结</span>
+                {{#  } else if (d.paymentType ===3){ }}
+                <span>月结30天</span>
+                {{#  } else if (d.paymentType ===4){ }}
+                <span>月结60天</span>
                 {{#  } }}
             </script>
             <!--是否含税转换-->
@@ -88,7 +92,7 @@
                 {{#  } else if (d.invoiceType ===2){ }}
                 <span>普票</span>
                 {{#  } else if (d.invoiceType ===3){ }}
-                <span>增值税16%</span>
+                <span>增值税13%</span>
                 {{#  } }}
             </script>
             <!--强项类型转换-->
