@@ -11,7 +11,7 @@
             .modul-top .lef-logo img{width: 66px;}
             .rig-company{font-size: 20px;margin: 14px 17px;line-height: 33px;}
             /*模块间距*/
-            .modul-two，.modul-three,.modul-four,.modul-bot{margin-top: 30px;}
+            .modul-two，.modul-three,.modul-four,.modul-bot{margin-top: 6px;}
             .modul-two{display: flex;width: 100%;}
             .modul-two .lef-j{width: 70%;}
             .modul-two .rig-y{width: 30%;}
@@ -72,13 +72,11 @@
                             <th rowspan="2">模具费</th>
                             <th rowspan="2">其他费</th>
                             <th rowspan="2">合计金额</th>
-                            <th rowspan="2">交期</th>
-                            <th rowspan="2">备注</th>
                         </tr>
                         </thead>
                         <tbody>
                         {{# layui.each(d.params.data, function(index, item){  }}
-                        <tr>
+                        <tr style="background-color: #c0c0c073;">
                             <!--序号-->
                             <td>{{ index+1 }}</td>
                             <!--合同编号-->
@@ -103,45 +101,36 @@
                             <td>{{ item.toolingFee || '0' }}</td>
                             <!--合计金额-->
                             <td>{{ item.totalFee || '0' }}</td>
-                            <!--交期-->
-                            <td>
-                                {{# if(item.deliveryTime != null){ }}
-                                {{ item.deliveryTime.substring(0,10) }}
-                                {{# } else{ }}
-                                交期未定
-                                {{# } }}
-                            </td>
-                            <!--备注-->
-                            <td>{{ item.remark || '0' }}</td>
                         </tr>
                         {{# layui.each(item.orderShipmentEntityList, function(index, item){  }}
                         <tr>
                             <td></td>
-                            <td>送货时间：</td>
-                            <td colspan="2">
-                                {{ item.deliveryTime || '' }}
-                            </td>
                             <td>送货单号：</td>
-                            <td colspan="3">
+                            <td colspan="2">
                                 {{ item.deliveryNo || '' }}
+                            </td>
+                            <td>送货数量：</td>
+                            <td>
+                                {{ item.currPcsNumber || '' }}
+                            </td>
+                            <td>送货时间：</td>
+                            <td>
+                                {{ item.deliveryTime.substring(0,10) || '' }}
                             </td>
                             <td>送货方式：</td>
                             <td colspan="2">
                                 {{ item.courierCompany || '' }}
                             </td>
-                            <td>送货数量：</td>
-                            <td colspan="2">
-                                {{ item.currPcsNumber || '' }}
-                            </td>
+                            <td colspan="3"></td>
                         </tr>
                         {{#  }); }}
                         {{#  }); }}
-                        <tr>
-                            <td colspan="13" style="text-align: left;padding-left: 10px;">
+                        <tr style="background-color: #c0c0c0cc;">
+                            <td colspan="11" style="text-align: left;padding-left: 10px;">
                                 总金额：
                                 {{ d.params.convertSubtotal }}
                             </td>
-                            <td colspan="11" style="text-align: left;padding-left: 10px;">
+                            <td style="text-align: left;padding-left: 10px;">
                                 总计：￥{{ d.params.subtotal }}
                             </td>
                         </tr>

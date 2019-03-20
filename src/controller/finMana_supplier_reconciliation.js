@@ -54,6 +54,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             {type:'checkbox'}
             ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
             ,{field: 'gmtCreate',title: '报价时间', width: 166}
+            ,{field: 'reconciliationNo',title: '对账编号', width: 210}
             ,{field: 'supplierNo', title: '供应商编号', width: 124}
             ,{field: 'factoryMake', title: '供应商厂编', width: 117}
             ,{field: 'productNo', title: '聚谷型号', width: 124}
@@ -62,19 +63,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'unitPrice', title: '单价', width: 96}
             ,{field: 'subtotal', title: '合计', width: 96}
             ,{field: 'remark', title: '订单备注', width: 168}
-            ,{field: 'engineeringFee', title: '工程费', width: 96, hide: true}
-            ,{field: 'testCostFee', title: '飞针费', width: 96, hide: true}
-            ,{field: 'testCostFee', title: '测试架费', width: 96, hide: true}
-            ,{field: 'toolingFee', title: '模具', width: 96, hide: true}
-            ,{field: 'supplierQuoteNo',title: '报价单号', hide: true}
-            ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
-            ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
-            ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
-            ,{field: 'panelSizeY', title: 'panelSizeY', hide: true}
-            ,{field: 'panelWayX', title: 'panelWayX', hide: true}
-            ,{field: 'panelWayY', title: 'panelWayY', hide: true}
-            ,{field: 'gerberName', title: 'gerberName', hide: true}
-            ,{field: 'gerberPath', title: 'gerberPath', hide: true}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
             ,{fixed: 'right', title:'操作', toolbar: '#finManaSupRe_tbar',width: 150}
@@ -97,7 +85,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     admin.req({
                         type: 'post',
                         data: {reconciliationId:reconciliationNos},
-                        url: setter.baseUrl+'sqe/pcborder/submitByOt',
+                        url: setter.baseUrl+'fms/reconciliation/supplierReconciliation',
                         success: function (data) {
                             if (data.code != '500'){
                                 layer.alert("提交成功！！");
