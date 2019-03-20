@@ -21,38 +21,24 @@
                 <tr>
                     <td>供应商厂编</td>
                     <td>
-                        {{# if(d.params.supplierQuoteNo == null || d.params.supplierQuoteNo == ''){ }}
-                        <input class="layui-input" type="text" value="" id="pcbfactoryMake">
-                        {{# } else{ }}
-                        <input class="layui-input" type="text" value="{{ d.params.supplierQuoteNo}}" id="pcbfactoryMake">
-                        {{# } }}
+                        <input class="layui-input" type="text" value="{{ d.params.factoryMake || '' }}" id="pcbfactoryMake">
                     </td>
                     <td>单价</td>
                     <td>
-                        {{# if(d.params.unitPrice == null || d.params.unitPrice == ''){ }}
-                        <input class="layui-input" type="text" value="0" id="qt_pcb_unitPrice">
-                        {{# } else{ }}
-                        <input class="layui-input" type="text" value="{{ d.params.unitPrice }}" id="qt_pcb_unitPrice">
-                        {{# } }}
+                        <input class="layui-input" type="text" value="{{ d.params.unitPrice || '' }}" id="qt_pcb_unitPrice">
                     </td>
                     <td>
-                        {{# if(d.params.unitPriceCustomer == null || d.params.unitPriceCustomer == ''){ }}
-                            <strong>0</strong>
-                        {{# } else{ }}
-                            {{ d.params.unitPriceCustomer }}
-                        {{# } }}
+                        {{ d.params.unitPriceCustomer || '' }}
                     </td>
                 </tr>
                 <tr>
-                    <td>聚谷订单号</td>
-                    <td></td>
+                    <!--<td>聚谷订单号</td>-->
+                    <!--<td>{{ d.params.orderId }}</td>-->
+                    <td>聚谷型号</td>
+                    <td>{{ d.params.orderId || '' }}</td>
                     <td>工程费</td>
                     <td>
-                        {{# if(d.params.engineeringFee == null || d.params.engineeringFee == ''){ }}
-                        <input class="layui-input" type="text" value="0" id="qt_pcb_engineeringFee">
-                        {{# } else{ }}
-                        <input class="layui-input" type="text" value="{{ d.params.engineeringFee }}" id="qt_pcb_engineeringFee">
-                        {{# } }}
+                        <input class="layui-input" type="text" value="{{ d.params.engineeringFee || '' }}" id="qt_pcb_engineeringFee">
                     </td>
                     <td>
                         {{# if(d.params.engineeringFeeCustomer == null || d.params.engineeringFeeCustomer == ''){ }}
@@ -63,8 +49,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>聚谷型号</td>
-                    <td></td>
+                    <td>聚谷产品型号</td>
+                    <td>{{ d.params.productNo || '' }}</td>
+                    <td>加急费</td>
+                    <td>{{ d.params.overworkFee || '' }}</td>
+                </tr>
+                <tr>
+                    <td>层别</td>
+                    <td>
+                        {{ d.params.layerNum || '' }}
+                    </td>
                     <td>
                         <select class="layui-select" lay-filter="seltestPoint">
                             <option value="1">飞针费</option>
@@ -74,11 +68,7 @@
                         <input type="text" style="display: none;" id="hiddenTestPoint">
                     </td>
                     <td>
-                        {{# if(d.params.testCostFee == null || d.params.testCostFee == ''){ }}
-                        <input class="layui-input" type="text" value="0" id="qt_pcb_testCostFee">
-                        {{# } else{ }}
-                        <input class="layui-input" type="text" value="{{ d.params.testCostFee }}" id="qt_pcb_testCostFee">
-                        {{# } }}
+                        <input class="layui-input" type="text" value="{{ d.params.testCostFee || '' }}" id="qt_pcb_testCostFee">
                     </td>
                     <td>
                         {{# if(d.params.testCostFeeCustomer == null || d.params.testCostFeeCustomer == ''){ }}
@@ -89,62 +79,45 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>聚谷产品型号</td>
-                    <td></td>
-                    <td>模具费</td>
+                    <td>出货尺寸</td>
                     <td>
-                        {{# if(d.params.toolingFee == null || d.params.toolingFee == ''){ }}
-                        <input class="layui-input" type="text" value="0" id="qt_pcb_toolingFee">
-                        {{# } else{ }}
-                        <input class="layui-input" type="text" value="{{ d.params.toolingFee }}" id="qt_pcb_toolingFee">
+                        {{# if(d.params.panelSizeX != null){ }}
+                        {{# var panelWay = d.params.panelWayX*d.params.panelWayY }}
+                        {{ d.params.panelSizeX }} * {{ d.params.panelSizeY }}mm / {{ panelWay }}
+                        {{# }else if(d.params.dimensionsX != null){ }}
+                        {{ d.params.dimensionsX}} * {{ d.params.dimensionsY}}mm /1
+                        {{# }else{ }}
+                        都为空
                         {{# } }}
                     </td>
+                    <td>模具费</td>
                     <td>
-                        {{# if(d.params.toolingFeeCustomer == null || d.params.toolingFeeCustomer == ''){ }}
-                            <strong>0</strong>
-                        {{# } else{ }}
-                            <strong>{{ d.params.toolingFee }}</strong>
-                         {{# } }}
+                        <input class="layui-input" type="text" value="{{ d.params.toolingFee || '' }}" id="qt_pcb_toolingFee">
+                    </td>
+                    <td>
+                        <strong>{{ d.params.toolingFee || '0' }}</strong>
                     </td>
                 </tr>
                 <tr>
-                    <td>层别</td>
-                    <td></td>
+                    <td>订单备注</td>
+                    <td>{{ d.params.remarkCustomer || '' }}</td>
                     <td>合计</td>
                     <td id="qt_pcb_totalFee" style="padding: 0 26px;">
-                        {{# if(d.params.totalFee == null || d.params.totalFee == ''){ }}
-                        0
-                        {{# } else{ }}
-                        {{ d.params.totalFee}}
-                        {{# }}}
+                        {{ d.params.totalFee || '0' }}
                     </td>
                     <td>
                         <strong>{{ d.params.subtotal }}</strong>
                     </td>
                 </tr>
                 <tr>
-                    <td>出货尺寸</td>
-                    <td></td>
-                    <td>交期</td>
-                    <td><input class="layui-input" type="text" id="pcbDeliveryDate"></td>
-                    <td title="客户交期">
-                        {{# if(d.params.deliveryTime != null){ }}
-                            {{# var deliveryTime = d.params.deliveryTime.substring(0,10) }}
-                            {{ deliveryTime }}
-                        {{# } else{ }}
-                            交期未定
-                        {{# } }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>订单备注</td>
-                    <td></td>
                     <td>报价备注</td>
                     <td>
                         <input class="layui-input" type="text" value="{{ d.params.remark || '' }}" id="qRemark">
                     </td>
-                    <td title="客户备注">
-                        {{ d.params.remarkCustomer || '' }}
+                    <td>交期</td>
+                    <td><input class="layui-input" type="text" id="pcbDeliveryDate" value="{{ d.params.deliveryTime || '' }}"></td>
+                    <td title="客户交期">
+                        {{ d.params.buildTime || '' }}
                     </td>
                 </tr>
                 </tbody>

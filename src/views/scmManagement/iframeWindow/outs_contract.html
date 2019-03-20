@@ -54,7 +54,7 @@
                     </label>
                     <p>
                         <label>
-                            乙方：{{ d.params.data.supplierCompanyName || '' }}
+                            乙方：{{ d.params.data[0].supplierCompanyName || '' }}
                         </label>
                     </p>
                 </div>
@@ -123,11 +123,57 @@
                     <!--层数-->
                     <td>{{ item.layerNum }}</td>
                     <!--表面处理-->
-                    <td>{{ item.surfaceFinish }}</td>
+                    <td>
+                        {{# if(item.surfaceFinish == 'HASL_with_lead'){ }}
+                            有铅喷锡
+                        {{# } else if(item.surfaceFinish == 'HASL_lead_free'){ }}
+                            无铅喷锡
+                        {{# } else if(item.surfaceFinish == 'Immersion_Gold'){ }}
+                            沉金
+                        {{# } else if(item.surfaceFinish == 'Immersion_tin'){ }}
+                            沉锡
+                        {{# } else if(item.surfaceFinish == 'Immersion_silver'){ }}
+                            沉银
+                        {{# } else if(item.surfaceFinish == 'OSP'){ }}
+                            OSP
+                        {{#} }}
+                    </td>
                     <!--阻焊-->
-                    <td>{{ item.solderMaskBotColor }}</td>
+                    <td>
+                        {{# if(item.solderMaskTopColor == 'green'){ }}
+                            绿油
+                        {{# } else if(item.solderMaskTopColor == 'black'){ }}
+                            黑油
+                        {{# } else if(item.solderMaskTopColor == 'white'){ }}
+                            白油
+                        {{# } else if(item.solderMaskTopColor == 'yellow'){ }}
+                            黄油
+                        {{# } else if(item.solderMaskTopColor == 'red'){ }}
+                            红油
+                        {{# } else if(item.solderMaskTopColor == 'blue'){ }}
+                            蓝油
+                        {{# } else if(item.solderMaskTopColor == 'matte_black'){ }}
+                            哑黑
+                        {{# } else if(item.solderMaskTopColor == 'matte_green'){ }}
+                            哑绿
+                        {{#} }}
+                    </td>
                     <!--字符-->
-                    <td>{{ item.silkScreenTopColor }}</td>
+                    <td>
+                        {{# if(item.silkScreenTopColor == 'green'){ }}
+                        绿油
+                        {{# } else if(item.silkScreenTopColor == 'black'){ }}
+                        黑油
+                        {{# } else if(item.silkScreenTopColor == 'white'){ }}
+                        白油
+                        {{# } else if(item.silkScreenTopColor == 'yellow'){ }}
+                        黄油
+                        {{# } else if(item.silkScreenTopColor == 'red'){ }}
+                        红油
+                        {{# } else if(item.silkScreenTopColor == 'blue'){ }}
+                        蓝油
+                        {{#} }}
+                    </td>
                     <!--数量pcs-->
                     <td>{{ item.quantityPcs }}</td>
                     <!--单价-->
@@ -143,7 +189,7 @@
                     <!--其他费-->
                     <td>{{ item.toolingFee || '0' }}</td>
                     <!--合计金额-->
-                    <td>{{ item.subtotal || '0' }}</td>
+                    <td>{{ item.totalFee || '0' }}</td>
                     <!--交期-->
                     <td>
                         {{# if(item.deliveryTime != null){ }}
@@ -162,7 +208,7 @@
                         {{ d.params.convertSubtotal}}
                     </td>
                     <td colspan="11" style="text-align: left;padding-left: 10px;">
-                        总计：￥{{ d.params.subtotal }}
+                        总计：￥{{ d.params.totalFee }}
                     </td>
                 </tr>
                 </tbody>

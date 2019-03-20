@@ -65,8 +65,8 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
             ,{field: 'testCostFee', title: '飞针费', width: 96}
             ,{field: 'testCostFee', title: '测试架费', width: 96}
             ,{field: 'toolingFee', title: '模具', width: 96}
-            ,{field: 'subtotal', title: '合计', width: 96}
-            ,{field: 'remark', title: '订单备注', width: 168}
+            ,{field: 'totalFee', title: '合计', width: 96}
+            ,{field: 'remark', title: '报价备注', width: 168}
             //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
             ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
             ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
@@ -91,24 +91,24 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
     table.on('toolbar(scmMana_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
-        var subtotal = 0;
+        var totalFee = 0;
         if(obj.event === 'evScmSubmit'){
             var ids = null;
             var popupData = {data:{}};
             popupData.data = data;
             for (var i=0;i<data.length;i++){
-                var forSt = data[i].subtotal;
+                var forSt = data[i].totalFee;
                 if (ids == null){
                     ids = ids + data[i].id;
                 } else {
                     ids = ids + ',' + data[i].id;
                 }
-                subtotal += forSt;
+                totalFee += forSt;
             }
-            console.log("subtotal:"+subtotal);
+            console.log("totalFee:"+totalFee);
             // 金额转换为中文大写
-            convertSubtotal = convertCurrency.conversion(subtotal);
-            popupData.subtotal = subtotal;
+            convertSubtotal = convertCurrency.conversion(totalFee);
+            popupData.totalFee = totalFee;
             popupData.convertSubtotal = convertSubtotal;
             console.log(popupData);
             admin.popup({
@@ -133,7 +133,6 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
                 }
                 ,success: function (layero, index) {
                 view(this.id).render('scmManagement/iframeWindow/outs_contract',popupData).done(function () {
-
                 });
             }
             })
