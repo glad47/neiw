@@ -35,7 +35,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
         elem: '#quotatgt_tabPcb'
-        ,url: setter.baseUrl+'sqe/pcborder/reconciliation/list'
+        ,url: setter.baseUrl+'sqe/pcborder/quotationTogether/list'
         ,toolbar: "#quo_tother_tb"
         ,cellMinWidth: 80
         ,id: "quotatgt_tabPcb"
