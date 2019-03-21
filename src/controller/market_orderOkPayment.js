@@ -323,8 +323,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 }
             })
         } else if (obj.event === 'del') {
-            layer.confirm('真的删除订单号为［'+data.productNo+'］吗', function(index){
-               admin.popup({
+            layer.confirm('真的删除[Stencil]订单号为［'+data.productNo+'］吗', function(index){
+               admin.req({
                    type: 'post'
                    ,url: setter.baseUrl+'market/stencil/audit/delete'
                    ,data: {"ids":data.id}
@@ -335,7 +335,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                    ,fail: function (res) {
                        layer.msg('服务器异常，稍后重试！');
                    }
-               })
+               });
                 layer.close(index);
             });
         } else if (obj.event === 'stencil-submit') {
