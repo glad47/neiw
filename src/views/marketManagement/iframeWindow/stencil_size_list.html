@@ -36,9 +36,23 @@
             table.on('row(stencilList)', function (obj) {
                 var data = obj.data;
                 // Farmework 736*736(Valid area 500*500mm)
-                $("#stenContainer").attr("data-id",data.priceToUSD); //价格
-                $("#stenContainer").attr("name",data.weight); //重量
                 $("#stenContainer").val(data.materialName+" "+ data.stencilSizex+"*"+data.stencilSizey+"(Valid area"+data.stencilAreax+"*"+data.stencilAreay+"mm)");
+                var goData = {
+                    size: data.id,
+                    stencilType: data.materialName,
+                    unitPrice: data.price,
+                    stencilSizeX: data.stencilSizex,
+                    stencilSizeY: data.stencilSizey,
+                    stencilAreaX: data.stencilAreax,
+                    stencilAreaY: data.stencilAreay,
+                    weight: data.weight
+                };
+                // 本地存储
+                console.log(data);
+                layui.data('stencilList',{
+                    key: 'params',
+                    value: goData
+                });
                 //标注选中样式
                 obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
                 //选中此行的radio

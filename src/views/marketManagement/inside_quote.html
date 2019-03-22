@@ -469,7 +469,7 @@
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">Stencil Side:</label>
                                         <div class="layui-input-block">
-                                            <select name="stencilSide">
+                                            <select name="stencilSide" lay-filter="stencilSide">
                                                 <option value="Top And Bottom (On Single Stencil)">Top And Bottom (On Single Stencil)</option>
                                                 <option value="Top And Bottom (On Separate Stencil)">Top And Bottom (On Separate Stencil)</option>
                                             </select>
@@ -486,39 +486,39 @@
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">Thickness:</label>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input name="thickness" type="radio" class="layui-input" value="0.1" title="0.10MM">
+                                            <input name="thickness" type="radio" lay-filter="sthickness" class="layui-input" value="0.1" title="0.10MM">
                                         </div>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input name="thickness" type="radio" class="layui-input" value="0.1" title="0.10MM">
+                                            <input name="thickness" type="radio" lay-filter="sthickness" class="layui-input" value="0.12" title="0.12MM" checked>
                                         </div>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input name="thickness" type="radio" class="layui-input" value="0.1" title="0.10MM">
+                                            <input name="thickness" type="radio" lay-filter="sthickness" class="layui-input" value="0.15" title="0.15MM">
                                         </div>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input name="thickness" type="radio" class="layui-input" value="0.1" title="0.10MM">
+                                            <input name="thickness" type="radio" lay-filter="sthickness" class="layui-input" value="0.20" title="0.20MM">
                                         </div>
                                     </div>
 
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">Existing Fiducials:</label>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input name="existingFiducials" type="radio" class="layui-input" value="0.1" title="0.10MM">
+                                            <input name="existingFiducials" lay-filter="existingFiducials" type="radio" class="layui-input" value="0.1" title="0.10MM" checked>
                                         </div>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input name="existingFiducials" type="radio" class="layui-input" value="0.12" title="0.12MM">
+                                            <input name="existingFiducials" lay-filter="existingFiducials" type="radio" class="layui-input" value="0.12" title="0.12MM">
                                         </div>
                                     </div>
 
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">Quantity:</label>
                                         <div class="layui-input-block">
-                                            <input type="text" class="layui-input" placeholder="1">
+                                            <input type="text" class="layui-input" value="1" id="stencil_quantity">
                                         </div>
                                     </div>
 
-                                    <div class="layui-form-item">
+                                    <div class="layui-form-item" style="display: none;">
                                         <div class="layui-input-block">
-                                            <button class="layui-btn" lay-filter="assemblyService" lay-submit>立即提交</button>
+                                            <button class="layui-btn rStencilSubmit" type="button" lay-filter="rStencilSubmit" lay-submit>立即提交</button>
                                             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                                         </div>
                                     </div>
@@ -597,7 +597,7 @@
 
                                     <div class="layui-form-item">
                                         <div class="layui-input-block">
-                                            <button class="layui-btn" lay-filter="assemblyService" lay-submit>立即提交</button>
+                                            <button class="layui-btn rAssemblySubmit" type="button" lay-filter="rAssemblySubmit" lay-submit>立即提交</button>
                                             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                                         </div>
                                     </div>
@@ -777,20 +777,58 @@
                       </form>
 
                       <form class="layui-form" id="stencilForm">
-                          <div class="layui-col-md-offset5 stencil-form">
-                              <div class="layui-form-item">
-                                  <label class="layui-form-label">重量：</label>
-                                  <div class="layui-input-block">
-                                      <input class="layui-input" type="text" id="stencilWeight" placeholder="0.00" >
+                          <div class="stencil-form">
+                              <div class="layui-form-item" style="display: flex;">
+                                  <div class="layui-input-inline shipping-input-companyt" style="width: 49%;">
+                                      <select name="courierCompanyt" id="selCompanyt" lay-filter="companyt">
+                                          <option value="">请选择</option>
+                                      </select>
+                                  </div>
+                                  <div class="layui-input-inline shipping-input-countrys"  style="width: 37%;">
+                                      <select name="quiz2" id="selCountryst" lay-filter="countrys">
+                                          <option value="">请选择</option>
+                                      </select>
                                   </div>
                               </div>
-                          </div>
 
-                          <div class="layui-col-md-offset5 stencil-form">
                               <div class="layui-form-item">
-                                  <label class="layui-form-label">Stencil Cost:</label>
-                                  <div class="layui-input-block">
-                                      <input class="layui-input" type="text" id="inStencilCost" placeholder="0.00" >
+                                  <div class="layui-input-inline">
+                                      <label class="layui-form-label">重量：</label>
+                                      <div class="layui-input-block">
+                                          <input class="layui-input" type="text" id="stencilWeight" placeholder="0.00" >
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="layui-form-item">
+                                  <div class="layui-input-inline">
+                                      <label class="layui-form-label">运费:</label>
+                                      <div class="layui-input-block">
+                                          <input class="layui-input" name="postFee" type="text" id="postFees" placeholder="0.00" >
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="layui-form-item">
+                                  <div class="layui-input-inline">
+                                      <label class="layui-form-label">Stencil Cost:</label>
+                                      <div class="layui-input-block">
+                                          <input class="layui-input" type="text" id="inStencilCost" placeholder="0.00">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="layui-form-item">
+                                  <div class="layui-input-inline">
+                                      <label class="layui-form-label">Stencil单价:</label>
+                                      <div class="layui-input-block">
+                                          <input class="layui-input" type="text" id="sunitPrice" placeholder="0.00" readonly>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="layui-form-item">
+                                  <div class="layui-input-inline">
+                                      <label class="layui-form-label">Stencil总价:</label>
+                                      <div class="layui-input-block">
+                                          <input class="layui-input" type="text" id="stotalPrice" placeholder="0.00" readonly>
+                                      </div>
                                   </div>
                               </div>
                           </div>
@@ -846,7 +884,6 @@
                                   </div>
                               </div>
                           </div>
-
                       </form>
                   </div>
                     <div class="submit-group" style="text-align: center;padding-bottom: 15px;">
@@ -865,7 +902,7 @@
 <style>
     input:disabled{background-color: #d4d3d366;cursor: not-allowed;}
     #stencilForm,#assemblyForm{margin-top: 30px;}
-    #stencilForm .layui-form-label,#assemblyForm .layui-form-label{width: 120px !important;}
+    #stencilForm .layui-form-label,#assemblyForm .layui-form-label{width: 80px !important;}
     .rig-price-input .layui-form-label{width: 56px;}
     .rig-others .layui-form-label{width: 46px;}
     .build-time-item .layui-input-block{width: 100% !important;margin-left: unset;}
