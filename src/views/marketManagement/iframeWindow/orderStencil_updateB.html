@@ -66,8 +66,9 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <select name="existingFiducials">
-                            <option value="0.10"  {{ d.params.existingFiducials === '0.10' ? 'selected' : '' }}>0.10mm</option>
-                            <option value="0.20"  {{ d.params.existingFiducials === '0.20' ? 'selected' : '' }}>0.20mm</option>
+                            <option value="none"  {{ d.params.existingFiducials === 'none' ? 'selected' : '' }}>None</option>
+                            <option value="half lasered"  {{ d.params.existingFiducials === 'half lasered' ? 'selected' : '' }}>Half Lasered</option>
+                            <option value="lasered through"  {{ d.params.existingFiducials === 'lasered through' ? 'selected' : '' }}>Lasered through</option>
                         </select>
                     </script>
                 </div>

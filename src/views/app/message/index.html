@@ -96,9 +96,6 @@ layui.use(['admin', 'table', 'util'], function(){
             "count": res.page.totalCount
         }
     }
-    ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-    }
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
       ,{field: 'content', title: '内容', minWidth: 300}

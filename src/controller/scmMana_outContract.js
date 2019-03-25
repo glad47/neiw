@@ -47,9 +47,6 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
                 "count": res.page.totalCount
             }
         }
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
         ,cols: [[
             {type:'checkbox'}
             ,{field: 'status',title: '状态',templet: '#og_status', minWidth: 104}      // 1 ＝ 待报价

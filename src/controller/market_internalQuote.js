@@ -21,20 +21,16 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         orderType: 0,   //订单类型
         customerSn: null, //客户编号 如：a11
         canOpenView: false, //是否可以打开合同弹出页
-        toolbarName: 'iquote_Tabstencil' //  对应订单类型的工具栏
     };
 
     // 监听tab选项卡
     element.on('tab(tab-internalQuote)', function (data) {
         defVal.orderType = data.index;
         if (defVal.orderType === 1) {
-            defVal.toolbarName = "iquote_Tabstencil";
-            console.log("进入Stencil,toolbarName===>>"+defVal.toolbarName);
             tabRenderStencil();
         } else if (defVal.orderType === 2) {
             console.log("SMT订单选项卡");
         } else {
-            defVal.toolbarName = "iquote_Tabpcb";
             tabRenderPCB();
         }
     });
@@ -54,9 +50,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     "data": res.page.list,
                     "count": res.page.totalCount
                 }
-            }
-            ,where: {
-                access_token: layui.data('layuiAdmin').access_token
             }
             ,cols: [[
                 {type:'checkbox'}
@@ -163,7 +156,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     }
 
     //pcb订单头工具栏事件
-    table.on('toolbar('+defVal.toolbarName+')', function(obj){
+    table.on('toolbar(iquote_Tabpcb)', function(obj){
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'getCheckData':
@@ -188,8 +181,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 var contractTotal = 0;
                 var qidsPost;
                 $.each(tabdata.data, function (idx, obj) {
-                    console.log("obj.subtotal===>"+obj.subtotal);
-                    console.log(obj);
                     contractTotal = parseFloat(contractTotal+obj.subtotal);
                     tabdata.total = contractTotal;
                     if (qidsPost == null){
@@ -259,10 +250,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                         } else if (contractType == "2"){
                                             printId = "quoteContract_AllB";
                                         }
-                                        layer.alert(printId);
-                                        window.location.reload();
                                         document.body.innerHTML=document.getElementById(printId).innerHTML;
                                         window.print();
+                                        window.location.reload();
                                     }
                                     ,success: function (layero, index) {
                                         tabdata.htmlType = 1;     //页面标识 0为报价明细合同 主要用于判断头部左侧标题
@@ -388,7 +378,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         table.render({
             elem: '#iquote_Tabstencil'
             ,url: setter.baseUrl+'epc/stencilorder/internalQuoteList'
-            ,toolbar: "#tbiquotePcb"
+            ,toolbar: "#tbiquoteStencil"
             ,cellMinWidth: 80
             ,id: "iquote_Tabstencil"
             ,page: true
@@ -534,6 +524,116 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
             });
         }
+    });
+
+    // Stencil 钢网 订单头工具栏事件
+    table.on('toolbar(iquote_Tabstencil)', function(obj){
+        var checkStatus = table.checkStatus(obj.config.id);
+        switch(obj.event){
+            case 'getCheckData':
+                var tabdata = {data:{}};
+                tabdata.data = checkStatus.data;
+                // 给对象进行排序
+                tabdata.data = tabdata.data.sort(compare('quantityPcs'));
+                // productNo = tabdata[0].productNo;   //给订单编号赋值
+                defVal.customerSn = tabdata.data[0].productNo.substring(0,3);
+                var userData = {
+                    userName: '',
+                    companName: '',
+                    country: '',
+                    city: '',
+                    address: ''
+                };
+                tabdata.tabType = defVal.orderType;
+                var checkedLength = tabdata.data.length;
+                var productNo;
+                var viewName = "marketManagement/iframeWindow/quote_contractS";
+                var contractType = 2;
+                var contractTotal = 0;
+                var qidsPost;
+                $.each(tabdata.data, function (idx, obj) {
+                    contractTotal = parseFloat(contractTotal+obj.totalStencilFee);
+                    tabdata.total = contractTotal;
+                    if (qidsPost == null){
+                        qidsPost = obj.id;
+                    } else {
+                        qidsPost += ","+obj.id;
+                    }
+                    if (defVal.customerSn != null && defVal.customerSn != obj.productNo.substring(0,3)) {
+                        layer.alert("请选择同一个客户的订单！");
+                        defVal.customerSn = null;   //初始化客户编号 如a11
+                        defVal.canOpenView = false;
+                        return false;
+                    } else {
+                        defVal.canOpenView = true;
+                    }
+                });
+                if (defVal.canOpenView == true) {
+                    // 获取地址，公司名
+                    admin.req({
+                        type: 'get',
+                        data: '',
+                        url: setter.baseUrl+'sys/consumer/user/info/'+tabdata.data[0].userId,
+                        success: function (data) {
+                            tabdata.userName = data.user.userName;
+                            tabdata.companName = data.user.companName;
+                            tabdata.country = data.user.country;
+                            tabdata.city = data.user.city;
+                            tabdata.address = data.user.address;
+                            if (checkedLength >6){
+                                layer.msg("最多只能选中6条数据");
+                                return false;
+                            } else {
+                                admin.popup({
+                                    title: '报价合同'
+                                    ,area: ['100%', '100%']
+                                    ,maxmin: true
+                                    ,btn: ['提交','打印', '取消']
+                                    ,yes:function(index, layero){
+                                        layer.confirm('确定提交此订单合同？', function (index) {
+                                            admin.req({
+                                                type: 'post',
+                                                data: {'sids':qidsPost,'cid':tabdata.data[0].userId},
+                                                url: setter.baseUrl+"epc/stencilorder/createQuoteOrderNo",    //3-7 之前的版本 epc/pcborder/createContractNo
+                                                success: function (data) {
+                                                    if (data.code != "444"){
+                                                        layer.alert("合同提交成功！");
+                                                        var trigger = setTimeout(function () {
+                                                            layui.table.reload('iquote_Tabstencil');
+                                                            layer.closeAll();
+                                                        },1500)
+                                                    }
+                                                }
+                                            });
+
+                                        });
+                                    }, btn2: function(index, layero){
+                                        var printId = "quoteContract_AllS";
+                                        document.body.innerHTML=document.getElementById(printId).innerHTML;
+                                        window.print();
+                                        window.location.reload();
+                                    }
+                                    ,success: function (layero, index) {
+                                        tabdata.htmlType = 1;     //页面标识 0为报价明细合同 主要用于判断头部左侧标题
+                                        view(this.id).render(viewName, tabdata).done(function () {
+                                            productNo = null; // 初始化订单号
+                                            defVal.customerSn = null;   //初始化客户编号 如a11
+                                        });
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+                break;
+            case 'getCheckLength':
+                var data = checkStatus.data;
+                layer.msg('选中了：'+ data.length + ' 个');
+                break;
+            case 'isAll':
+                layer.msg(checkStatus.isAll ? '全选': '未全选');
+                break;
+        };
     });
 
     // 排序方法

@@ -21,9 +21,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
     table.render({
         elem: '#customer_listTab'
         ,url: setter.baseUrl+'sys/consumer/user/list'
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
+
         ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,cols: [[
              {field:'id', title: 'id', sort: true, minWidth: 80}

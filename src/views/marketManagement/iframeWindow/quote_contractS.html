@@ -1,25 +1,26 @@
 <title>报价合同B</title>
-<div class="layui-fluid" id="quoteContract_AllB">
+<div class="layui-fluid" id="quoteContract_AllS">
     <div class="layui-row">
         <style media="all">
             .contract-top-logo .lef-logo img{width: 190px;}
             @media print {
+                .contract-module-three-tab thead td{width: 20%;background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
                 .contract-module-one{padding:50px 0 50px 0;}
-                .contract-top-logo .lef-logo img{margin-top: 20px;width: 300px !important;}
-                .contract-top-logo .rig-text{margin-top: -30px;font-size: 36px;}
+                /*.contract-top-logo .lef-logo img{margin-top: 20px;width: 300px !important;}*/
+                /*.contract-top-logo .rig-text{margin-top: -30px;font-size: 36px;}*/
                 .contract-module-three-tab{padding-top: 260px;word-break: break-all;}
                 .contract-module-four-lef{float: left;width: 50%;}
-                .contract-module-four-rig{float: right;width: 45%;margin-right: 50px;margin-top: -20px;}
+                .contract-module-four-rig{float: right;width: 45%;margin-right: 20px;margin-top: -20px;}
                 .contract-module-five{padding-top: 130px;}
                 .contract-module-five .bot-info-lef{float: left;width: 40%;}
                 .contract-module-five .bot-info-rig{float: right;width: 60%;}
                 .contract-module-five li,.contract-module-four li{line-height: 20px;}
                 .contract-bank-ul li span{float: left;width: 30%;}
                 .contract-bank-ul li a{float: right;width: 70%;}
-                /*打印字体大小*/
-                .contract-module-one,.contract-module-four,.contract-module-five,.contrackB-tabBot{font-size: 18px;}
-                /*表格明细*/
-                .contract-module-three{max-width: 500px !important;}
+                /*!*打印字体大小*!*/
+                .contract-module-one,.contract-module-four,.contract-module-five,.contrackB-tabBot{font-size: 12px;}
+                /*!*表格明细*!*/
+                /*.contract-module-three{max-width: 500px !important;}*/
             }
             .contract-top-logo .rig-text{text-align: right;}
             .contract-top-logo .rig-text a{font-size: 20px;font-weight: 600;}
@@ -30,17 +31,8 @@
             .moudle-description span{color: black;font-weight: 500;}
             /*表格*/
             .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 20px;word-break: break-all;}
-            .contract-module-three-tab thead th{background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
-            .contract-module-three-tab tbody tr td:first-of-type{width: 13%;text-align: left;line-height: 20px;padding-left: 10px;min-width: 145px;overflow: hidden;}
-            .contract-module-three-tab tbody tr td:nth-of-type(2){width: 15%;min-width: 145px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(3){width: 7%;min-width: 59px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(4){width: 7%;min-width: 59px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(5){width: 12%;min-width: 115px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(6){width: 12%;min-width: 101px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(7){width: 12%;min-width: 103px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(8){width: 12%;min-width: 108px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(9){width: 5%;min-width: 92px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(10){width: 5%;min-width: 102px;}
+            .contract-module-three-tab thead th{width: 20%;background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
+            .contract-module-three-tab tbody tr td:first-of-type{overflow: hidden;}
             .contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;border-bottom: solid #086aafdb 1px;}
             .tr-orderInfo,.tr-orderTotal{border-bottom: solid 1px #086aafdb;}
             /*.tr-orderTotal*/
@@ -138,13 +130,8 @@
                     <thead>
                     <th>P/O&File Name</th>
                     <th>P/N&Description</th>
-                    <th style="width: 70px;">QTY</th>
-                    <th style="width: 70px;">Price</th>
-                    <th>Engineering Fee</th>
-                    <th>Board Fee</th>
-                    <th>Tooling Fee</th>
-                    <th>Overwork Fee</th>
-                    <th>Post Fee</th>
+                    <th>QTY</th>
+                    <th>Price</th>
                     <th>Amount(USD)</th>
                     </thead>
                     <tbody>
@@ -163,15 +150,12 @@
                             {{# if(item.orderNo != null){ }}
                             <strong>P/O：</strong>{{ item.orderNo }}
                             {{# } }}
-
                             <br>
-
                             {{# if(item.pcbName != null){ }}
                             {{ item.pcbName }}
                             {{# } else if(item.gerberName != null){ }}
                             {{ item.gerberName }}
                             {{# } }}
-
                         </td>
                         <td>
                             <!--P/N-->
@@ -180,65 +164,35 @@
                             {{# if(d.params.tabType == '0'){}}
                             [PCB prototype]<br>
                             {{# }else if(d.params.tabType == '1'){ }}
-                            [钢网订单]<br>
+                            [SMT Prototype ]<br>
                             {{# } else { }}
                             [PCB Prototype]<br>
                             {{# } }}
                             <!--FinishThickness 完成板厚-->
-                            {{ item.finishThickness }}
+                            {{ item.thickness }}
                             <!--尺寸-->
-                            {{# if(item.panelSizeX != null && item.panelSizeX != ''){ }}
-                            {{ item.panelSizeX }}*{{ item.panelSizeY }}mm<br>
-                            {{# } else { }}
-                            {{ item.dimensionsX }}*{{ item.dimensionsY }}mm<br>
-                            {{# }}}
-                            <!--层数-->
-                            Layer: {{ item.layerNum}}<br>
-                            <!--完成表面-->
-                            {{# if(item.surfaceFinish != null){ }}
-                            {{ item.surfaceFinish}}<br>
-                            {{# } }}
-                            <!--组焊色-->
-                            Solder Mask:{{ item.solderMaskTopColor}}
+                            {{ item.stencilSizeX }}*{{ item.stencilSizeY }}mm<br>
                         </td>
                         <!--PCS数量-->
-                        <td>{{ item.quantityPcs}}</td>
+                        <td>{{ item.quantity }}</td>
                         <!--单价-->
                         <td>
-                            {{# var unitPrice = parseFloat(item.boardFee/item.quantityPcs).toFixed(2) }}
-                            {{ unitPrice }}
-                        </td>
-                        <!--工程费-->
-                        <td>{{ item.engineeringFee }}</td>
-                        <!--板费-->
-                        <td>{{ item.boardFee }}</td>
-                        <!--工具费-->
-                        <td>{{ item.toolingFee || '0' }}</td>
-                        <!--加急费-->
-                        <td>{{ item.overworkFee }}</td>
-                        <!--邮费-->
-                        <td>
-                            {{# if(item.postFee != null){}}
-                            {{ item.postFee }}<br>
-                            {{# } }}
-                            {{# if(item.buildTime != null){}}
-                            {{ item.buildTime }}
-                            {{# } }}
+                            {{ item.unitPrice }}
                         </td>
                         <!--总价格-->
-                        <td>{{ item.subtotal }}</td>
+                        <td>{{ item.totalStencilFee }}</td>
                     </tr>
                     {{#  }); }}
-
-
                     <tr>
                         <td>remark:</td>
-                        <td colspan="7">
+                        <td colspan="2">
                             {{# layui.each(d.params.data, function(index, item){  }}
                             {{ item.remark || ''}}
                             {{#  }); }}
                         </td>
-                        <td>Total(USD):</td>
+                        <td>
+                            Total(USD):
+                        </td>
                         <td>
                             {{# var total = (d.params.total).toFixed(2) }}
                             {{ total }}
