@@ -1,0 +1,321 @@
+<title>报价合同B</title>
+<div class="layui-fluid" id="quoteContract_AllB">
+    <div class="layui-row">
+        <style media="all">
+            .contract-top-logo .lef-logo img{width: 190px;}
+            @media print {
+                .contract-module-one{padding:50px 0 50px 0;}
+                .contract-top-logo .lef-logo img{margin-top: 20px;width: 300px !important;}
+                .contract-top-logo .rig-text{margin-top: -30px;font-size: 36px;}
+                .contract-module-three-tab{padding-top: 260px;word-break: break-all;}
+                .contract-module-four-lef{float: left;width: 50%;}
+                .contract-module-four-rig{float: right;width: 45%;margin-right: 50px;margin-top: -20px;}
+                .contract-module-five{padding-top: 130px;}
+                .contract-module-five .bot-info-lef{float: left;width: 40%;}
+                .contract-module-five .bot-info-rig{float: right;width: 60%;}
+                .contract-module-five li,.contract-module-four li{line-height: 20px;}
+                .contract-bank-ul li span{float: left;width: 30%;}
+                .contract-bank-ul li a{float: right;width: 70%;}
+                /*打印字体大小*/
+                .contract-module-one,.contract-module-four,.contract-module-five,.contrackB-tabBot{font-size: 18px;}
+                /*表格明细*/
+                .contract-module-three{max-width: 500px !important;}
+            }
+            .contract-top-logo .rig-text{text-align: right;}
+            .contract-top-logo .rig-text a{font-size: 20px;font-weight: 600;}
+            .contract-module-one{margin-top: 20px;}
+            /*模块二*/
+            .contract-module-two{padding-bottom: 20px;}
+            .moudle-description{background-color: #086aaf59;text-align: center;margin-top: 20px;margin-bottom: 20px;padding: 4px;}
+            .moudle-description span{color: black;font-weight: 500;}
+            /*表格*/
+            .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 20px;word-break: break-all;}
+            .contract-module-three-tab thead th{background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
+            .contract-module-three-tab tbody tr td:first-of-type{width: 13%;text-align: left;line-height: 20px;padding-left: 10px;min-width: 145px;overflow: hidden;}
+            .contract-module-three-tab tbody tr td:nth-of-type(2){width: 15%;min-width: 145px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(3){width: 7%;min-width: 59px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(4){width: 7%;min-width: 59px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(5){width: 12%;min-width: 115px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(6){width: 12%;min-width: 101px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(7){width: 12%;min-width: 103px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(8){width: 12%;min-width: 108px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(9){width: 5%;min-width: 92px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(10){width: 5%;min-width: 102px;}
+            .contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;border-bottom: solid #086aafdb 1px;}
+            .tr-orderInfo,.tr-orderTotal{border-bottom: solid 1px #086aafdb;}
+            /*.tr-orderTotal*/
+            /*模块四 tips*/
+            .contract-module-four{margin-top: 50px;}
+            .contract-module-four-rig{padding: 48px 0;}
+            .contract-module-four-rig .top-info{width: 100%;border-bottom: solid 2px black;}
+            .contract-module-four-rig a{font-weight: 500;font-size: 15px;}
+            .contract-module-four-rig a:last-of-type{float: right;}
+            /*模块五 底部信息*/
+            .contract-module-five{margin-top: 50px;color: #2b7dbcad;}
+            .contract-module-five a{color: #2b7dbcad;}
+            .contract-module-five ul li,.contract-module-four ul li,.contract-module-two ul li,.contract-module-one ul li{padding-left: 10px;}
+            /*.contract-bank-ul li a{text-align: right;}*/
+            .cmo-lable,.cmo-strong{display: inline-block;width: 100px;}
+            .contract-module-one a{padding-left: 20px;}
+            /*.contract-module-two span{display: inline-block;width: 100px;}*/
+        </style>
+        <!--顶部logo-->
+        <div class="contract-top-logo layui-col-md12">
+            <div class="lef-logo layui-col-md6">
+                <img src="../../../src/style/res/logoMax.png">
+            </div>
+            <div class="rig-text layui-col-md6">
+                <script type="text/html" template>
+                    {{# if(d.params.htmlType == '1'){ }}
+                    <a>QUOTATION</a>
+                    {{# } else{ }}
+                    <a>INVOICE</a>
+                    {{# }}}
+                </script>
+            </div>
+        </div>
+
+        <!--模块一 contract-module-one, 顶部信息-->
+        <div class="contract-module-one layui-col-md12 layui-col-xs12">
+            <script type="text/html" template>
+                <table style="width: 100%;">
+                    <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <strong class="cmo-strong">Importer</strong>
+                            :
+                            <!--<a>{{ d.params.userName }}</a>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%;">
+                            <!--Company Name:-->
+                            <strong>
+                                {{ d.params.companyName || '' }}
+                            </strong>
+                        </td>
+                        <td style="width: 50%;">
+                            <label class="cmo-lable" style="text-align: left;">
+                                {{# if(d.params.htmlType == '1'){ }}
+                                Quotation No
+                                {{# } else{ }}
+                                Invoice No
+                                {{# }}}
+                            </label>
+                            :
+                            <a>
+                                {{# if(d.params.htmlType == '1'){ }}
+                                {{ d.params.data[0].quoteOrderNo || '' }}
+                                {{# } else{ }}
+                                {{ d.params.data[0].invoiceNo || '' }}
+                                {{# }}}
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <!--Addr:-->
+                            <a>
+                                {{ d.params.address || '' }},{{ d.params.city || '' }},{{ d.params.country || '' }}
+                            </a>
+                        </td>
+                        <td>
+                            <label class="cmo-lable">Date</label>
+                            :
+                            <!--<a id="topDate">Feb 15, 2010</a>-->
+                            <a>{{ d.params.data[0].gmtModified || '' }} </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </script>
+        </div>
+
+        <!--模块三 contract-module-three，表格明细-->
+        <div class="contract-module-three layui-col-md12">
+            <script type="text/html" template>
+                <table class="contract-module-three-tab">
+                    <thead>
+                    <th>P/O&File Name</th>
+                    <th>P/N&Description</th>
+                    <th style="width: 70px;">QTY</th>
+                    <th style="width: 70px;">Price</th>
+                    <th>Engineering Fee</th>
+                    <th>Board Fee</th>
+                    <th>Tooling Fee</th>
+                    <th>Overwork Fee</th>
+                    <th>Post Fee</th>
+                    <th>Amount(USD)</th>
+                    </thead>
+                    <tbody>
+                    {{#}}
+                    {{# var data = d.params.data }}
+                    {{# if(d.params.htmlType == '1'){ }}
+                    {{# data = d.params.data }}
+                    {{# } else{ }}
+                    {{# data = d.params }}
+                    {{# } }}
+
+                    {{# layui.each(d.params.data, function(index, item){  }}
+                    <tr class="tr-orderInfo">
+                        <!--客户资料名-->
+                        <td>
+                            {{# if(item.orderNo != null){ }}
+                            <strong>P/O：</strong>{{ item.orderNo }}
+                            {{# } }}
+
+                            <br>
+
+                            {{# if(item.pcbName != null){ }}
+                            {{ item.pcbName }}
+                            {{# } else if(item.gerberName != null){ }}
+                            {{ item.gerberName }}
+                            {{# } }}
+
+                        </td>
+                        <td>
+                            <!--P/N-->
+                            P/N:{{ item.productNo }}<br>
+                            <!--订单类型-->
+                            {{# if(d.params.tabType == '0'){}}
+                            [PCB prototype]<br>
+                            {{# }else if(d.params.tabType == '1'){ }}
+                            [钢网订单]<br>
+                            {{# } else { }}
+                            [PCB Prototype]<br>
+                            {{# } }}
+                            <!--FinishThickness 完成板厚-->
+                            {{ item.finishThickness }}
+                            <!--尺寸-->
+                            {{# if(item.panelSizeX != null && item.panelSizeX != ''){ }}
+                            {{ item.panelSizeX }}*{{ item.panelSizeY }}mm<br>
+                            {{# } else { }}
+                            {{ item.dimensionsX }}*{{ item.dimensionsY }}mm<br>
+                            {{# }}}
+                            <!--层数-->
+                            Layer: {{ item.layerNum}}<br>
+                            <!--完成表面-->
+                            {{# if(item.surfaceFinish != null){ }}
+                            {{ item.surfaceFinish}}<br>
+                            {{# } }}
+                            <!--组焊色-->
+                            Solder Mask:{{ item.solderMaskTopColor}}
+                        </td>
+                        <!--PCS数量-->
+                        <td>{{ item.quantityPcs}}</td>
+                        <!--单价-->
+                        <td>
+                            {{# var unitPrice = parseFloat(item.boardFee/item.quantityPcs).toFixed(2) }}
+                            {{ unitPrice }}
+                        </td>
+                        <!--工程费-->
+                        <td>{{ item.engineeringFee }}</td>
+                        <!--板费-->
+                        <td>{{ item.boardFee }}</td>
+                        <!--工具费-->
+                        <td>{{ item.toolingFee || '0' }}</td>
+                        <!--加急费-->
+                        <td>{{ item.overworkFee }}</td>
+                        <!--邮费-->
+                        <td>
+                            {{# if(item.postFee != null){}}
+                            {{ item.postFee }}<br>
+                            {{# } }}
+                            {{# if(item.buildTime != null){}}
+                            {{ item.buildTime }}
+                            {{# } }}
+                        </td>
+                        <!--总价格-->
+                        <td>{{ item.subtotal }}</td>
+                    </tr>
+                    {{#  }); }}
+
+
+                    <tr>
+                        <td>remark:</td>
+                        <td colspan="7">
+                            {{# layui.each(d.params.data, function(index, item){  }}
+                            {{ item.remark || ''}}
+                            {{#  }); }}
+                        </td>
+                        <td>Total(USD):</td>
+                        <td>
+                            {{# var total = (d.params.total).toFixed(2) }}
+                            {{ total }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </script>
+        </div>
+
+        <!--模块四 contract-module-four，tips-->
+        <div class="contract-module-four layui-col-md12">
+            <div class="contract-module-four-lef layui-col-md6">
+                <ul>
+                    <li>1. This above quoted is based on USD;</li>
+                    <li>2. Valid of 30 days upon issued date;</li>
+                    <li>3. Payment terms: TT in advance;</li>
+                    <li>4. shipment terms: DHL BY AIR;</li>
+                    <li>5. Acceptable x-out: international;</li>
+                    <li>6. Customer Note points;</li>
+                </ul>
+            </div>
+            <div class="contract-module-four-rig layui-col-md6">
+                <div class="top-info">
+                    <!--<a id="contractCusName">{{ sessionStorage.getItem("userName") }}</a>-->
+                    <script type="text/html" template>
+                        <a id="contractCusName">{{ layui.data('userInfo').uname }}</a>
+                        <!--<a id="contractBotDate">February 07, 2018</a>-->
+                        <a>{{ d.params.data[0].gmtModified || '' }} </a>
+                    </script>
+                </div>
+                <div class="bot-intro">
+                    <a>Authorized by</a>
+                    <a>Date</a>
+                </div>
+            </div>
+        </div>
+
+        <!--模块五 contract-module-five，底部信息-->
+        <div class="contract-module-five layui-col-md12">
+            <div class="layui-col-md6 bot-info-lef">
+                <ul>
+                    <li><strong>PCBonline</strong></li>
+                    <li>Compass No.8299, Bao'an Avenue,Shajin Road,</li>
+                    <li>Bao'an District,Shenzhen, China.</li>
+                    <li>Tel: +86 0755-27398155<a>Fax: +86 0755-27398355</a></li>
+                    <li>info@pcbonline.com<a>www.pcbonline.com</a></li>
+                </ul>
+            </div>
+            <div class="layui-col-md6 bot-info-rig">
+                <ul class="contract-bank-ul">
+                    <li>
+                        <span class="layui-col-md4">Bank Name:</span>
+                        <a class="layui-col-md8">The Hongkong and Shanghai Banking Corporation Limited (or HSBC HK)</a>
+                    </li>
+                    <li>
+                        <span class="layui-col-md4">Bank Code Name:</span>
+                        <a class="layui-col-md8">024</a>
+                    </li>
+                    <li>
+                        <span class="layui-col-md4">Company Name:</span>
+                        <a class="layui-col-md8">PCB ONLINE LIMITED</a>
+                    </li>
+                    <li>
+                        <span class="layui-col-md4">Bank Address:</span>
+                        <a class="layui-col-md8">No. 1 Queen's Road Central Hong Kong</a>
+                    </li>
+                    <li>
+                        <span class="layui-col-md4">Account No:</span>
+                        <a class="layui-col-md8">741-201131-838</a>
+                    </li>
+                    <li>
+                        <span class="layui-col-md4">Swift Address:</span>
+                        <a class="layui-col-md8">HSBCHKHHHKH</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

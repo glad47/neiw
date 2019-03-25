@@ -19,9 +19,6 @@ layui.define(['table', 'form'], function(exports){
             ,id: 'sys_menu'
             ,page: true
             ,limit: 10
-            ,where: {
-                access_token: layui.data('layuiAdmin').access_token
-            }
             ,cols:[[
                 {field: 'menuId',title: 'ID',sort: true,minWidth:100,align:'center'}
                 ,{field: 'title', title: '名称',minWidth:144,align:'center'}
