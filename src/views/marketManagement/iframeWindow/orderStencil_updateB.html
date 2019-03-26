@@ -26,14 +26,14 @@
                     <!--<script type="text/html" template>-->
                     <!--<input type="text" name="stencilSide" value="{{ d.params.stencilSide || '' }}" autocomplete="off" class="layui-input">-->
                     <!--</script>-->
+                    <!--<option data="{'materialName':'{{ d.params.stencilType }}','stencilSizeX':'{{ d.params.stencilSizeX }}','stencilSizeY':'{{ d.params.stencilSizeY }}','stencilAreaX':'{{ d.params.stencilAreaX }}','stencilAreaY':'{{ d.params.stencilAreaY }}','price':'{{ d.params.totalStencilFee}}','weight':'{{ d.params.weight}}'}" id="initStencilPrice" name="{{ d.params.totalStencilFee}}">-->
+                        <!--{{ d.params.stencilType }} {{ d.params.stencilSizeX }}*{{ d.params.stencilSizeY }} (Valid area {{ d.params.stencilAreaX}}*{{ d.params.stencilAreaY}})-->
+                        <!--Price: {{ d.params.totalStencilFee }}-->
+                    <!--</option>-->
                     <script type="text/html" template lay-url="{{layui.setter.imUrl}}quote/getStencilSize" lay-done="layui.data.done(d);">
                         <select name="parentId" id="selStencilSize" lay-filter="selStencilSize">
-                            <option data="{'materialName':'{{ d.params.stencilType }}','stencilSizeX':'{{ d.params.stencilSizeX }}','stencilSizeY':'{{ d.params.stencilSizeY }}','stencilAreaX':'{{ d.params.stencilAreaX }}','stencilAreaY':'{{ d.params.stencilAreaY }}','price':'{{ d.params.totalStencilFee}}','weight':'{{ d.params.weight}}'}" id="initStencilPrice" name="{{ d.params.totalStencilFee}}">
-                                {{ d.params.stencilType }} {{ d.params.stencilSizeX }}*{{ d.params.stencilSizeY }} (Valid area {{ d.params.stencilAreaX}}*{{ d.params.stencilAreaY}})
-                                Price: {{ d.params.totalStencilFee }}
-                            </option>
                             {{#  layui.each(d.data, function(index, item){ }}
-                            <option data="{'materialName':'{{ item.materialName }}','stencilSizeX':'{{ item.stencilSizex }}','stencilSizeY':'{{ item.stencilSizey }}','stencilAreaX':'{{ item.stencilAreax }}','stencilAreaY':'{{ item.stencilAreay }}','price':'{{ item.priceToUSD}}','weight':'{{ item.weight}}'}" price="{{ item.priceToUSD }}" value="{{ item.id }}" {{ d.params.id == item.id ? 'selected' : ''}}>
+                            <option data="{'materialName':'{{ item.materialName }}','stencilSizeX':'{{ item.stencilSizex }}','stencilSizeY':'{{ item.stencilSizey }}','stencilAreaX':'{{ item.stencilAreax }}','stencilAreaY':'{{ item.stencilAreay }}','price':'{{ item.priceToUSD}}','weight':'{{ item.weight}}'}" price="{{ item.priceToUSD }}" value="{{ item.id }}" {{ d.params.stencilSizeX*d.params.stencilSizeY == item.stencilSizex*item.stencilSizey ? 'selected' : ''}}>
                             {{ item.materialName }} {{ item.stencilSizex }}*{{ item.stencilSizey }} (Valid area {{ item.stencilAreax}}*{{ item.stencilAreay}})
                             Price:{{ item.priceToUSD }}
                             </option>
@@ -85,10 +85,10 @@
                 </div>
             </div>
             <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">StencilFee：</label>
+                <label class="layui-form-label">PostFee：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="totalStencilFee" value="{{ d.params.totalStencilFee || '' }}" autocomplete="off" class="layui-input" readonly>
+                        <input type="text" name="postFee" value="{{ d.params.postFee || '' }}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
@@ -108,7 +108,15 @@
         <!--隐藏的，需要传的表单▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉end▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉-->
 
         <div class="layui-form-item">
-            <div class="layui-col-md12 layui-col-xs12 layui-col-sm12">
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">StencilFee：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="totalStencilFee" value="{{ d.params.totalStencilFee || '' }}" autocomplete="off" class="layui-input" readonly>
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Remark：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
@@ -134,70 +142,63 @@
             var form = layui.form,
                 $ = layui.jquery;
             form.render(null, ''); //渲染该模板下的动态表单
-            var stencil_price = $("#initStencilPrice").attr("name");    //获取回显的默认价格
-            var stencilSide_type = $("*[name='stencilSide']").find("option:selected").attr("name");    //获取Stencil Side  回显的类型
             var ss_type;
-            var isAdd = 0;  //是否乘以2  0=false 1=true
-            var ssObj;
-            ssObj = $("#selStencilSize").find("option:selected").attr("data");
-            ssObj = ssObj.replace(/'/g, '"');
-            ssObj = JSON.parse(ssObj);
-            _stype();
+            var side;
+
+            getDomVal();
+
             // 监听Stencil Size 下拉
             form.on('select(selStencilSize)', function (data) {
-                var _val = data.value;
-                var _price = $("#selStencilSize").find("option:selected").attr("price");
-                var _data = $("#selStencilSize").find("option:selected").attr("data");
-                _data = _data.replace(/'/g, '"');
-                ssObj = JSON.parse(_data);
-                stencil_price = _price;
-                var _quantity = $("input[name='quantity']").val();
-                $("input[name='totalStencilFee']").val(parseFloat(_price*_quantity*ss_type));
-                console.log(ssObj);
-                form.render(null, '');
+                getDomVal();
             });
 
             // 监听Stencil Side 下拉
             form.on('select(stencilSide)', function (data) {
-                stencilSide_type = $("select[name='stencilSide']").find("option:selected").attr("name");
-                layer.msg(stencilSide_type);
-                var totalStencilFee = $("input[name='totalStencilFee']").val();
-                _stype();
-                if (ss_type == "1" && isAdd == "1") {
-                    $("input[name='totalStencilFee']").val(parseFloat(totalStencilFee/2));
-                    isAdd = 0;  //初始化
-                }
-                if (isAdd == "0" && ss_type == "2"){
-                    $("input[name='totalStencilFee']").val(parseFloat(totalStencilFee*ss_type));
-                    isAdd = 1;  //已经乘过了，不需要重复
-                }
-                form.render(null, '');
+                getDomVal();
             });
 
             // 监听quantity输入框值的变化
             $("input[name='quantity']").bind("input propertychange", function (even) {
-                if (stencil_price != null || stencil_price != ""){
-                    $("input[name='totalStencilFee']").val(parseFloat(stencil_price*$("input[name='quantity']").val()*ss_type));
-                }
+                getDomVal();
+            });
+            // 监听 PostFee 邮费 输入框值的变化
+            $("input[name='postFee']").bind("input propertychange", function (even) {
+                getDomVal();
             });
 
-            function _stype() {
+            function quote(_domVal) {
+                $("input[name='totalStencilFee']").val(parseFloat(_domVal.side*_domVal.unitPrice*_domVal.quantity)+_domVal.postFee);
+            }
+            
+            function judgeSideType() {
+                var stencilSide_type = $("select[name='stencilSide']").find("option:selected").attr("name");
                 if (stencilSide_type == "Top And Bottom (On Single Stencil)") {
-                    ss_type = 1;
+                    ss_type,side = 1;
                 } else {
-                    ss_type = 2;
+                    ss_type,side = 2;
                 }
             }
+            function getDomVal() {
+                judgeSideType();
+                var _domVal = new Object();
+                _domVal.side = parseFloat(side);
+                _domVal.unitPrice = parseFloat($("#selStencilSize").find("option:selected").attr("price"));    //获取回显的默认价格
+                _domVal.quantity = parseFloat($("input[name='quantity']").val());
+                _domVal.postFee = parseFloat($("input[name='postFee']").val());
+                quote(_domVal);
+            }
 
-            // 监听form表单提交
-            // form.on('submit(*)', function (data) {
-            //    var field = data.field;
-            //
-            //    layer.alert("最终提交的信息为"+data.field);
-            // });
+            function getPostDomVal() {
+                var ssObj;
+                ssObj = $("#selStencilSize").find("option:selected").attr("data");
+                ssObj = ssObj.replace(/'/g, '"');
+                ssObj = JSON.parse(ssObj);
+                return ssObj;
+            }
 
             form.on('submit(LAY-stencilorder-update-submit)',function (data) {
                 var field = data.field;
+                var ssObj = getPostDomVal();
                 field = Object.assign(field,ssObj);
                 console.log(field);
                 admin.req({

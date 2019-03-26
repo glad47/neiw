@@ -313,7 +313,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(iquote_Tabpcb)', function(obj){
         var data = obj.data;
-        console.log(data)
         if(obj.event === 'del'){
             layer.confirm('真的删除行么', function(index){
                 obj.del();
