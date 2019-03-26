@@ -31,9 +31,6 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         ,id:"supplier_infoTab"
         ,page: true
         ,toolbar: true
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
         ,cols: [[
              {field:'id', title: 'ID',hide: false}
             ,{field:'supplierId', title: '供应商编号', sort: true,width: 110}

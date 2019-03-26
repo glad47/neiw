@@ -37,9 +37,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 "data": res.page.list,
             }
         }
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
             ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#pcbor_status',width: 150}
@@ -394,7 +391,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             }
         }
         ,where: {
-            access_token: layui.data('layuiAdmin').access_token,
             status: 2
         }
         ,cols: [[

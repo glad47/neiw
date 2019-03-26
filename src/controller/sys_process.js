@@ -20,9 +20,6 @@ layui.define(['admin', 'table','setter','form','jquery'], function(exports){
     table.render({
       elem: '#process_listTab'
       ,url: setter.baseUrl+'epc/process/list'
-      ,where: {
-    		access_token: layui.data('layuiAdmin').access_token
-  	    }
       ,parseData: function (res) {
             return{
                 "code": 0,

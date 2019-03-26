@@ -40,9 +40,6 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         ,id:"user_infoTab"
         ,toolbar: true
         ,page: true
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
         ,cols: [[
              {field:'userId', title: '用户ID', sort: true,width: 90,align: 'center'}
             ,{field:'username', title: '用户名',width: 180,align: 'center'}

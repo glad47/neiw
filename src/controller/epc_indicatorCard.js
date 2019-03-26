@@ -35,9 +35,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 "count": res.page.totalCount
             }
         }
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
         ,cols: [[
             {type: 'checkbox', fixed: 'left'}
              ,{field:'id', title: 'ID',hide: true}

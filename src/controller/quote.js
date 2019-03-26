@@ -221,7 +221,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         if (_this =="" || _this == null || typeof _this == "undefined" || isNaN(_this)) {
             _this = 0;
         }
-        quoteSMTStencil.sQuantity = _this;
+        quoteSMTStencil.sQuantity = saveSMTStencil.quantity =  _this;
         quoteSMTStencilSubtotal();
     });
 

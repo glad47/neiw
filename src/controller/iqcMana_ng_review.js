@@ -47,9 +47,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 "count": res.page.totalCount
             }
         }
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
         ,cols: [[
             {type:'checkbox'}
             ,{field: 'status',title: '状态', width: 110}      // 1 ＝ 待报价

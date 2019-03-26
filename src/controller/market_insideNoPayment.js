@@ -42,9 +42,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 "count": res.page.totalCount
             }
         }
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
         ,cols: [[
             {type:'checkbox'}
             ,{field: 'orderType',title: '订单类型',edit: 'text', Width: 110, templet: '#order_type'}    //1=新单  2=返单    3=返单有改

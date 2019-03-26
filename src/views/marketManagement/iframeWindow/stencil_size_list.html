@@ -16,10 +16,6 @@
                 ,cellMinWidth: 80
                 ,id: 'stencilSize'
                 ,page: true
-                ,where: {
-                    access_token: layui.data('layuiAdmin').access_token,
-                    // at:2
-                }
                 ,cols: [[
                     {type:'radio',title: 'Check'},
                     {field: 'id',title: 'id', hide: true},
@@ -40,7 +36,7 @@
                 var goData = {
                     size: data.id,
                     stencilType: data.materialName,
-                    unitPrice: data.price,
+                    unitPrice: data.priceToUSD,
                     stencilSizeX: data.stencilSizex,
                     stencilSizeY: data.stencilSizey,
                     stencilAreaX: data.stencilAreax,

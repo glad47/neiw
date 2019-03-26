@@ -57,9 +57,6 @@ layui.define(['admin','table','index','element','form','laydate','convertCurrenc
                 "count": res.page.totalCount
             }
         }
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
         ,cols: [[
             {type:'checkbox'}
             ,{field: 'status',title: '状态',templet: '#pcb'}      // 1 ＝ 待报价
