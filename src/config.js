@@ -45,13 +45,14 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
     }
     ,baseUrl:'http://192.168.0.155:8080/renren-fast/'
     ,baseUrl1:"http://192.168.0.155:8871/"
-    ,webSocketUrl: 'ws://192.168.0.155:2200/ws'
+    ,webSocketUrl: 'wss://192.168.0.155:8887/ws'
     ,imUrl:'https://192.168.0.155:8871/'
 
 //       ,baseUrl:'http://www.pcbonline.com:8080/renren-fast/'
 //       ,baseUrl1:"https://www.pcbonline.com/"
 //       ,webSocketUrl: 'wss://www.pcbonline.com:8887/ws'
 //       ,imUrl:'https://www.pcbonline.com/'
+
 
       //独立页面路由，可随意添加（无需写参数）
     ,indPage: [

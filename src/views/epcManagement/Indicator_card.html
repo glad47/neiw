@@ -106,9 +106,9 @@
                     {{#  } }}
 
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborder:update") != -1 ){ }}
-                    <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">审核信息</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">审核</a>
                     {{#  } }}
-
+                    <a class="layui-btn layui-btn-xs" lay-event="supplier_update">上传</a>
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborderprocess:infos") != -1 ){ }}
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="supplier_search">查看</a>
                     {{#  } }}
