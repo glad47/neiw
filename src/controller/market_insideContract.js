@@ -31,6 +31,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     };
     // 表格对象
     var pcbtabObj;
+    var stenciltabObj;
     // 监听tab选项卡
     element.on('tab(tab-internalQuote)', function (data) {
         defVal.orderType = data.index;
@@ -583,14 +584,194 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'quoteGerberPath',title: 'quoteGerberPath',edit: 'text',hide: true}
                 ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',edit: 'text',hide: true}
                 ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',edit: 'text',hide: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#inside_cotract_Bar', width:192}
+                ,{fixed: 'right', title:'操作', toolbar: '#inside_cotract_BarS', width:192}
             ]]
             ,done: function (res, curr, count) {
-                // var data = res.data;    //获取表格所有数据对象
-                // pcbtabObj = data;
+                var data = res.data;    //获取表格所有数据对象
+                stenciltabObj = data;
             }
         });
     }
+    //监听行工具事件＝＝＝＝》Stencil 钢网 订单
+    table.on('tool(icontract_Tabstencil)', function(obj){
+        var data = obj.data;
+        var this_quoteOrderNo = data.quoteOrderNo;
+        var sameData = new Object();
+        var sd_len = 0;
+        var pTotala = 0;
+        for(var i=0;i<stenciltabObj.length;i++){
+            if (this_quoteOrderNo == stenciltabObj[i].quoteOrderNo) {
+                sameData[sd_len] = stenciltabObj[i]
+                sd_len += 1;
+                pTotala += stenciltabObj[i].totalStencilFee;
+            }
+            console.log('stenciltabObj[i].invoiceNo:'+stenciltabObj[i].quoteOrderNo);
+        }
+        var quoteOrderNo = data.quoteOrderNo;
+        //console.log(obj)
+        if(obj.event === 'del'){
+            layer.confirm('确定退回报价单号为［'+quoteOrderNo+'］', function(index){
+                admin.req({
+                    type: 'post',
+                    data: {'quoteOrderNo': quoteOrderNo},
+                    url: setter.baseUrl+'epc/stencilorder/backInternalContract',
+                    success: function () {
+                        layer.alert('已退回报价单号为［'+quoteOrderNo+'］');
+                        obj.del();
+                        layui.table.reload('icontract_Tabstencil');
+                        layer.close(index);
+                    }
+                });
+            });
+        } else if(obj.event === 'search-contract'){
+            var popupData = {data:{}};
+            /**
+             * 获取用户信息  回填到合同上
+             */
+            admin.req({
+                type: 'get',
+                data: '',
+                url: setter.baseUrl+"sys/consumer/user/info/"+data.userId,
+                success: function (data) {
+                    popupData.userName = data.user.userName;
+                    popupData.companyName = data.user.companName;
+                    popupData.country = data.user.country;
+                    popupData.city = data.user.city;
+                    popupData.address = data.user.address;
+                    admin.req({
+                        type: 'post',
+                        data: {'quoteOrderNo': quoteOrderNo},
+                        url: setter.baseUrl+'epc/pcborder/infoByQuoteOrderNo', //3-7之前的版本 epc/pcborder/infoByContractNo
+                        success: function (data) {
+                            var viewName = "marketManagement/iframeWindow/quote_contractS";
+                            var productNo = null;
+                            var contractType;
+                            popupData.data = sameData;
+                            popupData.total = pTotala;
+                            $.each(data.data, function (idx, obj) {
+                                if (productNo == null || productNo == "") {
+                                    contractType = 1;
+                                    productNo = obj.productNo;
+                                } else if (productNo != null && productNo != obj.productNo) {
+                                    contractType = 2;
+                                }
+                            });
+                            admin.popup({
+                                title: '内部合同'
+                                ,area: ['100%', '100%']
+                                ,btn: ['打印','关闭']
+                                ,maxmin: true
+                                ,yes:function(index, layero){
+                                    var printId = "quoteContract_AllS";
+                                    document.body.innerHTML=document.getElementById(printId).innerHTML;
+                                    window.print();
+                                    window.location.reload();
+                                }
+                                // btn2: function(index, layero){}
+                                ,success: function (layero, index) {
+                                    popupData.htmlType = 1;     //页面标识 1为内部合同 主要用于判断头部左侧标题
+                                    view(this.id).render(viewName, popupData).done(function () {
+                                        productNo = null; // 初始化订单号
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        } else if(obj.event === 'search-list'){
+            layer.msg("查看数据明细");
+            admin.popup({
+                title: '编辑 Stencil钢网 订单信息'
+                ,area: ['885px', '550px']
+                ,btn:['立即提交', '取消']
+                ,yes: function () {
+                    $(".submitStencilUpB").click();
+                }
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/orderStencil_updateB', data).done(function () {
+
+                    });
+                }
+            });
+        }
+    });
+    // 监听 Stencil 钢网 订单头工具栏事件
+    table.on('toolbar(icontract_Tabstencil)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        var popupData = {data:{}};
+        popupData.data = checkStatus.data;
+        var pTotala = 0;
+        if (data.length >= 7) {
+            layer.alert("最多只能选择6条数据！！");
+            return false;
+        }
+        for (var i=0;i<data.length;i++){
+            pTotala += parseFloat(data[i].totalStencilFee);
+        }
+        popupData.total = pTotala;
+        popupData.userName = userData.userName;
+        popupData.companyName = userData.companName;
+        popupData.country = userData.country;
+        popupData.city = userData.city;
+        popupData.address = userData.address;
+
+        switch(obj.event){
+            case 'submit':
+                var invoiceNo = null;
+                var customerSn = null; //客户编号标识 a11 a21....
+                var ids = data.map(function(elem){return elem.id}).join(",");
+                for (var i=0;i<data.length;i++){
+                    var i_customerSn = data[i].productNo.substring(0,3);
+                    if (invoiceNo == null){
+                        invoiceNo = data[i].invoiceNo;
+                    } else if (invoiceNo != null && invoiceNo.indexOf(data[i].invoiceNo) == "-1") {
+                        invoiceNo += ","+data[i].invoiceNo;
+                    }
+                    if (customerSn == null || customerSn == i_customerSn){
+                        customerSn = i_customerSn;
+                    } else {
+                        layer.alert("请选择同一个客户下单");
+                        return false;
+                    }
+                }
+                var viewName ="marketManagement/iframeWindow/quote_contractS";
+                var productNo = null;
+                var contractType;
+                admin.popup({
+                    title: '内部合同'
+                    ,area: ['100%', '100%']
+                    ,btn: ['生成合同','打印','关闭']
+                    ,maxmin: true
+                    ,yes:function(index, layero){
+                        layer.confirm("确定生成合同编号吗？", function () {
+                            admin.req({
+                                type: 'post',
+                                data: {'sids':ids},
+                                url: setter.baseUrl+'epc/stencilorder/createContractNo',
+                                success: function () {
+                                    layer.alert("提交成功！");
+                                    layui.table.reload('icontract_Tabstencil');
+                                    layer.close(index);
+                                }
+                            });
+                        });
+                    }
+                    ,btn2: function (index, layero) {
+                        window.location.reload();
+                        document.body.innerHTML=document.getElementById("quoteContract_AllB").innerHTML;
+                        window.print();
+                    }
+                    ,success: function (layero, index) {
+                        popupData.htmlType = 1;     //页面标识 1为内部合同 主要用于判断头部左侧标题
+                        view(this.id).render(viewName, popupData).done(function () {
+                            productNo = null; // 初始化订单号
+                        });
+                    }
+                });
+        }
+    });
 
     //监听搜索
     form.on('submit(inside-contract-search)', function(data){

@@ -122,7 +122,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     var stencilSize = new Object();
     // Stencil 添加报价参数
     var saveSMTStencil = {
-        stencilSide: quoteSMTStencil.stencilSide,       // 钢网侧边
+        stencilSide: "Top And Bottom (On Single Stencil)",       // 钢网侧边
         quantity: quoteSMTStencil.sQuantity ,           // 数量
         thickness: 0.12,                                // 厚度
         existingFiducials: 0.10,                        // 基准
@@ -299,7 +299,8 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     // 监听钢网 Stencil Size
     form.on('select(stencilSide)', function (data) {
         var this_checkVal = data.value;
-        quoteSMTStencil.stencilSide = this_checkVal;
+        console.log(this_checkVal);
+        quoteSMTStencil.stencilSide = saveSMTStencil.stencilSide = this_checkVal;
         quoteSMTStencilSubtotal();
     });
 

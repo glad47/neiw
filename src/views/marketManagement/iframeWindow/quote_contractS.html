@@ -161,13 +161,7 @@
                             <!--P/N-->
                             P/N:{{ item.productNo }}<br>
                             <!--订单类型-->
-                            {{# if(d.params.tabType == '0'){}}
-                            [PCB prototype]<br>
-                            {{# }else if(d.params.tabType == '1'){ }}
                             [SMT Prototype ]<br>
-                            {{# } else { }}
-                            [PCB Prototype]<br>
-                            {{# } }}
                             <!--FinishThickness 完成板厚-->
                             {{ item.thickness }}
                             <!--尺寸-->
