@@ -259,7 +259,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     table.render({
         elem: '#scm_Tabstencil_outgoing_quote'
         ,id: "scm_Tabstencil_outgoing_quote"
-        ,url: setter.baseUrl+'market/stencil/okPayment/list'
+        ,url: setter.baseUrl+'scm/stencilorder/list'
         ,page: true
         ,toolbar: true
         ,done: function () {
@@ -275,7 +275,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
         ,cols: [[
              {field: 'id', title: 'ID', hide: true}
-            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-scm-outgoingQuote-status'}
+            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-scm-outgoingQuote-status', minWidth: 130}
             ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
             ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
@@ -303,16 +303,125 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     // 监听stencil表格工具条
     table.on('tool(scm_Tabstencil_outgoing_quote)',function (obj) {
         var data = obj.data;
+        var dIds_arr;
         if (obj.event === 'assign'){
             admin.popup({
-                title: '订单号［'+data.productNo+']---'+'订单时间［'+data.gmtCreate+'］'
+                title: '指定供应商'
                 ,area: ['45%', '70%']
+                ,btn:['提交','取消']
+                ,yes:function(index, layero){
+                    var checkStatus = table.checkStatus('scm_assign_supplier_table'),checkdata = checkStatus.data;
+                    var ids = checkdata.map(function(elem){return elem.id}).join(",");
+                    console.log("ids:"+ids);
+                    var ids_arr = [ids.split(',')];
+                    var same_result = new Array();
+                    var c = dIds_arr.toString();
+                    for (var i = 0; i < ids_arr[0].length; i++) {
+                        if (c.indexOf(ids_arr[0][i].toString()) > -1) {
+                            for (var j = 0; j < dIds_arr.length; j++) {
+                                if (ids_arr[0][i] == parseInt(dIds_arr[j])) {
+                                    same_result.push(parseInt(ids_arr[0][i]));
+                                    break;
+                                }
+                            }
+                        }
+                        for (var s=0;s<same_result.length;s++) {
+                            if (parseInt(ids_arr[0][i]) == same_result[s]) {
+                                ids_arr[0].splice(i,1);
+                            }
+                        }
+                    }
+                    admin.req({
+                        url:setter.baseUrl+"scm/stencilorder/assignStencilOrderToSupplier",
+                        type:"POST",
+                        data:{
+                            orderId: data.id
+                            ,supplierIds: ids_arr[0].toString()
+                        },
+                        success:function(data){
+                            if (data.code == 0 ) {
+                                layer.msg("指派成功！");
+                                layer.close(index);
+                            }else{
+                                layer.msg(data.msg);
+                            }
+                        }
+                    });
+
+                }
+                ,end:function(){}
                 ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/order_stencil_detail', data).done(function () {
+                    view(this.id).render('scmManagement/assign_supplier').done(function () {
+                        var cid_list;
+                        admin.req({
+                            type: 'post',
+                            url: setter.baseUrl+'scm/stencilorder/assignedStencilSupplierIds',
+                            data: {'oid':data.id},
+                            async: false,
+                            success: function (result) {
+                                cid_list = result.data;
+                                dIds_arr = result.data;
+                            }
+                        });
+                        console.log(cid_list);
+                        table.render({
+                            elem: '#scm_assign_supplier_table'
+                            ,url: setter.baseUrl+'scm/pcborder/allSupplier'
+                            ,toolbar: true
+                            ,cellMinWidth: 80
+                            ,page:false
+                            ,id:"scm_assign_supplier_table"
+                            ,where: {
+                                access_token: layui.data('layuiAdmin').access_token
+                            }
+                            ,cols: [[
+                                {type:'checkbox'}
+                                ,{field:'id', title: 'ID',hide: true}
+                                ,{field:'supplierId', title: '供应商编号', hide: false, align:'center',width: 130}
+                                ,{field:'companyName', title:'公司名', align:'center', hide: false}
+                            ]],
+                            done: function (res, curr, count) {
+                                var tableId = this.id;
+                                // 原dom
+                                var tableElem = this.elem;
+                                // layui渲染出来的表格dom
+                                var tableViewElem = tableElem.next();
+                                //var data = this.url ? res:res.data;
+                                // 当前页面的数据
+                                var data = table.cache[tableId];
+
+                                // 遍历tbody的tr
+                                layui.each(tableViewElem.find('.layui-table-main').find('tr'), function (index, trElem) {
+                                    // 行节点
+                                    trElem = $(trElem);
+                                    // 行下标
+                                    var trIndex = trElem.data('index');
+                                    // 行数据
+                                    var trData = data[trIndex];
+                                    // 判断是否选中的逻辑这个根据自己的实际情况处理
+                                    for (var i=0;i<cid_list.length;i++){
+                                        if (trData.id == cid_list[i]){
+                                            // 如果存在禁用选项，则移除全选
+                                            $(".layui-table-header thead").find("input[name = 'layTableCheckbox'][lay-filter='layTableAllChoose']").remove();
+                                            $(".layui-table-header thead").find(".layui-form-checkbox").remove();
+                                            // 只加属性并不能在获得选中行中得到数据
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('checked', 'checked');
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('value', '');
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('disabled', 'disabled');
+                                            console.log(tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').text());
+                                            // 把cache的LAY_CHECKED设置成true才能在获得表格选中的数据中得到当前选中的行
+                                            trData[table.config.checkName] = true;
+                                        }
+                                    }
+                                });
+                                // 最后渲染。参数看具体环境，如果有filter之类的尽量具体渲染到某一个form。
+                                form.render(null, tableViewElem.attr('lay-filter'));
+                            }
+
+                        });
                     })
                 }
-
-            })
+            });
         } 
     })
 

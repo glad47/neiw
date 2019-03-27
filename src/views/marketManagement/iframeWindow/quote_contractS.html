@@ -4,7 +4,7 @@
         <style media="all">
             .contract-top-logo .lef-logo img{width: 190px;}
             @media print {
-                .contract-module-three-tab thead td{width: 20%;background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
+                .contract-module-three-tab thead td{width: 16.66%;background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
                 .contract-module-one{padding:50px 0 50px 0;}
                 /*.contract-top-logo .lef-logo img{margin-top: 20px;width: 300px !important;}*/
                 /*.contract-top-logo .rig-text{margin-top: -30px;font-size: 36px;}*/
@@ -31,7 +31,7 @@
             .moudle-description span{color: black;font-weight: 500;}
             /*表格*/
             .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 20px;word-break: break-all;}
-            .contract-module-three-tab thead th{width: 20%;background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
+            .contract-module-three-tab thead th{width: 16.66%;background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
             .contract-module-three-tab tbody tr td:first-of-type{overflow: hidden;}
             .contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;border-bottom: solid #086aafdb 1px;}
             .tr-orderInfo,.tr-orderTotal{border-bottom: solid 1px #086aafdb;}
@@ -132,6 +132,7 @@
                     <th>P/N&Description</th>
                     <th>QTY</th>
                     <th>Price</th>
+                    <th>Post Fee</th>
                     <th>Amount(USD)</th>
                     </thead>
                     <tbody>
@@ -173,13 +174,17 @@
                         <td>
                             {{ item.unitPrice }}
                         </td>
+                        <!--邮费-->
+                        <td>
+                            {{ item.postFee }}
+                        </td>
                         <!--总价格-->
                         <td>{{ item.totalStencilFee }}</td>
                     </tr>
                     {{#  }); }}
                     <tr>
                         <td>remark:</td>
-                        <td colspan="2">
+                        <td colspan="3">
                             {{# layui.each(d.params.data, function(index, item){  }}
                             {{ item.remark || ''}}
                             {{#  }); }}

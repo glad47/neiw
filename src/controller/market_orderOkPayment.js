@@ -291,49 +291,16 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 }
 
             })
-        } else if (obj.event === 'edit') {
-            admin.popup({
-                title: '编辑：订单号［'+data.productNo+']'
-                ,area: ['45%', '70%']
-                ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/orderStencil_update', data).done(function () {
-                        form.render(null, '')
-                        form.on('submit(LAY-stencilorder-update-submit)',function (data) {
-                            var field = data.field;
-                            console.log("提交的字段信息："+JSON.stringify(field));
-                            admin.req({
-                                type: 'post'
-                                ,url: setter.baseUrl+'/market/stencil/audit/update'
-                                ,data: field
-                                ,done: function (res) {
-                                    layer.msg('订单信息修改成功');
-                                    layui.table.reload('stencil_orderTab_ok_payment');
-                                }
-                                ,fail: function (res) {
-                                    layer.msg("订单信息修改失败，请稍后再试！");
-                                },
-                            });
-                            layer.close(index);
-                            return false;
-                        })
-                    })
-                }
-            })
-        } else if (obj.event === 'del') {
-            layer.confirm('真的删除[Stencil]订单号为［'+data.productNo+'］吗', function(index){
-               admin.req({
-                   type: 'post'
-                   ,url: setter.baseUrl+'market/stencil/audit/delete'
-                   ,data: {"ids":data.id}
-                   ,done: function (res) {
-                       layer.msg('删除成功')
-                       obj.del();
-                   }
-                   ,fail: function (res) {
-                       layer.msg('服务器异常，稍后重试！');
-                   }
-               });
-                layer.close(index);
+        } else if (obj.event === 'info_pact') {
+            console.log(data);
+            layer.open({
+                type: 2
+                ,title: 'Look Invoice'
+                ,content: setter.imUrl+'order/invoicePage?orderId='+ data.orderId
+                ,maxmin: true
+                ,area: ['75%', '70%']
+                ,btn: ['确定', '取消']
+                ,yes: function(index, layero){}
             });
         } else if (obj.event === 'stencil-submit') {
             layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
@@ -450,50 +417,16 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 }
 
             })
-        } else if (obj.event === 'edit') {
-            admin.popup({
-                title: '编辑：订单号［'+data.productNo+']'
-                ,area: ['45%', '70%']
-                ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/orderSMT_update', data).done(function () {
-                        form.render(null, '')
-                        form.on('submit(LAY-smtorder-update-submit)',function (data) {
-                            var field = data.field;
-                            console.log("提交的字段信息："+JSON.stringify(field));
-                            admin.req({
-                                type: 'post'
-                                ,url: setter.baseUrl+'market/assembly/update'
-                                ,data: field
-                                ,done: function (res) {
-                                    layer.msg('订单信息修改成功');
-                                    layui.table.reload('smt_orderTab_ok_payment');
-                                }
-                                ,fail: function (res) {
-                                    layer.msg("订单信息修改失败，请稍后再试！");
-                                },
-                            });
-                            layer.close(index);
-                            return false;
-                        })
-                    })
-                }
-            })
-        } else if (obj.event === 'del') {
-            layer.confirm('真的删除(SMT)订单号为［'+data.id+'］吗', function(index){
-
-                admin.req({
-                    type: 'post',
-                    url: setter.baseUrl+'market/assembly/delete'
-                    ,data:{"ids":data.id}
-                    ,done: function (res) {
-                        layer.msg('删除成功');
-                        obj.del();
-                    }
-                    ,fail: function (res) {
-                        layer.msg('服务器异常，稍后再试！');
-                    }
-                })
-                layer.close(index);
+        }  else if (obj.event === 'info_pact') {
+            console.log(data);
+            layer.open({
+                type: 2
+                ,title: 'Look Invoice'
+                ,content: setter.imUrl+'order/invoicePage?orderId='+ data.orderId
+                ,maxmin: true
+                ,area: ['75%', '70%']
+                ,btn: ['确定', '取消']
+                ,yes: function(index, layero){}
             });
         } else if (obj.event === 'stencil-submit') {
             layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {

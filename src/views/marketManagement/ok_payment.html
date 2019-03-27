@@ -201,10 +201,7 @@
                         {{# } }}
                     {{#  } }}
                     <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>-->
-                    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:delete") != -1){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                    {{#  } }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="info_pact">合同</a>
                 </script>
             </div>
 
@@ -223,10 +220,7 @@
                     {{# } }}
                     {{#  } }}
                     <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>-->
-                    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:assembly_audit:delete") != -1){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                    {{#  } }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="info_pact">合同</a>
                 </script>
                 <script type="text/html" id="Tabtb-smt-market-okPayment-status">
                     {{# if(d.status === 1){ }}

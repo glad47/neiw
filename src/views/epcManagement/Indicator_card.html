@@ -102,9 +102,9 @@
                     </div>
                 </script>
                 <script type="text/html" id="Tabtb-pcb-epc-indicatorCard-option">
-                   
+
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborderprocess:write") != -1){ }}
-                        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="epc-write-indicator">编写指示卡</a>
+                        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="epc-write-indicator">指示卡</a>
                     {{#  } }}
 
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborder:update") != -1 ){ }}
@@ -147,7 +147,7 @@
                                 <span id="uploadFile_name">
                                     添加客户资料
                                 </span>
-                                <input type="file" class="filewareFile filewareFile{{ d. id }}" name="file" multiple/>
+                                <input type="file" class="filewareFile filewareFile{{ d.id }}" name="file" multiple/>
                             </span>
                         </a>
                         <div class="cc uploadPercentage{{ d.id }}">
@@ -167,7 +167,7 @@
                 <script type="text/html" id="Tabtb-stencil-epc-indicatorCard-option">
 
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborderprocess:write") != -1){ }}
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="epc-write-indicator">编写指示卡</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="epc-write-indicator">指示卡</a>
                     {{#  } }}
 
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborder:update") != -1 ){ }}
@@ -181,6 +181,26 @@
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborder:delete") != -1 ){ }}
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">作废</a>
                     {{#  } }}
+                </script>
+                <script type="text/thml" id="quote_gerber_fileS">
+                    {{# if(d.quoteGerberName === null){ }}
+                        <a class="btn-fileupload btn-fileuploadS{{ d.id }}">
+                            <span class="fileupload-btn">
+                                <i class="layui-icon layui-icon-add-1"></i>
+                                <span id="uploadFile_name">
+                                    添加客户资料
+                                </span>
+                                <input type="file" class="filewareFileS filewareFileS{{ d.id }}" name="file" multiple/>
+                            </span>
+                        </a>
+                        <div class="cc uploadPercentageS{{ d.id }}">
+                            <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe63e;</i>
+                            上传中....
+                            <a>0%</a>
+                        </div>
+                    {{# } else{ }}
+                    {{d.quoteGerberName}}
+                    {{# } }}
                 </script>
             </div>
         </div>
@@ -228,7 +248,7 @@
     #pcbfile-i:hover{color: #1E9FFF;cursor: pointer;}
     /*上传文件*/
     .fileupload-btn{position: relative;cursor: pointer;}
-    .filewareFile{position: absolute;opacity: 0;left: -3px;height: 54px;width: 82px;}
+    .filewareFile,.filewareFileS{position: absolute;opacity: 0;left: -3px;height: 54px;width: 82px;}
     a.btn-fileupload {background-color: rgb(255, 86, 4);color: #ffffff;padding: 5px;border-radius: 3px;font-size: 0.7em;}
     .cc{float: left;font-size: 0.9em;background-color: #00FF00;width: 100%;display: none;}
 </style>

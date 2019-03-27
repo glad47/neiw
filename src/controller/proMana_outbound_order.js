@@ -71,14 +71,17 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
         if(obj.event === 'submit'){     //通知出货
-            var ids = data.map(function(elem){return elem.id}).join(",");
+            var id = data.map(function(elem){return elem.id}).join(",");
+            var uuid = data.map(function(elem){return elem.uuid;}).join(",");
             layer.confirm('确定出货？', function () {
                 admin.req({
                     type: 'post',
-                    data: {'':ids},
-                    url: '',
+                    dataType: 'json',
+                    data: {id:id,uuid:uuid},
+                    url: setter.baseUrl+'iqc/pcborder/shipment',
                     success: function () {
                         layer.alert('出货成功!');
+                        layer.closeAll();
                     }
                 })
             });
@@ -131,26 +134,57 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 title: '出货信息'
                 ,area: ['734px','468px']
                 ,btn: ['保存', '提交', '返回']
-                ,yes: function (index, layero) {
+                ,btn1: function (index, layero) {
                     layer.msg('保存');
+                    $(".outbound-submit").attr("data","save");
+                    $(".outbound-submit").click();
+                    return false;
                 },
                 btn2: function () {
-                    layer.msg('保存');
+                    $(".outbound-submit").attr("data","submit");
+                    $(".outbound-submit").click();
+                    return false;
                 },
                 btn3: function () {
-                    layer.msg('删除');
+                    layer.msg('取消');
                 }
                 ,success: function (layero, index) {
                     view(this.id).render('productManagement/iframeWindow/outbound_info',data).done(function () {
-
+                        //监听出货提交
+                        form.on('submit(fomrOutboundInfo)', function (data) {
+                            var url;
+                            var submitType = $(".outbound-submit").attr("data");
+                            if (submitType == "save") {
+                                url = "iqc/pcborder/saveShippingInfo";
+                            } else if (submitType == "submit") {
+                                url = "";
+                            }
+                            var field = data.field;
+                            console.log(field);
+                            admin.req({
+                                url: setter.baseUrl + url,
+                                type: 'POST',
+                                data: field,
+                                success: function (data) {
+                                    if (data.code == 0) {
+                                        layer.msg(data.msg);
+                                    }else {
+                                        layer.msg(data.msg,{icon: 5});
+                                    }
+                                    // layui.table.reload('article_Table_blog'); //重载表格
+                                    layer.close(index); //执行关闭
+                                }
+                            })
+                            return false;
+                        });
                     });
 
                 }
             })
-            if (data.finishPcsNumber === data.quantityPcs) {
-
-            } else {
+            if (data.finishPcsNumber !== data.quantityPcs) {
                 layer.msg('PCS数未全部交清，操作失败！');
+            } else {
+                layer.msg('PCS数全交期，操作成功！');
             }
         }
     });
