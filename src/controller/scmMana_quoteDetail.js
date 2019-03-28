@@ -15,6 +15,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
     var $ = layui.jquery;
     var convertCurrency = layui.convertCurrency;
 
+    tabRenderPCB();
     // 全局变量
     var _public_val = {
         orderType: 1        //订单类型 （1 pcb 2钢网）
@@ -22,69 +23,72 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
 
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-scmManagement)', function(data){
-        console.log(data.index);
         if (data.index === 0){
             _public_val.orderType = 1;       //pcb
+            tabRenderPCB();
         } else if (data.index === 1){
             _public_val.orderType = 2;      //钢网
+            tabRenderStencil();
         } else if (data.index === 2){
             _public_val.orderType = 3;      //贴片
         }
     });
 
     //▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ PCB订单
-    table.render({
-        elem: '#scmMana_tabPcb'
-        ,url: setter.baseUrl+'/scm/pcborder/quoteDetail/list'
-        ,toolbar: "#scmMana_toolbar"
-        ,cellMinWidth: 80
-        ,id: "scmMana_tabPcb"
-        ,page: true
-        ,parseData: function (res) {
-            return{
-                "code": 0,
-                "data": res.page.list,
-                "count": res.page.totalCount
+    function tabRenderPCB() {
+        table.render({
+            elem: '#scmMana_tabPcb'
+            ,url: setter.baseUrl+'/scm/pcborder/quoteDetail/list'
+            ,toolbar: "#scmMana_toolbar"
+            ,cellMinWidth: 80
+            ,id: "scmMana_tabPcb"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
             }
-        }
-        ,cols: [[
-            {type:'checkbox'}
-            ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115, minWidth: 115}      // 1 ＝ 待报价
-            ,{field: 'supplierQuoteNo',title: '报价单号', width: 172,minWidth: 172}
-            ,{field: 'gmtCreate',title: '报价时间', width: 166}
-            ,{field: 'supplierNo', title: '供应商编号', width: 124}
-            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-            ,{field: 'productNo', title: '聚谷型号', width: 124}
-            ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
-            ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-            ,{field: 'unitPrice', title: '单价', width: 96}
-            ,{field: 'engineeringFee', title: '工程费', width: 96}
-            ,{field: 'testCostFee', title: '飞针费', width: 96}
-            ,{field: 'testCostFee', title: '测试架费', width: 96}
-            ,{field: 'toolingFee', title: '模具', width: 96}
-            ,{field: 'totalFee', title: '合计', width: 96}
-            ,{field: 'remark', title: '报价备注', width: 168}
-            //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
-            ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
-            ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
-            ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
-            ,{field: 'panelSizeY', title: 'panelSizeY', hide: true}
-            ,{field: 'panelWayX', title: 'panelWayX', hide: true}
-            ,{field: 'panelWayY', title: 'panelWayY', hide: true}
-            //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
-            ,{field: 'unitPriceCustomer', title: 'unitPriceCustomer', hide: true}
-            ,{field: 'engineeringFeeCustomer', title: 'engineeringFeeCustomer', hide: true}
-            ,{field: 'testCostFeeCustomer', title: 'testCostFeeCustomer', hide: true}
-            ,{field: 'toolingFeeCustomer', title: 'toolingFeeCustomer', hide: true}
-            ,{field: 'subtotal', title: 'subtotal', hide: true}
-            // ,{field: 'gerberName',title: '文件名'}
-            // ,{field: 'pcbType',title: 'PCB类型'}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmMana_tabbar',width: 160}
-        ]]
-        ,done: function (res, curr, count) {
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115, minWidth: 115}      // 1 ＝ 待报价
+                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172,minWidth: 172}
+                ,{field: 'gmtCreate',title: '报价时间', width: 166}
+                ,{field: 'supplierNo', title: '供应商编号', width: 124}
+                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
+                ,{field: 'productNo', title: '聚谷型号', width: 124}
+                ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
+                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
+                ,{field: 'unitPrice', title: '单价', width: 96}
+                ,{field: 'engineeringFee', title: '工程费', width: 96}
+                ,{field: 'testCostFee', title: '飞针费', width: 96}
+                ,{field: 'testCostFee', title: '测试架费', width: 96}
+                ,{field: 'toolingFee', title: '模具', width: 96}
+                ,{field: 'totalFee', title: '合计', width: 96}
+                ,{field: 'remark', title: '报价备注', width: 168}
+                //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
+                ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
+                ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
+                ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
+                ,{field: 'panelSizeY', title: 'panelSizeY', hide: true}
+                ,{field: 'panelWayX', title: 'panelWayX', hide: true}
+                ,{field: 'panelWayY', title: 'panelWayY', hide: true}
+                //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
+                ,{field: 'unitPriceCustomer', title: 'unitPriceCustomer', hide: true}
+                ,{field: 'engineeringFeeCustomer', title: 'engineeringFeeCustomer', hide: true}
+                ,{field: 'testCostFeeCustomer', title: 'testCostFeeCustomer', hide: true}
+                ,{field: 'toolingFeeCustomer', title: 'toolingFeeCustomer', hide: true}
+                ,{field: 'subtotal', title: 'subtotal', hide: true}
+                // ,{field: 'gerberName',title: '文件名'}
+                // ,{field: 'pcbType',title: 'PCB类型'}
+                ,{fixed: 'right', title:'操作', toolbar: '#scmMana_tabbar',width: 160}
+            ]]
+            ,done: function (res, curr, count) {
 
-        }
-    });
+            }
+        });
+    }
     table.on('toolbar(scmMana_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
@@ -109,7 +113,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
             popupData.convertSubtotal = convertSubtotal;
             console.log(popupData);
             admin.popup({
-                title: '是否生成合同查看'
+                title: 'PCB合同'
                 ,area: ['100%', '100%']
                 ,btn: ['生成合同', '取消']
                 ,yes: function (index, layero) {
@@ -204,6 +208,193 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
                        table.reload('scmMana_tabPcb');
                    }
                });
+            });
+        } else if (obj.event == 'eevScmdel'){
+            layer.confirm('真的删除行么', function(index){
+                obj.del();
+                admin.req({
+                    type: 'post',
+                    data: {'ids':data.id},
+                    url: setter.baseUrl+ '/scm/ordersupplier/delete',
+                    success: function () {
+                        layer.alert("删除成功！");
+                        table.reload('scmMana_tabPcb');
+                    }
+                });
+                layer.close(index);
+            });
+        }
+    });
+
+    //▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ Stencil 钢网 订单
+
+    function tabRenderStencil() {
+        table.render({
+            elem: '#scmMana_tabStencil'
+            ,url: setter.baseUrl+'scm/stencilorder/quoteDetail/list'
+            ,toolbar: "#scmManaStencil_toolbar"
+            ,cellMinWidth: 80
+            ,id: "scmMana_tabStencil"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
+            }
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115, minWidth: 115}      // 1 ＝ 待报价
+                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172,minWidth: 172}
+                ,{field: 'gmtCreate',title: '报价时间', width: 166}
+                ,{field: 'supplierNo', title: '供应商编号', width: 124}
+                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
+                ,{field: 'productNo', title: '聚谷型号', width: 124}
+                ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
+                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
+                ,{field: 'unitPrice', title: '单价', width: 96}
+                ,{field: 'engineeringFee', title: '工程费', width: 96}
+                ,{field: 'testCostFee', title: '飞针费', width: 96}
+                ,{field: 'testCostFee', title: '测试架费', width: 96}
+                ,{field: 'toolingFee', title: '模具', width: 96}
+                ,{field: 'totalFee', title: '合计', width: 96}
+                ,{field: 'remark', title: '报价备注', width: 168}
+                //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
+                ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
+                ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
+                ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
+                ,{field: 'panelSizeY', title: 'panelSizeY', hide: true}
+                ,{field: 'panelWayX', title: 'panelWayX', hide: true}
+                ,{field: 'panelWayY', title: 'panelWayY', hide: true}
+                //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
+                ,{field: 'unitPriceCustomer', title: 'unitPriceCustomer', hide: true}
+                ,{field: 'engineeringFeeCustomer', title: 'engineeringFeeCustomer', hide: true}
+                ,{field: 'testCostFeeCustomer', title: 'testCostFeeCustomer', hide: true}
+                ,{field: 'toolingFeeCustomer', title: 'toolingFeeCustomer', hide: true}
+                ,{field: 'subtotal', title: 'subtotal', hide: true}
+                // ,{field: 'gerberName',title: '文件名'}
+                // ,{field: 'pcbType',title: 'PCB类型'}
+                ,{fixed: 'right', title:'操作', toolbar: '#scmManaStencil_tabbar',width: 160}
+            ]]
+            ,done: function (res, curr, count) {
+
+            }
+        });
+    }
+    table.on('toolbar(scmMana_tabStencil)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        var totalFee = 0;
+        if(obj.event === 'evScmSubmit'){
+            var ids = null;
+            var popupData = {data:{}};
+            popupData.data = data;
+            for (var i=0;i<data.length;i++){
+                var forSt = data[i].totalStencilFee;
+                if (ids == null){
+                    ids = ids + data[i].id;
+                } else {
+                    ids = ids + ',' + data[i].id;
+                }
+                totalFee += forSt;
+            }
+            console.log("totalFee:"+totalFee);
+            // 金额转换为中文大写
+            convertSubtotal = convertCurrency.conversion(totalFee);
+            popupData.totalFee = totalFee;
+            popupData.convertSubtotal = convertSubtotal;
+            console.log(popupData);
+            admin.popup({
+                title: 'PCB合同'
+                ,area: ['100%', '100%']
+                ,btn: ['生成合同', '取消']
+                ,yes: function (index, layero) {
+                    layer.confirm('是否生成合同?', function(index){
+                        admin.req({
+                            type: 'post',
+                            data: {ids},
+                            url: setter.baseUrl+'scm/stencilorder/createContractBeOt',
+                            success: function (data) {
+                                if (data.code == '0'){
+                                    layer.alert("提交成功！！");
+                                    table.reload('scmMana_tabStencil');
+                                    layer.closeAll();
+                                }
+                            }
+                        });
+                    });
+                }
+                ,success: function (layero, index) {
+                    view(this.id).render('scmManagement/iframeWindow/outs_contractS',popupData).done(function () {
+                    });
+                }
+            })
+        }
+    });
+    //监听行工具事件＝＝＝＝》Stencil 钢网订单
+    table.on('tool(scmMana_tabStencil)', function (obj) {
+        var data = obj.data;
+        if (obj.event == 'eevScmedit'){
+            layer.msg('编辑操作');
+            admin.popup({
+                title: 'Stencil 钢网报价协同编辑'
+                ,area: ['50%','80%']
+                ,btn: ['保存', '下载客户资料', '取消']
+                ,yes: function (index, layero) {
+                    layer.msg('提交信息');
+                    var postData = new Object();
+                    // 供应商修改报价
+                    // 接口：sqe/pcborder/quotationTogether/update
+                    // 参数：OrderSupplierEntity对象
+                    postData.id = data.id;                                      //id
+                    postData.orderId = data.orderId;                            //订单id
+                    postData.orderType = _public_val.orderType;                 //订单类型（1 pcb 2钢网 3 贴片）
+                    postData.supplierId = data.supplierId;                      //供应商id
+                    postData.supplierQuoteNo = data.supplierQuoteNo;            //供应商报价单号
+                    postData.deliveryTime = $("#stencilDeliveryDate").val();    //交期
+                    postData.unitPrice = $("#qt_stencil_unitPrice").val();      //单价
+                    postData.remark = $("#sRemark").val();                      //备注
+                    postData.status = '';                                       //状态
+                    postData.factoryMake = $("#stencilfactoryMake").val();     // 厂编
+                    postData.totalFee = $("#qt_stencil_totalFee").text();          //总价
+                    console.log(postData);
+                    admin.req({
+                        type: 'post',
+                        data: postData,
+                        url: setter.baseUrl+'scm/stencilorder/updateQuoteBeOt',
+                        success: function (data) {
+                            layer.alert("供应商报价修改成功");
+                            // layer.closeAll();
+                            table.reload('scmMana_tabStencil');
+                            layer.close(index);
+                        }
+                    });
+
+                }
+                ,btn2: function (index, layero) {
+                    layer.msg('下载资料');
+                    return false;
+                }
+                ,success: function (layero, index) {
+                    view(this.id).render('scmManagement/iframeWindow/quote_detail_stencil',data).done(function () {
+
+                    });
+                }
+            });
+        } else if (obj.event == 'rollback'){
+            layer.msg('回退操作');
+            layer.confirm('确定退回订单sss['+data.productNo+']?', function (index) {
+                obj.del();
+                admin.req({
+                    type: 'post',
+                    data: {'ids':data.id},
+                    url: setter.baseUrl+'scm/stencilorder/rollbackQuoteBeOt',
+                    success: function () {
+                        layer.alert("已退回["+data.productNo+']');
+                        table.reload('scmMana_tabPcb');
+                    }
+                });
             });
         } else if (obj.event == 'eevScmdel'){
             layer.confirm('真的删除行么', function(index){

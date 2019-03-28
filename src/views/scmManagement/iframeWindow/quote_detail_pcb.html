@@ -38,7 +38,7 @@
                     <td>{{ d.params.orderId || '' }}</td>
                     <td>工程费</td>
                     <td>
-                        <input class="layui-input" type="text" value="{{ d.params.engineeringFee || '' }}" id="qt_pcb_engineeringFee">
+                        <input class="layui-input" type="text" value="{{ d.params.engineeringFee || '0' }}" id="qt_pcb_engineeringFee">
                     </td>
                     <td>
                         {{# if(d.params.engineeringFeeCustomer == null || d.params.engineeringFeeCustomer == ''){ }}
@@ -52,7 +52,8 @@
                     <td>聚谷产品型号</td>
                     <td>{{ d.params.productNo || '' }}</td>
                     <td>加急费</td>
-                    <td>{{ d.params.overworkFee || '' }}</td>
+                    <td>{{ d.params.overworkFee || '0' }}</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>层别</td>
@@ -68,7 +69,7 @@
                         <input type="text" style="display: none;" id="hiddenTestPoint">
                     </td>
                     <td>
-                        <input class="layui-input" type="text" value="{{ d.params.testCostFee || '' }}" id="qt_pcb_testCostFee">
+                        <input class="layui-input" type="number" value="{{ d.params.testCostFee || 0 }}" id="qt_pcb_testCostFee">
                     </td>
                     <td>
                         {{# if(d.params.testCostFeeCustomer == null || d.params.testCostFeeCustomer == ''){ }}
@@ -92,7 +93,7 @@
                     </td>
                     <td>模具费</td>
                     <td>
-                        <input class="layui-input" type="text" value="{{ d.params.toolingFee || '' }}" id="qt_pcb_toolingFee">
+                        <input class="layui-input" type="number" value="{{ d.params.toolingFee || '' }}" id="qt_pcb_toolingFee">
                     </td>
                     <td>
                         <strong>{{ d.params.toolingFee || '0' }}</strong>
@@ -115,7 +116,7 @@
                         <input class="layui-input" type="text" value="{{ d.params.remark || '' }}" id="qRemark">
                     </td>
                     <td>交期</td>
-                    <td><input class="layui-input" type="text" id="pcbDeliveryDate" value="{{ d.params.deliveryTime || '' }}"></td>
+                    <td><input class="layui-input" type="date" id="pcbDeliveryDate" value="{{ d.params.deliveryTime || '' }}"></td>
                     <td title="客户交期">
                         {{ d.params.buildTime || '' }}
                     </td>
@@ -138,7 +139,7 @@
     table tbody tr td:nth-of-type(2){width: 18%;}
     table tbody tr td:nth-of-type(3){width: 18%;}
     table tbody tr td:nth-of-type(4){width: 24%;}
-    table tbody tr td:nth-of-type(5){width: 24%;border-left: solid 2px #20222a;}
+    table tbody tr td:last-of-type{width: 24%;border-left: solid 2px #20222a;}
     .quotation-bot-btn{text-align: center;margin-top: 20px;}
 </style>
 

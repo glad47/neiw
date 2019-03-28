@@ -38,7 +38,31 @@
             </div>
             <!--钢网订单-->
             <div class="layui-tab-item">
-                <table class="layui-table"></table>
+                <table class="layui-table" id="scmManaOutSC_tabStencil" lay-filter="scmManaOutSC_tabStencil"></table>
+                <script type="text/html" id="scmManaOutSC_toolbarS">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="evScmSubmit">回签</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="confirmDate">确认交期</button>
+                    </div>
+                </script>
+                <script type="text/html" id="scmManaOutsource_tabbarS">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="eevScmedit">编辑</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
+                    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="signBack">退回</a>
+                </script>
+                <script type="text/html" id="og_statusS">
+                    {{# if(d.status == '6') { }}
+                    已确认交期
+                    {{# } else if(d.status == '5'){ }}
+                    交期已回复
+                    {{# } else if(d.status == '4'){ }}
+                    待确认交期
+                    {{# } else if(d.status == '3'){ }}
+                    已生成合同
+                    {{# } else if(d.status == null || d.status == '' ){ }}
+                    合同未回签
+                    {{# } }}
+                </script>
             </div>
             <!--SMT订单-->
             <div class="layui-tab-item">

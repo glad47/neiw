@@ -70,17 +70,35 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     table.on('toolbar(iqcMana_outBound)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
+        var postData = new Array();
         if(obj.event === 'submit'){     //通知出货
-            var id = data.map(function(elem){return elem.id}).join(",");
-            var uuid = data.map(function(elem){return elem.uuid;}).join(",");
+            // // var id = data.map(function(elem){return elem.id}).join("id:");
+            // var id = data.map(function(elem){
+            //     // return elem.id;
+            //     postData[id] = elem.id
+            // }).join(",");
+            // var uuid = data.map(function(elem){
+            //     // return elem.uuid;
+            //     postData[uuid] = elem.uuid
+            // }).join(",");
+            for (var i=0;i<data.length;i++) {
+                postData[i] = {'id':data[i].id,'uuid':data[i].uuid};
+            }
+            var newData = new Object();
+            newData.shipmentVoList = postData;
+            // newData.access_token = layui.data('layuiAdmin').access_token;
+            console.log(newData);
+            console.log(postData);
             layer.confirm('确定出货？', function () {
-                admin.req({
+                $.ajax({
                     type: 'post',
-                    dataType: 'json',
-                    data: {id:id,uuid:uuid},
+                    headers: {access_token:layui.data('layuiAdmin').access_token},
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(newData),
                     url: setter.baseUrl+'iqc/pcborder/shipment',
                     success: function () {
                         layer.alert('出货成功!');
+                        table.reload("iqcMana_outBound");
                         layer.closeAll();
                     }
                 })
