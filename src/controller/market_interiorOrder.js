@@ -230,6 +230,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         } else if(obj.event == 'search'){
             layer.msg('search');
             var invoiceNo = data.invoiceNo;
+            var userId = data.userId;
             var this_invoiceNo = data.invoiceNo;
             var sameData = new Object();
             var sd_len = 0;
@@ -265,60 +266,73 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                             layer.msg("选择了不同型号");
                         }
                     });
-                    admin.popup({
-                        title: '内部合同'
-                        ,area: ['100%', '100%']
-                        ,btn: ['打印','关闭']
-                        ,maxmin: true
-                        ,yes:function(index, layero){
-                            var printId;
-                            if (contractType == "1"){
-                                printId = "quoteContract_AllA";
-                            } else if (contractType == "2"){
-                                printId = "quoteContract_AllB";
-                            }
-                            window.location.reload();
-                            document.body.innerHTML=document.getElementById(printId).innerHTML;
-                            window.print();
-                        }
-                        // btn2: function(index, layero){}
-                        ,success: function (layero, index) {
-                            popupData.htmlType = 2;     //页面标识 1为内部合同 主要用于判断头部左侧标题
-                            view(this.id).render(viewName, popupData).done(function () {
-                                productNo = null; // 初始化订单号
-                                // 表格样式设置
-                                if (contractType === 1){
-                                    // layui.each遍历的数据，td最少为6条，没有数据的显示空白
-                                    var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
-                                    var dataLength = popupData.data.length;
-                                    var addTrNum;
-                                    if (sd_len < 4){
-                                        addTrNum = 4;
-                                    } else if (dataLength > 4) {
-                                        addTrNum = 7;
+                    admin.req({
+                        type: 'get',
+                        data: '',
+                        url: setter.baseUrl+"sys/consumer/user/info/"+userId,
+                        success: function (data) {
+                            popupData.userName = data.user.userName;
+                            popupData.companyName = data.user.companName;
+                            popupData.country = data.user.country;
+                            popupData.city = data.user.city;
+                            popupData.address = data.user.address;
+                            admin.popup({
+                                title: '内部合同'
+                                ,area: ['100%', '100%']
+                                ,btn: ['打印','关闭']
+                                ,maxmin: true
+                                ,yes:function(index, layero){
+                                    var printId;
+                                    if (contractType == "1"){
+                                        printId = "quoteContract_AllA";
+                                    } else if (contractType == "2"){
+                                        printId = "quoteContract_AllB";
                                     }
-                                    for (var i=tdSize;i<addTrNum;i++){
-                                        $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
-                                    }
-                                    if (addTrNum == 4){
-                                        for (var i=1;i<addTrNum;i++){
-                                            $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"27.3%"});
-                                        }
-                                    } else {
-                                        for (var i=1;i<addTrNum;i++){
-                                            $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"13.6%"});
-                                        }
-                                    }
-                                } else if (contractType === 2){
-
+                                    window.location.reload();
+                                    document.body.innerHTML=document.getElementById(printId).innerHTML;
+                                    window.print();
                                 }
-                                // 实时时间设置
-                                let date = new Date();
-                                let chinaDate = date.toDateString();
-                                let chinaDateArray = chinaDate.split(' ');
-                                let displayDate = `${chinaDateArray[1]} ${chinaDateArray[2]}, ${chinaDateArray[3]}`;
-                                $("#contractBotDate").text(displayDate);
-                                $("#topDate").text(displayDate);
+                                // btn2: function(index, layero){}
+                                ,success: function (layero, index) {
+                                    popupData.htmlType = 2;     //页面标识 1为内部合同 主要用于判断头部左侧标题
+                                    view(this.id).render(viewName, popupData).done(function () {
+                                        console.log(popupData);
+                                        productNo = null; // 初始化订单号
+                                        // 表格样式设置
+                                        if (contractType === 1){
+                                            // layui.each遍历的数据，td最少为6条，没有数据的显示空白
+                                            var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
+                                            var dataLength = popupData.data.length;
+                                            var addTrNum;
+                                            if (sd_len < 4){
+                                                addTrNum = 4;
+                                            } else if (dataLength > 4) {
+                                                addTrNum = 7;
+                                            }
+                                            for (var i=tdSize;i<addTrNum;i++){
+                                                $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
+                                            }
+                                            if (addTrNum == 4){
+                                                for (var i=1;i<addTrNum;i++){
+                                                    $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"27.3%"});
+                                                }
+                                            } else {
+                                                for (var i=1;i<addTrNum;i++){
+                                                    $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"13.6%"});
+                                                }
+                                            }
+                                        } else if (contractType === 2){
+
+                                        }
+                                        // 实时时间设置
+                                        let date = new Date();
+                                        let chinaDate = date.toDateString();
+                                        let chinaDateArray = chinaDate.split(' ');
+                                        let displayDate = `${chinaDateArray[1]} ${chinaDateArray[2]}, ${chinaDateArray[3]}`;
+                                        $("#contractBotDate").text(displayDate);
+                                        $("#topDate").text(displayDate);
+                                    });
+                                }
                             });
                         }
                     });
@@ -506,6 +520,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('search');
             var invoiceNo = data.invoiceNo;
             var this_invoiceNo = data.invoiceNo;
+            var userId = data.userId;
             var sameData = new Object();
             var sd_len = 0;
             for(var i=0;i<stenciltabObj.length;i++){
@@ -536,26 +551,39 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                             contractType = 2;
                         }
                     });
-                    admin.popup({
-                        title: '内部合同'
-                        ,area: ['100%', '100%']
-                        ,btn: ['打印','关闭']
-                        ,maxmin: true
-                        ,yes:function(index, layero){
-                            var printId;
-                            document.body.innerHTML=document.getElementById(printId).innerHTML;
-                            window.print();
-                            window.location.reload();
-                        }
-                        // btn2: function(index, layero){}
-                        ,success: function (layero, index) {
-                            popupData.htmlType = 2;     //页面标识 1为内部合同 主要用于判断头部左侧标题
-                            console.log(popupData);
-                            view(this.id).render(viewName, popupData).done(function () {
-                                productNo = null; // 初始化订单号
+                    admin.req({
+                        type: 'get',
+                        data: '',
+                        url: setter.baseUrl+"sys/consumer/user/info/"+userId,
+                        success: function (data) {
+                            popupData.userName = data.user.userName;
+                            popupData.companyName = data.user.companName;
+                            popupData.country = data.user.country;
+                            popupData.city = data.user.city;
+                            popupData.address = data.user.address;
+                            admin.popup({
+                                title: '内部合同'
+                                ,area: ['100%', '100%']
+                                ,btn: ['打印','关闭']
+                                ,maxmin: true
+                                ,yes:function(index, layero){
+                                    var printId;
+                                    document.body.innerHTML=document.getElementById(printId).innerHTML;
+                                    window.print();
+                                    window.location.reload();
+                                }
+                                // btn2: function(index, layero){}
+                                ,success: function (layero, index) {
+                                    popupData.htmlType = 2;     //页面标识 1为内部合同 主要用于判断头部左侧标题
+                                    console.log(popupData);
+                                    view(this.id).render(viewName, popupData).done(function () {
+                                        productNo = null; // 初始化订单号
+                                    });
+                                }
                             });
                         }
                     });
+
                 }
             });
         } else if(obj.event == 'submit'){

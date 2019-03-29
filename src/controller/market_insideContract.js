@@ -605,7 +605,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 sd_len += 1;
                 pTotala += stenciltabObj[i].totalStencilFee;
             }
-            console.log('stenciltabObj[i].invoiceNo:'+stenciltabObj[i].quoteOrderNo);
         }
         var quoteOrderNo = data.quoteOrderNo;
         //console.log(obj)
@@ -671,6 +670,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                 ,success: function (layero, index) {
                                     popupData.htmlType = 1;     //页面标识 1为内部合同 主要用于判断头部左侧标题
                                     view(this.id).render(viewName, popupData).done(function () {
+                                        console.log(popupData);
                                         productNo = null; // 初始化订单号
                                     });
                                 }

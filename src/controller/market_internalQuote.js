@@ -168,7 +168,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 defVal.customerSn = tabdata.data[0].productNo.substring(0,3);
                 var userData = {
                     userName: '',
-                    companName: '',
+                    companyName: '',
                     country: '',
                     city: '',
                     address: ''
@@ -214,7 +214,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                         url: setter.baseUrl+'sys/consumer/user/info/'+tabdata.data[0].userId,
                         success: function (data) {
                             tabdata.userName = data.user.userName;
-                            tabdata.companName = data.user.companName;
+                            tabdata.companyName = data.user.companName;
                             tabdata.country = data.user.country;
                             tabdata.city = data.user.city;
                             tabdata.address = data.user.address;
@@ -538,7 +538,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 defVal.customerSn = tabdata.data[0].productNo.substring(0,3);
                 var userData = {
                     userName: '',
-                    companName: '',
+                    companyName: '',
                     country: '',
                     city: '',
                     address: ''
@@ -575,7 +575,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                         url: setter.baseUrl+'sys/consumer/user/info/'+tabdata.data[0].userId,
                         success: function (data) {
                             tabdata.userName = data.user.userName;
-                            tabdata.companName = data.user.companName;
+                            tabdata.companyName = data.user.companName;
                             tabdata.country = data.user.country;
                             tabdata.city = data.user.city;
                             tabdata.address = data.user.address;
@@ -615,6 +615,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                     ,success: function (layero, index) {
                                         tabdata.htmlType = 1;     //页面标识 0为报价明细合同 主要用于判断头部左侧标题
                                         view(this.id).render(viewName, tabdata).done(function () {
+                                            console.log(tabdata);
                                             productNo = null; // 初始化订单号
                                             defVal.customerSn = null;   //初始化客户编号 如a11
                                         });

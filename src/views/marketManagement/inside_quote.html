@@ -427,15 +427,15 @@
                                                     <input value="1" type="checkbox" name="deepMillRouting" title="Deep Mill Routing" lay-skin="primary">
                                                 </div>
                                             </div>
-                                           <!--  <div class="layui-form-item">
-                                                <label class="layui-form-label">Different Design:</label>
+                                           <div class="layui-form-item">
+                                                <label class="layui-form-label" style="width: 130px;">Different Design:</label>
                                                 <div class="layui-input-block">
-                                                    <input type="radio" name="differentDesign" value="1" title="1">
+                                                    <input type="radio" name="differentDesign" value="1" title="1" checked>
                                                     <input type="radio" name="differentDesign" value="2" title="2">
                                                     <input type="radio" name="differentDesign" value="3" title="3">
-                                                    <input type="radio" name="differentDesign" value="4" title="4" checked>
+                                                    <input type="radio" name="differentDesign" value="4" title="4">
                                                 </div>
-                                            </div> -->
+                                            </div>
                                             <div class="layui-form-item">
                                                 <label class="layui-form-label">Remark:</label>
                                                 <div class="layui-input-block">
@@ -634,7 +634,7 @@
                                   </select>
                               </div>
                               <div class="layui-input-inline layui-col-md5" id="selCustomer_container" data="" style="width: 47%;margin-left: 2%;">
-                                  <select id="selCustomer" lay-filter="filterCustomer">
+                                  <select id="selCustomer" lay-filter="filterCustomer" lay-search="">
                                       <option value="" id="0">选择客户</option>
                                   </select>
                               </div>
@@ -691,7 +691,7 @@
                                       </div>
                                   </div>
                                   <div class="layui-input-inline shipping-input-company" style="width: 142px;">
-                                      <select name="courierCompany" id="selCompany" lay-filter="company">
+                                      <select name="courierCompany" id="selCompany" lay-filter="company" lay-search="">
                                           <option value="">请选择</option>
                                       </select>
                                   </div>
@@ -708,7 +708,7 @@
                                       <div class="shipping-item-list">
                                           <div class="layui-form-item shipping-item">
                                               <div class="layui-input-inline shipping-input-countrys"  style="width: 142px;">
-                                                  <select name="quiz2" id="selCountrys" lay-filter="countrys">
+                                                  <select name="quiz2" id="selCountrys" lay-filter="countrys" lay-search="">
                                                       <option value="">请选择</option>
                                                   </select>
                                               </div>

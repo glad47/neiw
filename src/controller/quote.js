@@ -68,6 +68,16 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         pcbCost: 0,
         totalPrice: 0
     };
+    // 用来判断是否重复添加相同参数的报价
+    var tp = {
+        totalPric: null,
+        totalPriced: null,
+        isQuote: false,    // false 表示没有计算过
+        // 钢网
+        totalPricS: null,
+        totalPricedS: null,
+        isQuoteS: false
+    }
     // 报价后判断是否为样板   1为样板 2不是
     var areaType = null;
 
@@ -807,7 +817,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         data.silkScreenBotColor = data.solderMaskTopColor;
         data.solderMaskBotColor = data.solderMaskTopColor;
         data.surfaceArea = data.surfaceArea;
-        data.differentDesign = '';      //原来注释掉的
+        // data.differentDesign = '';      //原来注释掉的
         data.orderNo = $("#orderNo").val();//客户PO号
         pcb_container.orderNo = data.orderNo;
         data.pcbName = pcb_container.pcbName;
@@ -1130,7 +1140,6 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
      * 计算PCB Phototype 总价
      */
     function quotePCBTotalPrice() {
-        console.log("计算总价");
         var shippingPrice = $("#shippingPrice").val();
         pcbTo.shippingPrice = parseFloat(shippingPrice);
         // console.log("pcbTo.shippingPrice:"+pcbTo.shippingPrice);
@@ -1147,6 +1156,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         // public_data.postFee = data.data.shippingCost;
         console.log("totalPrice:"+totalPrice);
         pcb_container.subtotal = pcbTo.totalPrice;
+        tp.totalPriced = pcbTo.totalPrice;
         $("#totalPrice").val(pcbTo.totalPrice);
     }
 
@@ -1173,6 +1183,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         console.log("inStencilCost:"+_this.inStencilCost);
         var totalPrice = _this.postFee+_this.inStencilCost;
         saveSMTStencil.totalStencilFee = totalPrice;
+        tp.totalPricedS = totalPrice;
         $("#stotalPrice").val(totalPrice);
     }
 
@@ -1235,19 +1246,39 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                 });
                 return false;
             } else {
-                admin.req({
-                    type: 'post',
-                    data: quote_data,
-                    url: setter.baseUrl+"epc/pcborder/save",
-                    success: function (data) {
-                        $("#orderPN").val(data.pn);
-                        pcb_container.productNo = data.pn;
-                        form.render(null,'checkCustomer');
-                        if (data.code != "500"){
-                            layer.alert("你已成功添加当前报价！");
+                if (tp.totalPric == tp.totalPriced && tp.isQuote == true) {
+                    layer.confirm("你已经添加了相同参数的报价，是否再次添加？", function () {
+                        admin.req({
+                            type: 'post',
+                            data: quote_data,
+                            url: setter.baseUrl+"epc/pcborder/save",
+                            success: function (data) {
+                                $("#orderPN").val(data.pn);
+                                pcb_container.productNo = data.pn;
+                                form.render(null,'checkCustomer');
+                                if (data.code != "500"){
+                                    layer.alert("你已成功添加当前报价！");
+                                }
+                            }
+                        });
+                    });
+                } else {
+                    admin.req({
+                        type: 'post',
+                        data: quote_data,
+                        url: setter.baseUrl+"epc/pcborder/save",
+                        success: function (data) {
+                            $("#orderPN").val(data.pn);
+                            pcb_container.productNo = data.pn;
+                            form.render(null,'checkCustomer');
+                            if (data.code != "500"){
+                                layer.alert("你已成功添加当前报价！");
+                            }
                         }
-                    }
-                });
+                    });
+                    tp.totalPric = tp.totalPriced;
+                    tp.isQuote = true;
+                }
             }
         },
         // 查看报价详情
@@ -1270,7 +1301,6 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                             $("#sss").text(ids);
                             $("#sss").attr("name",ids);
                             console.log(data);
-                            layer.msg('打开');
                         });
                     }
                 });
@@ -1304,16 +1334,33 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                     });
                     return false;
                 }
-                admin.req({
-                    type: 'post',
-                    data: postData,
-                    url: setter.baseUrl+'epc/stencilorder/save',
-                    success: function (res) {
-                        layer.alert("钢网报价成功！");
-                        $("#orderPN").val(res.pn);
-                        saveSMTStencil.productNo = res.pn;
-                    }
-                });
+                if (tp.totalPricS == tp.totalPricedS && tp.isQuoteS == true) {
+                    layer.confirm("你已经添加了相同参数的报价，是否再次添加？", function () {
+                        admin.req({
+                            type: 'post',
+                            data: postData,
+                            url: setter.baseUrl+'epc/stencilorder/save',
+                            success: function (res) {
+                                layer.alert("钢网报价成功！");
+                                $("#orderPN").val(res.pn);
+                                saveSMTStencil.productNo = res.pn;
+                            }
+                        });
+                    });
+                } else {
+                    admin.req({
+                        type: 'post',
+                        data: postData,
+                        url: setter.baseUrl+'epc/stencilorder/save',
+                        success: function (res) {
+                            layer.alert("钢网报价成功！");
+                            $("#orderPN").val(res.pn);
+                            saveSMTStencil.productNo = res.pn;
+                        }
+                    });
+                    tp.totalPricS = tp.totalPricedS;
+                    tp.isQuoteS = true;
+                }
             } else if (post_data.bordType === 3) {
                 $('.rAssemblySubmit').click();
             }
