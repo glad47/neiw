@@ -7,7 +7,16 @@
     
  */
  
-layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
+layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
+  table = layui.table;
+    table.set({
+        headers: { //通过 request 头传递
+            access_token: layui.data('layuiAdmin').access_token
+        }
+        ,where: { //通过参数传递
+            access_token: layui.data('layuiAdmin').access_token
+        }
+    });
   exports('setter', {
     container: 'LAY_app' //容器ID
     ,base: layui.cache.base //记录layuiAdmin文件夹所在路径
@@ -52,6 +61,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
       ,baseUrl1:"https://www.pcbonline.com/"
       ,webSocketUrl: 'wss://www.pcbonline.com:8887/ws'
       ,imUrl:'https://www.pcbonline.com/'
+
 
       //独立页面路由，可随意添加（无需写参数）
     ,indPage: [

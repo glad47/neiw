@@ -39,7 +39,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
             }
         }
         ,where: {
-            access_token: layui.data('layuiAdmin').access_token,
             at:1
         }
         ,cols: [[

@@ -37,9 +37,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 "count": res.page.totalCount
             }
         }
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
             ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-orderReview-status',width: 110}
@@ -324,7 +321,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             })
         } else if (obj.event === 'del') {
             layer.confirm('真的删除订单号为［'+data.productNo+'］吗', function(index){
-               admin.popup({
+               admin.req({
                    type: 'post'
                    ,url: setter.baseUrl+'market/stencil/audit/delete'
                    ,data: {"ids":data.id}
@@ -335,7 +332,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                    ,fail: function (res) {
                        layer.msg('服务器异常，稍后重试！');
                    }
-               })
+               });
                 layer.close(index);
             });
         } else if (obj.event === 'stencil-submit') {
@@ -425,7 +422,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             }
         }
         ,where: {
-            access_token: layui.data('layuiAdmin').access_token,
             status: 1,
         }
         ,cols: [[

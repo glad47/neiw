@@ -15,6 +15,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,element = layui.element;
     var $ = layui.jquery;
 
+    tabRenderPCB();
     // 全局变量
     var _public_val = {
         orderType: 1        //订单类型 （1 pcb 2钢网 3 贴片）
@@ -25,53 +26,54 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         console.log(data.index);
         if (data.index === 0){
             _public_val.orderType = 1;       //pcb
+            tabRenderPCB();
         } else if (data.index === 1){
             _public_val.orderType = 2;      //钢网
+            tabRenderStencil();
         } else if (data.index === 2){
             _public_val.orderType = 3;      //贴片
         }
     });
 
-    //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
-    table.render({
-        elem: '#sqeManaPlan_tabPcb'
-        ,url: setter.baseUrl+'sqe/pcborder/planTogether/list'
-        ,toolbar: "#ord_sqpManaPlan_tb"
-        ,cellMinWidth: 80
-        ,id: "sqeManaPlan_tabPcb"
-        ,page: true
-        ,parseData: function (res) {
-            return{
-                "code": 0,
-                "data": res.page.list,
-                "count": res.page.totalCount
+    //▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ PCB订单
+    function tabRenderPCB() {
+        table.render({
+            elem: '#sqeManaPlan_tabPcb'
+            ,url: setter.baseUrl+'sqe/pcborder/planTogether/list'
+            ,toolbar: "#ord_sqpManaPlan_tb"
+            ,cellMinWidth: 80
+            ,id: "sqeManaPlan_tabPcb"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
             }
-        }
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
-        ,cols: [[
-            {type:'checkbox'}
-            ,{field: 'status',title: '状态',templet: '#planStatus', width: 110}      // 1 ＝ 待报价
-            ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
-            ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt'}
-            ,{field: 'supplierNo', title: '供应商编号', width: 117}
-            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-            ,{field: 'productNo', title: '聚谷型号', width: 124}
-            ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-            ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
-            ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
-            ,{field: '',title: '当前工序', width: 110}
-            ,{field: '',title: '进度', width: 110}
-            ,{field: 'gmtCreate',title: '签约日期', minWidth: 172}
-            // ,{field: 'gerberName',title: '文件名'}
-            // ,{field: 'pcbType',title: 'PCB类型'}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',minWidth: 160}
-        ]]
-        ,done: function (res, curr, count) {
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态',templet: '#planStatus', width: 110}      // 1 ＝ 待报价
+                ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
+                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt'}
+                ,{field: 'supplierNo', title: '供应商编号', width: 117}
+                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
+                ,{field: 'productNo', title: '聚谷型号', width: 124}
+                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
+                ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
+                ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
+                ,{field: '',title: '当前工序', width: 110}
+                ,{field: '',title: '进度', width: 110}
+                ,{field: 'gmtCreate',title: '签约日期', minWidth: 172}
+                // ,{field: 'gerberName',title: '文件名'}
+                // ,{field: 'pcbType',title: 'PCB类型'}
+                ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',minWidth: 160}
+            ]]
+            ,done: function (res, curr, count) {
 
-        }
-    });
+            }
+        });
+    }
     table.on('toolbar(sqeManaPlan_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var Pdata = {data:{},result:{}};     // data为表格数据/result为请求到的数据
@@ -197,5 +199,45 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('查看订单协同');
         }
     });
+
+    //▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ Stencil 钢网订单
+    function tabRenderStencil() {
+        table.render({
+            elem: '#sqeManaPlan_tabStencil'
+            ,url: setter.baseUrl+'sqe/stencilorder/planTogether/list'
+            ,toolbar: "#ord_sqpManaPlan_tbS"
+            ,cellMinWidth: 80
+            ,id: "sqeManaPlan_tabStencil"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
+            }
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态',templet: '#planStatusS', width: 110}      // 1 ＝ 待报价
+                ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
+                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDtS'}
+                ,{field: 'supplierNo', title: '供应商编号', width: 117}
+                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
+                ,{field: 'productNo', title: '聚谷型号', width: 124}
+                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
+                ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
+                ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
+                ,{field: '',title: '当前工序', width: 110}
+                ,{field: '',title: '进度', width: 110}
+                ,{field: 'gmtCreate',title: '签约日期', minWidth: 172}
+                // ,{field: 'gerberName',title: '文件名'}
+                // ,{field: 'pcbType',title: 'PCB类型'}
+                ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbarS',minWidth: 160}
+            ]]
+            ,done: function (res, curr, count) {
+
+            }
+        });
+    }
     exports('sqeMana_plan_together', {});
 });

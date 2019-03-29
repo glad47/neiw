@@ -23,7 +23,7 @@
                    </td>
                    <td>单价</td>
                    <td>
-                       <input class="layui-input" type="text" value="{{ d.params.unitPrice || '' }}" id="qt_pcb_unitPrice">
+                       <input class="layui-input" type="number" value="{{ d.params.unitPrice || '0' }}" id="qt_pcb_unitPrice">
                    </td>
                </tr>
                <tr>
@@ -31,7 +31,7 @@
                    <td>{{ d.params.orderId || '' }}</td>
                    <td>工程费</td>
                    <td>
-                       <input class="layui-input" type="text" value="{{ d.params.engineeringFee || '' }}" id="qt_pcb_engineeringFee">
+                       <input class="layui-input" type="number" value="{{ d.params.engineeringFee || '0' }}" id="qt_pcb_engineeringFee">
                    </td>
                </tr>
                <tr>
@@ -54,7 +54,7 @@
                        <input type="text" style="display: none;" id="hiddenTestPoint">
                    </td>
                    <td>
-                       <input class="layui-input" type="text" value="{{ d.params.testCostFee || '' }}" id="qt_pcb_testCostFee">
+                       <input class="layui-input" type="number" value="{{ d.params.testCostFee || '0' }}" id="qt_pcb_testCostFee">
                    </td>
                </tr>
                <tr>
@@ -71,7 +71,7 @@
                    </td>
                    <td>模具费</td>
                    <td>
-                       <input class="layui-input" type="text" value="{{ d.params.toolingFee || '' }}" id="qt_pcb_toolingFee">
+                       <input class="layui-input" type="number" value="{{ d.params.toolingFee || '0' }}" id="qt_pcb_toolingFee">
                    </td>
                </tr>
                <tr>
@@ -88,7 +88,8 @@
                        <input class="layui-input" type="text" value="{{ d.params.remark || '' }}" id="qRemark">
                    </td>
                    <td>交期</td>
-                   <td><input class="layui-input" type="text" id="pcbDeliveryDate"></td>
+                   {{# if(d.params.deliveryTime != null && d.params.deliveryTime != ''){d.params.deliveryTime = d.params.deliveryTime.substring(0,10)} else{ d.params.deliveryTime = '' } }}
+                   <td><input class="layui-input" type="date" id="pcbDeliveryDate" value="{{ d.params.deliveryTime }}"></td>
                </tr>
                </tbody>
            </table>

@@ -127,17 +127,25 @@
                 <script type="text/html" id="Tabtb-stencil-scm-outgoingQuote-status">
                     {{# if(d.status === 1){ }}
                     <a style="color: #1E9FFF">
-                        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
+                        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待报价
                     </a>
                     {{# } else if(d.status === 2){ }}
                     <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>已审待支付
+                        <i class="layui-icon layui-icon-ok"></i>待确认
                     </a>
                     {{# } else if(d.status === 3){ }}
                     <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>已支付
+                        <i class="layui-icon layui-icon-ok"></i>待支付
                     </a>
                     {{# } else if(d.status === 4){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>已支付
+                    </a>
+                    {{# } else if(d.status === 5){ }}
+                    <a style="color: green">
+                        <i class="layui-icon layui-icon-ok"></i>编写指示卡
+                    </a>
+                    {{# } else if(d.status === 6){ }}
                     <a style="color: green">
                         <i class="layui-icon layui-icon-ok"></i>工程已审核
                     </a>
@@ -151,20 +159,7 @@
                 <table class="layui-table" id="scm_Tabstencil_outgoing_quote" lay-filter="scm_Tabstencil_outgoing_quote"></table>
                 <!--钢网订单表格操作栏-->
                 <script type="text/html" id="Tabtb-stencil-scm-outgoingQuote-option">
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_ok_payment:submit") != -1){ }}
-                        {{# if(d.isLock != 3) { }}
-                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stencil-submit">提交</a>
-                        {{# } }}
-                        {{# if(d.isLock == 3) {}}
-                            <a class="layui-btn layui-btn-normal layui-btn-xs" >已提交</a>
-                        {{# } }}
-                    {{#  } }}
-                    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>
-                    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:delete") != -1){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                    {{#  } }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="assign">指定供应商</a>
                 </script>
             </div>
         </div>

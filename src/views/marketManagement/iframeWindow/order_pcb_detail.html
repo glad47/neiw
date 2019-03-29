@@ -44,6 +44,12 @@
                     <td>{{ d.params.pthCopper }}</td>
                 </tr>
                 <tr>
+                    <td>BGA Szie:</td>
+                    <td>{{ d.params.bgaSize || ''}} </td>
+                    <td>Min Hole Size:</td>
+                    <td>{{ d.params.minHoleSize }}</td>
+                </tr>
+                <tr>
                     <td>Inner Finished Copper:</td>
                     <td>{{ d.params.innerLayerCopper || ''}}</td>
                     <td>Outer Finished Copper:</td>
@@ -61,6 +67,25 @@
                     <td>Test Tooling:</td>
                     <td>{{ d.params.surfaceFinish || ''}}</td>
                 </tr>
+
+                <tr>
+                    <td>Blind Holes:</td>
+                    <td>{{ d.params.blindHoles || 'No'}}</td>
+                    <td>EdgePlated:</td>
+                    <td>{{ d.params.edgePlated || 'No'}}</td>
+                </tr>
+                <tr>
+                    <td>halfHoleLated:</td>
+                    <td>{{ d.params.halfHoleLated || 'No'}}</td>
+                    <td>Impeance:</td>
+                    <td>{{ d.params.contrlImpeance || 'No'}}</td>
+                </tr>
+                <tr>
+                    <td>BuriedHoles:</td>
+                    <td>{{ d.params.buriedHoles || 'No'}}</td>
+                    <td>Carbon:</td>
+                    <td>{{ d.params.carbon || 'No'}}</td>
+                </tr>
                 <tr style="border: solid silver 1px;">
                     <td>Remark:</td>
                     <td colspan="3">{{ d.params.remark || '' }}</td>
@@ -77,38 +102,38 @@
                 {{# } }}
                 </tbody>
             </table>
-            <h3>Fee Detail:</h3>
-            <table class="layui-table" lay-skin="row" lay-even="" id="tab-fee">
-                <tbody>
-                <tr>
-                    <td>Eng Fee:</td>
-                    <td>{{ d.params.engineeringFee }}</td>
-                    <td>Board Fee:</td>
-                    <td>{{ d.params.boardFee }}</td>
-                    <td>TestCost Fee:</td>
-                    <td>{{ d.params.testCostFee }}</td>
-                    <td>Expedited Fee:</td>
-                    <td>{{ d.params.overworkFee }}</td>
-                </tr>
-                <tr>
-                    <td>Weight:</td>
-                    <td>{{ d.params.weight }}</td>
-                    <td>Build Time:</td>
-                    <td>{{ d.params.buildTime }}</td>
-                    <td>Shipping Fee:</td>
-                    <td>/</td>
-                    <td>PCB Cost:</td>
-                    <td>
-                        {{ d.params.subtotal }}
-                    </td>
-                </tr>
+            <!--<h3>Fee Detail:</h3>-->
+            <!--<table class="layui-table" lay-skin="row" lay-even="" id="tab-fee">-->
+                <!--<tbody>-->
                 <!--<tr>-->
-                    <!--<td colspan="6"></td>-->
-                    <!--<td>Total:</td>-->
-                    <!--<td>{{ d.params.subtotal }}</td>-->
+                    <!--<td>Eng Fee:</td>-->
+                    <!--<td>{{ d.params.engineeringFee }}</td>-->
+                    <!--<td>Board Fee:</td>-->
+                    <!--<td>{{ d.params.boardFee }}</td>-->
+                    <!--<td>TestCost Fee:</td>-->
+                    <!--<td>{{ d.params.testCostFee }}</td>-->
+                    <!--<td>Expedited Fee:</td>-->
+                    <!--<td>{{ d.params.overworkFee }}</td>-->
                 <!--</tr>-->
-                </tbody>
-            </table>
+                <!--<tr>-->
+                    <!--<td>Weight:</td>-->
+                    <!--<td>{{ d.params.weight }}</td>-->
+                    <!--<td>Build Time:</td>-->
+                    <!--<td>{{ d.params.buildTime }}</td>-->
+                    <!--<td>Shipping Fee:</td>-->
+                    <!--<td>/</td>-->
+                    <!--<td>PCB Cost:</td>-->
+                    <!--<td>-->
+                        <!--{{ d.params.subtotal }}-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<td colspan="6"></td>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<td>Total:</td>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<td>{{ d.params.subtotal }}</td>&ndash;&gt;-->
+                <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                <!--</tbody>-->
+            <!--</table>-->
         </script>
     </div>
 </div>

@@ -15,74 +15,77 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,element = layui.element;
     var $ = layui.jquery;
 
+    tabRenderPCB();
     // 全局变量
     var _public_val = {
         orderType: 1        //订单类型 （1 pcb 2钢网 3 贴片）
     };
 
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
-    element.on('tab(tab-quotationToger)', function(data){
+    element.on('tab(tabot-scmManagement)', function(data){
         console.log(data.index);
+        layer.msg(data.index);
         if (data.index === 0){
             _public_val.orderType = 1;       //pcb
+            tabRenderPCB();
         } else if (data.index === 1){
             _public_val.orderType = 2;      //钢网
+            tabRenderStencil();
         } else if (data.index === 2){
             _public_val.orderType = 3;      //贴片
         }
     });
 
-    //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
-    table.render({
-        elem: '#sqeManaOrderT_tabPcb'
-        ,url: setter.baseUrl+'/sqe/pcborder/orderTogether/list'
-        ,toolbar: "#ord_tother_tb"
-        ,cellMinWidth: 80
-        ,id: "sqeManaOrderT_tabPcb"
-        ,page: true
-        ,parseData: function (res) {
-            return{
-                "code": 0,
-                "data": res.page.list,
-                "count": res.page.totalCount
+    //▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉  PCB订单
+    function tabRenderPCB() {
+        table.render({
+            elem: '#sqeManaOrderT_tabPcb'
+            ,url: setter.baseUrl+'/sqe/pcborder/orderTogether/list'
+            ,toolbar: "#ord_tother_tb"
+            ,cellMinWidth: 80
+            ,id: "sqeManaOrderT_tabPcb"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
             }
-        }
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
-        ,cols: [[
-            {type:'checkbox'}
-            ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
-            ,{field: 'gmtCreate',title: '报价时间', width: 166}
-            ,{field: 'supplierNo', title: '供应商编号', width: 124}
-            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-            ,{field: 'productNo', title: '聚谷型号', width: 124}
-            ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
-            ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-            ,{field: 'unitPrice', title: '单价', width: 96}
-            ,{field: 'subtotal', title: '合计', width: 96}
-            ,{field: 'remark', title: '订单备注', width: 168}
-            ,{field: 'engineeringFee', title: '工程费', width: 96, hide: true}
-            ,{field: 'testCostFee', title: '飞针费', width: 96, hide: true}
-            ,{field: 'testCostFee', title: '测试架费', width: 96, hide: true}
-            ,{field: 'toolingFee', title: '模具', width: 96, hide: true}
-            ,{field: 'supplierQuoteNo',title: '报价单号', hide: true}
-            ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
-            ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
-            ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
-            ,{field: 'panelSizeY', title: 'panelSizeY', hide: true}
-            ,{field: 'panelWayX', title: 'panelWayX', hide: true}
-            ,{field: 'panelWayY', title: 'panelWayY', hide: true}
-            ,{field: 'gerberName', title: 'gerberName', hide: true}
-            ,{field: 'gerberPath', title: 'gerberPath', hide: true}
-            // ,{field: 'gerberName',title: '文件名'}
-            // ,{field: 'pcbType',title: 'PCB类型'}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmManaOrderT_tabbar',width: 150}
-        ]]
-        ,done: function (res, curr, count) {
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
+                ,{field: 'gmtCreate',title: '报价时间', width: 166}
+                ,{field: 'supplierNo', title: '供应商编号', width: 124}
+                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
+                ,{field: 'productNo', title: '聚谷型号', width: 124}
+                ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
+                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
+                ,{field: 'unitPrice', title: '单价', width: 96}
+                ,{field: 'subtotal', title: '合计', width: 96}
+                ,{field: 'remark', title: '订单备注', width: 168}
+                ,{field: 'engineeringFee', title: '工程费', width: 96, hide: true}
+                ,{field: 'testCostFee', title: '飞针费', width: 96, hide: true}
+                ,{field: 'testCostFee', title: '测试架费', width: 96, hide: true}
+                ,{field: 'toolingFee', title: '模具', width: 96, hide: true}
+                ,{field: 'supplierQuoteNo',title: '报价单号', hide: true}
+                ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
+                ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
+                ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
+                ,{field: 'panelSizeY', title: 'panelSizeY', hide: true}
+                ,{field: 'panelWayX', title: 'panelWayX', hide: true}
+                ,{field: 'panelWayY', title: 'panelWayY', hide: true}
+                ,{field: 'gerberName', title: 'gerberName', hide: true}
+                ,{field: 'gerberPath', title: 'gerberPath', hide: true}
+                // ,{field: 'gerberName',title: '文件名'}
+                // ,{field: 'pcbType',title: 'PCB类型'}
+                ,{fixed: 'right', title:'操作', toolbar: '#scmManaOrderT_tabbar',width: 150}
+            ]]
+            ,done: function (res, curr, count) {
 
-        }
-    });
+            }
+        });
+    }
     table.on('toolbar(sqeManaOrderT_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         if(obj.event === 'submit'){
@@ -154,6 +157,86 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             });
         } else if (obj.event == 'search'){
             layer.msg('查看订单协同');
+        }
+    });
+
+    //▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉  Stencil 钢网订单
+    function tabRenderStencil() {
+        table.render({
+            elem: '#sqeManaOrderT_tabStencil'
+            ,url: setter.baseUrl+'sqe/stencilorder/orderTogether/list'
+            ,toolbar: "#ord_tother_tbS"
+            ,cellMinWidth: 80
+            ,id: "sqeManaOrderT_tabStencil"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
+            }
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
+                ,{field: 'gmtCreate',title: '报价时间', width: 166}
+                ,{field: 'supplierNo', title: '供应商编号', width: 124}
+                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
+                ,{field: 'productNo', title: '聚谷型号', width: 124}
+                ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
+                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
+                ,{field: 'unitPrice', title: '单价', width: 96}
+                ,{field: 'subtotal', title: '合计', width: 96}
+                ,{field: 'remark', title: '订单备注', width: 168}
+                ,{field: 'engineeringFee', title: '工程费', width: 96, hide: true}
+                ,{field: 'testCostFee', title: '飞针费', width: 96, hide: true}
+                ,{field: 'testCostFee', title: '测试架费', width: 96, hide: true}
+                ,{field: 'toolingFee', title: '模具', width: 96, hide: true}
+                ,{field: 'supplierQuoteNo',title: '报价单号', hide: true}
+                ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
+                ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
+                ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
+                ,{field: 'panelSizeY', title: 'panelSizeY', hide: true}
+                ,{field: 'panelWayX', title: 'panelWayX', hide: true}
+                ,{field: 'panelWayY', title: 'panelWayY', hide: true}
+                ,{field: 'gerberName', title: 'gerberName', hide: true}
+                ,{field: 'gerberPath', title: 'gerberPath', hide: true}
+                // ,{field: 'gerberName',title: '文件名'}
+                // ,{field: 'pcbType',title: 'PCB类型'}
+                ,{fixed: 'right', title:'操作', toolbar: '#scmManaOrderT_tabbarS',width: 150}
+            ]]
+            ,done: function (res, curr, count) {
+
+            }
+        });
+    }
+    table.on('toolbar(sqeManaOrderT_tabStencil)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        if(obj.event === 'submit'){
+            var data = checkStatus.data;
+            var supplierContractNo = null;
+            for (var i=0;i<data.length;i++){
+                if (supplierContractNo == null){
+                    supplierContractNo = data[i].supplierContractNo;
+                } else {
+                    supplierContractNo += ',' + data[i].supplierContractNo;
+                }
+            }
+            layer.confirm('确认提交 ['+supplierContractNo+'] ?', function(index){
+                console.log(data);
+                admin.req({
+                    type: 'post',
+                    data: {'supplierContractNo':supplierContractNo,'orderId':data[0].orderId},
+                    url: setter.baseUrl+'sqe/stencilorder/submitByOt',
+                    success: function (data) {
+                        if (data.code == '0'){
+                            layer.alert("Stencil 提交成功！！");
+                            table.reload('sqeManaOrderT_tabStencil');
+                            layer.close(index);
+                        }
+                    }
+                });
+            });
         }
     });
     exports('sqeMana_order_together', {});
