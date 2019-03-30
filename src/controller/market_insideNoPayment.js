@@ -311,14 +311,14 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                 ,yes:function(index, layero){
                                     var printId;
                                     if (contractType == "1"){
-                                        printId = "quoteContract_AllA";
-                                    } else if (contractType == "2"){
                                         printId = "quoteContract_AllB";
+                                    } else if (contractType == "2"){
+                                        printId = "quoteContract_AllA";
                                     }
                                     layer.alert(printId);
-                                    window.location.reload();
                                     document.body.innerHTML=document.getElementById(printId).innerHTML;
                                     window.print();
+                                    window.location.reload();
                                 }
                                 // btn2: function(index, layero){}
                                 ,success: function (layero, index) {

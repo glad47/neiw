@@ -50,6 +50,7 @@
             ,setter = layui.setter
             ,admin = layui.admin
             ,form = layui.form
+            ,table = layui.table
             ,router = layui.router()
             ,search = router.search;
 
@@ -82,14 +83,15 @@
                         key: setter.usernameKeys
                         ,value:TabUsername
                     });
-                    //登入成功的提示与跳转
-                    layer.msg('登入成功', {
-                        offset: '15px'
-                        ,icon: 1
-                        ,time: 1000
-                    }, function(obj){
-                        location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
-                    });
+                      //登入成功的提示与跳转
+                      layer.msg('登入成功', {
+                          offset: '15px'
+                          ,icon: 1
+                          ,time: 1000
+                      }, function(obj){
+                          location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
+                          location.reload();
+                      });
                     // 登录成功保存用户名
                     layui.data('userInfo',{
                         key: 'uname',

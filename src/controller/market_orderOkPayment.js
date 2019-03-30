@@ -145,7 +145,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             })
         } else if(obj.event === 'del'){
             layer.confirm('真的删除订单号为［'+data.productNo+'］吗', function(index){
-
                 admin.req({
                     type: 'post',
                     url: setter.baseUrl+'market/quote/audit/delete'
@@ -326,6 +325,21 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 layui.table.reload('stencil_orderTab_ok_payment');
                 layer.close(index);
             })
+        } else if (obj.event === 'stencil-del') {
+            layer.confirm('还没接网上钢网订单的删除接口！！', function () {
+                // admin.req({
+                //     type: 'post',
+                //     url: setter.baseUrl+'market/quote/audit/delete'
+                //     ,data:{"ids":data.id}
+                //     ,done: function (res) {
+                //         layer.msg('删除成功');
+                //         table.reload('stencil_orderTab_ok_payment');
+                //     }
+                //     ,fail: function (res) {
+                //         layer.msg('服务器异常，稍后再试！');
+                //     }
+                // });
+            });
         }
     })
 
