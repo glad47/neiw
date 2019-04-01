@@ -401,20 +401,19 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     var lineId = data[0].id;   // 行id
                     var gerberName = data[0].gerberName;   // 原始资料
                     var gerberPath = data[0].gerberPath;   // 原始资料路径
-                    admin.req({
-                        type: 'post',
-                        data: {'quoteGerberName':gerberName,'quoteGerberPath':gerberPath,'id':lineId},
-                        url:  setter.baseUrl+'epc/pcborder/update',
-                        success: function (data) {
-                            layer.alert("原始资料已成功转为正式资料！");
-                            table.reload('epc_Tabpcb_ok_payment_order');
-                            var trigger = setTimeout(function () {
-                                layer.closeAll();
-                            }, 1000);
-                        }
+                    layer.confirm('确定要把原始资料转为正式资料', function () {
+                        admin.req({
+                            type: 'post',
+                            data: {'quoteGerberName':gerberName,'quoteGerberPath':gerberPath,'id':lineId},
+                            url:  setter.baseUrl+'epc/pcborder/update',
+                            success: function (data) {
+                                layer.alert("原始资料已成功转为正式资料！");
+                                table.reload('epc_Tabpcb_ok_payment_order');
+                            }
+                        });
                     });
                 } else if (data.length == 0) {
-                    layer.msg('最少选择一条数据！！！');
+                    layer.msg('请选择！');
                 } else if (data.length>1) {
                     layer.msg('最多只能选择一条数据！！！');
                 }
@@ -426,7 +425,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
         table.render({
             elem: '#epc_Tabstencil_ok_payment_order'
             ,url: setter.baseUrl+'epc/stencilorder/epcStencilOrderList'
-            ,toolbar: '#epc_Tabstencil_ok_payment_order'
+            ,toolbar: '#tbarIndcardS'
             ,cellMinWidth: 80
             ,id:"epc_Tabstencil_ok_payment_order"
             ,page: true
@@ -758,6 +757,38 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
         } else if (obj.event === 'supplier_update') {
             layer.msg('上传文件可能需要一定的时间，请稍后....');
         }
+    });
+
+    // 监听 stencil 头订单工具栏
+    //头工具栏事件
+    table.on('toolbar(epc_Tabstencil_ok_payment_order)', function(obj){
+        var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        switch(obj.event){
+            case 'fileyzz':
+                console.log('选择了'+data.length+'条数据！');
+                if (data.length==1) {
+                    var lineId = data[0].id;   // 行id
+                    var gerberName = data[0].gerberName;   // 原始资料
+                    var gerberPath = data[0].gerberPath;   // 原始资料路径+
+                    layer.confirm('确定要把原始资料转为正式资料？', function () {
+                        admin.req({
+                            type: 'post',
+                            data: {'quoteGerberName':gerberName,'quoteGerberPath':gerberPath,'id':lineId},
+                            url:  setter.baseUrl+'epc/stencilorder/update',
+                            success: function (data) {
+                                layer.alert("原始资料已成功转为正式资料！");
+                                table.reload('epc_Tabstencil_ok_payment_order');
+                            }
+                        });
+                    });
+                } else if (data.length == 0) {
+                    layer.msg('请选择！');
+                } else if (data.length>1) {
+                    layer.msg('最多只能选择一条数据！！！');
+                }
+                break;
+        };
     });
 
     var active = {

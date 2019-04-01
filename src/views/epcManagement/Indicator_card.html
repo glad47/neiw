@@ -95,7 +95,7 @@
                     {{ d.panelWayY || ''}}
                     {{ } }}
                 </script>
-                <!--头部工具栏-->
+                <!--pcb 头部工具栏-->
                 <script type="text/html" id="tbarIndcard">
                     <div class="layui-btn-container">
                         <button class="layui-btn layui-btn-sm" lay-event="fileyzz">(资料)原始==>正式</button>
@@ -164,6 +164,11 @@
             <!--钢网订单-->
             <div class="layui-tab-item">
                 <table class="layui-table" id="epc_Tabstencil_ok_payment_order" lay-filter="epc_Tabstencil_ok_payment_order"></table>
+                <!--pcb 头部工具栏-->
+                <script type="text/html" id="tbarIndcardS">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="fileyzz">(资料)原始==>正式</button>
+                    </div>
                 <script type="text/html" id="Tabtb-stencil-epc-indicatorCard-option">
 
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborderprocess:write") != -1){ }}

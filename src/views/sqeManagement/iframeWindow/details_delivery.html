@@ -11,7 +11,7 @@
             {{#  donePcsNumber = d.params.result.donePcsNumber }}
             {{#  deliveryOrderNo = d.params.result.deliveryOrderNo }}
             {{#  courierCompany = d.params.result.courierCompany }}
-            {{#  courierOrderNo = d.params.result.courierOrderNo }}
+            {{#  courierOrderNo = d.params.result.deliveryNo }}
         {{# } else { }}
             {{#  surplusPcsNumber = d.params.data.quantityPcs }}
         {{# } }}
@@ -48,7 +48,7 @@
                 </td>
                 <td>订单数量(PCS)</td>
                 <td id="orderPcsNumber">
-                    {{ d.params.data.quantityPcs || '' }}
+                    {{ d.params.data.quantityPcs || '0' }}
                 </td>
             </tr>
             <tr>
@@ -78,13 +78,13 @@
                 </td>
                 <td>未交数量(PCS)</td>
                 <td id="surplusPcsNumber">
-                    {{ surplusPcsNumber || '' }}
+                    {{ surplusPcsNumber || '0' }}
                 </td>
             </tr>
             <tr>
                 <td>送货单号</td>
                 <td>
-                    <input class="layui-input" type="number" name="deliveryOrderNo" value="{{ d.params.deliveryOrderNo || '' }}">
+                    <input class="layui-input" type="number" name="deliveryOrderNo" value="{{ deliveryOrderNo || '' }}">
                 </td>
                 <td>此次数量(PCS)</td>
                 <td>
@@ -110,6 +110,9 @@
                 var _this_val = $(this).val();
                 if (_this_val == "" || _this_val == null) {
                     _this_val = 0;
+                }
+                if (isNaN(orderPcsNumber)) {
+                    orderPcsNumber = 0;
                 }
                 var a = 0;                           // 订单PCS数量
                 var b = 0;                           // 已交PCS数量

@@ -43,7 +43,19 @@
             </div>
             <!--钢网订单-->
             <div class="layui-tab-item">
-                <table class="layui-table"></table>
+                <table class="layui-table" id="iqcIncom_auditorS" lay-filter="iqcIncom_auditorS"></table>
+                <script type="text/html" id="sqeMana_incoAuTbS">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="plrk">批量入库</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="innerLable">内标签</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="outLable">外标签</button>
+                    </div>
+                </script>
+                <script type="text/html" id="iqcManaIncau_tabbarS">
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="">包装</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="">工程</a>
+                </script>
             </div>
             <!--SMT订单-->
             <div class="layui-tab-item">

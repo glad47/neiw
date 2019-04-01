@@ -15,6 +15,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,element = layui.element;
     var $ = layui.jquery;
 
+    tabRenderPCB();
     // 全局变量
     var _public_val = {
         orderType: 1        //订单类型 （1 pcb 2钢网 3 贴片）
@@ -24,56 +25,60 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     element.on('tab(tab-planToger)', function(data){
         console.log(data.index);
         if (data.index === 0){
-            _public_val.orderType = 1;       //pcb
+            tabRenderPCB();
+            _public_val.orderType = 1;      //pcb
         } else if (data.index === 1){
             _public_val.orderType = 2;      //钢网
+            tabRenderStencil();
         } else if (data.index === 2){
             _public_val.orderType = 3;      //贴片
         }
     });
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
-    table.render({
-        elem: '#proMana_MantissaMana'
-        ,url: setter.baseUrl+'iqc/pcborder/mantissaManagement/list'
-        ,toolbar: "#ord_sqpManaPlan_tb"
-        ,cellMinWidth: 80
-        ,id: "proMana_MantissaMana"
-        ,page: true
-        ,parseData: function (res) {
-            return{
-                "code": 0,
-                "data": res.page.list,
-                "count": res.page.totalCount
+    function tabRenderPCB() {
+        table.render({
+            elem: '#proMana_MantissaMana'
+            ,url: setter.baseUrl+'iqc/pcborder/mantissaManagement/list'
+            ,toolbar: "#ord_sqpManaPlan_tb"
+            ,cellMinWidth: 80
+            ,id: "proMana_MantissaMana"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
             }
-        }
-        ,cols: [[
-            {type:'checkbox'}
-            ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}      // 1 ＝ 已指派  2= 已报价
-            ,{field: 'productNo', title: '聚谷型号', width: 124}
-            ,{field: '', title: '周期', width: 124}
-            ,{field: '', title: '摆放位置', width: 124}
-            ,{field: 'id',title: 'ID', hide: true}
-            ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
-            ,{field: 'deliveryTime',title: '交期', width: 110, templet: ' <a>{{ d.deliveryTime.substring(0,10) }}</a> '}
-            ,{field: 'supplierId', title: '供应商编号', width: 117}
-            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-            ,{field: 'orderPcsNumber', title: '订单数量(PCS)', width: 134}
-            ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
-            ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
-            ,{field: 'currPcsNumber', title: '送货数量', minWidth: 133}
-            ,{field: 'courierCompany', title: '快递公司', width: 124}
-            ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
-            ,{field: 'deliveryOrderNo', title: '送货单号', width: 117}
-            ,{field: 'deliveryNo', title: '交货批次', width: 144}
-            ,{field: 'gmtModified', title: '修改时间'}
-            ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#iqcManaIncau_tabbar',width: 160}
-        ]]
-        ,done: function (res, curr, count) {
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}      // 1 ＝ 已指派  2= 已报价
+                ,{field: 'productNo', title: '聚谷型号', width: 124}
+                ,{field: '', title: '周期', width: 124}
+                ,{field: '', title: '摆放位置', width: 124}
+                ,{field: 'id',title: 'ID', hide: true}
+                ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
+                ,{field: 'deliveryTime',title: '交期', width: 110, templet: ' <a>{{ d.deliveryTime.substring(0,10) }}</a> '}
+                ,{field: 'supplierId', title: '供应商编号', width: 117}
+                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
+                ,{field: 'orderPcsNumber', title: '订单数量(PCS)', width: 134}
+                ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
+                ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
+                ,{field: 'currPcsNumber', title: '送货数量', minWidth: 133}
+                ,{field: 'courierCompany', title: '快递公司', width: 124}
+                ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
+                ,{field: 'deliveryOrderNo', title: '送货单号', width: 117}
+                ,{field: 'deliveryNo', title: '交货批次', width: 144}
+                ,{field: 'gmtModified', title: '修改时间'}
+                ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
+                ,{fixed: 'right', title:'操作', toolbar: '#iqcManaIncau_tabbar',width: 160}
+            ]]
+            ,done: function (res, curr, count) {
 
-        }
-    });
+            }
+        });
+    }
     table.on('toolbar(proMana_MantissaMana)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var Pdata = {data:{},result:{}};     // data为表格数据/result为请求到的数据
@@ -180,5 +185,50 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('查看订单协同');
         }
     });
+
+    //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 钢网订单
+    function tabRenderStencil() {
+        table.render({
+            elem: '#proMana_MantissaManaS'
+            ,url: setter.baseUrl+'iqc/stencilorder/mantissaManagement/list'
+            ,toolbar: "#ord_sqpManaPlan_tbS"
+            ,cellMinWidth: 80
+            ,id: "proMana_MantissaManaS"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
+            }
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}      // 1 ＝ 已指派  2= 已报价
+                ,{field: 'productNo', title: '聚谷型号', width: 124}
+                ,{field: '', title: '周期', width: 124}
+                ,{field: '', title: '摆放位置', width: 124}
+                ,{field: 'id',title: 'ID', hide: true}
+                ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
+                ,{field: 'deliveryTime',title: '交期', width: 110, templet: ' <a>{{ d.deliveryTime.substring(0,10) }}</a> '}
+                ,{field: 'supplierId', title: '供应商编号', width: 117}
+                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
+                ,{field: 'orderPcsNumber', title: '订单数量(PCS)', width: 134}
+                ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
+                ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
+                ,{field: 'currPcsNumber', title: '送货数量', minWidth: 133}
+                ,{field: 'courierCompany', title: '快递公司', width: 124}
+                ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
+                ,{field: 'deliveryOrderNo', title: '送货单号', width: 117}
+                ,{field: 'deliveryNo', title: '交货批次', width: 144}
+                ,{field: 'gmtModified', title: '修改时间'}
+                ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
+                ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbarS',width: 160}
+            ]]
+            ,done: function (res, curr, count) {
+
+            }
+        });
+    }
     exports('proMana_mantissa_management', {});
 });

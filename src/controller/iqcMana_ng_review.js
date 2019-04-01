@@ -15,6 +15,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,element = layui.element;
     var $ = layui.jquery;
 
+    tabRenderPCB();
     // 全局变量
     var _public_val = {
         orderType: 1        //订单类型 （1 pcb 2钢网 3 贴片）
@@ -25,52 +26,56 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         console.log(data.index);
         if (data.index === 0){
             _public_val.orderType = 1;       //pcb
+            tabRenderPCB();
         } else if (data.index === 1){
             _public_val.orderType = 2;      //钢网
+            tabRenderStencil();
         } else if (data.index === 2){
             _public_val.orderType = 3;      //贴片
         }
     });
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
-    table.render({
-        elem: '#iqcMana_ngReview'
-        ,url: setter.baseUrl+'iqc/pcborder/ngReview/list'
-        ,toolbar: "#ord_sqpManaPlan_tb"
-        ,cellMinWidth: 80
-        ,id: "iqcMana_ngReview"
-        ,page: true
-        ,parseData: function (res) {
-            return{
-                "code": 0,
-                "data": res.page.list,
-                "count": res.page.totalCount
+    function tabRenderPCB() {
+        table.render({
+            elem: '#iqcMana_ngReview'
+            ,url: setter.baseUrl+'iqc/pcborder/ngReview/list'
+            ,toolbar: "#ord_sqpManaPlan_tb"
+            ,cellMinWidth: 80
+            ,id: "iqcMana_ngReview"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
             }
-        }
-        ,cols: [[
-            {type:'checkbox'}
-            ,{field: 'status',title: '状态', width: 110}      // 1 ＝ 待报价
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态', width: 110}      // 1 ＝ 待报价
 
-            ,{field: 'orderPcsNumber',title: '订单PCS数', minWidth: 110}
-            ,{field: 'donePcsNumber',title: '已交PCS数', minWidth: 110}
-            ,{field: 'surplusPcsNumber',title: '未交PCS数', minWidth: 110}
-            ,{field: 'failPcsNumber',title: '不合格PCS数', minWidth: 110}
-            ,{field: 'currPcsNumber',title: '当前PCS数', minWidth: 110}
-            ,{field: 'totalPcsNumber',title: '总PCS数', minWidth: 110}
-            ,{field: 'deliveryNo',title: '交货批次', minWidth: 110}
-            ,{field: 'deliveryTime',title: '交期', minWidth: 110}
-            ,{field: 'productNo',title: 'P/N', minWidth: 110}
-            ,{field: 'courierCompany',title: '快递公司', minWidth: 110}
-            ,{field: 'courierOrderNo',title: '快递单号', minWidth: 110}
-            ,{field: 'pcbName',title: '聚谷产品型号', minWidth: 110}
-            ,{field: 'supplierContractNo',title: '供应商合同', minWidth: 140}
-            ,{field: 'supplierId',title: '供应商id', hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#iqcManaNgveiw_tabbar',width: 150}
-        ]]
-        ,done: function (res, curr, count) {
+                ,{field: 'orderPcsNumber',title: '订单PCS数', minWidth: 110}
+                ,{field: 'donePcsNumber',title: '已交PCS数', minWidth: 110}
+                ,{field: 'surplusPcsNumber',title: '未交PCS数', minWidth: 110}
+                ,{field: 'failPcsNumber',title: '不合格PCS数', minWidth: 110}
+                ,{field: 'currPcsNumber',title: '当前PCS数', minWidth: 110}
+                ,{field: 'totalPcsNumber',title: '总PCS数', minWidth: 110}
+                ,{field: 'deliveryNo',title: '交货批次', minWidth: 110}
+                ,{field: 'deliveryTime',title: '交期', minWidth: 110}
+                ,{field: 'productNo',title: 'P/N', minWidth: 110}
+                ,{field: 'courierCompany',title: '快递公司', minWidth: 110}
+                ,{field: 'courierOrderNo',title: '快递单号', minWidth: 110}
+                ,{field: 'pcbName',title: '聚谷产品型号', minWidth: 110}
+                ,{field: 'supplierContractNo',title: '供应商合同', minWidth: 140}
+                ,{field: 'supplierId',title: '供应商id', hide: true}
+                ,{fixed: 'right', title:'操作', toolbar: '#iqcManaNgveiw_tabbar',width: 150}
+            ]]
+            ,done: function (res, curr, count) {
 
-        }
-    });
+            }
+        });
+    }
     table.on('toolbar(iqcMana_ngReview)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var Pdata = {data:{},result:{}};     // data为表格数据/result为请求到的数据
@@ -177,5 +182,47 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('查看订单协同');
         }
     });
+
+    //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ Stencil 钢网 订单
+    function tabRenderStencil() {
+        table.render({
+            elem: '#iqcMana_ngReviewS'
+            ,url: setter.baseUrl+'iqc/stencilorder/ngReview/list'
+            ,toolbar: "#ord_sqpManaPlan_tbS"
+            ,cellMinWidth: 80
+            ,id: "iqcMana_ngReviewS"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
+            }
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态', width: 110}      // 1 ＝ 待报价
+
+                ,{field: 'orderPcsNumber',title: '订单PCS数', minWidth: 110}
+                ,{field: 'donePcsNumber',title: '已交PCS数', minWidth: 110}
+                ,{field: 'surplusPcsNumber',title: '未交PCS数', minWidth: 110}
+                ,{field: 'failPcsNumber',title: '不合格PCS数', minWidth: 110}
+                ,{field: 'currPcsNumber',title: '当前PCS数', minWidth: 110}
+                ,{field: 'totalPcsNumber',title: '总PCS数', minWidth: 110}
+                ,{field: 'deliveryNo',title: '交货批次', minWidth: 110}
+                ,{field: 'deliveryTime',title: '交期', minWidth: 110}
+                ,{field: 'productNo',title: 'P/N', minWidth: 110}
+                ,{field: 'courierCompany',title: '快递公司', minWidth: 110}
+                ,{field: 'courierOrderNo',title: '快递单号', minWidth: 110}
+                ,{field: 'pcbName',title: '聚谷产品型号', minWidth: 110}
+                ,{field: 'supplierContractNo',title: '供应商合同', minWidth: 140}
+                ,{field: 'supplierId',title: '供应商id', hide: true}
+                ,{fixed: 'right', title:'操作', toolbar: '#iqcManaNgveiw_tabbarS',width: 150}
+            ]]
+            ,done: function (res, curr, count) {
+
+            }
+        });
+    }
     exports('iqcMana_ng_review', {});
 });

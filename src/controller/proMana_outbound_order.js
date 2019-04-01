@@ -15,6 +15,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,element = layui.element;
     var $ = layui.jquery;
 
+    tabRenderPCB();
     // 全局变量
     var _public_val = {
         orderType: 1        //订单类型 （1 pcb 2钢网 3 贴片）
@@ -24,8 +25,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     element.on('tab(tab-planToger)', function(data){
         console.log(data.index);
         if (data.index === 0){
+            tabRenderPCB();
             _public_val.orderType = 1;       //pcb
         } else if (data.index === 1){
+            tabRenderStencil();
             _public_val.orderType = 2;      //钢网
         } else if (data.index === 2){
             _public_val.orderType = 3;      //贴片
@@ -33,40 +36,42 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     });
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
-    table.render({
-        elem: '#iqcMana_outBound'
-        ,url: setter.baseUrl+'iqc/pcborder/outboundOrder/list'
-        ,toolbar: "#ord_sqpManaPlan_tb"
-        ,cellMinWidth: 80
-        ,id: "iqcMana_outBound"
-        ,page: true
-        ,parseData: function (res) {
-            return{
-                "code": 0,
-                "data": res.page.list,
-                "count": res.page.totalCount
+    function tabRenderPCB() {
+        table.render({
+            elem: '#iqcMana_outBound'
+            ,url: setter.baseUrl+'iqc/pcborder/outboundOrder/list'
+            ,toolbar: "#ord_sqpManaPlan_tb"
+            ,cellMinWidth: 80
+            ,id: "iqcMana_outBound"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
             }
-        }
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
-        ,cols: [[
-            {type:'checkbox'}
-            ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status'}      // 1 ＝ 待报价
-            ,{field: 'invoiceNo',title: '合同号', minWidth: 165}
-            ,{field: 'productNo',title: '聚谷型号', minWidth: 141}
-            ,{field: 'deliveryTime',title: '交期'}
-            ,{field: 'quantityPcs',title: '订单PCS数'}
-            ,{field: 'finishPcsNumber',title: '已交PCS数', templet: '<div>{{ d.finishPcsNumber || 0 }}</div>'}
-            ,{field: 'courierCompany',title: '快递公司'}
-            ,{field: 'courierOrderNo',title: '快递单号'}
-            ,{field: 'pcbName',title: '聚谷产品型号', width: 132}
-            ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
-        ]]
-        ,done: function (res, curr, count) {
+            ,where: {
+                access_token: layui.data('layuiAdmin').access_token
+            }
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status'}      // 1 ＝ 待报价
+                ,{field: 'invoiceNo',title: '合同号', minWidth: 165}
+                ,{field: 'productNo',title: '聚谷型号', minWidth: 141}
+                ,{field: 'deliveryTime',title: '交期'}
+                ,{field: 'quantityPcs',title: '订单PCS数'}
+                ,{field: 'finishPcsNumber',title: '已交PCS数', templet: '<div>{{ d.finishPcsNumber || 0 }}</div>'}
+                ,{field: 'courierCompany',title: '快递公司'}
+                ,{field: 'courierOrderNo',title: '快递单号'}
+                ,{field: 'pcbName',title: '聚谷产品型号', width: 132}
+                ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
+            ]]
+            ,done: function (res, curr, count) {
 
-        }
-    });
+            }
+        });
+    }
     table.on('toolbar(iqcMana_outBound)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
@@ -206,5 +211,43 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
         }
     });
+
+    //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ Stencil 钢网订单
+    function tabRenderStencil() {
+        table.render({
+            elem: '#iqcMana_outBoundS'
+            ,url: setter.baseUrl+'iqc/stencilorder/outboundOrder/list'
+            ,toolbar: "#ord_sqpManaPlan_tb"
+            ,cellMinWidth: 80
+            ,id: "iqcMana_outBoundS"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
+            }
+            ,where: {
+                access_token: layui.data('layuiAdmin').access_token
+            }
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status'}      // 1 ＝ 待报价
+                ,{field: 'invoiceNo',title: '合同号', minWidth: 165}
+                ,{field: 'productNo',title: '聚谷型号', minWidth: 141}
+                ,{field: 'deliveryTime',title: '交期'}
+                ,{field: 'quantityPcs',title: '订单PCS数'}
+                ,{field: 'finishPcsNumber',title: '已交PCS数', templet: '<div>{{ d.finishPcsNumber || 0 }}</div>'}
+                ,{field: 'courierCompany',title: '快递公司'}
+                ,{field: 'courierOrderNo',title: '快递单号'}
+                ,{field: 'pcbName',title: '聚谷产品型号', width: 132}
+                ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
+            ]]
+            ,done: function (res, curr, count) {
+
+            }
+        });
+    }
     exports('proMana_outbound_order', {});
 });
