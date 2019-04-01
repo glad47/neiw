@@ -110,13 +110,13 @@
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborder:update") != -1 ){ }}
                     <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">审核</a>
                     {{#  } }}
-                    <a class="layui-btn layui-btn-xs" lay-event="supplier_update">上传</a>
+                    <a class="layui-btn layui-btn-xs pcbReupload" lay-event="supplier_update" id="pcbReUpload{{ d.id }}">上传</a>
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborderprocess:infos") != -1 ){ }}
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="supplier_search">查看</a>
                     {{#  } }}
 
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborder:delete") != -1 ){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">作废</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="back">退回</a>
                     {{#  } }}
                 </script>
                 <script type="text/html" id="Tabtb-pcb-epc-indicatorCard-status">
@@ -173,13 +173,13 @@
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborder:update") != -1 ){ }}
                     <a class="layui-btn layui-btn-xs" lay-event="edit">审核信息</a>
                     {{#  } }}
-
+                    <a class="layui-btn layui-btn-xs stencilReupload" lay-event="supplier_update" id="stencilReUpload{{ d.id }}">上传</a>
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborderprocess:infos") != -1 ){ }}
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                     {{#  } }}
 
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:pcborder:delete") != -1 ){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">作废</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="back">退回</a>
                     {{#  } }}
                 </script>
                 <script type="text/thml" id="quote_gerber_fileS">

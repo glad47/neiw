@@ -47,7 +47,9 @@
       <label class="layui-form-label">描述</label>
       <div class="layui-input-inline" style="width: 400px;">
         <script type="text/html" template>
-          <input type="text" name="articleDescribe" value="{{ d.params.articleDescribe || '' }}" lay-verify="required" placeholder="请输入文章描述" autocomplete="off" class="layui-input">
+          <textarea type="text" name="articleDescribe" lay-verify="required" placeholder="请输入文章描述" autocomplete="off" class="layui-textarea">
+            {{ d.params.articleDescribe || '' }}
+          </textarea>
         </script>
       </div>
     </div>

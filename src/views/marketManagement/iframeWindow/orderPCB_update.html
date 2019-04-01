@@ -474,7 +474,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Total：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="total" value="{{ d.params.subtotal || '' }}" autocomplete="off" class="layui-input" readonly>
+                    <input type="text" name="subtotal" value="{{ d.params.subtotal || '' }}" autocomplete="off" class="layui-input" readonly>
                 </div>
             </div>
         </div>
@@ -550,8 +550,7 @@
                 q_params.shippingPrice = parseFloat(postFee);
                 q_params.pcbCost = parseFloat(q_params.pcbCost);
                 q_params.totalPrice = parseFloat(q_params.shippingPrice+q_params.pcbCost).toFixed(2);
-                console.log(q_params);
-                $("input[name='total']").val(q_params.totalPrice);      //总价
+                $("input[name='subtotal']").val(q_params.totalPrice);      //总价
             }
         });
     }

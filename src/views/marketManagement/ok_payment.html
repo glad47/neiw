@@ -202,6 +202,9 @@
                     {{#  } }}
                     <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>-->
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="info_pact">合同</a>
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_audit:delete") != -1 && d.isLock != 3){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="stencil-del">删除</a>
+                    {{#  } }}
                 </script>
             </div>
 
@@ -214,6 +217,7 @@
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:assembly_ok_payment:submit") != -1){ }}
                     {{# if(d.isLock != 3) { }}
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stencil-submit">提交</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="stencil-del">删除</a>
                     {{# } }}
                     {{# if(d.isLock == 3) {}}
                     <a class="layui-btn layui-btn-normal layui-btn-xs" >已提交</a>

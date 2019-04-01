@@ -12,6 +12,14 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
         var uploadCommon = layui.uploadCommon;
 
     var requestData = [];
+    // pcb表格对象
+    var tabPCBObj;
+    var tabStencilObj;
+    // pcb文件重新上传参数
+    var pcbReUploadData = {
+        id: null,
+        access_token: layui.data('layuiAdmin').access_token
+    };
     tabRenderPCB();
     // 全局变量
     var defVal = {
@@ -142,6 +150,47 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     })
                 }
                 pcb_gerberUpload();
+                tabPCBObj = res.data;
+                layui.each($(".pcbReupload"),function(index, elem){
+                    var _this_id = elem.id.substring(11);
+                    var fileName;
+                    var uploadInsts = upload.render({
+                        elem: elem //绑定元素
+                        ,url: setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token
+                        ,field: 'file'
+                        ,data: {id:_this_id}
+                        ,accept: 'file'
+                        ,exts: 'zip|rar|7z'
+                        ,before: function (obj) {
+                            obj.preview(function (index, file, result) {
+                                fileName = file.name;   //文件名
+                            });
+                        }
+                        ,done: function(res){
+                            var url = res.url;
+                            var r = /\[(.+?)\]/g;
+                            var filePatha = url.match(r);
+                            var filePath = filePatha[0].replace(/\[|]/g,'');    //去除前后两端的中括号
+                            var saveObj = {
+                                data: {'quoteGerberName':fileName,'quoteGerberPath':filePath,'id':_this_id,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
+                                url: setter.baseUrl+'epc/pcborder/update',      // 将字段保存到数据库的接口
+                                retab: 'epc_Tabpcb_ok_payment_order'            // 表格对象，请求成功后重新渲染表格
+                            };
+                            admin.req({
+                               type: 'post',
+                               url: saveObj.url,
+                                data: saveObj.data,
+                                success: function () {
+                                    layer.alert("更改正式资料成功");
+                                    table.reload('epc_Tabpcb_ok_payment_order');
+                                }
+                            });
+                        }
+                        ,error: function(){
+                            layer.msg("文件上传失败！");
+                        }
+                    });
+                });
             }
         });
     }
@@ -238,22 +287,22 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     }
                 });
             }
-        } else if(obj.event === 'del'){
-            layer.confirm('真的删除订单号为［'+data.productNo+'］吗', function(index){
-
+        } else if(obj.event === 'back'){
+            layer.confirm('真的退回合同号为［'+data.invoiceNo+'］吗', function(index){
+                var contractNos = data.invoiceNo;
                 admin.req({
                     type: 'post',
-                    url: setter.baseUrl+'epc/pcborder/delete'
-                    ,data:{"ids":data.id}
+                    url: setter.baseUrl+'epc/pcborder/backByIo'    // 需要修改成退回的接口
+                    ,data:{contractNos:contractNos}
                     ,done: function (res) {
-                        layer.msg('删除成功')
-                        obj.del();
+                        layer.msg('成功退回');
+                        table.reload('epc_Tabpcb_ok_payment_order');
+                        layer.close(index);
                     }
-                    ,fail: function (res) { 
+                    ,fail: function (res) {
                         layer.msg('服务器异常，稍后再试！');
                     }
                 })
-                layer.close(index);
             });
         } else if(obj.event === 'epc-write-indicator'){
             admin.popup({
@@ -335,12 +384,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             } else {
                 layer.alert('请先上传正式资料！！！');
             }
-        } else if (obj.event === 'pcb-sendback') {
-            layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
-                layer.msg('退回'+data.productNo);
-                layui.table.reload('or_Tabpcb_no_payment');
-                layer.close(index);
-            })
+        } else if (obj.event == 'supplier_update') {
+            layer.msg('上传文件可能需要一定的时间，请稍后....');
         }
     });
 
@@ -471,7 +516,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'nofCore', title: 'NofCore', align:'center', width: 80,hide: true}
                 ,{field:'nofPp', title: 'NofPp', align:'center', width: 80,hide: true}
                 ,{field:'nofHoles', title: 'NofHoles', align:'center', width: 90,hide: true}
-                ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#Tabtb-stencil-epc-indicatorCard-option'}
+                ,{title: '操作', width: 270, align:'center', fixed: 'right', toolbar: '#Tabtb-stencil-epc-indicatorCard-option'}
             ]]
             ,done : function (res, curr, count) {
                 //手机端
@@ -484,6 +529,47 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     })
                 }
                 stencil_gerberUpload();
+                tabStencilObj = res.data;
+                layui.each($(".stencilReupload"),function(index, elem){
+                    var _this_id = elem.id.substring(15);
+                    var fileName;
+                    var uploadInsts = upload.render({
+                        elem: elem //绑定元素
+                        ,url: setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token
+                        ,field: 'file'
+                        ,data: {id:_this_id}
+                        ,accept: 'file'
+                        ,exts: 'zip|rar|7z'
+                        ,before: function (obj) {
+                            obj.preview(function (index, file, result) {
+                                fileName = file.name;   //文件名
+                            });
+                        }
+                        ,done: function(res){
+                            var url = res.url;
+                            var r = /\[(.+?)\]/g;
+                            var filePatha = url.match(r);
+                            var filePath = filePatha[0].replace(/\[|]/g,'');    //去除前后两端的中括号
+                            var saveObj = {
+                                data: {'quoteGerberName':fileName,'quoteGerberPath':filePath,'id':_this_id,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
+                                url: setter.baseUrl+'epc/stencilorder/update',      // 将字段保存到数据库的接口
+                                retab: 'epc_Tabstencil_ok_payment_order'            // 表格对象，请求成功后重新渲染表格
+                            };
+                            admin.req({
+                                type: 'post',
+                                url: saveObj.url,
+                                data: saveObj.data,
+                                success: function () {
+                                    layer.alert("更改正式资料成功");
+                                    table.reload(saveObj.retab);
+                                }
+                            });
+                        }
+                        ,error: function(){
+                            layer.msg("文件上传失败！");
+                        }
+                    });
+                });
             }
             });
     }
@@ -567,16 +653,15 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     }
                 });
             }
-        } else if(obj.event === 'del'){
-            layer.confirm('真的删除订单号为［'+data.productNo+'］吗', function(index){
-
+        } else if(obj.event === 'back'){
+            layer.confirm('真的退回钢网订单号为［'+data.invoiceNo+'］吗', function(index){
                 admin.req({
                     type: 'post',
-                    url: setter.baseUrl+'epc/stencilorder/delete'
-                    ,data:{"ids":data.id}
+                    url: setter.baseUrl+'epc/stencilorder/backByAo'       // 需要修改成退回的接口
+                    ,data:{contractNos:data.invoiceNo}
                     ,done: function (res) {
-                        layer.msg('删除成功')
-                        obj.del();
+                        layer.msg('成功退回')
+                        table.reload('epc_Tabstencil_ok_payment_order');
                     }
                     ,fail: function (res) {
                         layer.msg('服务器异常，稍后再试！');
@@ -670,6 +755,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 layui.table.reload('epc_Tabstencil_ok_payment_order');
                 layer.close(index);
             })
+        } else if (obj.event === 'supplier_update') {
+            layer.msg('上传文件可能需要一定的时间，请稍后....');
         }
     });
 

@@ -148,31 +148,39 @@
             <!--钢网订单-->
             <div class="layui-tab-item" id="stencil-orders">
                 <table class="layui-table" id="stencil_orderTab_no_payment" lay-filter="stencil_orderTab_no_payment"></table>
-                <!--钢网订单表格操作栏-->
-                <script type="text/html" id="Tabtb-smt-market-noPayment-option">
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:submit") != -1){ }}
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stencil-submit">提交</a>
-                    {{#  } }}
-                    <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>-->
-                    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:delete") != -1){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                    {{#  } }}
-                </script>
-            </div>
-
-            <!--SMT订单-->
-            <div class="layui-tab-item">
-                <table class="layui-table" id="smt_orderTab_no_payment" lay-filter="smt_orderTab_no_payment"></table>
-                <!--SMT订单表格操作栏-->
+                <!--Stencil 订单表格操作栏-->
                 <script type="text/html" id="Tabtb-stencil-market-noPayment-option">
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:submit") != -1){ }}
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="smt-submit">提交</a>
                     {{#  } }}
                     <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="smt-sendback">锁定</a>-->
+                    {{# if(d.status === 2){ }}
+                    <a class="layui-btn layui-btn-xs" lay-event="edit" style="pointer-events: none;cursor: not-allowed;background-color: silver;">修改</a>
+                    {{# } else { }}
                     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+                    {{# } }}
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:delete") != -1){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                    {{#  } }}
+                </script>
+            </div>
+
+            <!--SMT 订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table" id="smt_orderTab_no_payment" lay-filter="smt_orderTab_no_payment"></table>
+                <!--smt订单表格操作栏-->
+                <script type="text/html" id="Tabtb-smt-market-noPayment-option">
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:submit") != -1){ }}
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stencil-submit">提交</a>
+                    {{#  } }}
+                    <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>-->
+                    {{# if(d.status === 2){ }}
+                    <a class="layui-btn layui-btn-xs" lay-event="edit" style="pointer-events: none;cursor: not-allowed;background-color: silver;">修改</a>
+                    {{# } else { }}
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+                    {{# } }}
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:delete") != -1){ }}
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                     {{#  } }}
