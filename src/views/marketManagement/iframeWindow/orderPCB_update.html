@@ -207,7 +207,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">I/L Cop'：</label>
                 <div class="layui-input-block">
-                    <select name="heatConductivity">
+                    <select name="innerLayerCopper">
                         <option value="none"  {{ d.params.innerLayerCopper == 'none' ? 'selected' : '' }}>none</option>
                         <option value="1oz"  {{ d.params.innerLayerCopper == '1oz' ? 'selected' : '' }}>1oz</option>
                         <option value="2oz"  {{ d.params.innerLayerCopper == '2oz' ? 'selected' : '' }}>2oz</option>
@@ -419,7 +419,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Eng' Fee：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="engfee" value="{{ d.params.engineeringFee || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="engineeringFee" value="{{ d.params.engineeringFee || '' }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
@@ -446,7 +446,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Tool' fee：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="toolingFee" value="{{ d.params.toolingFee || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="toolingFee" value="{{ d.params.toolingFee || '0' }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
@@ -468,7 +468,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Post fee：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="postFee" value="{{ d.params.postFee || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="postFee" value="{{ d.params.postFee || '0' }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
@@ -518,14 +518,15 @@
                 var a = 0;
                 $.each(cobj, function (i, val) {
                     var _val = parseFloat(val);
-                    if (_val == "" || _val == null || isNaN(_val)) {
-                        obj[i] = 0;
-                    } else {
-                        // q_params.pcbCost = parseFloat(q_params.pcbCost+_val).toFixed(2);
-                        a += _val;
-                    }
+                    // if (_val == "" || _val == null || isNaN(_val)) {
+                    //     obj[i] = 0;
+                    // } else {
+                    //     // q_params.pcbCost = parseFloat(q_params.pcbCost+_val).toFixed(2);
+                    //     a += _val;
+                    // }
+                    a += _val;
                 });
-                q_params.pcbCost = a;
+                q_params.pcbCost = a.toFixed(2);
                 $("input[name='pcbCost']").val(q_params.pcbCost);       // 小计
                 console.log("pcbCost:"+q_params.pcbCost);
                 set_qObj();
@@ -536,17 +537,26 @@
                    q_params[i] = 0;
                 });
                 var _quote_obj = new Object();
-                _quote_obj.engfee = parseFloat($("input[name='engfee']").val());
+                _quote_obj.engineeringFee = $("input[name='engineeringFee']").val();
                 _quote_obj.boardFee = parseFloat($("input[name='boardFee']").val());
                 _quote_obj.testCostFee = parseFloat($("input[name='testCostFee']").val());
                 _quote_obj.overworkFee = parseFloat($("input[name='overworkFee']").val());
                 _quote_obj.toolingFee = parseFloat($("input[name='toolingFee']").val());
+                console.log(_quote_obj);
+                for (var key in _quote_obj) {
+                    if (isNaN(_quote_obj[key])) {
+                        _quote_obj[key] = 0;
+                    }
+                } 
                 return _quote_obj;
             }
 
             // 修改表单对象-->回传到页面
             function set_qObj() {
                 var postFee = $("input[name='postFee']").val();
+                if (isNaN(postFee) || postFee == "") {
+                    postFee = 0;
+                }
                 q_params.shippingPrice = parseFloat(postFee);
                 q_params.pcbCost = parseFloat(q_params.pcbCost);
                 q_params.totalPrice = parseFloat(q_params.shippingPrice+q_params.pcbCost).toFixed(2);

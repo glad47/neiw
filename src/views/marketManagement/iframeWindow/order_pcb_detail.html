@@ -2,8 +2,14 @@
 <html lang="en">
 <div class="layui-fluid">
     <!--<a class="layui-btn" lay-event="edit">查看合同</a>-->
-    <div class="order_review_search">
-        <script type="text/html" template>
+    <script type="text/html" template lay-done="layui.data.done(d);">
+        <div class="printOrderPcb-btnGrop">
+            <button class="layui-btn layui-btn-sm printBtn" style="float: right;">打印</button>
+        </div>
+    <div class="order_review_search printorder_review_search" id="pcborderPrint">
+        <div class="searchPcb-header" style="text-align: center;margin-bottom: 17px;">
+            <h2>深圳聚谷科技有限公司-生产通知单</h2>
+        </div>
             <table class="layui-table" lay-skin="row" lay-even="">
                 <colgroup>
                     <col width="100">
@@ -13,21 +19,21 @@
                 </colgroup>
                 <tbody>
                 <tr>
-                    <td>Layers:</td>
+                    <td>聚谷型号:</td>
+                    <td>{{ d.params.productNo || ''}}</td>
+                    <td>Gerber文件:</td>
+                    <td>{{ d.params.gerberName || ''}}</td>
+                </tr>
+                <tr>
+                    <td>层数:</td>
                     <td>{{ d.params.layerNum || ''}}</td>
-                    <td>Type:</td>
+                    <td>类型:</td>
                     <td>{{ d.params.pcbType || ''}}</td>
                 </tr>
                 <tr>
-                    <td>Gerber File:</td>
-                    <td>{{ d.params.gerberName || ''}}</td>
-                    <td>Product No:</td>
-                    <td>{{ d.params.productNo || ''}}</td>
-                </tr>
-                <tr>
-                    <td>Thickness:</td>
+                    <td>成品板厚:</td>
                     <td>{{ d.params.finishThickness || ''}}</td>
-                    <td>PCB Size:</td>
+                    <td>出货尺寸:</td>
                     <td>
                         {{# if(d.params.panelWayX == null){}}
                             {{ d.params.dimensionsX || ''}} * {{ d.params.dimensionsY || ''}} mm/1
@@ -38,56 +44,76 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Material:</td>
+                    <td>材料:</td>
                     <td>{{ d.params.pcbType || ''}},TG:{{ d.params.tg }},{{ d.params.cti || ''}}</td>
-                    <td>pthCopper:</td>
+                    <td>孔铜:</td>
                     <td>{{ d.params.pthCopper }}</td>
                 </tr>
                 <tr>
                     <td>BGA Szie:</td>
                     <td>{{ d.params.bgaSize || ''}} </td>
-                    <td>Min Hole Size:</td>
+                    <td>最小孔:</td>
                     <td>{{ d.params.minHoleSize }}</td>
                 </tr>
                 <tr>
-                    <td>Inner Finished Copper:</td>
+                    <td>内层铜厚:</td>
                     <td>{{ d.params.innerLayerCopper || ''}}</td>
-                    <td>Outer Finished Copper:</td>
+                    <td>外层铜厚:</td>
                     <td>{{ d.params.outerLayerCopper || ''}}</td>
                 </tr>
                 <tr>
-                    <td>Solder Mask Color:</td>
+                    <td>阻焊颜色:</td>
                     <td>{{ d.params.solderMaskTopColor || ''}}</td>
-                    <td>Silkscreen Color:</td>
+                    <td>字符颜色:</td>
                     <td>{{ d.params.silkScreenTopColor || ''}}</td>
                 </tr>
                 <tr>
-                    <td>Surface Finish:</td>
+                    <td>表面处理:</td>
                     <td>{{ d.params.surfaceFinish || ''}}</td>
-                    <td>Test Tooling:</td>
-                    <td>{{ d.params.surfaceFinish || ''}}</td>
+                    <td>测试方式:</td>
+                    <td>
+                        {{# var testWay }}
+                        {{# if(d.params.testPointType == '1'){testWay = '飞针'}else{testWay='测试架'} }}
+                        {{ testWay || '' }}
+                    </td>
                 </tr>
 
                 <tr>
-                    <td>Blind Holes:</td>
-                    <td>{{ d.params.blindHoles || 'No'}}</td>
-                    <td>EdgePlated:</td>
+                    <td>盲孔:</td>
+                    <td>
+                        {{# if(d.params.blindHoles == '1') {d.params.blindHoles = 'yes'}else{d.params.blindHoles = 'no'} }}
+                        {{ d.params.blindHoles || ''}}
+                    </td>
+                    <td>金属包边:</td>
+                        {{# if(d.params.edgePlated == '1') {d.params.edgePlated = 'yes'}else{d.params.edgePlated = 'no'} }}
                     <td>{{ d.params.edgePlated || 'No'}}</td>
                 </tr>
                 <tr>
-                    <td>halfHoleLated:</td>
-                    <td>{{ d.params.halfHoleLated || 'No'}}</td>
-                    <td>Impeance:</td>
-                    <td>{{ d.params.contrlImpeance || 'No'}}</td>
+                    <td>半孔:</td>
+                    <td>
+                        {{# if(d.params.halfHoleLated == '1') {d.params.halfHoleLated = 'yes'}else{d.params.halfHoleLated = 'no'} }}
+                        {{ d.params.halfHoleLated || 'No'}}
+                    </td>
+                    <td>阻抗</td>
+                    <td>
+                        {{# if(d.params.contrlImpeance == '1') {d.params.contrlImpeance = 'yes'}else{d.params.contrlImpeance = 'no'} }}
+                        {{ d.params.contrlImpeance || 'No'}}
+                    </td>
                 </tr>
                 <tr>
-                    <td>BuriedHoles:</td>
-                    <td>{{ d.params.buriedHoles || 'No'}}</td>
-                    <td>Carbon:</td>
-                    <td>{{ d.params.carbon || 'No'}}</td>
+                    <td>埋孔:</td>
+                    <td>
+                        {{# if(d.params.buriedHoles == '1') {d.params.buriedHoles = 'yes'}else{d.params.buriedHoles = 'no'} }}
+                        {{ d.params.buriedHoles || 'No'}}
+                    </td>
+                    <td>碳油:</td>
+                    <td>
+                        {{# if(d.params.carbon == '1') {d.params.carbon = 'yes'}else{d.params.carbon = 'no'} }}
+                        {{ d.params.carbon || 'No'}}
+                    </td>
                 </tr>
                 <tr style="border: solid silver 1px;">
-                    <td>Remark:</td>
+                    <td>备注:</td>
                     <td colspan="3">{{ d.params.remark || '' }}</td>
                 </tr>
                 {{# 
@@ -134,8 +160,8 @@
                 <!--&lt;!&ndash;</tr>&ndash;&gt;-->
                 <!--</tbody>-->
             <!--</table>-->
-        </script>
     </div>
+    </script>
 </div>
 
 <style>
@@ -144,3 +170,24 @@
     #tab-fee tr td:nth-of-type(5){width: 6%;}
     #tab-fee tr td:nth-of-type(7){width: 6%;}
 </style>
+
+<script>
+    layui.data.done = function (d) {
+        layui.use(['admin', 'table','setter','form','jquery'],function(){
+            var $ = layui.jquery
+                ,table = layui.table
+                ,admin = layui.admin
+                ,setter = layui.setter
+                ,view = layui.view
+                ,form = layui.form;
+            $(".printOrderPcb-btnGrop>.printBtn").on("click", function () {
+                var printId = "pcborderPrint";
+                document.body.innerHTML=document.getElementById(printId).innerHTML;
+                window.print();
+                window.location.reload();
+            });
+            form.render();
+
+        });
+    }
+</script>

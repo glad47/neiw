@@ -687,6 +687,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,btn:['立即提交', '取消']
                 ,yes: function () {
                     $(".submitStencilUpB").click();
+                    table.reload('icontract_Tabstencil');
                 }
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderStencil_updateB', data).done(function () {
@@ -752,7 +753,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                 url: setter.baseUrl+'epc/stencilorder/createContractNo',
                                 success: function () {
                                     layer.alert("提交成功！");
-                                    layui.table.reload('icontract_Tabstencil');
+                                    table.reload('icontract_Tabstencil');
                                     layer.close(index);
                                 }
                             });

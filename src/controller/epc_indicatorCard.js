@@ -242,6 +242,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
     //监听行单击事件（单击事件为：rowDouble）
     table.on('row(epc_Tabpcb_ok_payment_order)', function(obj){
         var data = obj.data;
+        console.log(obj.index);
         _click_lineId = data.id;
         console.log("行id为："+_click_lineId);
     });

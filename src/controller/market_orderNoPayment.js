@@ -163,12 +163,15 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             admin.popup({
                 title: '编辑PCB订单信息'
                 ,area: ['45%', '561px']
+                ,btn:['立即提交', '取消']
+                ,yes: function () {
+                    $(".submit-ok").click();
+                }
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
                         form.render(null, '')
                         form.on('submit(LAY-pcborder-update-submit)',function (data) {
                             var field = data.field;
-                            console.log("提交的字段信息："+JSON.stringify(field));
                             admin.req({
                                 type: 'post'
                                 ,url: setter.baseUrl+'/market/quote/audit/update'

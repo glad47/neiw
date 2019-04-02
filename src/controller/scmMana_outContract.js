@@ -243,9 +243,9 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
                 ,btn: ['打印','关闭']
                 ,yes: function () {
                     var printId = "outsContract";
-                    window.location.reload();
                     document.body.innerHTML = document.getElementById(printId).innerHTML;
                     window.print();
+                    window.location.reload();
                 }
                 ,success: function () {
                     view(this.id).render('scmManagement/iframeWindow/outs_contract', popupData).done(function () {
@@ -446,12 +446,12 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
             var sd_len = 0;
             var subtotal = 0;
             var convertSubtotal;
-            for (var i=0;i<pcbtabObj.length;i++) {
-                if (supplierContractNo == pcbtabObj[i].supplierContractNo) {
+            for (var i=0;i<stenciltabObj.length;i++) {
+                if (supplierContractNo == stenciltabObj[i].supplierContractNo) {
                     sd_len += 1;
-                    var forData = pcbtabObj[i];
+                    var forData = stenciltabObj[i];
                     popupData.data[sd_len] = forData;
-                    subtotal += pcbtabObj[i].totalStencilFee;
+                    subtotal += stenciltabObj[i].totalStencilFee;
                 }
             }
             for (var i=0;i<popupData.data.length;i++){
@@ -473,9 +473,9 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
                 ,btn: ['打印','关闭']
                 ,yes: function () {
                     var printId = "outsContract";
-                    window.location.reload();
                     document.body.innerHTML = document.getElementById(printId).innerHTML;
                     window.print();
+                    window.location.reload();
                 }
                 ,success: function () {
                     view(this.id).render('scmManagement/iframeWindow/outs_contractS', popupData).done(function () {

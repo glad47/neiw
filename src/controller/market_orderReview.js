@@ -138,6 +138,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
                 ,area: ['60%', '90%']
                 ,success: function (layero, index) {
+                    console.log(data);
                     view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
 
                     });
@@ -218,12 +219,12 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     ,data: {"id":data.id,"isLock": 2}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］已锁定！');
+                        table.reload('or_Tabpcb');
                     }
                     ,fail: function () {
                         layer.msg('订单［'+data.productNo+'］锁定失败，稍后再试！');
                     }
                 });
-                table.reload('or_Tabpcb');
                 layer.close(index);
             });
         } else if (obj.event === 'pcb-beenLocked') {
@@ -234,10 +235,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     ,url: setter.baseUrl+'market/quote/audit/update'
                     ,data: {"id":data.id,"isLock": 1}
                     ,done: function () {
-                        layer.msg('订单［'+data.productNo+'］已接触锁定！');
+                        layer.msg('订单［'+data.productNo+'］已解锁！');
+                        table.reload('or_Tabpcb');
                     }
                     ,fail: function () {
-                        layer.msg('订单［'+data.productNo+'］接触失败，稍后再试！');
+                        layer.msg('订单［'+data.productNo+'］解锁失败，稍后再试！');
                     }
                 });
                 table.reload('or_Tabpcb');
@@ -362,13 +364,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     ,data: {"id":data.id,"isLock":2}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］已锁定！');
+                        table.reload('stencil_orderTab');
                     }
                     ,fail: function () {
                         layer.msg('订单［'+data.productNo+'］锁定失败，稍后再试！');
                     }
                 });
                 $("a[title='刷新']").click();
-                layui.table.reload('stencil_orderTab');
                 layer.close(index);
             })
         } else if (obj.event === 'stencil-beenLocked') {
@@ -498,7 +500,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                 ,data: field
                                 ,done: function (res) {
                                     layer.msg('SMT订单信息修改成功');
-                                    layui.table.reload('smt_orderTab');
+                                    table.reload('smt_orderTab');
                                 }
                                 ,fail: function (res) {
                                     layer.msg("订单信息修改失败，请稍后再试！");
@@ -536,6 +538,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     ,data: {"id":data.id,"isLock": 2}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］已锁定！');
+                        table.reload('smt_orderTab');
                     }
                     ,fail: function () {
                         layer.msg('订单［'+data.productNo+'］锁定失败，稍后再试！');

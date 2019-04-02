@@ -49,6 +49,18 @@
 
         <div class="layui-form-item">
             <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Fiducials：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="existingFiducials">
+                            <option value="none"  {{ d.params.existingFiducials === 'none' ? 'selected' : '' }}>None</option>
+                            <option value="half lasered"  {{ d.params.existingFiducials === 'half lasered' ? 'selected' : '' }}>Half Lasered</option>
+                            <option value="lasered through"  {{ d.params.existingFiducials === 'lasered through' ? 'selected' : '' }}>Lasered through</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Thickness：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
@@ -61,21 +73,17 @@
                     </script>
                 </div>
             </div>
-            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Fiducials：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <select name="existingFiducials">
-                            <option value="none"  {{ d.params.existingFiducials === 'none' ? 'selected' : '' }}>None</option>
-                            <option value="half lasered"  {{ d.params.existingFiducials === 'half lasered' ? 'selected' : '' }}>Half Lasered</option>
-                            <option value="lasered through"  {{ d.params.existingFiducials === 'lasered through' ? 'selected' : '' }}>Lasered through</option>
-                        </select>
-                    </script>
-                </div>
-            </div>
         </div>
 
         <div class="layui-form-item">
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">UnitPrice：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="unitPrice" value="{{ d.params.unitPrice || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
             <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Quantity：</label>
                 <div class="layui-input-block">
@@ -84,11 +92,22 @@
                     </script>
                 </div>
             </div>
+        </div>
+
+        <div class="layui-form-item">
             <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">PostFee：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="text" name="postFee" value="{{ d.params.postFee || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">StencilFee：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="totalStencilFee" value="{{ d.params.totalStencilFee || '' }}" autocomplete="off" class="layui-input" readonly>
                     </script>
                 </div>
             </div>
@@ -108,15 +127,7 @@
         <!--隐藏的，需要传的表单▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉end▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉-->
 
         <div class="layui-form-item">
-            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">StencilFee：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="totalStencilFee" value="{{ d.params.totalStencilFee || '' }}" autocomplete="off" class="layui-input" readonly>
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
+            <div class="layui-col-md12 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Remark：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
@@ -149,6 +160,8 @@
 
             // 监听Stencil Size 下拉
             form.on('select(selStencilSize)', function (data) {
+                var ss = $(data.elem).find("option:selected").attr("price");
+                $("input[name='unitPrice']").val(ss);
                 getDomVal();
             });
 
@@ -166,8 +179,14 @@
                 getDomVal();
             });
 
+            // 监听 unitPrice 单价 输入框值的变化
+            $("input[name='unitPrice']").bind("input propertychange", function (even) {
+                getDomVal();
+            });
+
             function quote(_domVal) {
-                $("input[name='totalStencilFee']").val(parseFloat(_domVal.side*_domVal.unitPrice*_domVal.quantity)+_domVal.postFee);
+                var a = parseFloat(_domVal.side*_domVal.unitPrice*_domVal.quantity)+_domVal.postFee;
+                $("input[name='totalStencilFee']").val(a);
             }
             
             function judgeSideType() {
@@ -182,7 +201,8 @@
                 judgeSideType();
                 var _domVal = new Object();
                 _domVal.side = parseFloat(side);
-                _domVal.unitPrice = parseFloat($("#selStencilSize").find("option:selected").attr("price"));    //获取回显的默认价格
+                // _domVal.unitPrice = parseFloat($("#selStencilSize").find("option:selected").attr("price"));    //获取回显的默认价格
+                _domVal.unitPrice = parseFloat($("input[name='unitPrice']").val());    //获取回显的默认价格
                 _domVal.quantity = parseFloat($("input[name='quantity']").val());
                 _domVal.postFee = parseFloat($("input[name='postFee']").val());
                 quote(_domVal);
