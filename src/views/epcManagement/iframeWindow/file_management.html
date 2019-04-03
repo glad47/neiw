@@ -199,7 +199,7 @@
                        success: function (data) {
                            layer.alert("原始资料已成功转为正式资料！");
                            $(".ffile"+$dataId).text($dataGerberName);
-                           table.reload('epc_Tabpcb_ok_payment_order');
+                           table.reload($retab);
                        }
                    });
                });
