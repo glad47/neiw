@@ -137,7 +137,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'nofCore', title: 'NofCore', align:'center', width: 80,hide: true}
                 ,{field:'nofPp', title: 'NofPp', align:'center', width: 80,hide: true}
                 ,{field:'nofHoles', title: 'NofHoles', align:'center', width: 90,hide: true}
-                ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#Tabtb-pcb-epc-indicatorCard-option'}
+                ,{title: '操作', width: 290, align:'center', fixed: 'right', toolbar: '#Tabtb-pcb-epc-indicatorCard-option'}
             ]]
             ,done : function (res, curr, count) {
                 //手机端
@@ -149,7 +149,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                         $(".laytable-cell-1-0-22").css({"width":"130px"});
                     })
                 }
-                pcb_gerberUpload();
+                // pcb_gerberUpload();
                 tabPCBObj = res.data;
                 layui.each($(".pcbReupload"),function(index, elem){
                     var _this_id = elem.id.substring(11);
@@ -195,50 +195,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
         });
     }
 
-    function pcb_gerberUpload(e) {
-        var fileInput = $(".filewareFile");
-        var addVersionBtn=$('#addVersionBtn');
-        var cancelUploadBtn=$('#cancelUploadBtn');
-        var speedLab = $("#showSpeed");
-        var url = setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token;        // 上传文件接口
-        fileInput.change(function () {
-            var indexFileInput = ".filewareFile"+_click_lineId;
-            indexFileInput = $(indexFileInput);
-            var fileObj = indexFileInput.get(0).files[0]; // js获取文件对象
-            var saveObj = {
-                data: {'quoteGerberName':fileObj.name,'quoteGerberPath':'','id':_click_lineId,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
-                url: setter.baseUrl+'epc/pcborder/update',      // 将字段保存到数据库的接口
-                retab: 'epc_Tabpcb_ok_payment_order'            // 表格对象，请求成功后重新渲染表格
-            };
-            var ss,defbtn;
-            ss = ".uploadPercentage"+_click_lineId;
-            defbtn = ".btn-fileupload"+_click_lineId;
-            var processBar = $(ss); //div
-            //获取文件上传实例
-            var upload=uploadCommon.uploadcommon(url,processBar,speedLab,addVersionBtn,cancelUploadBtn, saveObj);
-            console.log(fileObj);
-            if (fileObj) {
-                $(".file-tips").text('Gerber Name：' + fileObj.name);
-                $(defbtn).css("display","none");
-                $(ss).css("display","block");
-                $(".upload-container").css("display","block");
-                addVersionBtn.attr('disabled', false);
-                var file = fileInput.get(0).files[0]
-                if(file==null){
-                    alert("固件文件不能为空")
-                    return
-                }
-                // 创建提交数据
-                var formData = new FormData();
-                formData.append('file', fileInput.get(0).files[0]);
-                // 上传文件
-                upload.uploadFile(formData, function (e) {
-                    alert(1);
-                    console.log(e);
-                });
-            }
-        });
-    }
     //监听行单击事件（单击事件为：rowDouble）
     table.on('row(epc_Tabpcb_ok_payment_order)', function(obj){
         var data = obj.data;
@@ -385,42 +341,19 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             } else {
                 layer.alert('请先上传正式资料！！！');
             }
-        } else if (obj.event == 'supplier_update') {
-            layer.msg('上传文件可能需要一定的时间，请稍后....');
+        } else if (obj.event == 'fileMana') {
+            admin.popup({
+                title: 'PCB订单资料管理'
+                ,area: ['45%', '70%']
+                ,success: function (layero, index) {
+                    view(this.id).render('epcManagement/iframeWindow/file_management', data).done(function () {
+
+                    });
+                }
+            })
         }
     });
 
-    // 监听 pcb 头订单工具栏
-    //头工具栏事件
-    table.on('toolbar(epc_Tabpcb_ok_payment_order)', function(obj){
-        var checkStatus = table.checkStatus(obj.config.id);
-        var data = checkStatus.data;
-        switch(obj.event){
-            case 'fileyzz':
-                console.log('选择了'+data.length+'条数据！');
-                if (data.length==1) {
-                    var lineId = data[0].id;   // 行id
-                    var gerberName = data[0].gerberName;   // 原始资料
-                    var gerberPath = data[0].gerberPath;   // 原始资料路径
-                    layer.confirm('确定要把原始资料转为正式资料', function () {
-                        admin.req({
-                            type: 'post',
-                            data: {'quoteGerberName':gerberName,'quoteGerberPath':gerberPath,'id':lineId},
-                            url:  setter.baseUrl+'epc/pcborder/update',
-                            success: function (data) {
-                                layer.alert("原始资料已成功转为正式资料！");
-                                table.reload('epc_Tabpcb_ok_payment_order');
-                            }
-                        });
-                    });
-                } else if (data.length == 0) {
-                    layer.msg('请选择！');
-                } else if (data.length>1) {
-                    layer.msg('最多只能选择一条数据！！！');
-                }
-                break;
-        };
-    });
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 内部 Stencil 钢网 订单-编写指示卡
     function tabRenderStencil(){
         table.render({

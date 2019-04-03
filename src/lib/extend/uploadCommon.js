@@ -83,16 +83,32 @@ layui.define(function (exports) {
                     var filePath = filePatha[0].replace(/\[|]/g,'');
                     if (response.code =='0') {
                         // alert('File uploaded successfully');
-                        layer.msg("文件上传成功！")
                         if (saveObj != null && typeof saveObj != 'undefined') {
-                            saveObj.data.quoteGerberPath = filePath;
+                            saveObj.data.gerberName = saveObj.data.quoteGerberName;
+                            saveObj.data.gerberPath = saveObj.data.gerberPath = filePath;
+                            if (saveObj.type === 0) {
+                                delete saveObj.data.quoteGerberName
+                                delete saveObj.data.quoteGerberPath
+                            } else if (saveObj.type === 1) {
+                                delete saveObj.data.gerberName
+                                delete saveObj.data.gerberPath
+                            }
                             $.ajax({
                                 type: 'post',
                                 url: saveObj.url,
                                 data: saveObj.data,
                                 success: function (data) {
-                                    layer.msg("文件上传成功");
-                                    table.reload(saveObj.retab);
+                                    setTimeout(function () {
+                                        layer.msg('文件上传成功');
+                                        $(saveObj.removeDom).css("display","none");             // 隐藏工具条
+                                        $(saveObj.ffile).css({"display":"","color":"green"});   // 显示新的文件名
+                                        if (typeof saveObj.data.quoteGerberName != 'undefined') {
+                                            $(saveObj.ffile).text(saveObj.data.quoteGerberName);
+                                        } else {
+                                            $(saveObj.ffile).text(saveObj.data.gerberName);
+                                        }
+                                        table.reload(saveObj.retab);
+                                    },1000);
                                 }
                             });
                             console.log(evt.currentTarget.response)
