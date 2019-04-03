@@ -134,6 +134,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     table.on('tool(or_Tabpcb_ok_payment)', function(obj){
         var data = obj.data;
         if(obj.event === 'detail'){
+            console.log(data);
             admin.popup({
                 title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
                 ,area: ['45%', '70%']
@@ -207,7 +208,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
                     }
                 })
-                layui.table.reload('or_Tabpcb_ok_payment');
+                table.reload('or_Tabpcb_ok_payment');
                 layer.close(index);
             })
         } else if (obj.event === 'pcb-sendback') {

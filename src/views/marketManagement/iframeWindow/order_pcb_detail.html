@@ -3,9 +3,9 @@
 <div class="layui-fluid">
     <!--<a class="layui-btn" lay-event="edit">查看合同</a>-->
     <script type="text/html" template lay-done="layui.data.done(d);">
-        <div class="printOrderPcb-btnGrop">
-            <button class="layui-btn layui-btn-sm printBtn" style="float: right;">打印</button>
-        </div>
+    <div class="printOrderPcb-btnGrop">
+        <button class="layui-btn layui-btn-sm printBtn" style="float: right;">打印</button>
+    </div>
     <div class="order_review_search printorder_review_search" id="pcborderPrint">
         <div class="searchPcb-header" style="text-align: center;margin-bottom: 17px;">
             <h2>深圳聚谷科技有限公司-生产通知单</h2>
@@ -19,10 +19,22 @@
                 </colgroup>
                 <tbody>
                 <tr>
+                    <td>创建时间:</td>
+                    <td>{{ d.params.gmtCreate || ''}}</td>
+                    <td>制造时间:</td>
+                    <td>{{ d.params.buildTime || ''}}</td>
+                </tr>
+                <tr>
                     <td>聚谷型号:</td>
                     <td>{{ d.params.productNo || ''}}</td>
                     <td>Gerber文件:</td>
                     <td>{{ d.params.gerberName || ''}}</td>
+                </tr>
+                <tr>
+                    <td>订单数:</td>
+                    <td>{{ d.params.quantityPcs || ''}}</td>
+                    <td>订单面积:</td>
+                    <td>{{ d.params.areaSq || ''}}</td>
                 </tr>
                 <tr>
                     <td>层数:</td>
@@ -63,105 +75,145 @@
                 </tr>
                 <tr>
                     <td>阻焊颜色:</td>
-                    <td>{{ d.params.solderMaskTopColor || ''}}</td>
+                    <td>
+                        {{# var solderMaskTopColor = d.params.solderMaskTopColor }}
+                        {{# if(d.params.solderMaskTopColor == 'green'){ }}
+                        {{# solderMaskTopColor = '绿色'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'black'){ }}
+                        {{# solderMaskTopColor = '黑色'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'white'){ }}
+                        {{# solderMaskTopColor = '白色'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'yellow'){ }}
+                        {{# solderMaskTopColor = '黄色'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'red'){ }}
+                        {{# solderMaskTopColor = '红色'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'blue'){ }}
+                        {{# solderMaskTopColor = '蓝色'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'matte_black'){ }}
+                        {{# solderMaskTopColor = '雅黑'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'matte_green'){ }}
+                        {{# solderMaskTopColor = '雅绿'}}
+                        {{# } }}
+                        {{ solderMaskTopColor || ''}}
+                    </td>
                     <td>字符颜色:</td>
-                    <td>{{ d.params.silkScreenTopColor || ''}}</td>
+                    <td>
+                        {{# var silkScreenTopColor = d.params.silkScreenTopColor }}
+                        {{# if(d.params.silkScreenTopColor == 'green'){ }}
+                        {{# silkScreenTopColor = '绿色'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'black'){ }}
+                        {{# silkScreenTopColor = '黑色'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'white'){ }}
+                        {{# silkScreenTopColor = '白色'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'yellow'){ }}
+                        {{# silkScreenTopColor = '黄色'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'red'){ }}
+                        {{# silkScreenTopColor = '红色'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'blue'){ }}
+                        {{# silkScreenTopColor = '蓝色'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'matte_black'){ }}
+                        {{# silkScreenTopColor = '雅黑'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'matte_green'){ }}
+                        {{# silkScreenTopColor = '雅绿'}}
+                        {{# } }}
+                        {{ silkScreenTopColor || ''}}
+                    </td>
                 </tr>
                 <tr>
                     <td>表面处理:</td>
-                    <td>{{ d.params.surfaceFinish || ''}}</td>
+                    <td>
+                        {{# var surfaceFinish = d.params.surfaceFinish }}
+                        {{# if(d.params.surfaceFinish == 'HASL_with_lead'){ }}
+                        {{# surfaceFinish = '含铅'}}
+                        {{# } else if(d.params.surfaceFinish == 'HASL_lead_free'){ }}
+                        {{# surfaceFinish = '不含铅'}}
+                        {{# } else if(d.params.surfaceFinish == 'Immersion_Gold'){ }}
+                        {{# surfaceFinish = '沉金'}}
+                        {{# } else if(d.params.surfaceFinish == 'Immersion_tin'){ }}
+                        {{# surfaceFinish = '沉锡'}}
+                        {{# } else if(d.params.surfaceFinish == 'Immersion_silver'){ }}
+                        {{# surfaceFinish = '沉银'}}
+                        {{# } else if(d.params.surfaceFinish == 'OSP'){ }}
+                        {{# surfaceFinish = 'OSP'}}
+                        {{# } }}
+                        {{ surfaceFinish || ''}}
+                    </td>
+                    <td>表面处理厚度:</td>
+                    <td>{{ d.params.thickness || ''}}</td>
+                </tr>
+                <tr>
                     <td>测试方式:</td>
                     <td>
                         {{# var testWay }}
                         {{# if(d.params.testPointType == '1'){testWay = '飞针'}else{testWay='测试架'} }}
                         {{ testWay || '' }}
                     </td>
+                    <td>无卤数:</td>
+                    {{# if(d.params.halogenFree == '1') {d.params.halogenFree = '是'}else{d.params.halogenFree = '否'} }}
+                    <td>{{ d.params.halogenFree || ''}}</td>
                 </tr>
-
                 <tr>
                     <td>盲孔:</td>
                     <td>
-                        {{# if(d.params.blindHoles == '1') {d.params.blindHoles = 'yes'}else{d.params.blindHoles = 'no'} }}
+                        {{# if(d.params.blindHoles == '1') {d.params.blindHoles = '是'}else{d.params.blindHoles = '否'} }}
                         {{ d.params.blindHoles || ''}}
                     </td>
                     <td>金属包边:</td>
-                        {{# if(d.params.edgePlated == '1') {d.params.edgePlated = 'yes'}else{d.params.edgePlated = 'no'} }}
-                    <td>{{ d.params.edgePlated || 'No'}}</td>
+                        {{# if(d.params.edgePlated == '1') {d.params.edgePlated = '是'}else{d.params.edgePlated = '否'} }}
+                    <td>{{ d.params.edgePlated || '否'}}</td>
                 </tr>
                 <tr>
                     <td>半孔:</td>
                     <td>
-                        {{# if(d.params.halfHoleLated == '1') {d.params.halfHoleLated = 'yes'}else{d.params.halfHoleLated = 'no'} }}
-                        {{ d.params.halfHoleLated || 'No'}}
+                        {{# if(d.params.halfHoleLated == '1') {d.params.halfHoleLated = '是'}else{d.params.halfHoleLated = '否'} }}
+                        {{ d.params.halfHoleLated || '否'}}
                     </td>
                     <td>阻抗</td>
                     <td>
-                        {{# if(d.params.contrlImpeance == '1') {d.params.contrlImpeance = 'yes'}else{d.params.contrlImpeance = 'no'} }}
-                        {{ d.params.contrlImpeance || 'No'}}
+                        {{# if(d.params.contrlImpeance == '1') {d.params.contrlImpeance = '是'}else{d.params.contrlImpeance = '否'} }}
+                        {{ d.params.contrlImpeance || '否'}}
                     </td>
                 </tr>
                 <tr>
                     <td>埋孔:</td>
                     <td>
-                        {{# if(d.params.buriedHoles == '1') {d.params.buriedHoles = 'yes'}else{d.params.buriedHoles = 'no'} }}
-                        {{ d.params.buriedHoles || 'No'}}
+                        {{# if(d.params.buriedHoles == '1') {d.params.buriedHoles = '是'}else{d.params.buriedHoles = '否'} }}
+                        {{ d.params.buriedHoles || '否'}}
                     </td>
                     <td>碳油:</td>
                     <td>
-                        {{# if(d.params.carbon == '1') {d.params.carbon = 'yes'}else{d.params.carbon = 'no'} }}
-                        {{ d.params.carbon || 'No'}}
+                        {{# if(d.params.carbon == '1') {d.params.carbon = '是'}else{d.params.carbon = '否'} }}
+                        {{ d.params.carbon || '否'}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>控深锣:</td>
+                    <td>
+                        {{ d.params.deepMillRouting || '否'}}
+                    </td>
+                    <td>斜边:</td>
+                    <td>
+                        {{ d.params.bevellingCamfer || '否'}}
                     </td>
                 </tr>
                 <tr style="border: solid silver 1px;">
                     <td>备注:</td>
                     <td colspan="3">{{ d.params.remark || '' }}</td>
                 </tr>
-                {{# 
-                    if( d.params.isExistIndicator != null && d.params.isExistIndicator === 2) { 
-                }}
-                {{# layui.each(d.params.pop, function(index, item){  }}
-                 <tr>
-                    <td colspan="1">{{ item.processEntity.processEname}}:</td>
-                    <td colspan="3">{{ item.processInfo}}</td>
-                </tr>
-                {{#  }); }}
-                {{# } }}
                 </tbody>
             </table>
-            <!--<h3>Fee Detail:</h3>-->
-            <!--<table class="layui-table" lay-skin="row" lay-even="" id="tab-fee">-->
-                <!--<tbody>-->
-                <!--<tr>-->
-                    <!--<td>Eng Fee:</td>-->
-                    <!--<td>{{ d.params.engineeringFee }}</td>-->
-                    <!--<td>Board Fee:</td>-->
-                    <!--<td>{{ d.params.boardFee }}</td>-->
-                    <!--<td>TestCost Fee:</td>-->
-                    <!--<td>{{ d.params.testCostFee }}</td>-->
-                    <!--<td>Expedited Fee:</td>-->
-                    <!--<td>{{ d.params.overworkFee }}</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>Weight:</td>-->
-                    <!--<td>{{ d.params.weight }}</td>-->
-                    <!--<td>Build Time:</td>-->
-                    <!--<td>{{ d.params.buildTime }}</td>-->
-                    <!--<td>Shipping Fee:</td>-->
-                    <!--<td>/</td>-->
-                    <!--<td>PCB Cost:</td>-->
-                    <!--<td>-->
-                        <!--{{ d.params.subtotal }}-->
-                    <!--</td>-->
-                <!--</tr>-->
-                <!--&lt;!&ndash;<tr>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<td colspan="6"></td>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<td>Total:</td>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<td>{{ d.params.subtotal }}</td>&ndash;&gt;-->
-                <!--&lt;!&ndash;</tr>&ndash;&gt;-->
-                <!--</tbody>-->
-            <!--</table>-->
     </div>
     </script>
+    <!--{{# -->
+    <!--if( d.params.isExistIndicator != null && d.params.isExistIndicator === 2) { -->
+    <!--}}-->
+    <!--{{# layui.each(d.params.pop, function(index, item){  }}-->
+    <!--<tr>-->
+    <!--<td colspan="1">{{ item.processEntity.processEname}}:</td>-->
+    <!--<td colspan="3">{{ item.processInfo}}</td>-->
+    <!--</tr>-->
+    <!--{{#  }); }}-->
+    <!--{{# } }}-->
 </div>
 
 <style>
