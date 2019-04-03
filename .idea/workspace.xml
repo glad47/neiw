@@ -8,9 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/extend/uploadCommon.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/extend/uploadCommon.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/ok_payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/ok_payment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/epcManagement/iframeWindow/file_management.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/epcManagement/iframeWindow/file_management.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,32 +22,23 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.59796894">
+    <splitter split-orientation="horizontal" split-proportion="0.25645077">
       <split-first>
         <leaf>
           <file leaf-file-name="quote.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1331">
+                <state relative-caret-position="1100">
                   <caret line="1371" column="103" lean-forward="true" selection-start-line="1371" selection-start-column="14" selection-end-line="1371" selection-end-column="103" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="epc_indicatorCard.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="epc_indicatorCard.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/controller/epc_indicatorCard.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="476">
-                  <caret line="150" column="17" lean-forward="true" selection-start-line="150" selection-start-column="17" selection-end-line="150" selection-end-column="17" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ok_payment.html" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/ok_payment.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="782">
-                  <caret line="290" column="40" selection-start-line="290" selection-start-column="19" selection-end-line="290" selection-end-column="40" />
+                <state relative-caret-position="218">
+                  <caret line="364" column="48" selection-start-line="364" selection-start-column="17" selection-end-line="364" selection-end-column="48" />
                 </state>
               </provider>
             </entry>
@@ -56,8 +46,8 @@
           <file leaf-file-name="file_management.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/epcManagement/iframeWindow/file_management.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="531">
-                  <caret line="38" column="33" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="33" />
+                <state relative-caret-position="393">
+                  <caret line="38" column="50" lean-forward="true" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
                 </state>
               </provider>
             </entry>
@@ -65,8 +55,8 @@
           <file leaf-file-name="Indicator_card.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="620">
-                  <caret line="99" selection-start-line="99" selection-end-line="99" />
+                <state relative-caret-position="541">
+                  <caret line="188" column="47" selection-start-line="188" selection-start-column="47" selection-end-line="188" selection-end-column="47" />
                 </state>
               </provider>
             </entry>
@@ -87,8 +77,8 @@
           <file leaf-file-name="file_management.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/epcManagement/iframeWindow/file_management.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="134">
-                  <caret line="151" column="14" lean-forward="true" selection-start-line="151" selection-start-column="14" selection-end-line="151" selection-end-column="14" />
+                <state relative-caret-position="431">
+                  <caret line="87" column="82" selection-start-line="87" selection-start-column="82" selection-end-line="87" selection-end-column="82" />
                 </state>
               </provider>
             </entry>
@@ -107,8 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>popu</find>
-      <find>pcb_gerberUpload</find>
       <find>uploadFile_name</find>
       <find>filewareFile</find>
       <find>uploadCommon</find>
@@ -129,14 +117,16 @@
       <find>订单编辑</find>
       <find>upload-container</find>
       <find>取消上传</find>
-      <find>upload</find>
       <find>要把原始资料转为正式资料</find>
-      <find>gerberName</find>
       <find>把原始资料转为正式资料</find>
       <find>上传</find>
+      <find>上传文件</find>
+      <find>file_,</find>
+      <find>fileMana</find>
+      <find>upload</find>
+      <find>gerberName</find>
       <find>原始</find>
       <find>quoteGerberPath</find>
-      <find>上传文件</find>
     </findStrings>
     <replaceStrings>
       <replace>min18um</replace>
@@ -233,10 +223,10 @@
         <option value="$PROJECT_DIR$/src/controller/market_orderOkPayment.js" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" />
         <option value="$PROJECT_DIR$/src/lib/extend/uploadCommon.js" />
-        <option value="$PROJECT_DIR$/src/views/epcManagement/iframeWindow/file_management.html" />
-        <option value="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" />
-        <option value="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/ok_payment.html" />
+        <option value="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" />
+        <option value="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" />
+        <option value="$PROJECT_DIR$/src/views/epcManagement/iframeWindow/file_management.html" />
       </list>
     </option>
   </component>
@@ -528,14 +518,7 @@
       <workItem from="1553907921236" duration="24156000" />
       <workItem from="1554080796191" duration="9009000" />
       <workItem from="1554167770484" duration="12038000" />
-      <workItem from="1554253471432" duration="25736000" />
-    </task>
-    <task id="LOCAL-00074" summary="合同查看，退回">
-      <created>1550665606703</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1550665606703</updated>
+      <workItem from="1554253471432" duration="26949000" />
     </task>
     <task id="LOCAL-00075" summary="合同，根据pcs数量进行排序">
       <created>1550750607878</created>
@@ -873,11 +856,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554288441395</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="编写指示卡  pcb订单资料管理">
+      <created>1554290471205</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1554290471206</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1585011000" />
+    <option name="totallyTimeSpent" value="1586224000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -892,7 +882,7 @@
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11848341" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.11848341" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.25671643" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50353837" side_tool="true" weight="0.27462685" />
@@ -954,7 +944,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、合同页条件查询&#10;2、货币转换方法封装" />
     <MESSAGE value="外协合同完成" />
     <MESSAGE value="1、计价页右侧修改" />
     <MESSAGE value="1、PCB订单编辑计算" />
@@ -979,7 +968,8 @@
     <MESSAGE value="各种bug修改" />
     <MESSAGE value="pcb订单查看" />
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="编写指示卡  pcb订单资料管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="编写指示卡  pcb订单资料管理" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1300,10 +1290,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/ok_payment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="290" column="40" selection-start-line="290" selection-start-column="19" selection-end-line="290" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1331">
+        <state relative-caret-position="1100">
           <caret line="1371" column="103" lean-forward="true" selection-start-line="1371" selection-start-column="14" selection-end-line="1371" selection-end-column="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="188" column="47" selection-start-line="188" selection-start-column="47" selection-end-line="188" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -1314,31 +1318,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
+    <entry file="file://$PROJECT_DIR$/src/controller/epc_indicatorCard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="99" selection-start-line="99" selection-end-line="99" />
+        <state relative-caret-position="218">
+          <caret line="364" column="48" selection-start-line="364" selection-start-column="17" selection-end-line="364" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/epcManagement/iframeWindow/file_management.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="38" column="33" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/epc_indicatorCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="150" column="17" lean-forward="true" selection-start-line="150" selection-start-column="17" selection-end-line="150" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/ok_payment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="290" column="40" selection-start-line="290" selection-start-column="19" selection-end-line="290" selection-end-column="40" />
+        <state relative-caret-position="431">
+          <caret line="87" column="82" selection-start-line="87" selection-start-column="82" selection-end-line="87" selection-end-column="82" />
         </state>
       </provider>
     </entry>

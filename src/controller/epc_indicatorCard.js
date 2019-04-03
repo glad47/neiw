@@ -342,6 +342,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 layer.alert('请先上传正式资料！！！');
             }
         } else if (obj.event == 'fileMana') {
+            data.orderType = "pcbOrder";        // 根据orderType  发送不同的接口
             admin.popup({
                 title: 'PCB订单资料管理'
                 ,area: ['45%', '70%']
@@ -350,7 +351,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
 
                     });
                 }
-            })
+            });
         }
     });
 
@@ -449,7 +450,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'nofCore', title: 'NofCore', align:'center', width: 80,hide: true}
                 ,{field:'nofPp', title: 'NofPp', align:'center', width: 80,hide: true}
                 ,{field:'nofHoles', title: 'NofHoles', align:'center', width: 90,hide: true}
-                ,{title: '操作', width: 270, align:'center', fixed: 'right', toolbar: '#Tabtb-stencil-epc-indicatorCard-option'}
+                ,{title: '操作', width: 310, align:'center', fixed: 'right', toolbar: '#Tabtb-stencil-epc-indicatorCard-option'}
             ]]
             ,done : function (res, curr, count) {
                 //手机端
@@ -688,6 +689,17 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 layui.table.reload('epc_Tabstencil_ok_payment_order');
                 layer.close(index);
             })
+        } else if (obj.event == 'fileMana') {
+            data.orderType = "stencilOrder";        // 根据orderType  发送不同的接口
+            admin.popup({
+                title: 'PCB订单资料管理'
+                ,area: ['45%', '70%']
+                ,success: function (layero, index) {
+                    view(this.id).render('epcManagement/iframeWindow/file_management', data).done(function () {
+
+                    });
+                }
+            });
         } else if (obj.event === 'supplier_update') {
             layer.msg('上传文件可能需要一定的时间，请稍后....');
         }

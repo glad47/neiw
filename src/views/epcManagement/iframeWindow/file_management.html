@@ -62,6 +62,7 @@
         <input type="text" name="dataId" value="{{ d.params.id}}">
         <input type="text" name="gerberNames" value="{{ d.params.gerberName }}">
         <input type="text" name="gerberPath" value="{{ d.params.gerberPath }}">
+        <input type="text" name="orderType" value="{{ d.params.orderType }}">
     </div>
     </script>
 </div>
@@ -75,6 +76,19 @@
             var $dataId = $("input[name='dataId']").val();  // 行id
             var $dataGerberName = $("input[name='gerberNames']").val();    // 行gerber名字
             var $dataGerberPath = $("input[name='gerberPath']").val();    // 行gerber路径
+            var $orderType = $("input[name='orderType']").val();        // 订单类型。    根据订单类型来发送到不同的接口
+            var $retab;     // 操作成功以后要刷新的表格id
+            var uploadUrl = setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token;  // 文件上传接口;
+            var saveUrl;
+            if ($orderType == 'pcbOrder') {
+                saveUrl = setter.baseUrl+'epc/pcborder/update';      // 将字段保存到数据库的接口
+                $retab = 'epc_Tabpcb_ok_payment_order';
+                console.log('PCB订单==>'+saveUrl);
+            } else if($orderType == 'stencilOrder') {
+                saveUrl = setter.baseUrl+'epc/stencilorder/update';      // 将字段保存到数据库的接口
+                $retab = 'epc_Tabstencil_ok_payment_order';
+                console.log('钢网订单==>'+saveUrl);
+            }
             pcb_omgerberUpload();   // 原始资料修改
             pcb_gerberUpload();     // 正式资料上传&修改
             
@@ -83,7 +97,7 @@
                 var addVersionBtn=$('#addVersionBtn');
                 var cancelUploadBtn=$('#cancelUploadBtn');
                 var speedLab = $("#showSpeed");
-                var url = setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token;        // 上传文件接口
+                var url = uploadUrl;        // 上传文件接口
                 var ss,ffile,changeFileTd_dom,removeProcess;
                 ss = ".om_uploadPercentage"+$dataId;
                 ffile = ".omfile"+$dataId;
@@ -96,8 +110,8 @@
                     var fileObj = indexFileInput.get(0).files[0]; // js获取文件对象
                     var saveObj = {
                         data: {'quoteGerberName':fileObj.name,'gerberPath':'','id':$dataId,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
-                        url: setter.baseUrl+'epc/pcborder/update',      // 将字段保存到数据库的接口
-                        retab: 'epc_Tabpcb_ok_payment_order',          // 表格对象，请求成功后重新渲染表格
+                        url: saveUrl,      // 将字段保存到数据库的接口
+                        retab: $retab,          // 表格对象，请求成功后重新渲染表格
                         removeDom: removeProcess,       // 文件上传成功 ==> 要移除的dom对象
                         ffile: changeFileTd_dom,   // 文件上传成功 ==>  显示新的文件名
                         type: 0     // type 为0 则为原始资料 1 为正式资料
@@ -131,7 +145,7 @@
                 var addVersionBtn=$('#addVersionBtn');
                 var cancelUploadBtn=$('#cancelUploadBtn');
                 var speedLab = $("#showSpeed");
-                var url = setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token;        // 上传文件接口
+                var url = uploadUrl;        // 上传文件接口
                 var ss,defbtn,ffile,changeFileTd_dom,removeProcess;
                 ss = ".uploadPercentage"+$dataId;
                 ffile = ".ffile"+$dataId;
@@ -144,7 +158,7 @@
                     var fileObj = indexFileInput.get(0).files[0]; // js获取文件对象
                     var saveObj = {
                         data: {'quoteGerberName':fileObj.name,'id':$dataId,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
-                        url: setter.baseUrl+'epc/pcborder/update',      // 将字段保存到数据库的接口
+                        url: saveUrl,      // 将字段保存到数据库的接口
                         retab: 'epc_Tabpcb_ok_payment_order',          // 表格对象，请求成功后重新渲染表格
                         removeDom: removeProcess,       // 文件上传成功 ==> 要移除的dom对象
                         ffile: changeFileTd_dom,     // 文件上传成功 ==>  显示新的文件名
@@ -181,7 +195,7 @@
                    admin.req({
                        type: 'post',
                        data: {'quoteGerberName':$dataGerberName,'quoteGerberPath':$dataGerberPath,'id':$dataId},
-                       url:  setter.baseUrl+'epc/pcborder/update',
+                       url:  saveUrl,
                        success: function (data) {
                            layer.alert("原始资料已成功转为正式资料！");
                            $(".ffile"+$dataId).text($dataGerberName);
