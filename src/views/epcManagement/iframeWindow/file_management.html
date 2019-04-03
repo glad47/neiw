@@ -5,7 +5,7 @@
     <table class="layui-table">
         <tbody>
         <tr>
-            <td>原始资料：</td>
+            <td style="width: 15%;">原始资料：</td>
             <td>
                 <div class="cc om_uploadPercentage{{ d.params.id }}">
                     <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe63e;</i>
@@ -16,7 +16,7 @@
                     {{ d.params.gerberName || '' }}
                 </div>
             </td>
-            <td>
+            <td style="width: 20%;">
                 <a class="btn-fileupload btn-fileupload{{ d.params.id }}">
                     <span class="fileupload-btn">
                         <i class="layui-icon layui-icon-add-1"></i>
@@ -159,7 +159,7 @@
                     var saveObj = {
                         data: {'quoteGerberName':fileObj.name,'id':$dataId,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
                         url: saveUrl,      // 将字段保存到数据库的接口
-                        retab: 'epc_Tabpcb_ok_payment_order',          // 表格对象，请求成功后重新渲染表格
+                        retab: $retab,          // 表格对象，请求成功后重新渲染表格
                         removeDom: removeProcess,       // 文件上传成功 ==> 要移除的dom对象
                         ffile: changeFileTd_dom,     // 文件上传成功 ==>  显示新的文件名
                         type: 1     // type 为0 则为原始资料 1 为正式资料
@@ -182,29 +182,50 @@
                         formData.append('file', fileInput.get(0).files[0]);
                         // 上传文件
                         upload.uploadFile(formData, function (e) {
-                            alert(1);
-                            console.log(e);
+
                         });
                     }
                 });
             }
             // 原始资料转正式资料
             $(".yszzFile").on('click', function () {
-                console.log('quoteGerberName:'+$dataGerberName);
-               layer.confirm('确定要把原始资料转为正式资料？', function () {
+                var postDataA = {};
+                var saveBackResult = layui.data('saveBackResult');
+                var isAddFile = layui.data('saveBackResult').isAddFile;     // 判断是否更改了源文件
+                var htmTx;
+                console.log(saveBackResult);
+                if (!isEmptyObject(saveBackResult) && isAddFile == true) {
+                    postDataA.quoteGerberName = layui.data('saveBackResult').gerberName;
+                    postDataA.quoteGerberPath = layui.data('saveBackResult').gerberPath;
+                    postDataA.id = $dataId;
+                } else {
+                    postDataA.quoteGerberName = $dataGerberName;
+                    postDataA.quoteGerberPath = $dataGerberPath;
+                    postDataA.id = $dataId;
+                }
+                htmTx = postDataA.quoteGerberName;
+                    layer.confirm('确定要把原始资料转为正式资料？', function () {
                    admin.req({
                        type: 'post',
-                       data: {'quoteGerberName':$dataGerberName,'quoteGerberPath':$dataGerberPath,'id':$dataId},
+                       data: postDataA,
                        url:  saveUrl,
                        success: function (data) {
                            layer.alert("原始资料已成功转为正式资料！");
-                           $(".ffile"+$dataId).text($dataGerberName);
+                           $(".ffile"+$dataId).text(htmTx);
                            table.reload($retab);
                        }
                    });
                });
             });
-        });
+            // 判断json对象是否为空
+            function isEmptyObject(e) {
+                var t;
+                for (t in e)
+                    return !1;
+                return !0
+            }
+
+            });
     };
 </script>
 

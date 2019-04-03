@@ -269,7 +269,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,yes:function(index, layero){
                     $("#LAY-pcborder-update-submit").click();
                 }
-                ,end:function(){}
+                ,end:function(){
+                    localStorage.removeItem("saveBackResult");  // 清除localStorage
+                }
                 ,success: function (layero, index) {
                     view(this.id).render('epcManagement/Indicator_cardform', data).done(function () {
                         form.render(null, '')
@@ -350,6 +352,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     view(this.id).render('epcManagement/iframeWindow/file_management', data).done(function () {
 
                     });
+                }
+                ,end: function () {
+                    localStorage.removeItem("saveBackResult");  // 清除localStorage
                 }
             });
         }
@@ -611,7 +616,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,yes:function(index, layero){
                     $("#LAY-pcborder-update-submit").click();
                 }
-                ,end:function(){}
+                ,end:function(){
+                    localStorage.removeItem("saveBackResult");  // 清除localStorage
+                }
                 ,success: function (layero, index) {
                     view(this.id).render('epcManagement/Indicator_cardform', data).done(function () {
                         form.render(null, '')
@@ -698,6 +705,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     view(this.id).render('epcManagement/iframeWindow/file_management', data).done(function () {
 
                     });
+                }
+                ,end: function () {
+                    localStorage.removeItem("saveBackResult");  // 清除localStorage
                 }
             });
         } else if (obj.event === 'supplier_update') {

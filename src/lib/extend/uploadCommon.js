@@ -20,6 +20,9 @@ layui.define(function (exports) {
                 // 已上传文件大小
                 var oloaded = null
                 var xhr = new XMLHttpRequest()
+                var saveBackResults = {};
+                //  save后，返回的对象参数
+                var saveBackResult = {};
                 console.log(processBar)
                 function setProgress(w) {
                     processBar.width(w + '%');
@@ -86,13 +89,16 @@ layui.define(function (exports) {
                         if (saveObj != null && typeof saveObj != 'undefined') {
                             saveObj.data.gerberName = saveObj.data.quoteGerberName;
                             saveObj.data.gerberPath = saveObj.data.gerberPath = filePath;
+                            saveBackResults = saveObj.data;
                             if (saveObj.type === 0) {
                                 delete saveObj.data.quoteGerberName
                                 delete saveObj.data.quoteGerberPath
+                                saveBackResults.isAddFile = true;
                             } else if (saveObj.type === 1) {
                                 delete saveObj.data.gerberName
                                 delete saveObj.data.gerberPath
                             }
+                            localStorage.setItem('saveBackResult',JSON.stringify(saveBackResults)); // 将最新的文件名以及路径返回；【原始转正式资料用】
                             $.ajax({
                                 type: 'post',
                                 url: saveObj.url,
@@ -116,9 +122,7 @@ layui.define(function (exports) {
                         }
                     }
                     console.log('上传成功')
-                    // if ( callBack != null && typeof callBack != 'undefined') {
-                    //     callBack()
-                    // }
+                    return saveBackResults;
                 };
 
                 // 上传失败回调
@@ -164,6 +168,10 @@ layui.define(function (exports) {
                     processBar.width(w + '%')
                     // processBar.text(w + '%')
                     processBar.find('a').text(w + '%');
+                }
+                this.getSaveBackData=function () {
+                    saveBackResult.aa = 'fuck'
+                    return saveBackResult;
                 }
             }
             return new init()
