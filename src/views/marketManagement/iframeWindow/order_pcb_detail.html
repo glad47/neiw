@@ -7,10 +7,15 @@
         <button class="layui-btn layui-btn-sm printBtn" style="float: right;">打印</button>
     </div>
     <div class="order_review_search printorder_review_search" id="pcborderPrint">
+        <style>
+            @media print {
+                .printorder_review_search .layui-table[lay-skin=row] td, .layui-table[lay-skin=row] th{border: solid 1px black !important;}
+            }
+        </style>
         <div class="searchPcb-header" style="text-align: center;margin-bottom: 17px;">
             <h2>深圳聚谷科技有限公司-生产通知单</h2>
         </div>
-            <table class="layui-table" lay-skin="row" lay-even="">
+            <table class="layui-table"  lay-even="">
                 <colgroup>
                     <col width="100">
                     <col width="100">
@@ -120,6 +125,7 @@
                     </td>
                 </tr>
                 <tr>
+
                     <td>表面处理:</td>
                     <td>
                         {{# var surfaceFinish = d.params.surfaceFinish }}
