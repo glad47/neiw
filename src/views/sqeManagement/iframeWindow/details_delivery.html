@@ -1,19 +1,52 @@
 <title>交货明细</title>
 <div class="layui-fluid">
     <script type="text/html" template lay-done="layui.data.done(d);">
-        {{# var donePcsNumber }}
+        {{# var quantityPcs }}
         {{# var surplusPcsNumber }}
+        {{# var donePcsNumber }}
         {{# var deliveryOrderNo }}
         {{# var courierCompany }}
+        {{# var deliveryNo }}
         {{# var courierOrderNo }}
-        {{# if(d.params.result != null){ }}
-            {{#  surplusPcsNumber = d.params.result.surplusPcsNumber }}
-            {{#  donePcsNumber = d.params.result.donePcsNumber }}
-            {{#  deliveryOrderNo = d.params.result.deliveryOrderNo }}
-            {{#  courierCompany = d.params.result.courierCompany }}
-            {{#  courierOrderNo = d.params.result.deliveryNo }}
-        {{# } else { }}
-            {{#  surplusPcsNumber = d.params.data.quantityPcs }}
+        {{# var currPcsNumber }}
+
+        {{# if (d.params.orderType == 'pcb'){ }}
+            {{#  quantityPcs =  d.params.data.quantityPcs }}
+            {{# if(d.params.result == null){ }}
+                {{#  surplusPcsNumber = '' }}
+                {{#  donePcsNumber = 0 }}
+                {{#  deliveryOrderNo = '' }}
+                {{#  courierCompany = '' }}
+                {{#  deliveryNo = '' }}
+                {{#  courierOrderNo = '' }}
+                {{#  currPcsNumber = '' }}
+            {{# } else{ }}
+                {{#  surplusPcsNumber = d.params.result.surplusPcsNumber }}
+                {{#  donePcsNumber = d.params.result.donePcsNumber }}
+                {{#  deliveryOrderNo = d.params.result.deliveryOrderNo }}
+                {{#  courierCompany = d.params.result.courierCompany }}
+                {{#  deliveryNo = d.params.result.deliveryNo }}
+                {{#  courierOrderNo = d.params.result.courierOrderNo }}
+                {{#  currPcsNumber = d.params.result.currPcsNumber }}
+            {{# } }}
+        {{# } else if(d.params.orderType == 'stencil'){ }}
+            {{#  quantityPcs =  d.params.data.quantity }}
+            {{# if(d.params.result == null){ }}
+                {{#  surplusPcsNumber = '' }}
+                {{#  donePcsNumber = 0 }}
+                {{#  deliveryOrderNo = '' }}
+                {{#  courierCompany = '' }}
+                {{#  deliveryNo = '' }}
+                {{#  courierOrderNo = '' }}
+            {{# } else{ }}
+                {{#  surplusPcsNumber = d.params.result.surplusPcsNumber }}
+                {{#  donePcsNumber = d.params.result.donePcsNumber }}
+                {{#  deliveryOrderNo = d.params.result.deliveryOrderNo }}
+                {{#  courierCompany = d.params.result.courierCompany }}
+                {{#  deliveryNo = d.params.result.deliveryNo }}
+                {{#  courierOrderNo = d.params.result.courierOrderNo }}
+            {{# } }}
+
         {{# } }}
     <form class="layui-form">
         <table class="layui-table">
@@ -48,7 +81,7 @@
                 </td>
                 <td>订单数量(PCS)</td>
                 <td id="orderPcsNumber">
-                    {{ d.params.data.quantityPcs || '0' }}
+                    {{ quantityPcs || '0' }}
                 </td>
             </tr>
             <tr>
@@ -67,8 +100,8 @@
                     </select>
                 </td>
                 <td>已交数量(PCS)</td>
-                <td id="donePcsNumber">
-                    {{ donePcsNumber || '0' }}
+                <td id="donePcsNumber" data="{{ d.params.data.donePcsNumber }}">
+                    {{ d.params.data.donePcsNumber || 0 }}
                 </td>
             </tr>
             <tr>
@@ -78,7 +111,7 @@
                 </td>
                 <td>未交数量(PCS)</td>
                 <td id="surplusPcsNumber">
-                    {{ surplusPcsNumber || '0' }}
+                    {{ d.params.data.surplusPcsNumber || 0 }}
                 </td>
             </tr>
             <tr>
@@ -88,7 +121,7 @@
                 </td>
                 <td>此次数量(PCS)</td>
                 <td>
-                    <input class="layui-input" type="number" name="currPcsNumber" lay-verify="cPnum">
+                    <input class="layui-input" type="number" name="currPcsNumber" lay-verify="cPnum" value="{{ currPcsNumber }}">
                 </td>
             </tr>
             </tbody>
@@ -106,31 +139,45 @@
             var orderPcsNumber = parseInt($("#orderPcsNumber").text());
             var donePcsNumber = parseInt($("#donePcsNumber").text());
             var surplusPcsNumber = parseInt($("#surplusPcsNumber").text());
-            $("input[name='currPcsNumber']").bind('input propertychange', function () {
-                var _this_val = $(this).val();
-                if (_this_val == "" || _this_val == null) {
-                    _this_val = 0;
-                }
-                if (isNaN(orderPcsNumber)) {
-                    orderPcsNumber = 0;
-                }
-                var a = 0;                           // 订单PCS数量
-                var b = 0;                           // 已交PCS数量
-                var c = 0;                           // 未交PCS数量
-                var d = parseInt(_this_val);         // 此次PCS数量
-                console.log("d:"+d);
-                b = parseInt(donePcsNumber+d);
-                c = parseInt(orderPcsNumber-b);
-                if (c<0) {
-                    $("input[name='currPcsNumber']").val(surplusPcsNumber);
-                    layer.msg("不能超过未交PCS数量！");
-                    return false;
-                } else {
-                    $("#donePcsNumber").text(b);
-                    $("#surplusPcsNumber").text(c);
-                }
-                form.render();
-            });
+
+            // 计算注释
+
+            // quote(parseInt($("input[name='currPcsNumber']").val()));
+            // $("input[name='currPcsNumber']").bind('input propertychange', function () {
+            //     var _this_val = $(this).val();
+            //     if (_this_val == "" || _this_val == null) {
+            //         _this_val = 0;
+            //     }
+            //     if (isNaN(orderPcsNumber)) {
+            //         orderPcsNumber = 0;
+            //     }
+            //     if (isNaN(donePcsNumber)) {
+            //         donePcsNumber = 0;
+            //     }
+            //     quote(_this_val);
+            // });
+            //
+            // function quote(e) {
+            //     if (isNaN(e)) {
+            //         e = 0;
+            //     }
+            //     var a = 0;                           // 订单PCS数量
+            //     var b = 0;                           // 已交PCS数量
+            //     var c = 0;                           // 未交PCS数量
+            //     var d = parseInt(e);                // 此次PCS数量
+            //     console.log("d:"+d);
+            //     b = parseInt(donePcsNumber+d);
+            //     c = parseInt(orderPcsNumber-b);
+            //     if (c<0) {
+            //         $("input[name='currPcsNumber']").val(surplusPcsNumber);
+            //         layer.msg("不能超过未交PCS数量！");
+            //         return false;
+            //     } else {
+            //         $("#donePcsNumber").text(b);
+            //         $("#surplusPcsNumber").text(c);
+            //     }
+            //     form.render();
+            // }
 
             form.verify({
                 cPnum: function (value, item) {

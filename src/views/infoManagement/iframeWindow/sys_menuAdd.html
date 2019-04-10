@@ -90,7 +90,7 @@
                             <label class="layui-form-label"><span class="mandatory">*</span>上级菜单：</label>
                             <div class="layui-input-block">
                                 <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/menu/erpselect" lay-done="layui.data.done(d);">
-                                    <select name="parentId" id="menuAdd_menuTs" lay-filter="LAY-menu-men-submit">
+                                    <select name="parentId" id="menuAdd_menuTs" lay-filter="LAY-menu-men-submit" lay-search="">
                                         <option>请选择上级菜单</option>
                                         {{#  layui.each(d.menuList, function(index, item){ }}
                                         <option value="{{ item.menuId }}" {{ d.params.parentId == item.menuId ? 'selected' : ''}}>{{ item.title }}</option>
@@ -175,7 +175,7 @@
                             <label class="layui-form-label" id="btnSjmenu"><span class="mandatory">*</span>上级菜单：</label>
                             <div class="layui-input-block">
                                 <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/menu/erpselect" lay-done="layui.data.done(d);">
-                                    <select name="parentId" id="menuAdd_tabsbtn" lay-filter="LAY-menu-btn-submit">
+                                    <select name="parentId" id="menuAdd_tabsbtn" lay-filter="LAY-menu-btn-submit" lay-search="">
                                         <option></option>
                                         {{#  layui.each(d.menuList, function(index, item){ }}
                                         <option value="{{ item.menuId }}" {{ d.params.parentId == item.menuId ? 'selected' : ''}}>{{ item.title }}</option>

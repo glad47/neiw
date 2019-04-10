@@ -59,6 +59,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'supplierNo', title: '供应商编号', width: 117}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117}
                 ,{field: 'productNo', title: '聚谷型号', width: 124}
+                ,{field: 'currPcsNumber', title: '此次数量(PCS)', width: 134}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
                 ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
                 ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
@@ -70,25 +71,48 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',minWidth: 160}
             ]]
             ,done: function (res, curr, count) {
-
+                $("a[data='ok']").each(function () {
+                    $(this).parents('tr').css('background-color','rgba(121, 228, 119, 0.43)');
+                    $(this).parents('td').css({'border-right':'none !important','border-bottom':'none !important'});
+                });
             }
         });
     }
     table.on('toolbar(sqeManaPlan_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
-        var Pdata = {data:{},result:{}};     // data为表格数据/result为请求到的数据
-        Pdata.data = checkStatus.data[0];
-        if(obj.event === 'submit'){     //通知出货
-            if (checkStatus.data.length < 1) {
-                layer.msg('请选择一条数据');
-                return false;
-            } else if (checkStatus.data.length >= 2) {
-                layer.msg('最多只能选择一条数据！');
-                return false;
-            }
+        var data = checkStatus.data;
+        if (data.length > 1) {
+            layer.msg('最多只能选择一条数据！');
+            return false;
+        }
+        if(obj.event === 'submit') {     //通知出货
+            layer.confirm('确定通知出货？', function () {
+                admin.req({
+                   type: 'post',
+                   url: setter.baseUrl + 'sqe/pcborder/saveShipmentOrderByPt',
+                   data: {supplierOrderId: data[0].id},
+                   success: function () {
+                       layer.alert('通知出货成功！',function () {
+                           table.reload('sqeManaPlan_tabPcb');
+                           layer.closeAll();
+                       });
+                   } ,error: function () {
+
+                    }
+                });
+            });
+        }
+    });
+    //监听行工具事件＝＝＝＝》pcb订单
+    table.on('tool(sqeManaPlan_tabPcb)', function (obj) {
+        var data = obj.data;
+        if (obj.event == 'edit'){
+            var Pdata = {data:{},result:{}};     // data为表格数据/result为请求到的数据
+            Pdata.orderType = 'pcb'
+            Pdata.data = data;
             admin.req({
                 type: 'post',
-                data: {'oid':checkStatus.data[0].id},
+                data: {'oid':data.id},
                 url: setter.baseUrl+'scm/ordershipment/infoByOid',
                 success: function (result) {
                     Pdata.result = result.data;
@@ -114,8 +138,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                     form.render();
                                 });
                                 form.on('submit(detailsDelivery)', function (data) {
-                                    layer.msg("提交");
                                     var data = data.field;
+                                    if (result.data != null) {
+                                        data.id = result.data.id;
+                                    }
                                     data.orderSupplierId = Pdata.data.id;                               // 供应商订单id
                                     data.supplierNo = Pdata.data.supplierNo;                            // 供应商编号
                                     data.deliveryTime = new Date().toLocaleDateString();                // 交期
@@ -129,69 +155,31 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                     if (data.deliveryOrderNo == null || data.deliveryOrderNo == "" || typeof data.deliveryOrderNo == 'undefined') {
                                         layer.alert('送货单号不能为空');
                                         return false;
-                                    } else if (data.currPcsNumber == null || data.currPcsNumber == "" || typeof data.currPcsNumber == 'undefined') {
-                                        layer.alert('此次数量不能为空');
-                                        return false;
+                                    }
+                                    if (data.orderPcsNumber != data.donePcsNumber) {
+                                        if (data.currPcsNumber == null || data.currPcsNumber == "" || typeof data.currPcsNumber == "undefined") {
+                                            layer.alert('此次数量不能为空');
+                                            return false;
+                                        }
                                     }
                                     console.log(data);
-                                    layer.confirm('确定要生成送货单？', function () {
-                                        admin.req({
-                                            type: 'post',
-                                            data: data,
-                                            url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
-                                            success: function (result) {
+                                    admin.req({
+                                        type: 'post',
+                                        data: data,
+                                        // url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
+                                        url: setter.baseUrl+'sqe/pcborder/saveSo',
+                                        success: function (result) {
+                                            layer.alert('保存成功！', function () {
                                                 layer.alert("提交成功！");
                                                 table.reload('sqeManaPlan_tabPcb');
                                                 layer.closeAll();
-                                            }
-                                        });
+                                            });
+                                        }
                                     });
-                                   return false;
+                                    return false;
                                 });
                             });
                         }
-                    });
-                }
-            });
-        }
-    });
-    //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(sqeManaPlan_tabPcb)', function (obj) {
-        var data = obj.data;
-        if (obj.event == 'edit'){
-            layer.msg('编辑操作');
-            admin.popup({
-                title: '订单协同编辑'
-                ,area: ['434px','448px']
-                ,btn: ['保存', '取消']
-                ,yes: function (index, layero) {
-                    layer.msg('提交信息');
-                    $(".otEdit").click();
-                }
-                ,success: function (layero, index) {
-                    var id = data.id;
-                    var supplierId = data.supplierId;
-                    var orderId = data.orderId;
-                    view(this.id).render('sqeManagement/iframeWindow/order_together_edit',data).done(function () {
-                        form.on('submit(otEdit)', function (data) {
-                            var field = data.field;
-                            field.id = id;
-                            field.orderId = orderId;
-                            field.supplierId = supplierId;
-                            console.log(field);
-                            admin.req({
-                                type: 'post',
-                                data: field,
-                                url: setter.baseUrl+'scm/ordersupplier/update',
-                                success: function (data) {
-                                    layer.alert("订单协同修改成功");
-                                    // layer.closeAll();
-                                    table.reload('sqeManaPlan_tabPcb');
-                                    layer.close(index);
-                                }
-                            });
-                            return false;
-                        });
                     });
                 }
             });
@@ -224,7 +212,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'supplierNo', title: '供应商编号', width: 117}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117}
                 ,{field: 'productNo', title: '聚谷型号', width: 124}
-                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
+                ,{field: 'quantity', title: '订单数量(PCS)', width: 134}
                 ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
                 ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
                 ,{field: '',title: '当前工序', width: 110}
@@ -241,84 +229,87 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     }
     table.on('toolbar(sqeManaPlan_tabStencil)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
-        var Pdata = {data:{},result:{}};     // data为表格数据/result为请求到的数据
-        Pdata.data = checkStatus.data[0];
-        if(obj.event === 'submit'){     //通知出货
-            if (checkStatus.data.length < 1) {
-                layer.msg('请选择一条数据');
-                return false;
-            } else if (checkStatus.data.length >= 2) {
-                layer.msg('最多只能选择一条数据！');
-                return false;
-            }
-            admin.req({
-                type: 'post',
-                data: {'oid':checkStatus.data[0].id},
-                url: setter.baseUrl+'scm/ordershipment/infoByOid',
-                success: function (result) {
-                    Pdata.result = result.data;
-                    console.log(Pdata);
-                    admin.popup({
-                        title: 'Stencil交货明细'
-                        ,area: ['702px','547px']
-                        ,btn: ['保存', '取消']
-                        ,yes: function (index, layero) {
-                            $("#subdetailsDelivery").click();
-                        }
-                        ,success: function (layero, index) {
-                            var id = Pdata.data.id;
-                            view(this.id).render('sqeManagement/iframeWindow/details_delivery', Pdata).done(function () {
-                                form.render();
-                                // 监听快递选择
-                                form.on('select(courierCompany)', function(data){
-                                    if (data.value == '送货') {
-                                        $("input[name='courierOrderNo']").attr('disabled',true);
-                                    } else {
-                                        $("input[name='courierOrderNo']").attr('disabled',false);
-                                    }
-                                    form.render();
-                                });
-                                form.on('submit(detailsDelivery)', function (data) {
-                                    layer.msg("提交");
-                                    var data = data.field;
-                                    data.orderSupplierId = Pdata.data.id;                               // 供应商订单id
-                                    data.supplierNo = Pdata.data.supplierNo;                            // 供应商编号
-                                    data.deliveryTime = new Date().toLocaleDateString();                // 交期
-                                    data.orderPcsNumber = Pdata.data.quantityPcs;                       // 订单PCS数
-                                    data.orderId = Pdata.data.orderId;                                  // 订单id
-                                    data.donePcsNumber = parseInt($("#donePcsNumber").text());          // 已交PCS数
-                                    data.surplusPcsNumber = parseInt($("#surplusPcsNumber").text());    // 未交PCS数
-                                    if (data.courierCompany == '' || data.courierCompany == null) {
-                                        data.courierCompany = "送货";
-                                    }
-                                    if (data.deliveryOrderNo == null || data.deliveryOrderNo == "" || typeof data.deliveryOrderNo == 'undefined') {
-                                        layer.alert('送货单号不能为空');
-                                        return false;
-                                    } else if (data.currPcsNumber == null || data.currPcsNumber == "" || typeof data.currPcsNumber == 'undefined') {
-                                        layer.alert('此次数量不能为空');
-                                        return false;
-                                    }
-                                    console.log(data);
-                                    layer.confirm('确定要生成送货单？', function () {
-                                        admin.req({
-                                            type: 'post',
-                                            data: data,
-                                            url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
-                                            success: function (result) {
-                                                layer.alert("提交成功！");
-                                                table.reload('sqeManaPlan_tabStencil');
-                                                layer.closeAll();
-                                            }
-                                        });
-                                    });
-                                    return false;
-                                });
-                            });
-                        }
-                    });
-                }
+        if(obj.event === 'submit') {     //通知出货
+            layer.confirm('确定通知出货', function () {
+                
             });
         }
+    });
+    //监听行工具事件＝＝＝＝》stencil订单
+    table.on('tool(sqeManaPlan_tabStencil)', function (obj){
+       var data = obj.data;
+       if (obj.event == 'edit') {
+           var Pdata = {data:{},result:{}};     // data为表格数据/result为请求到的数据
+           Pdata.orderType = 'stencil'
+           Pdata.data = data;
+           admin.req({
+               type: 'post',
+               data: {'oid':data.id},
+               url: setter.baseUrl+'scm/ordershipment/infoByOid',
+               success: function (result) {
+                   Pdata.result = result.data;
+                   console.log(Pdata);
+                   admin.popup({
+                       title: 'Stencil交货明细'
+                       ,area: ['702px','547px']
+                       ,btn: ['保存', '取消']
+                       ,yes: function (index, layero) {
+                           $("#subdetailsDelivery").click();
+                       }
+                       ,success: function (layero, index) {
+                           var id = Pdata.data.id;
+                           view(this.id).render('sqeManagement/iframeWindow/details_delivery', Pdata).done(function () {
+                               form.render();
+                               // 监听快递选择
+                               form.on('select(courierCompany)', function(data){
+                                   if (data.value == '送货') {
+                                       $("input[name='courierOrderNo']").attr('disabled',true);
+                                   } else {
+                                       $("input[name='courierOrderNo']").attr('disabled',false);
+                                   }
+                                   form.render();
+                               });
+                               form.on('submit(detailsDelivery)', function (data) {
+                                   layer.msg("提交");
+                                   var data = data.field;
+                                   data.orderSupplierId = Pdata.data.id;                               // 供应商订单id
+                                   data.supplierNo = Pdata.data.supplierNo;                            // 供应商编号
+                                   data.deliveryTime = new Date().toLocaleDateString();                // 交期
+                                   data.orderPcsNumber = Pdata.data.quantityPcs;                       // 订单PCS数
+                                   data.orderId = Pdata.data.orderId;                                  // 订单id
+                                   data.donePcsNumber = parseInt($("#donePcsNumber").text());          // 已交PCS数
+                                   data.surplusPcsNumber = parseInt($("#surplusPcsNumber").text());    // 未交PCS数
+                                   if (data.courierCompany == '' || data.courierCompany == null) {
+                                       data.courierCompany = "送货";
+                                   }
+                                   if (data.deliveryOrderNo == null || data.deliveryOrderNo == "" || typeof data.deliveryOrderNo == 'undefined') {
+                                       layer.alert('送货单号不能为空');
+                                       return false;
+                                   } else if (data.currPcsNumber == null || data.currPcsNumber == "" || typeof data.currPcsNumber == 'undefined' && data.orderPcsNumber == data.donePcsNumber) {
+                                       layer.alert('此次数量不能为空');
+                                       return false;
+                                   }
+                                   console.log(data);
+                                   layer.confirm('确定要生成送货单？', function () {
+                                       admin.req({
+                                           type: 'post',
+                                           data: data,
+                                           url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
+                                           success: function (result) {
+                                               layer.alert("提交成功！");
+                                               table.reload('sqeManaPlan_tabStencil');
+                                               layer.closeAll();
+                                           }
+                                       });
+                                   });
+                                   return false;
+                               });
+                           });
+                       }
+                   });
+               }
+           });
+       }
     });
     exports('sqeMana_plan_together', {});
 });

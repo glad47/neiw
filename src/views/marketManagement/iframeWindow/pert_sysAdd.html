@@ -1,0 +1,139 @@
+<title>评审订单添加</title>
+<div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+       <form class="layui-form" lay-filter="pert_form" id="pertSysAddForm">
+           <div class="layui-form-item">
+               <label class="layui-form-label">客户编号</label>
+               <div class="layui-input-inline">
+                   <select name="customerNo">
+                       <option></option>
+                   </select>
+               </div>
+           </div>
+           <div class="layui-form-item">
+               <label class="layui-form-label">产品型号</label>
+               <div class="layui-input-inline" style="width: 190px;">
+                   <input class="layui-input" type="text" name="productNo"  value="{{ d.params.productNo || '' }}">
+               </div>
+               <div class="layui-input-inline" style="width: 80px;">
+                   <button class="layui-btn layui-btn-primary" type="button" id="pertUpload" title="上传需要一定的时间，请耐心等待" style="cursor: pointer;">上传</button>
+               </div>
+           </div>
+           <div style="display: none;">
+               <a class="opType">{{ d.params.opType || '' }}</a>
+               <a class="pertTabId">{{ d.params.id || '' }}</a>
+               <a id="pertCustomerNo">{{ d.params.customerNo || '' }}</a>
+               <div class="layui-form-item">
+                   <label class="layui-form-label">文件名</label>
+                   <div class="layui-input-inline">
+                       <input class="layui-input" type="text" name="quoteGerberName" value="{{ d.params.quoteGerberName || '' }}">
+                   </div>
+               </div>
+               <div class="layui-form-item">
+                   <label class="layui-form-label">文件路径</label>
+                   <div class="layui-input-inline">
+                       <input class="layui-input" type="text" name="quoteGerberPath" value="{{ d.params.quoteGerberPath || '' }}">
+                   </div>
+               </div>
+               <div class="layui-form-item">
+                   <button class="layui-btn layui-btn-primary" type="button" lay-submit lay-filter="pertSysAddSubmit" id="pertSysAddSubmit">提交</button>
+               </div>
+           </div>
+       </form>
+    </script>
+</div>
+
+<script>
+    layui.data.done = function (d) {
+        layui.use(['setter', 'upload', 'admin', 'index', 'element', 'jquery', 'form', 'filePathProcess'], function () {
+            var $ = layui.$,
+                table = layui.table,
+                form = layui.form,
+                admin = layui.admin,
+                view = layui.view
+            var upload = layui.upload;
+            var filepathprocess = layui.filePathProcess;
+            var opType = $(".opType").text();
+            var customerNo = $("#pertCustomerNo").text();
+            admin.req({
+                type: 'post',
+                url: setter.baseUrl+'sys/consumer/user/all',
+                success: function (data) {
+                    console.log(data);
+                    var $html;
+                    for (var i=0;i<data.data.length;i++){
+                        if (customerNo == data.data[i].id) {
+                            $html += "<option id="+data.data[i].id+" value="+data.data[i].id+" selected>"+data.data[i].userSystemId+"</option>"
+                        } else {
+                            $html += "<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>"
+                        }
+                    }
+                    $("select[name='customerNo']").append($html);
+                    form.render('select');
+                }
+            })
+            form.render(null, "pert_form");
+            //执行实例
+            var uploadInst = upload.render({
+                elem: '#pertUpload' //绑定元素
+                ,url:  setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token
+                ,field: 'file'  //文件上传的字段名
+                ,accept: 'file'
+                ,exts: 'zip|rar|7z'
+                ,before: function (obj) {
+                    obj.preview(function (index, file, result) {
+                        $("input[name='productNo']").val(file.name);   // 回填到表单=>产品型号
+                        $("input[name='quoteGerberName']").val(file.name);   // 回填到表单=>文件名
+                    });
+                }
+                ,done: function(res){
+                    //上传完毕回调
+                    $("input[name='quoteGerberPath']").val(filepathprocess.pathProcess(res.url));   // 回填到表单=>文件路径
+                }
+                ,error: function(){
+                    //请求异常回调
+                }
+            });
+
+            //  监听表单提交
+            form.on('submit(pertSysAddSubmit)', function (data) {
+                if (opType == 'add') {
+                    admin.req({
+                        type: 'post',
+                        url: setter.baseUrl+ 'pert/revieworder/save',
+                        data: data,
+                        success: function () {
+                            layer.alert('评审添加成功', function () {
+                                layer.closeAll();
+                                table.reload('iqcMana_pertSys');
+                            });
+                        }, error: function () {
+                            layer.msg('未知异常，请重试');
+                        }
+                    });
+                } else if (opType == 'edit') {
+                    data.field.id = $(".pertTabId").text();
+                    admin.req({
+                        type: 'post',
+                        url: setter.baseUrl+ 'pert/revieworder/update',
+                        data: data.field,
+                        success: function () {
+                            layer.alert('评审修改成功', function () {
+                                layer.closeAll();
+                                table.reload('iqcMana_pertSys');
+                            });
+                        }, error: function () {
+                            layer.msg('未知异常，请重试');
+                        }
+                    });
+                }
+               return false;
+            });
+        });
+    }
+</script>
+
+<style>
+.pertSysAddForm .layui-form-item{width: 325px;}
+#pertSysAddForm .layui-form-item .layui-input-inline{width: 267px;}
+</style>

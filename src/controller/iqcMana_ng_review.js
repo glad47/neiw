@@ -106,13 +106,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                         }
                         ,success: function (layero, index) {
                             var id = Pdata.data.id;
+                            Pdata.type = 0;
+                            console.log(Pdata);
                             view(this.id).render('sqeManagement/iframeWindow/details_delivery', Pdata).done(function () {
                                 form.render();
                                 form.on('submit(detailsDelivery)', function (data) {
                                     layer.msg("提交");
                                     var data = data.field;
                                     data.orderSupplierId = Pdata.data.id;                               // 供应商订单id
-                                    data.supplierNo = Pdata.data.supplierNo;                            // 供应商编号
+                                    data.supplierNo = Pdata.data.supplierId;                            // 供应商编号
                                     data.deliveryTime = new Date().toLocaleDateString();                // 交期
                                     data.orderPcsNumber = Pdata.data.quantityPcs;                       // 订单PCS数
                                     data.orderId = Pdata.data.orderId;                                  // 订单id
