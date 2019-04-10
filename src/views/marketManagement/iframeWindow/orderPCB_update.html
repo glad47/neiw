@@ -452,7 +452,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">PCB Cost：</label>
                 <div class="layui-input-block">
-                    {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+d.params.testCostFee+d.params.overworkFee).toFixed(2)}}
+                    {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+parseFloat(d.params.testCostFee)+d.params.overworkFee).toFixed(2)}}
                     <input type="text" name="pcbCost" value="{{ pcbcost || '' }}" autocomplete="off" class="layui-input" readonly>
                 </div>
             </div>
@@ -547,7 +547,7 @@
                     if (isNaN(_quote_obj[key])) {
                         _quote_obj[key] = 0;
                     }
-                } 
+                }
                 return _quote_obj;
             }
 
