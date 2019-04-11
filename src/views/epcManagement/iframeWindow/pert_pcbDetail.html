@@ -1,0 +1,494 @@
+<div class="layui-fluid">
+    <form class="layui-form">
+
+
+        <div class="layui-form-item">
+            <div class="layui-col-md12">
+                <label class="layui-form-label">Order type:</label>
+                <input class="mto-input" type="radio" lay-filter="boardType" id="radioSinglePcb" name="boardType" value="1" title="Single PCB">
+                <input class="mto-input" type="radio" lay-filter="boardType" id="radioPanelad" name="boardType" value="2" title="Panel as design">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">Single Size:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="dimensionsX"  autocomplete="off" class="layui-input mto-input" id="singleSizeX">
+                </div>
+                <div class="layui-input-inline" style="width: 10px;">x</div>
+                <div class="layui-input-inline">
+                    <input type="text" name="dimensionsY"  autocomplete="off" class="layui-input mto-input" id="singleSizeY">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">Quantity:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="quantityPcs"  autocomplete="off" class="layui-input mto-input" id="quantityPCS">
+                </div>
+            </div>
+            <div class="layui-input-inline" style="width: 10px;float: unset;">pcs</div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">Panel Size:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="panelSizeX"  autocomplete="off" class="layui-input mto-input" id="panelSizeX">
+                </div>
+                <div class="layui-input-inline" style="width: 10px;">x</div>
+                <div class="layui-input-inline">
+                    <input type="text" name="panelSizeY"  autocomplete="off" class="layui-input mto-input" id="panelSizeY">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">Quantity:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="quantityPanel"  autocomplete="off" class="layui-input mto-input" id="quantityPanel">
+                </div>
+            </div>
+            <div class="layui-input-inline" style="width: 10px;float: unset;">PAL</div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">Panel Way:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="panelWayX"  autocomplete="off" class="layui-input mto-input" id="panelWayX">
+                </div>
+                <div class="layui-input-inline" style="width: 10px;">x</div>
+                <div class="layui-input-inline">
+                    <input type="text" name="panelWayY"  autocomplete="off" class="layui-input mto-input" id="panelWayY">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">Area sq:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="areaSq"  autocomplete="off" class="layui-input mto-input" id="areasq" readonly>
+                </div>
+            </div>
+            <div class="layui-input-inline" style="width: 10px;float: unset;">㎡</div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md12">
+                <label class="layui-form-label">PCB type:</label>
+                <input type="radio" lay-filter="pcbType" id="ptfr4" name="pcbType" value="FR4" title="FR4">
+                <input type="radio" lay-filter="pcbType" id="ptaluminum" name="pcbType" value="Aluminum" title="Aluminum" >
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">Layer:</label>
+                <div class="layui-input-inline">
+                    <select name="layerNum" lay-filter="layer" lay-verify="required" id="selLayer"></select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">Thickness:</label>
+                <div class="layui-input-inline">
+                    <select name="finishThickness" lay-verify="required" lay-filter="finishThickness" id="selFinishThickness">
+                        <option id="lds">0.4mm</option>
+                        <option id="ldl">0.6mm</option>
+                        <option id="ldb">0.8mm</option>
+                        <option id="1dl">1.0mm</option>
+                        <option id="yde">1.2mm</option>
+                        <option id="ydw">1.5mm</option>
+                        <option id="ydl" selected="">1.6mm</option>
+                        <option id="ydb">1.8mm</option>
+                        <option id="edl">2.0mm</option>
+                        <option id="eds">2.4mm</option>
+                        <option id="sdl">3.0mm</option>
+                        <option id="sde">3.2mm</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">material:</label>
+                <div class="layui-input-inline">
+                    <select name="material" lay-verify="required" lay-filter="material" id="selMaterial"></select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">Code:</label>
+                <div class="layui-input-inline">
+                    <select name="productCode" lay-verify="required" id="selkbsy"></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">TG:</label>
+                <div class="layui-input-inline">
+                    <select name="tg" id="selTg">
+                        <option value="135" id="ysw">135</option>
+                        <option value="140" id="ysl">140</option>
+                        <option value="150" id="ywl">150</option>
+                        <option value="170" id="yql">170</option>
+                        <option value="180" id="ybl">180</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">CTI:</label>
+                <div class="layui-input-inline">
+                    <select name="cti" id="selCti">
+                        <option id="ewl">175≤CTI<250</option>
+                        <option id="sll">250≤CTI<400</option>
+                        <option id="lll">400≤CTI<600</option>
+                        <option id="dlll">CTI≥600</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">Halogen-free:</label>
+                <div class="layui-input-inline">
+                    <select name="halogenFree" id="selHf">
+                        <option>none</option>
+                        <option>NO</option>
+                        <option>YES</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">Heat Conductivity:</label>
+                <div class="layui-input-inline">
+                    <select name="heatConductivity" id="selHc">
+                        <option>none</option>
+                        <option>1W</option>
+                        <option>2W</option>
+                        <option>3W</option>
+                        <option>PCBonline</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">Inner layer copper:</label>
+                <div class="layui-input-inline">
+                    <select name="innerLayerCopper" id="selInlayercoopper">
+                        <option  value="none">none</option>
+                        <option value="1oz">1oz</option>
+                        <option value="2oz">2oz</option>
+                        <option value="3oz">3oz</option>
+                        <option value="4oz">4oz</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">N.of Core:</label>
+                <div class="layui-input-inline">
+                    <select name="nOfCore" id="selNofcore">
+                        <option value=""></option>
+                        <option value="none">none</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">Inner Min Track/Spacing:</label>
+                <div class="layui-input-inline">
+                    <select name="innerMinSpacing" id="selInnerMintrack">
+                        <option value=""></option>
+                        <option value="none">none</option>
+                        <option value="3mil">3mil</option>
+                        <option value="4mil">4mil</option>
+                        <option value="5mil">5mil</option>
+                        <option value="6mil">6mil</option>
+                        <option value="7mil">7mil</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">N.of PP:</label>
+                <div class="layui-input-inline">
+                    <select name="nOfPp" id="selNofpp">
+                        <option value=""></option>
+                        <option value="none">none</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">outer layer copper:</label>
+            <div class="layui-input-inline">
+                <select name="outerLayerCopper" id="selOuterlayercopper">
+                    <option value=""></option>
+                    <option value="1oz">1oz</option>
+                    <option value="2oz">2oz</option>
+                    <option value="2.5oz">2.5oz</option>
+                    <option value="3oz">3oz</option>
+                </select>
+            </div>
+            <label class="layui-form-label">Out Min Track/spacing</label>
+            <div class="layui-input-inline">
+                <select name="outerMinTrack" id="selOutMintrack">
+                    <option value="3mil">3mil</option>
+                    <option value="4mil">4mil</option>
+                    <option value="5mil">5mil</option>
+                    <option value="6mil">6mil</option>
+                    <option value="7mil">7mil</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">BGA Size:</label>
+            <div class="layui-input-inline">
+                <select name="bgaSize" id="selBgasize">
+                    <option value="≥0.22mm">≥0.22</option>
+                    <option value="≥0.22mm">≥0.25</option>
+                    <option value="≥0.30">≥0.30</option>
+                </select>
+            </div>
+            <label class="layui-form-label">PTH Copper:</label>
+            <div class="layui-input-inline">
+                <select name="pthCopper" id="selPthcopper">
+                    <option value="none">none</option>
+                    <option value="20um">20um</option>
+                    <option value="25um">25um</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">Min Hole Size:</label>
+            <div class="layui-input-inline">
+                <select name="minHoleSize" id="selMinholesize">
+                    <option value="0.2">0.2</option>
+                    <option value="0.3">0.3</option>
+                    <option value="0.35">0.35</option>
+                    <option value="0.4">0.4↑</option>
+                    <option value="0.5">0.5↑</option>
+                    <option value="1.5">1.5↑</option>
+                </select>
+            </div>
+            <label class="layui-form-label">N.of holes:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="nOfHoles" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">Solder Mask color:</label>
+            <div class="layui-input-inline">
+                <select name="solderMaskTopColor" id="selSoldermc">
+                    <option value="green">green</option>
+                    <option value="black">black</option>
+                    <option value="white">white</option>
+                    <option value="yellow">yellow</option>
+                    <option value="red">red</option>
+                    <option value="blue">blue</option>
+                    <option value="matte_black">matte_black</option>
+                    <option value="matte_green">matte_green</option>
+                </select>
+            </div>
+            <label class="layui-form-label">VIA process:</label>
+            <div class="layui-input-inline">
+                <select name="viaProcess" id="selViaprocess">
+                    <option value="none">none</option>
+                    <option value="tenting">Tenting</option>
+                    <option value="plugged">Plugged</option>
+                    <option value="vias_not_covered">Vias not covered</option>
+                    <option value="Follow_gerber">Follow gerber</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">Silk Screen color:</label>
+            <div class="layui-input-inline">
+                <select name="silkScreenTopColor" id="selSilksc">
+                    <option value="green">green</option>
+                    <option value="black">black</option>
+                    <option value="white">white</option>
+                    <option value="yellow">yellow</option>
+                    <option value="red">red</option>
+                    <option value="blue">blue</option>
+                </select>
+            </div>
+            <label class="layui-form-label">Peelable:</label>
+            <div class="layui-input-inline">
+                <select name="peelableBrand" id="selPeelable">
+                    <option value="none">none</option>
+                    <option value="top">TOP</option>
+                    <option value="bot">BOT</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">Surface finish:</label>
+            <div class="layui-input-inline">
+                <select name="surfaceFinish" id="selSurfacefinish" lay-filter="selSurfacefinish">
+                    <option value="HASL_with_lead">HASL with lead</option>
+                    <option value="HASL_lead_free">HASL lead free</option>
+                    <option value="Immersion_Gold">Immersion Gold</option>
+                    <option value="Immersion_tin">Immersion tin</option>
+                    <option value="Immersion_silver">Immersion silver</option>
+                    <option value="OSP">OSP</option>
+                </select>
+            </div>
+            <label class="layui-form-label">Surface Thickness:</label>
+            <div class="layui-input-inline">
+                <select name="thickness" id="selSurfacethickness">
+                    <option value="1u">Au:1u</option>
+                    <option value="2u">Au:2u</option>
+                    <option value="3u">Au:3u"</option>
+                    <option value="2.54-25.4um" selected>2.54-25.4um</option>
+                    <option value="0.5um-0.7um">0.5um-0.7um</option>
+                    <option value="≥0.05um">≥0.05um</option>
+                    <option value="0.25-0.5um">0.25-0.5um</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <!-- <label class="layui-form-label">CNC Routing:</label> -->
+            <div class="layui-col-md6" style="text-align: center;width: 260px;">
+                <div class="layui-input-inline" style="width: 133px;margin-right: 0;">
+                    <input type="radio" name="cncAndPunch" value="1" title="CNC Routing" id="routingOne" lay-filter="routingType">
+                </div>
+                <div class="layui-input-inline" style="width: 109px;display: inline;float: unset;margin-left: 0;">
+                    <input type="radio" name="cncAndPunch" value="2" title="Punching" lay-filter="routingType">
+                </div>
+            </div>
+            <div class="layui-col-md6" style="display: inline-block;">
+                <label class="layui-form-label" style="width: 86px;margin-left: -18px;">Au area:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="surfaceArea"  autocomplete="off" class="layui-input" disabled>
+                </div>
+            </div>
+            <!--<label class="layui-form-label" style="width: 86px;">Path:</label>-->
+            <!--<div class="layui-input-inline">-->
+            <!--<input type="text" name="panelRoutingPath"  autocomplete="off" class="layui-input">-->
+            <!--</div>-->
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 80px;">CNC Path:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="panelRoutingPath"  autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label" style="width: 83px;">Cost:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="cost"  autocomplete="off" class="layui-input" id="routingCost">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 80px;">N.of holes:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="punchingHoles"  autocomplete="off" class="layui-input" disabled value="0">
+            </div>
+            <label class="layui-form-label" style="width: 83px;">N.of Slots:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="punchingSlots"  autocomplete="off" class="layui-input" disabled value="0">
+            </div>
+        </div>
+
+        <div class="layui-form-item test-sel">
+            <label class="layui-form-label">Test Type:</label>
+            <div class="layui-input-inline">
+                <select name="testPointType" id="selTestcost" lay-filter="testPointType">
+                    <option value="0">none</option>
+                    <option value="1">flying probe</option>
+                    <option value="2">Test Fixture</option>
+                </select>
+            </div>
+            <label class="layui-form-label">Test Fee:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="testCost"  autocomplete="off" class="layui-input" id="flyingTest">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">Test Point:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="testPoint"  autocomplete="off" class="layui-input" id="testPoint">
+            </div>
+            <label class="layui-form-label">Drilling Num:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="nOfHoles"  autocomplete="off" class="layui-input" id="nOfHoles">
+            </div>
+        </div>
+
+        <div class="layui-form-item lots-checkbox-group">
+            <div class="layui-input-block">
+                <input value="1" type="checkbox" name="blindHoles" title="Blind holes" lay-skin="primary">
+                <input value="1" type="checkbox" name="edgePlated" title="Edge Plated" lay-skin="primary">
+                <input value="1" type="checkbox" name="halfHoleLated" title="Half Hole" lay-skin="primary">
+                <input value="1" type="checkbox" name="contrlImpeance" title="Contrl impeance" lay-skin="primary">
+                <input value="1" type="checkbox" name="buriedHoles" title="Buried holes" lay-skin="primary">
+                <input value="1" type="checkbox" name="carbon" title="Carbo" lay-skin="primary">
+                <input value="1" type="checkbox" name="bevellingCamfer" title="Bevelling" lay-skin="primary">
+                <input value="1" type="checkbox" name="deepMillRouting" title="Deep Mill Routing" lay-skin="primary">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">Different Design:</label>
+            <div class="layui-input-block">
+                <input type="radio" name="differentDesign" value="1" title="1" checked>
+                <input type="radio" name="differentDesign" value="2" title="2">
+                <input type="radio" name="differentDesign" value="3" title="3">
+                <input type="radio" name="differentDesign" value="4" title="4">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">Remark:</label>
+            <div class="layui-input-block">
+                <textarea name="remark" placeholder="请输入内容" class="layui-textarea" style="width: 100%"></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="display: none;">
+            <label class="layui-form-label">customerId:</label>
+            <div class="layui-input-block">
+                <input type="text" name="customerId"  autocomplete="off" class="layui-input mto-input" id="customerId">
+                <input type="text" name="customerSysName"  autocomplete="off" class="layui-input mto-input" id="customerSysName">
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="display: none;">
+            <div class="layui-input-block">
+                <button class="layui-btn bot-subbtn" lay-filter="quoteForm" lay-submit>立即提交</button>
+                <button type="reset" data-type="resetQuoteTab" class="layui-btn layui-btn-primary bot-rsetbtn">重置</button>
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="display: ;">
+            <div class="layui-input-block">
+                <button class="layui-btn bot-subbtn" lay-filter="quoteForm" lay-submit>立即提交</button>
+                <button type="reset" data-type="resetQuoteTab" class="layui-btn layui-btn-primary bot-rsetbtn">重置</button>
+            </div>
+        </div>
+
+    </form>
+</div>
