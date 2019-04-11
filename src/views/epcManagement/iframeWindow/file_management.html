@@ -2,10 +2,10 @@
 <div class="layui-fluid stencil-edit-info">
     <script type="text/html" template lay-done="layui.data.done(d);">
     <button class="layui-btn layui-btn-xs yszzFile">原始资料==>正式资料</button>
-    <table class="layui-table">
+    <table class="layui-table file-mana">
         <tbody>
         <tr>
-            <td>原始资料：</td>
+            <td style="width: 15%;">原始资料：</td>
             <td>
                 <div class="cc om_uploadPercentage{{ d.params.id }}">
                     <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe63e;</i>
@@ -16,7 +16,7 @@
                     {{ d.params.gerberName || '' }}
                 </div>
             </td>
-            <td>
+            <td style="width: 20%;">
                 <a class="btn-fileupload btn-fileupload{{ d.params.id }}">
                     <span class="fileupload-btn">
                         <i class="layui-icon layui-icon-add-1"></i>
@@ -26,6 +26,9 @@
                         <input type="file" class="om_filewareFilePcb filewareFile{{ d.params.id }}" name="file" multiple/>
                     </span>
                 </a>
+            </td>
+            <td>
+                <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.gerberPath }}&fileName={{ d.params.gerberName }}">下载</a>
             </td>
         </tr>
         <tr>
@@ -54,6 +57,9 @@
                         <input type="file" class="filewareFilePcb filewareFile{{ d.params.id }}" name="file" multiple/>
                     </span>
                 </a>
+            </td>
+            <td>
+                <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.quoteGerberPath }}&fileName={{ d.params.quoteGerberName }}">下载</a>
             </td>
         </tr>
         </tbody>
@@ -159,7 +165,7 @@
                     var saveObj = {
                         data: {'quoteGerberName':fileObj.name,'id':$dataId,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
                         url: saveUrl,      // 将字段保存到数据库的接口
-                        retab: 'epc_Tabpcb_ok_payment_order',          // 表格对象，请求成功后重新渲染表格
+                        retab: $retab,          // 表格对象，请求成功后重新渲染表格
                         removeDom: removeProcess,       // 文件上传成功 ==> 要移除的dom对象
                         ffile: changeFileTd_dom,     // 文件上传成功 ==>  显示新的文件名
                         type: 1     // type 为0 则为原始资料 1 为正式资料
@@ -182,37 +188,60 @@
                         formData.append('file', fileInput.get(0).files[0]);
                         // 上传文件
                         upload.uploadFile(formData, function (e) {
-                            alert(1);
-                            console.log(e);
+
                         });
                     }
                 });
             }
             // 原始资料转正式资料
             $(".yszzFile").on('click', function () {
-                console.log('quoteGerberName:'+$dataGerberName);
-               layer.confirm('确定要把原始资料转为正式资料？', function () {
+                var postDataA = {};
+                var saveBackResult = layui.data('saveBackResult');
+                var isAddFile = layui.data('saveBackResult').isAddFile;     // 判断是否更改了源文件
+                var htmTx;
+                console.log(saveBackResult);
+                if (!isEmptyObject(saveBackResult) && isAddFile == true) {
+                    postDataA.quoteGerberName = layui.data('saveBackResult').gerberName;
+                    postDataA.quoteGerberPath = layui.data('saveBackResult').gerberPath;
+                    postDataA.id = $dataId;
+                } else {
+                    postDataA.quoteGerberName = $dataGerberName;
+                    postDataA.quoteGerberPath = $dataGerberPath;
+                    postDataA.id = $dataId;
+                }
+                htmTx = postDataA.quoteGerberName;
+                    layer.confirm('确定要把原始资料转为正式资料？', function () {
                    admin.req({
                        type: 'post',
-                       data: {'quoteGerberName':$dataGerberName,'quoteGerberPath':$dataGerberPath,'id':$dataId},
+                       data: postDataA,
                        url:  saveUrl,
                        success: function (data) {
                            layer.alert("原始资料已成功转为正式资料！");
-                           $(".ffile"+$dataId).text($dataGerberName);
+                           $(".ffile"+$dataId).text(htmTx);
                            table.reload($retab);
                        }
                    });
                });
             });
-        });
+            // 判断json对象是否为空
+            function isEmptyObject(e) {
+                var t;
+                for (t in e)
+                    return !1;
+                return !0
+            }
+
+            });
     };
 </script>
 
 <style>
     /*上传文件*/
     .fileupload-btn{position: relative;cursor: pointer;}
-    .filewareFilePcb,.filewareFileS, .om_filewareFilePcb{position: absolute;opacity: 0;left: -3px;height: 54px;width: 82px;}
+    .filewareFilePcb,.filewareFileS, .om_filewareFilePcb{position: absolute;opacity: 0;left: -3px;height: 21px;width: 102%;}
     a.btn-fileupload {background-color: rgb(255, 86, 4);color: #ffffff;padding: 5px;border-radius: 3px;font-size: 0.7em;}
     .cc{float: left;font-size: 0.9em;background-color: #00FF00;width: 100%;display: none;white-space: nowrap;max-height: 21px;}
     .newFFile{color: green;}
+    .file-mana tbody>tr>td:last-of-type{width: 10%;text-align: center;cursor: pointer;}
+    .file-mana tbody>tr>td:last-of-type a{color: #009588;}
 </style>

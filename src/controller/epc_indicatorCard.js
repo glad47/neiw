@@ -61,7 +61,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'id', title: 'ID',hide: true}
                 ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
-                ,{field: '', title:'下载', toolbar: '#pcb-file', align:'center', minWidth: 106}
                 ,{field:'gerberName', title: '原始资料', align:'center', width: 254}
                 ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_file'}
                 ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
@@ -269,7 +268,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,yes:function(index, layero){
                     $("#LAY-pcborder-update-submit").click();
                 }
-                ,end:function(){}
+                ,end:function(){
+                    localStorage.removeItem("saveBackResult");  // 清除localStorage
+                }
                 ,success: function (layero, index) {
                     view(this.id).render('epcManagement/Indicator_cardform', data).done(function () {
                         form.render(null, '')
@@ -345,11 +346,14 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             data.orderType = "pcbOrder";        // 根据orderType  发送不同的接口
             admin.popup({
                 title: 'PCB订单资料管理'
-                ,area: ['45%', '70%']
+                ,area: ['45%', '40%']
                 ,success: function (layero, index) {
                     view(this.id).render('epcManagement/iframeWindow/file_management', data).done(function () {
 
                     });
+                }
+                ,end: function () {
+                    localStorage.removeItem("saveBackResult");  // 清除localStorage
                 }
             });
         }
@@ -375,7 +379,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'id', title: 'ID',hide: true}
                 ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
-                ,{field: '', title:'下载', toolbar: '#pcb-file', align:'center', minWidth: 106}
                 ,{field:'gerberName', title: '原始资料', align:'center', width: 254}
                 ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_fileS'}
                 ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
@@ -611,7 +614,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,yes:function(index, layero){
                     $("#LAY-pcborder-update-submit").click();
                 }
-                ,end:function(){}
+                ,end:function(){
+                    localStorage.removeItem("saveBackResult");  // 清除localStorage
+                }
                 ,success: function (layero, index) {
                     view(this.id).render('epcManagement/Indicator_cardform', data).done(function () {
                         form.render(null, '')
@@ -693,11 +698,14 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             data.orderType = "stencilOrder";        // 根据orderType  发送不同的接口
             admin.popup({
                 title: 'PCB订单资料管理'
-                ,area: ['45%', '70%']
+                ,area: ['45%', '40%']
                 ,success: function (layero, index) {
                     view(this.id).render('epcManagement/iframeWindow/file_management', data).done(function () {
 
                     });
+                }
+                ,end: function () {
+                    localStorage.removeItem("saveBackResult");  // 清除localStorage
                 }
             });
         } else if (obj.event === 'supplier_update') {

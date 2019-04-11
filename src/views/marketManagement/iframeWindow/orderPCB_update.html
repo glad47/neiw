@@ -319,12 +319,12 @@
 
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Blind Holes：</label>
+                <label class="layui-form-label">Blind Holes：{{ d.params.blindHoles }}</label>
                 <div class="layui-input-block">
                         <!--<input type="text" name="blindHoles" value="{{ d.params.blindHoles || 'No' }}" autocomplete="off" class="layui-input">-->
                     <select name="blindHoles">
                         <option value="0"  {{ d.params.blindHoles == '' ? 'selected' : '' }}>No</option>
-                        <option value="1" {{ d.params.blindHoles = '1' ? 'selected' : '' }}>Yes</option>
+                        <option value="1" {{ d.params.blindHoles == '1' ? 'selected' : '' }}>Yes</option>
                     </select>
                 </div>
             </div>
@@ -419,19 +419,19 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Eng' Fee：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="engineeringFee" value="{{ d.params.engineeringFee || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="engineeringFee" value="{{ d.params.engineeringFee || 0 }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">BoardFee：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="boardFee" value="{{ d.params.boardFee || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="boardFee" value="{{ d.params.boardFee || 0 }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Test Cost：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="testCostFee" value="{{ d.params.testCostFee || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="testCostFee" value="{{ d.params.testCostFee || 0 }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </div>
@@ -440,20 +440,20 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Exp' fee：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="overworkFee" value="{{ d.params.overworkFee || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="overworkFee" value="{{ d.params.overworkFee || 0 }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Tool' fee：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="toolingFee" value="{{ d.params.toolingFee || '0' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="toolingFee" value="{{ d.params.toolingFee || 0 }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">PCB Cost：</label>
                 <div class="layui-input-block">
-                    {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+d.params.testCostFee+d.params.overworkFee).toFixed(2)}}
-                    <input type="text" name="pcbCost" value="{{ pcbcost || '' }}" autocomplete="off" class="layui-input" readonly>
+                    {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+parseFloat(d.params.testCostFee)+d.params.overworkFee).toFixed(2)}}
+                    <input type="text" name="pcbCost" value="{{ pcbcost || 0 }}" autocomplete="off" class="layui-input" readonly>
                 </div>
             </div>
         </div>
@@ -468,13 +468,13 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Post fee：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="postFee" value="{{ d.params.postFee || '0' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="postFee" value="{{ d.params.postFee || 0 }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Total：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="subtotal" value="{{ d.params.subtotal || '' }}" autocomplete="off" class="layui-input" readonly>
+                    <input type="text" name="subtotal" value="{{ d.params.subtotal || 0 }}" autocomplete="off" class="layui-input" readonly>
                 </div>
             </div>
         </div>
@@ -547,7 +547,7 @@
                     if (isNaN(_quote_obj[key])) {
                         _quote_obj[key] = 0;
                     }
-                } 
+                }
                 return _quote_obj;
             }
 

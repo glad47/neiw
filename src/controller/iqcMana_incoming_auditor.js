@@ -152,6 +152,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 btn3: function () {
                     d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
                     d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
+                    d_data.orderId = data.orderId;
+                    console.log(data);
                     layer.confirm('确定入库？', function () {
                         admin.req({
                             type: 'post',
@@ -329,6 +331,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 btn3: function () {
                     d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
                     d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
+                    d_data.orderId = data.orderId;
                     layer.confirm('确定入库？', function () {
                         admin.req({
                             type: 'post',
