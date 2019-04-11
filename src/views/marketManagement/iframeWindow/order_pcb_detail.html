@@ -95,9 +95,9 @@
                         {{# } else if(d.params.solderMaskTopColor == 'blue'){ }}
                         {{# solderMaskTopColor = '蓝色'}}
                         {{# } else if(d.params.solderMaskTopColor == 'matte_black'){ }}
-                        {{# solderMaskTopColor = '雅黑'}}
+                        {{# solderMaskTopColor = '哑黑'}}
                         {{# } else if(d.params.solderMaskTopColor == 'matte_green'){ }}
-                        {{# solderMaskTopColor = '雅绿'}}
+                        {{# solderMaskTopColor = '哑绿'}}
                         {{# } }}
                         {{ solderMaskTopColor || ''}}
                     </td>
@@ -117,9 +117,9 @@
                         {{# } else if(d.params.silkScreenTopColor == 'blue'){ }}
                         {{# silkScreenTopColor = '蓝色'}}
                         {{# } else if(d.params.silkScreenTopColor == 'matte_black'){ }}
-                        {{# silkScreenTopColor = '雅黑'}}
+                        {{# silkScreenTopColor = '哑黑'}}
                         {{# } else if(d.params.silkScreenTopColor == 'matte_green'){ }}
-                        {{# silkScreenTopColor = '雅绿'}}
+                        {{# silkScreenTopColor = '哑绿'}}
                         {{# } }}
                         {{ silkScreenTopColor || ''}}
                     </td>
@@ -154,7 +154,7 @@
                         {{# if(d.params.testPointType == '1'){testWay = '飞针'}else{testWay='测试架'} }}
                         {{ testWay || '' }}
                     </td>
-                    <td>无卤数:</td>
+                    <td>无卤素:</td>
                     {{# if(d.params.halogenFree == '1') {d.params.halogenFree = '是'}else{d.params.halogenFree = '否'} }}
                     <td>{{ d.params.halogenFree || ''}}</td>
                 </tr>
