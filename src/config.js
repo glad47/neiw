@@ -52,10 +52,10 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
       ,msgName: 'msg' //状态信息的字段名称
       ,dataName: 'data' //数据详情的字段名称
     }
-    ,baseUrl:'http://192.168.0.155:8080/renren-fast/'
-    ,baseUrl1:"http://192.168.0.155:8871/"
-    ,webSocketUrl: 'ws://192.168.0.155:2200/ws'
-    ,imUrl:'https://192.168.0.155:8871/'
+   ,baseUrl:'http://192.168.0.155:8080/renren-fast/'
+   ,baseUrl1:"http://192.168.0.155/"
+   ,webSocketUrl: 'ws://192.168.0.155:2200/ws'
+   ,imUrl:'https://192.168.0.155/'
 
       // ,baseUrl:'http://www.pcbonline.com:8080/renren-fast/'
       // ,baseUrl1:"https://www.pcbonline.com/"

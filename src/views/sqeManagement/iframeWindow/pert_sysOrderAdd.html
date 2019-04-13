@@ -3,15 +3,13 @@
     <script type="text/html" template lay-done="layui.data.done(d);">
         <form class="layui-form" lay-filter="pert_form">
             <div class="layui-form-item">
-                <label class="layui-form-label">客户编号</label>
+                <label class="layui-form-label">供应商编号</label>
                 <div class="layui-input-inline">
-                    <select name="customerNo">
-                        <option>选择客户</option>
-                    </select>
+                    <input class="layui-input" type="text" name="supplierNo">
                 </div>
-                <label class="layui-form-label">产品型号</label>
+                <label class="layui-form-label">单价</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="productNo" id="pertUpload" placeholder="点击上传资料" readonly title="上传需要一定的时间，请耐心等待" style="cursor: pointer;">
+                    <input class="layui-input" type="text" name="unitPrice">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -44,18 +42,33 @@
                     <input class="layui-input" type="text" name="overworkFee">
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">文件名</label>
-                <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="quoteGerberName">
+
+            <div style="display: none;">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">客户编号</label>
+                    <div class="layui-input-inline">
+                        <select name="customerNo" data="{{ d.params.customerNo }}">
+                            <option>选择客户</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label">产品型号</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" type="text" name="productNo" id="pertUpload" placeholder="点击上传资料" value="{{ d.params.productNo }}">
+                    </div>
                 </div>
-                <label class="layui-form-label">文件路径</label>
-                <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="quoteGerberPath">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">文件名</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" type="text" name="quoteGerberName" value="{{ d.params.quoteGerberName }}">
+                    </div>
+                    <label class="layui-form-label">文件路径</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" type="text" name="quoteGerberPath" value="{{ d.params.quoteGerberPath }}">
+                    </div>
                 </div>
             </div>
             <div class="layui-form-item">
-                <button type="button" lay-submit lay-filter="pertSysAddSubmit">提交</button>
+                <button class="layui-btn layui-btn-primary" type="button" lay-submit lay-filter="pertSysOrderAddSubmit" id="pertSysOrderAddSubmit">提交</button>
             </div>
         </form>
     </script>
@@ -77,7 +90,13 @@
                 success: function (data) {
                     console.log(data);
                     for (var i=0;i<data.data.length;i++){
-                        $("select[name='customerNo']").append("<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>");
+                        var $html = "";
+                        if (data.data[i].id == $("select[name='customerNo']").attr("data")) {
+                            $html += "<option selected id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>";
+                        } else {
+                            $html += "<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>";
+                        }
+                        $("select[name='customerNo']").append($html);
                     }
                     form.render('select');
                 }

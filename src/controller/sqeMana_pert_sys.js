@@ -34,11 +34,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
-        elem: '#epcMana_pertSys'
-        ,url: setter.baseUrl+'pert/revieworder/list?status=2'
-        ,toolbar: "#epcMana_pertSys_tb"
+        elem: '#sqeMana_pert_sys'
+        ,url: setter.baseUrl+'pert/revieworder/list?status=3'
+        ,toolbar: "#sqeMana_pertSys_tb"
         ,cellMinWidth: 80
-        ,id: "epcMana_pertSys"
+        ,id: "sqeMana_pertSys"
         ,page: true
         ,parseData: function (res) {
             return{
@@ -62,13 +62,13 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'quoteGerberName',title: '文件名', Width: 110, hide: true}
             ,{field: 'quoteGerberPath',title: '文件路径', Width: 110, hide: true}
             ,{field: 'id',title: 'ID', hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#epcMana_pertSys_tabbar',width: 150}
+            ,{fixed: 'right', title:'操作', toolbar: '#sqeMana_pertSys_tabbar',width: 150}
         ]]
         ,done: function (res, curr, count) {
 
         }
     });
-    table.on('toolbar(eqcMana_pertSys)', function (obj) {
+    table.on('toolbar(sqeMana_pert_sys)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var pertData = new Object();
         switch (obj.event) {
@@ -114,7 +114,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 break;
 
             case 'submit':
-                layer.msg(1);
                 var data = checkStatus.data;
                 if (data.length>1) {
                     layer.msg("最多只能选择一条数据！");
@@ -136,10 +135,47 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     });
                 }
                 break;
+            case 'addOffer':
+                var data = checkStatus.data;
+                console.log(data)
+                if (data.length>1) {
+                    layer.msg("最多只能选择一条数据！");
+                } else if (data.length <= 0) {
+                    layer.msg("请选择！");
+                } else {
+                    admin.popup({
+                        title: '添加供应商报价',
+                        area: ['749px','486px'],
+                        btn: ['保存', '取消'],
+                        yes: function (index, layero) {
+                            $("#pertSysOrderAddSubmit").click();
+                        }
+                        ,success: function (layero, index) {
+                            view(this.id).render('sqeManagement/iframeWindow/pert_sysOrderAdd', data[0]).done(function () {
+                                form.render();
+                                form.on('submit(pertSysOrderAddSubmit)', function (data) {
+                                    var field = data.field;
+                                    field.id = _this_id;
+                                    admin.req({
+                                       type: 'post',
+                                       data: field,
+                                       url: setter.baseUrl + 'pert/supplierquote/save',
+                                        success: function () {
+                                            layer.alert('供应商报价添加成功！', function () {
+                                               table.reload('sqeMana_pert_sys');
+                                            });
+                                        }
+                                    });
+                                    console.log(field);
+                                })
+                            });
+                        }
+                    });
+                }
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(eqcMana_pertSys)', function (obj) {
+    table.on('tool(sqeMana_pert_sys)', function (obj) {
         layer.msg(11);
         var data = obj.data;
         var _this_id = data.id;
@@ -201,7 +237,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             });
         } else if (obj.event == 'del'){
             admin.req({
-               type: 'post',
+                type: 'post',
                 url: setter.baseUrl + 'pert/pcbinfo/info/'+_this_id,
                 success: function (res) {
                     if (res.pcbInfo != null) {
@@ -219,7 +255,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                         });
                     }  else {
                         layer.alert('当前订单不存在pcb参数信息，如果添加选择表格左上角的添加按钮', function () {
-                           layer.closeAll();
+                            layer.closeAll();
                         });
                     }
                 }
@@ -259,5 +295,5 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             });
         }
     });
-    exports('epcMana_pert_sys', {});
+    exports('sqeMana_pert_sys', {});
 });
