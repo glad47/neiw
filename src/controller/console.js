@@ -121,7 +121,7 @@ layui.define(function(exports){
           },
           tooltip : {
             trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
+            formatter: "{a} <br/>{b} : ${c} ({d}%)"
           },
           legend: {
             orient : 'vertical',
@@ -129,7 +129,7 @@ layui.define(function(exports){
             data: data1.legendData
           },
           series : [{
-            name:'访问来源',
+            name:'销售额',
             type:'pie',
             radius : '55%',
             center: ['50%', '50%'],
@@ -140,7 +140,7 @@ layui.define(function(exports){
         //新增的用户量
         {
           title: {
-            text: currentYear+'年跟单员月用户量',
+            text: currentYear+'年跟单员月客户数',
             x: 'left',
             textStyle: {
               fontSize: 14
@@ -148,7 +148,7 @@ layui.define(function(exports){
           },
           tooltip : { //提示框
             trigger: 'axis',
-            formatter: "{b}<br>用户数：{c}"
+            //formatter: "{b}<br>用户数：{c}"
           },
           legend: {
             data:data3.legendData
