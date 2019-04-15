@@ -47,6 +47,7 @@ layui.define(['laytpl', 'layer'], function(exports){
       key: setter.request.tokenName
       ,remove: true
     });
+    
     //跳转到登入页
     location.hash = '/user/login'; 
   };
@@ -68,8 +69,12 @@ layui.define(['laytpl', 'layer'], function(exports){
     options.headers = options.headers || {};
     
     if(request.tokenName){
+      var sendData = typeof options.data === 'string' 
+        ? JSON.parse(options.data) 
+      : options.data;
+
       //自动给参数传入默认 token
-      options.data[request.tokenName] = request.tokenName in options.data
+      options.data[request.tokenName] = request.tokenName in sendData
         ?  options.data[request.tokenName]
       : (layui.data(setter.tableName)[request.tokenName] || '');
       
@@ -95,7 +100,7 @@ layui.define(['laytpl', 'layer'], function(exports){
         
         //登录状态失效，清除本地 access_token，并强制跳转到登入页
         else if(res[response.statusName] == statusCode.logout){
-          layer.msg("账户在其他地方登陆，如非本人操作请及时修改密码；")
+            layer.msg("账户在其他地方登陆，如非本人操作请及时修改密码；");
           view.exit();
         }
         
@@ -233,16 +238,16 @@ layui.define(['laytpl', 'layer'], function(exports){
     ,elem = isScriptTpl ? html : $(html)
     ,elemTemp = isScriptTpl ? html : elem.find('*[template]')
     ,fn = function(options){
-      var tpl = laytpl(options.dataElem.html());
-      
-      options.dataElem.after(tpl.render($.extend({
+      var tpl = laytpl(options.dataElem.html())
+      ,res = $.extend({
         params: router.params
-      }, options.res)));
-
-      typeof callback === 'function' && callback();
+      }, options.res);
       
+      options.dataElem.after(tpl.render(res));
+      typeof callback === 'function' && callback();
+
       try {
-        options.done && new Function('d', options.done)(options.res);
+        options.done && new Function('d', options.done)(res);
       } catch(e){
         console.error(options.dataElem[0], '\n存在错误回调脚本\n\n', e)
       }

@@ -1,4 +1,4 @@
-<title>市场管理-评审系统</title>
+<title>供应商管理-评审复审</title>
 <div class="layui-fluid">
     <!--卡片－表格信息-->
     <div class="layui-tab layui-tab-brief" lay-filter="tab-planToger">
@@ -10,15 +10,17 @@
         <div class="layui-tab-content">
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="iqcMana_pertSys" lay-filter="iqcMana_pertSys"></table>
-                <script type="text/html" id="iqcMana_pertSys_tb">
+                <table class="layui-table" id="sqeMana_pert_sys" lay-filter="sqeMana_pert_sys"></table>
+                <script type="text/html" id="sqeMana_pertSys_tb">
                     <div class="layui-btn-container">
                         <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="addOffer">添加报价</button>
                         <button class="layui-btn layui-btn-sm" lay-event="submit">提交</button>
                     </div>
                 </script>
-                <script type="text/html" id="markerMana_tabbar">
+                <script type="text/html" id="sqeMana_pertSys_tabbar">
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">修改</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detail">详情</a>
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                 </script>
             </div>
@@ -27,7 +29,7 @@
 </div>
 
 <script>
-    layui.use('iqcMana_pert_sys', layui.factory('iqcMana_pert_sys')).use(['iqcMana_pert_sys', 'table', 'index','element','form'], function(){
+    layui.use('sqeMana_pert_sys', layui.factory('sqeMana_pert_sys')).use(['sqeMana_pert_sys', 'table', 'index','element','form'], function(){
         var form = layui.form;
         form.render();
     });

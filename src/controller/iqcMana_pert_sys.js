@@ -35,7 +35,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
         elem: '#iqcMana_pertSys'
-        ,url: setter.baseUrl+'pert/revieworder/list'
+        ,url: setter.baseUrl+'pert/revieworder/list?status=1'
         ,toolbar: "#iqcMana_pertSys_tb"
         ,cellMinWidth: 80
         ,id: "iqcMana_pertSys"
@@ -69,22 +69,48 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
     });
     table.on('toolbar(iqcMana_pertSys)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
         var pertData = new Object();
-        if(obj.event === 'add'){     //通知出货
-            pertData.opType = 'add';
-            admin.popup({
-                title: '添加评审订单'
-                ,area: ['506px','288px']
-                ,btn: ['添加', '取消']
-                ,yes: function (layero, index) {
-                    $("#pertSysAddSubmit").click();
-                }
-                ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/pert_sysAdd', pertData).done(function () {
+        switch (obj.event) {
+            case 'add':
+                pertData.opType = 'add';
+                admin.popup({
+                    title: '添加评审订单'
+                    ,area: ['506px','288px']
+                    ,btn: ['添加', '取消']
+                    ,yes: function (layero, index) {
+                        $("#pertSysAddSubmit").click();
+                    }
+                    ,success: function (layero, index) {
+                        view(this.id).render('marketManagement/iframeWindow/pert_sysAdd', pertData).done(function () {
 
+                        });
+                    }
+                });
+                break;
+            case 'submit':
+                layer.msg(1);
+                var data = checkStatus.data;
+                if (data.length>1) {
+                    layer.msg("最多只能选择一条数据！");
+                } else if (data.length <= 0) {
+                    layer.msg("请选择一条要提交的数据！");
+                } else {
+                    layer.confirm('确定提交评审？', function () {
+                       admin.req({
+                          type: 'post',
+                          url: setter.baseUrl + 'pert/revieworder/update',
+                          data: {id:data[0].id,status: 2},
+                          success: function () {
+                              layer.alert('评审提交成功！', function () {
+                                 table.reload('iqcMana_pertSys');
+                                 layer.closeAll();
+                              });
+                          } 
+                       });
                     });
                 }
-            })
+                break;
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单

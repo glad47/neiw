@@ -31,7 +31,7 @@
                 </tr>
                 <tr>
                     <td>聚谷型号:</td>
-                    <td>{{ d.params.productNo || ''}}</td>
+                    <td id="orderPCBDetailPN">{{ d.params.productNo || ''}}</td>
                     <td>Gerber文件:</td>
                     <td>{{ d.params.gerberName || ''}}</td>
                 </tr>
@@ -240,6 +240,7 @@
                 ,form = layui.form;
             $(".printOrderPcb-btnGrop>.printBtn").on("click", function () {
                 var printId = "pcborderPrint";
+                $(document).attr("title","工艺要求["+$("#orderPCBDetailPN").text()+"]");
                 document.body.innerHTML=document.getElementById(printId).innerHTML;
                 window.print();
                 window.location.reload();
