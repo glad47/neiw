@@ -9,14 +9,14 @@
  
 layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
   table = layui.table;
-  table.set({
-      headers: { //通过 request 头传递
-          access_token: layui.data('layuiAdmin').access_token
-      }
-      ,where: { //通过参数传递
-          access_token: layui.data('layuiAdmin').access_token
-      }
-  });
+    table.set({
+        headers: { //通过 request 头传递
+            access_token: layui.data('layuiAdmin').access_token
+        }
+        ,where: { //通过参数传递
+            access_token: layui.data('layuiAdmin').access_token
+        }
+    });
   exports('setter', {
     container: 'LAY_app' //容器ID
     ,base: layui.cache.base //记录layuiAdmin文件夹所在路径
@@ -53,9 +53,9 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
       ,dataName: 'data' //数据详情的字段名称
     }
    ,baseUrl:'http://192.168.0.155:8080/renren-fast/'
-   ,baseUrl1:"http://192.168.0.155:8871/"
+   ,baseUrl1:"http://192.168.0.155/"
    ,webSocketUrl: 'ws://192.168.0.155:2200/ws'
-   ,imUrl:'https://192.168.0.155:8871/'
+   ,imUrl:'https://192.168.0.155/'
 
       // ,baseUrl:'http://www.pcbonline.com:8080/renren-fast/'
       // ,baseUrl1:"https://www.pcbonline.com/"
@@ -82,7 +82,6 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
       'echartsTheme', //echarts 主题
       'convertCurrency', //货币转换
       'uploadCommon', //文件上传进度
-      'filePathProcess', //文件上传的路径处理[去除两端中括号下次可直接下载]
     ]
     
     //主题配置
