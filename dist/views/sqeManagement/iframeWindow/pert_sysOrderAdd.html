@@ -5,65 +5,63 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">客户编号</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="supplierNo">
+                    <select name="supplierNo" lay-verify="required"  lay-filter="i">
+                        {{#
+                        layui.each(d.params.cInfo, function(index, item){
+                        }}
+                        <option></option>
+                        <option value="{{ item.id || ''}}" {{ d.params.userId == item.id ? 'selected' : ''}}>{{ item.userSystemId }}</option>
+                        {{#  }); }}
+                        {{#  if(d.params.cInfo.length === 0){ }}
+                        无数据
+                        {{#  } }}
+                    </select>
                 </div>
                 <label class="layui-form-label">单价</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="unitPrice">
+                    <input class="layui-input" type="text" name="unitPrice" value="{{ d.params.pcbInfo.unitPrice || '' }}">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">板费</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="boardFee">
+                    <input class="layui-input" type="text" name="boardFee" value="{{ d.params.pcbInfo.boardFee || '' }}">
                 </div>
                 <label class="layui-form-label">运费</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="postFee">
+                    <input class="layui-input" type="text" name="postFee" value="{{ d.params.pcbInfo.postFee || '' }}">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">测试费</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="testCostFee">
+                    <input class="layui-input" type="text" name="testCostFee" value="{{ d.params.pcbInfo.testCostFee || '' }}">
                 </div>
                 <label class="layui-form-label">工程费</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="engineeringFee">
+                    <input class="layui-input" type="text" name="engineeringFee" value="{{ d.params.pcbInfo.engineeringFee || '' }}">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">cnc磨具费</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="toolingFee">
+                    <input class="layui-input" type="text" name="toolingFee" value="{{ d.params.pcbInfo.toolingFee || '' }}">
                 </div>
                 <label class="layui-form-label">加急费</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="overworkFee">
+                    <input class="layui-input" type="text" name="overworkFee" value="{{ d.params.pcbInfo.overworkFee || '' }}">
                 </div>
             </div>
 
             <div style="display: none;">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">客户编号</label>
-                    <div class="layui-input-inline">
-                        <select name="customerNo" data="{{ d.params.customerNo }}">
-                            <option>选择客户</option>
-                        </select>
-                    </div>
-                    <label class="layui-form-label">产品型号</label>
-                    <div class="layui-input-inline">
-                        <input class="layui-input" type="text" name="productNo" id="pertUpload" placeholder="点击上传资料" value="{{ d.params.productNo }}">
-                    </div>
-                </div>
-                <div class="layui-form-item">
                     <label class="layui-form-label">文件名</label>
                     <div class="layui-input-inline">
-                        <input class="layui-input" type="text" name="quoteGerberName" value="{{ d.params.quoteGerberName }}">
+                        <input class="layui-input" type="text" name="quoteGerberName" value="{{ d.params.quoteGerberName || '' }}">
                     </div>
                     <label class="layui-form-label">文件路径</label>
                     <div class="layui-input-inline">
-                        <input class="layui-input" type="text" name="quoteGerberPath" value="{{ d.params.quoteGerberPath }}">
+                        <input class="layui-input" type="text" name="quoteGerberPath" value="{{ d.params.quoteGerberPath || '' }}">
                     </div>
                 </div>
             </div>
@@ -71,7 +69,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">评审备注</label>
                 <div class="layui-input-inline" style="width: 75%;">
-                    <textarea class="layui-textarea" name="reviewRemrk" id=""></textarea>
+                    <textarea class="layui-textarea" name="remark" id="" value="{{ d.params.pcbInfo.remark || '' }}"></textarea>
                 </div>
             </div>
 
@@ -93,23 +91,6 @@
                 view = layui.view
             var upload = layui.upload;
             var filepathprocess = layui.filePathProcess;
-            admin.req({
-                type: 'post',
-                url: setter.baseUrl+'sys/consumer/user/all',
-                success: function (data) {
-                    console.log(data);
-                    for (var i=0;i<data.data.length;i++){
-                        var $html = "";
-                        if (data.data[i].id == $("select[name='customerNo']").attr("data")) {
-                            $html += "<option selected id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>";
-                        } else {
-                            $html += "<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>";
-                        }
-                        $("select[name='customerNo']").append($html);
-                    }
-                    form.render('select');
-                }
-            })
             form.render(null, "pert_form");
             //执行实例
             var uploadInst = upload.render({

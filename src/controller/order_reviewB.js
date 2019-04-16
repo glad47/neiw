@@ -34,11 +34,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
-        elem: '#sqeMana_pert_sys'
+        elem: '#orderReviewB_pert_sys'
         ,url: setter.baseUrl+'pert/revieworder/list?status=3'
-        ,toolbar: "#sqeMana_pertSys_tb"
+        ,toolbar: "#orderReviewB_pertSys_tb"
         ,cellMinWidth: 80
-        ,id: "sqeMana_pertSys"
+        ,id: "orderReviewB_pert_sys"
         ,page: true
         ,parseData: function (res) {
             return{
@@ -62,13 +62,13 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'quoteGerberName',title: '文件名', Width: 110, hide: true}
             ,{field: 'quoteGerberPath',title: '文件路径', Width: 110, hide: true}
             ,{field: 'id',title: 'ID', hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#sqeMana_pertSys_tabbar',width: 220}
+            ,{fixed: 'right', title:'操作', toolbar: '#orderReviewB_pertSys_tabbar',width: 220}
         ]]
         ,done: function (res, curr, count) {
 
         }
     });
-    table.on('toolbar(sqeMana_pert_sys)', function (obj) {
+    table.on('toolbar(orderReviewB_pert_sys)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var pertData = new Object();
         var data = checkStatus.data;
@@ -170,11 +170,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                             }
                         });
                     }
-                    });
+                });
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(sqeMana_pert_sys)', function (obj) {
+    table.on('tool(orderReviewB_pert_sys)', function (obj) {
         var data = obj.data;
         var _this_id = data.id;
         console.log("_this_id"+ _this_id);
@@ -204,46 +204,46 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     }
 
                     admin.req({
-                       type: 'post',
-                       url: setter.baseUrl + 'sys/consumer/user/all',
-                       success: function (resCus) {
-                           resData.cInfo = resCus.data;
-                           admin.popup({
-                               title: '修改评审订单'
-                               ,area: ['749px','486px']
-                               ,btn: ['保存', '取消']
-                               ,yes: function (index, layero) {
-                                   $(".bot-subbtn").click();
-                               }
-                               ,success: function (layero, index) {
-                                   view(this.id).render('sqeManagement/iframeWindow/pert_sysOrderAdd',resData).done(function () {
-                                       console.log(resData);
-                                       form.on('submit(pertDetailForm)', function (data) {
-                                           var field = data.field;
-                                           field.id = resData.pcbInfo.id;
-                                           $.each(field,function (ikey, value) {
-                                               if (value == "" || value == null || typeof value == "undefined") {
-                                                   field[ikey]= 0;
-                                               }
-                                           });
-                                           console.log(field);
-                                           admin.req({
-                                               type: 'post',
-                                               data: field,
-                                               url: setter.baseUrl + 'pert/pcbinfo/update',
-                                               success: function () {
-                                                   layer.alert('供应商报价修改成功！', function () {
-                                                       layer.closeAll();
-                                                   });
-                                               }
-                                           });
-                                           return false;
-                                       });
-                                       form.render();
-                                   });
-                               }
-                           });
-                       } 
+                        type: 'post',
+                        url: setter.baseUrl + 'sys/consumer/user/all',
+                        success: function (resCus) {
+                            resData.cInfo = resCus.data;
+                            admin.popup({
+                                title: '修改评审订单'
+                                ,area: ['749px','486px']
+                                ,btn: ['保存', '取消']
+                                ,yes: function (index, layero) {
+                                    $(".bot-subbtn").click();
+                                }
+                                ,success: function (layero, index) {
+                                    view(this.id).render('sqeManagement/iframeWindow/pert_sysOrderAdd',resData).done(function () {
+                                        console.log(resData);
+                                        form.on('submit(pertDetailForm)', function (data) {
+                                            var field = data.field;
+                                            field.id = resData.pcbInfo.id;
+                                            $.each(field,function (ikey, value) {
+                                                if (value == "" || value == null || typeof value == "undefined") {
+                                                    field[ikey]= 0;
+                                                }
+                                            });
+                                            console.log(field);
+                                            admin.req({
+                                                type: 'post',
+                                                data: field,
+                                                url: setter.baseUrl + 'pert/pcbinfo/update',
+                                                success: function () {
+                                                    layer.alert('供应商报价修改成功！', function () {
+                                                        layer.closeAll();
+                                                    });
+                                                }
+                                            });
+                                            return false;
+                                        });
+                                        form.render();
+                                    });
+                                }
+                            });
+                        }
                     });
                 }
             });
@@ -306,14 +306,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
             });
         } else if (obj.event == 'sOrderDetail') {
-            // admin.req({
-            //     type: 'post'
-            //     ,url: setter.baseUrl+'pert/supplierquote/list'
-            //     ,success: function (res) {
-            //         var resData = res.data;
-            //
-            //     }
-            // });
+           var popData = {type: 'marketPert'}
             admin.popup({
                 title: '供应商报价详情'
                 ,btn:['返回']
@@ -322,12 +315,13 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     layer.closeAll();
                 }
                 ,success: function (layero, index) {
-                    view(this.id).render('sqeManagement/iframeWindow/supplierOrder_detail').done(function () {
+                    view(this.id).render('sqeManagement/iframeWindow/supplierOrder_detail', popData).done(function () {
+                        console.log(popData);
                         form.render();
                     });
                 }
             })
         }
     });
-    exports('sqeMana_pert_sys', {});
+    exports('order_reviewB', {});
 });
