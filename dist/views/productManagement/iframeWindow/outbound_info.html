@@ -1,0 +1,94 @@
+<title>出货信息</title>
+<div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">合同号：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="phone" autocomplete="off" class="layui-input" value="{{ d.params.invoiceNo }}">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">货代：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="freight" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">国家：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="country" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">快递公司：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="courierName" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">件数：</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="number" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">快递单号：</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="courierNumber" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">重量：</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="weight" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">发货日期：</label>
+                <div class="layui-input-inline">
+                    <input type="date" name="deliveryDate" autocomplete="off" class="layui-input" id="outboundDeliveryDate">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">到货日期：</label>
+                <div class="layui-input-inline">
+                    <input type="date" name="arrivalDate" autocomplete="off" class="layui-input" id="outboundArrivalDate">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <button class="layui-btn outbound-submit" lay-submit lay-filter="fomrOutboundInfo" type="button">提交</button>
+            </div>
+        </div>
+    </form>
+    </script>
+</div>
+
+<script>
+    layui.data.done = function(d) {
+        layui.use(['admin', 'table', 'form', 'laydate'], function () {
+            var laydate = layui.laydate,
+                $ = layui.jquery,
+                layer = layui.layer;
+            var form = layui.form;
+            laydate.render({
+                elem: '#outboundArrivalDate'
+            });
+            laydate.render({
+                elem: '#outboundDeliveryDate'
+            });
+            form.render();
+        });
+    };
+</script>

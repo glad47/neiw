@@ -62,7 +62,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'quoteGerberName',title: '文件名', Width: 110, hide: true}
             ,{field: 'quoteGerberPath',title: '文件路径', Width: 110, hide: true}
             ,{field: 'id',title: 'ID', hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#sqeMana_pertSys_tabbar',width: 150}
+            ,{fixed: 'right', title:'操作', toolbar: '#sqeMana_pertSys_tabbar',width: 220}
         ]]
         ,done: function (res, curr, count) {
 
@@ -71,112 +71,100 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     table.on('toolbar(sqeMana_pert_sys)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var pertData = new Object();
+        var data = checkStatus.data;
+        if (data.length>1) {
+            layer.msg("最多只能选择一条数据！");
+        } else if (data.length != 0) {
+            var _this_id = data[0].id;
+        } else {
+            layer.msg("请选择一条要提交的数据！");
+            return false;
+        }
+        console.log(data);
         switch (obj.event) {
             case 'add':
                 pertData.opType = 'add';
-                var data = checkStatus.data;
-                if (data.length>1) {
-                    layer.msg("最多只能选择一条数据！");
-                } else if (data.length <= 0) {
-                    layer.msg("请选择一条要提交的数据！");
-                } else {
-                    var _this_id = data[0].id;
-                    admin.popup({
-                        title: '修改评审订单'
-                        ,area: ['985px','701px']
-                        ,btn: ['保存', '取消']
-                        ,yes: function (index, layero) {
-                            $(".bot-subbtn").click();
-                        }
-                        ,success: function (layero, index) {
-                            view(this.id).render('epcManagement/iframeWindow/pert_pcbDetailAdd',data).done(function () {
-                                form.on('submit(pertDetailForm)', function (data) {
-                                    var field = data.field;
-                                    field.orderId = _this_id;
-                                    console.log(field);
-                                    admin.req({
-                                        type: 'post',
-                                        data: field,
-                                        url: setter.baseUrl + 'pert/pcbinfo/save',
-                                        success: function () {
-                                            layer.alert('供应商报价添加成功！', function () {
-                                                layer.closeAll();
-                                            });
-                                        }
-                                    });
-                                    return false;
+                admin.popup({
+                    title: '修改评审订单'
+                    ,area: ['985px','701px']
+                    ,btn: ['保存', '取消']
+                    ,yes: function (index, layero) {
+                        $(".bot-subbtn").click();
+                    }
+                    ,success: function (layero, index) {
+                        view(this.id).render('epcManagement/iframeWindow/pert_pcbDetailAdd',data).done(function () {
+                            form.on('submit(pertDetailForm)', function (data) {
+                                var field = data.field;
+                                field.orderId = _this_id;
+                                console.log(field);
+                                admin.req({
+                                    type: 'post',
+                                    data: field,
+                                    url: setter.baseUrl + 'pert/pcbinfo/save',
+                                    success: function () {
+                                        layer.alert('供应商报价添加成功！', function () {
+                                            layer.closeAll();
+                                        });
+                                    }
                                 });
-                                form.render();
+                                return false;
                             });
-                        }
-                    });
-                }
+                            form.render();
+                        });
+                    }
+                });
                 break;
 
             case 'submit':
                 var data = checkStatus.data;
-                if (data.length>1) {
-                    layer.msg("最多只能选择一条数据！");
-                } else if (data.length <= 0) {
-                    layer.msg("请选择一条要提交的数据！");
-                } else {
-                    layer.confirm('确定提交评审？', function () {
-                        admin.req({
-                            type: 'post',
-                            url: setter.baseUrl + 'pert/revieworder/update',
-                            data: {id:data[0].id,status: 3},
-                            success: function () {
-                                layer.alert('评审提交成功！', function () {
-                                    table.reload('epcMana_pertSys');
-                                    layer.closeAll();
-                                });
-                            }
-                        });
-                    });
-                }
-                break;
-            case 'addOffer':
-                var data = checkStatus.data;
-                console.log(data)
-                if (data.length>1) {
-                    layer.msg("最多只能选择一条数据！");
-                } else if (data.length <= 0) {
-                    layer.msg("请选择！");
-                } else {
-                    admin.popup({
-                        title: '添加供应商报价',
-                        area: ['749px','486px'],
-                        btn: ['保存', '取消'],
-                        yes: function (index, layero) {
-                            $("#pertSysOrderAddSubmit").click();
-                        }
-                        ,success: function (layero, index) {
-                            view(this.id).render('sqeManagement/iframeWindow/pert_sysOrderAdd', data[0]).done(function () {
-                                form.render();
-                                form.on('submit(pertSysOrderAddSubmit)', function (data) {
-                                    var field = data.field;
-                                    field.id = _this_id;
-                                    admin.req({
-                                       type: 'post',
-                                       data: field,
-                                       url: setter.baseUrl + 'pert/supplierquote/save',
-                                        success: function () {
-                                            layer.alert('供应商报价添加成功！', function () {
-                                               table.reload('sqeMana_pert_sys');
-                                            });
-                                        }
-                                    });
-                                    console.log(field);
-                                })
+                layer.confirm('确定提交评审？', function () {
+                    admin.req({
+                        type: 'post',
+                        url: setter.baseUrl + 'pert/revieworder/update',
+                        data: {id:data[0].id,status: 3},
+                        success: function () {
+                            layer.alert('评审提交成功！', function () {
+                                table.reload('epcMana_pertSys');
+                                layer.closeAll();
                             });
                         }
                     });
-                }
+                });
+                break;
+            case 'addOffer':
+                admin.popup({
+                    title: '添加供应商报价',
+                    area: ['749px','486px'],
+                    btn: ['保存', '取消'],
+                    yes: function (index, layero) {
+                        $("#pertSysOrderAddSubmit").click();
+                    }
+                    ,success: function (layero, index) {
+                        view(this.id).render('sqeManagement/iframeWindow/pert_sysOrderAdd', data[0]).done(function () {
+                            form.render();
+                            form.on('submit(pertSysOrderAddSubmit)', function (data) {
+                                var field = data.field;
+                                field.orderId = _this_id;
+                                admin.req({
+                                    type: 'post',
+                                    data: field,
+                                    url: setter.baseUrl + 'pert/supplierquote/save',
+                                    success: function () {
+                                        layer.alert('供应商报价添加成功！', function () {
+                                            table.reload('sqeMana_pertSys');
+                                            layer.closeAll();
+                                        });
+                                    }
+                                });
+                                console.log(field);
+                            })
+                        });
+                    }
+                });
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(sqeMana_pert_sys)', function (obj) {
-        layer.msg(11);
         var data = obj.data;
         var _this_id = data.id;
         console.log("_this_id"+ _this_id);
@@ -293,6 +281,28 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     });
                 }
             });
+        } else if (obj.event == 'sOrderDetail') {
+            // admin.req({
+            //     type: 'post'
+            //     ,url: setter.baseUrl+'pert/supplierquote/list'
+            //     ,success: function (res) {
+            //         var resData = res.data;
+            //
+            //     }
+            // });
+            admin.popup({
+                title: '供应商报价详情'
+                ,btn:['返回']
+                ,area: ['56%','56%']
+                ,yes: function () {
+                    layer.closeAll();
+                }
+                ,success: function (layero, index) {
+                    view(this.id).render('sqeManagement/iframeWindow/supplierOrder_detail').done(function () {
+                        form.render();
+                    });
+                }
+            })
         }
     });
     exports('sqeMana_pert_sys', {});

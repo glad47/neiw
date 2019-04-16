@@ -1,0 +1,348 @@
+<title>Edit supplier</title>
+<div class="layui-fluid" style="width: 750px;">
+    <form class="layui-form edit-cusInfo" lay-filter="supplierAdd_form" id="supplierAdd_form">
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md6">
+                <label class="layui-form-label">编号：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="supplierId" value="{{ d.params.supplierId || ''}}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md6">
+                <label class="layui-form-label">类别：</label>
+                <div class="layui-input-block">
+                    <select name="type">
+                        <option value="0"></option>
+                        <option value="1">PCB</option>
+                        <option value="2">PCBA</option>
+                        <option value="3">SMT</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label">联系人：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="contact" value="{{ d.params.contact || ''}}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-cusCom layui-col-md6">
+                <label class="layui-form-label">公司名称：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="companyName" value="{{ d.params.companyName || ''}}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-tel layui-col-md4">
+                <label class="layui-form-label">办公电话：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="officePhone" value="{{ d.params.officePhone || ''}}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-skype layui-col-md4">
+                <label class="layui-form-label">手机：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="phone" value="{{ d.params.phone || ''}}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-email layui-col-md4">
+                <label class="layui-form-label">Email：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="email" value="{{ d.params.email || ''}}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <script type="text/html" template>
+            <div class="addcus-cusNum layui-col-md4">
+                <label class="layui-form-label">付款方式：</label>
+                <div class="layui-input-block">
+                    <select name="paymentType">
+                        <option value="0" {{ d.params.paymentType == '0' ? 'selected' : '' }}></option>
+                        <option value="1" {{ d.params.paymentType == '1' ? 'selected' : '' }}>现金</option>
+                        <option value="2" {{ d.params.paymentType == '2' ? 'selected' : '' }}>当月结</option>
+                        <option value="3" {{ d.params.paymentType == '3' ? 'selected' : '' }}>月结30天</option>
+                        <option value="4" {{ d.params.paymentType == '4' ? 'selected' : '' }}>月结60天</option>
+                    </select>
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md4">
+                <label class="layui-form-label">是否含税：</label>
+                <div class="layui-input-block">
+                    <select name="taxe">
+                        <option value="0" {{ d.params.taxe == '0' ? 'selected' : '' }}></option>
+                        <option value="1" {{ d.params.taxe == '1' ? 'selected' : '' }}>是</option>
+                        <option value="2" {{ d.params.taxe == '2' ? 'selected' : '' }}>否</option>
+                    </select>
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md4">
+                <label class="layui-form-label">发票类型：</label>
+                <div class="layui-input-block">
+                    <select name="invoiceType">
+                        <option value="0" {{ d.params.invoiceType == '0' ? 'selected' : '' }}></option>
+                        <option value="1"  {{ d.params.invoiceType == '1' ? 'selected' : '' }}>收据</option>
+                        <option value="2"  {{ d.params.invoiceType == '2' ? 'selected' : '' }}>普票</option>
+                        <option value="3"  {{ d.params.invoiceType == '3' ? 'selected' : '' }}>增值税13%</option>
+                    </select>
+                </div>
+            </div>
+            </script>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label">操作：</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="switch" lay-skin="switch" lay-text="停用|启用">
+                </div>
+            </div>
+            
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label">供应商：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:14}" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="userId" lay-verify="required">
+                            {{# 
+                                var userId = d.params.userId;
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option></option>
+                            <option value="{{ item.userId || ''}}" {{ userId == item.userId ? 'selected' : ''}}>{{ item.username }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据
+                            {{#  } }}
+                        </select>    
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">内容分类</li>
+                <li>附件</li>
+                <li>备注</li>
+            </ul>
+            <div class="layui-tab-content" style="height: 100px;">
+                <div class="layui-tab-item layui-show">
+                    <!--内部分类-->
+                    <div class="layui-form-item supedit-nbfl">
+                        <div class="supedit-type layui-input-block layui-col-md12">
+                            <label class="layui-form-label">类型：</label>
+                            <input type="radio" name="strengths" value="1" title="简单样板">
+                            <input type="radio" name="strengths" value="2" title="复杂样板">
+                            <input type="radio" name="strengths" value="3" title="批量">
+                            <input type="radio" name="strengths" value="4" title="HDI">
+                            <input type="radio" name="strengths" value="5" title="软板">
+                        </div>
+                        <div class="layui-input-block layui-col-md12">
+                            <div class="supedit-jq layui-col-md6">
+                                <label class="layui-form-label">交期：</label>
+                                <div id="supedit_jq"></div>
+                                <input type="text" name="evaluateDdelivery" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="supedit-pz layui-col-md6">
+                                <label class="layui-form-label">品质：</label>
+                                <div id="supedit_pz" name="evaluateQuality"></div>
+                                <input type="text" name="evaluateQuality" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-input-block layui-col-md12">
+                            <div class="supedit-phd layui-col-md6">
+                                <label class="layui-form-label">配合度：</label>
+                                <div id="supedit_phd" name="evaluateCompatibility"></div>
+                                <input type="text" name="evaluateCompatibility" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="supedit-pj layui-col-md6">
+                                <label class="layui-form-label">评级：</label>
+                                <div id="supedit_pj" name="evaluateRate"></div>
+                                <input type="text" name="evaluateRate" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <hr class="layui-bg-gray">
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <table class="layui-hide" id="supedit_tab_fj" lay-filter="supedit_tab_fj"></table>
+                    <script type="text/html" id="supedit_tab_fj_bar">
+                        <a class="layui-btn layui-btn-xs" id="supedit_upload" lay-event="upload">上传</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                    </script>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-form-item layui-form-text">
+                        <script type="text/html" template>
+                            <textarea placeholder="请输入备注信息" value="{{ d.params.remark || ''}}" class="layui-textarea" name="remark"></textarea>
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-col-md-offset2">
+            <div class="layui-input-block" style="margin-top: 60px;">
+                <button class="layui-btn" lay-submit lay-filter="LAY-supplier-add-submit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+<style>
+    /*.edit-cusInfo .layui-input-block {margin-top: 10px;}*/
+    .layui-layout-body {overflow: scroll;} /**防止隐藏**/
+    input[name="evaluateDdelivery"],input[name="evaluateQuality"],input[name="evaluateCompatibility"],input[name="evaluateRate"]{display: none;}
+    .supedit-nbfl .layui-input-block {margin-left: 0;margin-top: 0;}
+
+</style>
+<script>
+layui.data.done = function(d){
+    layui.use(['admin', 'table', 'index','element','form','rate','upload'], function(){
+        var table = layui.table;
+        var $ = layui.jquery;
+        var form = layui.form;
+        var element = layui.element;
+        var upload = layui.upload;
+        var rate = layui.rate;
+        var admin = layui.admin;
+        form.render(null, 'supplierAdd_form');
+
+        table.render({
+            elem: '#supedit_tab_fj',
+            url: './json/infoManagement/supplier_info.js',
+            // width: admin.screen() >1 ? 892 : '',
+            height: 200,
+            cols: [[
+                {field:'supplier_id', title: '编号', sort: true,width: ''}
+                ,{field:'company', title: '附件名称',width: ''} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                ,{field:'supplier_type', title: '上传时间', sort: true,width: ''}
+                ,{width:'', align:'center',title: '操作', fixed: 'right', sort: true, toolbar: '#supedit_tab_fj_bar'}
+            ]]
+                ,page: true,
+            // done事件中进行upload.render().放在其他地方有bug（需要点击两次）
+            done: function () {
+                upload.render({
+                    elem: '#supedit_upload',
+                    url: '' ,//上传接口
+                    done: function (res) {
+                        //上传完毕回调
+                    }
+                    ,error: function () {
+                        //请求异常回调
+                    }
+                });
+            }
+
+        });
+
+        //监听工具条
+         table.on('tool(supedit_tab_fj)', function (obj) {
+             var data = obj.data;
+             if(obj.event === 'upload'){
+                layer.msg('选择文件上传');
+                uploadInset.upload();
+             }else if (obj.event === 'del') {
+                 layer.confirm('真的删除行么', function(index){
+                     obj.del();
+                     layer.close(index);
+                 });
+             }
+         });
+
+        //交期
+        rate.render({
+            elem: '#supedit_jq'
+            ,value: 0
+            ,text: true
+            ,choose: function (value) {
+                $("input[name='evaluateDdelivery']").val(value);
+            }
+            ,setText: function(value){ //自定义文本的回调
+                var arrs = {
+                    '1': '极差'
+                    ,'2': '差'
+                    ,'3': '中等'
+                    ,'4': '好'
+                    ,'5': '极好'
+                };
+                this.span.text(arrs[value] || ( value + "星"));
+            }
+        });
+        //品质
+        rate.render({
+            elem: '#supedit_pz'
+            ,value: 0
+            ,text: true
+            ,choose: function (value) {
+                $("input[name='evaluateQuality']").val(value);
+            }
+            ,setText: function(value){ //自定义文本的回调
+                var arrs = {
+                    '1': '极差'
+                    ,'2': '差'
+                    ,'3': '中等'
+                    ,'4': '好'
+                    ,'5': '极好'
+                };
+                this.span.text(arrs[value] || ( value + "星"));
+            }
+        });
+        //配合度
+        rate.render({
+            elem: '#supedit_phd'
+            ,value: 0
+            ,text: true
+            ,choose: function (value) {
+                $("input[name='evaluateCompatibility']").val(value);
+            }
+            ,setText: function(value){ //自定义文本的回调
+                var arrs = {
+                    '1': '极差'
+                    ,'2': '差'
+                    ,'3': '中等'
+                    ,'4': '好'
+                    ,'5': '极好'
+                };
+                this.span.text(arrs[value] || ( value + "星"));
+            }
+        });
+        //评级
+        rate.render({
+            elem: '#supedit_pj'
+            ,value: 0
+            ,text: true
+            ,choose: function (value) {
+                $("input[name='evaluateRate']").val(value);
+            }
+            ,setText: function(value){ //自定义文本的回调
+                var arrs = {
+                    '1': 'C'
+                    ,'2': 'B2'
+                    ,'3': 'B1'
+                    ,'4': 'A2'
+                    ,'5': 'A1'
+                };
+                this.span.text(arrs[value] || ( value + "星"));
+            }
+        });
+    });
+}
+</script>

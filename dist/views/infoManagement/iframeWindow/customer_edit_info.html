@@ -1,0 +1,247 @@
+<title>Add Customer Info</title>
+<div class="layui-fluid">
+    <form class="layui-form edit-cusInfo" lay-filter="customer-add-edit-form-list" id="customer-add-edit-form-list">
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md6">
+                <label class="layui-form-label">客户名称：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="userName" autocomplete="off" class="layui-input" value="{{ d.params.userName || ''}}">
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md6">
+                <label class="layui-form-label">密码：</label>
+                <div class="layui-input-block">
+                    <input type="password" name="password" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-cusCom layui-col-md6">
+                <label class="layui-form-label">邮箱：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="email" autocomplete="off" class="layui-input" value="{{ d.params.email || ''}}">    
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label">电话：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="mobilePhone" autocomplete="off" class="layui-input" value="{{ d.params.mobilePhone || '' }}">    
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-skype layui-col-md6">
+                <label class="layui-form-label">国家:</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="country" autocomplete="off" class="layui-input" value="{{ d.params.country || '' }}">    
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-email layui-col-md6">
+                <label class="layui-form-label">城市：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="city" autocomplete="off" class="layui-input" value="{{ d.params.city || '' }}">    
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">地址：</label>
+            <div class="layui-input-block">
+                <script type="text/html" template>
+                    <textarea name="address" autocomplete="off" class="layui-textarea">
+                        {{ d.params.address || '' }}
+                    </textarea>
+                </script>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-tel layui-col-md6">
+                <label class="layui-form-label">Skype：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="skypeId" autocomplete="off" class="layui-input" value="{{ d.params.skypeId || '' }}">    
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-skype layui-col-md6">
+                <label class="layui-form-label">Google：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="googleId" autocomplete="off" class="layui-input" value="{{ d.params.googleId || '' }}">    
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-email layui-col-md6">
+                <label class="layui-form-label">Facebook：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="facebookId" autocomplete="off" class="layui-input" value="{{ d.params.facebookId || '' }}">    
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-email layui-col-md6">
+                <label class="layui-form-label">公司：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="companName" autocomplete="off" class="layui-input" value="{{ d.params.companName || '' }}">    
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-cusCom layui-col-md6">
+                <label class="layui-form-label">业务类型：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                      <select name="businessType">
+                        <option value="">请选择类型</option>
+                        <option value="Manufacturer" {{ d.params.businessType === 'Manufacturer' ? 'selected' : '' }}>Manufacturer</option>
+                        <option value="Trading Company" {{ d.params.businessType === 'Trading Company' ? 'selected' : '' }}>Trading Company</option>
+                        <option value="Solution Provider" {{ d.params.businessType === 'SolutionProvider' ? 'selected' : '' }}>Solution Provider</option>
+                        <option value="Research Institute" {{ d.params.businessType === 'Research Institute' ? 'selected' : '' }}>Research Institute</option>
+                        <option value="University" {{ d.params.businessType === 'University' ? 'selected' : '' }}>University</option>
+                        <option value="Other" {{ d.params.businessType === 'Other' ? 'selected' : '' }}>Other</option>
+                      </select>
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label">职业角色：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                      <select name="jobrole">
+                        <option value="">请选择角色</option>
+                        <option value="Admin  Clerk  Expeditor" {{ d.params.jobrole === 'Admin  Clerk  Expeditor' ? 'selected' : '' }}>Admin  Clerk  Expeditor</option>
+                        <option value="Buyer  Purchasing" {{ d.params.jobrole === 'Buyer  Purchasing' ? 'selected' : '' }}>Buyer  Purchasing</option>
+                        <option value="Design Engineer - Mechanical  Electrical Focus" {{ d.params.jobrole === 'Design Engineer - Mechanical  Electrical Focus' ? 'selected' : '' }}>Design Engineer - Mechanical
+                         Electrical Focus</option>
+                        <option value="Design Engineer - PCB  Components Focus" {{ d.params.jobrole === 'Design Engineer - PCB Components Focus' ? 'selected' : '' }}>Design Engineer - PCB Components Focus</option>
+                        <option value="Design Engineer - PCB Electrical Focus" {{ d.params.jobrole === 'Design Engineer - PCB Electrical Focus' ? 'selected' : '' }}>Design Engineer - PCB Electrical Focus</option>
+                        <option value="Engineer - Maintenance Repair" {{ d.params.jobrole === 'Engineer - Maintenance  Repair' ? 'selected' : '' }}>Engineer - Maintenance Repair</option>
+                        <option value="Engineer - Production" {{ d.params.jobrole === 'ngineer - Production' ? 'selected' : '' }}>Engineer - Production</option>
+                        <option value="Engineer - Research Development" {{ d.params.jobrole === 'Engineer - Research  Development' ? 'selected' : '' }}>Engineer - Research Development</option>
+                        <option value="Engineer Test" {{ d.params.jobrole === 'Engineer Test' ? 'selected' : '' }}>Engineer Test</option>
+                        <option value="Home  Personal  Hobbyist  Maker" {{ d.params.jobrole === 'Home  Personal  Hobbyist  Maker' ? 'selected' : '' }}>Home  Personal  Hobbyist  Maker</option>
+                        <option value="Professor  Academic Researcher" {{ d.params.jobrole === 'Professor  Academic Researcher' ? 'selected' : '' }}>Professor  Academic Researcher</option>
+                        <option value="Student" {{ d.params.jobrole === 'Student' ? 'selected' : '' }}>Student</option>    
+                        <option value="Technician" {{ d.params.jobrole === 'Technician' ? 'selected' : '' }}>Technician</option>
+                        <option value="Other" {{ d.params.jobrole === 'Other' ? 'selected' : '' }}>Other</option>
+                      </select>
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label">应用：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                      <select name="applications">
+                        <option value="">请选择应用</option>
+                        <option value="Audio" {{ d.params.applications === 'Audio' ? 'selected' : ''}}>Audio</option>
+                        <option value="Avionics &amp; Defense" {{ d.params.applications === 'Avionics &amp; Defense' ? 'selected' : ''}}>Avionics &amp; Defense</option>
+                        <option value="Auto &amp; Transportation" {{ d.params.applications === 'Auto &amp; Transportation' ? 'selected' : ''}}>Auto &amp; Transportation</option>
+                        <option value="Broadcast" {{ d.params.applications === 'Broadcast' ? 'selected' : ''}}>Broadcast</option>
+                        <option value="Communications" {{ d.params.applications === 'Communications' ? 'selected' : ''}}>Communications</option>
+                        <option value="Consumer Electronics" {{ d.params.applications === 'Consumer Electronics' ? 'selected' : ''}}>Consumer Electronics</option>
+                        <option value="Computing" {{ d.params.applications === 'Computing' ? 'selected' : ''}}>Computing</option>
+                        <option value="Energy Harvesting" {{ d.params.applications === 'Energy Harvesting' ? 'selected' : ''}}>Energy Harvesting</option>
+                        <option value="Industrial" {{ d.params.applications === 'Industrial' ? 'selected' : ''}}>Industrial</option>
+                        <option value="Instrumentation" {{ d.params.applications === 'Instrumentation' ? 'selected' : ''}}>Instrumentation</option>
+                        <option value="Lighting" {{ d.params.applications === 'Lighting' ? 'selected' : ''}}>Lighting</option>
+                        <option value="Medical" {{ d.params.applications === 'Medical' ? 'selected' : ''}}>Medical</option>
+                        <option value="Motor Control" {{ d.params.applications === 'Motor Control' ? 'selected' : ''}}>Motor Control</option>
+                        <option value="Power Management" {{ d.params.applications === 'Power Management' ? 'selected' : ''}}>Power Management</option>
+                        <option value="Robotics" {{ d.params.applications === 'Robotics' ? 'selected' : ''}}>Robotics</option>
+                        <option value="Security" {{ d.params.applications === 'Security' ? 'selected' : ''}}>Security</option>
+                        <option value="Other" {{ d.params.applications === 'Other' ? 'selected' : ''}}>Other</option>
+                      </select>
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label">跟单员：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="businessInfo" id="user_edit_dep" lay-verify="required">
+                            {{# 
+                                var businessId = d.params.businessId;
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option></option>
+                            <option value="{{ item.userId || ''}},{{item.jobNumber}}" {{ businessId == item.userId ? 'selected' : ''}}>{{ item.username }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据
+                            {{#  } }}
+                        </select>    
+                    </script>
+                </div>
+            </div>
+        </div>
+         <script type="text/html" template>
+          <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+        </script>
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md4">
+                <label class="layui-form-label">操作：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-done="layui.data.done(d);">
+                        <input type="checkbox" name="invalidMark" lay-skin="switch" lay-text="启用|停用"lay-filter="optionUser" {{ d.params.invalidMark === undefined || d.params.invalidMark === 1 ? '' : 'checked' }}>
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-cusNum layui-col-md4">
+                <label class="layui-form-label">内部用户：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-done="layui.data.done(d);">
+                        <input type="checkbox" name="userType" lay-skin="switch" lay-text="是|否" {{ d.params.userType === undefined || d.params.userType === 0 ? '' : 'checked' }} lay-filter="isneibuUser">
+                    </script>
+                </div>
+            </div>
+
+            <div class="addcus-cusNum layui-col-md4">
+                <label class="layui-form-label">需要审核：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-done="layui.data.done(d);">
+                        <input type="checkbox" name="auditMark" lay-skin="switch" lay-text="是|否" {{ d.params.auditMark === undefined || d.params.auditMark === 1 ? '' : 'checked' }} lay-filter="isAuditMark">
+                    </script>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label"></label>
+          <div class="layui-input-inline">  
+            <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn" style="display: none;" id="layuiadmin-app-form-submit">
+          </div>
+        </div>
+    </form>
+</div>
+<style>
+   .edit-cusInfo .layui-input-block {margin-top: 10px;}
+   .layui-layout-body {overflow: scroll;} /**防止隐藏**/
+</style>
+
+<script>
+    layui.data.done = function(d){
+        layui.use(['form'], function(){
+            var $ = layui.$ ;
+            form = layui.form
+            ,admin = layui.admin
+            form.render(null, 'customer-add-edit-form-list');
+        });
+    }
+</script>

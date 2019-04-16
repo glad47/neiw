@@ -1,0 +1,49 @@
+<title>出货协同</title>
+<div class="layui-fluid">
+    <!--卡片－表格信息-->
+    <div class="layui-tab layui-tab-brief" lay-filter="tab-planToger">
+        <ul class="layui-tab-title">
+            <li class="layui-this">PCB订单</li>
+            <li>钢网订单</li>
+            <li>SMT订单</li>
+        </ul>
+        <div class="layui-tab-content">
+            <!--PCB订单-->
+            <div class="layui-tab-item layui-show">
+                <table class="layui-table" id="sqeManaShip_tabPcb" lay-filter="sqeManaShip_tabPcb"></table>
+                <script type="text/html" id="ord_sqpManaShip_tb">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="submit">通知出货</button>
+                    </div>
+                </script>
+                <script type="text/html" id="scmManaShip_tabbar">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
+                    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+                </script>
+                <script type="text/html" template id="sqeMan_shipto">
+                    {{# if(d.status == '1') { }}
+                        <a style="color: green;">待出货</a>
+                    {{# } else if(d.status == '3') { }}
+                        <a style="color: orangered;">回退</a>
+                    {{# } }}
+                </script>
+            </div>
+            <!--钢网订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table"></table>
+            </div>
+            <!--SMT订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('sqeMana_shipment_together', layui.factory('sqeMana_shipment_together')).use(['sqeMana_shipment_together', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>

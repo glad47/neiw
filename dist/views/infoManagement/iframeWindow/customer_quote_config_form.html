@@ -1,0 +1,233 @@
+<title>Add Customer Quote Config</title>
+<div class="layui-fluid">
+    <form class="layui-form edit-cusInfo" lay-filter="layuiadmin-app-form-list">
+        <div class="layui-form-item">
+            <div class="addcus-email layui-col-md4">
+                <label class="layui-form-label">客户id：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/consumer/user/all" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="userId" lay-verify="required"  lay-filter="i">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option></option>
+                            <option value="{{ item.id || ''}}" {{ d.params.userId == item.id ? 'selected' : ''}}>{{ item.userSystemId }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-email layui-col-md4">
+                <label class="layui-form-label">平米：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllAreaParameter" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="a" lay-verify="required"  lay-filter="a">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option value="0"></option>
+                            <option value="{{ item.id || ''}}" {{ d.params.areaSqId == item.id ? 'selected' : ''}}>{{ item.areaParameterName }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-email layui-col-md4">
+                <label class="layui-form-label">基材：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllPcbType" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="b" lay-verify="required"  lay-filter="b">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option value="0"></option>
+                            <option value="{{ item.id || ''}}" {{ d.params.pcbTypeId == item.id ? 'selected' : ''}}>{{ item.pcbTypeName }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
+                    </script>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="layui-form-item">
+            <div class="addcus-email layui-col-md4">
+                <label class="layui-form-label">层数：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllLayerNumber" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="c" lay-verify="required" lay-filter="c">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option value="0"></option>
+                            <option value="{{ item.id || ''}}" {{ d.params.layerNumId == item.id ? 'selected' : ''}}>{{ item.layerNum }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-email layui-col-md4">
+                <label class="layui-form-label">加急类型：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllUrgentType" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="d" lay-verify="required" lay-filter="d">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option value="0"></option>
+                            <option value="{{ item.id || ''}}" {{ d.params.urgentTypeId == item.id ? 'selected' : ''}}>{{ item.urgentType }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-email layui-col-md4">
+                <label class="layui-form-label">加价类别：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllPremiumType" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="e" lay-verify="required" lay-filter="e">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option value="0"></option>
+                            <option value="{{ item.id || ''}}" {{ d.params.premiumTypeId == item.id ? 'selected' : ''}}>{{ item.premiumType }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="addcus-email layui-col-md4">
+                <label class="layui-form-label">参数类型：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllParameterType" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="f" lay-verify="required" lay-filter="f">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option value="0"></option>
+                            <option value="{{ item.id || ''}}" {{ d.params.parameterTypeId == item.id ? 'selected' : ''}}>{{ item.parameterTypeName }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
+                    </script>
+                     <!-- <select name="parameterType" lay-verify="required" url="getAllParameterType" childDataPath="getAllParameter" selectValue="1" child="parameterName" keyStr="parameterTypeName">        
+                        <option></option>
+                    </select>   -->  
+                </div>
+            </div>
+            <div class="addcus-email layui-col-md4">
+                <label class="layui-form-label">参数：</label>
+                <div class="layui-input-block">
+                    <!-- <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllParameter" lay-data="{parameterTypeId:1}" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="g" lay-verify="required" lay-filter="g">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option></option>
+                            <option value="{{ item.id || ''}}" {{ d.params.parameterNameId == item.id ? 'selected' : ''}}>{{ item.parameterName }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
+                    </script> -->
+                    <select name="g" lay-verify="required" lay-filter="g">        
+                        <option></option>
+                    </select>  
+                </div>
+            </div>
+            <div class="addcus-email layui-col-md4">
+                <label class="layui-form-label">参数值：</label>
+                <div class="layui-input-block">
+                    <!-- <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllParameterValue" lay-data="{parameterId:1}" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="h" lay-verify="required" lay-filter="h">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option></option>
+                            <option value="{{ item.id || ''}}" {{ d.params.parameterValueId == item.id ? 'selected' : ''}}>{{ item.parameterValue }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
+                    </script> -->
+                     <select name="h" lay-verify="required" lay-filter="h">        
+                        <option></option>
+                    </select>  
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <div class="addcus-email layui-col-md6">
+                <script type="text/html" template>
+                <label class="layui-form-label">标准价：</label>
+                <div class="layui-input-block">
+                   <input type="text" name="quote" class="layui-input"  id="imgtalk" value="{{ d.params.quote || '' }}"/>
+                </div>
+                </script>
+            </div>
+            <div class="addcus-email layui-col-md6">
+                <script type="text/html" template>
+                <label class="layui-form-label">调整价：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="adjustedQuote" class="layui-input" value="{{ d.params.adjustedQuote || '' }}">
+                </div>
+                </script>
+            </div>
+        </div>
+
+        <script type="text/html" template>
+            <input type="hidden" name="id" value="{{ d.params.consumerAdjustQuoteId || '' }}">
+            <input type="hidden" name="quoteConfigId" value="{{d.params.id || '' }}">
+        </script>   
+
+        <div class="layui-form-item">
+          <label class="layui-form-label"></label>
+          <div class="layui-input-inline">  
+            <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn" style="display: none;" id="layuiadmin-app-form-submit">
+          </div>
+        </div>
+    </form>
+</div>
+<!-- <style>
+   .edit-cusInfo .layui-input-block {margin-top: 10px;}
+   .layui-layout-body {overflow: scroll;} /**防止隐藏**/
+</style> -->
+
+<script type="text/javascript">
+    layui.data.done = function(d){
+        layui.use(['form'], function(){
+            var $ = layui.$
+            ,form = layui.form
+            ,admin = layui.admin
+            form.render(null, 'layuiadmin-app-form-list');
+        });
+
+    }
+</script>

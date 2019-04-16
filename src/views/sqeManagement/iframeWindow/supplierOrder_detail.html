@@ -1,0 +1,47 @@
+<div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+        <table class="layui-table" id="supplierOrderTab" lay-filter="supplierOrderTab"></table>
+    </script>
+</div>
+
+ <script type="text/html" id="sqeMana_pertSys_tabbar">
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="sOrderDetail">报价详情</a>
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detail">详情</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+ </script>
+<script>
+    layui.data.done = function (d) {
+        layui.use(['admin', 'table', 'setter', 'form', 'jquery'], function () {
+            table = layui.table
+            ,setter = layui.setter
+            table.render({
+                elem: '#supplierOrderTab'
+                ,url: setter.baseUrl+'pert/supplierquote/list'
+                ,cellMinWidth: 80
+                ,id: "supplierOrderTab"
+                ,page: true
+                ,parseData: function (res) {
+                    return{
+                        "code": 0,
+                        "data": res.page.list,
+                        "count": res.page.totalCount
+                    }
+                }
+                ,cols: [[
+                    ,{field: 'boardFee',title: '板费', Width: 110}
+                    ,{field: 'engineeringFee',title: '工程费', Width: 110}
+                    ,{field: 'overworkFee',title: '加急费', Width: 110}
+                    ,{field: 'postFee',title: '邮费', Width: 110}
+                    ,{field: 'testCostFee',title: '测试费', Width: 110}
+                    ,{field: 'toolingFee',title: '工具费', Width: 110}
+                    ,{field: 'unitPrice',title: '单价', Width: 110}
+                    ,{field: 'id',title: 'ID', hide: true}
+                ]]
+                ,done: function (res, curr, count) {
+
+                }
+            });
+        });
+    }
+</script>

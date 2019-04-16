@@ -15,6 +15,7 @@ var header = require('gulp-header');
 var del = require('del');
 var gulpif = require('gulp-if');
 var minimist = require('minimist');
+var babel = require('gulp-babel'); // 添加这段代码
 
 //获取参数
 var argv = require('minimist')(process.argv.slice(2), {
@@ -41,10 +42,12 @@ var argv = require('minimist')(process.argv.slice(2), {
       ,'!./src/config.js'
       ,'!./src/lib/extend/echarts.js'
     ];
-    
-    return gulp.src(src).pipe(uglify())
-     .pipe(header.apply(null, note))
-    .pipe(gulp.dest(destDir));
+
+      return gulp.src(src).pipe(babel({
+          presets: ['@babel/env']
+      })).pipe(uglify())
+          .pipe(header.apply(null, note))
+          .pipe(gulp.dest(destDir + '/'));
   }
   
   //压缩 CSS

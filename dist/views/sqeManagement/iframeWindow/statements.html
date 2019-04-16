@@ -1,0 +1,197 @@
+<title>外协采购合同</title>
+<div class="layui-fluid">
+    <div class="layui-row" id="statements_detail">
+        <!--样式-->
+        <style media="all">
+            @media print {
+                .modul-three table thead th{}
+                .modul-three table thead th,.modul-three table tbody td{text-align: center;padding: 0;}
+            }
+            .modul-top{margin: 20px auto;text-align: center;display: flex;min-width: 485px;width: 600px;}
+            .modul-top .lef-logo img{width: 66px;}
+            .rig-company{font-size: 20px;margin: 14px 17px;line-height: 33px;}
+            /*模块间距*/
+            .modul-two，.modul-three,.modul-four,.modul-bot{margin-top: 6px;}
+            .modul-two{display: flex;width: 100%;}
+            .modul-two .lef-j{width: 70%;}
+            .modul-two .rig-y{width: 30%;}
+            .modul-three table{text-align: center;}
+            .modul-three table thead th,.modul-three table tbody td{text-align: center;padding: 0;color: #676767;}
+            .modul-four,.modul-bot{display: flex;}
+            .modul-four ul li{line-height: 18px;}
+        </style>
+        <div class="all-contract">
+            <div class="modul-top">
+                <div class="lef-logo">
+                    <img src="../../../src/style/res/template/CAPABILITIESicon04.png">
+                </div>
+                <div class="rig-company">
+                    <a style="letter-spacing: 12px;">深圳聚谷科技有限公司</a><br>
+                    <a>对账协同</a>
+                </div>
+            </div>
+            <!--抬头-->
+            <div class="modul-two">
+                <script type="text/html" template>
+                    <div class="lef-j">
+                        <label>
+                            甲方：深圳聚谷科技有限公司
+                        </label>
+                        <p>
+                            经双方友好协议达成一致，订立本合同
+                        </p>
+                    </div>
+                    <div class="rig-y">
+                        <label>
+                            对账编号：
+                            {{ d.params.reconciliationNo }}
+                        </label>
+                        <p>
+                            <label>
+                                乙方：{{ d.params.data.supplierCompanyName || '' }}
+                            </label>
+                        </p>
+                    </div>
+                </script>
+            </div>
+            <!--表格数据-->
+            <div class="modul-three">
+                <script type="text/html" template>
+                    <table cellspacing="1"  border="1" bordercolor="#000000" style="border-collapse:collapse;width: 100%;margin-top: 30px;">
+                        <thead>
+                        <tr>
+                            <th rowspan="2">序号</th>
+                            <th rowspan="2">合同编号</th>
+                            <th rowspan="2">聚谷型号</th>
+                            <th rowspan="2">供应商编号</th>
+                            <th rowspan="2">数量PCS</th>
+                            <th rowspan="2">单价</th>
+                            <th rowspan="2">工程费</th>
+                            <th rowspan="2">测试架费</th>
+                            <th rowspan="2">飞针测试费</th>
+                            <th rowspan="2">模具费</th>
+                            <th rowspan="2">其他费</th>
+                            <th rowspan="2">合计金额</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{# layui.each(d.params.data, function(index, item){  }}
+                        <tr style="background-color: #c0c0c073;">
+                            <!--序号-->
+                            <td>{{ index+1 }}</td>
+                            <!--合同编号-->
+                            <td>{{ item.supplierContractNo || '' }}</td>
+                            <!--聚谷型号-->
+                            <td>{{ item.productNo || '' }}</td>
+                            <!--供应商编号-->
+                            <td>{{ item.supplierId || '' }}</td>
+                            <!--数量pcs-->
+                            <td>{{ item.quantityPcs }}</td>
+                            <!--单价-->
+                            <td>{{ item.unitPrice || '0' }}</td>
+                            <!--工程费-->
+                            <td>{{ item.engineeringFee || '0' }}</td>
+                            <!--测试架费-->
+                            <td>{{ item.testCostFee || '0' }}</td>
+                            <!--飞针测试费-->
+                            <td>{{ item.testPoint || '0' }}</td>
+                            <!--模具费-->
+                            <td>{{ item.toolingFee || '0' }}</td>
+                            <!--其他费-->
+                            <td>{{ item.toolingFee || '0' }}</td>
+                            <!--合计金额-->
+                            <td>{{ item.totalFee || '0' }}</td>
+                        </tr>
+                        {{# layui.each(item.orderShipmentEntityList, function(index, item){  }}
+                        <tr>
+                            <td></td>
+                            <td>送货单号：</td>
+                            <td colspan="2">
+                                {{ item.deliveryNo || '' }}
+                            </td>
+                            <td>送货数量：</td>
+                            <td>
+                                {{ item.currPcsNumber || '' }}
+                            </td>
+                            <td>送货时间：</td>
+                            <td>
+                                {{ item.deliveryTime.substring(0,10) || '' }}
+                            </td>
+                            <td>送货方式：</td>
+                            <td colspan="2">
+                                {{ item.courierCompany || '' }}
+                            </td>
+                            <td colspan="3"></td>
+                        </tr>
+                        {{#  }); }}
+                        {{#  }); }}
+                        <tr style="background-color: #c0c0c0cc;">
+                            <td colspan="11" style="text-align: left;padding-left: 10px;">
+                                总金额：
+                                {{ d.params.convertSubtotal }}
+                            </td>
+                            <td style="text-align: left;padding-left: 10px;">
+                                总计：￥{{ d.params.subtotal }}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </script>
+            </div>
+            <!--说明-->
+            <div>备注：</div>
+            <div class="modul-four" style="display: flex;">
+                <ul style="width: 40%;">
+                    <li>
+                        一、质量技术及验收标准，需方按<input type="checkbox" checked> IPC-A-600G II级
+                    </li>
+                    <li>
+                        二、客供资料：<input type="checkbox" checked> E-MAIL
+                    </li>
+                    <li>
+                        三、包装要求：<input type="checkbox" checked> 真空
+                    </li>
+                    <li>
+                        四、交货要求：<input type="checkbox" checked> 发快递
+                    </li>
+                    <li>
+                        五、付款方式：<input type="checkbox" checked> 当月结
+                    </li>
+                    <li>
+                        五、票据方式：<input type="checkbox" checked> 收据
+                    </li>
+                </ul>
+                <ul style="width: 48%;">
+                    <li>八、条款说明：</li>
+                    <li>1、本加工要求以甲方提供的书面确认的电脑文件数据为准，若有特殊要求，请给出文字说明，如属资料错误或者不明确导致问题乙方不承担任何责任；</li>
+                    <li>2、样本再次加工，或途中变更生产要求，乙方酌情收取制作费；</li>
+                    <li>3、甲方对乙方加工生产线路板的质量有异议的应在收货之日起十天内书面提出异议，逾期则视甲方认可乙方交货质量；如属电路板质量问题，乙方应第一时间安排重新生产电路板；除此之外乙方不承担除乙方生产的电路板之外的任何经济赔偿；</li>
+                    <li>4、甲方应按照合同约定按期履行付款业务；</li>
+                    <li>5、本协议一式两份，甲、乙双方各执一份，自甲乙双方签名盖章之日生效；</li>
+                    <li>6、协议厂商接到报价单后（如甲方在QQ上或邮件，电话确认订单后）必须在24小时内确认后回传此单，如不回传，视为默认；</li>
+                </ul>
+            </div>
+            <!--底部签名模块-->
+            <div class="modul-bot">
+                <ul style="width: 40%;">
+                    <li>甲方：深圳聚谷科技有限公司</li>
+                    <li>地址：深圳市宝安区沙井街道后亭地铁C出口鹏程中骏2楼J区</li>
+                    <script type="text/html" template>
+                        <li>代表：{{ layui.data('userInfo').userChinaName || '' }}</li>
+                    </script>
+                    <li>日期：</li>
+                </ul>
+                <ul style="width: 48%;">
+                    <script type="text/html" template>
+                        <li>
+                            乙方：{{ d.params.supplierCompanyName || '' }}
+                        </li>
+                    </script>
+                    <li>地址：</li>
+                    <li>代表：</li>
+                    <li>日期：</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

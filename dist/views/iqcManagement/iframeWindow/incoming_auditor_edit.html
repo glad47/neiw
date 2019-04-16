@@ -1,0 +1,53 @@
+<title>此批来料检验</title>
+<div class="layui-fluid incoming_auditor_edit">
+    <script type="text/html" template>
+    <table class="layui-table">
+        <tbody>
+        <tr>
+            <td>合同号</td>
+            <td>{{ d.params.data.supplierContractNo || '' }}</td>
+            <td>订单数量(PCS)</td>
+            <td>{{ d.params.data.orderPcsNumber }}</td>
+        </tr>
+        <tr>
+            <td>供应商编号</td>
+            <td>{{ d.params.data.supplierId }}</td>
+            <td>已交数量(PCS)</td>
+            <td>{{ d.params.data.donePcsNumber }}</td>
+        </tr>
+        <tr>
+            <td>供应商厂编</td>
+            <td>{{ d.params.data.factoryMake || '' }}</td>
+            <td>此次数量(PCS)</td>
+            <td>{{ d.params.data.currPcsNumber }}</td>
+        </tr>
+        <tr>
+            <td>聚谷型号</td>
+            <td>{{ d.params.data.productNo}}</td>
+            <td>未交数量(PCS)</td>
+            <td>{{ d.params.data.surplusPcsNumber || '' }}</td>
+        </tr>
+        <tr>
+            <td>来料时间</td>
+            <td>{{ d.params.data.deliveryTime.substring(0,10) }}</td>
+            <td>不合格数量(PCS)</td>
+            <td>
+                <input type="number" class="layui-input" name="failPcsNumber" value="{{ d.params.data.failPcsNumber || '0' }}">
+            </td>
+        </tr>
+        <tr>
+            <td>送货单号</td>
+            <td>{{ d.params.data.deliveryOrderNo || '' }}</td>
+            <td>尾数数量(PCS)</td>
+            <td>
+                <input type="number" class="layui-input" name="pcsMantissa" value="{{ d.params.data.pcsMantissa || '0' }}">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </script>
+</div>
+
+<style>
+    .incoming_auditor_edit .layui-table tbody td{width: 25%;}
+</style>

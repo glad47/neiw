@@ -1,0 +1,181 @@
+
+<title>供应商信息</title>
+<div class="layui-fluid">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="supplierInfo_from">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">供应商编号</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="supplier_id" name="supplierId" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">公司名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="supplier_companyName" name="companyName" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">类别</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="supplier_type" name="type" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">联系人</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" name="contact" id="supplier_contact">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-supplier-search" data-type="reload">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="layui-card" lay-filter="addInfo">
+        <div class="layui-card-body">
+            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
+                <script type="text/html" template>
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:supplier:save") != -1){ }}
+                    <button class="layui-btn" id="supplier_add_but" data-type="supplier_add_but">新增</button>
+                    {{#  } }}
+                </script>
+            </div>
+            <table class="layui-hide" id="supplier_infoTab" lay-filter="supplier_infoTab"></table>
+            <script type="text/html" id="table-supplier">
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="search" id="supplier_search">查看</a>
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:supplier:update") != -1){ }}
+                <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">编辑</a>
+                {{#  } }}
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:supplier:delete") != -1){ }}
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                {{#  } }}
+            </script>
+            <!--类别转换-->
+            <script type="text/html" id="type">
+                {{#  if(d.type ===1){ }}
+                    <span style="color: orangered;">PCB</span>
+                {{#  } else if (d.type ===2){ }}
+                    <span style="color: chocolate;">PCBA</span>
+                {{#  } else if (d.type ===3){ }}
+                    <span style="color: deepskyblue;">SMT</span>
+                {{#  } }}
+            </script>
+            <!--付款方式转换-->
+            <script type="text/html" id="paymentType">
+                {{#  if(d.paymentType ===0){ }}
+                    <span style="color: orangered;">类型：0</span>
+                {{#  } else if (d.paymentType ===1){ }}
+                    <span>现金</span>
+                {{#  } else if (d.paymentType ===2){ }}
+                    <span>当月结</span>
+                {{#  } else if (d.paymentType ===3){ }}
+                <span>月结30天</span>
+                {{#  } else if (d.paymentType ===4){ }}
+                <span>月结60天</span>
+                {{#  } }}
+            </script>
+            <!--是否含税转换-->
+            <script type="text/html" id="taxe">
+                {{#  if(d.taxe ===1){ }}
+                <span>是</span>
+                {{#  } else if (d.taxe ===2){ }}
+                <span>否</span>
+                {{#  } }}
+            </script>
+            <!--发票类型转换-->
+            <script type="text/html" id="invoiceType">
+                {{#  if(d.invoiceType ===1){ }}
+                <span>收据</span>
+                {{#  } else if (d.invoiceType ===2){ }}
+                <span>普票</span>
+                {{#  } else if (d.invoiceType ===3){ }}
+                <span>增值税13%</span>
+                {{#  } }}
+            </script>
+            <!--强项类型转换-->
+            <script type="text/html" id="strengths">
+                {{#  if(d.strengths ===1){ }}
+                <span>简单样板</span>
+                {{#  } else if (d.strengths ===2){ }}
+                <span>复杂样板</span>
+                {{#  } else if (d.strengths ===3){ }}
+                <span>批量</span>
+                {{#  } }}
+            </script>
+
+            <!--评级－交期转换-->
+            <script type="text/html" id="evaluateDdelivery">
+                {{#  if(d.evaluateDdelivery ===1){ }}
+                <span>极差</span>
+                {{#  } else if (d.evaluateDdelivery ===2){ }}
+                <span>差</span>
+                {{#  } else if (d.evaluateDdelivery ===3){ }}
+                <span>中等</span>
+                {{#  } else if (d.evaluateDdelivery ===4){ }}
+                <span>好</span>
+                {{#  } else if (d.evaluateDdelivery ===5){ }}
+                <span>极好</span>
+                {{#  } }}
+            </script>
+            <!--评级－品质转换-->
+            <script type="text/html" id="evaluateQuality">
+                {{#  if(d.evaluateQuality ===1){ }}
+                <span>极差</span>
+                {{#  } else if (d.evaluateQuality ===2){ }}
+                <span>差</span>
+                {{#  } else if (d.evaluateQuality ===3){ }}
+                <span>中等</span>
+                {{#  } else if (d.evaluateQuality ===4){ }}
+                <span>好</span>
+                {{#  } else if (d.evaluateQuality ===5){ }}
+                <span>极好</span>
+                {{#  } }}
+            </script>
+            <!--评级－配合度转换-->
+            <script type="text/html" id="evaluateCompatibility">
+                {{#  if(d.evaluateCompatibility ===1){ }}
+                <span>极差</span>
+                {{#  } else if (d.evaluateCompatibility ===2){ }}
+                <span>差</span>
+                {{#  } else if (d.evaluateCompatibility ===3){ }}
+                <span>中等</span>
+                {{#  } else if (d.evaluateCompatibility ===4){ }}
+                <span>好</span>
+                {{#  } else if (d.evaluateCompatibility ===5){ }}
+                <span>极好</span>
+                {{#  } }}
+            </script>
+            <!--评级－配合度转换-->
+            <script type="text/html" id="evaluateRate">
+                {{#  if(d.evaluateRate ===1){ }}
+                <span>C</span>
+                {{#  } else if (d.evaluateRate ===2){ }}
+                <span>B2</span>
+                {{#  } else if (d.evaluateRate ===3){ }}
+                <span>B1</span>
+                {{#  } else if (d.evaluateRate ===4){ }}
+                <span>A2</span>
+                {{#  } else if (d.evaluateRate ===5){ }}
+                <span>A1</span>
+                {{#  } }}
+            </script>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    /*.layui-table-box .layui-table-header thead tr td , .layui-table-box .layui-table-body .layui-table tbody tr td {width: 200px !important;}*/
+</style>
+
+
+<script>
+    layui.use('sys_supplier', layui.factory('sys_supplier')).use(['sys_supplier', 'table', 'index','element','form'], function(){
+    });
+    layui.use('mobileterminal',layui.factory('mobileterminal')).use(['mobileterminal'],function () {
+
+    });
+</script>

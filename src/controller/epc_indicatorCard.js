@@ -211,6 +211,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
     //监听工具条
     table.on('tool(epc_Tabpcb_ok_payment_order)', function(obj){
         var data = obj.data;
+        console.log(data);
         if(obj.event === 'detail'){
             if (data.isExistIndicator === 2) {
                 admin.req({
