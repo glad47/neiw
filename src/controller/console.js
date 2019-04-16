@@ -13,8 +13,6 @@ layui.define(function(exports){
   /*
     下面通过 layui.use 分段加载不同的模块，实现不同区域的同时渲染，从而保证视图的快速呈现
   */
-  
-  
   //区块轮播切换
   layui.use(['admin', 'carousel'], function(){
     var $ = layui.$
@@ -42,129 +40,156 @@ layui.define(function(exports){
   });
 
   //数据概览
-  layui.use(['carousel', 'echarts'], function(){
+  layui.use(['carousel', 'echarts','admin'], function(){
     var $ = layui.$
     ,carousel = layui.carousel
-    ,echarts = layui.echarts;
-    
-    var echartsApp = [], options = [
-      //今日流量趋势
-      {
-        title: {
-          text: '今日流量趋势',
-          x: 'center',
-          textStyle: {
-            fontSize: 14
-          }
-        },
-        tooltip : {
-          trigger: 'axis'
-        },
-        legend: {
-          data:['','']
-        },
-        xAxis : [{
-          type : 'category',
-          boundaryGap : false,
-          data: ['06:00','06:30','07:00','07:30','08:00','08:30','09:00','09:30','10:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00','23:30']
-        }],
-        yAxis : [{
-          type : 'value'
-        }],
-        series : [{
-          name:'PV',
-          type:'line',
-          smooth:true,
-          itemStyle: {normal: {areaStyle: {type: 'default'}}},
-          data: [111,222,333,444,555,666,3333,33333,55555,66666,33333,3333,6666,11888,26666,38888,56666,42222,39999,28888,17777,9666,6555,5555,3333,2222,3111,6999,5888,2777,1666,999,888,777]
-        },{
-          name:'UV',
-          type:'line',
-          smooth:true,
-          itemStyle: {normal: {areaStyle: {type: 'default'}}},
-          data: [11,22,33,44,55,66,333,3333,5555,12666,3333,333,666,1188,2666,3888,6666,4222,3999,2888,1777,966,655,555,333,222,311,699,588,277,166,99,88,77]
-        }]
-      },
-      
-      //访客浏览器分布
-      { 
-        title : {
-          text: '访客浏览器分布',
-          x: 'center',
-          textStyle: {
-            fontSize: 14
-          }
-        },
-        tooltip : {
-          trigger: 'item',
-          formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        legend: {
-          orient : 'vertical',
-          x : 'left',
-          data:['Chrome','Firefox','IE 8.0','Safari','其它浏览器']
-        },
-        series : [{
-          name:'访问来源',
-          type:'pie',
-          radius : '55%',
-          center: ['50%', '50%'],
-          data:[
-            {value:9052, name:'Chrome'},
-            {value:1610, name:'Firefox'},
-            {value:3200, name:'IE 8.0'},
-            {value:535, name:'Safari'},
-            {value:1700, name:'其它浏览器'}
-          ]
-        }]
-      },
-      
-      //新增的用户量
-      {
-        title: {
-          text: '最近一周新增的用户量',
-          x: 'center',
-          textStyle: {
-            fontSize: 14
-          }
-        },
-        tooltip : { //提示框
-          trigger: 'axis',
-          formatter: "{b}<br>新增用户：{c}"
-        },
-        xAxis : [{ //X轴
-          type : 'category',
-          data : ['11-07', '11-08', '11-09', '11-10', '11-11', '11-12', '11-13']
-        }],
-        yAxis : [{  //Y轴
-          type : 'value'
-        }],
-        series : [{ //内容
-          type: 'line',
-          data:[200, 300, 400, 610, 150, 270, 380],
-        }]
+    ,echarts = layui.echarts
+    ,admin = layui.admin
+    ,set = layui.setter;
+
+    //发送请求
+    admin.req({
+      type:'get',
+      url:set.baseUrl+'graphs/monthlySales',
+      success: function (res) {
+          var result = lineChartCheckData(res.data);
+          console.log(result);
+          var result3 =lineChartCheckData(res.userData);
+          console.log(result3);
+          //填充数据
+          fillData(result,res.pieOrder,result3);
       }
-    ]
-    ,elemDataView = $('#LAY-index-dataview').children('div')
-    ,renderDataView = function(index){
-      echartsApp[index] = echarts.init(elemDataView[index], layui.echartsTheme);
-      echartsApp[index].setOption(options[index]);
-      window.onresize = echartsApp[index].resize;
-    };
-    
-    
-    //没找到DOM，终止执行
-    if(!elemDataView[0]) return;
-    
-    
-    
-    renderDataView(0);
-    
-    //监听数据概览轮播
-    var carouselIndex = 0;
-    carousel.on('change(LAY-index-dataview)', function(obj){
-      renderDataView(carouselIndex = obj.index);
     });
+
+    function fillData(data1,data2,data3){
+      // var series =[],legend=[];
+      // data.data.forEach(function(x){
+      //   var d = [];
+      //   x.series.forEach(function(y){
+      //     for(var i in y){
+      //       d.push(y[i]);
+      //     }
+      //   })
+      //   var s = {};
+      //   //d.name = x.name;
+      //   s.data = d;
+      //   s.type = 'line';
+      //   s.name = x.name;
+      //   series.push(s);
+      //   legend.push(x.name);
+      // });
+      // console.log(series);
+      var currentYear = new Date().getFullYear();
+      var echartsApp = [], options = [
+        //今年月销售额
+        {
+          title: {
+            text: currentYear+'年跟单员月销售额',
+            x: 'left',
+            textStyle: {
+              fontSize: 14
+            }
+          },
+          tooltip : {
+            trigger: 'axis'
+          },
+          legend: {
+            data:data1.legendData
+          },
+          xAxis : [{
+            type : 'category',
+            boundaryGap : false,
+            data: data1.months
+          }],
+          yAxis : [{
+            type : 'value',
+            axisLabel : {
+              formatter: '$ '+'{value}'
+            }
+          }],
+          series : data1.seriesData
+        },
+        
+        //访客浏览器分布
+        { 
+          title : {
+            text: '跟单员销售额分布图',
+            x: 'center',
+            textStyle: {
+              fontSize: 14
+            }
+          },
+          tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : ${c} ({d}%)"
+          },
+          legend: {
+            orient : 'vertical',
+            x : 'left',
+            data: data1.legendData
+          },
+          series : [{
+            name:'销售额',
+            type:'pie',
+            radius : '55%',
+            center: ['50%', '50%'],
+            data:data2
+          }]
+        },
+        
+        //新增的用户量
+        {
+          title: {
+            text: currentYear+'年跟单员月客户数',
+            x: 'left',
+            textStyle: {
+              fontSize: 14
+            }
+          },
+          tooltip : { //提示框
+            trigger: 'axis',
+            //formatter: "{b}<br>用户数：{c}"
+          },
+          legend: {
+            data:data3.legendData
+          },
+          xAxis : [{ //X轴
+            type : 'category',
+            boundaryGap : false,
+            data : data3.months
+          }],
+          yAxis : [{  //Y轴
+            type : 'value'
+          }],
+          series : data3.seriesData
+        }
+      ]
+      ,elemDataView = $('#LAY-index-dataview').children('div')
+      ,renderDataView = function(index){
+        echartsApp[index] = echarts.init(elemDataView[index], layui.echartsTheme);
+        echartsApp[index].setOption(options[index]);
+        window.onresize = echartsApp[index].resize;
+      };
+
+      //没找到DOM，终止执行
+      if(!elemDataView[0]) return;
+      
+      renderDataView(0);
+
+      //监听数据概览轮播
+      var carouselIndex = 0;
+      carousel.on('change(LAY-index-dataview)', function(obj){
+        renderDataView(carouselIndex = obj.index);
+      });
+    }
+
+    
+    
+    
+    
+    
+    
+    
     
     //监听侧边伸缩
     layui.admin.on('side', function(){
@@ -177,6 +202,112 @@ layui.define(function(exports){
     layui.admin.on('hash(tab)', function(){
       layui.router().path.join('') || renderDataView(carouselIndex);
     });
+
+    //折线图数据拼接
+    function lineChartCheckData(data){
+     var successData = {};
+     var currentYear = new Date().getFullYear();
+     var mKey = [];
+     var mKeyStr = [];
+     var yueFen = [
+      {name: "一月", value: '01'},
+      {name: "二月", value: '02'},
+      {name: "三月", value: '03'},
+      {name: "四月", value: '04'},
+      {name: "五月", value: '05'},
+      {name: "六月", value: '06'},
+      {name: "七月", value: '07'},
+      {name: "八月", value: '08'},
+      {name: "九月", value: '09'},
+      {name: "十月", value: '10'},
+      {name: "十月", value: '11'},
+      {name: "十二月", value: '12'}
+     ];
+     var legend = [];
+     yueFen.forEach(function (x) {
+      mKey.push(x.value);
+      mKeyStr.push(x.name);
+     });
+     data.forEach(function (user) {
+      legend.push(user.name);
+      var map = new Map();
+      //为空补0操作
+      if(user.series.length){
+       user.series.forEach(function (y) {
+        for (var i = 0; i < mKey.length; i++) {
+         if (y.months!=currentYear+mKey[i]) {
+          if (!map.has(currentYear+mKey[i])) {
+           map.set(currentYear+mKey[i], 0);
+          }
+         } else {
+          map.set(y.months, y.total);
+         }
+        }
+       })
+      }else{
+       for (var i = 0; i < mKey.length; i++) {
+        map.set(currentYear+mKey[i], 0);
+       }
+      }
+      //console.log(map);
+      var data = [];
+      map.forEach(function (k, v) {
+       data.push(k);
+      })
+      user.data = data;
+      user.type = 'line';
+     })
+     successData.seriesData = data;
+     successData.months = mKeyStr;
+     successData.legendData = legend;
+     return successData;
+    }
+
+    function test(data){
+      var yueFen = [
+        {name: "一月", value: '01'},
+        {name: "二月", value: '02'},
+        {name: "三月", value: '03'},
+        {name: "四月", value: '04'},
+        {name: "五月", value: '05'},
+        {name: "六月", value: '06'},
+        {name: "七月", value: '07'},
+        {name: "八月", value: '08'},
+        {name: "九月", value: '09'},
+        {name: "十月", value: '10'},
+        {name: "十月", value: '11'},
+        {name: "十二月", value: '12'}
+       ];
+      
+       data.data.forEach(function(user){
+          user.data = [];
+          var map2 = getMap(yueFen);
+          if (user.series.length) {
+            user.series.forEach(function(y){
+                map2.set(y.months,y.total);
+            });
+
+            map2.forEach(function(key){
+                user.data.push(key);
+            });
+          } else{
+            map2.forEach(function(key){
+              user.data.push(key);
+            });
+          }
+       });
+
+       return data.data;
+    }
+
+    function getMap(yueFen){
+      var map2 = new Map();
+      yueFen.forEach(function(x){
+        map2.set(new Date().getFullYear+x.value,0);
+      });
+      return map2;
+    }
+
   });
 
 
