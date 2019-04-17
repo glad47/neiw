@@ -53,9 +53,9 @@ layui.define(function(exports){
       url:set.baseUrl+'graphs/monthlySales',
       success: function (res) {
           var result = lineChartCheckData(res.data);
-          console.log(result);
+          //console.log(result);
           var result3 =lineChartCheckData(res.userData);
-          console.log(result3);
+          //console.log(result3);
           //填充数据
           fillData(result,res.pieOrder,result3);
       }
@@ -181,6 +181,19 @@ layui.define(function(exports){
       carousel.on('change(LAY-index-dataview)', function(obj){
         renderDataView(carouselIndex = obj.index);
       });
+
+        //监听侧边伸缩
+      layui.admin.on('side', function(){
+        setTimeout(function(){
+          renderDataView(carouselIndex);
+        }, 300);
+      });
+    
+      //监听路由
+      layui.admin.on('hash(tab)', function(){
+        layui.router().path.join('') || renderDataView(carouselIndex);
+      });
+
     }
 
     
@@ -191,17 +204,7 @@ layui.define(function(exports){
     
     
     
-    //监听侧边伸缩
-    layui.admin.on('side', function(){
-      setTimeout(function(){
-        renderDataView(carouselIndex);
-      }, 300);
-    });
-    
-    //监听路由
-    layui.admin.on('hash(tab)', function(){
-      layui.router().path.join('') || renderDataView(carouselIndex);
-    });
+  
 
     //折线图数据拼接
     function lineChartCheckData(data){
