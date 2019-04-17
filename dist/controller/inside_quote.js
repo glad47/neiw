@@ -1,0 +1,2 @@
+/** layuiAdmin.pro-v1.0.0 LPPL License By http://www.layui.com/admin/ */
+ ;"use strict";layui.define(["admin","form","element","upload"],function(e){var i=(layui.$,layui.admin,layui.setter,layui.form),a=(layui.view,layui.upload,layui.element);a.render(),i.render(),e("inside_quote",{})});

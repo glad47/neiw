@@ -325,6 +325,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                     popupData.htmlType = 2;     //页面标识 1为内部合同 主要用于判断头部左侧标题
                                     console.log(popupData);
                                     view(this.id).render(viewName, popupData).done(function () {
+                                        console.log(popupData);
                                         productNo = null; // 初始化订单号
                                         // 表格样式设置
                                         if (contractType === 1){

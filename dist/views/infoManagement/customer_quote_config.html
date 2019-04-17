@@ -1,0 +1,67 @@
+<title>客户报价配置</title>
+
+<div class="layui-fluid">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-comment">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="userName" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">系统id</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="userSystemId" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">skype</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="skypeId" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">手机</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="mobilePhone" class="layui-input" id="customer_orderTime">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="layui-card" lay-filter="cqc">
+        <div class="layui-card-body">
+            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
+                <script type="text/html" template lay-done="layui.data.done(d);">
+                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:consumer_user:save") != -1){ }}
+                        <button class="layui-btn" id="customerQuoteConfig_add" data-type="customerQuoteConfig_add">新增</button>
+                    {{# } }}   
+                </script>   
+                <!-- <button class="layui-btn" data-type="getCheckLength">修改</button> -->
+                <!-- <button class="layui-btn" data-type="isAll">查看</button> -->
+                <!-- <button class="layui-btn" data-type="isAll">设置</button> -->
+            </div>
+            <table class="layui-hide" id="customer_quote_config_listTab" lay-filter="customer_quote_config_listTab"></table>
+            <script type="text/html" id="customer-quote-config-operate">
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:consumer_user:update") != -1){ }}
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                {{# } }}   
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:consumer_user:delete") != -1){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                 {{# } }}       
+            </script>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+	layui.data.done = function(d){
+		layui.use('customer_quote_config', layui.factory('customer_quote_config'));
+	}
+</script>

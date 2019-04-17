@@ -1,0 +1,120 @@
+<!--查看信息-->
+<div class="layui-fluid">
+    <div class="search_supplierInfo">
+        <ul style="width: 50%;float: left;">
+            <script type="text/html" template>
+                <li>编号：{{ d.params.supplierId || ''}}</li>
+                <li>类别：
+                    {{# if(d.params.type ===1){ }}
+                        <span style="color: orangered;">PCB</span>
+                    {{#  } else if (d.params.type ===2){ }}
+                        <span style="color: chocolate;">PCBA</span>
+                    {{#  } else if (d.params.type ===3){ }}
+                        <span style="color: deepskyblue;">SMT</span>
+                    {{#  } }}
+                </li>
+                <li>联系人：{{ d.params.contact || ''}}</li>
+                <li>公司名称：{{ d.params.companyName || ''}}</li>
+                <li>办公电话：{{ d.params.officePhone || ''}}</li>
+                <li>手机：{{ d.params.phone || ''}}</li>
+                <li>Email：{{ d.params.email || ''}}</li>
+                <li>付款方式：
+                    {{#  if(d.params.paymentType ===0){ }}
+                    <span style="color: orangered;">类型：0</span>
+                    {{#  } else if (d.params.paymentType ===1){ }}
+                    <span>类型：1</span>
+                    {{#  } else if (d.params.paymentType ===2){ }}
+                    <span>类型：2</span>
+                    {{#  } }}
+                </li>
+                <li>是否含税：
+                    {{#  if(d.params.taxe ===1){ }}
+                    <span>是</span>
+                    {{#  } else if (d.params.taxe ===2){ }}
+                    <span>否</span>
+                    {{#  } }}
+                </li>
+                <li>发票类型：
+                    {{#  if(d.params.invoiceType ===1){ }}
+                    <span>收据</span>
+                    {{#  } else if (d.params.invoiceType ===2){ }}
+                    <span>普票</span>
+                    {{#  } else if (d.params.invoiceType ===3){ }}
+                    <span>增值税16%</span>
+                    {{#  } }}
+                </li>
+                <li>强项类型：
+                    {{#  if(d.params.strengths ===1){ }}
+                    <span>简单样板</span>
+                    {{#  } else if (d.params.strengths ===2){ }}
+                    <span>复杂样板</span>
+                    {{#  } else if (d.params.strengths ===3){ }}
+                    <span>批量</span>
+                    {{#  } }}
+                </li>
+            </script>
+        </ul>
+        <ul style="width: 50%;float: right;">
+            <script type="text/html" template>
+                <li>交期：
+                    {{#  if(d.params.evaluateDdelivery ===1){ }}
+                    <span>极差</span>
+                    {{#  } else if (d.params.evaluateDdelivery ===2){ }}
+                    <span>差</span>
+                    {{#  } else if (d.params.evaluateDdelivery ===3){ }}
+                    <span>中等</span>
+                    {{#  } else if (d.params.evaluateDdelivery ===4){ }}
+                    <span>好</span>
+                    {{#  } else if (d.params.evaluateDdelivery ===5){ }}
+                    <span>极好</span>
+                    {{#  } }}
+                </li>
+                <li>品质：
+                    {{#  if(d.params.evaluateQuality ===1){ }}
+                    <span>极差</span>
+                    {{#  } else if (d.params.evaluateQuality ===2){ }}
+                    <span>差</span>
+                    {{#  } else if (d.params.evaluateQuality ===3){ }}
+                    <span>中等</span>
+                    {{#  } else if (d.params.evaluateQuality ===4){ }}
+                    <span>好</span>
+                    {{#  } else if (d.params.evaluateQuality ===5){ }}
+                    <span>极好</span>
+                    {{#  } }}
+                </li>
+                <li>配合度：
+                    {{#  if(d.params.evaluateCompatibility ===1){ }}
+                    <span>极差</span>
+                    {{#  } else if (d.params.evaluateCompatibility ===2){ }}
+                    <span>差</span>
+                    {{#  } else if (d.params.evaluateCompatibility ===3){ }}
+                    <span>中等</span>
+                    {{#  } else if (d.params.evaluateCompatibility ===4){ }}
+                    <span>好</span>
+                    {{#  } else if (d.params.evaluateCompatibility ===5){ }}
+                    <span>极好</span>
+                    {{#  } }}
+                </li>
+                <li>评级：
+                    {{#  if(d.params.evaluateRate ===1){ }}
+                    <span>C</span>
+                    {{#  } else if (d.params.evaluateRate ===2){ }}
+                    <span>B2</span>
+                    {{#  } else if (d.params.evaluateRate ===3){ }}
+                    <span>B1</span>
+                    {{#  } else if (d.params.evaluateRate ===4){ }}
+                    <span>A2</span>
+                    {{#  } else if (d.params.evaluateRate ===5){ }}
+                    <span>A1</span>
+                    {{#  } }}
+                </li>
+                <li>备注：{{ d.params.remark || ''}}</li>
+                <li>附件：{{ d.params.type || ''}}</li>
+                <li>创建人：{{ d.params.createUserId || ''}}</li>
+                <li>创建时间：{{ d.params.createTime || ''}}</li>
+                <li>修改人：{{ d.params.updateUserId || ''}}</li>
+                <li>修改时间：{{ d.params.updateTime || ''}}</li>
+            </script>
+        </ul>
+    </div>
+</div>

@@ -143,23 +143,61 @@ layui.define(['admin', 'form', 'element', 'laytpl', 'layer'], function (exports)
      * @private
      */
     function _MT_oneInput(even) {
-        // $("#areasq").val("");
         console.log(even);
         if (even === 0) {
             $(".itPanelway input").attr("disabled", _MO_data.isDis.itPanelway);
             $(".itPanelsize input").attr("disabled", _MO_data.isDis.itPanelsize);
         } else if (even === 1) {
-            $(".mto-input").removeAttr("disabled", "true");
-            $(".itPanelway input").attr("disabled", "disabled");
-            $(".itPanelsize input").attr("disabled", "disabled");
-            $(".itSinlgesize input").val("");
-            $(".itPanelway input").val("");
-            $(".itPanelsize input").val("");
+            if ($("input[name='panelSizeX']").val() == "") {
+                topCleanForm(11);
+            } else if ($("input[name='panelSizeX']").val() != "") {
+                topCleanForm(12);
+            }
         } else if (even === 2) {
-            $(".mto-input").removeAttr("disabled", "true");
-            $(".itSinlgesize input").attr("disabled", "disabled");
-            $(".itSinlgesize input").val("");
+            if ($("input[name='dimensionsX']").val() == "") {
+                topCleanForm(21);
+            } else if ($("input[name='dimensionsX']").val() != "") {
+                topCleanForm(22);
+            }
         }
+    }
+
+    function topCleanForm(eve) {
+        var a1 = [3,4,5,6,7,8];
+        var a2 = [0,1,2];
+       $(".topCleanForm input").each(function (index, element) {
+           if (eve === 11) {
+               for (var i=0;i<a1.length;i++) {
+                   $(".topCleanForm input:eq("+a1[i]+")").attr("disabled", "disabled");
+               }
+               for (var i=0;i<a2.length;i++) {
+                   $(".topCleanForm input:eq("+a2[i]+")").removeAttr("disabled");
+               }
+           } else if (eve === 12) {
+               for (var i=0;i<a1.length;i++) {
+                   $(".topCleanForm input:eq("+a1[i]+")").attr("disabled", "disabled");
+                   $(".topCleanForm input:eq("+a1[i]+")").val("");
+               }
+               for (var i=0;i<a2.length;i++) {
+                   $(".topCleanForm input:eq("+a2[i]+")").removeAttr("disabled");
+               }
+           } else if (eve === 21) {
+               for (var i=0;i<a2.length;i++) {
+                   $(".topCleanForm input:eq("+a2[i]+")").attr("disabled", "disabled");
+               }
+               for (var i=0;i<a1.length;i++) {
+                   $(".topCleanForm input:eq("+a1[i]+")").removeAttr("disabled");
+               }
+           } else if (eve === 22) {
+               for (var i=0;i<a2.length;i++) {
+                   $(".topCleanForm input:eq("+a2[i]+")").attr("disabled", "disabled");
+                   $(".topCleanForm input:eq("+a2[i]+")").val("");
+               }
+               for (var i=0;i<a1.length;i++) {
+                   $(".topCleanForm input:eq("+a1[i]+")").removeAttr("disabled");
+               }
+           }
+       });
     }
 
 
@@ -314,7 +352,7 @@ layui.define(['admin', 'form', 'element', 'laytpl', 'layer'], function (exports)
      * @private
      */
     function _def_secondModel(e){
-        _init__MT_data();
+        // _init__MT_data();
         if (secondModel_radio === 2){
             _MT_data.selLayer = 1;
             _MT_data.selMaterial = 'YG';

@@ -1,0 +1,106 @@
+
+  <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list"style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+      <label class="layui-form-label">角色名称</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template>
+          <input type="text" name="roleName" value="{{ d.params.roleName || '' }}" lay-verify="required" placeholder="请输入角色名" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">备注</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template>
+          <input type="text" name="remark" value="{{ d.params.remark || '' }}" lay-verify="required" placeholder="请备注" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">授权</label>
+      <div class="layui-input-block">
+        <div id="LAY-auth-tree-index"></div>
+      </div>
+    </div>
+    <script type="text/html" template>
+      <input type="hidden" name="roleId" value="{{ d.params.roleId || '' }}" id="rid">
+    </script>
+    <div class="layui-form-item">
+      <label class="layui-form-label"></label>
+      <div class="layui-input-inline">
+        <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn" style="display: none;" id="layuiadmin-app-form-submit">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    layui.use(['jquery', 'authtree', 'form', 'admin','setter'], function(){
+      var $ = layui.jquery
+      ,authtree = layui.authtree
+      ,form = layui.form
+      ,admin = layui.admin
+      ,setter = layui.setter;
+  
+        form.render();
+
+        var arrayToTreeJson = function(treeArray, id, parentId, children) {
+          var r = [];
+          id = id ? id : 'id';
+          parentId = parentId ? parentId : 'parentId';
+          children = children ? children : 'children';
+          if(treeArray.length > 0) {
+            var tmpMap = {};
+            for(var i = 0, l = treeArray.length; i < l; i++) {
+              // 以每条数据的id作为obj的key值，数据作为value值存入到一个临时对象里面
+              tmpMap[treeArray[i][id]] = treeArray[i];
+            }
+            for(i = 0, l = treeArray.length; i < l; i++) {
+              var key = tmpMap[treeArray[i][parentId]];
+              //循环每一条数据的pid，假如这个临时对象有这个key值，就代表这个key对应的数据有children，需要Push进去
+              if(key) {
+                if(!key[children]) {
+                  key[children] = [];
+                  key[children].push(treeArray[i]);
+                } else {
+                  key[children].push(treeArray[i]);
+                }
+              } else {
+                //如果没有这个Key值，那就代表没有父级,直接放在最外层
+                r.push(treeArray[i]);
+              }
+            }
+          }
+          return r
+        }
+
+        //加载所有菜单数据
+        admin.req({
+          url: setter.baseUrl+'sys/menu/erplist',
+          dataType: 'json',
+          success: function(data){
+            var treeJson = arrayToTreeJson(data.data,'menuId','parentId','list')
+
+            authtree.render('#LAY-auth-tree-index', treeJson, {
+              inputname: 'menuIds[]', 
+              layfilter: 'layuiadmin-app-form-submit', 
+              openall: true,
+              autowidth: true,
+              nodeName:'title',
+              nodeValue:'menuId'
+            });
+          }
+        });
+
+        // authtree.render(
+        //   '#LAY-auth-tree-index',
+        //   treeJson, {
+        //     inputname: 'ids[]',
+        //     layfilter: 'layuiadmin-app-form-submit',
+        //     nodeName: 'title',
+        //     nodeValue: 'id',
+        //     openall: true
+        //   }
+        // );
+      
+    });
+  </script>

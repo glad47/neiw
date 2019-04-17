@@ -1,0 +1,80 @@
+<title>外协合同</title>
+<div class="layui-fluid">
+    <!--卡片－表格信息-->
+    <div class="layui-tab layui-tab-brief" lay-filter="tab-scmManagement">
+        <ul class="layui-tab-title">
+            <li class="layui-this">PCB订单</li>
+            <li>钢网订单</li>
+            <li>SMT订单</li>
+        </ul>
+        <div class="layui-tab-content">
+            <!--PCB订单-->
+            <div class="layui-tab-item layui-show">
+                <table class="layui-table" id="scmManaOutSC_tabPcb" lay-filter="scmManaOutSC_tabPcb"></table>
+                <script type="text/html" id="scmManaOutSC_toolbar">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="evScmSubmit">回签</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="confirmDate">确认交期</button>
+                    </div>
+                </script>
+                <script type="text/html" id="scmManaOutsource_tabbar">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="eevScmedit">编辑</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
+                    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="signBack">退回</a>
+                </script>
+                <script type="text/html" id="og_status">
+                    {{# if(d.status == '6') { }}
+                        已确认交期
+                    {{# } else if(d.status == '5'){ }}
+                        交期已回复
+                    {{# } else if(d.status == '4'){ }}
+                        待确认交期
+                    {{# } else if(d.status == '3'){ }}
+                        已生成合同
+                    {{# } else if(d.status == null || d.status == '' ){ }}
+                        合同未回签
+                    {{# } }}
+                </script>
+            </div>
+            <!--钢网订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table" id="scmManaOutSC_tabStencil" lay-filter="scmManaOutSC_tabStencil"></table>
+                <script type="text/html" id="scmManaOutSC_toolbarS">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="evScmSubmit">回签</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="confirmDate">确认交期</button>
+                    </div>
+                </script>
+                <script type="text/html" id="scmManaOutsource_tabbarS">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="eevScmedit">编辑</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
+                    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="signBack">退回</a>
+                </script>
+                <script type="text/html" id="og_statusS">
+                    {{# if(d.status == '6') { }}
+                    已确认交期
+                    {{# } else if(d.status == '5'){ }}
+                    交期已回复
+                    {{# } else if(d.status == '4'){ }}
+                    待确认交期
+                    {{# } else if(d.status == '3'){ }}
+                    已生成合同
+                    {{# } else if(d.status == null || d.status == '' ){ }}
+                    合同未回签
+                    {{# } }}
+                </script>
+            </div>
+            <!--SMT订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('scmMana_outContract', layui.factory('scmMana_outContract')).use(['scmMana_outContract', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>

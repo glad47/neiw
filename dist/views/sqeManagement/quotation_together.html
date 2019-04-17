@@ -1,0 +1,50 @@
+<title>供应商管理-报价协同</title>
+<div class="layui-fluid">
+    <!--卡片－表格信息-->
+    <div class="layui-tab layui-tab-brief" lay-filter="tab-quotationToger">
+        <ul class="layui-tab-title">
+            <li class="layui-this">PCB订单</li>
+            <li>钢网订单</li>
+            <li>SMT订单</li>
+        </ul>
+        <div class="layui-tab-content">
+            <!--PCB订单-->
+            <div class="layui-tab-item layui-show">
+                <table class="layui-table" id="quotatgt_tabPcb" lay-filter="quotatgt_tabPcb"></table>
+                <script type="text/html" id="quo_tother_tb">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="submitPcb">提交</button>
+                    </div>
+                </script>
+                <script type="text/html" id="quotatgt_tabbar">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
+                </script>
+            </div>
+            <!--钢网订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table" id="quotatgt_tabStencil" lay-filter="quotatgt_tabStencil"></table>
+                <script type="text/html" id="quo_tother_tbS">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="submitPcb">提交</button>
+                    </div>
+                </script>
+                <script type="text/html" id="quotatgt_tabbarS">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
+                </script>
+            </div>
+            <!--SMT订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table" id="quotatgt_tabSmt" lay-filter="quotatgt_tabSmt"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('sqeMana_quotation_together', layui.factory('sqeMana_quotation_together')).use(['sqeMana_quotation_together', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>
