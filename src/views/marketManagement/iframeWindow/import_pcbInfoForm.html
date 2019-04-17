@@ -1,0 +1,95 @@
+<title>评审订单添加</title>
+<div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+        <form class="layui-form" lay-filter="pert_form" id="pertSysAddForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label">客户编号</label>
+                <div class="layui-input-inline">
+                    <select name="customerNo" lay-search="">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">产品型号</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" type="text" name="productNo">
+                </div>
+            </div>
+        </form>
+    </script>
+</div>
+
+<script>
+    layui.data.done = function (d) {
+        layui.use(['setter', 'upload', 'admin', 'index', 'element', 'jquery', 'form', 'filePathProcess'], function () {
+            var $ = layui.$,
+                table = layui.table,
+                form = layui.form,
+                admin = layui.admin,
+                view = layui.view,
+                setter = layui.setter;
+            var opType = $(".opType").text();
+            var customerNo = $("#pertCustomerNo").text();
+            admin.req({
+                type: 'post',
+                url: setter.baseUrl+'sys/consumer/user/all',
+                success: function (data) {
+                    console.log(data);
+                    var $html;
+                    for (var i=0;i<data.data.length;i++){
+                        if (customerNo == data.data[i].id) {
+                            $html += "<option id="+data.data[i].id+" value="+data.data[i].id+" selected>"+data.data[i].userSystemId+"</option>"
+                        } else {
+                            $html += "<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>"
+                        }
+                    }
+                    $("select[name='customerNo']").append($html);
+                    form.render('select');
+                }
+            })
+            form.render(null, "pert_form");
+
+            //  监听表单提交
+            form.on('submit(pertSysAddSubmit)', function (data) {
+                if (opType == 'add') {
+                    console.log(data);
+                    admin.req({
+                        type: 'post',
+                        url: setter.baseUrl+ 'pert/revieworder/save',
+                        data: data.field,
+                        success: function () {
+                            layer.alert('评审添加成功', function () {
+                                layer.closeAll();
+                                table.reload('iqcMana_pertSys');
+                            });
+                        }, error: function () {
+                            layer.msg('未知异常，请重试');
+                        }
+                    });
+                } else if (opType == 'edit') {
+                    data.field.id = $(".pertTabId").text();
+                    admin.req({
+                        type: 'post',
+                        url: setter.baseUrl+ 'pert/revieworder/update',
+                        data: data.field,
+                        success: function () {
+                            layer.alert('评审修改成功', function () {
+                                layer.closeAll();
+                                table.reload('iqcMana_pertSys');
+                            });
+                        }, error: function () {
+                            layer.msg('未知异常，请重试');
+                        }
+                    });
+                }
+                return false;
+            });
+        });
+    }
+</script>
+
+<style>
+    .pertSysAddForm .layui-form-item{width: 325px;}
+    #pertSysAddForm .layui-form-item .layui-input-inline{width: 267px;}
+</style>

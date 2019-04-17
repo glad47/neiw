@@ -35,7 +35,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
         elem: '#orderReviewB_pert_sys'
-        ,url: setter.baseUrl+'pert/revieworder/list?status=3'
+        ,url: setter.baseUrl+'pert/revieworder/list?status=4'
         ,toolbar: "#orderReviewB_pertSys_tb"
         ,cellMinWidth: 80
         ,id: "orderReviewB_pert_sys"
@@ -132,16 +132,17 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 });
                 break;
             case 'addOffer':
+                var data = checkStatus.data;
                 admin.req({
                     type: 'post',
                     url: setter.baseUrl + 'sys/consumer/user/all',
                     success: function (resCus) {
                         var resData = {};
-                        var pcbInfo = {unitPrice:'',boardFee: '',postFee:'',testCostFee:'',engineeringFee:'',toolingFee:'',overworkFee:'',quoteGerberName:'',quoteGerberPath:''}
+                        var pcbInfo = data[0];
                         resData.cInfo = resCus.data;
                         resData.pcbInfo = pcbInfo;
                         admin.popup({
-                            title: '添加供应商报价',
+                            title: '[添加&修改]供应商报价',
                             area: ['749px','486px'],
                             btn: ['保存', '取消'],
                             yes: function (index, layero) {
@@ -149,17 +150,19 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                             }
                             ,success: function (layero, index) {
                                 view(this.id).render('sqeManagement/iframeWindow/pert_sysOrderAdd', resData).done(function () {
+                                    console.log(resData);
                                     form.render();
                                     form.on('submit(pertSysOrderAddSubmit)', function (data) {
                                         var field = data.field;
-                                        field.orderId = _this_id;
+                                        field.orderId = data.orderId;
+                                        field.id = _this_id;
                                         admin.req({
                                             type: 'post',
                                             data: field,
-                                            url: setter.baseUrl + 'pert/supplierquote/save',
+                                            url: setter.baseUrl + 'pert/revieworder/update',
                                             success: function () {
                                                 layer.alert('供应商报价添加成功！', function () {
-                                                    table.reload('sqeMana_pertSys');
+                                                    table.reload('orderReviewB_pert_sys');
                                                     layer.closeAll();
                                                 });
                                             }
@@ -178,131 +181,61 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         var data = obj.data;
         var _this_id = data.id;
         console.log("_this_id"+ _this_id);
-        if (obj.event == 'edit'){
-            data.opType = 'edit';
-            admin.req({
-                type: 'post',
-                url: setter.baseUrl + 'pert/pcbinfo/info/'+_this_id,
-                success: function (res) {
-                    var resData = {};
-                    resData.pcbInfo = res.pcbInfo;
-                    $.each(resData.pcbInfo,function (ikey, value) {
-                        if (value === 0) {
-                            resData.pcbInfo[ikey]= null;
-                        }
-                    });
-                    resData.selInfo = new Object();
-                    if (resData.pcbInfo != null) {
-                        resData.selInfo.layerNum = resData.pcbInfo.layerNum;    // 回显-Layer
-                        resData.selInfo.material = resData.pcbInfo.material;    // 回显-material
-                        resData.selInfo.productCode = resData.pcbInfo.productCode;    // 回显-material
-                    } else {
-                        layer.alert('当前评审不存在供应商报价，请先添加报价！', function () {
-                            layer.closeAll();
-                        });
-                        return false;
+        if (obj.event == 'del'){
+            layer.confirm('确定删除？', function () {
+                admin.req({
+                    type: 'post',
+                    data: {ids: _this_id},
+                    url: setter.baseUrl + 'pert/revieworder/delete',
+                    success: function (data) {
+                        layer.alert("评审订单删除成功！");
+                        table.reload('orderReviewB_pert_sys');
+                        layer.closeAll();
                     }
-
-                    admin.req({
-                        type: 'post',
-                        url: setter.baseUrl + 'sys/consumer/user/all',
-                        success: function (resCus) {
-                            resData.cInfo = resCus.data;
-                            admin.popup({
-                                title: '修改评审订单'
-                                ,area: ['749px','486px']
-                                ,btn: ['保存', '取消']
-                                ,yes: function (index, layero) {
-                                    $(".bot-subbtn").click();
-                                }
-                                ,success: function (layero, index) {
-                                    view(this.id).render('sqeManagement/iframeWindow/pert_sysOrderAdd',resData).done(function () {
-                                        console.log(resData);
-                                        form.on('submit(pertDetailForm)', function (data) {
-                                            var field = data.field;
-                                            field.id = resData.pcbInfo.id;
-                                            $.each(field,function (ikey, value) {
-                                                if (value == "" || value == null || typeof value == "undefined") {
-                                                    field[ikey]= 0;
-                                                }
-                                            });
-                                            console.log(field);
-                                            admin.req({
-                                                type: 'post',
-                                                data: field,
-                                                url: setter.baseUrl + 'pert/pcbinfo/update',
-                                                success: function () {
-                                                    layer.alert('供应商报价修改成功！', function () {
-                                                        layer.closeAll();
-                                                    });
-                                                }
-                                            });
-                                            return false;
-                                        });
-                                        form.render();
-                                    });
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        } else if (obj.event == 'del'){
-            admin.req({
-                type: 'post',
-                url: setter.baseUrl + 'pert/pcbinfo/info/'+_this_id,
-                success: function (res) {
-                    if (res.pcbInfo != null) {
-                        layer.confirm('确定删除？', function () {
-                            admin.req({
-                                type: 'post',
-                                data: {ids: data.id},
-                                url: setter.baseUrl + 'pert/revieworder/delete',
-                                success: function (data) {
-                                    layer.alert("评审订单删除成功！");
-                                    table.reload('epcMana_pertSys');
-                                    layer.closeAll();
-                                }
-                            });
-                        });
-                    }  else {
-                        layer.alert('当前订单不存在pcb参数信息，如果添加选择表格左上角的添加按钮', function () {
-                            layer.closeAll();
-                        });
-                    }
-                }
+                });
             });
         } else if (obj.event == 'detail') {
-            admin.popup({
-                title: '编辑PCB订单信息'
-                ,btn:['立即提交', '取消']
-                ,area: ['76%', '90%']
-                ,yes: function () {
-                    $(".submit-ok").click();
-                }
-                ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
-                        console.log(data);
-                        form.render(null, '');
-                        form.on('submit(LAY-pcborder-update-submit)',function (data) {
-                            var field = data.field;
-                            console.log("提交的字段信息："+JSON.stringify(field));
-                            admin.req({
-                                type: 'post'
-                                ,url: setter.baseUrl+'pert/pcbinfo/save'
-                                ,data: field
-                                ,done: function (res) {
-                                    layer.msg('订单信息修改成功');
-                                    layui.table.reload('interior_order_Tabpcb');
-                                }
-                                ,fail: function (res) {
-                                    layer.msg("订单信息修改失败，请稍后再试！");
-                                },
-                            });
-                            layer.close(index);
-                            return false;
+            admin.req({
+                type: 'post',
+                url: setter.baseUrl + 'pert/pcbinfo/info/' + _this_id,
+                success: function (res) {
+                    var resData = res.pcbInfo;
+                    if (resData != null) {
+                        admin.popup({
+                            title: '查看PCB订单信息'
+                            ,btn:['立即提交', '取消']
+                            ,area: ['76%', '90%']
+                            ,yes: function () {
+                                $(".submit-ok").click();
+                            }
+                            ,success: function (layero, index) {
+                                view(this.id).render('epcManagement/iframeWindow/pert_sysPCB_detail', resData).done(function () {
+                                    console.log(data);
+                                    form.render(null, '');
+                                    form.on('submit(LAY-pcborder-update-submit)',function (data) {
+                                        var field = data.field;
+                                        console.log("提交的字段信息："+JSON.stringify(field));
+                                        admin.req({
+                                            type: 'post'
+                                            ,url: setter.baseUrl+'pert/pcbinfo/save'
+                                            ,data: field
+                                            ,done: function (res) {
+                                                layer.msg('订单信息修改成功');
+                                                layui.table.reload('interior_order_Tabpcb');
+                                            }
+                                            ,fail: function (res) {
+                                                layer.msg("订单信息修改失败，请稍后再试！");
+                                            },
+                                        });
+                                        layer.close(index);
+                                        return false;
+                                    });
+                                });
+                            }
                         });
-                    });
+                    } else {
+                        layer.alert('当前订单不存在pcb参数信息，添加选择表格左上角的添加按钮');
+                    }
                 }
             });
         } else if (obj.event == 'sOrderDetail') {

@@ -180,6 +180,9 @@
                           layui.each(d.list, function(index, item){  
                       }}
                       <ul class="layui-row layui-col-space10">
+                        <div style="text-align: center">
+                          <h2>{{item.name}}</h2>
+                        </div>
                         <li class="layui-col-xs3">
                           <a lay-href="app/content/comment" class="layadmin-backlog-body">
                             <h3>月目标款数</h3>
@@ -399,4 +402,8 @@ layui.data.done = function(d){
   layui.use('console', layui.factory('console'));
 };
 </script>
+
+<style>
+  .layadmin-carousel{height: 225px !important;}
+</style>
 

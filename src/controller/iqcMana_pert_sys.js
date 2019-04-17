@@ -5,12 +5,11 @@
  */
 
 
-layui.define(['admin','table','index','element','form','laydate'], function (exports) {
+layui.define(['admin','table','index','element','form'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
-        // ,laydate = layui.laydate
         ,setter = layui.setter
         ,element = layui.element;
     var $ = layui.jquery;
@@ -83,7 +82,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     }
                     ,success: function (layero, index) {
                         view(this.id).render('marketManagement/iframeWindow/pert_sysAdd', pertData).done(function () {
-
+                            form.render();
                         });
                     }
                 });

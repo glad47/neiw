@@ -82,6 +82,7 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
       'echartsTheme', //echarts 主题
       'convertCurrency', //货币转换
       'uploadCommon', //文件上传进度
+      'filePathProcess', //文件上传路径处理
     ]
     
     //主题配置

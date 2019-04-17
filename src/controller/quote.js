@@ -1424,6 +1424,23 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     //         console.log("get修改后的shipping为==========>>>>>>>"+this._shipping);
     //     }
     // });
+    
+    // 2019-04-17 导入pcb订单信息
+    $(".importPcbInfo>button").on('click', function () {
+        admin.popup({
+            title: '导入pcb订单信息'
+            ,area: ['506px','288px']
+            ,btn: ['导入', '取消']
+            ,yes: function (layero, index) {
+                $("#pertSysAddSubmit").click();
+            }
+            ,success: function (layero, index) {
+                view(this.id).render('marketManagement/iframeWindow/import_pcbInfoForm').done(function () {
+                    form.render();
+                });
+            }
+        });
+    });
 
     exports('quote',{})
 });

@@ -10,7 +10,7 @@
                         layui.each(d.params.cInfo, function(index, item){
                         }}
                         <option></option>
-                        <option value="{{ item.id || ''}}" {{ d.params.userId == item.id ? 'selected' : ''}}>{{ item.userSystemId }}</option>
+                        <option value="{{ item.id || ''}}" {{ d.params.pcbInfo.customerNo == item.id ? 'selected' : ''}}>{{ item.userSystemId }}</option>
                         {{#  }); }}
                         {{#  if(d.params.cInfo.length === 0){ }}
                         无数据
@@ -69,7 +69,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">评审备注</label>
                 <div class="layui-input-inline" style="width: 75%;">
-                    <textarea class="layui-textarea" name="remark" id="" value="{{ d.params.pcbInfo.remark || '' }}"></textarea>
+                    <textarea class="layui-textarea" name="remark" id="">{{ d.params.pcbInfo.remark || '' }}</textarea>
                 </div>
             </div>
 
