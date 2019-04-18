@@ -5,7 +5,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">客户编号</label>
                 <div class="layui-input-inline">
-                    <select name="customerNo" lay-search="">
+                    <select name="customerNo" lay-search="" lay-filter="importSelCus">
                         <option></option>
                     </select>
                 </div>
@@ -13,8 +13,14 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">产品型号</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="productNo">
+                    <!--<input class="layui-input" type="text" name="productNo">-->
+                    <select name="productNo" lay-search="" lay-filter="importSelpn"></select>
                 </div>
+            </div>
+            <div class="layui-form-item" style="display: none;">
+                <button class="layui-btn layuiadmin-btn-forum-list" lay-submit lay-filter="importPCBInfo" id="importPCBInfo">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
             </div>
         </form>
     </script>
@@ -29,13 +35,11 @@
                 admin = layui.admin,
                 view = layui.view,
                 setter = layui.setter;
-            var opType = $(".opType").text();
             var customerNo = $("#pertCustomerNo").text();
             admin.req({
                 type: 'post',
                 url: setter.baseUrl+'sys/consumer/user/all',
                 success: function (data) {
-                    console.log(data);
                     var $html;
                     for (var i=0;i<data.data.length;i++){
                         if (customerNo == data.data[i].id) {
@@ -49,42 +53,29 @@
                 }
             })
             form.render(null, "pert_form");
-
-            //  监听表单提交
-            form.on('submit(pertSysAddSubmit)', function (data) {
-                if (opType == 'add') {
-                    console.log(data);
-                    admin.req({
-                        type: 'post',
-                        url: setter.baseUrl+ 'pert/revieworder/save',
-                        data: data.field,
-                        success: function () {
-                            layer.alert('评审添加成功', function () {
-                                layer.closeAll();
-                                table.reload('iqcMana_pertSys');
-                            });
-                        }, error: function () {
-                            layer.msg('未知异常，请重试');
+            
+            form.on('select(importSelCus)', function (data) {
+                $("select[name='productNo']").empty();
+                var customerNo = data.value;
+                admin.req({
+                    type: 'post',
+                    data: {customerNo: customerNo},
+                    url: setter.baseUrl + 'pert/revieworder/allProductNo',   // 查询客户所有产品号
+                    success: function (res) {
+                        if (res.data.length == 0 || res.data == null) {
+                            layer.alert('没有查询到此客户编号下所对应的客户型号，请确定添加后再试！');
+                        } else {
+                            var $html;
+                            for (var i=0;i<res.data.length;i++) {
+                                $html += "<option value="+res.data[i]+">"+res.data[i]+"</option>"
+                            }
                         }
-                    });
-                } else if (opType == 'edit') {
-                    data.field.id = $(".pertTabId").text();
-                    admin.req({
-                        type: 'post',
-                        url: setter.baseUrl+ 'pert/revieworder/update',
-                        data: data.field,
-                        success: function () {
-                            layer.alert('评审修改成功', function () {
-                                layer.closeAll();
-                                table.reload('iqcMana_pertSys');
-                            });
-                        }, error: function () {
-                            layer.msg('未知异常，请重试');
-                        }
-                    });
-                }
-                return false;
+                        $("select[name='productNo']").append($html);
+                        form.render('select');
+                    }
+                });
             });
+
         });
     }
 </script>
