@@ -40,7 +40,7 @@ var argv = require('minimist')(process.argv.slice(2), {
     var src = [
       './src/**/*.js'
       ,'!./src/config.js'
-      ,'!./src/lib/extend/echarts.js'
+      ,'!.src/lib/extend/echarts.js'
     ];
 
       return gulp.src(src).pipe(babel({
