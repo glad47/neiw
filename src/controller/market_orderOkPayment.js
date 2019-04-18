@@ -198,16 +198,16 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 admin.req({
                     type: 'post'
                     ,url: setter.baseUrl+'market/quote/okPaymentList/submit'
-                    ,data: {"contractNos":data.invoiceNo,"isLock":data.isLock}
+                    ,data: {"contractNos":data.productNo,"isLock":data.isLock}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
-                        layui.table.reload('or_Tabpcb_no_payment');
+                        // layui.table.reload('or_Tabpcb_ok_payment');
                     }
                     ,fail: function () {
                         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
                     }
-                })
-                table.reload('or_Tabpcb_ok_payment');
+                });
+                layui.table.reload('or_Tabpcb_ok_payment');
                 layer.close(index);
             })
         } else if (obj.event === 'pcb-sendback') {
