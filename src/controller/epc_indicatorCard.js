@@ -247,10 +247,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
         } else if(obj.event === 'back'){
             layer.confirm('真的退回合同号为［'+data.invoiceNo+'］吗', function(index){
                 var contractNos = data.invoiceNo;
+                var isInternal = data.isInternal;
                 admin.req({
                     type: 'post',
                     url: setter.baseUrl+'epc/pcborder/backByIo'    // 需要修改成退回的接口
-                    ,data:{contractNos:contractNos}
+                    ,data:{contractNos:contractNos,isInternal:isInternal}
                     ,done: function (res) {
                         layer.msg('成功退回');
                         table.reload('epc_Tabpcb_ok_payment_order');

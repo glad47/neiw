@@ -195,11 +195,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             })
         } else if (obj.event === 'pcb-submit') {
             layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
-                data.isLock = 3;
                 admin.req({
                     type: 'post'
                     ,url: setter.baseUrl+'market/quote/okPaymentList/submit'
-                    ,data: {"id":data.id,"isLock":data.isLock}
+                    ,data: {"contractNos":data.invoiceNo,"isLock":data.isLock}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
                         layui.table.reload('or_Tabpcb_no_payment');
