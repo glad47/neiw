@@ -245,9 +245,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 });
             }
         } else if(obj.event === 'back'){
-            layer.confirm('真的退回合同号为［'+data.invoiceNo+'］吗', function(index){
-                var contractNos = data.invoiceNo;
+            layer.confirm('真的退回合同号为［'+data.productNo+'］吗', function(index){
+                var contractNos = data.productNo;
                 var isInternal = data.isInternal;
+
                 admin.req({
                     type: 'post',
                     url: setter.baseUrl+'epc/pcborder/backByIo'    // 需要修改成退回的接口

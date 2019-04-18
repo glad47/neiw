@@ -347,7 +347,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.confirm('确定要提交此订单？', function () {
                admin.req({
                    type: 'post',
-                   data: {'contractNos':data.invoiceNo},
+                   data: {'contractNos':data.productNo},
                    url: setter.baseUrl+'epc/pcborder/submitInternalOrder',
                    success: function (result) {
                        layer.alert("订单提交成功");
