@@ -650,10 +650,10 @@
 
                           <div class="layui-input-inline" style="margin-top: 12px;width: 100%;">
                               <div class="layui-input-inline layui-col-md6 layui-col-sm12" style="width: 48%;">
-                                  <input type="text" class="layui-input" placeholder="客户PO" id="orderNo">
+                                  <input type="text" class="layui-input" placeholder="客户PO" id="orderNo" name="orderNo">
                               </div>
                               <div class="layui-input-inline layui-col-md6 layui-col-sm12" style="width: 37.5%;margin-left: 2%;">
-                                  <input type="text" class="layui-input" placeholder="客户型号" id="pcbName">
+                                  <input type="text" class="layui-input" placeholder="客户型号" id="pcbName" name="pcbName">
                               </div>
                               <div class="layui-input-inline" style="margin-left: 1%;position: absolute;">
                                   <!--<button class="layui-btn up-subbtn" data-type="upSubbtn">报价</button>-->
@@ -685,7 +685,7 @@
                                   <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label">板费：</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" type="text" id="boardFee" placeholder="0.00" >
+                                          <input class="layui-input" name="boardFee" type="text" id="boardFee" placeholder="0.00" >
                                       </div>
                                   </div>
                                   <div class="layui-input-inline shipping-input-company" style="width: 142px;">
@@ -699,7 +699,7 @@
                                   <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label" id="testPointT">飞针费：</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" type="text" id="testFee" placeholder="0.00" >
+                                          <input class="layui-input" name="testCostFee" type="text" id="testFee" placeholder="0.00" >
                                       </div>
                                   </div>
                                   <div class="rig-others layui-col-md6">
@@ -719,13 +719,13 @@
                                   <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label">模具费：</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" type="text" id="toolingFee" placeholder="0.00" >
+                                          <input class="layui-input" name="toolingFee" type="text" id="toolingFee" placeholder="0.00" >
                                       </div>
                                   </div>
                                   <div class="rig-others layui-col-md6">
                                       <label class="layui-form-label" style="padding: 9px 12px 0px 0px;">Weight:</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" type="text" id="pcbWeight" placeholder=" 0.00 KG" >
+                                          <input class="layui-input" name="weight" type="text" id="pcbWeight" placeholder=" 0.00 KG" >
                                       </div>
                                   </div>
                               </div>
@@ -734,7 +734,7 @@
                                   <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label">加急费：</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" name="engineeringFee" type="text" id="urgentFee" placeholder="0.00" >
+                                          <input class="layui-input" name="overworkFee" name="engineeringFee" type="text" id="urgentFee" placeholder="0.00" >
                                       </div>
                                   </div>
                                   <div class="rig-others build-time-item layui-col-md6" style="display: none;width: 146px;">

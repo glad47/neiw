@@ -1451,23 +1451,19 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                                 if (importPcbInfo != null) {
                                     $("#inside_quote_all input,#inside_quote_all select").each(function () {
                                         var $name = $(this).attr("name");
-                                        console.log($name);
                                         var $Pthis = $(this);
                                         var $Pthis_type = $(this).attr("type");
                                         if ($Pthis.is("input")) {
                                             if ($Pthis_type == "text" || $Pthis_type == "number") {
                                                 $Pthis.val(importPcbInfo[$name]);
                                             } else if ($Pthis_type == 'checkbox') {
-                                                console.log('为checkbox');
-                                                $("input[type=checkbox][name="+$name+"][value="+importPcbInfo[$name]+"]").attr("checked","checked");
+                                                $("input[type=checkbox][name="+$name+"][value='"+importPcbInfo[$name]+"']").attr("checked","checked");
                                             } else if ($Pthis_type == "radio") {
-                                                console.log('为radio');
-                                                $("input[name="+$name+"][value="+importPcbInfo[$name]+"]").prop("checked","checked");
+                                                $("input[name="+$name+"][value='"+importPcbInfo[$name]+"']").prop("checked","checked");
                                             }
                                         }
                                         if ($Pthis.is("select")) {
-                                            console.log('为select');
-                                            $("select[name="+$name+"]").find("option:contains("+importPcbInfo[$name]+")").attr("selected",true);
+                                            $("select[name="+$name+"]").find("option:contains('"+importPcbInfo[$name]+"')").attr("selected",true);
                                         }
                                     });
                                     form.render();
