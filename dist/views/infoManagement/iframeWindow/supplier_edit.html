@@ -13,12 +13,14 @@
             <div class="addcus-cusPWd layui-col-md6">
                 <label class="layui-form-label">类别：</label>
                 <div class="layui-input-block">
+                    <script type="text/html" template>
                     <select name="type">
-                        <option value="0"></option>
-                        <option value="1">PCB</option>
-                        <option value="2">PCBA</option>
-                        <option value="3">SMT</option>
+                        <option value="0" {{ d.params.type =='0' ? 'selected' : '' }}></option>
+                        <option value="1" {{ d.params.type =='1' ? 'selected' : '' }}>PCB</option>
+                        <option value="2" {{ d.params.type =='2' ? 'selected' : '' }}>PCBA</option>
+                        <option value="3" {{ d.params.type =='3' ? 'selected' : '' }}>SMT</option>
                     </select>
+                    </script>
                 </div>
             </div>
         </div>
@@ -145,38 +147,43 @@
                     <!--内部分类-->
                     <div class="layui-form-item supedit-nbfl">
                         <div class="supedit-type layui-input-block layui-col-md12">
+                            <script type="text/html" template>
                             <label class="layui-form-label">类型：</label>
-                            <input type="radio" name="strengths" value="1" title="简单样板">
-                            <input type="radio" name="strengths" value="2" title="复杂样板">
-                            <input type="radio" name="strengths" value="3" title="批量">
-                            <input type="radio" name="strengths" value="4" title="HDI">
-                            <input type="radio" name="strengths" value="5" title="软板">
+                            <input type="radio" name="strengths" value="1" {{ d.params.strengths == '1' ? 'checked' : '' }} title="简单样板">
+                            <input type="radio" name="strengths" value="2" {{ d.params.strengths == '2' ? 'checked' : '' }} title="复杂样板">
+                            <input type="radio" name="strengths" value="3" {{ d.params.strengths == '3' ? 'checked' : '' }} title="简单批量">
+                            <input type="radio" name="strengths" value="6" {{ d.params.strengths == '6' ? 'checked' : '' }} title="复杂批量">
+                            <input type="radio" name="strengths" value="4" {{ d.params.strengths == '4' ? 'checked' : '' }} title="HDI">
+                            <input type="radio" name="strengths" value="5" {{ d.params.strengths == '5' ? 'checked' : '' }} title="软板">
+                            </script>
                         </div>
+                        <script type="text/html" template>
                         <div class="layui-input-block layui-col-md12">
                             <div class="supedit-jq layui-col-md6">
                                 <label class="layui-form-label">交期：</label>
                                 <div id="supedit_jq"></div>
-                                <input type="text" name="evaluateDdelivery" autocomplete="off" class="layui-input">
+                                <input type="text" name="evaluateDdelivery" value="{{ d.params.evaluateDdelivery }}" autocomplete="off" class="layui-input">
                             </div>
                             <div class="supedit-pz layui-col-md6">
                                 <label class="layui-form-label">品质：</label>
                                 <div id="supedit_pz" name="evaluateQuality"></div>
-                                <input type="text" name="evaluateQuality" autocomplete="off" class="layui-input">
+                                <input type="text" name="evaluateQuality" value="{{ d.params.evaluateQuality }}" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-input-block layui-col-md12">
                             <div class="supedit-phd layui-col-md6">
                                 <label class="layui-form-label">配合度：</label>
                                 <div id="supedit_phd" name="evaluateCompatibility"></div>
-                                <input type="text" name="evaluateCompatibility" autocomplete="off" class="layui-input">
+                                <input type="text" name="evaluateCompatibility"  value="{{ d.params.evaluateCompatibility }}"autocomplete="off" class="layui-input">
                             </div>
                             <div class="supedit-pj layui-col-md6">
                                 <label class="layui-form-label">评级：</label>
                                 <div id="supedit_pj" name="evaluateRate"></div>
-                                <input type="text" name="evaluateRate" autocomplete="off" class="layui-input">
+                                <input type="text" name="evaluateRate" value="{{ d.params.evaluateRate }}" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <hr class="layui-bg-gray">
+                        </script>
                     </div>
                 </div>
                 <div class="layui-tab-item">
@@ -270,18 +277,18 @@ layui.data.done = function(d){
         //交期
         rate.render({
             elem: '#supedit_jq'
-            ,value: 0
+            ,value: $("input[name='evaluateDdelivery']").val()
             ,text: true
             ,choose: function (value) {
                 $("input[name='evaluateDdelivery']").val(value);
             }
             ,setText: function(value){ //自定义文本的回调
                 var arrs = {
-                    '1': '极差'
-                    ,'2': '差'
-                    ,'3': '中等'
-                    ,'4': '好'
-                    ,'5': '极好'
+                    1: '极差'
+                    ,2: '差'
+                    ,3: '中等'
+                    ,4: '好'
+                    ,5: '极好'
                 };
                 this.span.text(arrs[value] || ( value + "星"));
             }
@@ -289,18 +296,18 @@ layui.data.done = function(d){
         //品质
         rate.render({
             elem: '#supedit_pz'
-            ,value: 0
+            ,value: $("input[name='evaluateQuality']").val()
             ,text: true
             ,choose: function (value) {
                 $("input[name='evaluateQuality']").val(value);
             }
             ,setText: function(value){ //自定义文本的回调
                 var arrs = {
-                    '1': '极差'
-                    ,'2': '差'
-                    ,'3': '中等'
-                    ,'4': '好'
-                    ,'5': '极好'
+                    1: '极差'
+                    ,2: '差'
+                    ,3: '中等'
+                    ,4: '好'
+                    ,5: '极好'
                 };
                 this.span.text(arrs[value] || ( value + "星"));
             }
@@ -308,18 +315,18 @@ layui.data.done = function(d){
         //配合度
         rate.render({
             elem: '#supedit_phd'
-            ,value: 0
+            ,value: $("input[name='evaluateCompatibility']").val()
             ,text: true
             ,choose: function (value) {
                 $("input[name='evaluateCompatibility']").val(value);
             }
             ,setText: function(value){ //自定义文本的回调
                 var arrs = {
-                    '1': '极差'
-                    ,'2': '差'
-                    ,'3': '中等'
-                    ,'4': '好'
-                    ,'5': '极好'
+                    1: '极差'
+                    ,2: '差'
+                    ,3: '中等'
+                    ,4: '好'
+                    ,5: '极好'
                 };
                 this.span.text(arrs[value] || ( value + "星"));
             }
@@ -327,18 +334,18 @@ layui.data.done = function(d){
         //评级
         rate.render({
             elem: '#supedit_pj'
-            ,value: 0
+            ,value: $("input[name='evaluateRate']").val()
             ,text: true
             ,choose: function (value) {
                 $("input[name='evaluateRate']").val(value);
             }
             ,setText: function(value){ //自定义文本的回调
                 var arrs = {
-                    '1': 'C'
-                    ,'2': 'B2'
-                    ,'3': 'B1'
-                    ,'4': 'A2'
-                    ,'5': 'A1'
+                    1: 'C'
+                    ,2: 'B2'
+                    ,3: 'B1'
+                    ,4: 'A2'
+                    ,5: 'A1'
                 };
                 this.span.text(arrs[value] || ( value + "星"));
             }

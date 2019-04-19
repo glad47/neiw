@@ -326,21 +326,37 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             })
         } else if (obj.event === 'edit') {
             if (data.quoteGerberName != "" && data.quoteGerberName != null && typeof data.quoteGerberName != 'undefined') {
-                layer.confirm('确定审核通过该订单［'+data.productNo+'］?',function (index) {
-                    admin.req({
-                        type: 'post'
-                        ,url: setter.baseUrl+'epc/pcborder/update'
-                        ,data: {"id":data.id,"status":6}
-                        ,done: function () {
-                            layer.msg('订单［'+data.productNo+'］提交成功！');
-                            layui.table.reload('or_Tabpcb_no_payment');
-                        }
-                        ,fail: function () {
-                            layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
-                        }
-                    });
-                    layui.table.reload('epc_Tabpcb_ok_payment_order');
-                    layer.close(index);
+                var _this_id = data.id;
+                admin.popup({
+                    title: '审核订单[PCB]'
+                    ,area: ['867px', '237px']
+                    ,id: 'epc_incSH'
+                    ,btn:['审核','取消']
+                    ,yes: function () {
+                        $("#epc_auditOrders").click();
+                    }
+                    ,success: function (layero, index) {
+                        view(this.id).render('epcManagement/iframeWindow/audit_orders', data).done(function () {
+                            form.render();
+                            form.on('submit(epc_auditOrders)', function (data) {
+                                var field = data.field;
+                                field.id = _this_id;
+                                field.status = 6;
+                                admin.req({
+                                    type: 'post'
+                                    ,url: setter.baseUrl+'epc/pcborder/update'
+                                    ,data: field
+                                    ,done: function () {
+                                        layer.alert('审核成功', function () {
+                                            layui.table.reload('epc_Tabpcb_ok_payment_order');
+                                            layer.closeAll();
+                                        });
+                                    }
+                                });
+                                return false;
+                            });
+                        });
+                    }
                 });
             } else {
                 layer.alert('请先上传正式资料！！！');
@@ -672,21 +688,37 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             })
         } else if (obj.event === 'edit') {
             if (data.quoteGerberName != "" && data.quoteGerberName != null && typeof data.quoteGerberName != 'undefined') {
-                layer.confirm('确定审核通过该订单［'+data.productNo+'］?',function (index) {
-                    admin.req({
-                        type: 'post'
-                        ,url: setter.baseUrl+'epc/stencilorder/epcAuditStencilOrder'
-                        ,data: {"id":data.id,"status":6}
-                        ,done: function () {
-                            layer.msg('订单［'+data.productNo+'］提交成功！');
-                            layui.table.reload('epc_Tabstencil_ok_payment_order');
-                        }
-                        ,fail: function () {
-                            layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
-                        }
-                    });
-                    layui.table.reload('epc_Tabstencil_ok_payment_order');
-                    layer.close(index);
+                var _this_id = data.id;
+                admin.popup({
+                    title: '审核订单[钢网]'
+                    ,area: ['867px', '237px']
+                    ,id: 'epc_incSH'
+                    ,btn:['审核','取消']
+                    ,yes: function () {
+                        $("#epc_auditOrders").click();
+                    }
+                    ,success: function (layero, index) {
+                        view(this.id).render('epcManagement/iframeWindow/audit_orders', data).done(function () {
+                            form.render();
+                            form.on('submit(epc_auditOrders)', function (data) {
+                                var field = data.field;
+                                field.id = _this_id;
+                                field.status = 6;
+                                admin.req({
+                                    type: 'post'
+                                    ,url: setter.baseUrl+'epc/stencilorder/epcAuditStencilOrder'
+                                    ,data: field
+                                    ,done: function () {
+                                        layer.alert('钢网订单审核成功', function () {
+                                            layui.table.reload('epc_Tabstencil_ok_payment_order');
+                                            layer.closeAll();
+                                        });
+                                    }
+                                });
+                                return false;
+                            });
+                        });
+                    }
                 });
             } else {
                 layer.alert('请先上传正式资料！！！');

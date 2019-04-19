@@ -67,8 +67,8 @@
                     <thead>
                     <tr>
                         <th rowspan="2">序号</th>
-                        <th rowspan="2">聚谷型号</th>
-                        <th rowspan="2">供应商编号</th>
+                        <th rowspan="2">内部型号</th>
+                        <th rowspan="2">供应商产品型号</th>
                         <th colspan="9" style="text-align: center;">成品工艺表</th>
                         <th rowspan="2">数量PCS</th>
                         <th rowspan="2">单价</th>
@@ -98,9 +98,9 @@
                 <tr>
                     <!--序号-->
                     <td>{{ index }}</td>
-                    <!--聚谷型号-->
-                    <td>{{ item.pcbName || item.gerberName }}</td>
-                    <!--供应商编号-->
+                    <!--内部型号-->
+                    <td>{{ item.productNo || '' }}</td>
+                    <!--供应商产品号-->
                     <td>{{ item.factoryMake || '' }}</td>
                     <!--交货尺寸-->
                     <td>

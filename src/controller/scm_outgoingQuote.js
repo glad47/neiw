@@ -41,6 +41,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             {field:'id', title: 'ID',hide: true}
             ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-scm-outgoingQuote-status',minWidth: 130}
             ,{field: '', title:'下载', toolbar: '#pcb-file', align:'center'}
+            ,{field: 'difficultyLevel', title:'难易度', align:'center'}
             ,{field:'productNo', title: '聚谷编号', align:'center', minWidth: 114}
             ,{field:'quoteGerberName', title: '正式资料', align:'center', minWidth: 254, hide: true}
             ,{field:'gmtCreate', title: '创建时间', align:'center', minWidth: 165}
@@ -137,7 +138,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         if(obj.event === 'assign'){
             admin.popup({
                 title: '指定供应商'
-                ,area: ['45%', '70%']
+                ,area: ['912px', '545px']
                 ,btn:['提交','取消']
                 ,yes:function(index, layero){
                     var checkStatus = table.checkStatus('scm_assign_supplier_table'),checkdata = checkStatus.data;
@@ -181,7 +182,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 }
                 ,end:function(){}
                 ,success: function (layero, index) {
-                    view(this.id).render('scmManagement/assign_supplier').done(function () {
+                    view(this.id).render('scmManagement/assign_supplier', data).done(function () {
                         var cid_list;
                         admin.req({
                             type: 'post',
@@ -193,7 +194,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                 dIds_arr = result.data;
                             }
                         });
-                        console.log(cid_list);
                         table.render({
                             elem: '#scm_assign_supplier_table'
                             ,url: setter.baseUrl+'scm/pcborder/allSupplier'
@@ -208,6 +208,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                 {type:'checkbox'}
                                 ,{field:'id', title: 'ID',hide: true}
                                 ,{field:'supplierId', title: '供应商编号', hide: false, align:'center',width: 130}
+                                ,{field:'strengths', title: '类别', align:'center',width: 130, templet: '#scm_ogstrengths'}
                                 ,{field:'companyName', title:'公司名', align:'center', hide: false}
                             ]],
                             done: function (res, curr, count) {
@@ -307,10 +308,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         if (obj.event === 'assign'){
             admin.popup({
                 title: '指定供应商'
-                ,area: ['45%', '70%']
+                ,area: ['912px', '545px']
                 ,btn:['提交','取消']
                 ,yes:function(index, layero){
-                    var checkStatus = table.checkStatus('scm_assign_supplier_table'),checkdata = checkStatus.data;
+                    var checkStatus = table.checkStatus('scm_assign_supplier_table', data),checkdata = checkStatus.data;
                     var ids = checkdata.map(function(elem){return elem.id}).join(",");
                     console.log("ids:"+ids);
                     var ids_arr = [ids.split(',')];
@@ -378,6 +379,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                 {type:'checkbox'}
                                 ,{field:'id', title: 'ID',hide: true}
                                 ,{field:'supplierId', title: '供应商编号', hide: false, align:'center',width: 130}
+                                ,{field:'strengths', title: '类别', align:'center',width: 130, templet: '#scm_ogstrengths'}
                                 ,{field:'companyName', title:'公司名', align:'center', hide: false}
                             ]],
                             done: function (res, curr, count) {

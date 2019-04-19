@@ -53,13 +53,13 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
             ,cols: [[
                 {type:'checkbox'}
-                ,{field: 'status',title: '状态',templet: '#pcb'}      // 1 ＝ 待报价
+                ,{field: 'status',title: '状态',templet: '#sqlManaqt_status'}      // 1 ＝ 待报价
                 ,{field: 'supplierQuoteNo',title: '报价单号', width: 125}
                 ,{field: 'gmtCreate',title: '报价时间', width: 166}
                 ,{field: 'supplierNo', title: '供应商编号', width: 124}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117}
                 ,{field: 'productNo', title: '聚谷型号', width: 124}
-                ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
+                ,{field: 'pcbName', title: '聚谷物料号', width: 144}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
                 ,{field: 'unitPrice', title: '单价', width: 96}
                 ,{field: 'engineeringFee', title: '工程费', width: 96}

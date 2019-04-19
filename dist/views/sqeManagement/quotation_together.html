@@ -20,6 +20,13 @@
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
                     <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
                 </script>
+                <script type="text/html" id="sqlManaqt_status">
+                    {{#  if(d.status == '1'){ }}
+                        待报价
+                    {{#  } else { }}
+                        已报价
+                    {{#  } }}
+                </script>
             </div>
             <!--钢网订单-->
             <div class="layui-tab-item">

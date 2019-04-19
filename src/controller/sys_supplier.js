@@ -84,6 +84,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                 ,area: ['55%', '75%']
                 ,success: function (layero, index) {
                     view(this.id).render('/infoManagement/iframeWindow/supplier_edit', data).done(function () {
+                        console.log(data);
                         form.render(null, 'supplierAdd_form');
                         form.on('submit(LAY-supplier-add-submit)', function(data){
                             var field = data.field;

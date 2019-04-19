@@ -1074,7 +1074,6 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
             type: 'post',
             url: setter.baseUrl+'sys/consumer/user/all',
             success: function (data) {
-                console.log(data);
                 for (var i=0;i<data.data.length;i++){
                     $("#selCustomer").append("<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>");
                 }
@@ -1432,11 +1431,55 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
             ,area: ['506px','288px']
             ,btn: ['导入', '取消']
             ,yes: function (layero, index) {
-                $("#pertSysAddSubmit").click();
+                $("#importPCBInfo").click();
+                layer.closeAll();
             }
             ,success: function (layero, index) {
                 view(this.id).render('marketManagement/iframeWindow/import_pcbInfoForm').done(function () {
-                    form.render();
+                    //  监听表单提交
+                    form.on('submit(importPCBInfo)', function (data) {
+                        var postData = data.field;
+                        console.log(postData);
+                        admin.req({
+                            type: 'post',
+                            url: setter.baseUrl+ 'pert/revieworder/reviewOrderInfo',
+                            data: data.field,
+                            success: function (res) {
+                                console.log(res.data);
+                                var importPcbInfo = res.data;
+                                console.log(importPcbInfo);
+                                if (importPcbInfo != null) {
+                                    $("#inside_quote_all input,#inside_quote_all select").each(function () {
+                                        var $name = $(this).attr("name");
+                                        console.log($name);
+                                        var $Pthis = $(this);
+                                        var $Pthis_type = $(this).attr("type");
+                                        if ($Pthis.is("input")) {
+                                            if ($Pthis_type == "text" || $Pthis_type == "number") {
+                                                $Pthis.val(importPcbInfo[$name]);
+                                            } else if ($Pthis_type == 'checkbox') {
+                                                console.log('为checkbox');
+                                                $("input[type=checkbox][name="+$name+"][value="+importPcbInfo[$name]+"]").attr("checked","checked");
+                                            } else if ($Pthis_type == "radio") {
+                                                console.log('为radio');
+                                                $("input[name="+$name+"][value="+importPcbInfo[$name]+"]").prop("checked","checked");
+                                            }
+                                        }
+                                        if ($Pthis.is("select")) {
+                                            console.log('为select');
+                                            $("select[name="+$name+"]").find("option:contains("+importPcbInfo[$name]+")").attr("selected",true);
+                                        }
+                                    });
+                                    form.render();
+                                    layer.msg('导入PCB信息成功');
+                                } else {
+                                    layer.alert('当前不存在PCB参数详情！');
+                                }
+                                layer.close(index);
+                            }
+                        });
+                        return false;
+                    });
                 });
             }
         });
