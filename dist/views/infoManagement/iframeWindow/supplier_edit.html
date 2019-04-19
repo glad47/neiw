@@ -206,7 +206,10 @@
                 <div class="layui-tab-item">
                     <script type="text/html" template>
                     {{# if(d.params.accessoryName != null){ }}
-                    <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{d.params.accessoryPath}}&fileName={{d.params.accessoryName}}">{{d.params.accessoryName}}点击下载客户附件</a>
+                    <div>
+                        <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{d.params.accessoryPath}}&fileName={{d.params.accessoryName}}">{{d.params.accessoryName}}点击下载客户附件</a>
+                    </div>
+                    <button class="layui-btn layui-btn-sm" id="supplierUpload" type="button" style="margin-top: 15px;">修改客户附件</button>
                     {{# }else{ }}
                     <button class="layui-btn layui-btn-sm" id="supplierUpload" type="button" style="margin-top: 15px;">上传客户附件</button>
                     {{# } }}
@@ -268,6 +271,7 @@ layui.data.done = function(d){
                 //文件路径
                 var sjPath = filepathprocess.pathProcess(res.url);
                 $("input[name='accessoryPath']").val(sjPath);   // 回填到表单=>文件名
+                layer.alert('客户附件上传成功！点击[立即提交]更新附件信息');
             }
         });
 
