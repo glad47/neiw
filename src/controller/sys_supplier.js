@@ -76,12 +76,12 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         if (obj.event === 'edit'){
             admin.popup({
                 title: '编辑供应商信息'
-                ,shadeClose: true
-                ,shade: false
-                ,maxmin: true
-                ,btn:['提交']['取消']
                 ,id: 'supplierAdd_form'
                 ,area: ['55%', '75%']
+                    ,btn:['提交','取消']
+                    ,yes:function(index, layero){
+                        $("#supplierEditSubmit").click();
+                    }
                 ,success: function (layero, index) {
                     view(this.id).render('/infoManagement/iframeWindow/supplier_edit', data).done(function () {
                         console.log(data);
@@ -157,6 +157,10 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                 ,shade: false
                 ,maxmin: true
                 ,area: ['55%', '75%']
+                ,btn:['立即提交', '取消']
+                ,yes: function () {
+                    $("#supplierEditSubmit").click();
+                }
                 // ,id: 'sys_menu'
                 ,success: function(layero, index){
                     view(this.id).render('/infoManagement/iframeWindow/supplier_edit', data).done(function(){

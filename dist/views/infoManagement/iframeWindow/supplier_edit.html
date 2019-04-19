@@ -107,6 +107,23 @@
             </script>
         </div>
 
+        <div class="layui-form-item" style="display: none;">
+            <script type="text/html" template>
+                <div class="addcus-merchandiser layui-col-md6">
+                    <label class="layui-form-label">文件名：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="accessoryName" value="{{ d.params.accessoryName || ''}}" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="addcus-cusCom layui-col-md6">
+                    <label class="layui-form-label">文件路径：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="accessoryPath" value="{{ d.params.accessoryPath || ''}}" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </script>
+        </div>
+
         <div class="layui-form-item">
             <div class="addcus-merchandiser layui-col-md6">
                 <label class="layui-form-label">操作：</label>
@@ -187,10 +204,12 @@
                     </div>
                 </div>
                 <div class="layui-tab-item">
-                    <table class="layui-hide" id="supedit_tab_fj" lay-filter="supedit_tab_fj"></table>
-                    <script type="text/html" id="supedit_tab_fj_bar">
-                        <a class="layui-btn layui-btn-xs" id="supedit_upload" lay-event="upload">上传</a>
-                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                    <script type="text/html" template>
+                    {{# if(d.params.accessoryName != null){ }}
+                    <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{d.params.accessoryPath}}&fileName={{d.params.accessoryName}}">{{d.params.accessoryName}}点击下载客户附件</a>
+                    {{# }else{ }}
+                    <button class="layui-btn layui-btn-sm" id="supplierUpload" type="button" style="margin-top: 15px;">上传客户附件</button>
+                    {{# } }}
                     </script>
                 </div>
                 <div class="layui-tab-item">
@@ -203,9 +222,9 @@
             </div>
         </div>
 
-        <div class="layui-form-item layui-col-md-offset2">
-            <div class="layui-input-block" style="margin-top: 60px;">
-                <button class="layui-btn" lay-submit lay-filter="LAY-supplier-add-submit">立即提交</button>
+        <div class="layui-form-item layui-col-md-offset2" style="display: none;">
+            <div class="layui-input-block">
+                <button class="layui-btn" type="button" lay-submit lay-filter="LAY-supplier-add-submit" id="supplierEditSubmit">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -222,7 +241,7 @@
 </style>
 <script>
 layui.data.done = function(d){
-    layui.use(['admin', 'table', 'index','element','form','rate','upload'], function(){
+    layui.use(['admin', 'table', 'index','element','form','rate','upload', 'filePathProcess'], function(){
         var table = layui.table;
         var $ = layui.jquery;
         var form = layui.form;
@@ -230,49 +249,27 @@ layui.data.done = function(d){
         var upload = layui.upload;
         var rate = layui.rate;
         var admin = layui.admin;
+        var filepathprocess = layui.filePathProcess;
         form.render(null, 'supplierAdd_form');
 
-        table.render({
-            elem: '#supedit_tab_fj',
-            url: './json/infoManagement/supplier_info.js',
-            // width: admin.screen() >1 ? 892 : '',
-            height: 200,
-            cols: [[
-                {field:'supplier_id', title: '编号', sort: true,width: ''}
-                ,{field:'company', title: '附件名称',width: ''} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                ,{field:'supplier_type', title: '上传时间', sort: true,width: ''}
-                ,{width:'', align:'center',title: '操作', fixed: 'right', sort: true, toolbar: '#supedit_tab_fj_bar'}
-            ]]
-                ,page: true,
-            // done事件中进行upload.render().放在其他地方有bug（需要点击两次）
-            done: function () {
-                upload.render({
-                    elem: '#supedit_upload',
-                    url: '' ,//上传接口
-                    done: function (res) {
-                        //上传完毕回调
-                    }
-                    ,error: function () {
-                        //请求异常回调
-                    }
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#supplierUpload' //绑定元素
+            ,url:  setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token
+            ,field: 'file'  //文件上传的字段名
+            ,accept: 'file'
+            ,exts: 'zip|rar|7z'
+            ,before: function (obj) {
+                obj.preview(function (index, file, result) {
+                    $("input[name='accessoryName']").val(file.name);   // 回填到表单=>文件名
                 });
             }
-
+            ,done: function(res){
+                //文件路径
+                var sjPath = filepathprocess.pathProcess(res.url);
+                $("input[name='accessoryPath']").val(sjPath);   // 回填到表单=>文件名
+            }
         });
-
-        //监听工具条
-         table.on('tool(supedit_tab_fj)', function (obj) {
-             var data = obj.data;
-             if(obj.event === 'upload'){
-                layer.msg('选择文件上传');
-                uploadInset.upload();
-             }else if (obj.event === 'del') {
-                 layer.confirm('真的删除行么', function(index){
-                     obj.del();
-                     layer.close(index);
-                 });
-             }
-         });
 
         //交期
         rate.render({
