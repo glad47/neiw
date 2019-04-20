@@ -176,7 +176,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             return false;
         }
         for (var i=0;i<data.length;i++){
-            pTotala += parseFloat(data[i].subtotal);
+            pTotala += parseFloat(data[i].totalFee);
         }
         popupData.total = pTotala;
         popupData.userName = userData.userName;
@@ -294,7 +294,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 console.log('sd_len:'+sd_len);
                 sameData[sd_len] = pcbtabObj[i]
                 sd_len += 1;
-                pTotala += pcbtabObj[i].subtotal;
+                pTotala += pcbtabObj[i].totalFee;
             }
             console.log('pcbtabObj[i].invoiceNo:'+pcbtabObj[i].quoteOrderNo);
         }

@@ -181,7 +181,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 var contractTotal = 0;
                 var qidsPost;
                 $.each(tabdata.data, function (idx, obj) {
-                    contractTotal = parseFloat(contractTotal+obj.subtotal);
+                    contractTotal = parseFloat(contractTotal+obj.totalFee);
                     tabdata.total = contractTotal;
                     if (qidsPost == null){
                         qidsPost = obj.id;
@@ -361,7 +361,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             });
         }
     });
-    
+
     //监听搜索
     form.on('submit(internal-quote-search)', function(data){
         var field = data.field;

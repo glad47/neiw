@@ -4,19 +4,19 @@
  @Author：贤心
  @Site：http://www.layui.com/admin/
  @License：LPPL（layui付费产品协议）
-    
+
  */
- 
+
 layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
   table = layui.table;
-  table.set({
-      headers: { //通过 request 头传递
-          access_token: layui.data('layuiAdmin').access_token
-      }
-      ,where: { //通过参数传递
-          access_token: layui.data('layuiAdmin').access_token
-      }
-  });
+    table.set({
+        headers: { //通过 request 头传递
+            access_token: layui.data('layuiAdmin').access_token
+        }
+        ,where: { //通过参数传递
+            access_token: layui.data('layuiAdmin').access_token
+        }
+    });
   exports('setter', {
     container: 'LAY_app' //容器ID
     ,base: layui.cache.base //记录layuiAdmin文件夹所在路径
@@ -24,13 +24,13 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
     ,entry: 'index' //默认视图文件名
     ,engine: '.html' //视图文件后缀名
     ,pageTabs: true //是否开启页面选项卡功能。单页版不推荐开启
-    
+
     ,name: 'layuiAdmin Pro'
     ,tableName: 'layuiAdmin' //本地存储表名
     ,MOD_NAME: 'admin' //模块事件名
-    
+
     ,debug: true //是否开启调试模式。如开启，接口异常时会抛出异常 URL 等信息
-    
+
     ,interceptor: true //是否开启未登入拦截
 
     ,permissionsKeys: 'permissions' //用户权限key
@@ -75,16 +75,16 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
       ,'/infoManagement/iframeWindow/sys_menuAdd' //弹出页面层————编辑客户信息
       ,'/user/administrators/role' //弹出页面层————编辑客户信息
     ]
-    
+
     //扩展的第三方模块
     ,extend: [
       'echarts', //echarts 核心包
       'echartsTheme', //echarts 主题
       'convertCurrency', //货币转换
       'uploadCommon', //文件上传进度
-      'filePathProcess', //文件上传的路径处理[去除两端中括号下次可直接下载]
+      'filePathProcess', //文件上传路径处理
     ]
-    
+
     //主题配置
     ,theme: {
       //内置主题配色方案
@@ -143,7 +143,7 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
         header: '#393D49'
         ,alias: 'classic-black-header' //经典黑头
       }]
-      
+
       //初始的颜色索引，对应上面的配色方案数组索引
       //如果本地已经有主题色记录，则以本地记录为优先，除非请求本地数据（localStorage）
       ,initColorIndex: 0

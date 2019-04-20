@@ -257,7 +257,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     var contractType;
                     popupData.data = sameData;
                     for (var i=0;i<data.data.length;i++){
-                        pTotala += parseFloat(data.data[i].subtotal);
+                        pTotala += parseFloat(data.data[i].totalFee);
                     }
                     popupData.total = pTotala;
                     $.each(data, function (idx, obj) {
