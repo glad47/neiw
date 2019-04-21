@@ -83,6 +83,7 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
       'convertCurrency', //货币转换
       'uploadCommon', //文件上传进度
       'filePathProcess', //文件上传路径处理
+      'jsTools', // 小工具集
     ]
 
     //主题配置

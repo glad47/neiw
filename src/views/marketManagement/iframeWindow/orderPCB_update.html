@@ -453,7 +453,7 @@
                 <label class="layui-form-label">PCB Cost：</label>
                 <div class="layui-input-block">
                     {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+parseFloat(d.params.testCostFee)+d.params.overworkFee).toFixed(2)}}
-                    <input type="text" name="pcbCost" value="{{ pcbcost || 0 }}" autocomplete="off" class="layui-input" readonly>
+                    <input type="text" name="subtotal" value="{{ pcbcost || 0 }}" autocomplete="off" class="layui-input" readonly>
                 </div>
             </div>
         </div>
@@ -474,7 +474,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Total：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="subtotal" value="{{ d.params.subtotal || 0 }}" autocomplete="off" class="layui-input" readonly>
+                    <input type="text" name="totalFee" value="{{ d.params.subtotal || 0 }}" autocomplete="off" class="layui-input" readonly>
                 </div>
             </div>
         </div>

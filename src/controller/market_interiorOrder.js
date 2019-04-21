@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form','laydate'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate', 'jsTools'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -14,6 +14,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,setter = layui.setter
         ,element = layui.element;
         var $ = layui.jquery;
+        var jstools = layui.jsTools;
 
     // 全局变量
     var defVal = {
@@ -329,13 +330,16 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                         } else if (contractType === 2){
 
                                         }
-                                        // 实时时间设置
-                                        let date = new Date();
-                                        let chinaDate = date.toDateString();
-                                        let chinaDateArray = chinaDate.split(' ');
-                                        let displayDate = `${chinaDateArray[1]} ${chinaDateArray[2]}, ${chinaDateArray[3]}`;
-                                        $("#contractBotDate").text(displayDate);
-                                        $("#topDate").text(displayDate);
+                                        // 实时时间设置   最新时间显示
+                                        var timeArray = [];
+                                        if ( sameData != null) {
+                                            for (var i=0;i<sameData.length;i++) {
+                                                timeArray[i] =  sameData[i].gmtModified;
+                                            }
+                                            var newEstTime = jstools.TimeContrast(timeArray);
+                                            $("#contractBotDate").text(newEstTime);
+                                            $("#topDate").text(newEstTime);
+                                        }
                                     });
                                 }
                             });

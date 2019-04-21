@@ -122,8 +122,8 @@
                         <td>
                             <label class="cmo-lable">Date</label>
                             :
-                            <!--<a id="topDate">Feb 15, 2010</a>-->
-                            <a>{{ d.params.data[0].gmtModified || '' }} </a>
+                            <a id="topDate">Feb 15, 2010</a>
+                            <!--<a>{{ d.params.data[0].gmtModified || '' }} </a>-->
                         </td>
                     </tr>
                     </tbody>
@@ -236,7 +236,7 @@
 
                     <tr>
                         <td>remark:</td>
-                        <td colspan="8">
+                        <td colspan="7">
                             {{# layui.each(d.params.data, function(index, item){  }}
                                 {{ item.remark || ''}}
                             {{#  }); }}
@@ -269,8 +269,8 @@
                     <!--<a id="contractCusName">{{ sessionStorage.getItem("userName") }}</a>-->
                     <script type="text/html" template>
                         <a id="contractCusName">{{ layui.data('userInfo').uname }}</a>
-                        <!--<a id="contractBotDate">February 07, 2018</a>-->
-                        <a>{{ d.params.data[0].gmtModified || '' }} </a>
+                        <a id="contractBotDate">February 07, 2018</a>
+                        <!--<a>{{ d.params.data[0].gmtModified || '' }} </a>-->
                     </script>
                 </div>
                 <div class="bot-intro">
