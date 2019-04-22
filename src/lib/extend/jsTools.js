@@ -10,7 +10,6 @@ layui.define(function (exports) {
         // 时间对比 [最新时间]
         TimeContrast: function (timesJson) {
             var thisTime;
-            timesJson = ["2019-04-16 10:28:57", "2019-04-22 11:05:34", "2019-04-22 11:05:31", "2019-04-22 11:05:29", "2019-04-22 11:05:26"];
             if (timesJson != null) {
                 $.each(timesJson, function (index, value) {
                     var eaTime = new Date(value.replace("-", "/").replace("-", "/"));
