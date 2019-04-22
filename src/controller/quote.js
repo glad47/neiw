@@ -13,9 +13,9 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         ,upload = layui.upload
         ,layer = layui.layer;
     element.render();
-    var arr_layer_options = [{text: 1,value: 1},{text: 2,value: 2},{text: 4,value: 4},{text: 6,value: 6},{text: 8,value: 8}];
-    var arr_layer_optionst = [{text: 1,value: 1},{text: 2,value: 2}];
-    var arr_layer_optionss = [{text: 4,value: 4},{text: 6,value: 6},{text: 8,value: 8}];
+    var arr_layer_options = [{text: 0,value: 0},{text: 1,value: 1},{text: 2,value: 2},{text: 4,value: 4},{text: 6,value: 6},{text: 8,value: 8}];
+    var arr_layer_optionst = [{text: 0,value: 0},{text: 1,value: 1},{text: 2,value: 2}];
+    var arr_layer_optionss = [{text: 0,value: 0},{text: 4,value: 4},{text: 6,value: 6},{text: 8,value: 8}];
     var arr_selkbsy_options = [{text: 'KB', value: 'KB'}, {text: 'SY', value: 'SY'}];
     var arr_selkbsy_optionst = [{text: 'YG', value: 'YG'}];
     var arr_selkbsy_kb = [{text: 'KB6160', value: 'KB6160'}, {text: 'KB6150', value: 'KB6150'}, {text: 'KB6165', value: 'KB6165'}, {text: 'KB6167', value: 'KB6167'}];
@@ -1100,7 +1100,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
                stmStencil_container.stencilWeight = stencil_data.stencilWeight; // 右侧 SMT-Stencil 明细容器
                $("#stencilWeight").val(stencil_data.stencilWeight+" KG ");  //页面重量
                stmStencil_container.stencilWeight = stencil_data.stencilSize_price; // 右侧 SMT-Stencil 明细容器
-               $("#sunitPrice").val(stencil_data.stencilSize_price);
+               // $("#sunitPrice").val(stencil_data.stencilSize_price);
                $("#inStencilSize").val($("#stenContainer").val());
                getCouriers();
                getCountrys();
@@ -1172,7 +1172,6 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         }
         quoteSMTStencil.inStencilCost = quoteSMTStencil.sQuantity*stencil_data.stencilSize_price*b;
         $("#inStencilCost").val(quoteSMTStencil.inStencilCost);
-        console.log("计算出的单价为："+quoteSMTStencil.inStencilCost);
         quoteSMTStencilFuc();
     }
     /**
@@ -1180,11 +1179,21 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
      */
     function quoteSMTStencilFuc() {
         var _this = quoteSMTStencil;
-        console.log("inStencilCost:"+_this.inStencilCost);
         var totalPrice = _this.postFee+_this.inStencilCost;
         saveSMTStencil.totalStencilFee = totalPrice;
         tp.totalPricedS = totalPrice;
         $("#stotalPrice").val(totalPrice);
+        doBackUnitStencil();
+    }
+
+    /**
+     * SMT-Stencil 单价回显
+     * @returns {Object}
+     */
+    function doBackUnitStencil() {
+        var cost = parseInt($("#inStencilCost").val());
+        var quantity = parseInt($("#stencil_quantity").val());
+        $("#sunitPrice").val((cost/quantity).toFixed(2));
     }
 
     // 获取右侧表单对象
