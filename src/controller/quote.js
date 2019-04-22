@@ -1172,6 +1172,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         }
         quoteSMTStencil.inStencilCost = quoteSMTStencil.sQuantity*stencil_data.stencilSize_price*b;
         $("#inStencilCost").val(quoteSMTStencil.inStencilCost);
+        console.log("计算出的单价为："+quoteSMTStencil.inStencilCost);
         quoteSMTStencilFuc();
     }
     /**
