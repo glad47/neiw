@@ -527,7 +527,7 @@
                     a += _val;
                 });
                 q_params.pcbCost = a.toFixed(2);
-                $("input[name='pcbCost']").val(q_params.pcbCost);       // 小计
+                $("input[name='totalFee']").val(q_params.pcbCost);       // 小计
                 console.log("pcbCost:"+q_params.pcbCost);
                 set_qObj();
             });
@@ -560,7 +560,7 @@
                 q_params.shippingPrice = parseFloat(postFee);
                 q_params.pcbCost = parseFloat(q_params.pcbCost);
                 q_params.totalPrice = parseFloat(q_params.shippingPrice+q_params.pcbCost).toFixed(2);
-                $("input[name='subtotal']").val(q_params.totalPrice);      //总价
+                $("input[name='totalFee']").val(q_params.totalPrice);      //总价
             }
         });
     }

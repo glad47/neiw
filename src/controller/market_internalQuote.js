@@ -287,12 +287,24 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
 
                                             }
                                             // 实时时间设置   最新时间显示
-                                            var timeArray = [];
+                                            var timeArray = [];     // 修改时间
+                                            var ctimeArray = [];    // 创建时间
+                                            var newEstTime;
                                             if ( checkStatus.data != null) {
+                                                var nullNum = 0;
                                                 for (var i=0;i< checkStatus.data.length;i++) {
                                                     timeArray[i] =  checkStatus.data[i].gmtModified;
+                                                    ctimeArray[i] = checkStatus.data[i].gmtCreate;
+                                                    if (timeArray[i] == null) {
+                                                        nullNum ++;
+                                                    }
                                                 }
-                                                var newEstTime = jstools.TimeContrast(timeArray);
+                                                if (nullNum == checkStatus.data.length) {   // 判断 修改时间数组 是否全为null
+                                                    newEstTime = jstools.TimeContrast(ctimeArray);
+                                                    console.log(ctimeArray);
+                                                } else {
+                                                    newEstTime = jstools.TimeContrast(timeArray);
+                                                }
                                                 $("#contractBotDate").text(newEstTime);
                                                 $("#topDate").text(newEstTime);
                                             }
