@@ -355,19 +355,20 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
 
                                         }
                                         // 实时时间设置   最新时间显示
+                                        console.log('time设置');
                                         var timeArray = [];     // 修改时间
                                         var ctimeArray = [];    // 创建时间
                                         var newEstTime;
                                         if (sameData != null) {
                                             var nullNum = 0;
-                                            for (var i=0;i<sameData.length;i++) {
+                                            for (var i=0;i<sd_len;i++) {
                                                 timeArray[i] = sameData[i].gmtModified;
                                                 ctimeArray[i] = sameData[i].gmtCreate;
                                                 if (timeArray[i] == null) {
                                                     nullNum ++;
                                                 }
                                             }
-                                            if (nullNum == sameData.length) {   // 判断 修改时间数组 是否全为null
+                                            if (nullNum == sd_len) {   // 判断 修改时间数组 是否全为null
                                                 newEstTime = jstools.TimeContrast(ctimeArray);
                                                 console.log(ctimeArray);
                                             } else {

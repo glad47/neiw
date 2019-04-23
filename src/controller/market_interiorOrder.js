@@ -150,7 +150,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 ,{field: 'quoteGerberPath',title: 'quoteGerberPath',hide: true}
                 ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',hide: true}
                 ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',hide: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#interior_order_Bar', minWidth:210, width: 210}
+                ,{fixed: 'right', title:'操作', toolbar: '#interior_order_Bar', minWidth:256, width: 256}
             ]]
             ,done: function (res, curr, count) {
                 var data = res.data;    //获取表格所有数据对象
@@ -234,7 +234,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 }
             });
         } else if(obj.event == 'search'){
-            layer.msg('search');
+            layer.msg('PCB订单合同');
             var invoiceNo = data.invoiceNo;
             var userId = data.userId;
             var this_invoiceNo = data.invoiceNo;
@@ -336,19 +336,20 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                                         var newEstTime;
                                         if (sameData != null) {
                                             var nullNum = 0;
-                                            for (var i=0;i<sameData.length;i++) {
+                                            for (var i=0;i<sd_len;i++) {
                                                 timeArray[i] = sameData[i].gmtModified;
                                                 ctimeArray[i] = sameData[i].gmtCreate;
                                                 if (timeArray[i] == null) {
                                                     nullNum ++;
                                                 }
                                             }
-                                            if (nullNum == sameData.length) {   // 判断 修改时间数组 是否全为null
+                                            if (nullNum == sd_len) {   // 判断 修改时间数组 是否全为null
                                                 newEstTime = jstools.TimeContrast(ctimeArray);
                                                 console.log(ctimeArray);
                                             } else {
                                                 newEstTime = jstools.TimeContrast(timeArray);
                                             }
+                                            console.log("newEstTime:"+newEstTime);
                                             $("#contractBotDate").text(newEstTime);
                                             $("#topDate").text(newEstTime);
                                         }
@@ -386,6 +387,16 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 });
                 layer.close(index);
             });
+        } else if (obj.event == 'detail') {
+            admin.popup({
+                title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
+                ,area: ['45%', '70%']
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
+
+                    })
+                }
+            })
         }
     });
 
@@ -502,7 +513,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 ,{field: 'quoteGerberPath',title: 'quoteGerberPath',hide: true}
                 ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',hide: true}
                 ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',hide: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#interior_order_BarS', minWidth:210, width: 210}
+                ,{fixed: 'right', title:'操作', toolbar: '#interior_order_BarS', minWidth:256, width: 256}
             ]]
             ,done: function (res, curr, count) {
                 var data = res.data;    //获取表格所有数据对象
@@ -552,7 +563,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 }
             });
         } else if(obj.event == 'search'){
-            layer.msg('search');
+            layer.msg('钢网合同查看');
             var invoiceNo = data.invoiceNo;
             var this_invoiceNo = data.invoiceNo;
             var userId = data.userId;
@@ -648,6 +659,16 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 });
                 layer.close(index);
             });
+        } else if (obj.event == 'detail') {
+            admin.popup({
+                title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
+                ,area: ['45%', '70%']
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
+
+                    })
+                }
+            })
         }
     });
 

@@ -125,8 +125,10 @@ layui.define(function (exports) {
                                         $(saveObj.ffile).css({"display":"","color":"green"});   // 显示新的文件名
                                         if (typeof saveObj.data.quoteGerberName != 'undefined') {
                                             $(saveObj.ffile).text(saveObj.data.quoteGerberName);
-                                        } else {
+                                        } else if (typeof saveObj.data.gerberName != 'undefined') {
                                             $(saveObj.ffile).text(saveObj.data.gerberName);
+                                        } else if (typeof saveObj.data.productionGerberName != 'undefined') {
+                                            $(saveObj.ffile).text(saveObj.data.productionGerberName);
                                         }
                                         table.reload(saveObj.retab);
                                     },1000);
