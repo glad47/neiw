@@ -223,6 +223,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                             tabdata.postcode = data.user.postcode;
                             tabdata.paymentType = data.user.paymentType;
                             tabdata.deliveryType = data.user.deliveryType;
+                            tabdata.contact = data.user.contact;
                             admin.popup({
                                 title: '报价合同'
                                 ,area: ['100%', '100%']
@@ -598,6 +599,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                             tabdata.postcode = data.user.postcode;
                             tabdata.paymentType = data.user.paymentType;
                             tabdata.deliveryType = data.user.deliveryType;
+                            tabdata.contact = data.user.contact;
                             admin.popup({
                                 title: '报价合同'
                                 ,area: ['100%', '100%']

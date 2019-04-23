@@ -10,6 +10,12 @@
             <input type="radio" name="difficultyLevel" value="4" {{ d.params.difficultyLevel == '4' ? 'checked' : '' }} title="HDI">
             <input type="radio" name="difficultyLevel" value="5" {{ d.params.difficultyLevel == '5' ? 'checked' : '' }} title="软板">
         </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">工程备注：</label>
+                <div class="layui-input-inline" style="width: 70%;">
+                    <input type="text" class="layui-input" name="engineeringRemark" value="{{ d.params.engineeringRemark || '' }}">
+                </div>
+            </div>
         </script>
         <div class="layui-form-item" style="display: none;">
             <button type="button" class="layui-btn layuiadmin-btn-forum-list" lay-submit lay-filter="epc_auditOrders" id="epc_auditOrders">审核</button>

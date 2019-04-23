@@ -287,6 +287,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                     popupData.postcode = data.user.postcode;
                     popupData.paymentType = data.user.paymentType;
                     popupData.deliveryType = data.user.deliveryType;
+                    popupData.contact = data.user.contact;
                     admin.req({
                         type: 'post',
                         data: {'quoteOrderNo': quoteOrderNo},

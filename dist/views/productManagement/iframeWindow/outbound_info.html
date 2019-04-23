@@ -10,9 +10,9 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">货代：</label>
+                <label class="layui-form-label">聚谷型号：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="freight" autocomplete="off" class="layui-input"  value="{{ d.params.freight || '' }}">
+                    <input type="text" name="productNo" autocomplete="off" class="layui-input"  value="{{ d.params.productNo || '' }}">
                 </div>
             </div>
         </div>
@@ -24,9 +24,9 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">快递公司：</label>
+                <label class="layui-form-label">货代：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="courierName" autocomplete="off" class="layui-input"  value="{{ d.params.courierName || '' }}">
+                    <input type="text" name="freight" autocomplete="off" class="layui-input"  value="{{ d.params.freight || '' }}">
                 </div>
             </div>
         </div>
@@ -38,9 +38,13 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">快递单号：</label>
+                <label class="layui-form-label">快递公司：</label>
                 <div class="layui-input-inline">
-                    <input type="number" name="courierNumber" autocomplete="off" class="layui-input"  value="{{ d.params.courierOrderNo || '' }}">
+                    <select class="layui-select" name="courierName">
+                        <option value="none">请选择快递公司</option>
+                        <option value="DHL" {{ d.params.courierName === 'DHL' ? 'selected' : '' }}>DHL</option>
+                        <option value="FedEx" {{ d.params.courierName === 'FedEx' ? 'selected' : '' }}>FedEx</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -52,13 +56,19 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">发货日期：</label>
+                <label class="layui-form-label">快递单号：</label>
                 <div class="layui-input-inline">
-                    <input type="date" name="deliveryDate" autocomplete="off" class="layui-input" id="outboundDeliveryDate">
+                    <input type="number" name="courierNumber" autocomplete="off" class="layui-input"  value="{{ d.params.courierOrderNo || '' }}">
                 </div>
             </div>
         </div>
         <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">发货日期：</label>
+                <div class="layui-input-inline">
+                    <input type="date" name="deliveryDate" autocomplete="off" class="layui-input" id="outboundDeliveryDate" >
+                </div>
+            </div>
             <div class="layui-inline">
                 <label class="layui-form-label">到货日期：</label>
                 <div class="layui-input-inline">
@@ -67,8 +77,10 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <div class="layui-inline">
-                <button class="layui-btn outbound-submit" lay-submit lay-filter="fomrOutboundInfo" type="button">提交</button>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <button class="layui-btn outbound-submit" lay-submit lay-filter="fomrOutboundInfo" type="button">提交</button>
+                </div>
             </div>
         </div>
     </form>

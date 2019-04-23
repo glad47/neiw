@@ -153,6 +153,14 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         } else if (obj.event == 'search') {
             layer.msg('查看订单协同');
         } else if (obj.event == 'chxx') {
+            // console.log(data)
+            admin.req({
+               type: 'post',
+               url: setter.baseUrl + 'iqc/shippinginfo/info/oid='+data.id,
+               success: function (data) {
+                   console.log(data);
+               }
+            });
             admin.popup({
                 title: '出货信息'
                 ,area: ['734px','468px']

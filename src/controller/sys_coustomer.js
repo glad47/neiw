@@ -39,6 +39,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
             ,{field:'country', title: '国家', sort: true}
             ,{field:'city', title: '城市', sort: true}
             ,{field:'jobrole', title: '工作角色', sort: true, hide: true}
+            ,{field:'contact', title: '联系人', sort: true, hide: true}
             ,{field:'businessType', title: '业务类型', sort: true, hide: true}
             ,{field:'applications', title: '应用', sort: true, hide: true}
             ,{field:'gmtCreate', title: '注册时间', sort: true}

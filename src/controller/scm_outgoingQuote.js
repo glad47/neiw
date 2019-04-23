@@ -53,6 +53,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'boardFee', title: 'BoardFee', align:'center', width: 114,hide: true}
 
             ,{field:'userId', title: 'User ID',width: 80,hide: true}
+            ,{field:'engineeringRemark', title: '工程备注',width: 80,hide: true}
             ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
             ,{field:'orderType', title: 'Order Type', align:'center', width: 109,hide: true}
             ,{field:'dimensionsX', title: 'DimensionsX',templet: '#type', align:'center', width: 114,hide: true}

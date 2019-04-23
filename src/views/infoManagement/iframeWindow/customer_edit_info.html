@@ -83,12 +83,23 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">邮编：</label>
-            <div class="layui-input-block">
-                <script type="text/html" template>
-                    <input type="text" name="postcode" autocomplete="off" class="layui-input" value="{{ d.params.postcode || '' }}">
-                </script>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">邮编：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="postcode" autocomplete="off" class="layui-input" value="{{ d.params.postcode || '' }}">
+                    </script>
+                </div>
             </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">联系人：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="contact" autocomplete="off" class="layui-input" value="{{ d.params.contact || '' }}">
+                    </script>
+                </div>
+            </div>
+
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">地址：</label>

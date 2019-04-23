@@ -89,21 +89,18 @@ layui.define(['admin','table','index','element','form','laydate','jsTools'], fun
         var supplierOrderIds = null;
         if(obj.event === 'submit') {     //通知出货
             layer.confirm('确定通知出货？', function () {
+                if (data.length == 0) {
+                    layer.msg('请选择一条数据！');
+                    return false;
+                }
                 for (var i=0;i<data.length;i++){
-                    if (data.length == 0) {
-                        layer.msg('请选择一条数据！');
-                        return false;
+                    if (supplierOrderIds != null) {
+                        supplierOrderIds += data[i].id;
                     } else {
-                        if (supplierOrderIds != null) {
-                            supplierOrderIds += data[i].id;
-                        } else {
-                            supplierOrderIds = data[i].id;
-                        }
+                        supplierOrderIds = data[i].id;
                     }
                 }
-                // supplierOrderIds = "12,23,11,22,12,22,13,23";
-                // supplierOrderIds = jstools.ArrayClearRepeat(supplierOrderIds);
-                // console.log(supplierOrderIds);
+                supplierOrderIds = jstools.ArrayClearRepeat(supplierOrderIds.split(",")).join(",");     // 字符串转数组去重再转字符串类型  jstools.ArrayCleaRepeat 数组去重扩展
                 admin.req({
                    type: 'post',
                    url: setter.baseUrl + 'sqe/pcborder/saveShipmentOrderByPt',

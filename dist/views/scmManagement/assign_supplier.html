@@ -31,6 +31,12 @@
                             <input type="text" class="layui-input" readonly value="{{ d.params.difficultyLevel || '' }}">
                         </div>
                     </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">工程备注:</label>
+                            <div class="layui-input-inline" style="width: 62%;">
+                                <input type="text" class="layui-input" readonly value="{{ d.params.engineeringRemark || '' }}">
+                            </div>
+                        </div>
                     </script>
                 </form>
                 <table class="layui-table" id="scm_assign_supplier_table" lay-filter="scm_assign_supplier_table"></table>

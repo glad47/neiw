@@ -116,7 +116,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                 ,shadeClose: true
                 ,shade: false
                 ,maxmin: true
-                ,area: ['362px', '399px']
+                ,area: ['598px', '375px']
                 // ,id: 'sys_menu'
                 ,success: function(layero, index){
                     view(this.id).render('/infoManagement/iframeWindow/supplier_search', data).done(function(){
