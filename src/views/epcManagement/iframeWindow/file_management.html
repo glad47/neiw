@@ -68,13 +68,13 @@
         <tr>
             <td>生产资料:</td>
             <td>
-                <div class="cc uploadPercentage{{ d.params.id }}">
+                <div class="cc p_uploadPercentage{{ d.params.id }}">
                     <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe63e;</i>
                     上传中....
                     <a>0%</a>
                 </div>
-                <div class="ffile{{d.params.id}}">
-                    {{ d.params.quoteGerberName || '' }}
+                <div class="pfile{{d.params.id}}">
+                    {{ d.params.productionGerberName || '' }}
                 </div>
             </td>
             <td style="max-height: 41px;">
@@ -88,12 +88,12 @@
                             修改正式资料
                             {{# } }}
                         </span>
-                        <input type="file" class="filewareFilePcb filewareFile{{ d.params.id }}" name="file" multiple/>
+                        <input type="file" class="pfilewareFilePcb filewareFile{{ d.params.id }}" name="file" multiple/>
                     </span>
                 </a>
             </td>
             <td>
-                <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.quoteGerberPath }}&fileName={{ d.params.quoteGerberName }}">下载</a>
+                <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.productionGerberPath }}&fileName={{ d.params.productionGerberName }}">下载</a>
             </td>
         </tr>
         </tbody>
@@ -230,19 +230,19 @@
             }
             // 生产资料上传
             function pcb_productionUpload (e) {
-                var fileInput = $(".filewareFilePcb");
+                var fileInput = $(".pfilewareFilePcb");
                 var addVersionBtn=$('#addVersionBtn');
                 var cancelUploadBtn=$('#cancelUploadBtn');
                 var speedLab = $("#showSpeed");
                 var url = uploadUrl;        // 上传文件接口
-                var ss,defbtn,ffile,changeFileTd_dom,removeProcess;
-                ss = ".uploadPercentage"+$dataId;
-                ffile = ".ffile"+$dataId;
-                changeFileTd_dom = ".ffile"+ $dataId;
-                removeProcess = ".uploadPercentage"+ $dataId;
+                var ss,defbtn,pfile,changeFileTd_dom,removeProcess;
+                ss = ".p_uploadPercentage"+$dataId;
+                pfile = ".pfile"+$dataId;
+                changeFileTd_dom = ".pfile"+ $dataId;
+                removeProcess = ".p_uploadPercentage"+ $dataId;
                 var processBar = $(ss); //div
                 fileInput.change(function () {
-                    var indexFileInput = ".filewareFilePcb";
+                    var indexFileInput = ".pfilewareFilePcb";
                     indexFileInput = $(indexFileInput);
                     var fileObj = indexFileInput.get(0).files[0]; // js获取文件对象
                     var saveObj = {
@@ -251,13 +251,13 @@
                         retab: $retab,          // 表格对象，请求成功后重新渲染表格
                         removeDom: removeProcess,       // 文件上传成功 ==> 要移除的dom对象
                         ffile: changeFileTd_dom,     // 文件上传成功 ==>  显示新的文件名
-                        type: 1     // type 为0 则为原始资料 1 为正式资料
+                        type: 2     // type 为0 则为原始资料 1 为正式资料  2 为生产资料
                     };
                     //获取文件上传实例
                     var upload=uploadCommon.uploadcommon(url,processBar,speedLab,addVersionBtn,cancelUploadBtn, saveObj);
                     if (fileObj) {
                         $(".file-tips").text('Gerber Name：' + fileObj.name);
-                        $(ffile).css("display","none");
+                        $(pfile).css("display","none");
                         $(ss).css("display","block");
                         $(".upload-container").css("display","block");
                         addVersionBtn.attr('disabled', false);
@@ -321,7 +321,7 @@
 <style>
     /*上传文件*/
     .fileupload-btn{position: relative;cursor: pointer;}
-    .filewareFilePcb,.filewareFileS, .om_filewareFilePcb{position: absolute;opacity: 0;left: -3px;height: 21px;width: 102%;}
+    .filewareFilePcb,.filewareFileS, .om_filewareFilePcb, .pfilewareFilePcb{position: absolute;opacity: 0;left: -3px;height: 21px;width: 102%;}
     a.btn-fileupload {background-color: rgb(255, 86, 4);color: #ffffff;padding: 5px;border-radius: 3px;font-size: 0.7em;}
     .cc{float: left;font-size: 0.9em;background-color: #00FF00;width: 100%;display: none;white-space: nowrap;max-height: 21px;}
     .newFFile{color: green;}

@@ -87,14 +87,29 @@ layui.define(function (exports) {
                     if (response.code =='0') {
                         // alert('File uploaded successfully');
                         if (saveObj != null && typeof saveObj != 'undefined') {
-                            saveObj.data.gerberName = saveObj.data.quoteGerberName;
-                            saveObj.data.gerberPath = saveObj.data.gerberPath = filePath;
+                            saveObj.data.gerberName = saveObj.data.productionGerberName = saveObj.data.quoteGerberName;     // 正式资料-生产资料-原始资料
+                            saveObj.data.gerberPath = saveObj.data.productionGerberPath = saveObj.data.gerberPath = filePath;         // 正式路径-生产路径-原始路径
                             saveBackResults = saveObj.data;
-                            if (saveObj.type === 0) {
+                            if (saveObj.type === 0) {   // type 为0 则为原始资料 1 为正式资料  2 为生产资料
+                                // 删除正式资料字段
                                 delete saveObj.data.quoteGerberName
                                 delete saveObj.data.quoteGerberPath
+                                // 删除生产资料字段
+                                delete saveObj.data.productionGerberName
+                                delete saveObj.data.productionGerberPath
                                 saveBackResults.isAddFile = true;
                             } else if (saveObj.type === 1) {
+                                // 删除原始资料字段
+                                delete saveObj.data.gerberName
+                                delete saveObj.data.gerberPath
+                                // 删除生产资料字段
+                                delete saveObj.data.productionGerberName
+                                delete saveObj.data.productionGerberPath
+                            } else if (saveObj.type === 2) {
+                                // 删除正式资料字段
+                                delete saveObj.data.quoteGerberName
+                                delete saveObj.data.quoteGerberPath
+                                // 删除原始资料字段
                                 delete saveObj.data.gerberName
                                 delete saveObj.data.gerberPath
                             }

@@ -474,7 +474,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Total：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="totalFee" value="{{ d.params.subtotal || 0 }}" autocomplete="off" class="layui-input" readonly>
+                    <input type="text" name="totalFee" value="{{ d.params.totalFee || 0 }}" autocomplete="off" class="layui-input" readonly>
                 </div>
             </div>
         </div>
@@ -527,7 +527,7 @@
                     a += _val;
                 });
                 q_params.pcbCost = a.toFixed(2);
-                $(".orderPCBupdateForm input[name='totalFee']").val(q_params.pcbCost);       // 小计
+                $(".orderPCBupdateForm input[name='subtotal']").val(q_params.pcbCost);       // 小计
                 console.log("pcbCost:"+q_params.pcbCost);
                 set_qObj();
             });
@@ -561,6 +561,7 @@
                 q_params.pcbCost = parseFloat(q_params.pcbCost);
                 q_params.totalPrice = parseFloat(q_params.shippingPrice+q_params.pcbCost).toFixed(2);
                 $(".orderPCBupdateForm input[name='totalFee']").val(q_params.totalPrice);      //总价
+                console.log("bug:"+q_params.totalPrice);
             }
         });
     }
