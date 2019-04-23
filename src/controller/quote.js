@@ -103,7 +103,8 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         gerberName: '',
         gerberPath: '',
         pcbName: '',     //客户型号
-        orderNo: ''     //客户订单编号
+        orderNo: '',    //客户订单编号
+        countries: 'Afghanistan'     //国家  默认Afghanistan
         // pcbCost: '',
     };
     var pcb_rigdetaily = {};
@@ -482,6 +483,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     //监听==>选择国家
     form.on("select(countrys)",function (data) {
         post_data.countrysId = $(data.elem).find("option:selected").attr("value");
+        pcb_container.countries = post_data.countrysId;     // 国家
         if (post_data.bordType === 2){
             quoteSMTStencilFuc();
         }
