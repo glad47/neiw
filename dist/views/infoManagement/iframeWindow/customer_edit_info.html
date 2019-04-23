@@ -60,8 +60,8 @@
                     <script type="text/html" template>
                         <select name="paymentType">
                             <option value="">请选择</option>
-                            <option value="TT IN" {{ d.params.paymentType == 'TT IN' ? 'selected' : '' }}>TT IN</option>
-                            <option value="14 DAYS" {{ d.params.paymentType == '14 DAYS' ? 'selected' : '' }}>14 DAYS</option>
+                            <option value="TT IN 100%" {{ d.params.paymentType == 'TT IN 100%' ? 'selected' : '' }}>TT IN 100%</option>
+                            <option value="TT IN 14 DAYS" {{ d.params.paymentType == 'TT IN 14 DAYS' ? 'selected' : '' }}>TT IN 14 DAYS</option>
                         </select>
                     </script>
                 </div>
@@ -72,6 +72,8 @@
                     <script type="text/html" template>
                         <select name="deliveryType">
                             <option value="">请选择</option>
+                            <option value="DHL BY AIR" {{ d.params.deliveryType == 'DHL BY AIR' ? 'selected' : '' }}>DHL BY AIR</option>
+                            <option value="FedEx BY AIR" {{ d.params.deliveryType == 'FedEx BY AIR' ? 'selected' : '' }}>FedEx BY AIR</option>
                             <option value="FOB" {{ d.params.deliveryType == 'FOB' ? 'selected' : '' }}>FOB</option>
                             <option value="DDU" {{ d.params.deliveryType == 'DDU' ? 'selected' : '' }}>DDU</option>
                             <option value="DDP" {{ d.params.deliveryType == 'DDP' ? 'selected' : '' }}>DDP</option>
