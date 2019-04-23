@@ -156,62 +156,70 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             // console.log(data)
             admin.req({
                type: 'post',
-               url: setter.baseUrl + 'iqc/shippinginfo/info/oid='+data.id,
-               success: function (data) {
-                   console.log(data);
+               url: setter.baseUrl + 'iqc/shippinginfo/info/'+data.id,
+               success: function (res) {
+                   var shippingInfo;
+                   data.shippingInfo = res.shippingInfo;
+                   if (res.shippingInfo != null) {
+                       shippingInfo = res.shippingInfo;
+                   } else {
+                       layer.msg("当前没有数据");
+                   }
+
+                   admin.popup({
+                       title: '出货信息'
+                       ,area: ['734px','468px']
+                       ,btn: ['保存', '提交', '返回']
+                       ,btn1: function (index, layero) {
+                           layer.msg('保存');
+                           $(".outbound-submit").attr("data","save");
+                           $(".outbound-submit").click();
+                           return false;
+                       },
+                       btn2: function () {
+                           $(".outbound-submit").attr("data","submit");
+                           $(".outbound-submit").click();
+                           return false;
+                       },
+                       btn3: function () {
+                           layer.msg('取消');
+                       }
+                       ,success: function (layero, index) {
+                           view(this.id).render('productManagement/iframeWindow/outbound_info',data).done(function () {
+                               console.log(shippingInfo);
+                               //监听出货提交
+                               form.on('submit(fomrOutboundInfo)', function (data) {
+                                   var url;
+                                   var submitType = $(".outbound-submit").attr("data");
+                                   if (submitType == "save") {
+                                       url = "iqc/pcborder/saveShippingInfo";
+                                   } else if (submitType == "submit") {
+                                       url = "";
+                                   }
+                                   var field = data.field;
+                                   console.log(field);
+                                   admin.req({
+                                       url: setter.baseUrl + url,
+                                       type: 'POST',
+                                       data: field,
+                                       success: function (data) {
+                                           if (data.code == 0) {
+                                               layer.msg(data.msg);
+                                           }else {
+                                               layer.msg(data.msg,{icon: 5});
+                                           }
+                                           // layui.table.reload('article_Table_blog'); //重载表格
+                                           layer.close(index); //执行关闭
+                                       }
+                                   })
+                                   return false;
+                               });
+                           });
+
+                       }
+                   });
                }
             });
-            admin.popup({
-                title: '出货信息'
-                ,area: ['734px','468px']
-                ,btn: ['保存', '提交', '返回']
-                ,btn1: function (index, layero) {
-                    layer.msg('保存');
-                    $(".outbound-submit").attr("data","save");
-                    $(".outbound-submit").click();
-                    return false;
-                },
-                btn2: function () {
-                    $(".outbound-submit").attr("data","submit");
-                    $(".outbound-submit").click();
-                    return false;
-                },
-                btn3: function () {
-                    layer.msg('取消');
-                }
-                ,success: function (layero, index) {
-                    view(this.id).render('productManagement/iframeWindow/outbound_info',data).done(function () {
-                        //监听出货提交
-                        form.on('submit(fomrOutboundInfo)', function (data) {
-                            var url;
-                            var submitType = $(".outbound-submit").attr("data");
-                            if (submitType == "save") {
-                                url = "iqc/pcborder/saveShippingInfo";
-                            } else if (submitType == "submit") {
-                                url = "";
-                            }
-                            var field = data.field;
-                            console.log(field);
-                            admin.req({
-                                url: setter.baseUrl + url,
-                                type: 'POST',
-                                data: field,
-                                success: function (data) {
-                                    if (data.code == 0) {
-                                        layer.msg(data.msg);
-                                    }else {
-                                        layer.msg(data.msg,{icon: 5});
-                                    }
-                                    // layui.table.reload('article_Table_blog'); //重载表格
-                                    layer.close(index); //执行关闭
-                                }
-                            })
-                            return false;
-                        });
-                    });
-
-                }
-            })
             if (data.finishPcsNumber !== data.quantityPcs) {
                 layer.msg('PCS数未全部交清，操作失败！');
             } else {

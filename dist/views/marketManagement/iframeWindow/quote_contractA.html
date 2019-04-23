@@ -87,7 +87,7 @@
                             <label class="layui-form-label">
                                 Importer：
                             </label>
-                            <label class="layui-form-label" style="width: 130px;text-align: left;">{{ d.params.contact }}</label>
+                            <label class="layui-form-label" style="width: 130px;text-align: left;"></label>
                         </td>
                         <td>
                             <label class="cmo-lable" style="width: 140px;">
@@ -130,7 +130,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td>
+                            <label class="layui-form-label">
+                                Contact：
+                            </label>
+                            <label class="layui-form-label" style="width: 130px;text-align: left;">{{ d.params.contact }}</label>
+                        </td>
                         <td>
                             <label class="layui-form-label" style="width: 144px;text-align: left;padding: 9px 0;">DESTINATION：</label>
                             <label class="layui-form-label" style="width: unset;float: unset;display: inline-block;">{{ d.params.country || ''}}</label>

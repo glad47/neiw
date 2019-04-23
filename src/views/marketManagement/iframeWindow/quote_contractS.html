@@ -19,6 +19,7 @@
                 .contract-bank-ul li a{float: right;width: 70%;}
                 /*!*打印字体大小*!*/
                 .contract-module-one,.contract-module-four,.contract-module-five,.contrackB-tabBot{font-size: 12px;}
+                .paymentTeam{width: 180px;}
                 /*!*表格明细*!*/
                 /*.contract-module-three{max-width: 500px !important;}*/
             }
@@ -77,7 +78,7 @@
                             <label class="layui-form-label">
                                 Importer：
                             </label>
-                            <label class="layui-form-label" style="width: 130px;text-align: left;">{{ d.params.contact }}</label>
+                            <label class="layui-form-label" style="width: 130px;text-align: left;"></label>
                         </td>
                         <td>
                             <label class="cmo-lable" style="width: 140px;">
@@ -104,7 +105,7 @@
                             <label class="layui-form-label" style="width: 130px;text-align: left;">{{ d.params.companyName || '' }}</label>
                         </td>
                         <td>
-                            <label class="cmo-lable" style="width: 140px;text-align: left;">PAYMENT TERM:</label>
+                            <label class="cmo-lable paymentTeam" style="width: 140px;text-align: left;">PAYMENT TERM:</label>
                             <label class="layui-form-label" style="width: unset;float: unset;display: inline-block;">{{ d.params.paymentType || '' }}</label>
                         </td>
                     </tr>
@@ -120,7 +121,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td>
+                            <label class="layui-form-label">
+                                Importer：
+                            </label>
+                            <label class="layui-form-label" style="width: 130px;text-align: left;">{{ d.params.contact }}</label>
+                        </td>
                         <td>
                             <label class="layui-form-label" style="width: 144px;text-align: left;padding: 9px 0;">DESTINATION：</label>
                             <label class="layui-form-label" style="width: unset;float: unset;display: inline-block;">{{ d.params.country || ''}}</label>

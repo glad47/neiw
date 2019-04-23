@@ -2,6 +2,14 @@
 <div class="layui-fluid">
     <script type="text/html" template lay-done="layui.data.done(d);">
     <form class="layui-form">
+        <div class="layui-form-item" style="display: none;">
+            <div class="layui-inline">
+                <label class="layui-form-label">ID：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="orderId" autocomplete="off" class="layui-input" value="{{ d.params.id || '' }}">
+                </div>
+            </div>
+        </div>
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">合同号：</label>
@@ -20,13 +28,13 @@
             <div class="layui-inline">
                 <label class="layui-form-label">国家：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="country" autocomplete="off" class="layui-input"  value="{{ d.params.country || '' }}">
+                    <input type="text" name="country" autocomplete="off" class="layui-input"  value="{{ d.params.shippingInfo.country || '' }}">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">货代：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="freight" autocomplete="off" class="layui-input"  value="{{ d.params.freight || '' }}">
+                    <input type="text" name="freight" autocomplete="off" class="layui-input"  value="{{ d.params.shippingInfo.freight || '' }}">
                 </div>
             </div>
         </div>
@@ -34,7 +42,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">件数：</label>
                 <div class="layui-input-inline">
-                    <input type="number" name="number" autocomplete="off" class="layui-input"  value="{{ d.params.invoiceNo || '' }}">
+                    <input type="number" name="number" autocomplete="off" class="layui-input"  value="{{ d.params.number || '' }}">
                 </div>
             </div>
             <div class="layui-inline">
@@ -42,8 +50,8 @@
                 <div class="layui-input-inline">
                     <select class="layui-select" name="courierName">
                         <option value="none">请选择快递公司</option>
-                        <option value="DHL" {{ d.params.courierName === 'DHL' ? 'selected' : '' }}>DHL</option>
-                        <option value="FedEx" {{ d.params.courierName === 'FedEx' ? 'selected' : '' }}>FedEx</option>
+                        <option value="DHL" {{ d.params.shippingInfo.courierName == 'DHL' ? 'selected' : '' }}>DHL</option>
+                        <option value="FedEx" {{ d.params.shippingInfo.courierName == 'FedEx' ? 'selected' : '' }}>FedEx</option>
                     </select>
                 </div>
             </div>
@@ -58,7 +66,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">快递单号：</label>
                 <div class="layui-input-inline">
-                    <input type="number" name="courierNumber" autocomplete="off" class="layui-input"  value="{{ d.params.courierOrderNo || '' }}">
+                    <input type="number" name="courierNumber" autocomplete="off" class="layui-input"  value="{{ d.params.shippingInfo.courierNumber || '' }}">
                 </div>
             </div>
         </div>
@@ -66,13 +74,13 @@
             <div class="layui-inline">
                 <label class="layui-form-label">发货日期：</label>
                 <div class="layui-input-inline">
-                    <input type="date" name="deliveryDate" autocomplete="off" class="layui-input" id="outboundDeliveryDate" >
+                    <input type="date" name="deliveryDate" autocomplete="off" class="layui-input" id="outboundDeliveryDate" value="{{ d.params.shippingInfo.deliveryDate.substring(0,10) || '' }}">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">到货日期：</label>
                 <div class="layui-input-inline">
-                    <input type="date" name="arrivalDate" autocomplete="off" class="layui-input" id="outboundArrivalDate">
+                    <input type="date" name="arrivalDate" autocomplete="off" class="layui-input" id="outboundArrivalDate" value="{{ d.params.shippingInfo.arrivalDate.substring(0,10) || '' }}">
                 </div>
             </div>
         </div>
