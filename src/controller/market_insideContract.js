@@ -275,8 +275,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                             var newEstTime;
                             if ( checkStatus.data != null) {
                                 var nullNum = 0;
-                                for (var i=0;i< checkStatus.data.length;i++) {
-                                    timeArray[i] =  checkStatus.data[i].gmtModified;
+                                for (var i=0;i<checkStatus.data.length;i++) {
+                                    timeArray[i] = checkStatus.data[i].gmtModified;
                                     ctimeArray[i] = checkStatus.data[i].gmtCreate;
                                     if (timeArray[i] == null) {
                                         nullNum ++;
@@ -424,14 +424,14 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                                         var newEstTime;
                                         if (sameData != null) {
                                             var nullNum = 0;
-                                            for (var i=0;i<sameData.length;i++) {
+                                            for (var i=0;i<sd_len;i++) {
                                                 timeArray[i] = sameData[i].gmtModified;
                                                 ctimeArray[i] = sameData[i].gmtCreate;
                                                 if (timeArray[i] == null) {
                                                     nullNum ++;
                                                 }
                                             }
-                                            if (nullNum == sameData.length) {   // 判断 修改时间数组 是否全为null
+                                            if (nullNum == sd_len) {   // 判断 修改时间数组 是否全为null
                                                 newEstTime = jstools.TimeContrast(ctimeArray);
                                                 console.log(ctimeArray);
                                             } else {

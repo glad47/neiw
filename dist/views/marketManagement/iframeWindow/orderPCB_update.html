@@ -518,12 +518,6 @@
                 var a = 0;
                 $.each(cobj, function (i, val) {
                     var _val = parseFloat(val);
-                    // if (_val == "" || _val == null || isNaN(_val)) {
-                    //     obj[i] = 0;
-                    // } else {
-                    //     // q_params.pcbCost = parseFloat(q_params.pcbCost+_val).toFixed(2);
-                    //     a += _val;
-                    // }
                     a += _val;
                 });
                 q_params.pcbCost = a.toFixed(2);
