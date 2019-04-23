@@ -1,2 +1,2 @@
 /** layuiAdmin.pro-v1.0.0 LPPL License By http://www.layui.com/admin/ */
- ;"use strict";layui.define(function(e){var a=layui.jquery,n={TimeContrast:function(e){var r;return a.each(e,function(e,a){var t=new Date(a.replace("-","/").replace("-","/"));if(null==r||"undefined"==typeof r)r=n[e];else{var i=new Date(r.replace("-","/").replace("-","/"));t>i&&(r=n[e])}}),r}};e("jsTools",n)});
+ ;"use strict";layui.define(function(e){var n=layui.jquery,a={TimeContrast:function(e){var a;return null!=e?(n.each(e,function(n,l){var r=new Date(l.replace("-","/").replace("-","/"));if(null==a||"undefined"==typeof a)a=e[n];else{var u=new Date(a.replace("-","/").replace("-","/"));r>u&&(a=e[n])}}),a):null}};e("jsTools",a)});

@@ -63,6 +63,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
                 ,{field:'gerberName', title: '原始资料', align:'center', width: 254}
                 ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_file'}
+                ,{field:'productionGerberName', title: '生产资料', align:'center', width: 254, templet:'#quote_gerber_file'}
                 ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
                 ,{field:'productNo', title: 'Product No', align:'center', width: 114}
                 ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
@@ -124,6 +125,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'bevellingCamfer', title: 'BevellingCamfer', align:'center', width: 134,hide: true}
                 ,{field:'deepMillRouting', title: 'deepMillRouting', align:'center', width: 134,hide: true}
                 ,{field:'gerberPath', title: 'gerberPath', align:'center', hide: true, width: 114,hide: true}
+                ,{field:'productionGerberPath', title: '生产资料路径', align:'center', hide: true, width: 114,hide: true}
                 ,{field:'remark', title: 'Remark', align:'center', width: 80,hide: true}
                 ,{field:'differentDesign', title: 'DifferentDesign', align:'center', width: 134,hide: true}
                 ,{field:'gmtModified', title: 'gmtModified', align:'center', width: 114,hide: true}
@@ -365,7 +367,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             data.orderType = "pcbOrder";        // 根据orderType  发送不同的接口
             admin.popup({
                 title: 'PCB订单资料管理'
-                ,area: ['45%', '40%']
+                ,area: ['870px', '303px']
                 ,success: function (layero, index) {
                     view(this.id).render('epcManagement/iframeWindow/file_management', data).done(function () {
 

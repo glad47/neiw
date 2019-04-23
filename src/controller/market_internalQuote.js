@@ -219,88 +219,95 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                             tabdata.country = data.user.country;
                             tabdata.city = data.user.city;
                             tabdata.address = data.user.address;
-                            if (checkedLength >6){
-                                layer.msg("最多只能选中6条数据");
-                                return false;
-                            } else {
-                                admin.popup({
-                                    title: '报价合同'
-                                    ,area: ['100%', '100%']
-                                    ,maxmin: true
-                                    ,btn: ['提交','打印', '取消']
-                                    ,yes:function(index, layero){
-                                        layer.confirm('确定提交此订单合同？', function (index) {
-                                            admin.req({
-                                                type: 'post',
-                                                data: {'qids':qidsPost,'cid':tabdata.data[0].userId},
-                                                url: setter.baseUrl+"epc/pcborder/createQuoteOrderNo",    //3-7 之前的版本 epc/pcborder/createContractNo
-                                                success: function (data) {
-                                                    if (data.code != "444"){
-                                                        layer.alert("合同提交成功！");
-                                                        layui.table.reload('iquote_Tabpcb');
-                                                        layer.closeAll();
-                                                    }
+                            admin.popup({
+                                title: '报价合同'
+                                ,area: ['100%', '100%']
+                                ,maxmin: true
+                                ,btn: ['提交','打印', '取消']
+                                ,yes:function(index, layero){
+                                    layer.confirm('确定提交此订单合同？', function (index) {
+                                        admin.req({
+                                            type: 'post',
+                                            data: {'qids':qidsPost,'cid':tabdata.data[0].userId},
+                                            url: setter.baseUrl+"epc/pcborder/createQuoteOrderNo",    //3-7 之前的版本 epc/pcborder/createContractNo
+                                            success: function (data) {
+                                                if (data.code != "444"){
+                                                    layer.alert("合同提交成功！");
+                                                    layui.table.reload('iquote_Tabpcb');
+                                                    layer.closeAll();
                                                 }
-                                            });
-
+                                            }
                                         });
-                                    }, btn2: function(index, layero){
-                                        var printId;
-                                        if (contractType == "1"){
-                                            printId = "quoteContract_AllA";
-                                        } else if (contractType == "2"){
-                                            printId = "quoteContract_AllB";
+
+                                    });
+                                }, btn2: function(index, layero){
+                                    var printId;
+                                    if (contractType == "1"){
+                                        printId = "quoteContract_AllA";
+                                    } else if (contractType == "2"){
+                                        printId = "quoteContract_AllB";
+                                    }
+                                    document.body.innerHTML=document.getElementById(printId).innerHTML;
+                                    window.print();
+                                    window.location.reload();
+                                }
+                                ,success: function (layero, index) {
+                                    tabdata.htmlType = 1;     //页面标识 0为报价明细合同 主要用于判断头部左侧标题
+                                    view(this.id).render(viewName, tabdata).done(function () {
+                                        productNo = null; // 初始化订单号
+                                        defVal.customerSn = null;   //初始化客户编号 如a11
+                                        console.log(tabdata);
+                                        if (contractType === 1){
+                                            // layui.each遍历的数据，td最少为6条，没有数据的显示空白
+                                            var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
+                                            var dataLength = tabdata.data.length;
+                                            var addTrNum;
+                                            if (dataLength < 3){
+                                                addTrNum = 4;
+                                            } else if (dataLength >= 4) {
+                                                addTrNum = 7;
+                                            }
+                                            for (var i=tdSize;i<addTrNum;i++){
+                                                $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
+                                            }
+                                            if (addTrNum == 4){
+                                                for (var i=1;i<addTrNum;i++){
+                                                    $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"27.3%"});
+                                                }
+                                            } else {
+                                                for (var i=1;i<addTrNum;i++){
+                                                    $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"13.6%"});
+                                                }
+                                            }
+                                        } else if (contractType === 2){
+
                                         }
-                                        document.body.innerHTML=document.getElementById(printId).innerHTML;
-                                        window.print();
-                                        window.location.reload();
-                                    }
-                                    ,success: function (layero, index) {
-                                        tabdata.htmlType = 1;     //页面标识 0为报价明细合同 主要用于判断头部左侧标题
-                                        view(this.id).render(viewName, tabdata).done(function () {
-                                            productNo = null; // 初始化订单号
-                                            defVal.customerSn = null;   //初始化客户编号 如a11
-                                            console.log(tabdata);
-                                            if (contractType === 1){
-                                                // layui.each遍历的数据，td最少为6条，没有数据的显示空白
-                                                var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
-                                                var dataLength = tabdata.data.length;
-                                                var addTrNum;
-                                                if (dataLength < 3){
-                                                    addTrNum = 4;
-                                                } else if (dataLength >= 4) {
-                                                    addTrNum = 7;
+                                        // 实时时间设置   最新时间显示
+                                        var timeArray = [];     // 修改时间
+                                        var ctimeArray = [];    // 创建时间
+                                        var newEstTime;
+                                        if ( checkStatus.data != null) {
+                                            var nullNum = 0;
+                                            for (var i=0;i< checkStatus.data.length;i++) {
+                                                timeArray[i] =  checkStatus.data[i].gmtModified;
+                                                ctimeArray[i] = checkStatus.data[i].gmtCreate;
+                                                if (timeArray[i] == null) {
+                                                    nullNum ++;
                                                 }
-                                                for (var i=tdSize;i<addTrNum;i++){
-                                                    $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
-                                                }
-                                                if (addTrNum == 4){
-                                                    for (var i=1;i<addTrNum;i++){
-                                                        $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"27.3%"});
-                                                    }
-                                                } else {
-                                                    for (var i=1;i<addTrNum;i++){
-                                                        $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"13.6%"});
-                                                    }
-                                                }
-                                            } else if (contractType === 2){
-
                                             }
-                                            // 实时时间设置   最新时间显示
-                                            var timeArray = [];
-                                            if ( checkStatus.data != null) {
-                                                for (var i=0;i< checkStatus.data.length;i++) {
-                                                    timeArray[i] =  checkStatus.data[i].gmtModified;
-                                                }
-                                                var newEstTime = jstools.TimeContrast(timeArray);
-                                                $("#contractBotDate").text(newEstTime);
-                                                $("#topDate").text(newEstTime);
+                                            if (nullNum == checkStatus.data.length) {   // 判断 修改时间数组 是否全为null
+                                                newEstTime = jstools.TimeContrast(ctimeArray);
+                                                console.log(ctimeArray);
+                                            } else {
+                                                newEstTime = jstools.TimeContrast(timeArray);
                                             }
+                                            $("#contractBotDate").text(newEstTime);
+                                            $("#topDate").text(newEstTime);
+                                        }
 
-                                        });
-                                    }
-                                });
-                            }
+                                    });
+                                }
+                            });
                         }
                     });
                 }
@@ -583,49 +590,44 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                             tabdata.country = data.user.country;
                             tabdata.city = data.user.city;
                             tabdata.address = data.user.address;
-                            if (checkedLength >6){
-                                layer.msg("最多只能选中6条数据");
-                                return false;
-                            } else {
-                                admin.popup({
-                                    title: '报价合同'
-                                    ,area: ['100%', '100%']
-                                    ,maxmin: true
-                                    ,btn: ['提交','打印', '取消']
-                                    ,yes:function(index, layero){
-                                        layer.confirm('确定提交此订单合同？', function (index) {
-                                            admin.req({
-                                                type: 'post',
-                                                data: {'sids':qidsPost,'cid':tabdata.data[0].userId},
-                                                url: setter.baseUrl+"epc/stencilorder/createQuoteOrderNo",    //3-7 之前的版本 epc/pcborder/createContractNo
-                                                success: function (data) {
-                                                    if (data.code != "444"){
-                                                        layer.alert("合同提交成功！");
-                                                        var trigger = setTimeout(function () {
-                                                            layui.table.reload('iquote_Tabstencil');
-                                                            layer.closeAll();
-                                                        },1500)
-                                                    }
+                            admin.popup({
+                                title: '报价合同'
+                                ,area: ['100%', '100%']
+                                ,maxmin: true
+                                ,btn: ['提交','打印', '取消']
+                                ,yes:function(index, layero){
+                                    layer.confirm('确定提交此订单合同？', function (index) {
+                                        admin.req({
+                                            type: 'post',
+                                            data: {'sids':qidsPost,'cid':tabdata.data[0].userId},
+                                            url: setter.baseUrl+"epc/stencilorder/createQuoteOrderNo",    //3-7 之前的版本 epc/pcborder/createContractNo
+                                            success: function (data) {
+                                                if (data.code != "444"){
+                                                    layer.alert("合同提交成功！");
+                                                    var trigger = setTimeout(function () {
+                                                        layui.table.reload('iquote_Tabstencil');
+                                                        layer.closeAll();
+                                                    },1500)
                                                 }
-                                            });
+                                            }
+                                        });
 
-                                        });
-                                    }, btn2: function(index, layero){
-                                        var printId = "quoteContract_AllS";
-                                        document.body.innerHTML=document.getElementById(printId).innerHTML;
-                                        window.print();
-                                        window.location.reload();
-                                    }
-                                    ,success: function (layero, index) {
-                                        tabdata.htmlType = 1;     //页面标识 0为报价明细合同 主要用于判断头部左侧标题
-                                        view(this.id).render(viewName, tabdata).done(function () {
-                                            console.log(tabdata);
-                                            productNo = null; // 初始化订单号
-                                            defVal.customerSn = null;   //初始化客户编号 如a11
-                                        });
-                                    }
-                                });
-                            }
+                                    });
+                                }, btn2: function(index, layero){
+                                    var printId = "quoteContract_AllS";
+                                    document.body.innerHTML=document.getElementById(printId).innerHTML;
+                                    window.print();
+                                    window.location.reload();
+                                }
+                                ,success: function (layero, index) {
+                                    tabdata.htmlType = 1;     //页面标识 0为报价明细合同 主要用于判断头部左侧标题
+                                    view(this.id).render(viewName, tabdata).done(function () {
+                                        console.log(tabdata);
+                                        productNo = null; // 初始化订单号
+                                        defVal.customerSn = null;   //初始化客户编号 如a11
+                                    });
+                                }
+                            });
                         }
                     });
                 }

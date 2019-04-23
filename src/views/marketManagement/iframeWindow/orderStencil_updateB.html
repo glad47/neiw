@@ -1,6 +1,6 @@
 <title>报价订单编辑</title>
 <div class="layui-fluid stencil-edit-info">
-    <form class="layui-form" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 750px">
+    <form class="layui-form" lay-filter="" id="orderStencilUpdateB" style="width: 750px">
         <div class="layui-form-item">
             <div class="layui-col-md12 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Stencil Side：</label>
@@ -184,6 +184,10 @@
                 getDomVal();
             });
 
+            // $("#user_editInfo_form").bind('input propertychange', function () {
+            //     getDomVal();
+            // });
+
             function quote(_domVal) {
                 var a = parseFloat(_domVal.side*_domVal.unitPrice*_domVal.quantity)+_domVal.postFee;
                 $("input[name='totalStencilFee']").val(a);
@@ -202,9 +206,9 @@
                 var _domVal = new Object();
                 _domVal.side = parseFloat(side);
                 // _domVal.unitPrice = parseFloat($("#selStencilSize").find("option:selected").attr("price"));    //获取回显的默认价格
-                _domVal.unitPrice = parseFloat($("input[name='unitPrice']").val());    //获取回显的默认价格
-                _domVal.quantity = parseFloat($("input[name='quantity']").val());
-                _domVal.postFee = parseFloat($("input[name='postFee']").val());
+                _domVal.unitPrice = parseFloat($("#orderStencilUpdateB input[name='unitPrice']").val());    //获取回显的默认价格
+                _domVal.quantity = parseFloat($("#orderStencilUpdateB input[name='quantity']").val());
+                _domVal.postFee = parseFloat($("#orderStencilUpdateB input[name='postFee']").val());
                 quote(_domVal);
             }
 

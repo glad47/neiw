@@ -1,7 +1,7 @@
 <title>报价订单编辑</title>
 <div class="layui-fluid pcb-edit-info">
     <script type="text/html" template lay-done="layui.data.done(d);">
-    <form class="layui-form" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 750px">
+    <form class="layui-form orderPCBupdateForm" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 750px">
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label" name="orderNo">PO：</label>
@@ -474,7 +474,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Total：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="totalFee" value="{{ d.params.subtotal || 0 }}" autocomplete="off" class="layui-input" readonly>
+                    <input type="text" name="totalFee" value="{{ d.params.totalFee || 0 }}" autocomplete="off" class="layui-input" readonly>
                 </div>
             </div>
         </div>
@@ -527,7 +527,7 @@
                     a += _val;
                 });
                 q_params.pcbCost = a.toFixed(2);
-                $("input[name='pcbCost']").val(q_params.pcbCost);       // 小计
+                $(".orderPCBupdateForm input[name='subtotal']").val(q_params.pcbCost);       // 小计
                 console.log("pcbCost:"+q_params.pcbCost);
                 set_qObj();
             });
@@ -537,11 +537,11 @@
                    q_params[i] = 0;
                 });
                 var _quote_obj = new Object();
-                _quote_obj.engineeringFee = $("input[name='engineeringFee']").val();
-                _quote_obj.boardFee = parseFloat($("input[name='boardFee']").val());
-                _quote_obj.testCostFee = parseFloat($("input[name='testCostFee']").val());
-                _quote_obj.overworkFee = parseFloat($("input[name='overworkFee']").val());
-                _quote_obj.toolingFee = parseFloat($("input[name='toolingFee']").val());
+                _quote_obj.engineeringFee = $(".orderPCBupdateForm input[name='engineeringFee']").val();
+                _quote_obj.boardFee = parseFloat($(".orderPCBupdateForm input[name='boardFee']").val());
+                _quote_obj.testCostFee = parseFloat($(".orderPCBupdateForm input[name='testCostFee']").val());
+                _quote_obj.overworkFee = parseFloat($(".orderPCBupdateForm input[name='overworkFee']").val());
+                _quote_obj.toolingFee = parseFloat($(".orderPCBupdateForm input[name='toolingFee']").val());
                 console.log(_quote_obj);
                 for (var key in _quote_obj) {
                     if (isNaN(_quote_obj[key])) {
@@ -553,14 +553,15 @@
 
             // 修改表单对象-->回传到页面
             function set_qObj() {
-                var postFee = $("input[name='postFee']").val();
+                var postFee = $(".orderPCBupdateForm input[name='postFee']").val();
                 if (isNaN(postFee) || postFee == "") {
                     postFee = 0;
                 }
                 q_params.shippingPrice = parseFloat(postFee);
                 q_params.pcbCost = parseFloat(q_params.pcbCost);
                 q_params.totalPrice = parseFloat(q_params.shippingPrice+q_params.pcbCost).toFixed(2);
-                $("input[name='subtotal']").val(q_params.totalPrice);      //总价
+                $(".orderPCBupdateForm input[name='totalFee']").val(q_params.totalPrice);      //总价
+                console.log("bug:"+q_params.totalPrice);
             }
         });
     }

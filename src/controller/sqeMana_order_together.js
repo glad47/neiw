@@ -94,7 +94,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             for (var i=0;i<data.length;i++){
                 if (supplierContractNo == null){
                     supplierContractNo = data[i].supplierContractNo;
-                } else {
+                } else if (supplierContractNo != data[i].supplierContractNo && supplierContractNo != null) {
                     supplierContractNo += ',' + data[i].supplierContractNo;
                 }
             }

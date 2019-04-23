@@ -6,13 +6,13 @@
             <div class="layui-inline">
                 <label class="layui-form-label">合同号：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="phone" autocomplete="off" class="layui-input" value="{{ d.params.invoiceNo }}">
+                    <input type="text" name="invoiceNo" autocomplete="off" class="layui-input" value="{{ d.params.invoiceNo || '' }}">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">货代：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="freight" autocomplete="off" class="layui-input">
+                    <input type="text" name="freight" autocomplete="off" class="layui-input"  value="{{ d.params.freight || '' }}">
                 </div>
             </div>
         </div>
@@ -20,13 +20,13 @@
             <div class="layui-inline">
                 <label class="layui-form-label">国家：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="country" autocomplete="off" class="layui-input">
+                    <input type="text" name="country" autocomplete="off" class="layui-input"  value="{{ d.params.country || '' }}">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">快递公司：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="courierName" autocomplete="off" class="layui-input">
+                    <input type="text" name="courierName" autocomplete="off" class="layui-input"  value="{{ d.params.courierName || '' }}">
                 </div>
             </div>
         </div>
@@ -34,13 +34,13 @@
             <div class="layui-inline">
                 <label class="layui-form-label">件数：</label>
                 <div class="layui-input-inline">
-                    <input type="number" name="number" autocomplete="off" class="layui-input">
+                    <input type="number" name="number" autocomplete="off" class="layui-input"  value="{{ d.params.invoiceNo || '' }}">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">快递单号：</label>
                 <div class="layui-input-inline">
-                    <input type="number" name="courierNumber" autocomplete="off" class="layui-input">
+                    <input type="number" name="courierNumber" autocomplete="off" class="layui-input"  value="{{ d.params.courierOrderNo || '' }}">
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">重量：</label>
                 <div class="layui-input-inline">
-                    <input type="number" name="weight" autocomplete="off" class="layui-input">
+                    <input type="number" name="weight" autocomplete="off" class="layui-input"  value="{{ d.params.weight || '' }}">
                 </div>
             </div>
             <div class="layui-inline">
