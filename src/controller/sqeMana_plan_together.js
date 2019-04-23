@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form','laydate'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate','jsTools'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -14,6 +14,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,setter = layui.setter
         ,element = layui.element;
     var $ = layui.jquery;
+    var jstools = layui.jsTools;
 
     tabRenderPCB();
     // 全局变量
@@ -85,12 +86,28 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('最多只能选择一条数据！');
             return false;
         }
+        var supplierOrderIds = null;
         if(obj.event === 'submit') {     //通知出货
             layer.confirm('确定通知出货？', function () {
+                for (var i=0;i<data.length;i++){
+                    if (data.length == 0) {
+                        layer.msg('请选择一条数据！');
+                        return false;
+                    } else {
+                        if (supplierOrderIds != null) {
+                            supplierOrderIds += data[i].id;
+                        } else {
+                            supplierOrderIds = data[i].id;
+                        }
+                    }
+                }
+                // supplierOrderIds = "12,23,11,22,12,22,13,23";
+                // supplierOrderIds = jstools.ArrayClearRepeat(supplierOrderIds);
+                // console.log(supplierOrderIds);
                 admin.req({
                    type: 'post',
                    url: setter.baseUrl + 'sqe/pcborder/saveShipmentOrderByPt',
-                   data: {supplierOrderId: data[0].id},
+                   data: {supplierOrderId: supplierOrderIds},
                    success: function () {
                        layer.alert('通知出货成功！',function () {
                            table.reload('sqeManaPlan_tabPcb');

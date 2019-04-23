@@ -180,11 +180,13 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             pTotala += parseFloat(data[i].totalFee);
         }
         popupData.total = pTotala;
-        popupData.userName = userData.userName;
-        popupData.companyName = userData.companName;
-        popupData.country = userData.country;
-        popupData.city = userData.city;
-        popupData.address = userData.address;
+
+        // popupData.userName = userData.userName;
+        // popupData.companyName = userData.companName;
+        // popupData.country = userData.country;
+        // popupData.city = userData.city;
+        // popupData.address = userData.address;
+
 
         switch(obj.event){
             case 'submit':
@@ -214,84 +216,103 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 var viewName ="marketManagement/iframeWindow/quote_contractB";
                 var productNo = null;
                 var contractType;
-                admin.popup({
-                    title: '内部合同'
-                    ,area: ['100%', '100%']
-                    ,btn: ['生成合同','打印','关闭']
-                    ,maxmin: true
-                    ,yes:function(index, layero){
-                       layer.confirm("确定生成合同编号吗？", function () {
-                          admin.req({
-                                type: 'post',
-                                data: {'qids':qids},
-                                url: setter.baseUrl+'epc/pcborder/createContractNo',
-                                success: function () {
-                                  layer.alert("提交成功！");
-                                    layui.table.reload('inside_cotract_Tabpcb');
-                                    layer.close(index);
-                                }
-                          });
-                       });
-                    }
-                    ,btn2: function (index, layero) {
-                        window.location.reload();
-                        document.body.innerHTML=document.getElementById("quoteContract_AllB").innerHTML;
-                        window.print();
-                    }
-                    ,success: function (layero, index) {
-                        popupData.htmlType = 1;     //页面标识 1为内部合同 主要用于判断头部左侧标题
-                        console.log(popupData);
-                        view(this.id).render(viewName, popupData).done(function () {
-                            productNo = null; // 初始化订单号
-                            // 表格样式设置
-                            if (contractType === 1){
-                                // layui.each遍历的数据，td最少为6条，没有数据的显示空白
-                                var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
-                                var dataLength = checkStatus.data.length;
-                                var addTrNum;
-                                if (dataLength < 4){
-                                    addTrNum = 4;
-                                } else if (dataLength > 4) {
-                                    addTrNum = 7;
-                                }
-                                for (var i=tdSize;i<addTrNum;i++){
-                                    $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
-                                }
-                                if (addTrNum == 4){
-                                    for (var i=1;i<addTrNum;i++){
-                                        $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"27.3%"});
-                                    }
-                                } else {
-                                    for (var i=1;i<addTrNum;i++){
-                                        $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"13.6%"});
-                                    }
-                                }
-                            } else if (contractType === 2){
-
+                /**
+                 * 获取用户信息  回填到合同上
+                 */
+                admin.req({
+                    type: 'get',
+                    data: '',
+                    url: setter.baseUrl+"sys/consumer/user/info/"+data[0].userId,
+                    success: function (data) {
+                        popupData.userName = data.user.userName;
+                        popupData.companyName = data.user.companName;
+                        popupData.country = data.user.country;
+                        popupData.city = data.user.city;
+                        popupData.address = data.user.address;
+                        popupData.mobilePhone = data.user.mobilePhone;
+                        popupData.postcode = data.user.postcode;
+                        popupData.paymentType = data.user.paymentType;
+                        popupData.deliveryType = data.user.deliveryType;
+                        admin.popup({
+                            title: '内部合同'
+                            ,area: ['100%', '100%']
+                            ,btn: ['生成合同','打印','关闭']
+                            ,maxmin: true
+                            ,yes:function(index, layero){
+                                layer.confirm("确定生成合同编号吗？", function () {
+                                    admin.req({
+                                        type: 'post',
+                                        data: {'qids':qids},
+                                        url: setter.baseUrl+'epc/pcborder/createContractNo',
+                                        success: function () {
+                                            layer.alert("提交成功！");
+                                            layui.table.reload('inside_cotract_Tabpcb');
+                                            layer.close(index);
+                                        }
+                                    });
+                                });
                             }
-                            // 实时时间设置   最新时间显示
-                            var timeArray = [];     // 修改时间
-                            var ctimeArray = [];    // 创建时间
-                            var newEstTime;
-                            if ( checkStatus.data != null) {
-                                var nullNum = 0;
-                                for (var i=0;i<checkStatus.data.length;i++) {
-                                    timeArray[i] = checkStatus.data[i].gmtModified;
-                                    ctimeArray[i] = checkStatus.data[i].gmtCreate;
-                                    if (timeArray[i] == null) {
-                                        nullNum ++;
-                                    }
-                                }
-                                if (nullNum == checkStatus.data.length) {   // 判断 修改时间数组 是否全为null
-                                    newEstTime = jstools.TimeContrast(ctimeArray);
-                                    console.log(ctimeArray);
-                                } else {
-                                    newEstTime = jstools.TimeContrast(timeArray);
-                                }
-                                $("#contractBotDate").text(newEstTime);
-                                $("#topDate").text(newEstTime);
+                            ,btn2: function (index, layero) {
+                                window.location.reload();
+                                document.body.innerHTML=document.getElementById("quoteContract_AllB").innerHTML;
+                                window.print();
                             }
+                            ,success: function (layero, index) {
+                                popupData.htmlType = 1;     //页面标识 1为内部合同 主要用于判断头部左侧标题
+                                console.log(popupData);
+                                view(this.id).render(viewName, popupData).done(function () {
+                                    productNo = null; // 初始化订单号
+                                    // 表格样式设置
+                                    if (contractType === 1){
+                                        // layui.each遍历的数据，td最少为6条，没有数据的显示空白
+                                        var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
+                                        var dataLength = checkStatus.data.length;
+                                        var addTrNum;
+                                        if (dataLength < 4){
+                                            addTrNum = 4;
+                                        } else if (dataLength > 4) {
+                                            addTrNum = 7;
+                                        }
+                                        for (var i=tdSize;i<addTrNum;i++){
+                                            $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
+                                        }
+                                        if (addTrNum == 4){
+                                            for (var i=1;i<addTrNum;i++){
+                                                $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"27.3%"});
+                                            }
+                                        } else {
+                                            for (var i=1;i<addTrNum;i++){
+                                                $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"13.6%"});
+                                            }
+                                        }
+                                    } else if (contractType === 2){
 
+                                    }
+                                    // 实时时间设置   最新时间显示
+                                    var timeArray = [];     // 修改时间
+                                    var ctimeArray = [];    // 创建时间
+                                    var newEstTime;
+                                    if ( checkStatus.data != null) {
+                                        var nullNum = 0;
+                                        for (var i=0;i<checkStatus.data.length;i++) {
+                                            timeArray[i] = checkStatus.data[i].gmtModified;
+                                            ctimeArray[i] = checkStatus.data[i].gmtCreate;
+                                            if (timeArray[i] == null) {
+                                                nullNum ++;
+                                            }
+                                        }
+                                        if (nullNum == checkStatus.data.length) {   // 判断 修改时间数组 是否全为null
+                                            newEstTime = jstools.TimeContrast(ctimeArray);
+                                            console.log(ctimeArray);
+                                        } else {
+                                            newEstTime = jstools.TimeContrast(timeArray);
+                                        }
+                                        $("#contractBotDate").text(newEstTime);
+                                        $("#topDate").text(newEstTime);
+                                    }
+
+                                });
+                            }
                         });
                     }
                 });
@@ -346,6 +367,10 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                     popupData.country = data.user.country;
                     popupData.city = data.user.city;
                     popupData.address = data.user.address;
+                    popupData.mobilePhone = data.user.mobilePhone;
+                    popupData.postcode = data.user.postcode;
+                    popupData.paymentType = data.user.paymentType;
+                    popupData.deliveryType = data.user.deliveryType;
                     admin.req({
                         type: 'post',
                         data: {'quoteOrderNo': quoteOrderNo},
@@ -669,6 +694,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                     popupData.country = data.user.country;
                     popupData.city = data.user.city;
                     popupData.address = data.user.address;
+                    popupData.mobilePhone = data.user.mobilePhone;
+                    popupData.postcode = data.user.postcode;
                     admin.req({
                         type: 'post',
                         data: {'quoteOrderNo': quoteOrderNo},
@@ -749,6 +776,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
         popupData.country = userData.country;
         popupData.city = userData.city;
         popupData.address = userData.address;
+        popupData.mobilePhone = data.user.mobilePhone;
+        popupData.postcode = data.user.postcode;
 
         switch(obj.event){
             case 'submit':

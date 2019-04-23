@@ -282,6 +282,10 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                             popupData.country = data.user.country;
                             popupData.city = data.user.city;
                             popupData.address = data.user.address;
+                            popupData.mobilePhone = data.user.mobilePhone;
+                            popupData.postcode = data.user.postcode;
+                            popupData.paymentType = data.user.paymentType;
+                            popupData.deliveryType = data.user.deliveryType;
                             admin.popup({
                                 title: '内部合同'
                                 ,area: ['100%', '100%']
@@ -607,6 +611,10 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                             popupData.country = data.user.country;
                             popupData.city = data.user.city;
                             popupData.address = data.user.address;
+                            popupData.mobilePhone = data.user.mobilePhone;
+                            popupData.postcode = data.user.postcode;
+                            popupData.paymentType = data.user.paymentType;
+                            popupData.deliveryType = data.user.deliveryType;
                             admin.popup({
                                 title: '内部合同'
                                 ,area: ['100%', '100%']
@@ -661,13 +669,13 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             });
         } else if (obj.event == 'detail') {
             admin.popup({
-                title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
+                title: '订单号［'+data.productNo+']---'+'订单时间［'+data.gmtCreate+'］'
                 ,area: ['45%', '70%']
                 ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
-
+                    view(this.id).render('marketManagement/iframeWindow/order_stencil_detail', data).done(function () {
                     })
                 }
+
             })
         }
     });

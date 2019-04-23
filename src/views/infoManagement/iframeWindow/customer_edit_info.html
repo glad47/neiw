@@ -54,6 +54,41 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <div class="addcus-cusCom layui-col-md6">
+                <label class="layui-form-label">付款方式：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="paymentType">
+                            <option value="">请选择</option>
+                            <option value="TT IN" {{ d.params.paymentType == 'TT IN' ? 'selected' : '' }}>TT IN</option>
+                            <option value="14 DAYS" {{ d.params.paymentType == '14 DAYS' ? 'selected' : '' }}>14 DAYS</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label">发货方式：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="deliveryType">
+                            <option value="">请选择</option>
+                            <option value="FOB" {{ d.params.deliveryType == 'FOB' ? 'selected' : '' }}>FOB</option>
+                            <option value="DDU" {{ d.params.deliveryType == 'DDU' ? 'selected' : '' }}>DDU</option>
+                            <option value="DDP" {{ d.params.deliveryType == 'DDP' ? 'selected' : '' }}>DDP</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮编：</label>
+            <div class="layui-input-block">
+                <script type="text/html" template>
+                    <input type="text" name="postcode" autocomplete="off" class="layui-input" value="{{ d.params.postcode || '' }}">
+                </script>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">地址：</label>
             <div class="layui-input-block">
                 <script type="text/html" template>

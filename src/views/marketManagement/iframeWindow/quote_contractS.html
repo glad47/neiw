@@ -68,54 +68,76 @@
         </div>
 
         <!--模块一 contract-module-one, 顶部信息-->
-        <div class="contract-module-one layui-col-md12 layui-col-xs12">
+        <div class="contract-module-one">
             <script type="text/html" template>
                 <table style="width: 100%;">
                     <tbody>
                     <tr>
-                        <td colspan="2">
-                            <strong class="cmo-strong">Importer</strong>
-                            :
-                            <!--<a>{{ d.params.userName }}</a>-->
+                        <td>
+                            <label class="layui-form-label">
+                                Importer：
+                            </label>
+                            <label class="layui-form-label" style="width: 130px;text-align: left;">{{ d.params.userName }}</label>
                         </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 50%;">
-                            <!--Company Name:-->
-                            <strong>
-                                {{ d.params.companyName || '' }}
-                            </strong>
-                        </td>
-                        <td style="width: 50%;">
-                            <label class="cmo-lable" style="text-align: left;">
+                        <td>
+                            <label class="cmo-lable" style="width: 140px;">
                                 {{# if(d.params.htmlType == '1'){ }}
-                                Quotation No
+                                Quotation No:
                                 {{# } else{ }}
-                                Invoice No
+                                Invoice No:
                                 {{# }}}
                             </label>
-                            :
-                            <a>
+                            <label class="layui-form-label" style="width: unset;float: unset;display: inline-block;">
                                 {{# if(d.params.htmlType == '1'){ }}
                                 {{ d.params.data[0].quoteOrderNo || '' }}
                                 {{# } else{ }}
                                 {{ d.params.data[0].invoiceNo || '' }}
                                 {{# }}}
-                            </a>
+                            </label>
+                        </td>
+                    </tr>
+                    <!--2019-04-23 新加-->
+                    <tr>
+                        <td>
+                            <!--Company Name:-->
+                            <label class="layui-form-label">Company：</label>
+                            <label class="layui-form-label" style="width: 130px;text-align: left;">{{ d.params.companyName || '' }}</label>
+                        </td>
+                        <td>
+                            <label class="cmo-lable" style="width: 140px;text-align: left;">PAYMENT TERM:</label>
+                            <label class="layui-form-label" style="width: unset;float: unset;display: inline-block;">{{ d.params.paymentType || '' }}</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <!--Addr:-->
-                            <a>
-                                {{ d.params.address || '' }},{{ d.params.city || '' }},{{ d.params.country || '' }}
-                            </a>
+                            <label class="layui-form-label">Add：</label>
+                            <label class="layui-form-label" style="width: unset;text-align: left;">{{ d.params.address || '' }},{{ d.params.city || '' }},{{ d.params.country || ''}}</label>
                         </td>
                         <td>
-                            <label class="cmo-lable">Date</label>
-                            :
-                            <!--<a id="topDate">Feb 15, 2010</a>-->
-                            <a>{{ d.params.data[0].gmtModified || '' }} </a>
+                            <label class="cmo-lable" style="width: 156px;">Date:</label>
+                            <label class="cmo-lable" style="width: unset;" id="topDate">Feb 15, 2010</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- TelPhone-->
+                        <td style="width: 50%;">
+                            <label class="layui-form-label">Telephone：</label>
+                            <label class="layui-form-label" style="width: 130px;text-align: left;">{{ d.params.mobilePhone || '' }}</label>
+                        </td>
+                        <td style="width: 50%;">
+                            <label class="cmo-lable" style="width: 140px;text-align: left;">PRODUCT ORGIN:</label>
+                            <label class="layui-form-label" style="width: unset;float: unset;display: inline-block;">China</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="layui-form-label">Zip/Code：</label>
+                            <label class="layui-form-label" style="width: 130px;text-align: left;">{{d.params.postcode || ''}}</label>
+                        </td>
+                        <td>
+                            <label class="cmo-lable" style="width: 140px;">DELIVERY TYPE:</label>
+                            <label class="layui-form-label" style="width: 130px;float: unset;display: inline-block;text-align: left;">{{ d.params.deliveryType || '' }}</label>
                         </td>
                     </tr>
                     </tbody>
