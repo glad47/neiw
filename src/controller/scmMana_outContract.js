@@ -141,7 +141,7 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
             layer.confirm('是否确认交期？', function () {
                admin.req({
                    type: 'post',
-                   data: {'supplierContractNo':supplierContractNo},
+                   data: {'supplierContractNo':supplierContractNo,'orderId':data[0].orderId},
                    url: setter.baseUrl+'scm/pcborder/confirmDeliveryByOc',
                    success: function () {
                        layer.alert('已确认');
@@ -376,7 +376,7 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
             layer.confirm('是否确认交期？', function () {
                 admin.req({
                     type: 'post',
-                    data: {'supplierContractNo':supplierContractNo},
+                    data: {'supplierContractNo':supplierContractNo,'orderId':data[0].orderId},
                     url: setter.baseUrl+'scm/stencilorder/confirmDeliveryByOc',
                     success: function () {
                         layer.alert('已确认');

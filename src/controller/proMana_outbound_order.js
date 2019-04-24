@@ -159,16 +159,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                type: 'post',
                url: setter.baseUrl + 'iqc/shippinginfo/info/'+data.id,
                success: function (res) {
-                   var shippingInfo;
                    data.shippingInfo = res.shippingInfo;
-                   if (res.shippingInfo != null) {
-                       shippingInfo = res.shippingInfo;
-                       isNullShippingInfo = false;
-                   } else {
-                       layer.msg("当前没有数据");
-                       isNullShippingInfo = true;
-                   }
-
                    admin.popup({
                        title: '出货信息'
                        ,area: ['734px','468px']
@@ -189,24 +180,12 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                        }
                        ,success: function (layero, index) {
                            view(this.id).render('productManagement/iframeWindow/outbound_info',data).done(function () {
-                               console.log(shippingInfo);
                                //监听出货提交
                                form.on('submit(fomrOutboundInfo)', function (data) {
-                                   var url;
-                                   var submitType = $(".outbound-submit").attr("data");
-                                   if (submitType == "save") {
-                                       url = "iqc/pcborder/saveShippingInfo";
-                                   } else if (submitType == "submit") {
-                                       url = "";
-                                   }
                                    var field = data.field;
-                                   if (!isNullShippingInfo) {
-                                       // delete field.orderId;
-                                       field.orderId = 0;
-                                   }
                                    console.log(field);
                                    admin.req({
-                                       url: setter.baseUrl + url,
+                                       url: setter.baseUrl+"iqc/pcborder/saveShippingInfo",
                                        type: 'POST',
                                        data: field,
                                        success: function (data) {
