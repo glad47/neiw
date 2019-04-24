@@ -69,6 +69,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
                 ,{field: 'remark', title: '报价备注', width: 168}
                 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
                 ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
+                ,{field: 'existContractMark', title: 'existContractMark', hide: true}   // 是否生成合同标识 0 否 1 是
                 ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
                 ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
                 ,{field: 'panelSizeY', title: 'panelSizeY', hide: true}
@@ -85,7 +86,11 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
                 ,{fixed: 'right', title:'操作', toolbar: '#scmMana_tabbar',width: 160}
             ]]
             ,done: function (res, curr, count) {
-
+                $("a[data='1']").each(function () {
+                    $(this).parents('tr').css('background-color','#c2c2c2');
+                    $(this).parents('tr').find("input[type='checkbox']").prop("disabled",true);
+                    form.render();
+                });
             }
         });
     }
@@ -96,8 +101,16 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
         if(obj.event === 'evScmSubmit'){
             var orderSupplierList = new Array();
             var popupData = {data:{}};
+            var supplierNo;
             popupData.data = data;
             for (var i=0;i<data.length;i++){
+                if (supplierNo == null) {
+                    supplierNo = data[i].supplierNo;
+                } else if (supplierNo != null && data[i].supplierNo != supplierNo) {
+                    layer.alert('请选择相同的供应商!');
+                    console.log(111);
+                    return false;
+                }
                 var forSt = data[i].totalFee;
                 orderSupplierList.push({id:data[i].id,orderId:data[i].orderId,orderType:data[i].orderType});
                 totalFee += forSt;
@@ -276,7 +289,11 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
                 ,{fixed: 'right', title:'操作', toolbar: '#scmManaStencil_tabbar',width: 160}
             ]]
             ,done: function (res, curr, count) {
-
+                $("a[data='1']").each(function () {
+                    $(this).parents('tr').css('background-color','#c2c2c2');
+                    $(this).parents('tr').find("input[type='checkbox']").prop("disabled",true);
+                    form.render();
+                });
             }
         });
     }
@@ -287,8 +304,16 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
         if(obj.event === 'evScmSubmit'){
             var ids = null;
             var popupData = {data:{}};
+            var supplierNo;
             popupData.data = data;
-            for (var i=0;i<data.length;i++){
+            for (var i=0;i<data.length;i++) {
+                if (supplierNo == null) {
+                    supplierNo = data[i].supplierNo;
+                } else if (supplierNo != null && data[i].supplierNo != supplierNo) {
+                    layer.alert('请选择相同的供应商!');
+                    console.log(111);
+                    return false;
+                }
                 var forSt = data[i].totalStencilFee;
                 if (ids == null){
                     ids = ids + data[i].id;

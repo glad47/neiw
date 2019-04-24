@@ -312,7 +312,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                                     ,contentType : "application/json;charset=utf-8"
                                     ,done: function (res) {
                                         layer.msg('指示卡提交成功');
-                                        layui.table.reload('epc_Tabpcb_ok_payment_order');
+                                        table.reload('epc_Tabpcb_ok_payment_order');
                                     }
                                     ,fail: function (res) {
                                         layer.msg("订单信息修改失败，请稍后再试！");
@@ -320,6 +320,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                                 });
                                 requestData = [];
                                 layer.close(index);
+                                table.reload('epc_Tabpcb_ok_payment_order');
                                 return false;
                             }
                             layer.msg("请至少写入一条工序！");
@@ -332,7 +333,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 var _this_id = data.id;
                 admin.popup({
                     title: '审核订单[PCB]'
-                    ,area: ['867px', '237px']
+                    ,area: ['867px', '325px']
                     ,id: 'epc_incSH'
                     ,btn:['审核','取消']
                     ,yes: function () {
@@ -694,7 +695,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 var _this_id = data.id;
                 admin.popup({
                     title: '审核订单[钢网]'
-                    ,area: ['867px', '237px']
+                    ,area: ['867px', '325px']
                     ,id: 'epc_incSH'
                     ,btn:['审核','取消']
                     ,yes: function () {

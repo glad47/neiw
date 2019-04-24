@@ -23,11 +23,11 @@
                 </script>
                 <script type="text/html" id="scmManaquo_status">
                     {{# if(d.status == '1') { }}
-                        已指派
+                        <a data="{{d.existContractMark}}">已指派</a>
                     {{# } else if(d.status == '2' && d.supplierContractNo != null){ }}
-                        合同被退回
+                        <a data="{{d.existContractMark}}">合同被退回</a>
                     {{# } else if(d.status == '2' && d.supplierContractNo == null){ }}
-                        已报价
+                        <a data="{{d.existContractMark}}">已报价</a>
                     {{# }  }}
                 </script>
             </div>
@@ -46,11 +46,11 @@
                 </script>
                 <script type="text/html" id="scmManaquoStencil_status">
                     {{# if(d.status == '1') { }}
-                        已指派
+                        <a data="{{d.existContractMark}}">已指派</a>
                     {{# } else if(d.status == '2' && d.supplierContractNo != null){ }}
-                        合同被退回
+                        <a data="{{d.existContractMark}}">合同被退回</a>
                     {{# } else if(d.status == '2' && d.supplierContractNo == null){ }}
-                        已报价
+                        <a data="{{d.existContractMark}}">已报价</a>
                     {{# }  }}
                 </script>
             </div>

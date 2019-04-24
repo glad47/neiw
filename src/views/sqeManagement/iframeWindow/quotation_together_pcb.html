@@ -142,10 +142,13 @@
                 var testCostFee = $("#qt_pcb_testCostFee").val();            // 工程费
                 var toolingFee = $("#qt_pcb_toolingFee").val();             // 模具费
                 var totalFee = $("#qt_pcb_totalFee").text();               // 总价
+                if (engineeringFee == "" || engineeringFee == null)  {
+                    engineeringFee = 0;
+                }
                 var a = parseFloat(quantityPcs*unitPrice);
                 var b = parseFloat(quantityPcs*unitPrice)+parseFloat(engineeringFee) + parseFloat(testCostFee) + parseFloat(toolingFee);
                 totalFee = parseFloat(b);
-                $("#qt_pcb_totalFee").text(totalFee);
+                $("#qt_pcb_totalFee").text(totalFee.toFixed(2));
             }
             var active = {};
             $('.layui-btn').on('click', function () {

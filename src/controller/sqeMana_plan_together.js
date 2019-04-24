@@ -82,10 +82,6 @@ layui.define(['admin','table','index','element','form','laydate','jsTools'], fun
     table.on('toolbar(sqeManaPlan_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
-        if (data.length > 1) {
-            layer.msg('最多只能选择一条数据！');
-            return false;
-        }
         var supplierOrderIds = null;
         if(obj.event === 'submit') {     //通知出货
             layer.confirm('确定通知出货？', function () {
@@ -95,9 +91,9 @@ layui.define(['admin','table','index','element','form','laydate','jsTools'], fun
                 }
                 for (var i=0;i<data.length;i++){
                     if (supplierOrderIds != null) {
-                        supplierOrderIds += data[i].id;
+                        supplierOrderIds += ","+data[i].id.toString();
                     } else {
-                        supplierOrderIds = data[i].id;
+                        supplierOrderIds = data[i].id.toString();   // 如果是数字 **.split 会报错
                     }
                 }
                 supplierOrderIds = jstools.ArrayClearRepeat(supplierOrderIds.split(",")).join(",");     // 字符串转数组去重再转字符串类型  jstools.ArrayCleaRepeat 数组去重扩展

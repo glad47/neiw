@@ -54,7 +54,13 @@
                     </label>
                     <p>
                         <label>
-                            乙方：{{ d.params.data[1].supplierCompanyName || '' }}
+                            乙方：
+                            {{# layui.each(d.params.data, function(index, item){  }}
+                            {{# if(invoiceNo == null){ }}
+                            {{# supplierCompanyName = item.supplierCompanyName }}
+                            {{ supplierCompanyName  }}
+                            {{# } }}
+                            {{#  }); }}
                         </label>
                     </p>
                 </div>
