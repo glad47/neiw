@@ -43,6 +43,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: '', title:'下载', toolbar: '#pcb-file', align:'center'}
             ,{field: 'difficultyLevel', title:'难易度', align:'center'}
             ,{field:'productNo', title: '聚谷编号', align:'center', minWidth: 114}
+            ,{field:'id',title:'ID',align:'center'}
             ,{field:'quoteGerberName', title: '正式资料', align:'center', minWidth: 254, hide: true}
             ,{field:'gmtCreate', title: '创建时间', align:'center', minWidth: 165}
             ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114,hide: true}
