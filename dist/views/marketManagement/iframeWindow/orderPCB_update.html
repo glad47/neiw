@@ -220,9 +220,12 @@
                 <label class="layui-form-label">O/L Cop'：</label>
                 <div class="layui-input-block">
                     <select name="outerLayerCopper">
+                        <option value="0oz"  {{ d.params.outerLayerCopper == '0oz' ? 'selected' : '' }}>0oz</option>
                         <option value="1oz"  {{ d.params.outerLayerCopper == '1oz' ? 'selected' : '' }}>1oz</option>
                         <option value="2oz"  {{ d.params.outerLayerCopper == '2oz' ? 'selected' : '' }}>2oz</option>
+                        <option value="2.5oz"  {{ d.params.outerLayerCopper == '2.5oz' ? 'selected' : '' }}>2.5oz</option>
                         <option value="3oz"  {{ d.params.outerLayerCopper == '3oz' ? 'selected' : '' }}>3oz</option>
+                        <option value="4oz"  {{ d.params.outerLayerCopper == '4oz' ? 'selected' : '' }}>4oz</option>
                     </select>
                 </div>
             </div>
