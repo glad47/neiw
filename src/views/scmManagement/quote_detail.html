@@ -24,9 +24,9 @@
                 <script type="text/html" id="scmManaquo_status">
                     {{# if(d.status == '1') { }}
                         已指派
-                    {{# } else if(d.status == '2' && d.invoiceNo != null){ }}
+                    {{# } else if(d.status == '2' && d.supplierContractNo != null){ }}
                         合同被退回
-                    {{# } else if(d.status == '2' && d.invoiceNo == null){ }}
+                    {{# } else if(d.status == '2' && d.supplierContractNo == null){ }}
                         已报价
                     {{# }  }}
                 </script>
@@ -47,9 +47,9 @@
                 <script type="text/html" id="scmManaquoStencil_status">
                     {{# if(d.status == '1') { }}
                         已指派
-                    {{# } else if(d.status == '2' && d.invoiceNo != null){ }}
+                    {{# } else if(d.status == '2' && d.supplierContractNo != null){ }}
                         合同被退回
-                    {{# } else if(d.status == '2' && d.invoiceNo == null){ }}
+                    {{# } else if(d.status == '2' && d.supplierContractNo == null){ }}
                         已报价
                     {{# }  }}
                 </script>

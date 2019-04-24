@@ -94,33 +94,31 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
         var data = checkStatus.data;
         var totalFee = 0;
         if(obj.event === 'evScmSubmit'){
-            var ids = null;
+            var orderSupplierList = new Array();
             var popupData = {data:{}};
             popupData.data = data;
             for (var i=0;i<data.length;i++){
                 var forSt = data[i].totalFee;
-                if (ids == null){
-                    ids = ids + data[i].id;
-                } else {
-                    ids = ids + ',' + data[i].id;
-                }
+                orderSupplierList.push({id:data[i].id,orderId:data[i].orderId,orderType:data[i].orderType});
                 totalFee += forSt;
             }
-            console.log("totalFee:"+totalFee);
+            //console.log("totalFee:"+totalFee);
             // 金额转换为中文大写
             convertSubtotal = convertCurrency.conversion(totalFee);
             popupData.totalFee = totalFee;
             popupData.convertSubtotal = convertSubtotal;
-            console.log(popupData);
+            //console.log(popupData);
             admin.popup({
                 title: 'PCB合同'
                 ,area: ['100%', '100%']
                 ,btn: ['生成合同', '取消']
                 ,yes: function (index, layero) {
                     layer.confirm('是否生成合同?', function(index){
-                        admin.req({
+                        $.ajax({
                             type: 'post',
-                            data: {ids},
+                            headers: {access_token:layui.data('layuiAdmin').access_token},
+                            data:  JSON.stringify(orderSupplierList),
+                            contentType: "application/json;charset=utf-8",
                             url: setter.baseUrl+'/scm/pcborder/createContractBeOt',
                             success: function (data) {
                                 if (data.code == '0'){
@@ -133,9 +131,9 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
                     });
                 }
                 ,success: function (layero, index) {
-                view(this.id).render('scmManagement/iframeWindow/outs_contract',popupData).done(function () {
-                });
-            }
+                    view(this.id).render('scmManagement/iframeWindow/outs_contract',popupData).done(function () {
+                    });
+                }
             })
         }
     });
