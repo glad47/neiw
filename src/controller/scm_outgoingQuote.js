@@ -254,7 +254,20 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     })
                 }
             });
-        } 
+        } else if (obj.event == 'look') {
+            layer.msg('查看供应商信息');
+        } else if (obj.event == 'submit') {
+            layer.msg('提交供应商信息');
+            admin.req({
+               type: 'post',
+               data: '',
+               url: setter.baseUrl + '',    // 提交供应商信息
+                success: function () {
+                   layer.alert('供应商信息提交成功！');
+                   table.reload('scm_Tabpcb_outgoing_quote');
+                }
+            });
+        }
     });
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 钢网订单-外发报价
@@ -425,7 +438,20 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     })
                 }
             });
-        } 
+        } else if (obj.event == 'look') {
+            layer.msg('查看供应商信息');
+        } else if (obj.event == 'submit') {
+            layer.msg('提交供应商信息');
+            admin.req({
+                type: 'post',
+                data: '',
+                url: setter.baseUrl + '',    // 提交供应商信息
+                success: function () {
+                    layer.alert('供应商信息提交成功！');
+                    table.reload('scm_Tabpcb_outgoing_quote');
+                }
+            });
+        }
     })
 
     form.on('submit(LAY-app-orderReview-search)', function (data) {
