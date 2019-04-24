@@ -58,7 +58,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
                 ,{field: 'supplierNo', title: '供应商编号', width: 124}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117}
                 ,{field: 'productNo', title: '聚谷型号', width: 124}
-                ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
+                ,{field: 'pcbName', title: '聚谷物料号', width: 144}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
                 ,{field: 'unitPrice', title: '单价', width: 96}
                 ,{field: 'engineeringFee', title: '工程费', width: 96}
@@ -251,7 +251,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
                 ,{field: 'supplierNo', title: '供应商编号', width: 124}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117}
                 ,{field: 'productNo', title: '聚谷型号', width: 124}
-                ,{field: 'pcbName', title: '聚谷产品型号', width: 144}
+                ,{field: 'pcbName', title: '聚谷物料号', width: 144}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
                 ,{field: 'unitPrice', title: '单价', width: 96}
                 ,{field: 'engineeringFee', title: '工程费', width: 96}

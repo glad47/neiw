@@ -64,7 +64,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'finishPcsNumber',title: '已交PCS数', templet: '<div>{{ d.finishPcsNumber || 0 }}</div>'}
                 ,{field: 'courierCompany',title: '快递公司'}
                 ,{field: 'courierOrderNo',title: '快递单号'}
-                ,{field: 'pcbName',title: '聚谷产品型号', width: 132}
+                ,{field: 'pcbName',title: '256', width: 132}
                 ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
             ]]
             ,done: function (res, curr, count) {
@@ -154,6 +154,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('查看订单协同');
         } else if (obj.event == 'chxx') {
             // console.log(data)
+            var isNullShippingInfo;
             admin.req({
                type: 'post',
                url: setter.baseUrl + 'iqc/shippinginfo/info/'+data.id,
@@ -162,8 +163,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                    data.shippingInfo = res.shippingInfo;
                    if (res.shippingInfo != null) {
                        shippingInfo = res.shippingInfo;
+                       isNullShippingInfo = false;
                    } else {
                        layer.msg("当前没有数据");
+                       isNullShippingInfo = true;
                    }
 
                    admin.popup({
@@ -197,6 +200,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                        url = "";
                                    }
                                    var field = data.field;
+                                   if (!isNullShippingInfo) {
+                                       // delete field.orderId;
+                                       field.orderId = 0;
+                                   }
                                    console.log(field);
                                    admin.req({
                                        url: setter.baseUrl + url,
@@ -208,10 +215,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                            }else {
                                                layer.msg(data.msg,{icon: 5});
                                            }
-                                           // layui.table.reload('article_Table_blog'); //重载表格
+                                           layui.table.reload('iqcMana_outBound'); //重载表格
                                            layer.close(index); //执行关闭
                                        }
-                                   })
+                                   });
                                    return false;
                                });
                            });
@@ -257,7 +264,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'finishPcsNumber',title: '已交PCS数', templet: '<div>{{ d.finishPcsNumber || 0 }}</div>'}
                 ,{field: 'courierCompany',title: '快递公司'}
                 ,{field: 'courierOrderNo',title: '快递单号'}
-                ,{field: 'pcbName',title: '聚谷产品型号', width: 132}
+                ,{field: 'pcbName',title: '256', width: 132}
                 ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
             ]]
             ,done: function (res, curr, count) {

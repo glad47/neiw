@@ -66,7 +66,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'productNo',title: 'P/N', minWidth: 110}
                 ,{field: 'courierCompany',title: '快递公司', minWidth: 110}
                 ,{field: 'courierOrderNo',title: '快递单号', minWidth: 110}
-                ,{field: 'pcbName',title: '聚谷产品型号', minWidth: 110}
+                ,{field: 'pcbName',title: '聚谷物料号', minWidth: 110}
                 ,{field: 'supplierContractNo',title: '供应商合同', minWidth: 140}
                 ,{field: 'supplierId',title: '供应商id', hide: true}
                 ,{fixed: 'right', title:'操作', toolbar: '#iqcManaNgveiw_tabbar',width: 150}
@@ -216,7 +216,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'productNo',title: 'P/N', minWidth: 110}
                 ,{field: 'courierCompany',title: '快递公司', minWidth: 110}
                 ,{field: 'courierOrderNo',title: '快递单号', minWidth: 110}
-                ,{field: 'pcbName',title: '聚谷产品型号', minWidth: 110}
+                ,{field: 'pcbName',title: '聚谷物料号', minWidth: 110}
                 ,{field: 'supplierContractNo',title: '供应商合同', minWidth: 140}
                 ,{field: 'supplierId',title: '供应商id', hide: true}
                 ,{fixed: 'right', title:'操作', toolbar: '#iqcManaNgveiw_tabbarS',width: 150}

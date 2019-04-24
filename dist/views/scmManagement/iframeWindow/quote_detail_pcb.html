@@ -6,7 +6,7 @@
                 <tbody>
                 <tr>
                     <td>报价单号</td>
-                    <td>{{ d.params.productNo }}</td>
+                    <td>{{ d.params.quoteOrderNo }}</td>
                     <td>报价时间</td>
                     <td>{{ d.params.gmtCreate }}</td>
                     <td><strong>内部报价</strong></td>
@@ -35,7 +35,7 @@
                     <!--<td>聚谷订单号</td>-->
                     <!--<td>{{ d.params.orderId }}</td>-->
                     <td>聚谷型号</td>
-                    <td>{{ d.params.orderId || '' }}</td>
+                    <td>{{ d.params.productNo || '' }}</td>
                     <td>工程费</td>
                     <td>
                         <input class="layui-input" type="text" value="{{ d.params.engineeringFee || '0' }}" id="qt_pcb_engineeringFee">
@@ -49,8 +49,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>聚谷产品型号</td>
-                    <td>{{ d.params.productNo || '' }}</td>
+                    <td>聚谷物料号</td>
+                    <td>{{ d.params.pcbName || '' }}</td>
                     <td>加急费</td>
                     <td>{{ d.params.overworkFee || '0' }}</td>
                     <td></td>

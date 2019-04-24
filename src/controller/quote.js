@@ -1143,7 +1143,6 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     function quotePCBTotalPrice() {
         var shippingPrice = $("#shippingPrice").val();
         pcbTo.shippingPrice = parseFloat(shippingPrice);
-        // console.log("pcbTo.shippingPrice:"+pcbTo.shippingPrice);
         $.each(pcbTo, function (i, val) {
             if (val == "" || val == null || isNaN(val)) {
                 pcbTo[i] = 0;
@@ -1153,10 +1152,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         var shippingPrice = parseFloat(pcbTo.shippingPrice);
         var totalPrice = (pcbCost+shippingPrice).toFixed(2);
         pcbTo.totalPrice = totalPrice;
-        // pcb_container.postFee = data.data.shippingCost;
-        // public_data.postFee = data.data.shippingCost;
-        console.log("totalPrice:"+totalPrice);
-        pcb_container.subtotal = pcbTo.totalPrice;
+        pcb_container.subtotal = pcbCost;
         tp.totalPriced = pcbTo.totalPrice;
         $("#totalPrice").val(pcbTo.totalPrice);
     }

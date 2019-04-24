@@ -1,12 +1,21 @@
 <title>出货信息</title>
 <div class="layui-fluid">
     <script type="text/html" template lay-done="layui.data.done(d);">
+        {{# if(d.params.shippingInfo == null){ }}
+            {{# d.params.shippingInfo = {'id':'','country':'','freight':'','courierName':'','courierNumber':'','deliveryDate':'','arrivalDate':''} }}
+        {{# } }}
     <form class="layui-form">
         <div class="layui-form-item" style="display: none;">
             <div class="layui-inline">
+                <label class="layui-form-label">OrderID：</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="orderId" autocomplete="off" class="layui-input" value="{{ d.params.id || '' }}">
+                </div>
+            </div>
+            <div class="layui-inline">
                 <label class="layui-form-label">ID：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="orderId" autocomplete="off" class="layui-input" value="{{ d.params.id || '' }}">
+                    <input type="number" name="id" autocomplete="off" class="layui-input" value="{{ d.params.shippingInfo.id || '' }}">
                 </div>
             </div>
         </div>
@@ -84,7 +93,7 @@
                 </div>
             </div>
         </div>
-        <div class="layui-form-item">
+        <div class="layui-form-item" style="display: none;">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <button class="layui-btn outbound-submit" lay-submit lay-filter="fomrOutboundInfo" type="button">提交</button>
