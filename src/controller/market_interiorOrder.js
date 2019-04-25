@@ -150,7 +150,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 ,{field: 'quoteGerberPath',title: 'quoteGerberPath',hide: true}
                 ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',hide: true}
                 ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',hide: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#interior_order_Bar', minWidth:256, width: 256}
+                ,{fixed: 'right', title:'操作', toolbar: '#interior_order_Bar', width: 256}
             ]]
             ,done: function (res, curr, count) {
                 var data = res.data;    //获取表格所有数据对象

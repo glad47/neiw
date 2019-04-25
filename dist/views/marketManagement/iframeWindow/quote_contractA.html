@@ -52,17 +52,19 @@
             .contract-module-four-rig a{font-weight: 500;font-size: 15px;}
             .contract-module-four-rig a:last-of-type{float: right;}
             /*模块五 底部信息*/
-            .contract-module-five{margin-top: 50px;color: black;}
-            .contract-module-five a{color: black;}
+            .contract-module-five{margin-top: 50px;color: #7c7c7c;}
+            .contract-module-five a{color: #7c7c7c;}
             .contract-module-five ul li,.contract-module-four ul li,.contract-module-two ul li,.contract-module-one ul li{padding-left: 10px;}
             /*.contract-bank-ul li a{text-align: right;}*/
             .cmo-lable,.cmo-strong{display: inline-block;width: 100px;}
             .contract-module-one a{padding-left: 20px;}
+            .contract-module-one table .layui-form-label{padding: 1px 15px;}
             .contract-module-two span{display: inline-block;width: 100px;}
             .contract-module-two a{padding-left: 20px;}
+            .contract-module-one table>tbody>tr>td:first-of-type>label.layui-form-label{text-align: left !important;}
         </style>
         <!--顶部logo-->
-        <div class="contract-top-logo layui-col-md12">
+        <div class="contract-top-logo layui-col-md12" style="padding: 0 0 20px 0px;">
             <div class="lef-logo layui-col-md6">
                 <img src="../../../src/style/res/logoMax.png">
             </div>
@@ -83,11 +85,19 @@
                 <table style="width: 100%;line-height: 20px;">
                     <tbody>
                     <tr>
-                        <td>
+                        <td colspan="2">
                             <label class="layui-form-label">
                                 Importer：
                             </label>
                             <label class="layui-form-label" style="width: 130px;text-align: left;"></label>
+                        </td>
+                    </tr>
+                    <!--2019-04-23 新加-->
+                    <tr>
+                        <td>
+                            <!--Company Name:-->
+                            <label class="layui-form-label">Company：</label>
+                            <label class="layui-form-label" style="width: 130px;text-align: left;">{{ d.params.companyName || '' }}</label>
                         </td>
                         <td>
                             <label class="cmo-lable" style="width: 140px;">
@@ -106,12 +116,10 @@
                             </label>
                         </td>
                     </tr>
-                    <!--2019-04-23 新加-->
                     <tr>
                         <td>
-                            <!--Company Name:-->
-                            <label class="layui-form-label">Company：</label>
-                            <label class="layui-form-label" style="width: 130px;text-align: left;">{{ d.params.companyName || '' }}</label>
+                            <label class="cmo-lable" style="width: 75px;padding-left: 15px;">Date:</label>
+                            <label class="cmo-lable" style="width: unset;padding-left: 36px;" id="topDate">Feb 15, 2010</label>
                         </td>
                         <td>
                             <label class="cmo-lable" style="width: 140px;text-align: left;">PAYMENT TERM:</label>
@@ -120,25 +128,14 @@
                     </tr>
                     <tr>
                         <td>
-                            <!--Addr:-->
-                            <label class="layui-form-label">Add：</label>
-                            <label class="layui-form-label" style="width: unset;text-align: left;">{{ d.params.address || '' }},{{ d.params.city || '' }},{{ d.params.country || ''}}</label>
-                        </td>
-                        <td>
-                            <label class="cmo-lable" style="width: 156px;">Date:</label>
-                            <label class="cmo-lable" style="width: unset;" id="topDate">Feb 15, 2010</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <label class="layui-form-label">
                                 Contact：
                             </label>
-                            <label class="layui-form-label" style="width: 130px;text-align: left;">{{ d.params.contact }}</label>
+                            <label class="layui-form-label" style="width: unset;text-align: left;">{{ d.params.contact }}</label>
                         </td>
                         <td>
-                            <label class="layui-form-label" style="width: 144px;text-align: left;padding: 9px 0;">DESTINATION：</label>
-                            <label class="layui-form-label" style="width: unset;float: unset;display: inline-block;">{{ d.params.country || ''}}</label>
+                            <label class="cmo-lable" style="width: 140px;">DELIVERY TYPE:</label>
+                            <label class="layui-form-label" style="width: 130px;float: unset;display: inline-block;text-align: left;">{{ d.params.deliveryType || '' }}</label>
                         </td>
                     </tr>
                     <tr>
@@ -147,9 +144,9 @@
                             <label class="layui-form-label">Telephone：</label>
                             <label class="layui-form-label" style="width: 130px;text-align: left;">{{ d.params.mobilePhone || '' }}</label>
                         </td>
-                        <td style="width: 50%;">
-                            <label class="cmo-lable" style="width: 140px;text-align: left;">PRODUCT ORGIN:</label>
-                            <label class="layui-form-label" style="width: unset;float: unset;display: inline-block;">China</label>
+                        <td>
+                            <label class="layui-form-label" style="width: 144px;text-align: left;padding: 0;">DESTINATION：</label>
+                            <label class="layui-form-label" style="width: unset;float: unset;display: inline-block;">{{ d.params.country || ''}}</label>
                         </td>
                     </tr>
                     <tr>
@@ -157,9 +154,16 @@
                             <label class="layui-form-label">Zip/Code：</label>
                             <label class="layui-form-label" style="width: 130px;text-align: left;">{{d.params.postcode || ''}}</label>
                         </td>
-                        <td>
-                            <label class="cmo-lable" style="width: 140px;">DELIVERY TYPE:</label>
-                            <label class="layui-form-label" style="width: 130px;float: unset;display: inline-block;text-align: left;">{{ d.params.deliveryType || '' }}</label>
+                        <td style="width: 50%;">
+                            <label class="cmo-lable" style="width: 140px;text-align: left;">PRODUCT ORGIN:</label>
+                            <label class="layui-form-label" style="width: unset;float: unset;display: inline-block;">China</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <!--Addr:-->
+                            <label class="layui-form-label">Add：</label>
+                            <label class="layui-form-label" style="width: unset;text-align: left;">{{ d.params.address || '' }},{{ d.params.city || '' }},{{ d.params.country || ''}}</label>
                         </td>
                     </tr>
                     </tbody>

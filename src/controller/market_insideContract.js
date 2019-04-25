@@ -255,9 +255,9 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                                 });
                             }
                             ,btn2: function (index, layero) {
-                                window.location.reload();
                                 document.body.innerHTML=document.getElementById("quoteContract_AllB").innerHTML;
                                 window.print();
+                                window.location.reload();
                             }
                             ,success: function (layero, index) {
                                 popupData.htmlType = 1;     //页面标识 1为内部合同 主要用于判断头部左侧标题
@@ -410,9 +410,9 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                                         printId = "quoteContract_AllB";
                                     }
                                     layer.alert(printId);
-                                    window.location.reload();
                                     document.body.innerHTML=document.getElementById(printId).innerHTML;
                                     window.print();
+                                    window.location.reload();
                                 }
                                 // btn2: function(index, layero){}
                                 ,success: function (layero, index) {
@@ -824,9 +824,9 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                         });
                     }
                     ,btn2: function (index, layero) {
-                        window.location.reload();
                         document.body.innerHTML=document.getElementById("quoteContract_AllB").innerHTML;
                         window.print();
+                        window.location.reload();
                     }
                     ,success: function (layero, index) {
                         popupData.htmlType = 1;     //页面标识 1为内部合同 主要用于判断头部左侧标题
