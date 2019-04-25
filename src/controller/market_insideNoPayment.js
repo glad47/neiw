@@ -379,8 +379,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                                             } else {
                                                 newEstTime = jstools.TimeContrast(timeArray);
                                             }
-                                            $("#contractBotDate").text(newEstTime);
-                                            $("#topDate").text(newEstTime);
+                                            $("#contractBotDate").text(newEstTime.substring(0,10));
+                                            $("#topDate").text(newEstTime.substring(0,10));
                                         }
                                     });
                                 }
@@ -650,6 +650,29 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                                     console.log(popupData);
                                     view(this.id).render(viewName, popupData).done(function () {
                                         productNo = null; // 初始化订单号
+                                        // 实时时间设置   最新时间显示
+                                        var timeArray = [];     // 修改时间
+                                        var ctimeArray = [];    // 创建时间
+                                        var newEstTime;
+                                        console.log(11111);
+                                        if ( sameData != null) {
+                                            var nullNum = 0;
+                                            for (var i=0;i<sd_len;i++) {
+                                                timeArray[i] =  sameData[i].gmtModified;
+                                                ctimeArray[i] = sameData[i].gmtCreate;
+                                                if (timeArray[i] == null) {
+                                                    nullNum ++;
+                                                }
+                                            }
+                                            if (nullNum == sd_len) {   // 判断 修改时间数组 是否全为null
+                                                newEstTime = jstools.TimeContrast(ctimeArray);
+                                                console.log(ctimeArray);
+                                            } else {
+                                                newEstTime = jstools.TimeContrast(timeArray);
+                                            }
+                                            $("#contractBotDateS").text(newEstTime.substring(0,10));
+                                            $("#topDate").text(newEstTime.substring(0,10));
+                                        }
                                     });
                                 }
                             });

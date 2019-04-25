@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form','laydate', 'jsTools'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate', 'jsTools', 'requestInterface'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -15,6 +15,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
         ,element = layui.element;
         var $ = layui.jquery;
         var jstools = layui.jsTools;
+        var requestInterface = layui.requestInterface;
 
     tabRenderPCB();
     // 全局变量
@@ -28,7 +29,9 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
         companyName: '',
         country: '',
         city: '',
-        address: ''
+        address: '',
+        mobilePhone: '',
+        postcode: ''
     };
     // 表格对象
     var pcbtabObj;
@@ -309,8 +312,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                                         } else {
                                             newEstTime = jstools.TimeContrast(timeArray);
                                         }
-                                        $("#contractBotDate").text(newEstTime);
-                                        $("#topDate").text(newEstTime);
+                                        $("#contractBotDate").text(newEstTime.substring(0,10));
+                                        $("#topDate").text(newEstTime.substring(0,10));
                                     }
 
                                 });
@@ -465,8 +468,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                                             } else {
                                                 newEstTime = jstools.TimeContrast(timeArray);
                                             }
-                                            $("#contractBotDate").text(newEstTime);
-                                            $("#topDate").text(newEstTime);
+                                            $("#contractBotDate").text(newEstTime.substring(0,10));
+                                            $("#topDate").text(newEstTime.substring(0,10));
                                         }
                                     });
                                 }
@@ -774,13 +777,17 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             pTotala += parseFloat(data[i].totalStencilFee);
         }
         popupData.total = pTotala;
-        popupData.userName = userData.userName;
-        popupData.companyName = userData.companName;
-        popupData.country = userData.country;
-        popupData.city = userData.city;
-        popupData.address = userData.address;
-        popupData.mobilePhone = data.user.mobilePhone;
-        popupData.postcode = data.user.postcode;
+
+        var userInfo = requestInterface.ContractGetUserInfo(setter.baseUrl+"sys/consumer/user/info/"+data[0].userId);
+        popupData.userName = userInfo.userName;
+        popupData.companyName = userInfo.companName;
+        popupData.country = userInfo.country;
+        popupData.city = userInfo.city;
+        popupData.address = userInfo.address;
+        popupData.mobilePhone = userInfo.mobilePhone;
+        popupData.postcode = userInfo.postcode;
+        popupData.paymentType = userInfo.paymentType;
+        popupData.deliveryType = userInfo.deliveryType;
 
         switch(obj.event){
             case 'submit':
@@ -832,6 +839,28 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                         popupData.htmlType = 1;     //页面标识 1为内部合同 主要用于判断头部左侧标题
                         view(this.id).render(viewName, popupData).done(function () {
                             productNo = null; // 初始化订单号
+                            // 实时时间设置   最新时间显示
+                            var timeArray = [];     // 修改时间
+                            var ctimeArray = [];    // 创建时间
+                            var newEstTime;
+                            if ( checkStatus.data != null) {
+                                var nullNum = 0;
+                                for (var i=0;i<checkStatus.data.length;i++) {
+                                    timeArray[i] = checkStatus.data[i].gmtModified;
+                                    ctimeArray[i] = checkStatus.data[i].gmtCreate;
+                                    if (timeArray[i] == null) {
+                                        nullNum ++;
+                                    }
+                                }
+                                if (nullNum == checkStatus.data.length) {   // 判断 修改时间数组 是否全为null
+                                    newEstTime = jstools.TimeContrast(ctimeArray);
+                                    console.log(ctimeArray);
+                                } else {
+                                    newEstTime = jstools.TimeContrast(timeArray);
+                                }
+                                $("#contractBotDateS").text(newEstTime.substring(0,10));
+                                $("#topDate").text(newEstTime.substring(0,10));
+                            }
                         });
                     }
                 });

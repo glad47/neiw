@@ -306,8 +306,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                                             } else {
                                                 newEstTime = jstools.TimeContrast(timeArray);
                                             }
-                                            $("#contractBotDate").text(newEstTime);
-                                            $("#topDate").text(newEstTime);
+                                            $("#contractBotDate").text(newEstTime.substring(0,10));
+                                            $("#topDate").text(newEstTime.substring(0,10));
                                         }
 
                                     });

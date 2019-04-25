@@ -83,13 +83,21 @@
             <div class="layui-inline">
                 <label class="layui-form-label">发货日期：</label>
                 <div class="layui-input-inline">
+                    {{# if(d.params.shippingInfo.deliveryDate != null) { }}
                     <input type="date" name="deliveryDate" autocomplete="off" class="layui-input" id="outboundDeliveryDate" value="{{ d.params.shippingInfo.deliveryDate.substring(0,10) || '' }}">
+                    {{# } else { }}
+                    <input type="date" name="deliveryDate" autocomplete="off" class="layui-input" id="outboundDeliveryDate" value="">
+                    {{# } }}
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">到货日期：</label>
                 <div class="layui-input-inline">
+                    {{# if(d.params.shippingInfo.arrivalDate != null){ }}
                     <input type="date" name="arrivalDate" autocomplete="off" class="layui-input" id="outboundArrivalDate" value="{{ d.params.shippingInfo.arrivalDate.substring(0,10) || '' }}">
+                    {{# } else{ }}
+                    <input type="date" name="arrivalDate" autocomplete="off" class="layui-input" id="outboundArrivalDate" value="">
+                    {{# } }}
                 </div>
             </div>
         </div>

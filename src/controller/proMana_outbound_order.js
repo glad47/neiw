@@ -59,11 +59,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status'}      // 1 ＝ 待报价
                 ,{field: 'invoiceNo',title: '合同号', minWidth: 165}
                 ,{field: 'productNo',title: '聚谷型号', minWidth: 141}
-                ,{field: 'deliveryTime',title: '交期'}
+                ,{field: 'deliveryDate',title: '交期', templet: '#outboundDDatePCB'}
                 ,{field: 'quantityPcs',title: '订单PCS数'}
                 ,{field: 'finishPcsNumber',title: '已交PCS数', templet: '<div>{{ d.finishPcsNumber || 0 }}</div>'}
-                ,{field: 'courierCompany',title: '快递公司'}
-                ,{field: 'courierOrderNo',title: '快递单号'}
+                ,{field: 'courierName',title: '快递公司'}
+                ,{field: 'courierNumber',title: '快递单号'}
                 ,{field: 'pcbName',title: '256', width: 132}
                 ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
             ]]
@@ -238,11 +238,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status'}      // 1 ＝ 待报价
                 ,{field: 'invoiceNo',title: '合同号', minWidth: 165}
                 ,{field: 'productNo',title: '聚谷型号', minWidth: 141}
-                ,{field: 'deliveryTime',title: '交期'}
+                ,{field: 'deliveryDate',title: '交期', templet: '#outboundDDateStencil'}
                 ,{field: 'quantityPcs',title: '订单PCS数'}
                 ,{field: 'finishPcsNumber',title: '已交PCS数', templet: '<div>{{ d.finishPcsNumber || 0 }}</div>'}
-                ,{field: 'courierCompany',title: '快递公司'}
-                ,{field: 'courierOrderNo',title: '快递单号'}
+                ,{field: 'courierName',title: '快递公司'}
+                ,{field: 'courierNumber',title: '快递单号'}
                 ,{field: 'pcbName',title: '256', width: 132}
                 ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
             ]]

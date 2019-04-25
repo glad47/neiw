@@ -1,0 +1,2 @@
+/** layuiAdmin.pro-v1.0.0 LPPL License By http://www.layui.com/admin/ */
+ ;"use strict";layui.define(["admin","index"],function(e){layui.jquery;admin=layui.admin;var n={ContractGetUserInfo:function(e){var n=new Object;return admin.req({type:"get",url:e,async:!1,success:function(e){return null==e.user?"没有查询到用户信息":void(n=e.user)}}),n}};e("requestInterface",n)});
