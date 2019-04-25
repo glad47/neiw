@@ -75,11 +75,15 @@
             <div class="layui-tab-item layui-show">
                 <table class="layui-table" id="scm_Tabpcb_outgoing_quote" lay-filter="scm_Tabpcb_outgoing_quote"></table>
                 <script type="text/html" id="pcb-file">
-                    {{# var arr = d.gerberPath.slice(6,-1) }}
-                    {{# d.gerberPath = arr }}
-                    <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.quoteGerberPath }}&fileName={{ d.quoteGerberName }}">
-                        <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" id="pcbfile-i" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
-                    </a>
+                    {{# if(d.gerberPath != null) { }}
+                        {{# var arr = d.gerberPath.slice(6,-1) }}
+                        {{# d.gerberPath = arr }}
+                        <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.quoteGerberPath }}&fileName={{ d.quoteGerberName }}">
+                            <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" id="pcbfile-i" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
+                        </a>
+                    {{# } else{ }}
+                        <a style="color: orangered">文件丢失</a>
+                    {{# } }}
                 </script>
                 <script type="text/html" id="stencil-file">
                     {{# var arr = d.gerberPath.slice(6,-1) }}

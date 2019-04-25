@@ -612,6 +612,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                     popupData.country = data.user.country;
                     popupData.city = data.user.city;
                     popupData.address = data.user.address;
+                    popupData.contact = data.user.contact;
                     admin.req({
                         type: 'post',
                         data: {'contractNo': quoteOrderNo},

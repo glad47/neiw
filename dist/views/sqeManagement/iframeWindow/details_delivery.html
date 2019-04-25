@@ -75,9 +75,7 @@
             <tr>
                 <td>交货日期</td>
                 <td>
-                    {{# var t = new Date() }}
-                    {{# var deliveryTime = t.toLocaleDateString() }}
-                    {{ deliveryTime }}
+                    {{ d.params.data.deliveryTime.substring(0,10) }}
                 </td>
                 <td>订单数量(PCS)</td>
                 <td id="orderPcsNumber">

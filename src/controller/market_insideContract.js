@@ -702,6 +702,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                     popupData.address = data.user.address;
                     popupData.mobilePhone = data.user.mobilePhone;
                     popupData.postcode = data.user.postcode;
+                    popupData.contact = data.user.contact;
                     admin.req({
                         type: 'post',
                         data: {'quoteOrderNo': quoteOrderNo},
@@ -786,6 +787,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
         popupData.address = userInfo.address;
         popupData.mobilePhone = userInfo.mobilePhone;
         popupData.postcode = userInfo.postcode;
+        popupData.contact = userInfo.contact;
         popupData.paymentType = userInfo.paymentType;
         popupData.deliveryType = userInfo.deliveryType;
 

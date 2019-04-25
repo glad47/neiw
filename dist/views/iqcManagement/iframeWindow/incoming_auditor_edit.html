@@ -5,42 +5,42 @@
         <tbody>
         <tr>
             <td>合同号</td>
-            <td>{{ d.params.data.supplierContractNo || '' }}</td>
+            <td>{{ d.params.supplierContractNo || '' }}</td>
             <td>订单数量(PCS)</td>
-            <td>{{ d.params.data.orderPcsNumber }}</td>
+            <td>{{ d.params.orderPcsNumber }}</td>
         </tr>
         <tr>
             <td>供应商编号</td>
-            <td>{{ d.params.data.supplierId }}</td>
+            <td>{{ d.params.supplierId }}</td>
             <td>已交数量(PCS)</td>
-            <td>{{ d.params.data.donePcsNumber }}</td>
+            <td>{{ d.params.donePcsNumber }}</td>
         </tr>
         <tr>
             <td>供应商厂编</td>
-            <td>{{ d.params.data.factoryMake || '' }}</td>
+            <td>{{ d.params.factoryMake || '' }}</td>
             <td>此次数量(PCS)</td>
-            <td>{{ d.params.data.currPcsNumber }}</td>
+            <td>{{ d.params.currPcsNumber }}</td>
         </tr>
         <tr>
             <td>聚谷型号</td>
-            <td>{{ d.params.data.productNo}}</td>
+            <td>{{ d.params.productNo}}</td>
             <td>未交数量(PCS)</td>
-            <td>{{ d.params.data.surplusPcsNumber || '' }}</td>
+            <td>{{ d.params.surplusPcsNumber || '' }}</td>
         </tr>
         <tr>
             <td>来料时间</td>
-            <td>{{ d.params.data.deliveryTime.substring(0,10) }}</td>
+            <td>{{ d.params.deliveryTime.substring(0,10) }}</td>
             <td>不合格数量(PCS)</td>
             <td>
-                <input type="number" class="layui-input" name="failPcsNumber" value="{{ d.params.data.failPcsNumber || '0' }}">
+                <input type="number" class="layui-input" name="failPcsNumber" value="{{ d.params.failPcsNumber || '0' }}">
             </td>
         </tr>
         <tr>
             <td>送货单号</td>
-            <td>{{ d.params.data.deliveryOrderNo || '' }}</td>
+            <td>{{ d.params.deliveryOrderNo || '' }}</td>
             <td>尾数数量(PCS)</td>
             <td>
-                <input type="number" class="layui-input" name="pcsMantissa" value="{{ d.params.data.pcsMantissa || '0' }}">
+                <input type="number" class="layui-input" name="pcsMantissa" value="{{ d.params.pcsMantissa || '0' }}">
             </td>
         </tr>
         </tbody>

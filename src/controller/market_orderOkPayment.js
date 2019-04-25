@@ -252,11 +252,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
         ,cols: [[
              {field: 'id', title: 'ID', hide: true}
+            ,{field: 'productNo', title: 'Product No', align:'center', width: 134}
             ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-okPayment-status'}
             ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
             ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
-            ,{field: 'productNo', title: 'Product No', align:'center', width: 134}
             ,{field: 'totalStencilFee', title: 'TotalStencilFee($)', align:'center', width: 144}
             ,{field: 'stencilType', title: 'Stencil Type', align:'center', width: 124}
             ,{field: 'stencilSide', title: 'Stencil Side', align:'center', width: 124}
@@ -394,6 +394,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,cols: [[
             {field: 'id', title: 'ID', hide: true},
             {field: 'quoteId', title: 'ID', hide: true}
+            ,{field: 'productNo', title: 'Product No', align:'center', width: 134}
             ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-smt-market-okPayment-status'}
             ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
@@ -401,7 +402,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'throughHolePartNum', title: 'Through Hole PartNum', align:'center', width: 224}
             ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
             ,{field: 'assemblySide', title: 'Assembly Side', align:'center', width: 165}
-            ,{field: 'productNo', title: 'Product No', align:'center', width: 134}
             ,{field: 'invoiceNo', title: 'Invoice No', align:'center', width: 134}
             ,{field: 'totalAssemblyFee', title: 'TotalAssemblyFee($)', align:'center', width: 144}
             ,{field: 'assemblyType', title: 'Stencil Type', align:'center', width: 124}

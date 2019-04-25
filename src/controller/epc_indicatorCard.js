@@ -60,12 +60,12 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'id', title: 'ID',hide: true}
-                ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
+                ,{field:'productNo',fixed: 'left', title: 'Product No', align:'center', width: 114}
+                ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
                 ,{field:'gerberName', title: '原始资料', align:'center', width: 254}
                 ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_file'}
                 ,{field:'productionGerberName', title: '生产资料', align:'center', width: 254, templet:'#quote_gerber_file'}
                 ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
-                ,{field:'productNo', title: 'Product No', align:'center', width: 114}
                 ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
                 ,{field:'layerNum', title: 'Layer', align:'center', width: 114}
                 ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}
@@ -401,11 +401,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'id', title: 'ID',hide: true}
-                ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
+                ,{field:'productNo', fixed: 'left',title: 'Product No', align:'center', width: 114}
+                ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
                 ,{field:'gerberName', title: '原始资料', align:'center', width: 254}
                 ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_fileS'}
                 ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
-                ,{field:'productNo', title: 'Product No', align:'center', width: 114}
                 ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
                 ,{field:'layerNum', title: 'Layer', align:'center', width: 114}
                 ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}
