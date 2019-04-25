@@ -154,7 +154,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools'], fun
                                     }
                                     data.orderSupplierId = Pdata.data.id;                               // 供应商订单id
                                     data.supplierNo = Pdata.data.supplierNo;                            // 供应商编号
-                                    data.deliveryTime = new Date().toLocaleDateString();                // 交期
+                                    data.deliveryTime = Pdata.data.deliveryTime.substring(0,10);               // 交期
                                     data.orderPcsNumber = Pdata.data.quantityPcs;                       // 订单PCS数
                                     data.orderId = Pdata.data.orderId;                                  // 订单id
                                     data.donePcsNumber = parseInt($("#donePcsNumber").text());          // 已交PCS数

@@ -99,32 +99,23 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     });
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(iqcIncom_auditor)', function (obj) {
-        var data = {data:{}};
-        data.data = obj.data;
-        var d_data = {};        // 公共发送的对象
-        d_data.id = obj.data.id;               // 供应商订单id
-        d_data.orderSupplierId = obj.data.orderSupplierId;    // 供应商订单id
-        d_data.supplierId = obj.data.supplierId;              // 供应商编号
-        d_data.factoryMake = obj.data.factoryMake;            // 供应商厂编
-        d_data.orderPcsNumber = obj.data.orderPcsNumber;      // 订单PCS数
-        d_data.donePcsNumber = obj.data.donePcsNumber;        // 已交PCS数
-        d_data.currPcsNumber = obj.data.currPcsNumber;        // 此次数量
-        d_data.orderPeriod = "";    // 订单周期
-        // d_data.totalPcsNumber = "";   // 总计 PCS
-        console.log(d_data);
+        var data = obj.data;
+        if (data.deliveryTime) {
+            data.deliveryTime = data.deliveryTime.substring(0,10);
+        }
+        console.log(data);
         if (obj.event == 'edit'){
             admin.popup({
                 title: 'PCB此批来料检验'
                 ,area: ['624px','494px']
                 ,btn: ['NG评审', 'NG批退', 'OK入库', '保存']
                 ,btn1: function (index, layero) {
-                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
-                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
-                    console.log(d_data);
+                    data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
+                    data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
                     layer.confirm('确定评审？', function () {
                         admin.req({
                             type: 'post',
-                            data: d_data,
+                            data: data,
                             url: setter.baseUrl+'iqc/pcborder/statusReview',
                             success: function (result) {
                                 table.reload('iqcIncom_auditor');
@@ -134,12 +125,12 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     });
                 },
                 btn2: function () {
-                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
-                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
+                    data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
+                    data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
                     layer.confirm('确定批退？', function () {
                         admin.req({
                             type: 'post',
-                            data: d_data,
+                            data: data,
                             url: setter.baseUrl+'iqc/pcborder/statusBack',
                             success: function (result) {
                                 table.reload('iqcIncom_auditor');
@@ -150,14 +141,12 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     return false;
                 },
                 btn3: function () {
-                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
-                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
-                    d_data.orderId = data.orderId;
-                    console.log(data);
+                    data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
+                    data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
                     layer.confirm('确定入库？', function () {
                         admin.req({
                             type: 'post',
-                            data: d_data,
+                            data: data,
                             url: setter.baseUrl+'iqc/pcborder/statusOk',
                             success: function (result) {
                                 table.reload('iqcIncom_auditor');
@@ -168,12 +157,12 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     return false;
                 },
                 btn4: function () {
-                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
-                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
+                    data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
+                    data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
                     layer.confirm('确定保存？', function () {
                         admin.req({
                             type: 'post',
-                            data: d_data,
+                            data: data,
                             url: setter.baseUrl+'iqc/pcborder/updateOrderShipment',
                             success: function () {
                                 table.reload('iqcIncom_auditor');
