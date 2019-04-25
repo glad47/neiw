@@ -87,8 +87,9 @@ layui.define(function (exports) {
                     if (response.code =='0') {
                         // alert('File uploaded successfully');
                         if (saveObj != null && typeof saveObj != 'undefined') {
-                            saveObj.data.gerberName = saveObj.data.productionGerberName = saveObj.data.quoteGerberName;     // 正式资料-生产资料-原始资料
-                            saveObj.data.gerberPath = saveObj.data.productionGerberPath = saveObj.data.gerberPath = filePath;         // 正式路径-生产路径-原始路径
+                            saveObj.data.gerberName = saveObj.data.productionGerberName = saveObj.data.quoteGerberName;               // 正式资料-生产资料-原始资料
+                            saveObj.data.gerberPath = saveObj.data.productionGerberPath = saveObj.data.quoteGerberPath = filePath;         // 正式路径-生产路径-原始路径
+                            console.log(saveObj.data);
                             saveBackResults = saveObj.data;
                             if (saveObj.type === 0) {   // type 为0 则为原始资料 1 为正式资料  2 为生产资料
                                 // 删除正式资料字段

@@ -223,7 +223,6 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
                 }
             }
             for (var i=0;i<popupData.data.length;i++){
-                console.log("开始循环");
                 var forSt = popupData.data[i].subtotal;
                 subtotal += forSt;
                 console.log("subtotal:"+subtotal);
