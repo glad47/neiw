@@ -56,7 +56,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             }
             ,cols: [[
                 {type:'checkbox'}
-                ,{field: 'orderType',title: '订单类型', Width: 110, templet: '#order_type'}    //1=新单  2=返单    3=返单有改
+                ,{field: 'orderType',title: '订单类型', width: 110, templet: '#order_type'}    //1=新单  2=返单    3=返单有改
+                ,{field:'status', title: '状态', align:'center',templet: '#interiorOrderStatus',width: 110}
                 ,{field: 'productNo', title: '内部编码',minWidth: 130}
                 ,{field: 'gerberName',title: '文件名',minWidth: 160}
                 ,{field: 'pcbName',title: 'F/N',minWidth: 130}
@@ -86,7 +87,6 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 ,{field: 'subtotal',title: '总价', hide: true}
                 ,{field: 'boardType',title: '出货方式', hide: true}    // 1=单只 2=拼板
                 // ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-iQuote-status',width: 110}
-                ,{field:'status', title: '状态', align:'center',templet: '#Tabtb-pcb-market-iQuote-status',width: 110,hide: true}
                 ,{field: 'areaSq',title: '面积', hide: true}
                 ,{field: 'material',title: '材料', hide: true}
                 ,{field: 'productCode',title: '材料型号', hide: true}
@@ -110,7 +110,6 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 ,{field: 'nofHoles',title: '孔数', hide: true}
                 ,{field: 'viaProcess',title: '过孔方式', hide: true}
                 ,{field: 'stackUp',title: '压合', hide: true}
-                ,{field: 'status',title: '状态', hide: true}
                 ,{field: 'nofCore',title: '芯板数量', hide: true}
                 ,{field: 'nofPp',title: 'PP数量', hide: true}
                 ,{field: 'innerMinSpacing',title: '内层(线宽/线距)', hide: true}
@@ -422,8 +421,9 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             }
             ,cols: [[
                 {type:'checkbox'}
+                ,{field: 'productNo', title: '内部型号',minWidth: 130}
+                ,{field:'status', title: '状态', templet: '#interiorOrderStatus',width: 110}
                 ,{field: 'orderType',title: '订单类型', Width: 110, templet: '#order_type'}    //1=新单  2=返单    3=返单有改
-                ,{field: 'productNo', title: '内部编码',minWidth: 130}
                 ,{field: 'gerberName',title: '文件名',minWidth: 160}
                 ,{field: 'pcbName',title: 'F/N',minWidth: 130}
                 ,{field: 'orderNo',title: '客户PO'}
@@ -453,7 +453,6 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 ,{field: 'subtotal',title: '总价', hide: true}
                 ,{field: 'boardType',title: '出货方式', hide: true}    // 1=单只 2=拼板
                 // ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-iQuote-status',width: 110}
-                ,{field:'status', title: '状态', align:'center',templet: '#Tabtb-pcb-market-iQuote-status',width: 110,hide: true}
                 ,{field: 'areaSq',title: '面积', hide: true}
                 ,{field: 'material',title: '材料', hide: true}
                 ,{field: 'productCode',title: '材料型号', hide: true}
@@ -477,7 +476,6 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 ,{field: 'nofHoles',title: '孔数', hide: true}
                 ,{field: 'viaProcess',title: '过孔方式', hide: true}
                 ,{field: 'stackUp',title: '压合', hide: true}
-                ,{field: 'status',title: '状态', hide: true}
                 ,{field: 'nofCore',title: '芯板数量', hide: true}
                 ,{field: 'nofPp',title: 'PP数量', hide: true}
                 ,{field: 'innerMinSpacing',title: '内层(线宽/线距)', hide: true}

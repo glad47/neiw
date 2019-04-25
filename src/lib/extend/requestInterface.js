@@ -27,6 +27,26 @@ layui.define(['admin', 'index'],function (exports) {
                 }
             });
             return userInfo;
+        },
+
+        /**
+         * 外协合同 获取供应商信息【目前用于要求选框的选中】
+         */
+        GetSupplierInfo: function () {
+            var supplierInfo = new Object();
+            admin.req({
+                type: 'get',
+                url: url,
+                async: false,
+                success: function (data) {
+                    if (data.user != null) {
+                        supplierInfo = data.user;
+                    } else {
+                        return "没有查询到用户信息";
+                    }
+                }
+            });
+            return supplierInfo;
         }
     }
 

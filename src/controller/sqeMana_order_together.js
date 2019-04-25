@@ -157,6 +157,30 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             });
         } else if (obj.event == 'search'){
             layer.msg('查看订单协同');
+            admin.popup({
+                title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
+                ,area: ['45%', '70%']
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
+
+                    });
+                }
+            });
+        } else if (obj.event == 'del') {
+            layer.msg('删除操作！');
+            layer.confirm('确定删除？', function () {
+               admin.req({
+                   type: 'post',
+                   data: {'ids':data.id},
+                   url: setter.baseUrl + 'scm/ordersupplier/delete',
+                   success: function () {
+                       layer.alert('删除成功！');
+                       obj.del();
+                       table.reload('sqeManaOrderT_tabPcb');
+                       layer.closeAll();
+                   }
+               });
+            });
         }
     });
 

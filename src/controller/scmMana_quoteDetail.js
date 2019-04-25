@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form', 'convertCurrency'], function (exports) {
+layui.define(['admin','table','index','element','form', 'convertCurrency', 'requestInterface'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -14,6 +14,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
         ,element = layui.element;
     var $ = layui.jquery;
     var convertCurrency = layui.convertCurrency;
+    var requestInterface = layui.requestInterface;
 
     tabRenderPCB();
     // 全局变量
@@ -52,12 +53,12 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
             }
             ,cols: [[
                 {type:'checkbox'}
-                ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115, minWidth: 115}      // 1 ＝ 待报价
-                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172,minWidth: 172}
+                ,{field:'productNo', title: '内部型号', align:'center', width: 114}
+                ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115}      // 1 ＝ 待报价
+                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172}
                 ,{field: 'gmtCreate',title: '报价时间', width: 166}
                 ,{field: 'supplierNo', title: '供应商编号', width: 124}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-                ,{field: 'productNo', title: '聚谷型号', width: 124}
                 ,{field: 'pcbName', title: '聚谷物料号', width: 144}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
                 ,{field: 'unitPrice', title: '单价', width: 96}
@@ -120,7 +121,8 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
             convertSubtotal = convertCurrency.conversion(totalFee);
             popupData.totalFee = totalFee;
             popupData.convertSubtotal = convertSubtotal;
-            //console.log(popupData);
+            // 获取供应商信息
+            // popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'这里是查询供应商接的接口'+'数据');
             admin.popup({
                 title: 'PCB合同'
                 ,area: ['100%', '100%']
@@ -256,12 +258,12 @@ layui.define(['admin','table','index','element','form', 'convertCurrency'], func
             }
             ,cols: [[
                 {type:'checkbox'}
-                ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115, minWidth: 115}      // 1 ＝ 待报价
-                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172,minWidth: 172}
+                ,{field:'productNo', title: '内部型号', align:'center', width: 114}
+                ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115}      // 1 ＝ 待报价
+                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172}
                 ,{field: 'gmtCreate',title: '报价时间', width: 166}
                 ,{field: 'supplierNo', title: '供应商编号', width: 124}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-                ,{field: 'productNo', title: '聚谷型号', width: 124}
                 ,{field: 'pcbName', title: '聚谷物料号', width: 144}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
                 ,{field: 'unitPrice', title: '单价', width: 96}

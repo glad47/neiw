@@ -72,8 +72,26 @@
                     <a>返单有改</a>
                     {{# } }}
                 </script>
-                <script type="text/html" id="marketInteStatus">
-
+                <script type="text/html" id="interiorOrderStatus">
+                    {{# if(d.status == '1') { }}
+                        待报价
+                    {{# } else if(d.status == '2') { }}
+                        待确认
+                    {{# } else if(d.status == '3') { }}
+                        待支付
+                    {{# } else if(d.status == '4') { }}
+                        已支付
+                    {{# } else if(d.status == '5') { }}
+                        编写指示卡
+                    {{# } else if(d.status == '6') { }}
+                        工程已审核
+                    {{# } else if(d.status == '7') { }}
+                        供应商已确定
+                    {{# } else if(d.status == '8') { }}
+                        已入库
+                    {{# } else if(d.status == '9') { }}
+                        已出货
+                    {{# } }}
                 </script>
             </div>
             <!--钢网订单-->

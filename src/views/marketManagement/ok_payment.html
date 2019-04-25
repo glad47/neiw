@@ -184,6 +184,15 @@
                     </a>
                     {{# } }}
                 </script>
+                <script type="text/html" id="orderOkPaymentOrdertype">
+                    {{#  if(d.orderType =='1'){ }}
+                    <a style="color: green;">新单</a>
+                    {{#  } else if (d.orderType == '2'){ }}
+                    <a>返单</a>
+                    {{#  } else{ }}
+                    <a>返单有改</a>
+                    {{# } }}
+                </script>
             </div>
 
             <!--钢网订单-->
@@ -205,6 +214,15 @@
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_audit:delete") != -1 && d.isLock != 3){ }}
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="stencil-del">删除</a>
                     {{#  } }}
+                </script>
+                <script type="text/html" id="orderOkPaymentOrdertypeS">
+                    {{#  if(d.orderType =='1'){ }}
+                    <a style="color: green;">新单</a>
+                    {{#  } else if (d.orderType == '2'){ }}
+                    <a>返单</a>
+                    {{#  } else{ }}
+                    <a>返单有改</a>
+                    {{# } }}
                 </script>
             </div>
 
