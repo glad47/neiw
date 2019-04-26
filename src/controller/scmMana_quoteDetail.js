@@ -122,7 +122,8 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
             popupData.totalFee = totalFee;
             popupData.convertSubtotal = convertSubtotal;
             // 获取供应商信息
-            // popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'这里是查询供应商接的接口'+'数据');
+            popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+data[0].supplierId);
+            console.log(popupData);
             admin.popup({
                 title: 'PCB合同'
                 ,area: ['100%', '100%']
@@ -329,7 +330,8 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
             convertSubtotal = convertCurrency.conversion(totalFee);
             popupData.totalFee = totalFee;
             popupData.convertSubtotal = convertSubtotal;
-            console.log(popupData);
+            // 获取供应商信息
+            popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+data[0].supplierId);
             admin.popup({
                 title: 'PCB合同'
                 ,area: ['100%', '100%']

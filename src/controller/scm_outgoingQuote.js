@@ -256,17 +256,28 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 }
             });
         } else if (obj.event == 'look') {
-            layer.msg('查看供应商信息');
-        } else if (obj.event == 'submit') {
-            layer.msg('提交供应商信息');
-            admin.req({
-               type: 'post',
-               data: '',
-               url: setter.baseUrl + '',    // 提交供应商信息
-                success: function () {
-                   layer.alert('供应商信息提交成功！');
-                   table.reload('scm_Tabpcb_outgoing_quote');
+            admin.popup({
+                title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
+                ,area: ['45%', '70%']
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
+
+                    })
                 }
+            });
+        } else if (obj.event == 'submit') {
+            layer.confirm('确定提交？', function () {
+                admin.req({
+                    type: 'post',
+                    data: {'orderId': data.id},
+                    url: setter.baseUrl + 'scm/pcborder/skipSubmit',    // 提交供应商信息
+                    success: function () {
+                        layer.alert('供应商信息提交成功！', function () {
+                            table.reload('scm_Tabpcb_outgoing_quote');
+                            layer.closeAll();
+                        });
+                    }
+                });
             });
         }
     });
@@ -440,7 +451,15 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 }
             });
         } else if (obj.event == 'look') {
-            layer.msg('查看供应商信息');
+            admin.popup({
+                title: '订单号［'+data.productNo+']---'+'订单时间［'+data.gmtCreate+'］'
+                ,area: ['45%', '70%']
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/order_stencil_detail', data).done(function () {
+                    })
+                }
+
+            })
         } else if (obj.event == 'submit') {
             layer.msg('提交供应商信息');
             admin.req({

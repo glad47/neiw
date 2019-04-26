@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form','convertCurrency'], function (exports) {
+layui.define(['admin','table','index','element','form','convertCurrency', 'requestInterface'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -14,6 +14,7 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
         ,element = layui.element;
     var $ = layui.jquery;
     var convertCurrency = layui.convertCurrency;
+    var requestInterface = layui.requestInterface;
 
     tabRenderPCB();
     // 全局变量
@@ -233,7 +234,8 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
             console.log("convertSubtotal:"+convertSubtotal);
             popupData.subtotal = subtotal;
             popupData.convertSubtotal = convertSubtotal;
-            console.log(popupData);
+            // 获取供应商信息
+            popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+data.supplierId);
             admin.popup({
                 title: '外协合同'
                 ,area: ['100%', '100%']
@@ -463,7 +465,8 @@ layui.define(['admin','table','index','element','form','convertCurrency'], funct
             console.log("convertSubtotal:"+convertSubtotal);
             popupData.subtotal = subtotal;
             popupData.convertSubtotal = convertSubtotal;
-            console.log(popupData);
+            // 获取供应商信息
+            popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+data.supplierId);
             admin.popup({
                 title: '外协合同'
                 ,area: ['100%', '100%']
