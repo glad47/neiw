@@ -56,16 +56,18 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             }
             ,cols: [[
                 {type:'checkbox'}
-                ,{field: 'orderType',title: '订单类型', width: 110, templet: '#order_type'}    //1=新单  2=返单    3=返单有改
+                ,{field: 'productNo', title: '内部型号',minWidth: 130}
                 ,{field:'status', title: '状态', align:'center',templet: '#interiorOrderStatus',width: 110}
-                ,{field: 'productNo', title: '内部编码',minWidth: 130}
-                ,{field: 'gerberName',title: '文件名',minWidth: 160}
-                ,{field: 'pcbName',title: 'F/N',minWidth: 130}
+                ,{field: 'orderType',title: '订单类型', width: 110, templet: '#order_type'}    //1=新单  2=返单    3=返单有改
+                ,{field: 'pcbName',title: '客户型号',width: 130}
+                ,{field: 'invoiceNo',title: '合同号',width: 152}
                 ,{field: 'orderNo',title: '客户PO'}
-                ,{field: 'quoteOrderNo',title: '报价单号',minWidth: 130}
+                ,{field: 'courierName',title: '快递公司'}
+                ,{field: 'courierNumber',title: '快递单号'}
                 ,{field: 'gmtCreate',title: '创建时间'}
                 ,{field: 'gmtModified',title: '修改时间'}
                 // 型号占位
+                ,{field: 'gerberName',title: '文件名',minWidth: 160, hide: true}
                 ,{field: 'pcbType',title: 'PCB类型',minWidth: 130, hide: true}
                 ,{field: 'dimensionsX',title: '单只(X)', hide: true}
                 ,{field: 'dimensionsY',title: '单只(Y)', hide: true}

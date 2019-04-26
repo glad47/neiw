@@ -225,6 +225,7 @@
             <div>备注：</div>
             <div class="modul-four" style="display: flex;">
                 <ul style="width: 40%;">
+                    <script type="text/html" template>
                     <li>
                         一、质量技术及验收标准，需方按<input type="checkbox" checked> IPC-A-600G II级
                     </li>
@@ -238,11 +239,28 @@
                         四、交货要求：<input type="checkbox" checked> 发快递
                     </li>
                     <li>
-                        五、付款方式：<input type="checkbox" checked> 当月结
+                        五、付款方式：<input type="checkbox" checked>
+                        {{# if(d.params.supplierInfo.paymentType == '1'){ }}
+                            现金
+                        {{# } else if(d.params.supplierInfo.paymentType == '2'){ }}
+                            当月结
+                        {{# } else if(d.params.supplierInfo.paymentType == '3'){ }}
+                            月结30天
+                        {{# } else if(d.params.supplierInfo.paymentType == '4'){ }}
+                            月结60天
+                        {{# } }}
                     </li>
                     <li>
-                        五、票据方式：<input type="checkbox" checked> 收据
+                        五、票据方式：<input type="checkbox" checked>
+                        {{# if(d.params.supplierInfo.invoiceType == '1'){ }}
+                            收据
+                        {{# } else if(d.params.supplierInfo.invoiceType == '2'){ }}
+                            普票
+                        {{# } else if(d.params.supplierInfo.invoiceType == '3'){ }}
+                            增值税13%
+                        {{# } }}
                     </li>
+                    </script>
                 </ul>
                 <ul style="width: 48%;">
                     <li>八、条款说明：</li>
