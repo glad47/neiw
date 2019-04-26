@@ -35,7 +35,11 @@
                     <label class="layui-form-label">交期：</label>
                     <div class="layui-input-inline">
                         <!--日期处理-->
+                        {{# if(d.params.deliveryTime != null){ }}
                         <input name="deliveryTime" class="layui-input" type="text" id="deliveryDate" value="{{ d.params.deliveryTime.substring(0,10) }}">
+                        {{# } else { }}
+                        <input name="deliveryTime" class="layui-input" type="text" id="deliveryDate" value="">
+                        {{# } }}
                     </div>
                 </div>
             </script>

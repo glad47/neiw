@@ -137,11 +137,12 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     table.on('tool(scm_Tabpcb_outgoing_quote)', function(obj){
         var data = obj.data;
         var dIds_arr;
+        var openAssignSupplier_data = null;     // popup供应商表格选中的对象 data
         if(obj.event === 'assign'){
             admin.popup({
                 title: '指定供应商'
                 ,area: ['912px', '545px']
-                ,btn:['提交','取消']
+                ,btn:['提交', '跳过提交','取消']
                 ,yes:function(index, layero){
                     var checkStatus = table.checkStatus('scm_assign_supplier_table'),checkdata = checkStatus.data;
                     var ids = checkdata.map(function(elem){return elem.id}).join(",");
@@ -181,6 +182,30 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     }
                 });
 
+                },
+                btn2: function (index, layero) {
+                    $("#assignSupplierTbData").click();     // 获取选中的表格数据
+                    if (openAssignSupplier_data.length > 1) {
+                        layer.alert('最多只能指定一个供应商');
+                        return false;
+                    } else if (openAssignSupplier_data.length == 0) {
+                        layer.alert('请指定一个供应商');
+                        return false;
+                    } else {
+                        layer.confirm('确定跳过提交？', function () {
+                            var postData = {'orderId':data.id, 'supplierId': openAssignSupplier_data[0].supplierId};
+                            admin.req({
+                                url: setter.baseUrl + 'scm/pcborder/skipSubmit',
+                                data: postData,
+                                success: function (res) {
+                                    layer.alert('成功跳过提交!', function () {
+                                        openAssignSupplier_data = null;     // 初始化
+                                        layer.closeAll();
+                                    });
+                                }
+                            });
+                        });
+                    }
                 }
                 ,end:function(){}
                 ,success: function (layero, index) {
@@ -199,7 +224,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                         table.render({
                             elem: '#scm_assign_supplier_table'
                             ,url: setter.baseUrl+'scm/pcborder/allSupplier'
-                            ,toolbar: true
+                            ,toolbar: '#supplierTableToolbar'
                             ,cellMinWidth: 80
                             ,page:false
                             ,id:"scm_assign_supplier_table"
@@ -252,6 +277,16 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                             }
                             
                         });
+
+                        // PCB 供应商表格  工具栏事件
+                        table.on('toolbar(scm_assign_supplier_table)', function (obj) {
+                            var checkStatus = table.checkStatus(obj.config.id);
+                            switch (obj.event) {
+                                case 'getCheckData':
+                                    var data = checkStatus.data;
+                                    openAssignSupplier_data = data;
+                            }
+                        });
                     })
                 }
             });
@@ -303,7 +338,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,cols: [[
              {field: 'id', title: 'ID', hide: true}
             ,{field: 'productNo', title: 'Product No', align:'center', width: 134}
-            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-scm-outgoingQuote-status', minWidth: 130}
+            ,{field: 'status', title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-scm-outgoingQuote-status', minWidth: 130}
             ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
             ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
@@ -331,11 +366,12 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     table.on('tool(scm_Tabstencil_outgoing_quote)',function (obj) {
         var data = obj.data;
         var dIds_arr;
+        var openAssignSupplier_data = null;     // popup供应商表格选中的对象 data
         if (obj.event === 'assign'){
             admin.popup({
                 title: '指定供应商'
                 ,area: ['912px', '545px']
-                ,btn:['提交','取消']
+                ,btn:['提交', '跳过提交','取消']
                 ,yes:function(index, layero){
                     var checkStatus = table.checkStatus('scm_assign_supplier_table', data),checkdata = checkStatus.data;
                     var ids = checkdata.map(function(elem){return elem.id}).join(",");
@@ -375,6 +411,30 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                         }
                     });
 
+                },
+                btn2: function (index, layero) {
+                    $("#assignSupplierTbData").click();     // 获取选中的表格数据
+                    if (openAssignSupplier_data.length > 1) {
+                        layer.alert('最多只能指定一个供应商');
+                        return false;
+                    } else if (openAssignSupplier_data.length == 0) {
+                        layer.alert('请指定一个供应商');
+                        return false;
+                    } else {
+                        layer.confirm('确定跳过提交？', function () {
+                            var postData = {'orderId':data.id, 'supplierId': openAssignSupplier_data[0].supplierId};
+                            admin.req({
+                                url: setter.baseUrl + 'scm/stencilorder/skipStencilSubmit',
+                                data: postData,
+                                success: function (res) {
+                                    layer.alert('成功跳过提交!', function () {
+                                        openAssignSupplier_data = null;     // 初始化
+                                        layer.closeAll();
+                                    });
+                                }
+                            });
+                        });
+                    }
                 }
                 ,end:function(){}
                 ,success: function (layero, index) {
@@ -394,7 +454,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                         table.render({
                             elem: '#scm_assign_supplier_table'
                             ,url: setter.baseUrl+'scm/pcborder/allSupplier'
-                            ,toolbar: true
+                            ,toolbar: '#supplierTableToolbar'
                             ,cellMinWidth: 80
                             ,page:false
                             ,id:"scm_assign_supplier_table"
@@ -446,6 +506,16 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                 form.render(null, tableViewElem.attr('lay-filter'));
                             }
 
+                        });
+
+                        // Stencil 供应商表格  工具栏事件
+                        table.on('toolbar(scm_assign_supplier_table)', function (obj) {
+                            var checkStatus = table.checkStatus(obj.config.id);
+                            switch (obj.event) {
+                                case 'getCheckData':
+                                    var data = checkStatus.data;
+                                    openAssignSupplier_data = data;
+                            }
                         });
                     })
                 }

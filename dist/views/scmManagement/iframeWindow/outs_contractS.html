@@ -54,7 +54,7 @@
                         </label>
                         <p>
                             <label>
-                                乙方：{{ d.params.data[1].supplierCompanyName || '' }}
+                                乙方：{{ d.params.data.supplierCompanyName || '' }}
                             </label>
                         </p>
                     </div>
@@ -80,7 +80,7 @@
                             <th>钢网尺寸(mm)</th>
                             <th>钢网面积(mm)</th>
                             <th>板厚</th>
-                            <th>钢网侧边</th>
+                            <th>钢网面向</th>
                             <th>钢网类型</th>
                         </tr>
                         </thead>
@@ -103,10 +103,24 @@
                             </td>
                             <!--板厚-->
                             <td>{{ item.thickness }}</td>
-                            <!--钢网侧边-->
-                            <td>{{ item.stencilSide }}</td>
+                            <!--钢网面向-->
+                            <td>
+                                {{# if (d.params.stencilSide == 'Top' || d.params.stencilSide == 'Bottom'){ }}
+                                    单面
+                                {{# } else if(d.params.stencilSide == 'Top And Bottom (On Single Stencil)') { }}
+                                    双面同张
+                                {{# } else{ }}
+                                    双面两张
+                                {{# } }}
+                            </td>
                             <!--钢网类型-->
-                            <td>{{ item.stencilType }}</td>
+                            <td>
+                                {{# if (d.params.stencilType == 'Farmework'){ }}
+                                    钢网
+                                {{# } else { }}
+                                    钢片
+                                {{# }}}
+                            </td>
                             <!--数量pcs-->
                             <td>{{ item.quantity }}</td>
                             <!--单价-->
@@ -131,7 +145,7 @@
                                 {{ d.params.convertSubtotal}}
                             </td>
                             <td colspan="11" style="text-align: left;padding-left: 10px;">
-                                总计：￥{{ d.params.subtotal }}
+                                总计：￥{{ d.params.totalFee }}
                             </td>
                         </tr>
                         </tbody>
@@ -172,6 +186,7 @@
                 </ul>
             </div>
             <!--底部签名模块-->
+            <img src="../../../src/style/res/template/seal.png" style="position: absolute;margin-left: 104px;">
             <div class="modul-bot">
                 <ul style="width: 40%;">
                     <li>甲方：深圳聚谷科技有限公司</li>
@@ -184,7 +199,7 @@
                 <ul style="width: 48%;">
                     <script type="text/html" template>
                         <li>
-                            乙方：{{ d.params.data[1].supplierCompanyName || '' }}
+                            乙方：{{ d.params.data.supplierCompanyName || '' }}
                         </li>
                     </script>
                     <li>地址：</li>

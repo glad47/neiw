@@ -107,7 +107,12 @@
                         {{ d.params.totalFee || '0' }}
                     </td>
                     <td>
-                        <strong>{{ d.params.subtotal }}</strong>
+                        <strong>
+                            {{# if(d.params.subtotal != null){ }}
+                            {{# d.params.subtotal = parseFloat(d.params.subtotal*6.6).toFixed(2) }}
+                            {{# } }}
+                            {{ d.params.subtotal || '' }}
+                        </strong>
                     </td>
                 </tr>
                 <tr>

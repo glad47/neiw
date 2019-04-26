@@ -1163,7 +1163,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
      */
     function quoteSMTStencilSubtotal() {
         var b;
-        if (quoteSMTStencil.stencilSide == "Top And Bottom (On Single Stencil)") {
+        if (quoteSMTStencil.stencilSide == "Top And Bottom (On Single Stencil)" || quoteSMTStencil.stencilSide == "Top" || quoteSMTStencil.stencilSide == "Bottom") {
             b=1;
         } else {
             b=2;
@@ -1191,7 +1191,9 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
     function doBackUnitStencil() {
         var cost = parseInt($("#inStencilCost").val());
         var quantity = parseInt($("#stencil_quantity").val());
-        $("#sunitPrice").val((cost/quantity).toFixed(2));
+        var sunitPrice = (cost/quantity).toFixed(2);
+        stencilSize.unitPrice = sunitPrice;
+        $("#sunitPrice").val(sunitPrice);
     }
 
     // 获取右侧表单对象

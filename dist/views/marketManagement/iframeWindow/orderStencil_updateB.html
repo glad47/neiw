@@ -6,7 +6,13 @@
                 <label class="layui-form-label">Stencil Side：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <select name="stencilSide" lay-filter="stencilSide">
+                        <select name="stencilSide" lay-filter="stencilSide" data="{{ d.params.stencilSide }}">
+                            <option name="Top And Bottom (On Single Stencil)" value="Top" {{ d.params.stencilSide =='Top' ? 'selected' : '' }}>
+                            Top
+                            </option>
+                            <option name="Top And Bottom (On Single Stencil)" value="Bottom" {{ d.params.stencilSide =='Bottom' ? 'selected' : '' }}>
+                            Bottom
+                            </option>
                             <option name="Top And Bottom (On Single Stencil)" value="Top And Bottom (On Single Stencil)" {{ d.params.stencilSide =='Top And Bottom (On Single Stencil)' ? 'selected' : '' }}>
                             Top And Bottom (On Single Stencil)
                             </option>
@@ -155,32 +161,51 @@
             form.render(null, ''); //渲染该模板下的动态表单
             var ss_type;
             var side;
+            var UnitPrice = $("#orderStencilUpdateB input[name='unitPrice']").val();
+            var stencilSide = $("#orderStencilUpdateB select[name='stencilSide']").attr('data');
+            console.log("stencilSide==>"+stencilSide)
 
             getDomVal();
 
             // 监听Stencil Size 下拉
             form.on('select(selStencilSize)', function (data) {
                 var ss = $(data.elem).find("option:selected").attr("price");
-                $("input[name='unitPrice']").val(ss);
+                var stencilSideJS = $("#orderStencilUpdateB select[name='stencilSide']").find("option:selected").attr("name");
+                if (stencilSideJS == "Top And Bottom (On Separate Stencil)") {
+                    ss = parseFloat(ss*2)
+                }
+                UnitPrice = ss;
+                stencilSide = stencilSideJS;
+                $("#orderStencilUpdateB input[name='unitPrice']").val(ss);
                 getDomVal();
             });
 
             // 监听Stencil Side 下拉
             form.on('select(stencilSide)', function (data) {
+                var thisVal = data.value;
+                console.log('判断');
+                if (stencilSide == "Top And Bottom (On Separate Stencil)" && thisVal != "Top And Bottom (On Separate Stencil)") {
+                    $("input[name='unitPrice']").val(parseFloat(UnitPrice/2))
+                } else if (stencilSide != "Top And Bottom (On Separate Stencil)" && thisVal == "Top And Bottom (On Separate Stencil)") {
+                    $("input[name='unitPrice']").val(parseFloat(UnitPrice*2))
+                } else {
+                    $("input[name='unitPrice']").val(parseFloat(UnitPrice));
+                }
                 getDomVal();
             });
 
             // 监听quantity输入框值的变化
-            $("input[name='quantity']").bind("input propertychange", function (even) {
+            $("#orderStencilUpdateB input[name='quantity']").bind("input propertychange", function (even) {
                 getDomVal();
             });
             // 监听 PostFee 邮费 输入框值的变化
-            $("input[name='postFee']").bind("input propertychange", function (even) {
+            $("#orderStencilUpdateB input[name='postFee']").bind("input propertychange", function (even) {
                 getDomVal();
             });
 
             // 监听 unitPrice 单价 输入框值的变化
-            $("input[name='unitPrice']").bind("input propertychange", function (even) {
+            $("#orderStencilUpdateB input[name='unitPrice']").bind("input propertychange", function (even) {
+                UnitPrice = $(this).val();
                 getDomVal();
             });
 
@@ -189,13 +214,14 @@
             // });
 
             function quote(_domVal) {
-                var a = parseFloat(_domVal.side*_domVal.unitPrice*_domVal.quantity)+_domVal.postFee;
-                $("input[name='totalStencilFee']").val(a);
+                // var a = parseFloat(_domVal.side*_domVal.unitPrice*_domVal.quantity)+_domVal.postFee;
+                var a = parseFloat(_domVal.unitPrice*_domVal.quantity)+_domVal.postFee;
+                $("#orderStencilUpdateB input[name='totalStencilFee']").val(a);
             }
             
             function judgeSideType() {
-                var stencilSide_type = $("select[name='stencilSide']").find("option:selected").attr("name");
-                if (stencilSide_type == "Top And Bottom (On Single Stencil)") {
+                var stencilSide_type = $("#orderStencilUpdateB select[name='stencilSide']").find("option:selected").attr("name");
+                if (stencilSide_type == "Top And Bottom (On Single Stencil)" || stencilSide_type == "Top" || stencilSide_type == "Bottom") {
                     ss_type,side = 1;
                 } else {
                     ss_type,side = 2;

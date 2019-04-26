@@ -116,7 +116,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                 orderSupplierList.push({id:data[i].id,orderId:data[i].orderId,orderType:data[i].orderType});
                 totalFee += forSt;
             }
-            //console.log("totalFee:"+totalFee);
+            console.log("totalFee:"+totalFee);
             // 金额转换为中文大写
             convertSubtotal = convertCurrency.conversion(totalFee);
             popupData.totalFee = totalFee;
@@ -333,7 +333,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
             // 获取供应商信息
             popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+data[0].supplierId);
             admin.popup({
-                title: 'PCB合同'
+                title: 'Stencil合同'
                 ,area: ['100%', '100%']
                 ,btn: ['生成合同', '取消']
                 ,yes: function (index, layero) {

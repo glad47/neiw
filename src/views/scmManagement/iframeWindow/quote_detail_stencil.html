@@ -14,8 +14,16 @@
                 <tr>
                     <td>供应商编号</td>
                     <td>{{ d.params.supplierNo || '' }}</td>
-                    <td>数量(QTY)</td>
-                    <td id="qt_stencil_quantityPcs">{{ d.params.quantity || '' }}</td>
+                    <td>钢网面向</td>
+                    <td>
+                        {{# if (d.params.stencilSide == 'Top' || d.params.stencilSide == 'Bottom'){ }}
+                        单面
+                        {{# } else if(d.params.stencilSide == 'Top And Bottom (On Single Stencil)') { }}
+                        双面同张
+                        {{# } else{ }}
+                        双面两张
+                        {{# } }}
+                    </td>
                     <td>/</td>
                 </tr>
                 <tr>
@@ -23,36 +31,45 @@
                     <td>
                         <input class="layui-input" type="text" value="{{ d.params.factoryMake || '' }}" id="stencilfactoryMake">
                     </td>
-                    <td>StencilSize</td>
-                    <td>
-                        {{ d.params.stencilSizeX }}*{{ d.params.stencilSizeY }}
+                    <td>钢网类型</td>
+                    <td style="min-width: 196px;">
+                        {{# if (d.params.stencilType == 'Farmework'){ }}
+                        钢网
+                        {{# } else { }}
+                        钢片
+                        {{# }}}
                     </td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>聚谷型号</td>
                     <td>{{ d.params.orderId || '' }}</td>
-                    <td>聚谷物料号</td>
-                    <td>{{ d.params.productNo || '' }}</td>
+                    <td>钢网尺寸(x*y)</td>
+                    <td>
+                        {{ d.params.stencilSizeX }}*{{ d.params.stencilSizeY }}
+                    </td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>stencilSide</td>
-                    <td>{{ d.params.stencilSide || '' }}</td>
-                    <td>Thickness</td>
+                    <td>聚谷物料号</td>
+                    <td>{{ d.params.productNo || '' }}</td>
+                    <td>钢片厚度</td>
                     <td>
                         {{ d.params.thickness }}
                     </td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>StencilType</td>
-                    <td style="min-width: 196px;">{{ d.params.stencilType || '' }}</td>
+                    <td>数量(QTY)</td>
+                    <td id="qt_stencil_quantityPcs">{{ d.params.quantity || '' }}</td>
                     <td>单价</td>
                     <td>
                         <input class="layui-input" type="number" value="{{ d.params.unitPrice || '0' }}" id="qt_stencil_unitPrice">
                     </td>
                     <td>
+                        {{# if(d.params.unitPriceCustomer != null){ }}
+                            {{# d.params.unitPriceCustomer = parseFloat(d.params.unitPriceCustomer*6.6).toFixed(2) }}
+                        {{# } }}
                         {{ d.params.unitPriceCustomer || '' }}
                     </td>
                 </tr>
