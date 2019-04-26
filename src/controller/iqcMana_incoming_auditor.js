@@ -81,12 +81,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     table.on('toolbar(iqcIncom_auditor)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
+        console.log(data);
         if(obj.event == 'plrk'){     //通知出货
             var ids = data.map(function(elem){return elem.id}).join(",");
             layer.confirm('确定批量入库？', function () {
                 admin.req({
                     type: 'post',
-                    data: {ids:ids},
+                    headers: {access_token:layui.data('layuiAdmin').access_token},
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(data),
                     url: setter.baseUrl+'iqc/pcborder/batchStatusOk',
                     success: function () {
                         layer.msg('批量入库成功');
