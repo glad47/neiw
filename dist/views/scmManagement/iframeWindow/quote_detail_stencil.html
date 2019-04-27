@@ -86,7 +86,7 @@
                 <tr>
                     <td>报价备注</td>
                     <td>
-                        <input class="layui-input" type="text" value="{{ d.params.remark || '' }}" id="sRemark">
+                        <input class="layui-input" type="text" name="remark" value="{{ d.params.remark || '' }}" id="sRemark">
                     </td>
                     <td>合计</td>
                     <td id="qt_stencil_totalFee" style="padding: 0 26px;">
@@ -142,10 +142,10 @@
                 }
                 $("#qt_stencil_totalFee").text(parseFloat(_this*qty).toFixed(2));
             }
-            $('.layui-btn').on('click', function () {
-                var type = $(this).data('type');
-                active[type] ? active[type].call(this) : '';
-            });
+            // $('.layui-btn').on('click', function () {
+            //     var type = $(this).data('type');
+            //     active[type] ? active[type].call(this) : '';
+            // });
         });
     };
 </script>

@@ -364,18 +364,16 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                 });
             });
         } else if (obj.event == 'confirmDate') {
-            var supplierContractNo = null;
+            var orderSupplierList = new Array();
             for (var i=0;i<data.length;i++) {
-                if (supplierContractNo == null){
-                    supplierContractNo = data[i].supplierContractNo;
-                } else {
-                    supplierContractNo += ","+data[i].supplierContractNo;
-                }
+                orderSupplierList.push({orderId:data[i].orderId,supplierContractNo:data[i].supplierContractNo});
             }
             layer.confirm('是否确认交期？', function () {
                 admin.req({
                     type: 'post',
-                    data: {'supplierContractNo':supplierContractNo,'orderId':data[0].orderId},
+                    headers: {access_token:layui.data('layuiAdmin').access_token},
+                    data:  JSON.stringify(orderSupplierList),
+                    contentType: "application/json;charset=utf-8",
                     url: setter.baseUrl+'scm/stencilorder/confirmDeliveryByOc',
                     success: function () {
                         layer.alert('已确认');

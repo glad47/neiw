@@ -24,7 +24,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tabot-scmManagement)', function(data){
         console.log(data.index);
-        layer.msg(data.index);
         if (data.index === 0){
             _public_val.orderType = 1;       //pcb
             tabRenderPCB();
@@ -55,15 +54,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,cols: [[
                 {type:'checkbox'}
                 ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
-                ,{field: 'gmtCreate',title: '报价时间', width: 166}
-                ,{field: 'supplierNo', title: '供应商编号', width: 124}
-                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-                ,{field: 'productNo', title: '聚谷型号', width: 124}
-                ,{field: 'pcbName', title: '聚谷物料号', width: 144}
-                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-                ,{field: 'unitPrice', title: '单价', width: 96}
-                ,{field: 'subtotal', title: '合计', width: 96}
-                ,{field: 'remark', title: '订单备注', width: 168}
+                ,{field: 'gmtCreate',title: '报价时间', width: 168}
+                ,{field: 'supplierNo', title: '供应商编号'}
+                ,{field: 'factoryMake', title: '供应商厂编'}
+                ,{field: 'productNo', title: '聚谷型号'}
+                ,{field: 'pcbName', title: '聚谷物料号'}
+                ,{field: 'quantityPcs', title: '订单数量(PCS)'}
+                ,{field: 'unitPrice', title: '单价'}
+                ,{field: 'subtotal', title: '合计'}
+                ,{field: 'remark', title: '订单备注'}
                 ,{field: 'engineeringFee', title: '工程费', width: 96, hide: true}
                 ,{field: 'testCostFee', title: '飞针费', width: 96, hide: true}
                 ,{field: 'testCostFee', title: '测试架费', width: 96, hide: true}
@@ -124,7 +123,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,area: ['434px','448px']
                 ,btn: ['保存', '取消']
                 ,yes: function (index, layero) {
-                    layer.msg('提交信息');
                     $(".otEdit").click();
                 }
                 ,success: function (layero, index) {
@@ -202,15 +200,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,cols: [[
                 {type:'checkbox'}
                 ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
-                ,{field: 'gmtCreate',title: '报价时间', width: 166}
-                ,{field: 'supplierNo', title: '供应商编号', width: 124}
-                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-                ,{field: 'productNo', title: '聚谷型号', width: 124}
-                ,{field: 'pcbName', title: '聚谷物料号', width: 144}
-                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-                ,{field: 'unitPrice', title: '单价', width: 96}
-                ,{field: 'subtotal', title: '合计', width: 96}
-                ,{field: 'remark', title: '订单备注', width: 168}
+                ,{field: 'gmtCreate',title: '报价时间', width: 168}
+                ,{field: 'supplierNo', title: '供应商编号'}
+                ,{field: 'factoryMake', title: '供应商厂编'}
+                ,{field: 'productNo', title: '聚谷型号'}
+                ,{field: 'pcbName', title: '聚谷物料号'}
+                ,{field: 'quantityPcs', title: '订单数量(PCS)'}
+                ,{field: 'unitPrice', title: '单价'}
+                ,{field: 'subtotal', title: '合计'}
+                ,{field: 'remark', title: '订单备注'}
                 ,{field: 'engineeringFee', title: '工程费', width: 96, hide: true}
                 ,{field: 'testCostFee', title: '飞针费', width: 96, hide: true}
                 ,{field: 'testCostFee', title: '测试架费', width: 96, hide: true}
@@ -302,18 +300,16 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
             });
         } else if (obj.event == 'search'){
-            layer.msg('查看订单协同');
             admin.popup({
                 title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
-                ,area: ['45%', '70%']
+                ,area: ['837px', '373px']
                 ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
+                    view(this.id).render('marketManagement/iframeWindow/order_stencil_detail', data).done(function () {
 
                     });
                 }
             });
         } else if (obj.event == 'del') {
-            layer.msg('删除操作！');
             layer.confirm('确定删除？', function () {
                 admin.req({
                     type: 'post',

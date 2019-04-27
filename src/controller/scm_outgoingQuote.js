@@ -438,7 +438,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 }
                 ,end:function(){}
                 ,success: function (layero, index) {
-                    view(this.id).render('scmManagement/assign_supplier').done(function () {
+                    view(this.id).render('scmManagement/assign_supplier', data).done(function () {
                         var cid_list;
                         admin.req({
                             type: 'post',
@@ -530,17 +530,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 }
 
             })
-        } else if (obj.event == 'submit') {
-            layer.msg('提交供应商信息');
-            admin.req({
-                type: 'post',
-                data: '',
-                url: setter.baseUrl + '',    // 提交供应商信息
-                success: function () {
-                    layer.alert('供应商信息提交成功！');
-                    table.reload('scm_Tabpcb_outgoing_quote');
-                }
-            });
         }
     })
 

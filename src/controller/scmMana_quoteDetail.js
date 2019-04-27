@@ -266,12 +266,8 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                 ,{field: 'supplierNo', title: '供应商编号', width: 124}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117}
                 ,{field: 'pcbName', title: '聚谷物料号', width: 144}
-                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
+                ,{field: 'quantity', title: '订单数量(PCS)', width: 134}
                 ,{field: 'unitPrice', title: '单价', width: 96}
-                ,{field: 'engineeringFee', title: '工程费', width: 96}
-                ,{field: 'testCostFee', title: '飞针费', width: 96}
-                ,{field: 'testCostFee', title: '测试架费', width: 96}
-                ,{field: 'toolingFee', title: '模具', width: 96}
                 ,{field: 'totalFee', title: '合计', width: 96}
                 ,{field: 'remark', title: '报价备注', width: 168}
                 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
@@ -332,6 +328,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
             popupData.convertSubtotal = convertSubtotal;
             // 获取供应商信息
             popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+data[0].supplierId);
+            console.log(popupData.supplierInfo);
             admin.popup({
                 title: 'Stencil合同'
                 ,area: ['100%', '100%']

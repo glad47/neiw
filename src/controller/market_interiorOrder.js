@@ -693,7 +693,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
         } else if (obj.event == 'detail') {
             admin.popup({
                 title: '订单号［'+data.productNo+']---'+'订单时间［'+data.gmtCreate+'］'
-                ,area: ['45%', '70%']
+                ,area: ['837px', '373px']
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/order_stencil_detail', data).done(function () {
                     })

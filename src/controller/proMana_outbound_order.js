@@ -1,6 +1,6 @@
 /**
 
- @Name:    供应商管理－－［尾数管理］
+ @Name:    成品管理－－［订单出货］
 
  */
 
@@ -91,7 +91,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
             var newData = new Object();
             newData.shipmentVoList = postData;
-            // newData.access_token = layui.data('layuiAdmin').access_token;
             console.log(newData);
             console.log(postData);
             layer.confirm('确定出货？', function () {
@@ -140,7 +139,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                                 url: setter.baseUrl+'scm/ordersupplier/update',
                                 success: function (data) {
                                     layer.alert("订单协同修改成功");
-                                    // layer.closeAll();
                                     table.reload('iqcMana_outBound');
                                     layer.close(index);
                                 }
@@ -153,8 +151,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         } else if (obj.event == 'search') {
             layer.msg('查看订单协同');
         } else if (obj.event == 'chxx') {
-            // console.log(data)
-            var isNullShippingInfo;
             admin.req({
                type: 'post',
                url: setter.baseUrl + 'iqc/shippinginfo/info/'+data.id,
@@ -251,5 +247,34 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
         });
     }
+    table.on('toolbar(iqcMana_outBoundS)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        var postData = new Array();
+        if (obj.event == 'submit') {    // 钢网通知出货
+            layer.msg('通知出货');
+            for (var i=0;i<data.length;i++) {
+                postData[i] = {'id':data[i].id,'uuid':data[i].uuid,'courierNumber':data[i].courierNumber,'courierName':data[i].courierName};
+            }
+            var newData = new Object();
+            newData.shipmentVoList = postData;
+            console.log(newData);
+            console.log(postData);
+            layer.confirm('确定出货？', function () {
+                $.ajax({
+                    type: 'post',
+                    headers: {access_token:layui.data('layuiAdmin').access_token},
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(newData),
+                    url: setter.baseUrl+'iqc/stencilorder/shipment',
+                    success: function () {
+                        layer.alert('出货成功!');
+                        table.reload("iqcMana_outBoundS");
+                        layer.closeAll();
+                    }
+                })
+            });
+        }
+    });
     exports('proMana_outbound_order', {});
 });

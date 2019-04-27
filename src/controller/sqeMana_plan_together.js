@@ -233,15 +233,44 @@ layui.define(['admin','table','index','element','form','laydate','jsTools'], fun
                 ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbarS',minWidth: 160}
             ]]
             ,done: function (res, curr, count) {
-
+                $("a[data='ok']").each(function () {
+                    $(this).parents('tr').css('background-color','rgba(121, 228, 119, 0.43)');
+                    $(this).parents('td').css({'border-right':'none !important','border-bottom':'none !important'});
+                });
             }
         });
     }
     table.on('toolbar(sqeManaPlan_tabStencil)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        var supplierOrderIds = null;
         if(obj.event === 'submit') {     //通知出货
             layer.confirm('确定通知出货', function () {
-                
+                if (data.length == 0) {
+                    layer.msg('请选择一条数据！');
+                    return false;
+                }
+                for (var i=0;i<data.length;i++){
+                    if (supplierOrderIds != null) {
+                        supplierOrderIds += ","+data[i].id.toString();
+                    } else {
+                        supplierOrderIds = data[i].id.toString();   // 如果是数字 **.split 会报错
+                    }
+                }
+                supplierOrderIds = jstools.ArrayClearRepeat(supplierOrderIds.split(",")).join(",");     // 字符串转数组去重再转字符串类型  jstools.ArrayCleaRepeat 数组去重扩展
+                admin.req({
+                    type: 'post',
+                    url: setter.baseUrl + 'sqe/pcborder/saveShipmentOrderByPt',
+                    data: {supplierOrderId: supplierOrderIds},
+                    success: function () {
+                        layer.alert('通知出货成功！',function () {
+                            table.reload('sqeManaPlan_tabStencil');
+                            layer.closeAll();
+                        });
+                    } ,error: function () {
+
+                    }
+                });
             });
         }
     });

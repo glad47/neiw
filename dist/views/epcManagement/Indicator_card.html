@@ -120,21 +120,25 @@
                 </script>
                 <script type="text/html" id="Tabtb-pcb-epc-indicatorCard-status">
                    {{# if(d.status === 5){ }}
-                    <a style="color: green">
-                        {{# if(d.isExistIndicator === 2){ }}
-                        <i class="layui-icon layui-icon-ok"></i>已编未审
-                        {{# } else { }}
-                        <i class="layui-icon layui-icon-ok"></i>未编未审
-                        {{# } }} 
+                    <a style="color: gray;">
+                        编写指示卡
                     </a>
                     {{# } else if(d.status === 6){ }}
                     <a style="color: green">
-                        {{# if(d.isExistIndicator === 2){ }}
-                        <i class="layui-icon layui-icon-ok"></i>已编已审
-                        {{# } else { }}
-                        <i class="layui-icon layui-icon-ok"></i>未编已审
-                        {{# } }} 
+                        工程已审核
                     </a>
+                   {{# } else if(d.status === 7){ }}
+                   <a style="color: orchid;">
+                       供应商已确定
+                   </a>
+                   {{# } else if(d.status === 8){ }}
+                   <a style="color: #007DDB;">
+                       已入库
+                   </a>
+                   {{# } else if(d.status === 9){ }}
+                   <a style="color: orangered;">
+                       已出货
+                   </a>
                     {{# } }}
                 </script>
                 <!--<button class="layui-btn layui-btn-sm indicatorAddFile" data-type="indicatorAddFile" ">添加客户资料</button>-->

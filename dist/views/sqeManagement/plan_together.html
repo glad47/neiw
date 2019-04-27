@@ -59,8 +59,7 @@
                 </script>
                 <script type="text/html" id="planStatusS">
                     {{# if(d.status == '6') {}}
-                    生产中
-                    {{# $(this).prop('data','ok')}}
+                        <a data="ok">生产中</a>
                     {{# } else if(d.status == '5'){ }}
                     交期已回复
                     {{# } else if(d.status == '4'){ }}
@@ -84,7 +83,7 @@
 </div>
 
 <script>
-    layui.use('sqeMana_plan_together', layui.factory('sqeMana_plan_together')).use(['sqeMana_plan_together', 'table', 'index','element','form'], function(){
+    layui.use('sqeMana_plan_together', layui.factory('sqeMana_plan_together')).use(['sqeMana_plan_together', 'table', 'index','element','form', 'jquery'], function(){
         var form = layui.form;
         form.render();
     });

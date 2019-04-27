@@ -703,6 +703,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     }
                     ,success: function (layero, index) {
                         view(this.id).render('epcManagement/iframeWindow/audit_orders', data).done(function () {
+                            console.log(data);
                             form.render();
                             form.on('submit(epc_auditOrders)', function (data) {
                                 var field = data.field;
