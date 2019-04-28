@@ -7,13 +7,13 @@
             <td>合同号</td>
             <td>{{ d.params.supplierContractNo || '' }}</td>
             <td>订单数量(PCS)</td>
-            <td>{{ d.params.orderPcsNumber }}</td>
+            <td>{{ d.params.orderPcsNumber || '' }}</td>
         </tr>
         <tr>
             <td>供应商编号</td>
-            <td>{{ d.params.supplierId }}</td>
+            <td>{{ d.params.supplierId || '' }}</td>
             <td>已交数量(PCS)</td>
-            <td>{{ d.params.donePcsNumber }}</td>
+            <td>{{ d.params.donePcsNumber || '' }}</td>
         </tr>
         <tr>
             <td>供应商厂编</td>
@@ -23,7 +23,7 @@
         </tr>
         <tr>
             <td>聚谷型号</td>
-            <td>{{ d.params.productNo}}</td>
+            <td>{{ d.params.productNo || '' }}</td>
             <td>未交数量(PCS)</td>
             <td>{{ d.params.surplusPcsNumber || '' }}</td>
         </tr>

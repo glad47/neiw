@@ -345,10 +345,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                             form.on('submit(epc_auditOrders)', function (data) {
                                 var field = data.field;
                                 field.id = _this_id;
-                                field.status = 6;
+                                // field.status = 6;
                                 admin.req({
                                     type: 'post'
-                                    ,url: setter.baseUrl+'epc/pcborder/update'
+                                    ,url: setter.baseUrl+'epc/pcborder/auditPcbOrder'
                                     ,data: field
                                     ,done: function () {
                                         layer.alert('审核成功', function () {

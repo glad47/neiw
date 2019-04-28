@@ -42,7 +42,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'productNo',fixed: 'left', title: '聚谷编号', align:'center', minWidth: 114}
             ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-scm-outgoingQuote-status',minWidth: 130}
             ,{field: '', title:'下载', toolbar: '#pcb-file', align:'center'}
-            ,{field: 'difficultyLevel', title:'难易度', align:'center'}
+            ,{field: 'difficultyLevel', title:'难易度', align:'center', templet: '#Tabtb-pcb-scm-outgoingQuote-difficultyLevel'}
             ,{field:'id',title:'ID',align:'center'}
             ,{field:'quoteGerberName', title: '正式资料', align:'center', minWidth: 254, hide: true}
             ,{field:'gmtCreate', title: '创建时间', align:'center', minWidth: 165}
