@@ -285,7 +285,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         console.log(d_data);
         if (obj.event == 'edit'){
             admin.popup({
-                title: 'PCB此批来料检验'
+                title: 'Stencil此批来料检验'
                 ,area: ['624px','494px']
                 ,btn: ['NG评审', 'NG批退', 'OK入库', '保存']
                 ,btn1: function (index, layero) {

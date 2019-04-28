@@ -29,7 +29,11 @@
         </tr>
         <tr>
             <td>来料时间</td>
-            <td>{{ d.params.deliveryTime.substring(0,10) }}</td>
+            <td>
+                {{# if(d.params.deliveryTime != null) { }}
+                    {{ d.params.deliveryTime.substring(0,10) }}
+                {{# } }}
+            </td>
             <td>不合格数量(PCS)</td>
             <td>
                 <input type="number" class="layui-input" name="failPcsNumber" value="{{ d.params.failPcsNumber || '0' }}">
