@@ -103,9 +103,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(iqcIncom_auditor)', function (obj) {
         var data = obj.data;
-        if (data.deliveryTime) {
-            data.deliveryTime = data.deliveryTime.substring(0,10);
-        }
+        // if (data.deliveryTime) {
+        //     data.deliveryTime = data.deliveryTime.substring(0,10);
+        // }
         console.log(data);
         if (obj.event == 'edit'){
             admin.popup({
@@ -144,12 +144,13 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     return false;
                 },
                 btn3: function () {
-                    data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
-                    data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
+                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
+                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
+                    console.log(data);
                     layer.confirm('确定入库？', function () {
                         admin.req({
                             type: 'post',
-                            data: data,
+                            data: d_data,
                             url: setter.baseUrl+'iqc/pcborder/statusOk',
                             success: function (result) {
                                 table.reload('iqcIncom_auditor');
@@ -256,7 +257,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.confirm('确定批量入库？', function () {
                 admin.req({
                     type: 'post',
-                    data: {ids:ids},
+                    headers: {access_token:layui.data('layuiAdmin').access_token},
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(data),
                     url: setter.baseUrl+'iqc/stencilorder/batchStatusOk',
                     success: function () {
                         layer.msg('批量入库成功');
@@ -282,16 +285,17 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         d_data.currPcsNumber = obj.data.currPcsNumber;        // 此次数量
         d_data.orderPeriod = "";    // 订单周期
         // d_data.totalPcsNumber = "";   // 总计 PCS
-        console.log(d_data);
+        // console.log(d_data);
+        // console.log(data.data);
+        console.log(data);
         if (obj.event == 'edit'){
             admin.popup({
-                title: 'PCB此批来料检验'
+                title: 'Stencil此批来料检验'
                 ,area: ['624px','494px']
                 ,btn: ['NG评审', 'NG批退', 'OK入库', '保存']
                 ,btn1: function (index, layero) {
                     d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
                     d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
-                    console.log(d_data);
                     layer.confirm('确定评审？', function () {
                         admin.req({
                             type: 'post',
@@ -307,23 +311,23 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 btn2: function () {
                     d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
                     d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
-                    layer.confirm('确定批退？', function () {
-                        admin.req({
-                            type: 'post',
-                            data: d_data,
-                            url: setter.baseUrl+'iqc/stencilorder/statusBack',
-                            success: function (result) {
-                                table.reload('iqcIncom_auditorS');
-                                layer.closeAll();
-                            }
-                        });
-                    });
+                    console.log(d_data);
+                    // layer.confirm('确定批退？', function () {
+                    //     admin.req({
+                    //         type: 'post',
+                    //         data: d_data,
+                    //         url: setter.baseUrl+'iqc/stencilorder/statusBack',
+                    //         success: function (result) {
+                    //             table.reload('iqcIncom_auditorS');
+                    //             layer.closeAll();
+                    //         }
+                    //     });
+                    // });
                     return false;
                 },
                 btn3: function () {
                     d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
                     d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
-                    d_data.orderId = data.orderId;
                     layer.confirm('确定入库？', function () {
                         admin.req({
                             type: 'post',
@@ -356,7 +360,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     var id = data.id;
                     var supplierId = data.supplierId;
                     var orderId = data.orderId;
-                    view(this.id).render('iqcManagement/iframeWindow/incoming_auditor_edit',data).done(function () {
+                    view(this.id).render('iqcManagement/iframeWindow/incoming_auditor_edit',data.data).done(function () {
                         form.on('submit(otEdit)', function (data) {
                             var field = data.field;
                             field.id = id;

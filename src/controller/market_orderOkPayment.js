@@ -200,7 +200,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 admin.req({
                     type: 'post'
                     ,url: setter.baseUrl+'market/quote/okPaymentList/submit'
-                    ,data: {"contractNos":data.productNo,"isLock":data.isLock}
+                    ,data: {"id":data.id,"contractNos":data.productNo,"isLock":data.isLock}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
                         // layui.table.reload('or_Tabpcb_ok_payment');

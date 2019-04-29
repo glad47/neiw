@@ -23,20 +23,20 @@
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="search">查看明细</a>
                 </script>
                 <script type="text/html" id="planStatus">
-                    {{# if(d.status == '6') {}}
-                        {{# if(d.currPcsNumber != 0 && d.currPcsNumber != null){ }}
+                    {{# if(d.status == '6') { }}
+                        {{# if(d.currPcsNumber != 0 && d.currPcsNumber != null) { }}
                             <a data="ok">生产中</a>
                         {{# } else{ }}
                             <a>生产中</a>
                         {{# } }}
-                    {{# } else if(d.status == '5'){ }}
+                    {{# } else if(d.status == '5') { }}
                     交期已回复
-                    {{# } else if(d.status == '4'){ }}
+                    {{# } else if(d.status == '4') { }}
                     待确认交期
                     {{# } }}
                 </script>
                 <script type="text/html" id="sqeManaDt">
-                    {{# if(d.deliveryTime != null && d.deliveryTime != '') {}}
+                    {{# if(d.deliveryTime != null && d.deliveryTime != '') { }}
                         {{ d.deliveryTime.substring(0, 10) }}
                     {{# } else { }}
                         交期未定
@@ -58,8 +58,12 @@
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="search">查看明细</a>
                 </script>
                 <script type="text/html" id="planStatusS">
-                    {{# if(d.status == '6') {}}
-                        <a data="ok">生产中</a>
+                    {{# if(d.status == '6') { }}
+                        {{# if(d.currPcsNumber != 0 && d.currPcsNumber != null){ }}
+                            <a data="ok">生产中</a>
+                        {{# } else { }}
+                            <a>生产中</a>
+                        {{# } }}
                     {{# } else if(d.status == '5'){ }}
                     交期已回复
                     {{# } else if(d.status == '4'){ }}

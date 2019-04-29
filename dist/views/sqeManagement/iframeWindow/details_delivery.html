@@ -75,7 +75,11 @@
             <tr>
                 <td>交货日期</td>
                 <td>
-                    {{ d.params.data.deliveryTime.substring(0,10) }}
+                    {{# if (d.params.data.deliveryTime != null) { }}
+                        {{ d.params.data.deliveryTime.substring(0,10) }}
+                    {{# } else{ }}
+                        暂无交货日期
+                    {{# } }}
                 </td>
                 <td>订单数量(PCS)</td>
                 <td id="orderPcsNumber">

@@ -57,15 +57,15 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             ,cols: [[
                 {type:'checkbox'}
                 ,{field: 'productNo', title: '内部型号',minWidth: 130}
-                ,{field:'status', title: '状态', align:'center',templet: '#interiorOrderStatus',width: 110}
-                ,{field: 'orderType',title: '订单类型', width: 110, templet: '#order_type'}    //1=新单  2=返单    3=返单有改
-                ,{field: 'pcbName',title: '客户型号',width: 130}
-                ,{field: 'invoiceNo',title: '合同号',width: 152}
+                ,{field:'status', title: '状态', align:'center',templet: '#interiorOrderStatus'}
+                ,{field: 'orderType',title: '订单类型', templet: '#order_type'}    //1=新单  2=返单    3=返单有改
+                ,{field: 'pcbName',title: '客户型号'}
+                ,{field: 'invoiceNo',title: '合同号'}
                 ,{field: 'orderNo',title: '客户PO'}
                 ,{field: 'courierName',title: '快递公司'}
                 ,{field: 'courierNumber',title: '快递单号'}
-                ,{field: 'gmtCreate',title: '创建时间'}
-                ,{field: 'gmtModified',title: '修改时间'}
+                ,{field: 'gmtCreate',title: '创建时间', minWidth: 230}
+                ,{field: 'gmtModified',title: '修改时间', minWidth: 230}
                 // 型号占位
                 ,{field: 'gerberName',title: '文件名',minWidth: 160, hide: true}
                 ,{field: 'pcbType',title: 'PCB类型',minWidth: 130, hide: true}
@@ -164,12 +164,19 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'okquote':
-                var contractNos = checkStatus.data.map(function(elem){return elem.invoiceNo}).join(",");
+                var postData = new Array();
+                for (var i=0;i<checkStatus.data.length;i++) {
+                    postData[i] = {'id': checkStatus.data[i].id}
+                }
+                console.log(postData);
+                // return false;
+                // var ids = checkStatus.data.map(function(elem){return elem.id}).join(",");
                    layer.confirm('确定提交？', function () {
                        admin.req({
                            type: 'post'
                            ,url: setter.baseUrl+'epc/pcborder/submitInternalOrder'
-                           ,data: {contractNos}
+                           ,contentType: "application/json;charset=utf-8"
+                           ,data: JSON.stringify(postData)
                            ,success: function (res) {
                                layer.msg('订单信息修改成功');
                                layui.table.reload('interior_order_Tabpcb');
@@ -369,7 +376,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             layer.confirm('确定要提交此订单？', function () {
                admin.req({
                    type: 'post',
-                   data: {'contractNos':data.productNo},
+                   contentType: "application/json;charset=utf-8",
+                   data: JSON.stringify([{'id':data.id}]),
                    url: setter.baseUrl+'epc/pcborder/submitInternalOrder',
                    success: function (result) {
                        layer.alert("订单提交成功");
@@ -423,15 +431,15 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             }
             ,cols: [[
                 {type:'checkbox'}
-                ,{field: 'productNo', title: '内部型号',minWidth: 130}
-                ,{field:'status', title: '状态', templet: '#interiorOrderStatus',width: 110}
-                ,{field: 'orderType',title: '订单类型', Width: 110, templet: '#order_type'}    //1=新单  2=返单    3=返单有改
-                ,{field: 'gerberName',title: '文件名',minWidth: 160}
-                ,{field: 'pcbName',title: 'F/N',minWidth: 130}
+                ,{field: 'productNo', title: '内部型号'}
+                ,{field:'status', title: '状态', templet: '#interiorOrderStatus'}
+                ,{field: 'orderType',title: '订单类型', templet: '#order_type'}    //1=新单  2=返单    3=返单有改
+                ,{field: 'gerberName',title: '文件名'}
+                ,{field: 'pcbName',title: 'F/N'}
                 ,{field: 'orderNo',title: '客户PO'}
-                ,{field: 'invoiceNo',title: '合同单号',minWidth: 130}
-                ,{field: 'gmtCreate',title: '创建时间'}
-                ,{field: 'gmtModified',title: '修改时间'}
+                ,{field: 'invoiceNo',title: '合同单号'}
+                ,{field: 'gmtCreate',title: '创建时间',minWidth: 230}
+                ,{field: 'gmtModified',title: '修改时间',minWidth: 230}
                 // 型号占位
                 ,{field: 'quoteOrderNo',title: '报价单号',minWidth: 130, hide: true}
                 ,{field: 'pcbType',title: 'PCB类型',minWidth: 130, hide: true}
@@ -517,7 +525,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 ,{field: 'quoteGerberPath',title: 'quoteGerberPath',hide: true}
                 ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',hide: true}
                 ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',hide: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#interior_order_BarS', minWidth:256, width: 256}
+                ,{fixed: 'right', title:'操作', toolbar: '#interior_order_BarS', width: 256}
             ]]
             ,done: function (res, curr, count) {
                 var data = res.data;    //获取表格所有数据对象
@@ -525,17 +533,23 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             }
         });
     }
-    //pcb订单头工具栏事件
+    // Stencil 订单头工具栏事件
     table.on('toolbar(interior_order_Tabstencil)', function(obj){
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'okquote':
-                var contractNos = checkStatus.data.map(function(elem){return elem.invoiceNo}).join(",");
+                var postData = new Array();
+                for (var i=0;i<checkStatus.data.length;i++) {
+                    postData[i] = {'id': checkStatus.data[i].id}
+                }
+                console.log(postData);
+                // var contractNos = checkStatus.data.map(function(elem){return elem.invoiceNo}).join(",");
                 layer.confirm('确定提交？', function () {
                     admin.req({
                         type: 'post'
                         ,url: setter.baseUrl+'epc/stencilorder/submitInternalOrder'
-                        ,data: {contractNos}
+                        ,contentType: "application/json;charset=utf-8"
+                        ,data: JSON.stringify(postData)
                         ,success: function (res) {
                             layer.msg('订单信息修改成功');
                             layui.table.reload('interior_order_Tabstencil');
@@ -667,7 +681,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             layer.confirm('确定要提交此订单？', function () {
                 admin.req({
                     type: 'post',
-                    data: {'contractNos':data.invoiceNo},
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify([{'id':data.id}]),
                     url: setter.baseUrl+'epc/stencilorder/submitInternalOrder',
                     success: function (result) {
                         layer.alert("订单提交成功");

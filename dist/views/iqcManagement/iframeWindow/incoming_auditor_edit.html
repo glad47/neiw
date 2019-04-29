@@ -7,13 +7,13 @@
             <td>合同号</td>
             <td>{{ d.params.supplierContractNo || '' }}</td>
             <td>订单数量(PCS)</td>
-            <td>{{ d.params.orderPcsNumber }}</td>
+            <td>{{ d.params.orderPcsNumber || '' }}</td>
         </tr>
         <tr>
             <td>供应商编号</td>
-            <td>{{ d.params.supplierId }}</td>
+            <td>{{ d.params.supplierId || '' }}</td>
             <td>已交数量(PCS)</td>
-            <td>{{ d.params.donePcsNumber }}</td>
+            <td>{{ d.params.donePcsNumber || '' }}</td>
         </tr>
         <tr>
             <td>供应商厂编</td>
@@ -23,13 +23,17 @@
         </tr>
         <tr>
             <td>聚谷型号</td>
-            <td>{{ d.params.productNo}}</td>
+            <td>{{ d.params.productNo || '' }}</td>
             <td>未交数量(PCS)</td>
             <td>{{ d.params.surplusPcsNumber || '' }}</td>
         </tr>
         <tr>
             <td>来料时间</td>
-            <td>{{ d.params.deliveryTime.substring(0,10) }}</td>
+            <td>
+                {{# if(d.params.deliveryTime != null) { }}
+                    {{ d.params.deliveryTime.substring(0,10) }}
+                {{# } }}
+            </td>
             <td>不合格数量(PCS)</td>
             <td>
                 <input type="number" class="layui-input" name="failPcsNumber" value="{{ d.params.failPcsNumber || '0' }}">

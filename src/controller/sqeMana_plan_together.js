@@ -154,7 +154,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools'], fun
                                     }
                                     data.orderSupplierId = Pdata.data.id;                               // 供应商订单id
                                     data.supplierNo = Pdata.data.supplierNo;                            // 供应商编号
-                                    data.deliveryTime = Pdata.data.deliveryTime.substring(0,10);               // 交期
+                                    data.deliveryTime = Pdata.data.deliveryTime;               // 交期
                                     data.orderPcsNumber = Pdata.data.quantityPcs;                       // 订单PCS数
                                     data.orderId = Pdata.data.orderId;                                  // 订单id
                                     data.donePcsNumber = parseInt($("#donePcsNumber").text());          // 已交PCS数
@@ -313,8 +313,8 @@ layui.define(['admin','table','index','element','form','laydate','jsTools'], fun
                                    var data = data.field;
                                    data.orderSupplierId = Pdata.data.id;                               // 供应商订单id
                                    data.supplierNo = Pdata.data.supplierNo;                            // 供应商编号
-                                   data.deliveryTime = new Date().toLocaleDateString();                // 交期
-                                   data.orderPcsNumber = Pdata.data.quantityPcs;                       // 订单PCS数
+                                   data.deliveryTime = Pdata.data.deliveryTime;                        // 交期
+                                   data.orderPcsNumber = Pdata.data.quantity;                          // 订单PCS数
                                    data.orderId = Pdata.data.orderId;                                  // 订单id
                                    data.donePcsNumber = parseInt($("#donePcsNumber").text());          // 已交PCS数
                                    data.surplusPcsNumber = parseInt($("#surplusPcsNumber").text());    // 未交PCS数
@@ -329,17 +329,17 @@ layui.define(['admin','table','index','element','form','laydate','jsTools'], fun
                                        return false;
                                    }
                                    console.log(data);
-                                   layer.confirm('确定要生成送货单？', function () {
-                                       admin.req({
-                                           type: 'post',
-                                           data: data,
-                                           url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
-                                           success: function (result) {
+                                   admin.req({
+                                       type: 'post',
+                                       data: data,
+                                       url: setter.baseUrl+'sqe/pcborder/saveSo',
+                                       success: function (result) {
+                                           layer.alert('保存成功！', function () {
                                                layer.alert("提交成功！");
                                                table.reload('sqeManaPlan_tabStencil');
                                                layer.closeAll();
-                                           }
-                                       });
+                                           });
+                                       }
                                    });
                                    return false;
                                });
