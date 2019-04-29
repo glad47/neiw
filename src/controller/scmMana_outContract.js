@@ -148,7 +148,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                    }
                });
             layer.closeAll();
-            });
+            }); 
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单

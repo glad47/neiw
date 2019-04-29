@@ -113,14 +113,14 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                     return false;
                 }
                 var forSt = data[i].totalFee;
-                orderSupplierList.push({id:data[i].id,orderId:data[i].orderId,orderType:data[i].orderType});
+                orderSupplierList.push({id:data[i].id,orderId:data[i].orderId,orderType:data[i].orderType,isInternal:data[i].isInternal,onlineOid:data[i].onlineOid});
                 totalFee += forSt;
             }
             console.log("totalFee:"+totalFee);
             // 金额转换为中文大写
             convertSubtotal = convertCurrency.conversion(totalFee);
             popupData.totalFee = totalFee;
-            popupData.convertSubtotal = convertSubtotal;
+            popupData.convertSubtotal = convertSubtotal;    
             // 获取供应商信息
             popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+data[0].supplierId);
             console.log(popupData);

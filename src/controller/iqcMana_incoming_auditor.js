@@ -144,13 +144,13 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     return false;
                 },
                 btn3: function () {
-                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
-                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
+                    data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
+                    data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
                     console.log(data);
                     layer.confirm('确定入库？', function () {
                         admin.req({
                             type: 'post',
-                            data: d_data,
+                            data: data,
                             url: setter.baseUrl+'iqc/pcborder/statusOk',
                             success: function (result) {
                                 table.reload('iqcIncom_auditor');

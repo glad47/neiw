@@ -95,7 +95,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             //     postData[uuid] = elem.uuid
             // }).join(",");
             for (var i=0;i<data.length;i++) {
-                postData[i] = {'id':data[i].id,'uuid':data[i].uuid,'courierNumber':data[i].courierNumber,'courierName':data[i].courierName};
+                postData[i] = {'id':data[i].id,'uuid':data[i].uuid,'courierNumber':data[i].courierNumber,'courierName':data[i].courierName,'isInternal':data[i].isInternal,'onlineOid':data[i].onlineOid,'orderId':data[i].orderId};
             }
             var newData = new Object();
             newData.shipmentVoList = postData;
