@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin', 'table', 'index','element','form','laydate'], function(exports){
+layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], function(exports){
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -14,6 +14,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,setter = layui.setter
         ,element = layui.element;
         var $ = layui.jquery;
+        var jstools = layui.jsTools;
 
     // layerdate.render({
     //     elem: '#gmtCreate'
@@ -138,6 +139,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         var data = obj.data;
         var dIds_arr;
         var openAssignSupplier_data = null;     // popup供应商表格选中的对象 data
+        var globalCid_list;
         if(obj.event === 'assign'){
             admin.popup({
                 title: '指定供应商'
@@ -187,15 +189,22 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 },
                 btn2: function (index, layero) {
                     $("#assignSupplierTbData").click();     // 获取选中的表格数据
-                    if (openAssignSupplier_data.length > 1) {
-                        layer.alert('最多只能指定一个供应商');
-                        return false;
-                    } else if (openAssignSupplier_data.length == 0) {
-                        layer.alert('请指定一个供应商');
-                        return false;
-                    } else {
-                        layer.confirm('确定跳过提交？', function () {
-                            var postData = {'id':data.id, 'supplierId': openAssignSupplier_data[0].supplierId,'isInternal':data.isInternal,'onlineOid':data.onlineOid};
+                    layer.confirm('确定跳过提交？', function () {
+                        var supplierIds = openAssignSupplier_data.map(function(elem){return elem.supplierId}).join(",");
+                        var supplierArr = supplierIds.split(",");    // 将ids逗号隔开的字符串转成数组形式
+                        for (var s=0;s<globalCid_list.length;s++) {     // 过滤掉选过的id，不重复指定供应商
+                            if (globalCid_list[s] != null) {        // 一定要加个不为空的判断，不然出现各种奇怪的bug
+                                supplierArr.splice($.inArray(globalCid_list[s],supplierArr),1);
+                            }
+                        }
+                        if (supplierArr.length<1) {
+                            layer.msg('请选择一条要跳过提交的数据！');
+                            return false;
+                        } else {
+                            supplierArr = jstools.ArrayClearRepeat(supplierArr);     // 字符串转数组去重[封装只接收数组]，再转回字符串提交给后台
+                            console.log("supplierArr:"+supplierArr);
+                            var postData = {'id':data.id, 'supplierIds': supplierArr.toString(),'isInternal':data.isInternal,'onlineOid':data.onlineOid};
+                            console.log(postData);
                             admin.req({
                                 url: setter.baseUrl + 'scm/pcborder/skipSubmit',
                                 data: postData,
@@ -206,8 +215,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                     });
                                 }
                             });
-                        });
-                    }
+                        }
+                    });
                 }
                 ,end:function(){}
                 ,success: function (layero, index) {
@@ -219,7 +228,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                             data: {'oid':data.id},
                             async: false,
                             success: function (result) {
-                                cid_list = result.data;
+                                cid_list = globalCid_list = result.data;
                                 dIds_arr = result.data;
                             }
                         });
@@ -268,7 +277,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                             tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('checked', 'checked');
                                             tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('value', '');
                                             tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('disabled', 'disabled');
-                                            console.log(tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').text());
+                                            // console.log(tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').text());
                                             // 把cache的LAY_CHECKED设置成true才能在获得表格选中的数据中得到当前选中的行
                                             trData[table.config.checkName] = true;
                                         }
@@ -369,6 +378,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         var data = obj.data;
         var dIds_arr;
         var openAssignSupplier_data = null;     // popup供应商表格选中的对象 data
+        var globalCid_list;
         if (obj.event === 'assign'){
             admin.popup({
                 title: '指定供应商'
@@ -416,15 +426,24 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 },
                 btn2: function (index, layero) {
                     $("#assignSupplierTbData").click();     // 获取选中的表格数据
-                    if (openAssignSupplier_data.length > 1) {
-                        layer.alert('最多只能指定一个供应商');
-                        return false;
-                    } else if (openAssignSupplier_data.length == 0) {
-                        layer.alert('请指定一个供应商');
-                        return false;
-                    } else {
-                        layer.confirm('确定跳过提交？', function () {
-                            var postData = {'orderId':data.id, 'supplierId': openAssignSupplier_data[0].supplierId};
+                    layer.confirm('确定跳过提交？', function () {
+                        var supplierIds = openAssignSupplier_data.map(function(elem){return elem.supplierId}).join(",");
+                        var supplierArr = supplierIds.split(",");    // 将ids逗号隔开的字符串转成数组形式
+                        console.log(supplierArr);
+                        for (var s=0;s<globalCid_list.length;s++) {     // 过滤掉选过的id，不重复指定供应商
+                            if (globalCid_list[s] != null) {
+                                supplierArr.splice($.inArray(globalCid_list[s],supplierArr),1);
+                                console.log("globalCid_list["+s+"]:"+globalCid_list[s]);
+                            }
+                        }
+                        if (supplierArr.length<1) {
+                            layer.msg('请选择一条要跳过提交的数据！');
+                            return false;
+                        } else {
+                            supplierArr = jstools.ArrayClearRepeat(supplierArr);     // 字符串转数组去重[封装只接收数组]，再转回字符串提交给后台
+                            console.log("supplierArr:"+supplierArr);
+                            var postData = {'id':data.id, 'supplierIds': supplierArr.toString(),'isInternal':data.isInternal,'onlineOid':data.onlineOid};
+                            console.log(postData);
                             admin.req({
                                 url: setter.baseUrl + 'scm/stencilorder/skipStencilSubmit',
                                 data: postData,
@@ -435,8 +454,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                     });
                                 }
                             });
-                        });
-                    }
+                        }
+                    });
                 }
                 ,end:function(){}
                 ,success: function (layero, index) {
@@ -448,7 +467,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                             data: {'oid':data.id},
                             async: false,
                             success: function (result) {
-                                cid_list = result.data;
+                                cid_list = globalCid_list = result.data;
                                 dIds_arr = result.data;
                             }
                         });

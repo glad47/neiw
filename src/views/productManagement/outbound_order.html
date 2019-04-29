@@ -25,9 +25,13 @@
                 </script>
                 <script type="text/html" id="proManaquo_status">
                     {{# if(d.status === 8){ }}
-                    已入库
+                        {{# if(d.finishPcsNumber>0){ }}
+                            <a data="outbound">已入库</a>
+                        {{# }else{ }}
+                            <a data="notOutbound">已入库</a>
+                        {{# } }}
                     {{# } else if(d.status === 9){ }}
-                    已出货
+                    <a data="0">已出货</a>
                     {{# } }}
                 </script>
                 <script type="text/html" id="outboundDDatePCB">

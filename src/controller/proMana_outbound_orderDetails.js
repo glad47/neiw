@@ -114,7 +114,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'finishPcsNumber',title: '已交PCS数', templet: '<div>{{ d.finishPcsNumber || 0 }}</div>'}
                 ,{field: 'courierName',title: '快递公司'}
                 ,{field: 'courierNumber',title: '快递单号'}
-                ,{field: 'pcbName',title: '256', width: 132}
+                ,{field: 'pcbName',title: '客户型号', width: 132}
                 ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
             ]]
             ,done: function (res, curr, count) {

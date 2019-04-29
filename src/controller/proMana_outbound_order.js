@@ -68,7 +68,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
             ]]
             ,done: function (res, curr, count) {
-
+                $("a[data='notOutbound']").each(function (i,n) {
+                    $(this).parents('tr').css('background-color','#d2d2d2');
+                    $(this).parents('tr').find("input[type='checkbox']").prop("disabled",true);
+                    $(this).parents('td').css({'border-right':'none !important','border-bottom':'none !important'});
+                    if (i>0) {
+                        $(this).parents('.layui-table-box').children('.layui-table-header').find("input[type='checkbox']").prop("disabled",true);
+                    }
+                });
+                form.render();
             }
         });
     }
@@ -149,7 +157,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
             });
         } else if (obj.event == 'search') {
-            layer.msg('查看订单协同');
+            admin.popup({
+                title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
+                ,area: ['45%', '70%']
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
+
+                    })
+                }
+            })
         } else if (obj.event == 'chxx') {
             admin.req({
                type: 'post',
@@ -239,14 +255,24 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'finishPcsNumber',title: '已交PCS数', templet: '<div>{{ d.finishPcsNumber || 0 }}</div>'}
                 ,{field: 'courierName',title: '快递公司'}
                 ,{field: 'courierNumber',title: '快递单号'}
-                ,{field: 'pcbName',title: '256', width: 132}
+                ,{field: 'pcbName',title: '客户型号', width: 132}
                 ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
             ]]
             ,done: function (res, curr, count) {
-
+                $("a[data='notOutbound']").each(function (i,n) {
+                    $(this).parents('tr').css('background-color','#d2d2d2');
+                    $(this).parents('tr').find("input[type='checkbox']").prop("disabled",true);
+                    $(this).parents('td').css({'border-right':'none !important','border-bottom':'none !important'});
+                    if (i>0) {
+                        $(this).parents('.layui-table-box').children('.layui-table-header').find("input[type='checkbox']").prop("disabled",true);
+                    }
+                });
+                form.render();
             }
         });
     }
+    
+    // 钢网工具头事件
     table.on('toolbar(iqcMana_outBoundS)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
@@ -275,6 +301,22 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 })
             });
         }
+    });
+    
+    // 钢网行事件
+    table.on('tool()', function (obj) {
+       var data = obj.data;
+       if (obj.event == 'search') {
+           admin.popup({
+               title: '订单号［'+data.productNo+']---'+'订单时间［'+data.gmtCreate+'］'
+               ,area: ['45%', '70%']
+               ,success: function (layero, index) {
+                   view(this.id).render('marketManagement/iframeWindow/order_stencil_detail', data).done(function () {
+                   })
+               }
+
+           })
+       }
     });
     exports('proMana_outbound_order', {});
 });
