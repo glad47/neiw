@@ -255,7 +255,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 admin.req({
                     type: 'post',
                     url: setter.baseUrl+'epc/pcborder/backByIo'    // 需要修改成退回的接口
-                    ,data:{contractNos:contractNos,isInternal:isInternal}
+                    ,data:{id:data.id,isInternal:isInternal,onlineOid:data.onlineOid}
                     ,done: function (res) {
                         layer.msg('成功退回');
                         table.reload('epc_Tabpcb_ok_payment_order');
@@ -330,7 +330,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             })
         } else if (obj.event === 'edit') {
             if (data.quoteGerberName != "" && data.quoteGerberName != null && typeof data.quoteGerberName != 'undefined') {
-                var _this_id = data.id;
+                var _this_id = data.id,_this_isInternal = data.isInternal,_this_onlineOid = data.onlineOid;
                 admin.popup({
                     title: '审核订单[PCB]'
                     ,area: ['867px', '325px']
@@ -345,7 +345,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                             form.on('submit(epc_auditOrders)', function (data) {
                                 var field = data.field;
                                 field.id = _this_id;
-                                // field.status = 6;
+                                field.isInternal = _this_isInternal;
+                                field.onlineOid = _this_onlineOid;
                                 admin.req({
                                     type: 'post'
                                     ,url: setter.baseUrl+'epc/pcborder/auditPcbOrder'

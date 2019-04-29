@@ -169,8 +169,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     url:setter.baseUrl+"scm/pcborder/assignOrderToSupplier",
                     type:"POST",
                     data:{
-                        orderId: data.id
+                        id: data.id
                         ,supplierIds: ids_arr[0].toString()
+                        ,isInternal:data.isInternal
+                        ,onlineOid:data.onlineOid
                     },
                     success:function(data){
                         if (data.code == 0 ) {
@@ -193,7 +195,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                         return false;
                     } else {
                         layer.confirm('确定跳过提交？', function () {
-                            var postData = {'orderId':data.id, 'supplierId': openAssignSupplier_data[0].supplierId};
+                            var postData = {'id':data.id, 'supplierId': openAssignSupplier_data[0].supplierId,'isInternal':data.isInternal,'onlineOid':data.onlineOid};
                             admin.req({
                                 url: setter.baseUrl + 'scm/pcborder/skipSubmit',
                                 data: postData,
