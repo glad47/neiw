@@ -94,6 +94,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             //     // return elem.uuid;
             //     postData[uuid] = elem.uuid
             // }).join(",");
+            if (checkStatus.data.length < 1) {
+                layer.msg('请选择一条数据');
+                return false;
+            }
             for (var i=0;i<data.length;i++) {
                 postData[i] = {'id':data[i].id,'uuid':data[i].uuid,'courierNumber':data[i].courierNumber,'courierName':data[i].courierName,'isInternal':data[i].isInternal,'onlineOid':data[i].onlineOid,'orderId':data[i].orderId};
             }
@@ -278,7 +282,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         var data = checkStatus.data;
         var postData = new Array();
         if (obj.event == 'submit') {    // 钢网通知出货
-            layer.msg('通知出货');
+            if (checkStatus.data.length < 1) {
+                layer.msg('请选择一条数据');
+                return false;
+            }
             for (var i=0;i<data.length;i++) {
                 postData[i] = {'id':data[i].id,'uuid':data[i].uuid,'courierNumber':data[i].courierNumber,'courierName':data[i].courierName};
             }

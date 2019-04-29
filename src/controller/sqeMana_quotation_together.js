@@ -98,6 +98,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
             }
             console.log(ids);
+            if (checkStatus.data.length < 1) {
+                layer.msg('请选择一条数据');
+                return false;
+            }
             layer.confirm('确认提交 ['+ids+'] ?', function(index){
                 admin.req({
                     type: 'post',
@@ -290,6 +294,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         if(obj.event === 'submitPcb'){
             var data = checkStatus.data;
             var ids = data.map(function(elem){return elem.id}).join(",");
+            if (checkStatus.data.length < 1) {
+                layer.msg('请选择一条数据');
+                return false;
+            }
             layer.confirm('确认提交 ['+ids+'] ?', function(index){
                 admin.req({
                     type: 'post',

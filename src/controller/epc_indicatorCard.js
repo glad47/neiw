@@ -364,7 +364,12 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     }
                 });
             } else {
-                layer.alert('请先上传正式资料！！！');
+                var $dataIndex = $(this).parents("tr").attr("data-index");      // 获取行下标
+                console.log("$dataIndex:"+$dataIndex);
+                layer.alert('请先上传正式资料！！！', function (layero, index) {
+                    layer.closeAll();
+                    $(".layui-table-click[data-index="+$dataIndex+"]").find("*[lay-event='fileMana']").click();
+                });
             }
         } else if (obj.event == 'fileMana') {
             data.orderType = "pcbOrder";        // 根据orderType  发送不同的接口
@@ -727,7 +732,12 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     }
                 });
             } else {
-                layer.alert('请先上传正式资料！！！');
+                var $dataIndex = $(this).parents("tr").attr("data-index");      // 获取行下标
+                console.log("$dataIndex:"+$dataIndex);
+                layer.alert('请先上传正式资料！！！', function (layero, index) {
+                    layer.closeAll();
+                    $(".layui-table-click[data-index="+$dataIndex+"]").find("*[lay-event='fileMana']").click();
+                });
             }
         } else if (obj.event === 'pcb-sendback') {
             layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {

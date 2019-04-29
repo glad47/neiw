@@ -97,6 +97,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     supplierContractNo += ',' + data[i].supplierContractNo;
                 }
             }
+            if (checkStatus.data.length < 1) {
+                layer.msg('请选择一条数据');
+                return false;
+            }
             layer.confirm('确认提交 ['+supplierContractNo+'] ?', function(index){
                 console.log(data);
                 admin.req({
@@ -242,6 +246,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 } else {
                     supplierContractNo += ',' + data[i].supplierContractNo;
                 }
+            }
+            if (checkStatus.data.length < 1) {
+                layer.msg('请选择一条数据');
+                return false;
             }
             layer.confirm('确认提交 ['+supplierContractNo+'] ?', function(index){
                 console.log(data);

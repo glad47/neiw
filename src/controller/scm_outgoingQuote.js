@@ -190,13 +190,14 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                 btn2: function (index, layero) {
                     $("#assignSupplierTbData").click();     // 获取选中的表格数据
                     layer.confirm('确定跳过提交？', function () {
-                        var supplierIds = openAssignSupplier_data.map(function(elem){return elem.supplierId}).join(",");
+                        var supplierIds = openAssignSupplier_data.map(function(elem){return elem.id}).join(",");
                         var supplierArr = supplierIds.split(",");    // 将ids逗号隔开的字符串转成数组形式
                         for (var s=0;s<globalCid_list.length;s++) {     // 过滤掉选过的id，不重复指定供应商
-                            if (globalCid_list[s] != null) {        // 一定要加个不为空的判断，不然出现各种奇怪的bug
-                                supplierArr.splice($.inArray(globalCid_list[s],supplierArr),1);
-                            }
+                            supplierArr = $.grep(supplierArr, function (value) {
+                                return value != globalCid_list[s];
+                            });
                         }
+                        console.log(supplierArr);
                         if (supplierArr.length<1) {
                             layer.msg('请选择一条要跳过提交的数据！');
                             return false;
@@ -427,17 +428,17 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                 btn2: function (index, layero) {
                     $("#assignSupplierTbData").click();     // 获取选中的表格数据
                     layer.confirm('确定跳过提交？', function () {
-                        var supplierIds = openAssignSupplier_data.map(function(elem){return elem.supplierId}).join(",");
+                        var supplierIds = openAssignSupplier_data.map(function(elem){return elem.id}).join(",");
                         var supplierArr = supplierIds.split(",");    // 将ids逗号隔开的字符串转成数组形式
                         console.log(supplierArr);
                         for (var s=0;s<globalCid_list.length;s++) {     // 过滤掉选过的id，不重复指定供应商
-                            if (globalCid_list[s] != null) {
-                                supplierArr.splice($.inArray(globalCid_list[s],supplierArr),1);
-                                console.log("globalCid_list["+s+"]:"+globalCid_list[s]);
-                            }
+                            supplierArr = $.grep(supplierArr, function (value) {
+                                return value != globalCid_list[s];
+                            });
                         }
                         if (supplierArr.length<1) {
                             layer.msg('请选择一条要跳过提交的数据！');
+                            console.log("supplierArr:"+supplierArr);
                             return false;
                         } else {
                             supplierArr = jstools.ArrayClearRepeat(supplierArr);     // 字符串转数组去重[封装只接收数组]，再转回字符串提交给后台
