@@ -305,6 +305,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
             var popupData = {data:{}};
             var supplierNo;
             popupData.data = data;
+            var orderSupplierList = new Array();
             for (var i=0;i<data.length;i++) {
                 if (supplierNo == null) {
                     supplierNo = data[i].supplierNo;
@@ -313,13 +314,9 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                     console.log(111);
                     return false;
                 }
-                var forSt = data[i].totalStencilFee;
-                if (ids == null){
-                    ids = ids + data[i].id;
-                } else {
-                    ids = ids + ',' + data[i].id;
-                }
+                var forSt = data[i].totalFee;
                 totalFee += forSt;
+                orderSupplierList.push({id:data[i].id,orderId:data[i].orderId,orderType:data[i].orderType,isInternal:data[i].isInternal,onlineOid:data[i].onlineOid});
             }
             console.log("totalFee:"+totalFee);
             // 金额转换为中文大写
@@ -335,9 +332,10 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                 ,btn: ['生成合同', '取消']
                 ,yes: function (index, layero) {
                     layer.confirm('是否生成合同?', function(index){
-                        admin.req({
+                         $.ajax({
                             type: 'post',
-                            data: {ids},
+                            headers: {access_token:layui.data('layuiAdmin').access_token},
+                            data:  JSON.stringify(orderSupplierList),
                             url: setter.baseUrl+'scm/stencilorder/createContractBeOt',
                             success: function (data) {
                                 if (data.code == '0'){

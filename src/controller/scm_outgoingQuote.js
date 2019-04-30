@@ -413,6 +413,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                         data:{
                             orderId: data.id
                             ,supplierIds: ids_arr[0].toString()
+                            ,isInternal:data.isInternal
+                            ,onlineOid:data.onlineOid
                         },
                         success:function(data){
                             if (data.code == 0 ) {
