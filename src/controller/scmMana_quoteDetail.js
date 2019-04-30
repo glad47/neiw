@@ -205,7 +205,8 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                 }
                 ,success: function (layero, index) {
                     view(this.id).render('scmManagement/iframeWindow/quote_detail_pcb',data).done(function () {
-
+                        // 下载客户资料， popup按钮顺序不能变
+                        $(".layui-layer-btn1").prop("href",setter.baseUrl1+"quote/gerberFileDownload?filePathName="+data.gerberPath+"&fileName="+data.gerberName);
                     });
                 }
             });
@@ -400,7 +401,8 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                 }
                 ,success: function (layero, index) {
                     view(this.id).render('scmManagement/iframeWindow/quote_detail_stencil',data).done(function () {
-
+                        // 下载客户资料， popup按钮顺序不能变
+                        $(".layui-layer-btn1").prop("href",setter.baseUrl1+"quote/gerberFileDownload?filePathName="+data.gerberPath+"&fileName="+data.gerberName);
                     });
                 }
             });

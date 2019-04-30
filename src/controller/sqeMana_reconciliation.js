@@ -170,7 +170,9 @@ layui.define(['admin','table','index','element','form','laydate','convertCurrenc
     });
     table.on('toolbar(sqeMana_reconPcbTab)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
-        if(obj.event === 'submitPcb'){
+        if (checkStatus.data.length<1) {
+            layer.msg('请选择一条数据！');
+        } else if(obj.event === 'submitPcb'){
             var data = checkStatus.data;
             var ids = null;
             for (var i=0;i<data.length;i++){

@@ -15,6 +15,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,element = layui.element;
     var $ = layui.jquery;
 
+    tabRenderPCB();
     // 全局变量
     var _public_val = {
         orderType: 1        //订单类型 （1 pcb 2钢网 3 贴片）
@@ -25,50 +26,54 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         console.log(data.index);
         if (data.index === 0){
             _public_val.orderType = 1;       //pcb
+            tabRenderPCB();
         } else if (data.index === 1){
             _public_val.orderType = 2;      //钢网
+            tabRenderStencil();
         } else if (data.index === 2){
             _public_val.orderType = 3;      //贴片
         }
     });
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
-    table.render({
-        elem: '#sqeManaShip_tabPcb'
-        ,url: setter.baseUrl+'sqe/pcborder/shipmentTogether/list'
-        ,toolbar: "#ord_sqpManaShip_tb"
-        ,cellMinWidth: 80
-        ,id: "sqeManaShip_tabPcb"
-        ,page: true
-        ,parseData: function (res) {
-            return{
-                "code": 0,
-                "data": res.page.list,
-                "count": res.page.totalCount
+    function tabRenderPCB () {
+        table.render({
+            elem: '#sqeManaShip_tabPcb'
+            ,url: setter.baseUrl+'sqe/pcborder/shipmentTogether/list'
+            ,toolbar: "#ord_sqpManaShip_tb"
+            ,cellMinWidth: 80
+            ,id: "sqeManaShip_tabPcb"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
             }
-        }
-        ,cols: [[
-            {type:'checkbox'}
-            ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}
-            ,{field: 'id',title: 'ID', hide: true}
-            ,{field: 'deliveryTime',title: '交期', width: 110, templet: ' <a>{{ d.deliveryTime.substring(0,10) }}</a> '}
-            ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117}// 1 ＝ 待报价
-            ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117}
-            ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117}
-            ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133}
-            ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117}
-            ,{field: 'courierCompany', title: '快递公司', width: 124}
-            ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
-            ,{field: 'deliveryNo', title: '交货批次', width: 144}
-            ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122}
-            ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
-            ,{field: 'gmtModified', title: 'gmtModified', hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmManaShip_tabbar',width: 150}
-        ]]
-        ,done: function (res, curr, count) {
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}
+                ,{field: 'id',title: 'ID', hide: true}
+                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#scmManaShip_deliver'}
+                ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117}// 1 ＝ 待报价
+                ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117}
+                ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117}
+                ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133}
+                ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117}
+                ,{field: 'courierCompany', title: '快递公司', width: 124}
+                ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
+                ,{field: 'deliveryNo', title: '交货批次', width: 144}
+                ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122}
+                ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
+                ,{field: 'gmtModified', title: 'gmtModified', hide: true}
+                ,{fixed: 'right', title:'操作', toolbar: '#scmManaShip_tabbar',width: 150}
+            ]]
+            ,done: function (res, curr, count) {
 
-        }
-    });
+            }
+        });
+    }
     table.on('toolbar(sqeManaPlan_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         if(obj.event === 'submit'){
@@ -141,6 +146,85 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         } else if (obj.event == 'search'){
             layer.msg('查看订单协同');
         }
+    });
+
+
+    //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 钢网订单
+    function tabRenderStencil () {
+        table.render({
+            elem: '#sqeManaShip_tabStencil'
+            ,url: setter.baseUrl+'sqe/stencilorder/shipmentTogether/list'
+            ,toolbar: "#ord_sqpManaShip_tbS"
+            ,cellMinWidth: 80
+            ,id: "sqeManaShip_tabStencil"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
+            }
+            ,cols: [[
+                {type:'checkbox'}
+                ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}
+                ,{field: 'id',title: 'ID', hide: true}
+                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#scmManaShip_deliverS'}
+                ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117}// 1 ＝ 待报价
+                ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117}
+                ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117}
+                ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133}
+                ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117}
+                ,{field: 'courierCompany', title: '快递公司', width: 124}
+                ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
+                ,{field: 'deliveryNo', title: '交货批次', width: 144}
+                ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122}
+                ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
+                ,{field: 'gmtModified', title: 'gmtModified', hide: true}
+                ,{fixed: 'right', title:'操作', toolbar: '#scmManaShip_tabbarS',width: 150}
+            ]]
+            ,done: function (res, curr, count) {
+
+            }
+        });
+    }
+    // 监听Stencil工具头
+    table.on('toolbar(sqeManaShip_tabStencil)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        if (data.length<1) {
+            layer.msg('请选择一条数据！');
+        } else if(obj.event === 'submit'){
+            var ids = null;
+            for (var i=0;i<data.length;i++){
+                if (ids == null){
+                    ids = ids + data[i].id;
+                } else {
+                    ids = ids + ',' + data[i].id;
+                }
+            }
+            layer.confirm('确认提交 ['+ids+'] ?', function(index){
+                admin.req({
+                    type: 'post',
+                    data: {ids},
+                    url: setter.baseUrl+'sqe/pcborder/batch/submit',
+                    success: function (data) {
+                        if (data.code == '0'){
+                            layer.alert("提交成功！！");
+                            table.reload('sqeMana_reconPcbTab');
+                            layer.close(index);
+                        }
+                    }
+                });
+            });
+        }
+    });
+    //监听行工具事件＝＝＝＝》Stencil 订单
+    table.on('tool(sqeManaShip_tabStencil)', function (obj) {
+       var data = obj.data;
+       if (obj.event == 'edit') {
+
+       }
     });
     exports('sqeMana_shipment_together', {});
 });

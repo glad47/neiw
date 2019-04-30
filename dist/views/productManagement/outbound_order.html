@@ -25,7 +25,7 @@
                 </script>
                 <script type="text/html" id="proManaquo_status">
                     {{# if(d.status === 8){ }}
-                        {{# if(d.finishPcsNumber>0){ }}
+                        {{# if(d.deliveryDate != null){ }}
                             <a data="outbound">已入库</a>
                         {{# }else{ }}
                             <a data="notOutbound">已入库</a>

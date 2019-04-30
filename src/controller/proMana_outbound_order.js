@@ -99,7 +99,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 return false;
             }
             for (var i=0;i<data.length;i++) {
-                postData[i] = {'id':data[i].id,'uuid':data[i].uuid,'courierNumber':data[i].courierNumber,'courierName':data[i].courierName,'isInternal':data[i].isInternal,'onlineOid':data[i].onlineOid,'orderId':data[i].orderId};
+                postData[i] = {'id':data[i].id,'uuid':data[i].uuid,'courierNumber':data[i].courierNumber,'courierName':data[i].courierName,'isInternal':data[i].isInternal,'onlineOid':data[i].onlineOid,'orderId':data[i].id, 'orderType': data[i].orderType};
             }
             var newData = new Object();
             newData.shipmentVoList = postData;
@@ -177,7 +177,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                success: function (res) {
                    data.shippingInfo = res.shippingInfo;
                    admin.popup({
-                       title: '出货信息'
+                       title: 'PCB出货信息'
                        ,area: ['734px','468px']
                        ,btn: ['保存', '提交', '返回']
                        ,btn1: function (index, layero) {
@@ -287,7 +287,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 return false;
             }
             for (var i=0;i<data.length;i++) {
-                postData[i] = {'id':data[i].id,'uuid':data[i].uuid,'courierNumber':data[i].courierNumber,'courierName':data[i].courierName};
+                postData[i] = {'id':data[i].id,'uuid':data[i].uuid,'courierNumber':data[i].courierNumber,'courierName':data[i].courierName,'isInternal':data[i].isInternal,'onlineOid':data[i].onlineOid,'orderId':data[i].id, 'orderType': data[i].orderType};
             }
             var newData = new Object();
             newData.shipmentVoList = postData;
@@ -323,6 +323,58 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                }
 
            })
+       } else if (obj.event == 'chxx') {
+           admin.req({
+               type: 'post',
+               url: setter.baseUrl + 'iqc/shippinginfo/infoSml/'+data.id,
+               success: function (res) {
+                   data.shippingInfo = res.shippingInfo;
+                   admin.popup({
+                       title: 'Stencil出货信息'
+                       ,area: ['734px','468px']
+                       ,btn: ['保存', '提交', '返回']
+                       ,btn1: function (index, layero) {
+                           layer.msg('保存');
+                           $(".outbound-submit").attr("data","save");
+                           $(".outbound-submit").click();
+                           return false;
+                       },
+                       btn2: function () {
+                           $(".outbound-submit").attr("data","submit");
+                           $(".outbound-submit").click();
+                           return false;
+                       },
+                       btn3: function () {
+                           layer.msg('取消');
+                       }
+                       ,success: function (layero, index) {
+                           view(this.id).render('productManagement/iframeWindow/outbound_info',data).done(function () {
+                               //监听出货提交
+                               form.on('submit(fomrOutboundInfo)', function (data) {
+                                   var field = data.field;
+                                   console.log(field);
+                                   admin.req({
+                                       url: setter.baseUrl+"iqc/stencilorder/saveShippingInfo",
+                                       type: 'POST',
+                                       data: field,
+                                       success: function (data) {
+                                           if (data.code == 0) {
+                                               layer.msg(data.msg);
+                                           }else {
+                                               layer.msg(data.msg,{icon: 5});
+                                           }
+                                           layui.table.reload('iqcMana_outBoundS'); //重载表格
+                                           layer.close(index); //执行关闭
+                                       }
+                                   });
+                                   return false;
+                               });
+                           });
+
+                       }
+                   });
+               }
+           });
        }
     });
     exports('proMana_outbound_order', {});

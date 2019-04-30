@@ -410,6 +410,25 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                     })
                 }
             })
+        } else if (obj.event == 'showProcess') {
+            var postData  = {'orderId':data.id,'isInternal':1,'orderType':1};
+            admin.req({
+                type: 'post',
+                data: postData,
+                async: false,
+                url: setter.baseUrl+ 'sys/processlog/showProcess',
+                success: function (res) {
+                    console.log(res);
+                    admin.popup({
+                        title: '内部订单流程'
+                        ,area: ['837px', '373px']
+                        ,success: function (layero, index) {
+                            view(this.id).render('marketManagement/iframeWindow/order_process', res.data).done(function () {
+                            });
+                        }
+                    });
+                }
+            });
         }
     });
 
@@ -715,6 +734,25 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 }
 
             })
+        } else if (obj.event == 'showProcess') {
+            var postData  = {'orderId':data.id,'isInternal':1,'orderType':2};
+            admin.req({
+                type: 'post',
+                data: postData,
+                async: false,
+                url: setter.baseUrl+ 'sys/processlog/showProcess',
+                success: function (res) {
+                    console.log(res);
+                    admin.popup({
+                        title: '内部订单流程'
+                        ,area: ['837px', '373px']
+                        ,success: function (layero, index) {
+                            view(this.id).render('marketManagement/iframeWindow/order_process', res.data).done(function () {
+                            });
+                        }
+                    });
+                }
+            });
         }
     });
 

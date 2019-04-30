@@ -1,0 +1,30 @@
+<div class="layui-fluid">
+    <script type="text/html" template>
+    <table class="layui-table">
+        <thead>
+        <th>订单ID</th>
+        <th>订单类型</th>
+        <th>操作人</th>
+        <th>当前状态</th>
+        <th>操作时间</th>
+        </thead>
+        <tbody>
+        {{# layui.each(d.params, function(index, item){  }}
+        <tr>
+            <td>{{ item.orderId || ''}}</td>
+            <td>
+                {{# if(item.orderType == '1'){ }}
+                    PCB
+                {{# } else{ }}
+                    Stencil
+                {{# } }}
+            </td>
+            <td>{{ item.operatorName || ''}}</td>
+            <td>{{ item.operatorStep || ''}}</td>
+            <td>{{ item.operatorTime || ''}}</td>
+        </tr>
+        {{#  }); }}
+        </tbody>
+    </table>
+    </script>
+</div>

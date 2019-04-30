@@ -1,4 +1,4 @@
-<title>出货协同</title>
+<title>供应商管理-出货协同</title>
 <div class="layui-fluid">
     <!--卡片－表格信息-->
     <div class="layui-tab layui-tab-brief" lay-filter="tab-planToger">
@@ -28,10 +28,38 @@
                         <a style="color: orangered;">回退</a>
                     {{# } }}
                 </script>
+                <script type="text/html" template id="scmManaShip_deliver">
+                    {{# if(d.deliveryTime != null) { }}
+                    {{ d.deliveryTime.substring(0,10)}}
+                    {{# } }}
+                </script>
             </div>
             <!--钢网订单-->
             <div class="layui-tab-item">
-                <table class="layui-table"></table>
+                <table class="layui-table" id="sqeManaShip_tabStencil" lay-filter="sqeManaShip_tabStencil">
+                    <script type="text/html" id="ord_sqpManaShip_tbS">
+                        <div class="layui-btn-container">
+                            <button class="layui-btn layui-btn-sm" lay-event="submit">通知出货</button>
+                        </div>
+                    </script>
+                    <script type="text/html" id="scmManaShip_tabbarS">
+                        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+                        <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
+                        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+                    </script>
+                    <script type="text/html" template id="sqeMan_shiptoS">
+                        {{# if(d.status == '1') { }}
+                        <a style="color: green;">待出货</a>
+                        {{# } else if(d.status == '3') { }}
+                        <a style="color: orangered;">回退</a>
+                        {{# } }}
+                    </script>
+                    <script type="text/html" template id="scmManaShip_deliverS">
+                        {{# if(d.deliveryTime != null) { }}
+                            {{ d.deliveryTime.substring(0,10)}}
+                        {{# } }}
+                    </script>
+                </table>
             </div>
             <!--SMT订单-->
             <div class="layui-tab-item">

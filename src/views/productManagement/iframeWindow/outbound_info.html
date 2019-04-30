@@ -37,7 +37,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">国家：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="country" autocomplete="off" class="layui-input"  value="{{ d.params.countries || '' }}">
+                    <input type="text" name="country" autocomplete="off" class="layui-input"  value="{{ d.params.shippingInfo.country || '' }}">
                 </div>
             </div>
             <div class="layui-inline">
@@ -51,7 +51,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">件数：</label>
                 <div class="layui-input-inline">
-                    <input type="number" name="number" autocomplete="off" class="layui-input"  value="{{ d.params.number || '' }}">
+                    <input type="number" name="number" autocomplete="off" class="layui-input"  value="{{ d.params.shippingInfo.number || '' }}">
                 </div>
             </div>
             <div class="layui-inline">

@@ -203,7 +203,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     ,data: {"id":data.id,"contractNos":data.productNo,"isLock":data.isLock}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
-                        // layui.table.reload('or_Tabpcb_ok_payment');
+                        table.reload('or_Tabpcb_ok_payment');
                     }
                     ,fail: function () {
                         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
@@ -227,6 +227,25 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 ,area: ['75%', '70%']
                 ,btn: ['确定', '取消']
                 ,yes: function(index, layero){}
+            });
+        } else if (obj.event == 'showProcess') {
+            var postData  = {'orderId':data.id,'isInternal':2,'orderType':2};
+            admin.req({
+                type: 'post',
+                data: postData,
+                async: false,
+                url: setter.baseUrl+ 'sys/processlog/showProcess',
+                success: function (res) {
+                    console.log(res);
+                    admin.popup({
+                        title: '内部订单流程'
+                        ,area: ['837px', '373px']
+                        ,success: function (layero, index) {
+                            view(this.id).render('marketManagement/iframeWindow/order_process', res.data).done(function () {
+                            });
+                        }
+                    });
+                }
             });
         }
     });
@@ -313,7 +332,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     ,data: {"id":data.id,"isLock":data.isLock,"productNo":data.productNo}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
-                        console.log('提交的信息为'+JSON.stringify(data));
+                        table.reload('stencil_orderTab_ok_payment');
                     }
                     ,fail: function () {
                         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
@@ -342,6 +361,25 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 //         layer.msg('服务器异常，稍后再试！');
                 //     }
                 // });
+            });
+        } else if (obj.event == 'showProcess') {
+            var postData  = {'orderId':data.id,'isInternal':2,'orderType':2};
+            admin.req({
+                type: 'post',
+                data: postData,
+                async: false,
+                url: setter.baseUrl+ 'sys/processlog/showProcess',
+                success: function (res) {
+                    console.log(res);
+                    admin.popup({
+                        title: '内部订单流程'
+                        ,area: ['837px', '373px']
+                        ,success: function (layero, index) {
+                            view(this.id).render('marketManagement/iframeWindow/order_process', res.data).done(function () {
+                            });
+                        }
+                    });
+                }
             });
         }
     })
@@ -469,6 +507,25 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 layui.table.reload('smt_orderTab_ok_payment');
                 layer.close(index);
             })
+        } else if (obj.event == 'showProcess') {
+            var postData  = {'orderId':data.id,'isInternal':2,'orderType':2};
+            admin.req({
+                type: 'post',
+                data: postData,
+                async: false,
+                url: setter.baseUrl+ 'sys/processlog/showProcess',
+                success: function (res) {
+                    console.log(res);
+                    admin.popup({
+                        title: '内部订单流程'
+                        ,area: ['837px', '373px']
+                        ,success: function (layero, index) {
+                            view(this.id).render('marketManagement/iframeWindow/order_process', res.data).done(function () {
+                            });
+                        }
+                    });
+                }
+            });
         }
     })
 

@@ -81,8 +81,11 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     table.on('toolbar(iqcIncom_auditor)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
-        console.log(data);
-        if(obj.event == 'plrk'){     //通知出货
+        console.log(data.length);
+        if (data.length<1) {
+            layer.msg('请选择一条数据');
+            return false;
+        } else if(obj.event == 'plrk'){     //通知出货
             var ids = data.map(function(elem){return elem.id}).join(",");
             layer.confirm('确定批量入库？', function () {
                 admin.req({
@@ -252,7 +255,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     table.on('toolbar(iqcIncom_auditorS)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
-        if(obj.event === 'plrk'){     //通知出货
+        if (data.length<1) {
+            layer.msg('请选择一条数据');
+            return false;
+        } else if(obj.event === 'plrk'){     //通知出货
             var ids = data.map(function(elem){return elem.id}).join(",");
             layer.confirm('确定批量入库？', function () {
                 admin.req({
