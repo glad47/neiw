@@ -229,7 +229,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 ,yes: function(index, layero){}
             });
         } else if (obj.event == 'showProcess') {
-            var postData  = {'orderId':data.id,'isInternal':2,'orderType':2};
+            var postData  = {'orderId':data.id,'isInternal':2,'orderType':1};
             admin.req({
                 type: 'post',
                 data: postData,
