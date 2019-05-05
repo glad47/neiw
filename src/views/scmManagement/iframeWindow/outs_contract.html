@@ -55,12 +55,13 @@
                     <p>
                         <label>
                             乙方：
-                            {{# layui.each(d.params.data, function(index, item){  }}
-                            {{# if(invoiceNo == null){ }}
-                            {{# supplierCompanyName = item.supplierCompanyName }}
-                            {{ supplierCompanyName  }}
-                            {{# } }}
-                            {{#  }); }}
+                            <!--{{# layui.each(d.params.data, function(index, item){  }}-->
+                            <!--{{# if(invoiceNo == null){ }}-->
+                            <!--{{# supplierCompanyName = item.supplierCompanyName }}-->
+                            <!--{{ supplierCompanyName  }}-->
+                            <!--{{# } }}-->
+                            <!--{{#  }); }}-->
+                            {{ d.params.supplierInfo.companyName || '' }}
                         </label>
                     </p>
                 </div>
@@ -280,18 +281,21 @@
                     <li>地址：深圳市宝安区沙井街道后亭地铁C出口鹏程中骏2楼J区</li>
                     <script type="text/html" template>
                         <li>代表：{{ layui.data('userInfo').userChinaName || '' }}</li>
+                    <li>
+                        {{# var mydate = new Date() }}
+                        日期：{{ mydate.toLocaleDateString() }}
+                    </li>
                     </script>
-                    <li>日期：</li>
                 </ul>
                 <ul style="width: 48%;">
                     <script type="text/html" template>
                     <li>
-                        乙方：{{ d.params.supplierCompanyName || '' }}
+                        乙方：{{ d.params.supplierInfo.companyName || '' }}
                     </li>
-                    </script>
-                    <li>地址：</li>
-                    <li>代表：</li>
+                    <li>地址：{{ d.params.supplierInfo.address  || '' }}</li>
+                    <li>代表：{{ d.params.supplierInfo.contact  || '' }}</li>
                     <li>日期：</li>
+                    </script>
                 </ul>
             </div>
         </div>

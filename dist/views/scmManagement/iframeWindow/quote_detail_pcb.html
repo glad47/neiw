@@ -121,7 +121,14 @@
                         <input class="layui-input" type="text" name="remark" value="{{ d.params.remark || '' }}" id="qRemark">
                     </td>
                     <td>交期</td>
-                    <td><input class="layui-input" type="date" id="pcbDeliveryDate" value="{{ d.params.deliveryTime || '' }}"></td>
+                    <td>
+                        {{# if(d.params.deliveryTime != null){ }}
+                            {{# d.params.deliveryTime = d.params.deliveryTime.substring(0,10)}}
+                        {{# }else{ }}
+                            {{# d.params.deliveryTime = '' }}
+                        {{# } }}
+                        <input class="layui-input" type="date" id="pcbDeliveryDate" value="{{ d.params.deliveryTime || '' }}">
+                    </td>
                     <td title="客户交期">
                         {{ d.params.buildTime || '' }}
                     </td>

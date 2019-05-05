@@ -39,17 +39,17 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
-            ,{field:'productNo',fixed: 'left', title: 'ProductNo', align:'center', width: 114}
+            ,{field:'productNo',fixed: 'left', title: '内部型号', align:'center', width: 114}
             ,{field:'status', title: '状态', hide: false, align:'center',templet: '#pcbor_status',width: 150}
-            ,{field: '', title:'File', toolbar: '#pcb-file', align:'center'}
+            ,{field: '', title:'文件名', toolbar: '#pcb-file', align:'center'}
             ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254}
-            ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
-            ,{field:'layerNum', title: 'Layer', align:'center', width: 114}
-            ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}
-            ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114}
-            ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
-            ,{field:'boardFee', title: 'BoardFee', align:'center', width: 114}
-            ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
+            ,{field:'pcbType', title: '订单类型', align:'center', width: 114}
+            ,{field:'layerNum', title: '层数', align:'center', width: 114}
+            ,{field:'finishThickness', title: '完成板厚', align:'center', width: 134}
+            ,{field:'quantityPcs', title: 'Pcs数', align:'center', width: 114}
+            ,{field:'areaSq', title: '面积', align:'center', width: 110}
+            ,{field:'boardFee', title: '板费', align:'center', width: 114}
+            ,{field:'gmtCreate', title: '创建时间', align:'center', width: 165}
             ,{field:'userId', title: 'User ID',width: 80,hide: true}
             ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
             ,{field:'orderType', title: 'Order Type', align:'center', width: 109,hide: true}
