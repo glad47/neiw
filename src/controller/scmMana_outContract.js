@@ -213,26 +213,26 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             var lineData = obj.data;
             var supplierContractNo = lineData.supplierContractNo;
             var sd_len = 0;
-            var subtotal = 0;
+            var totalFee = 0;
             var convertSubtotal;
             for (var i=0;i<pcbtabObj.length;i++) {
                 if (supplierContractNo == pcbtabObj[i].supplierContractNo) {
                     sd_len += 1;
                     var forData = pcbtabObj[i];
                     popupData.data[sd_len] = forData;
-                    subtotal += pcbtabObj[i].totalFee;
+                    totalFee += pcbtabObj[i].totalFee;
                 }
             }
             for (var i=0;i<popupData.data.length;i++){
                 var forSt = popupData.data[i].subtotal;
-                subtotal += forSt;
-                console.log("subtotal:"+subtotal);
+                totalFee += forSt;
+                console.log("totalFee:"+totalFee);
                 console.log("sd_len:"+sd_len);
             }
             // 金额转换为中文大写
-            convertSubtotal = convertCurrency.conversion(subtotal);
+            convertSubtotal = convertCurrency.conversion(totalFee);
             console.log("convertSubtotal:"+convertSubtotal);
-            popupData.subtotal = subtotal;
+            popupData.totalFee = totalFee;
             popupData.convertSubtotal = convertSubtotal;
             // 获取供应商信息
             popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+data.supplierId);

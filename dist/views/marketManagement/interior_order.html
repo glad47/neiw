@@ -3,34 +3,51 @@
     <div class="layui-form">
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label">订单类型</label>
-                <div class="layui-input-inline">
-                    <select name="orderType">
-                        <option value="">请选择</option>
-                        <option value="1">新单</option>
-                        <option value="2">返单</option>
-                        <option value="3">返单有改</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">内部编码</label>
+                <label class="layui-form-label">内部型号</label>
                 <div class="layui-input-inline">
                     <input type="text" name="productNo" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">文件名</label>
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-inline">
+                    <select name="orderType">
+                        <option value="">已出货</option>
+                        <option value="1">供应商已确定</option>
+                        <option value="2">已入库</option>
+                        <option value="3">返单有改</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">订单类型</label>
+                <div class="layui-input-inline">
+                    <select name="status">
+                        <option value="">请选择</option>
+                        <option value="1">待报价</option>
+                        <option value="2">待确认</option>
+                        <option value="3">待支付</option>
+                        <option value="4">已支付</option>
+                        <option value="5">编写指示卡</option>
+                        <option value="6">工程已审核</option>
+                        <option value="7">供应商已确定</option>
+                        <option value="8">已入库</option>
+                        <option value="9">已出货</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">客户型号</label>
                 <div class="layui-input-inline">
                     <input type="text" name="gerberName" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">F/N</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="pcbName" class="layui-input" id="customer_orderTime">
-                </div>
-            </div>
+            <!--<div class="layui-inline">-->
+                <!--<label class="layui-form-label">F/N</label>-->
+                <!--<div class="layui-input-inline">-->
+                    <!--<input type="text" name="pcbName" class="layui-input" id="customer_orderTime">-->
+                <!--</div>-->
+            <!--</div>-->
             <div class="layui-inline">
                 <button class="layui-btn" lay-submit lay-filter="interior-order-search">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>

@@ -337,6 +337,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                             type: 'post',
                             headers: {access_token:layui.data('layuiAdmin').access_token},
                             data:  JSON.stringify(orderSupplierList),
+                            contentType: "application/json;charset=utf-8",
                             url: setter.baseUrl+'scm/stencilorder/createContractBeOt',
                             success: function (data) {
                                 if (data.code == '0'){

@@ -66,7 +66,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'testCostFee', title: '飞针费', width: 96}
                 ,{field: 'testCostFee', title: '测试架费', width: 96}
                 ,{field: 'toolingFee', title: '模具', width: 96}
-                ,{field: 'subtotal', title: '合计', width: 96}
+                ,{field: 'totalFee', title: '合计', width: 96}
                 ,{field: 'remark', title: '订单备注', width: 168}
                 ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
                 ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
@@ -214,7 +214,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'testCostFee', title: '飞针费', width: 96}
                 ,{field: 'testCostFee', title: '测试架费', width: 96}
                 ,{field: 'toolingFee', title: '模具', width: 96}
-                ,{field: 'subtotal', title: '合计', width: 96}
+                ,{field: 'totalFee', title: '合计', width: 96}
                 ,{field: 'remark', title: '订单备注', width: 168}
                 ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
                 ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}

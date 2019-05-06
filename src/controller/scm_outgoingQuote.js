@@ -44,7 +44,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-scm-outgoingQuote-status',minWidth: 130}
             ,{field: '', title:'下载', toolbar: '#pcb-file', align:'center'}
             ,{field: 'difficultyLevel', title:'难易度', align:'center', templet: '#Tabtb-pcb-scm-outgoingQuote-difficultyLevel'}
-            ,{field:'id',title:'ID',align:'center'}
+            ,{field:'id',title:'ID',align:'center',hide: true}
             ,{field:'quoteGerberName', title: '正式资料', align:'center', minWidth: 254, hide: true}
             ,{field:'gmtCreate', title: '创建时间', align:'center', minWidth: 165}
             ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114,hide: true}

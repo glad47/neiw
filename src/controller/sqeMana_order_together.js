@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form','laydate'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate','requestInterface','convertCurrency'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -14,12 +14,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,setter = layui.setter
         ,element = layui.element;
     var $ = layui.jquery;
+    var requestInterface = layui.requestInterface;
+    var convertCurrency = layui.convertCurrency;
 
     tabRenderPCB();
     // 全局变量
     var _public_val = {
         orderType: 1        //订单类型 （1 pcb 2钢网 3 贴片）
     };
+    var pcbtabObj;  // PCB表格数据对象
 
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tabot-scmManagement)', function(data){
@@ -61,7 +64,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'pcbName', title: '聚谷物料号'}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)'}
                 ,{field: 'unitPrice', title: '单价'}
-                ,{field: 'subtotal', title: '合计'}
+                ,{field: 'totalFee', title: '合计'}
                 ,{field: 'remark', title: '订单备注'}
                 ,{field: 'engineeringFee', title: '工程费', width: 96, hide: true}
                 ,{field: 'testCostFee', title: '飞针费', width: 96, hide: true}
@@ -81,7 +84,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{fixed: 'right', title:'操作', toolbar: '#scmManaOrderT_tabbar',width: 150}
             ]]
             ,done: function (res, curr, count) {
-
+                var data = res.data;    //获取表格所有数据对象
+                pcbtabObj = data;
             }
         });
     }
@@ -157,14 +161,49 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
             });
         } else if (obj.event == 'search'){
-            layer.msg('查看订单协同');
+            // 查看的是外协合同
+            var popupData = {data:{}};
+            var lineData = obj.data;
+            var supplierContractNo = lineData.supplierContractNo;
+            var sd_len = 0;
+            var totalFee = 0;
+            var convertSubtotal;
+            for (var i=0;i<pcbtabObj.length;i++) {
+                if (supplierContractNo == pcbtabObj[i].supplierContractNo) {
+                    sd_len += 1;
+                    var forData = pcbtabObj[i];
+                    popupData.data[sd_len] = forData;
+                    totalFee += pcbtabObj[i].totalFee;
+                }
+            }
+            for (var i=0;i<popupData.data.length;i++){
+                var forSt = popupData.data[i].subtotal;
+                totalFee += forSt;
+                console.log("totalFee:"+totalFee);
+                console.log("sd_len:"+sd_len);
+            }
+            // 金额转换为中文大写
+            convertSubtotal = convertCurrency.conversion(totalFee);
+            console.log("convertSubtotal:"+convertSubtotal);
+            popupData.totalFee = totalFee;
+            popupData.convertSubtotal = convertSubtotal;
+            // 获取供应商信息
+            popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+data.supplierId);
             admin.popup({
-                title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
-                ,area: ['45%', '70%']
-                ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
-
-                    });
+                title: '外协合同'
+                ,area: ['100%', '100%']
+                ,btn: ['打印','关闭']
+                ,yes: function () {
+                    var printId = "outsContract";
+                    document.body.innerHTML = document.getElementById(printId).innerHTML;
+                    window.print();
+                    window.location.reload();
+                }
+                ,success: function () {
+                    view(this.id).render('scmManagement/iframeWindow/outs_contract', popupData).done(function () {
+                        // var str = convertCurrency.conversion(12.03);
+                        // layer.alert(str);
+                    })
                 }
             });
         } else if (obj.event == 'del') {
@@ -211,7 +250,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'pcbName', title: '聚谷物料号'}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)'}
                 ,{field: 'unitPrice', title: '单价'}
-                ,{field: 'subtotal', title: '合计'}
+                ,{field: 'totalFee', title: '合计'}
                 ,{field: 'remark', title: '订单备注'}
                 ,{field: 'engineeringFee', title: '工程费', width: 96, hide: true}
                 ,{field: 'testCostFee', title: '飞针费', width: 96, hide: true}
