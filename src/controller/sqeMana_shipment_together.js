@@ -53,7 +53,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
             ,cols: [[
                 {type:'checkbox'}
-                ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}
+                ,{field: 'status',title: '状态', width: 110, templet:'#sqeMan_shipto'}
                 ,{field: 'id',title: 'ID', hide: true}
                 ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#scmManaShip_deliver'}
                 ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117}// 1 ＝ 待报价
