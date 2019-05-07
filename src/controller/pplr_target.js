@@ -22,7 +22,7 @@ layui.define(['admin', 'table','setter','form','jquery'], function(exports){
       ,url: setter.baseUrl+'pplr/businesstarget/list'
       ,cols: [[
          {field:'id', minWidth:80, title: 'ID',align:'center'}
-        ,{field:'businessName', minWidth:80, title: '跟单员',align:'center',templet:'target_business_name_temple'}
+        ,{field:'businessName', minWidth:80, title: '跟单员',align:'center'}
         ,{field:'name', minWidth:80, title: '目标名称',align:'center'}
          ,{field:'dateType', minWidth:80, title: '时间类型',align:'center',templet:'#target_dataType_temple'}
           ,{field:'type', minWidth:80, title: '目标类型',align:'center',templet:'#target_type_temple'} 
