@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/market_interiorOrder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/market_interiorOrder.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -49,14 +46,23 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.59534127">
+    <splitter split-orientation="horizontal" split-proportion="0.5747562">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="quote_contractB.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="quote_contractB.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="512">
-                  <caret line="136" column="167" selection-start-line="136" selection-start-column="134" selection-end-line="136" selection-end-column="167" />
+                <state relative-caret-position="155">
+                  <caret line="150" column="24" lean-forward="true" selection-start-line="150" selection-start-column="24" selection-end-line="150" selection-end-column="24" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="orderPCB_update.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="287">
+                  <caret line="273" column="112" selection-start-line="273" selection-start-column="112" selection-end-line="273" selection-end-column="112" />
                 </state>
               </provider>
             </entry>
@@ -68,8 +74,8 @@
           <file leaf-file-name="quote_contractB.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="296" column="20" lean-forward="true" selection-start-line="296" selection-start-column="20" selection-end-line="296" selection-end-column="20" />
+                <state relative-caret-position="259">
+                  <caret line="307" selection-start-line="306" selection-end-line="307" />
                 </state>
               </provider>
             </entry>
@@ -217,9 +223,9 @@
         <option value="$PROJECT_DIR$/src/controller/iqcMana_incoming_auditor.js" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" />
         <option value="$PROJECT_DIR$/src/controller/market_interiorOrder.js" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" />
         <option value="$PROJECT_DIR$/start/index.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" />
       </list>
     </option>
   </component>
@@ -595,21 +601,7 @@
       <workItem from="1557022065490" duration="5534000" />
       <workItem from="1557106902274" duration="1974000" />
       <workItem from="1557127527977" duration="3810000" />
-      <workItem from="1557283995354" duration="5616000" />
-    </task>
-    <task id="LOCAL-00124" summary="编写指示卡 钢网订单资料管理">
-      <created>1554291731539</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1554291731539</updated>
-    </task>
-    <task id="LOCAL-00125" summary="1">
-      <created>1554291976102</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1554291976102</updated>
+      <workItem from="1557283995354" duration="6377000" />
     </task>
     <task id="LOCAL-00126" summary="编写指示卡文件上传一堆bug解决">
       <created>1554299970592</created>
@@ -940,11 +932,25 @@
       <option name="project" value="LOCAL" />
       <updated>1557057879511</updated>
     </task>
-    <option name="localTasksCounter" value="173" />
+    <task id="LOCAL-00173" summary="合同B，快递，国家bug解决">
+      <created>1557310715669</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1557310715670</updated>
+    </task>
+    <task id="LOCAL-00174" summary="1">
+      <created>1557310937824</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1557310937824</updated>
+    </task>
+    <option name="localTasksCounter" value="175" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2005519000" />
+    <option name="totallyTimeSpent" value="2006280000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -967,7 +973,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49133262" weight="0.33333334" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49447078" weight="0.42487562" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49447078" visible="true" weight="0.24479167" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1041,7 +1047,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="供应商附件上传下载" />
     <MESSAGE value="合同B总价" />
     <MESSAGE value="合同时间bug解决" />
     <MESSAGE value="钢网修改计算bug" />
@@ -1065,6 +1070,7 @@
     <MESSAGE value="外发报价跳过提交" />
     <MESSAGE value="七七八八dbug" />
     <MESSAGE value="pcb外协合同不显示价格问题" />
+    <MESSAGE value="合同B，快递，国家bug解决" />
     <MESSAGE value="1" />
     <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
@@ -1390,13 +1396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="117" column="102" lean-forward="true" selection-start-line="117" selection-start-column="102" selection-end-line="117" selection-end-column="102" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/start/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -1406,8 +1405,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="296" column="20" lean-forward="true" selection-start-line="296" selection-start-column="20" selection-end-line="296" selection-end-column="20" />
+        <state relative-caret-position="155">
+          <caret line="150" column="24" lean-forward="true" selection-start-line="150" selection-start-column="24" selection-end-line="150" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="273" column="112" selection-start-line="273" selection-start-column="112" selection-end-line="273" selection-end-column="112" />
         </state>
       </provider>
     </entry>

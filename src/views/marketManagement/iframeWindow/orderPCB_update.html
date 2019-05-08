@@ -271,6 +271,7 @@
                 <label class="layui-form-label">Silk' Color：</label>
                 <div class="layui-input-block">
                     <select name="silkScreenTopColor">
+                        <option value="none"  {{ d.params.silkScreenTopColor == 'none' ? 'selected' : '' }}>none</option>
                         <option value="black"  {{ d.params.silkScreenTopColor == 'black' ? 'selected' : '' }}>black</option>
                         <option value="white"  {{ d.params.silkScreenTopColor == 'white' ? 'selected' : '' }}>white</option>
                     </select>
