@@ -293,12 +293,13 @@
 
         <!--模块四 contract-module-four，tips-->
         <div class="contract-module-four layui-col-md12">
+            <script type="text/html" template>
             <div class="contract-module-four-lef layui-col-md6">
                 <ul>
                     <li>1. This above quoted is based on USD;</li>
                     <li>2. Valid of 30 days upon issued date;</li>
-                    <li>3. Payment terms: TT in advance;</li>
-                    <li>4. shipment terms: DHL BY AIR;</li>
+                    <li>3. Payment terms: {{ d.params.paymentType || '' }};</li>
+                    <li>4. shipment terms: {{ d.params.deliveryType || '' }};</li>
                     <li>5. Acceptable x-out: international;</li>
                     <li>6. Customer Note points;</li>
                 </ul>
@@ -306,17 +307,16 @@
             <div class="contract-module-four-rig layui-col-md6">
                 <div class="top-info">
                     <!--<a id="contractCusName">{{ sessionStorage.getItem("userName") }}</a>-->
-                    <script type="text/html" template>
                         <a id="contractCusName">{{ layui.data('userInfo').uname }}</a>
                         <a id="contractBotDate">February 07, 2018</a>
                         <!--<a>{{ d.params.data[0].gmtModified || '' }} </a>-->
-                    </script>
                 </div>
                 <div class="bot-intro">
                     <a>Authorized by</a>
                     <a>Date</a>
                 </div>
             </div>
+            </script>
         </div>
 
         <!--模块五 contract-module-five，底部信息-->

@@ -92,6 +92,7 @@
                 <label class="layui-form-label">PCB Type：</label>
                 <div class="layui-input-block">
                     <select name="pcbType">
+                        <option value="FRC"  {{ d.params.pcbType == 'FRC' ? 'selected' : '' }}>FRC</option>
                         <option value="FR4"  {{ d.params.pcbType == 'FR4' ? 'selected' : '' }}>FR4</option>
                         <option value="Aluminum" {{ d.params.department == 'Aluminum' ? 'selected' : '' }}>Aluminum</option>
                         <option value="FR4+Aluminum" {{ d.params.department == 'FR4+Aluminum' ? 'selected' : '' }}>FR4+Aluminum</option>
@@ -140,6 +141,8 @@
                 <label class="layui-form-label">Thickness：</label>
                 <div class="layui-input-block">
                     <select name="finishThickness">
+                        <option value="0.2mm"  {{ d.params.finishThickness == '0.2mm' ? 'selected' : '' }}>0.2mm</option>
+                        <option value="0.3mm"  {{ d.params.finishThickness == '0.3mm' ? 'selected' : '' }}>0.3mm</option>
                         <option value="0.4mm"  {{ d.params.finishThickness == '0.4mm' ? 'selected' : '' }}>0.4mm</option>
                         <option value="0.6mm" {{ d.params.finishThickness == '0.6mm' ? 'selected' : '' }}>0.6mm</option>
                         <option value="0.8mm" {{ d.params.finishThickness == '0.8mm' ? 'selected' : '' }}>0.8mm</option>
@@ -268,6 +271,7 @@
                 <label class="layui-form-label">Silk' Color：</label>
                 <div class="layui-input-block">
                     <select name="silkScreenTopColor">
+                        <option value="none"  {{ d.params.silkScreenTopColor == 'none' ? 'selected' : '' }}>none</option>
                         <option value="black"  {{ d.params.silkScreenTopColor == 'black' ? 'selected' : '' }}>black</option>
                         <option value="white"  {{ d.params.silkScreenTopColor == 'white' ? 'selected' : '' }}>white</option>
                     </select>

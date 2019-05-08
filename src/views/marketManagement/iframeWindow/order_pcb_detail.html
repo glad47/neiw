@@ -154,9 +154,8 @@
                         {{# if(d.params.testPointType == '1'){testWay = '飞针'}else{testWay='测试架'} }}
                         {{ testWay || '' }}
                     </td>
-                    <td>无卤素:</td>
-                    {{# if(d.params.halogenFree == '1') {d.params.halogenFree = '是'}else{d.params.halogenFree = '否'} }}
-                    <td>{{ d.params.halogenFree || ''}}</td>
+                    <td>过孔方式:</td>
+                    <td>{{ d.params.viaProcess || ''}}</td>
                 </tr>
                 <tr>
                     <td>盲孔:</td>
@@ -164,15 +163,25 @@
                         {{# if(d.params.blindHoles == '1') {d.params.blindHoles = '是'}else{d.params.blindHoles = '否'} }}
                         {{ d.params.blindHoles || ''}}
                     </td>
-                    <td>金属包边:</td>
-                        {{# if(d.params.edgePlated == '1') {d.params.edgePlated = '是'}else{d.params.edgePlated = '否'} }}
-                    <td>{{ d.params.edgePlated || '否'}}</td>
+                    <td>无卤素:</td>
+                    {{# if(d.params.halogenFree == '1') {d.params.halogenFree = '是'}else{d.params.halogenFree = '否'} }}
+                    <td>{{ d.params.halogenFree || ''}}</td>
                 </tr>
                 <tr>
                     <td>半孔:</td>
                     <td>
                         {{# if(d.params.halfHoleLated == '1') {d.params.halfHoleLated = '是'}else{d.params.halfHoleLated = '否'} }}
                         {{ d.params.halfHoleLated || '否'}}
+                    </td>
+                    <td>金属包边:</td>
+                    {{# if(d.params.edgePlated == '1') {d.params.edgePlated = '是'}else{d.params.edgePlated = '否'} }}
+                    <td>{{ d.params.edgePlated || '否'}}</td>
+                </tr>
+                <tr>
+                    <td>埋孔:</td>
+                    <td>
+                        {{# if(d.params.buriedHoles == '1') {d.params.buriedHoles = '是'}else{d.params.buriedHoles = '否'} }}
+                        {{ d.params.buriedHoles || '否'}}
                     </td>
                     <td>阻抗</td>
                     <td>
@@ -181,10 +190,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>埋孔:</td>
+                    <td>控深锣:</td>
                     <td>
-                        {{# if(d.params.buriedHoles == '1') {d.params.buriedHoles = '是'}else{d.params.buriedHoles = '否'} }}
-                        {{ d.params.buriedHoles || '否'}}
+                        {{ d.params.deepMillRouting || '否'}}
                     </td>
                     <td>碳油:</td>
                     <td>
@@ -192,19 +200,13 @@
                         {{ d.params.carbon || '否'}}
                     </td>
                 </tr>
-                <tr>
-                    <td>控深锣:</td>
-                    <td>
-                        {{ d.params.deepMillRouting || '否'}}
-                    </td>
+                <tr style="border: solid silver 1px;">
+                    <td>备注:</td>
+                    <td>{{ d.params.remark || '' }}</td>
                     <td>斜边:</td>
                     <td>
                         {{ d.params.bevellingCamfer || '否'}}
                     </td>
-                </tr>
-                <tr style="border: solid silver 1px;">
-                    <td>备注:</td>
-                    <td colspan="3">{{ d.params.remark || '' }}</td>
                 </tr>
                 </tbody>
             </table>
