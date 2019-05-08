@@ -50,7 +50,7 @@ layui.define(function(exports){
     //发送请求
     admin.req({
       type:'get',
-      url:set.baseUrl+'graphs/monthlySales',
+      url:set.baseUrl+'allGraphs/monthlySales',
       success: function (res) {
           var result = lineChartCheckData(res.data);
           //console.log(result);
