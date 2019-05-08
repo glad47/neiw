@@ -401,6 +401,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 layer.close(index);
             });
         } else if (obj.event == 'detail') {
+            console.log(data);
             admin.popup({
                 title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
                 ,area: ['45%', '70%']

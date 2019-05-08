@@ -1,4 +1,4 @@
-<title>供应商管理-出货明细</title>
+<title>品质管理-来料明细</title>
 <div class="layui-fluid">
     <!--卡片－表格信息-->
     <div class="layui-tab layui-tab-brief" lay-filter="tab-planToger">
@@ -10,18 +10,18 @@
         <div class="layui-tab-content">
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="sqeManaShip_tabPcb" lay-filter="sqeManaShip_tabPcb"></table>
-                <script type="text/html" id="ord_sqpManaShip_tb">
+                <table class="layui-table" id="incoming_detail_tabPcb" lay-filter="incoming_detail_tabPcb"></table>
+                <script type="text/html" id="incoming_detail_pcb_tb">
                     <div class="layui-btn-container">
                         <button class="layui-btn layui-btn-sm" lay-event="submit">通知出货</button>
                     </div>
                 </script>
-                <script type="text/html" id="scmManaShip_tabbar">
+                <script type="text/html" id="incoming_detail_pcb_tabbar">
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
                     <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
                     <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
                 </script>
-                <script type="text/html" template id="sqeMan_shipto">
+                <script type="text/html" template id="incoming_detail_pcb_status">
                     {{# if(d.status == '1' || d.status == '4') { }}
                         <a style="color: purple;">待检验</a>
                     {{# } else if(d.status == '2') { }}
@@ -30,7 +30,7 @@
                         <a style="color: orangered;">已批退</a>
                     {{# } }}
                 </script>
-                <script type="text/html" template id="scmManaShip_deliver">
+                <script type="text/html" template id="incoming_detail_pcb_deliver">
                     {{# if(d.deliveryTime != null) { }}
                     {{ d.deliveryTime.substring(0,10)}}
                     {{# } }}
@@ -38,25 +38,27 @@
             </div>
             <!--钢网订单-->
             <div class="layui-tab-item">
-                <table class="layui-table" id="sqeManaShip_tabStencil" lay-filter="sqeManaShip_tabStencil">
-                    <script type="text/html" id="ord_sqpManaShip_tbS">
+                <table class="layui-table" id="incoming_detail_tabStencil" lay-filter="incoming_detail_tabStencil">
+                    <script type="text/html" id="incoming_detail_stencil_tb">
                         <div class="layui-btn-container">
                             <button class="layui-btn layui-btn-sm" lay-event="submit">通知出货</button>
                         </div>
                     </script>
-                    <script type="text/html" id="scmManaShip_tabbarS">
+                    <script type="text/html" id="incoming_detail_stencil_tabbar">
                         <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
                         <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
                         <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
                     </script>
-                    <script type="text/html" template id="sqeMan_shiptoS">
-                        {{# if(d.status == '1') { }}
-                        <a style="color: green;">待出货</a>
-                        {{# } else if(d.status == '3') { }}
-                        <a style="color: orangered;">回退</a>
-                        {{# } }}
-                    </script>
-                    <script type="text/html" template id="scmManaShip_deliverS">
+                   <script type="text/html" template id="incoming_detail_stencil_status">
+                    {{# if(d.status == '1' || d.status == '4') { }}
+                        <a style="color: purple;">待检验</a>
+                    {{# } else if(d.status == '2') { }}
+                        <a style="color: green;">已通过</a>
+                    {{# } else if(d.status == '3') { }}
+                        <a style="color: orangered;">已批退</a>
+                    {{# } }}
+                </script>
+                    <script type="text/html" template id="incoming_detail_stencil_deliver">
                         {{# if(d.deliveryTime != null) { }}
                             {{ d.deliveryTime.substring(0,10)}}
                         {{# } }}
@@ -72,7 +74,7 @@
 </div>
 
 <script>
-    layui.use('sqeMana_shipment_together', layui.factory('sqeMana_shipment_together')).use(['sqeMana_shipment_together', 'table', 'index','element','form'], function(){
+    layui.use('iqcMana_incoming_detail', layui.factory('iqcMana_incoming_detail')).use(['iqcMana_incoming_detail', 'table', 'index','element','form'], function(){
         var form = layui.form;
         form.render();
     });

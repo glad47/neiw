@@ -297,8 +297,8 @@
                 <ul>
                     <li>1. This above quoted is based on USD;</li>
                     <li>2. Valid of 30 days upon issued date;</li>
-                    <li>3. Payment terms: TT in advance;</li>
-                    <li>4. shipment terms: DHL BY AIR;</li>
+                    <li>3. Payment terms: {{ d.params.paymentType || '' }};</li>
+                    <li>4. shipment terms: {{ d.params.deliveryType || '' }};</li>
                     <li>5. Acceptable x-out: international;</li>
                     <li>6. Customer Note points;</li>
                 </ul>
