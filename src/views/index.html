@@ -123,7 +123,7 @@
             <div class="layui-card-body">
 
               <div class="layui-carousel layadmin-carousel layadmin-backlog" style="height: unset !important;">
-                <script type="text/html" template lay-url="{{layui.setter.baseUrl}}graphs/businessTarget" lay-done="layui.data.done(d);"> 
+                <script type="text/html" template lay-url="{{layui.setter.baseUrl}}allGraphs/businessTarget" lay-done="layui.data.done(d);"> 
                   <div carousel-item>
                       <ul class="layui-row layui-col-space10">
                         <div style="text-align: center">
@@ -138,7 +138,7 @@
                         <li class="layui-col-xs3">
                           <a lay-href="app/forum/list" class="layadmin-backlog-body">
                             <h3>完成</h3>
-                            <p><cite>12</cite></p>
+                            <p><cite>{{d.data.monthDoneOrderNumber}}</cite></p>
                           </a>
                         </li>
                         <li class="layui-col-xs3">
@@ -150,7 +150,7 @@
                         <li class="layui-col-xs3">
                           <a href="javascript:;" onclick="layer.tips('不跳转', this, {tips: 3});" class="layadmin-backlog-body">
                             <h3>完成</h3>
-                            <p><cite>20</cite></p>
+                            <p><cite>{{d.data.yearDoneOrderNumber}}</cite></p>
                           </a>
                         </li>
                         <li class="layui-col-xs3">
@@ -162,7 +162,7 @@
                         <li class="layui-col-xs3">
                           <a lay-href="app/forum/list" class="layadmin-backlog-body">
                             <h3>完成</h3>
-                            <p><cite>12</cite></p>
+                            <p><cite>{{d.data.monthDoneSales}}</cite></p>
                           </a>
                         </li>
                         <li class="layui-col-xs3">
@@ -174,7 +174,7 @@
                         <li class="layui-col-xs3">
                           <a href="javascript:;" onclick="layer.tips('不跳转', this, {tips: 3});" class="layadmin-backlog-body">
                             <h3>完成</h3>
-                            <p><cite>20</cite></p>
+                            <p><cite>{{d.data.yearDoneSales}}</cite></p>
                           </a>
                         </li>
                       </ul>
@@ -195,7 +195,7 @@
                         <li class="layui-col-xs3">
                           <a lay-href="app/forum/list" class="layadmin-backlog-body">
                             <h3>完成</h3>
-                            <p><cite>12</cite></p>
+                            <p><cite>{{d.data.monthDoneOrderNumber}}</cite></p>
                           </a>
                         </li>
                         <li class="layui-col-xs3">
@@ -207,7 +207,7 @@
                         <li class="layui-col-xs3">
                           <a href="javascript:;" onclick="layer.tips('不跳转', this, {tips: 3});" class="layadmin-backlog-body">
                             <h3>完成</h3>
-                            <p><cite>20</cite></p>
+                            <p><cite>{{d.data.yearDoneOrderNumber}}</cite></p>
                           </a>
                         </li>
                         <li class="layui-col-xs3">
@@ -219,7 +219,7 @@
                         <li class="layui-col-xs3">
                           <a lay-href="app/forum/list" class="layadmin-backlog-body">
                             <h3>完成</h3>
-                            <p><cite>12</cite></p>
+                            <p><cite>{{d.data.monthDoneSales}}</cite></p>
                           </a>
                         </li>
                         <li class="layui-col-xs3">
@@ -231,7 +231,7 @@
                         <li class="layui-col-xs3">
                           <a href="javascript:;" onclick="layer.tips('不跳转', this, {tips: 3});" class="layadmin-backlog-body">
                             <h3>完成</h3>
-                            <p><cite>20</cite></p>
+                            <p><cite>{{d.data.yearDoneSales}}</cite></p>
                           </a>
                         </li>
                       </ul>
@@ -362,7 +362,7 @@
               
             </div>
           </div>
-          <div class="layui-card">
+         <!--  <div class="layui-card">
             <div class="layui-tab layui-tab-brief layadmin-latestData">
               <ul class="layui-tab-title">
                 <li class="layui-this">今日热搜</li>
@@ -377,7 +377,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
