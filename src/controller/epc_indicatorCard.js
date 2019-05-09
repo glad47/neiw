@@ -255,7 +255,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 admin.req({
                     type: 'post',
                     url: setter.baseUrl+'epc/pcborder/backByIo'    // 需要修改成退回的接口
-                    ,data:{id:data.id,isInternal:isInternal,onlineOid:data.onlineOid}
+                    ,data:{id:data.id,isInternal:isInternal,onlineOid:data.onlineOid,'bid':data.businessId,'sales':data.totalFee,'onlineSales':data.subtotal}
                     ,done: function (res) {
                         layer.msg('成功退回');
                         table.reload('epc_Tabpcb_ok_payment_order');
@@ -624,7 +624,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 admin.req({
                     type: 'post',
                     url: setter.baseUrl+'epc/stencilorder/backByAo'       // 需要修改成退回的接口
-                    ,data:{id:data.id,isInternal:isInternal,onlineOid:data.onlineOid}
+                    ,data:{id:data.id,isInternal:data.isInternal,onlineOid:data.onlineOid,'bid':data.businessId,'sales':data.totalStencilFee,'onlineSales':data.totalStencilFee}
                     ,done: function (res) {
                         layer.msg('成功退回')
                         table.reload('epc_Tabstencil_ok_payment_order');

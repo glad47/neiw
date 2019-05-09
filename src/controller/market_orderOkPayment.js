@@ -200,7 +200,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 admin.req({
                     type: 'post'
                     ,url: setter.baseUrl+'market/quote/okPaymentList/submit'
-                    ,data: {"id":data.id,"contractNos":data.productNo,"isLock":data.isLock}
+                    ,data: {"id":data.id,"contractNos":data.productNo,"isLock":data.isLock,"bid":data.businessId,"onlineSales":data.subtotal}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
                         table.reload('or_Tabpcb_ok_payment');
@@ -329,7 +329,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 admin.req({
                     type: 'post'
                     ,url: setter.baseUrl+'market/stencil/okPayment/submit'
-                    ,data: {"id":data.id,"isLock":data.isLock,"productNo":data.productNo}
+                    ,data: {"id":data.id,"isLock":data.isLock,"productNo":data.productNo,'bid':data.businessId,"onlineSales":data.totalStencilFee}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
                         table.reload('stencil_orderTab_ok_payment');

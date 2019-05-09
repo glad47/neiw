@@ -166,7 +166,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             case 'okquote':
                 var postData = new Array();
                 for (var i=0;i<checkStatus.data.length;i++) {
-                    postData[i] = {'id': checkStatus.data[i].id,'isInternal':checkStatus.data[i].isInternal,'businessId':checkStatus.data[i].businessId}
+                    postData[i] = {'id': checkStatus.data[i].id,'isInternal':checkStatus.data[i].isInternal,'businessId':checkStatus.data[i].businessId,'totalStencilFee':checkStatus.data[i].totalStencilFee}
                 }
                 console.log(postData);
                 // return false;
@@ -377,7 +377,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                admin.req({
                    type: 'post',
                    contentType: "application/json;charset=utf-8",
-                   data: JSON.stringify([{'id':data.id,'isInternal':data.isInternal,'businessId':data.businessId}]),
+                   data: JSON.stringify([{'id':data.id,'isInternal':data.isInternal,'businessId':data.businessId,'totalFee':data.totalFee}]),
                    url: setter.baseUrl+'epc/pcborder/submitInternalOrder',
                    success: function (result) {
                        layer.alert("订单提交成功");
@@ -560,7 +560,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             case 'okquote':
                 var postData = new Array();
                 for (var i=0;i<checkStatus.data.length;i++) {
-                    postData[i] = {'id': checkStatus.data[i].id,'isInternal':checkStatus.data[i].isInternal,'businessId':checkStatus.data[i].businessId}
+                    postData[i] = {'id': checkStatus.data[i].id,'isInternal':checkStatus.data[i].isInternal,'businessId':checkStatus.data[i].businessId,'totalFee':checkStatus.data[i].totalFee}
                 }
                 console.log(postData);
                 // var contractNos = checkStatus.data.map(function(elem){return elem.invoiceNo}).join(",");
@@ -702,7 +702,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 admin.req({
                     type: 'post',
                     contentType: "application/json;charset=utf-8",
-                    data: JSON.stringify([{'id':data.id,'isInternal':data.isInternal,'businessId':data.businessId}]),
+                    data: JSON.stringify([{'id':data.id,'isInternal':data.isInternal,'businessId':data.businessId,'totalStencilFee':data.totalStencilFee}]),
                     url: setter.baseUrl+'epc/stencilorder/submitInternalOrder',
                     success: function (result) {
                         layer.alert("订单提交成功");
