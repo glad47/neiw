@@ -175,10 +175,10 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
         var popupData = {data:{}};
         popupData.data = checkStatus.data;
         var pTotala = 0;
-        if (data.length >= 7) {
-            layer.alert("最多只能选择6条数据！！");
-            return false;
-        }
+        // if (data.length >= 7) {
+        //     layer.alert("最多只能选择6条数据！！");
+        //     return false;
+        // }
         for (var i=0;i<data.length;i++){
             pTotala += parseFloat(data[i].totalFee);
         }
@@ -770,10 +770,10 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
         var popupData = {data:{}};
         popupData.data = checkStatus.data;
         var pTotala = 0;
-        if (data.length >= 7) {
-            layer.alert("最多只能选择6条数据！！");
-            return false;
-        }
+        // if (data.length >= 7) {
+        //     layer.alert("最多只能选择6条数据！！");
+        //     return false;
+        // }
         for (var i=0;i<data.length;i++){
             pTotala += parseFloat(data[i].totalStencilFee);
         }
