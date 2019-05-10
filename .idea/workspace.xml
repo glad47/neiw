@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" afterDir="false" />
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="pcb订单明细导热系数添加">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -70,8 +69,8 @@
           <file leaf-file-name="order_pcb_detail.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="359">
-                  <caret line="73" column="32" lean-forward="true" selection-start-line="71" selection-start-column="24" selection-end-line="73" selection-end-column="32" />
+                <state relative-caret-position="110">
+                  <caret line="73" column="32" selection-start-line="71" selection-start-column="24" selection-end-line="73" selection-end-column="32" />
                 </state>
               </provider>
             </entry>
@@ -83,8 +82,8 @@
           <file leaf-file-name="order_pcb_detail.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="395">
-                  <caret line="175" column="58" lean-forward="true" selection-start-line="175" selection-start-column="58" selection-end-line="175" selection-end-column="58" />
+                <state relative-caret-position="144">
+                  <caret line="177" column="24" lean-forward="true" selection-start-line="177" selection-start-column="24" selection-end-line="177" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
@@ -252,9 +251,9 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-10" />
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="46" />
+    <option name="y" value="28" />
     <option name="width" value="1867" />
     <option name="height" value="1057" />
   </component>
@@ -636,21 +635,7 @@
       <workItem from="1557127527977" duration="3810000" />
       <workItem from="1557283995354" duration="6952000" />
       <workItem from="1557315965149" duration="83000" />
-      <workItem from="1557365732542" duration="7985000" />
-    </task>
-    <task id="LOCAL-00135" summary="内部订单提交合同号改成型号productNo">
-      <created>1555555191670</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1555555191670</updated>
-    </task>
-    <task id="LOCAL-00136" summary="1">
-      <created>1555589100595</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1555589100596</updated>
+      <workItem from="1557365732542" duration="8228000" />
     </task>
     <task id="LOCAL-00137" summary="1">
       <created>1555589671347</created>
@@ -981,11 +966,25 @@
       <option name="project" value="LOCAL" />
       <updated>1557401682628</updated>
     </task>
-    <option name="localTasksCounter" value="184" />
+    <task id="LOCAL-00184" summary="pcb订单明细导热系数添加">
+      <created>1557402918703</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1557402918703</updated>
+    </task>
+    <task id="LOCAL-00185" summary="pcb订单明细导热系数添加">
+      <created>1557402975224</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1557402975224</updated>
+    </task>
+    <option name="localTasksCounter" value="186" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2014923000" />
+    <option name="totallyTimeSpent" value="2015166000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -997,7 +996,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-10" y="23" width="1867" height="1057" extended-state="0" />
+    <frame x="46" y="28" width="1867" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.17497292" />
@@ -1008,7 +1007,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49133262" weight="0.33333334" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49447078" weight="0.56458336" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49447078" visible="true" weight="0.56458336" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1082,7 +1081,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="编辑PCB底部自动计算，打开其它页导致不能正常计算的bug解决" />
     <MESSAGE value="编写指示卡生产资料上传，内部订单bug" />
     <MESSAGE value="合同A、B、S修改，显示用户信息" />
     <MESSAGE value="2" />
@@ -1107,7 +1105,8 @@
     <MESSAGE value="合同样式修改[置底]" />
     <MESSAGE value="编写指示卡退回" />
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="pcb订单明细导热系数添加" />
+    <option name="LAST_COMMIT_MESSAGE" value="pcb订单明细导热系数添加" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1453,8 +1452,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="175" column="58" lean-forward="true" selection-start-line="175" selection-start-column="58" selection-end-line="175" selection-end-column="58" />
+        <state relative-caret-position="144">
+          <caret line="177" column="24" lean-forward="true" selection-start-line="177" selection-start-column="24" selection-end-line="177" selection-end-column="24" />
         </state>
       </provider>
     </entry>
