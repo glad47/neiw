@@ -119,13 +119,13 @@
         </div> -->
         <div class="layui-col-md12" style="height: 310px;">
           <div class="layui-card">
-            
+
             <div class="layui-card-header">年/月目标</div>
             <div class="layui-card-body">
 
               <div class="layui-carousel layadmin-carousel layadmin-backlog" style="height: unset !important;">
-                <script type="text/html" template lay-url="{{layui.setter.baseUrl}}allGraphs/businessTarget" lay-done="layui.data.done(d);"> 
-                  {{# 
+                <script type="text/html" template lay-url="{{layui.setter.baseUrl}}allGraphs/businessTarget" lay-done="layui.data.done(d);">
+                  {{#
                     if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:index:target") != -1){ 
                   }}
                   <div carousel-item>
@@ -242,7 +242,6 @@
                       {{# }); }}
                   </div>
                   {{# } }}
-                </script>
               </div>
             </div>
            
@@ -267,15 +266,12 @@
                   <script type="text/html" template>
                     v{{ layui.admin.v }}
                     <a href="http://fly.layui.com/docs/3/" target="_blank" style="padding-left: 15px;">更新日志</a>
-                  </script>
                 </td>
               </tr>
               <tr>
                 <td>基于框架</td>
                 <td>
-                  <script type="text/html" template>
-                    layui-v{{ layui.v }}
-                  </script>
+                  layui-v{{ layui.v }}
                </td>
               </tr>
               <tr>
@@ -354,12 +350,12 @@
     <div class="layui-col-md12">
       <div class="layui-row layui-col-space15"> 
         <div class="layui-col-md12">
-          <script type="text/html">
-            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:index:target") != -1){ }}
           <div class="layui-card">
             <div class="layui-card-header">统计表图</div>
+            {{#
+            if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:index:target") != -1){
+            }}
             <div class="layui-card-body">
-              
               <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-dataview">
                 <div carousel-item id="LAY-index-dataview">
                   <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
@@ -367,11 +363,9 @@
                   <div></div>
                 </div>
               </div>
-              
             </div>
+            {{# } }}
           </div>
-           {{# } }}
-          </script>
          <!--  <div class="layui-card">
             <div class="layui-tab layui-tab-brief layadmin-latestData">
               <ul class="layui-tab-title">
@@ -392,6 +386,7 @@
       </div>
     </div>
   </div>
+  </script>
 </div>
 
 
