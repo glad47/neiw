@@ -64,7 +64,12 @@
                     <td>材料:</td>
                     <td>{{ d.params.pcbType || ''}},TG:{{ d.params.tg }},{{ d.params.cti || ''}}</td>
                     <td>孔铜:</td>
-                    <td>{{ d.params.pthCopper }}</td>
+                    <td>
+                        {{# if(d.params.pthCopper != null && d.params.pthCopper == 'none'){ }}
+                        {{# d.params.pthCopper = '无' }}
+                        {{# } }}
+                        {{ d.params.pthCopper }}
+                    </td>
                 </tr>
                 <tr>
                     <td>导热系数:</td>
@@ -113,6 +118,8 @@
                         {{# solderMaskTopColor = '哑黑'}}
                         {{# } else if(d.params.solderMaskTopColor == 'matte_green'){ }}
                         {{# solderMaskTopColor = '哑绿'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'none'){ }}
+                        {{# solderMaskTopColor = '无'}}
                         {{# } }}
                         {{ solderMaskTopColor || ''}}
                     </td>
@@ -135,6 +142,8 @@
                         {{# silkScreenTopColor = '哑黑'}}
                         {{# } else if(d.params.silkScreenTopColor == 'matte_green'){ }}
                         {{# silkScreenTopColor = '哑绿'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'none'){ }}
+                        {{# silkScreenTopColor = '无'}}
                         {{# } }}
                         {{ silkScreenTopColor || ''}}
                     </td>
@@ -157,13 +166,20 @@
                         {{# surfaceFinish = '沉银'}}
                         {{# } else if(d.params.surfaceFinish == 'OSP'){ }}
                         {{# surfaceFinish = 'OSP'}}
+                        {{# } else if(d.params.surfaceFinish == 'none'){ }}
+                        {{# surfaceFinish = '无'}}
                         {{# } }}
                         {{ surfaceFinish || ''}}
                     </td>
                 </tr>
                 <tr>
                     <td>过孔方式:</td>
-                    <td>{{ d.params.viaProcess || ''}}</td>
+                    <td>
+                        {{# if(d.params.viaProcess != null && d.params.viaProcess == 'none'){ }}
+                        {{# d.params.viaProcess = '无' }}
+                        {{# } }}
+                        {{ d.params.viaProcess || ''}}
+                    </td>
                     <td>测试方式:</td>
                     <td>
                         {{# var testWay }}
