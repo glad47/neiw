@@ -304,6 +304,18 @@
                     <input type="text" name="thickness" value="{{ d.params.thickness || '' }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">VIA Process：</label>
+                <div class="layui-input-block">
+                    <select name="viaProcess">
+                        <option value="none"  {{ d.params.viaProcess == 'none' ? 'selected' : '' }}>None</option>
+                        <option value="tenting"  {{ d.params.viaProcess == 'tenting' ? 'selected' : '' }}>Tenting</option>
+                        <option value="plugged"  {{ d.params.viaProcess == 'plugged' ? 'selected' : '' }}>Plugged</option>
+                        <option value="vias_not_covered" {{ d.params.viaProcess == 'vias_not_covered' ? 'selected' : '' }}>Vias not covered</option>
+                        <option value="Follow_gerber" {{ d.params.viaProcess == 'Follow_gerber' ? 'selected' : '' }}>Follow gerber</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
         <!--<div class="layui-form-item">-->

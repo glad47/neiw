@@ -151,6 +151,38 @@
                 <tr>
                     <td>最小孔:</td>
                     <td>{{ d.params.minHoleSize }}</td>
+                    <td>盲孔:</td>
+                    <td>
+                        {{# if(d.params.blindHoles == '1') {d.params.blindHoles = '是'}else{d.params.blindHoles = '否'} }}
+                        {{ d.params.blindHoles || ''}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>过孔方式:</td>
+                    <td>
+                        {{# if(d.params.viaProcess != null && d.params.viaProcess == 'none'){ }}
+                        {{# d.params.viaProcess = '无' }}
+                        {{# } else if(d.params.viaProcess == 'tenting'){ }}
+                        {{#  d.params.viaProcess = '盖油' }}
+                        {{# } else if(d.params.viaProcess == 'plugged'){ }}
+                        {{#  d.params.viaProcess = '塞孔' }}
+                        {{# } else if(d.params.viaProcess == 'vias_not_covered'){ }}
+                        {{#  d.params.viaProcess = '开窗' }}
+                        {{# } else if(d.params.viaProcess == 'Follow_gerber'){ }}
+                        {{#  d.params.viaProcess = '按资料' }}
+                        {{# } }}
+                        {{ d.params.viaProcess }}
+                    </td>
+                    <td>测试方式:</td>
+                    <td>
+                        {{# var testWay }}
+                        {{# if(d.params.testPointType == '1'){testWay = '飞针'}else{testWay='测试架'} }}
+                        {{ testWay || '' }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>表面处理厚度:</td>
+                    <td>{{ d.params.thickness || ''}}</td>
                     <td>表面处理:</td>
                     <td>
                         {{# var surfaceFinish = d.params.surfaceFinish }}
@@ -170,30 +202,6 @@
                         {{# surfaceFinish = '无'}}
                         {{# } }}
                         {{ surfaceFinish || ''}}
-                    </td>
-                </tr>
-                <tr>
-                    <td>过孔方式:</td>
-                    <td>
-                        {{# if(d.params.viaProcess != null && d.params.viaProcess == 'none'){ }}
-                        {{# d.params.viaProcess = '无' }}
-                        {{# } }}
-                        {{ d.params.viaProcess || ''}}
-                    </td>
-                    <td>测试方式:</td>
-                    <td>
-                        {{# var testWay }}
-                        {{# if(d.params.testPointType == '1'){testWay = '飞针'}else{testWay='测试架'} }}
-                        {{ testWay || '' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>表面处理厚度:</td>
-                    <td>{{ d.params.thickness || ''}}</td>
-                    <td>盲孔:</td>
-                    <td>
-                        {{# if(d.params.blindHoles == '1') {d.params.blindHoles = '是'}else{d.params.blindHoles = '否'} }}
-                        {{ d.params.blindHoles || ''}}
                     </td>
                 </tr>
                 <tr>
