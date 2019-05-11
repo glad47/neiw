@@ -55,8 +55,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 }
             }
             ,cols: [[
-                {type:'checkbox'}
-                ,{field: 'productNo', title: '内部型号',minWidth: 130}
+                {type:'checkbox', fixed: 'left'}
+                ,{field: 'productNo', title: '内部型号',width: 130, fixed: 'left'}
                 ,{field:'status', title: '状态', align:'center',templet: '#interiorOrderStatus', width: 117}
                 ,{field: 'orderType',title: '订单类型', templet: '#order_type'}    //1=新单  2=返单    3=返单有改
                 ,{field: '',title: '资料下载', templet: '#interiorOrder_downP', align: 'center', width: 107}    //资料下载
@@ -65,11 +65,11 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 ,{field: 'orderNo',title: '客户PO'}
                 ,{field: 'courierName',title: '快递公司'}
                 ,{field: 'courierNumber',title: '快递单号'}
-                ,{field: 'gmtCreate',title: '创建时间', minWidth: 230}
-                ,{field: 'gmtModified',title: '修改时间', minWidth: 230}
+                ,{field: 'gmtCreate',title: '创建时间', width: 230}
+                ,{field: 'gmtModified',title: '修改时间', width: 230}
                 // 型号占位
-                ,{field: 'gerberName',title: '文件名',minWidth: 160, hide: true}
-                ,{field: 'pcbType',title: 'PCB类型',minWidth: 130, hide: true}
+                ,{field: 'gerberName',title: '文件名',width: 160, hide: true}
+                ,{field: 'pcbType',title: 'PCB类型',width: 130, hide: true}
                 ,{field: 'dimensionsX',title: '单只(X)', hide: true}
                 ,{field: 'dimensionsY',title: '单只(Y)', hide: true}
                 ,{field: 'panelSizeX',title: 'Panel(X)',width: 90, hide: true}
@@ -89,7 +89,6 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 ,{field: 'postFee',title: '运费', hide: true}
                 ,{field: 'subtotal',title: '总价', hide: true}
                 ,{field: 'boardType',title: '出货方式', hide: true}    // 1=单只 2=拼板
-                // ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-iQuote-status',width: 110}
                 ,{field: 'areaSq',title: '面积', hide: true}
                 ,{field: 'material',title: '材料', hide: true}
                 ,{field: 'productCode',title: '材料型号', hide: true}
@@ -157,6 +156,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             ,done: function (res, curr, count) {
                 var data = res.data;    //获取表格所有数据对象
                 pcbtabObj = data;
+                // 表格固定右侧失效 解决方案
+                $('.layui-table-fixed-r').removeClass('layui-hide');
             }
         });
     }
@@ -454,8 +455,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 }
             }
             ,cols: [[
-                {type:'checkbox'}
-                ,{field: 'productNo', title: '内部型号', width: 130}
+                {type:'checkbox', fixed: 'left'}
+                ,{field: 'productNo', title: '内部型号', width: 130, fixed: 'left'}
                 ,{field:'status', title: '状态', templet: '#interiorOrderStatus', width: 117}
                 ,{field: 'orderType',title: '订单类型', templet: '#order_type', width: 117}    //1=新单  2=返单    3=返单有改
                 ,{field: '',title: '资料下载', templet: '#interiorOrder_downS', width: 107, align: 'center'}    //资料下载
