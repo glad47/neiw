@@ -223,6 +223,9 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                         form.on('submit(LAY-pcborder-update-submit)',function (data) {
                             var field = data.field;
                             console.log("提交的字段信息："+JSON.stringify(field));
+                            if (field.remark == "" || field.remark == "null") {
+                                field.remark = " ";
+                            }
                             admin.req({
                                 type: 'post'
                                 ,url: setter.baseUrl+'epc/pcborder/update'

@@ -172,6 +172,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                         form.render(null, '')
                         form.on('submit(LAY-pcborder-update-submit)',function (data) {
                             var field = data.field;
+                            if (field.remark == "" || field.remark == "null") {
+                                field.remark = " ";
+                            }
                             admin.req({
                                 type: 'post'
                                 ,url: setter.baseUrl+'/market/quote/audit/update'

@@ -181,8 +181,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>表面处理厚度:</td>
-                    <td>{{ d.params.thickness || ''}}</td>
                     <td>表面处理:</td>
                     <td>
                         {{# var surfaceFinish = d.params.surfaceFinish }}
@@ -203,6 +201,8 @@
                         {{# } }}
                         {{ surfaceFinish || ''}}
                     </td>
+                    <td>表面处理厚度:</td>
+                    <td>{{ d.params.thickness || ''}}</td>
                 </tr>
                 <tr>
                     <td>无卤素:</td>

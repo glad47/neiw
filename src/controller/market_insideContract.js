@@ -493,6 +493,9 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                         form.render(null, '');
                         form.on('submit(LAY-pcborder-update-submit)',function (data) {
                             var field = data.field;
+                            if (field.remark == "" || field.remark == "null") {
+                                field.remark = " ";
+                            }
                             console.log("提交的字段信息："+JSON.stringify(field));
                             admin.req({
                                 type: 'post'
