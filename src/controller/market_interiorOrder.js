@@ -661,7 +661,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                                 ,btn: ['打印','关闭']
                                 ,maxmin: true
                                 ,yes:function(index, layero){
-                                    var printId;
+                                    var printId = "quoteContract_AllS";
                                     document.body.innerHTML=document.getElementById(printId).innerHTML;
                                     window.print();
                                     window.location.reload();
