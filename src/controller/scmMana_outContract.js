@@ -17,22 +17,19 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
     var requestInterface = layui.requestInterface;
 
     tabRenderPCB();
-    // 全局变量
-    var _public_val = {
-        orderType: 1        //订单类型 （1 pcb 2钢网）
-    };
+
     var pcbtabObj;  // PCB表格数据对象
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-scmManagement)', function(data){
         console.log(data.index);
         if (data.index === 0){
-            _public_val.orderType = 1;       //pcb
+
             tabRenderPCB();
         } else if (data.index === 1){
-            _public_val.orderType = 2;      //钢网
+
             tabRenderStencil();
         } else if (data.index === 2){
-            _public_val.orderType = 3;      //贴片
+
         }
     });
 
@@ -169,7 +166,6 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                     // 参数：OrderSupplierEntity对象
                     postData.id = data.id;                                      //id
                     postData.orderId = data.orderId;                            //订单id
-                    postData.orderType = _public_val.orderType;                 //订单类型（1 pcb 2钢网 3 贴片）
                     postData.supplierId = data.supplierId;                      //供应商id
                     postData.supplierQuoteNo = data.supplierQuoteNo;            //供应商报价单号
                     postData.boardFee = data.boardFee;                          //板费
@@ -403,7 +399,6 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                     // 参数：OrderSupplierEntity对象
                     postData.id = data.id;                                      //id
                     postData.orderId = data.orderId;                            //订单id
-                    postData.orderType = _public_val.orderType;                 //订单类型（1 pcb 2钢网 3 贴片）
                     postData.supplierId = data.supplierId;                      //供应商id
                     postData.supplierQuoteNo = data.supplierQuoteNo;            //供应商报价单号
                     postData.deliveryTime = $("#stencilDeliveryDate").val();    //交期

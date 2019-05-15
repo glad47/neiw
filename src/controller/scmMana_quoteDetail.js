@@ -17,21 +17,14 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
     var requestInterface = layui.requestInterface;
 
     tabRenderPCB();
-    // 全局变量
-    var _public_val = {
-        orderType: 1        //订单类型 （1 pcb 2钢网）
-    };
 
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-scmManagement)', function(data){
         if (data.index === 0){
-            _public_val.orderType = 1;       //pcb
             tabRenderPCB();
         } else if (data.index === 1){
-            _public_val.orderType = 2;      //钢网
             tabRenderStencil();
         } else if (data.index === 2){
-            _public_val.orderType = 3;      //贴片
         }
     });
 
@@ -170,7 +163,6 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                     // 参数：OrderSupplierEntity对象
                     postData.id = data.id;                                      //id
                     postData.orderId = data.orderId;                            //订单id
-                    postData.orderType = _public_val.orderType;                 //订单类型（1 pcb 2钢网 3 贴片）
                     postData.supplierId = data.supplierId;                      //供应商id
                     postData.supplierQuoteNo = data.supplierQuoteNo;            //供应商报价单号
                     postData.boardFee = data.boardFee;                          //板费
@@ -185,7 +177,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                     postData.factoryMake = $("#pcbfactoryMake").val();          //厂编
                     postData.testPointType = $("#hiddenTestPoint").val();     //侧孔方式
                     postData.totalFee = $("#qt_pcb_totalFee").text();          //总价
-                    console.log(postData);
+                    // console.log(postData);
                     admin.req({
                         type: 'post',
                         data: postData,
@@ -373,7 +365,6 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                     // 参数：OrderSupplierEntity对象
                     postData.id = data.id;                                      //id
                     postData.orderId = data.orderId;                            //订单id
-                    postData.orderType = _public_val.orderType;                 //订单类型（1 pcb 2钢网 3 贴片）
                     postData.supplierId = data.supplierId;                      //供应商id
                     postData.supplierQuoteNo = data.supplierQuoteNo;            //供应商报价单号
                     postData.deliveryTime = $("#stencilDeliveryDate").val();    //交期
@@ -382,7 +373,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                     postData.status = '';                                       //状态
                     postData.factoryMake = $("#stencilfactoryMake").val();     // 厂编
                     postData.totalFee = $("#qt_stencil_totalFee").text();          //总价
-                    console.log(postData);
+                    // console.log(postData);
                     admin.req({
                         type: 'post',
                         data: postData,

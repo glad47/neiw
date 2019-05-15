@@ -16,22 +16,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     var $ = layui.jquery;
 
     tabRenderPCB();
-    // 全局变量
-    var _public_val = {
-        orderType: 1        //订单类型 （1 pcb 2钢网 3 贴片）
-    };
 
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-planToger)', function(data){
         console.log(data.index);
         if (data.index === 0){
-            _public_val.orderType = 1;       //pcb
             tabRenderPCB();
         } else if (data.index === 1){
-            _public_val.orderType = 2;      //钢网
             tabRenderStencil();
         } else if (data.index === 2){
-            _public_val.orderType = 3;      //贴片
         }
     });
 
@@ -81,18 +74,20 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     table.on('toolbar(iqcIncom_auditor)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
-        console.log(data.length);
         if (data.length<1) {
             layer.msg('请选择一条数据');
             return false;
         } else if(obj.event == 'plrk'){     //通知出货
-            var ids = data.map(function(elem){return elem.id}).join(",");
+            var sendData = new Array();
+            for (var i=0;i< data.length;i++) {
+                sendData.push({'id':data[i].id,'orderId':data[i].orderId,'orderPcsNumber':data[i].orderPcsNumber,'currPcsNumber':data[i].currPcsNumber,'orderType':data[i].orderType,'isInternal':data[i].isInternal,'onlineOid':data[i].onlineOid});
+            }
             layer.confirm('确定批量入库？', function () {
                 admin.req({
                     type: 'post',
                     headers: {access_token:layui.data('layuiAdmin').access_token},
                     contentType: "application/json;charset=utf-8",
-                    data: JSON.stringify(data),
+                    data: JSON.stringify(sendData),
                     url: setter.baseUrl+'iqc/pcborder/batchStatusOk',
                     success: function () {
                         layer.msg('批量入库成功');
@@ -106,9 +101,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(iqcIncom_auditor)', function (obj) {
         var data = obj.data;
-        // if (data.deliveryTime) {
-        //     data.deliveryTime = data.deliveryTime.substring(0,10);
-        // }
         console.log(data);
         if (obj.event == 'edit'){
             admin.popup({
@@ -259,13 +251,16 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             layer.msg('请选择一条数据');
             return false;
         } else if(obj.event === 'plrk'){     //通知出货
-            var ids = data.map(function(elem){return elem.id}).join(",");
+            var sendData = new Array();
+            for (var i=0;i< data.length;i++) {
+                sendData.push({'id':data[i].id,'orderId':data[i].orderId,'orderPcsNumber':data[i].orderPcsNumber,'currPcsNumber':data[i].currPcsNumber,'orderType':data[i].orderType,'isInternal':data[i].isInternal,'onlineOid':data[i].onlineOid});
+            }
             layer.confirm('确定批量入库？', function () {
                 admin.req({
                     type: 'post',
                     headers: {access_token:layui.data('layuiAdmin').access_token},
                     contentType: "application/json;charset=utf-8",
-                    data: JSON.stringify(data),
+                    data: JSON.stringify(sendData),
                     url: setter.baseUrl+'iqc/stencilorder/batchStatusOk',
                     success: function () {
                         layer.msg('批量入库成功');
@@ -279,20 +274,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     });
     //监听行工具事件＝＝＝＝》Stencil 订单
     table.on('tool(iqcIncom_auditorS)', function (obj) {
-        var data = {data:{}};
-        data.data = obj.data;
-        var d_data = {};        // 公共发送的对象
-        d_data.id = obj.data.id;               // 供应商订单id
-        d_data.orderSupplierId = obj.data.orderSupplierId;    // 供应商订单id
-        d_data.supplierId = obj.data.supplierId;              // 供应商编号
-        d_data.factoryMake = obj.data.factoryMake;            // 供应商厂编
-        d_data.orderPcsNumber = obj.data.orderPcsNumber;      // 订单PCS数
-        d_data.donePcsNumber = obj.data.donePcsNumber;        // 已交PCS数
-        d_data.currPcsNumber = obj.data.currPcsNumber;        // 此次数量
-        d_data.orderPeriod = "";    // 订单周期
-        // d_data.totalPcsNumber = "";   // 总计 PCS
-        // console.log(d_data);
-        // console.log(data.data);
+        var data = obj.data;
         console.log(data);
         if (obj.event == 'edit'){
             admin.popup({
@@ -300,12 +282,12 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,area: ['624px','494px']
                 ,btn: ['NG评审', 'NG批退', 'OK入库', '保存']
                 ,btn1: function (index, layero) {
-                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
-                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
+                    data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
+                    data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
                     layer.confirm('确定评审？', function () {
                         admin.req({
                             type: 'post',
-                            data: d_data,
+                            data: data,
                             url: setter.baseUrl+'iqc/stencilorder/statusReview',
                             success: function (result) {
                                 table.reload('iqcIncom_auditorS');
@@ -332,12 +314,12 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     return false;
                 },
                 btn3: function () {
-                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
-                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
+                    data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
+                    data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
                     layer.confirm('确定入库？', function () {
                         admin.req({
                             type: 'post',
-                            data: d_data,
+                            data: data,
                             url: setter.baseUrl+'iqc/stencilorder/statusOk',
                             success: function (result) {
                                 table.reload('iqcIncom_auditorS');
@@ -348,12 +330,12 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     return false;
                 },
                 btn4: function () {
-                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
-                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
+                    data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
+                    data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
                     layer.confirm('确定保存？', function () {
                         admin.req({
                             type: 'post',
-                            data: d_data,
+                            data: data,
                             url: setter.baseUrl+'iqc/stencilorder/updateOrderShipment',
                             success: function () {
                                 table.reload('iqcIncom_auditorS');
@@ -366,7 +348,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     var id = data.id;
                     var supplierId = data.supplierId;
                     var orderId = data.orderId;
-                    view(this.id).render('iqcManagement/iframeWindow/incoming_auditor_edit',data.data).done(function () {
+                    view(this.id).render('iqcManagement/iframeWindow/incoming_auditor_edit',data).done(function () {
                         form.on('submit(otEdit)', function (data) {
                             var field = data.field;
                             field.id = id;
