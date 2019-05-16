@@ -297,9 +297,22 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     });
                 },
                 btn2: function () {
-                    d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
-                    d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
-                    console.log(d_data);
+                    //d_data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
+                    //d_data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
+                    //console.log(d_data);
+                    data.pcsMantissa = $("input[name='pcsMantissa']").val();          // 尾数数量
+                    data.failPcsNumber = $("input[name='failPcsNumber']").val();      // 不合格的数量
+                    layer.confirm('确定批退？', function () {
+                        admin.req({
+                            type: 'post',
+                            data: data,
+                            url: setter.baseUrl+'iqc/stencilorder/statusBack',
+                            success: function (result) {
+                                table.reload('iqcIncom_auditorS');
+                                layer.closeAll();
+                            }
+                        });
+                    });
                     // layer.confirm('确定批退？', function () {
                     //     admin.req({
                     //         type: 'post',
