@@ -15,20 +15,12 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,element = layui.element;
     var $ = layui.jquery;
 
-    // 全局变量
-    var _public_val = {
-        orderType: 1        //订单类型 （1 pcb 2钢网 3 贴片）
-    };
-
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-quotationToger)', function(data){
         console.log(data.index);
         if (data.index === 0){
-            _public_val.orderType = 1;       //pcb
         } else if (data.index === 1){
-            _public_val.orderType = 2;      //钢网
         } else if (data.index === 2){
-            _public_val.orderType = 3;      //贴片
         }
     });
 
