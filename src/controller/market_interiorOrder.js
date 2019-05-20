@@ -168,7 +168,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             case 'okquote':
                 var postData = new Array();
                 for (var i=0;i<checkStatus.data.length;i++) {
-                    postData[i] = {'id': checkStatus.data[i].id,'isInternal':checkStatus.data[i].isInternal,'businessId':checkStatus.data[i].businessId,'totalStencilFee':checkStatus.data[i].totalStencilFee}
+                    postData[i] = {'id': checkStatus.data[i].id,'isInternal':checkStatus.data[i].isInternal,'businessId':checkStatus.data[i].businessId,'totalFee':checkStatus.data[i].totalFee}
                 }
                 console.log(postData);
                 // return false;
@@ -566,7 +566,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             case 'okquote':
                 var postData = new Array();
                 for (var i=0;i<checkStatus.data.length;i++) {
-                    postData[i] = {'id': checkStatus.data[i].id,'isInternal':checkStatus.data[i].isInternal,'businessId':checkStatus.data[i].businessId,'totalFee':checkStatus.data[i].totalFee}
+                    postData[i] = {'id': checkStatus.data[i].id,'isInternal':checkStatus.data[i].isInternal,'businessId':checkStatus.data[i].businessId,'totalStencilFee':checkStatus.data[i].totalStencilFee}
                 }
                 console.log(postData);
                 // var contractNos = checkStatus.data.map(function(elem){return elem.invoiceNo}).join(",");
