@@ -71,7 +71,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}
                 ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114}
                 ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
-                ,{field:'boardFee', title: 'BoardFee', align:'center', width: 114}
 
                 ,{field:'userId', title: 'User ID',width: 80,hide: true}
                 ,{field:'engineeringRemark', title: '工程备注',width: 80,hide: true}
@@ -131,8 +130,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'differentDesign', title: 'DifferentDesign', align:'center', width: 134,hide: true}
                 ,{field:'gmtModified', title: 'gmtModified', align:'center', width: 114,hide: true}
                 ,{field:'uuid', title: 'UuId', align:'center', width: 80,hide: true}
-                ,{field:'stencilFee', title: 'StencilFee', align:'center', width: 114,hide: true}
-                ,{field:'overworkFee', title: 'OverworkFee', align:'center', width: 114,hide: true}
                 ,{field:'buildTime', title: 'BuildTime', align:'center', width: 114,hide: true}
                 ,{field:'isExistSmt', title: 'IsExistSmt', align:'center', width: 114,hide: true}
                 ,{field:'weight', title: 'Weight', align:'center', width: 80,hide: true}
@@ -417,7 +414,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}
                 ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114}
                 ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
-                ,{field:'boardFee', title: 'BoardFee', align:'center', width: 114}
                 ,{field:'userId', title: 'User ID',width: 80,hide: true}
                 ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
                 ,{field:'orderType', title: 'Order Type', align:'center', width: 109,hide: true}
@@ -474,8 +470,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'differentDesign', title: 'DifferentDesign', align:'center', width: 134,hide: true}
                 ,{field:'gmtModified', title: 'gmtModified', align:'center', width: 114,hide: true}
                 ,{field:'uuid', title: 'UuId', align:'center', width: 80,hide: true}
-                ,{field:'stencilFee', title: 'StencilFee', align:'center', width: 114,hide: true}
-                ,{field:'overworkFee', title: 'OverworkFee', align:'center', width: 114,hide: true}
                 ,{field:'buildTime', title: 'BuildTime', align:'center', width: 114,hide: true}
                 ,{field:'isExistSmt', title: 'IsExistSmt', align:'center', width: 114,hide: true}
                 ,{field:'weight', title: 'Weight', align:'center', width: 80,hide: true}

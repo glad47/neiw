@@ -3,7 +3,7 @@
  * _def_disableIn 默认值
  **/
 
-layui.define(['admin','form','element','laytpl','layer','upload'], function (exports) {
+layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], function (exports) {
     var $ = layui.jquery
         ,view = layui.view
         ,form = layui.form
@@ -11,6 +11,7 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
         ,element = layui.element
         ,setter = layui.setter
         ,upload = layui.upload
+        ,jstools = layui.jsTools
         ,layer = layui.layer;
     element.render();
     var arr_layer_options = [{text: 0,value: 0},{text: 1,value: 1},{text: 2,value: 2},{text: 4,value: 4},{text: 6,value: 6},{text: 8,value: 8}];
@@ -1386,8 +1387,8 @@ layui.define(['admin','form','element','laytpl','layer','upload'], function (exp
             obj.preview(function (index, file, result) {
                 var fileName = file.name;   //文件名
                 pcb_container.gerberName = saveSMTStencil.gerberName = fileName;
-                console.log("上传的文件名为："+fileName);
-                pcb_container.pcbName = saveSMTStencil.pcbName = fileName.substring(0,fileName.indexOf("."));
+                pcb_container.pcbName = saveSMTStencil.pcbName = jstools.CleanFileSuffix(fileName);
+                console.log("显示的文件名为："+pcb_container.pcbName)
                 if ($("#pcbName").val != null || $("#pcbName").val != ""){
                     $("#pcbName").val(pcb_container.pcbName);
                 }
