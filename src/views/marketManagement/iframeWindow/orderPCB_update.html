@@ -288,6 +288,16 @@
 
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">测试方式：</label>
+                <div class="layui-input-block">
+                    <select name="testPointType">
+                        <option value="">请选择</option>
+                        <option value="1"  {{ d.params.testPointType == '1' ? 'selected' : '' }}>飞针</option>
+                        <option value="2"  {{ d.params.testPointType == '2' ? 'selected' : '' }}>测试架</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">表面处理：</label>
                 <div class="layui-input-block">
                     <select name="surfaceFinish">
@@ -304,18 +314,6 @@
                 <label class="layui-form-label">表面处理厚度：</label>
                 <div class="layui-input-block">
                     <input type="text" name="thickness" value="{{ d.params.thickness || '' }}" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">过孔方式：</label>
-                <div class="layui-input-block">
-                    <select name="viaProcess">
-                        <option value="none"  {{ d.params.viaProcess == 'none' ? 'selected' : '' }}>None</option>
-                        <option value="tenting"  {{ d.params.viaProcess == 'tenting' ? 'selected' : '' }}>Tenting</option>
-                        <option value="plugged"  {{ d.params.viaProcess == 'plugged' ? 'selected' : '' }}>Plugged</option>
-                        <option value="vias_not_covered" {{ d.params.viaProcess == 'vias_not_covered' ? 'selected' : '' }}>Vias not covered</option>
-                        <option value="Follow_gerber" {{ d.params.viaProcess == 'Follow_gerber' ? 'selected' : '' }}>Follow gerber</option>
-                    </select>
                 </div>
             </div>
         </div>
@@ -347,9 +345,21 @@
 
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">过孔方式：</label>
+                <div class="layui-input-block">
+                    <select name="viaProcess">
+                        <option value="none"  {{ d.params.viaProcess == 'none' ? 'selected' : '' }}>None</option>
+                        <option value="tenting"  {{ d.params.viaProcess == 'tenting' ? 'selected' : '' }}>Tenting</option>
+                        <option value="plugged"  {{ d.params.viaProcess == 'plugged' ? 'selected' : '' }}>Plugged</option>
+                        <option value="vias_not_covered" {{ d.params.viaProcess == 'vias_not_covered' ? 'selected' : '' }}>Vias not covered</option>
+                        <option value="Follow_gerber" {{ d.params.viaProcess == 'Follow_gerber' ? 'selected' : '' }}>Follow gerber</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">盲孔：</label>
                 <div class="layui-input-block">
-                        <!--<input type="text" name="blindHoles" value="{{ d.params.blindHoles || 'No' }}" autocomplete="off" class="layui-input">-->
+                    <!--<input type="text" name="blindHoles" value="{{ d.params.blindHoles || 'No' }}" autocomplete="off" class="layui-input">-->
                     <select name="blindHoles">
                         <option value="0"  {{ d.params.blindHoles == '' ? 'selected' : '' }}>No</option>
                         <option value="1" {{ d.params.blindHoles == '1' ? 'selected' : '' }}>Yes</option>
@@ -365,6 +375,9 @@
                     </select>
                 </div>
             </div>
+        </div>
+
+        <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">半孔：</label>
                 <div class="layui-input-block">
@@ -374,9 +387,6 @@
                     </select>
                 </div>
             </div>
-        </div>
-
-        <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">阻抗：</label>
                 <div class="layui-input-block">
@@ -395,6 +405,9 @@
                     </select>
                 </div>
             </div>
+        </div>
+
+        <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">碳油：</label>
                 <div class="layui-input-block">
@@ -404,9 +417,6 @@
                     </select>
                 </div>
             </div>
-        </div>
-
-        <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">控深锣：</label>
                 <div class="layui-input-block">
@@ -425,6 +435,9 @@
                     </select>
                 </div>
             </div>
+        </div>
+
+        <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">聚谷型号：</label>
                 <div class="layui-input-block">
@@ -506,8 +519,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <div class="layui-form-item">
             <div class="layui-col-md12 layui-col-xs12 layui-col-sm12">

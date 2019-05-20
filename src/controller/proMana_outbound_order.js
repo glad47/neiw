@@ -5,13 +5,14 @@
  */
 
 
-layui.define(['admin','table','index','element','form','laydate'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate','requestInterface'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
         // ,laydate = layui.laydate
         ,setter = layui.setter
+        ,requestInterface = layui.requestInterface
         ,element = layui.element;
     var $ = layui.jquery;
 
@@ -125,42 +126,27 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(iqcMana_outBound)', function (obj) {
         var data = obj.data;
-        if (obj.event == 'edit'){
-            layer.msg('编辑操作');
+        if (obj.event == 'packReq'){
+            var url = setter.baseUrl+'/sys/consumer/user/info/'+data.userId;
+            var customerInfo = requestInterface.GetCustomerInfo(url);
             admin.popup({
-                title: '订单协同编辑'
-                ,area: ['434px','448px']
-                ,btn: ['保存', '取消']
-                ,yes: function (index, layero) {
-                    layer.msg('提交信息');
-                    $(".otEdit").click();
+                title: 'PCB包装要求'
+                ,id: 'packReq'
+                ,area: ['734px','468px']
+                ,btn: ['打印', '返回']
+                ,btn1: function () {
+                    layer.msg('打印');
+                    document.body.innerHTML=document.getElementById("packReqAll").innerHTML;
+                    window.print();
+                    window.location.reload();
                 }
-                ,success: function (layero, index) {
-                    var id = data.id;
-                    var supplierId = data.supplierId;
-                    var orderId = data.orderId;
-                    view(this.id).render('sqeManagement/iframeWindow/order_together_edit',data).done(function () {
-                        form.on('submit(otEdit)', function (data) {
-                            var field = data.field;
-                            field.id = id;
-                            field.orderId = orderId;
-                            field.supplierId = supplierId;
-                            console.log(field);
-                            admin.req({
-                                type: 'post',
-                                data: field,
-                                url: setter.baseUrl+'scm/ordersupplier/update',
-                                success: function (data) {
-                                    layer.alert("订单协同修改成功");
-                                    table.reload('iqcMana_outBound');
-                                    layer.close(index);
-                                }
-                            });
-                            return false;
-                        });
-                    });
+                ,success: function (layero, index0) {
+                    view(this.id).render('productManagement/iframeWindow/packaging _requirements', customerInfo).done(function () {
+
+                    })
                 }
-            });
+            })
+            console.log(customerInfo);
         } else if (obj.event == 'search') {
             admin.popup({
                 title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
@@ -376,6 +362,28 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                    });
                }
            });
+       } else if (obj.event == 'packReq') {
+           layer.msg('包装要求');
+           var url = setter.baseUrl+'/sys/consumer/user/info/'+data.userId;
+           var customerInfo = requestInterface.GetCustomerInfo(url);
+           admin.popup({
+               title: '钢网包装要求'
+               ,id: 'packReq'
+               ,area: ['734px','468px']
+               ,btn: ['打印', '返回']
+               ,btn1: function () {
+                   layer.msg('打印');
+                   document.body.innerHTML=document.getElementById("packReqAll").innerHTML;
+                   window.print();
+                   window.location.reload();
+               }
+               ,success: function (layero, index0) {
+                   view(this.id).render('productManagement/iframeWindow/packaging _requirements', customerInfo).done(function () {
+
+                   })
+               }
+           })
+           console.log(customerInfo);
        }
     });
     exports('proMana_outbound_order', {});

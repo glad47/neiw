@@ -83,6 +83,28 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <div class="addcus-cusCom layui-col-md6">
+                <label class="layui-form-label">快递公司：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="userCourierName" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="DHL" {{ d.params.userCourierName == 'DHL' ? 'selected' : '' }}>DHL</option>
+                            <option value="FedEx" {{ d.params.userCourierName == 'FedEx' ? 'selected' : '' }}>FedEx</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label">快递账号：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input class="layui-input" type="text" value="{{ d.params.userCourierAccount || '' }}" name="userCourierAccount">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <div class="layui-col-md6">
                 <label class="layui-form-label"><span class="span-required">*</span>邮编：</label>
                 <div class="layui-input-block">
@@ -191,49 +213,69 @@
             </div>
         </div>
         <div>
-            <div class="addcus-merchandiser layui-col-md6">
-                <label class="layui-form-label">应用：</label>
+            <div class="layui-form-item">
+                <div class="addcus-merchandiser layui-col-md6">
+                    <label class="layui-form-label">应用：</label>
+                    <div class="layui-input-block">
+                        <script type="text/html" template>
+                          <select name="applications">
+                            <option value="">请选择应用</option>
+                            <option value="Audio" {{ d.params.applications === 'Audio' ? 'selected' : ''}}>Audio</option>
+                            <option value="Avionics &amp; Defense" {{ d.params.applications === 'Avionics &amp; Defense' ? 'selected' : ''}}>Avionics &amp; Defense</option>
+                            <option value="Auto &amp; Transportation" {{ d.params.applications === 'Auto &amp; Transportation' ? 'selected' : ''}}>Auto &amp; Transportation</option>
+                            <option value="Broadcast" {{ d.params.applications === 'Broadcast' ? 'selected' : ''}}>Broadcast</option>
+                            <option value="Communications" {{ d.params.applications === 'Communications' ? 'selected' : ''}}>Communications</option>
+                            <option value="Consumer Electronics" {{ d.params.applications === 'Consumer Electronics' ? 'selected' : ''}}>Consumer Electronics</option>
+                            <option value="Computing" {{ d.params.applications === 'Computing' ? 'selected' : ''}}>Computing</option>
+                            <option value="Energy Harvesting" {{ d.params.applications === 'Energy Harvesting' ? 'selected' : ''}}>Energy Harvesting</option>
+                            <option value="Industrial" {{ d.params.applications === 'Industrial' ? 'selected' : ''}}>Industrial</option>
+                            <option value="Instrumentation" {{ d.params.applications === 'Instrumentation' ? 'selected' : ''}}>Instrumentation</option>
+                            <option value="Lighting" {{ d.params.applications === 'Lighting' ? 'selected' : ''}}>Lighting</option>
+                            <option value="Medical" {{ d.params.applications === 'Medical' ? 'selected' : ''}}>Medical</option>
+                            <option value="Motor Control" {{ d.params.applications === 'Motor Control' ? 'selected' : ''}}>Motor Control</option>
+                            <option value="Power Management" {{ d.params.applications === 'Power Management' ? 'selected' : ''}}>Power Management</option>
+                            <option value="Robotics" {{ d.params.applications === 'Robotics' ? 'selected' : ''}}>Robotics</option>
+                            <option value="Security" {{ d.params.applications === 'Security' ? 'selected' : ''}}>Security</option>
+                            <option value="Other" {{ d.params.applications === 'Other' ? 'selected' : ''}}>Other</option>
+                          </select>
+                        </script>
+                    </div>
+                </div>
+                <div class="addcus-merchandiser layui-col-md6">
+                    <label class="layui-form-label"><span class="span-required">*</span>跟单员：</label>
+                    <div class="layui-input-block">
+                        <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-done="layui.data.done(d);" lay-type="post">
+                            <select name="businessInfo" id="user_edit_dep" lay-verify="required">
+                                {{#
+                                    var businessId = d.params.businessId;
+                                    layui.each(d.data, function(index, item){
+                                }}
+                                <option></option>
+                                <option value="{{ item.userId || ''}},{{item.jobNumber}}" {{ businessId == item.userId ? 'selected' : ''}}>{{ item.username }}</option>
+                                {{#  }); }}
+                                {{#  if(d.data.length === 0){ }}
+                                无数据
+                                {{#  } }}
+                            </select>
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">包装要求：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                      <select name="applications">
-                        <option value="">请选择应用</option>
-                        <option value="Audio" {{ d.params.applications === 'Audio' ? 'selected' : ''}}>Audio</option>
-                        <option value="Avionics &amp; Defense" {{ d.params.applications === 'Avionics &amp; Defense' ? 'selected' : ''}}>Avionics &amp; Defense</option>
-                        <option value="Auto &amp; Transportation" {{ d.params.applications === 'Auto &amp; Transportation' ? 'selected' : ''}}>Auto &amp; Transportation</option>
-                        <option value="Broadcast" {{ d.params.applications === 'Broadcast' ? 'selected' : ''}}>Broadcast</option>
-                        <option value="Communications" {{ d.params.applications === 'Communications' ? 'selected' : ''}}>Communications</option>
-                        <option value="Consumer Electronics" {{ d.params.applications === 'Consumer Electronics' ? 'selected' : ''}}>Consumer Electronics</option>
-                        <option value="Computing" {{ d.params.applications === 'Computing' ? 'selected' : ''}}>Computing</option>
-                        <option value="Energy Harvesting" {{ d.params.applications === 'Energy Harvesting' ? 'selected' : ''}}>Energy Harvesting</option>
-                        <option value="Industrial" {{ d.params.applications === 'Industrial' ? 'selected' : ''}}>Industrial</option>
-                        <option value="Instrumentation" {{ d.params.applications === 'Instrumentation' ? 'selected' : ''}}>Instrumentation</option>
-                        <option value="Lighting" {{ d.params.applications === 'Lighting' ? 'selected' : ''}}>Lighting</option>
-                        <option value="Medical" {{ d.params.applications === 'Medical' ? 'selected' : ''}}>Medical</option>
-                        <option value="Motor Control" {{ d.params.applications === 'Motor Control' ? 'selected' : ''}}>Motor Control</option>
-                        <option value="Power Management" {{ d.params.applications === 'Power Management' ? 'selected' : ''}}>Power Management</option>
-                        <option value="Robotics" {{ d.params.applications === 'Robotics' ? 'selected' : ''}}>Robotics</option>
-                        <option value="Security" {{ d.params.applications === 'Security' ? 'selected' : ''}}>Security</option>
-                        <option value="Other" {{ d.params.applications === 'Other' ? 'selected' : ''}}>Other</option>
-                      </select>
+                        <input type="text" name="packageRequirements" autocomplete="off" class="layui-input" value="{{ d.params.packageRequirements || '' }}">
                     </script>
                 </div>
             </div>
-            <div class="addcus-merchandiser layui-col-md6">
-                <label class="layui-form-label"><span class="span-required">*</span>跟单员：</label>
+            <div class="layui-form-item">
+                <label class="layui-form-label">出货报告：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-done="layui.data.done(d);" lay-type="post">
-                        <select name="businessInfo" id="user_edit_dep" lay-verify="required">
-                            {{# 
-                                var businessId = d.params.businessId;
-                                layui.each(d.data, function(index, item){   
-                            }}
-                            <option></option>
-                            <option value="{{ item.userId || ''}},{{item.jobNumber}}" {{ businessId == item.userId ? 'selected' : ''}}>{{ item.username }}</option>
-                            {{#  }); }}
-                            {{#  if(d.data.length === 0){ }}
-                            无数据
-                            {{#  } }}
-                        </select>    
+                    <script type="text/html" template>
+                        <textarea name="deliveryReport" autocomplete="off" class="layui-textarea" lay-verify="required">
+                        {{ d.params.deliveryReport || '' }}
+                    </textarea>
                     </script>
                 </div>
             </div>

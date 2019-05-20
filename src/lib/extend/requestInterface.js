@@ -47,6 +47,19 @@ layui.define(['admin', 'index'],function (exports) {
                 }
             });
             return supplierInfo;
+        },
+
+        GetCustomerInfo: function (url) {
+            var customerInfo = new Object();
+            admin.req({
+               type: 'get',
+                url: url,
+                async: false,
+                success: function (data) {
+                   customerInfo = data.user;
+                }
+            });
+            return customerInfo;
         }
     }
 
