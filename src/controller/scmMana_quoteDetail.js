@@ -45,8 +45,8 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                 }
             }
             ,cols: [[
-                {type:'checkbox'}
-                ,{field:'productNo', title: '内部型号', align:'center', width: 114}
+                {type:'checkbox',fixed: 'left'}
+                ,{field:'productNo', title: '内部型号', align:'center', width: 114,fixed: 'left'}
                 ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115}      // 1 ＝ 待报价
                 ,{field: 'supplierQuoteNo',title: '报价单号', width: 172}
                 ,{field: 'gmtCreate',title: '报价时间', width: 166}
@@ -251,8 +251,8 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                 }
             }
             ,cols: [[
-                {type:'checkbox'}
-                ,{field:'productNo', title: '内部型号', align:'center', width: 114}
+                {type:'checkbox',fixed: 'left'}
+                ,{field:'productNo', title: '内部型号', align:'center', width: 114,fixed: 'left'}
                 ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115}      // 1 ＝ 待报价
                 ,{field: 'supplierQuoteNo',title: '报价单号', width: 172}
                 ,{field: 'gmtCreate',title: '报价时间', width: 166}

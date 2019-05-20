@@ -54,9 +54,9 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 }
             }
             ,cols: [[
-                {type:'checkbox'}
+                {type:'checkbox',fixed: 'left'}
+                ,{field: 'productNo', title: '内部编码',minWidth: 130,fixed: 'left'}
                 ,{field: 'orderType',title: '订单类型',edit: 'text', Width: 110, templet: '#order_type'}    //1=新单  2=返单    3=返单有改
-                ,{field: 'productNo', title: '内部编码',minWidth: 130}
                 ,{field: 'gerberName',title: '文件名',edit: 'text',minWidth: 160}
                 ,{field: 'pcbName',title: 'F/N',edit: 'text',minWidth: 130}
                 ,{field: 'orderNo',title: '客户PO',edit: 'text'}
@@ -413,9 +413,9 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 }
             }
             ,cols: [[
-                {type:'checkbox'}
+                {type:'checkbox',fixed: 'left'}
+                ,{field: 'productNo', title: '内部编码',minWidth: 130,fixed: 'left'}
                 ,{field: 'orderType',title: '订单类型',edit: 'text', Width: 110, templet: '#order_type'}    //1=新单  2=返单    3=返单有改
-                ,{field: 'productNo', title: '内部编码',minWidth: 130}
                 ,{field: 'gerberName',title: '文件名',edit: 'text',minWidth: 160}
                 ,{field: 'pcbName',title: 'F/N',edit: 'text',minWidth: 130}
                 ,{field: 'orderNo',title: '客户PO',edit: 'text'}

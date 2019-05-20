@@ -50,7 +50,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                 }
             }
             ,cols: [[
-                {type:'checkbox'}
+                {type:'checkbox',fixed: 'left'}
                 ,{field: 'status',title: '状态',templet: '#og_status', minWidth: 104}      // 1 ＝ 待报价
                 ,{field: 'supplierContractNo',title: '合同编号', minWidth: 171}
                 ,{field: 'gmtCreate',title: '创建时间', width: 166}
@@ -282,7 +282,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                 }
             }
             ,cols: [[
-                {type:'checkbox'}
+                {type:'checkbox',fixed: 'left'}
                 ,{field: 'status',title: '状态',templet: '#og_statusS', minWidth: 104}      // 1 ＝ 待报价
                 ,{field: 'supplierContractNo',title: '合同编号', minWidth: 171}
                 ,{field: 'gmtCreate',title: '创建时间', width: 166}

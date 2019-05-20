@@ -38,7 +38,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             }
         }
         ,cols: [[
-            {field:'id', title: 'ID',hide: true}
+            {field:'id', title: 'ID',hide: true,fixed: 'left'}
             ,{field:'productNo',fixed: 'left', title: '内部型号', align:'center', width: 114}
             ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-orderReview-status',width: 110}
             ,{field: '', title:'File', toolbar: '#pcb-file', align:'center'}
@@ -273,8 +273,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             access_token: layui.data('layuiAdmin').access_token
         }
         ,cols: [[
-            {field: 'id', title: 'ID', hide: true}
-            ,{field: 'productNo', title: 'Product No', align:'center', width: 134}
+            {field: 'id', title: 'ID', hide: true,fixed: 'left'}
+            ,{field: 'productNo', title: 'Product No', align:'center', width: 134,fixed: 'left'}
             ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-orderReview-status'}
             ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
@@ -430,9 +430,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             status: 1,
         }
         ,cols: [[
-            {field: 'id', title: 'ID', hide: true},
-             {field: 'quoteId', title: 'ID', hide: true}
-            ,{field: 'productNo', title: 'Product No', align:'center', width: 134}
+            {field: 'id', title: 'ID', hide: true,fixed: 'left'}
+            ,{field: 'productNo', title: 'Product No', align:'center', width: 134,fixed: 'left'}
+            ,{field: 'quoteId', title: 'ID', hide: true}
             ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-orderReview-status'}
             ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}

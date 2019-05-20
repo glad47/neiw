@@ -55,10 +55,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 access_token: layui.data('layuiAdmin').access_token
             }
             ,cols: [[
-                {type:'checkbox'}
+                {type:'checkbox',fixed: 'left'}
+                ,{field: 'productNo',title: '聚谷型号', minWidth: 141,fixed: 'left'}
                 ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status'}      // 1 ＝ 待报价
                 ,{field: 'invoiceNo',title: '合同号', minWidth: 165}
-                ,{field: 'productNo',title: '聚谷型号', minWidth: 141}
                 ,{field: 'pcbName',title: '客户型号', width: 132}
                 ,{field: 'quantityPcs',title: '订单PCS数'}
                 ,{field: 'finishPcsNumber',title: '已交PCS数', templet: '<div>{{ d.finishPcsNumber || 0 }}</div>'}
@@ -251,10 +251,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 access_token: layui.data('layuiAdmin').access_token
             }
             ,cols: [[
-                {type:'checkbox'}
+                {type:'checkbox',fixed: 'left'}
+                ,{field: 'productNo',title: '聚谷型号', minWidth: 141,fixed: 'left'}
                 ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status'}      // 1 ＝ 待报价
                 ,{field: 'invoiceNo',title: '合同号', minWidth: 165}
-                ,{field: 'productNo',title: '聚谷型号', minWidth: 141}
                 ,{field: 'pcbName',title: '客户型号', width: 132}
                 ,{field: 'quantity',title: '订单PCS数'}
                 ,{field: 'finishNumber',title: '已交PCS数', templet: '<div>{{ d.finishNumber || 0 }}</div>'}
