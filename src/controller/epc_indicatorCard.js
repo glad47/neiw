@@ -832,9 +832,15 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
     // 监听搜索 PCB
     form.on('submit(Indicator_card_search)', function(data){
         var field = data.field;
-        console.log(field);
+        var reTab;
+        console.log(1);
+        if (defVal.orderType === 0) {   // PCB
+            reTab = 'epc_Tabpcb_ok_payment_order';
+        } else if (defVal.orderType === 1) {    //  Stencil
+            reTab = 'epc_Tabstencil_ok_payment_order';
+        }
         //执行重载
-        table.reload('epc_Tabpcb_ok_payment_order', {
+        table.reload(reTab, {
             where: field
         });
     });
