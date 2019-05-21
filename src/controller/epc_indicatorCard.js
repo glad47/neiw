@@ -839,6 +839,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
         });
     });
 
+    document.onkeydown = function(e) {
+        var ev = document.all ? window.event : e;
+        if(ev.keyCode == 13) {
+            $("*[lay-filter='Indicator_card_search']").click();
+        }
+    }
+
       // 手机端，数据太多，这个页面单独写
     $("#indicatorCard-operation").on('click', function () {
         $(this).text($(this).text()=="隐藏操作"?"显示操作":"隐藏操作");
