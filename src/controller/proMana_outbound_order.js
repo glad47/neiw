@@ -142,7 +142,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                 }
                 ,success: function (layero, index0) {
                     view(this.id).render('productManagement/iframeWindow/packaging _requirements', customerInfo).done(function () {
-
+                        form.render();
                     })
                 }
             })

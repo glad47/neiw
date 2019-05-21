@@ -829,6 +829,16 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
         }
     }
 
+    // 监听搜索 PCB
+    form.on('submit(Indicator_card_search)', function(data){
+        var field = data.field;
+        console.log(field);
+        //执行重载
+        table.reload('epc_Tabpcb_ok_payment_order', {
+            where: field
+        });
+    });
+
       // 手机端，数据太多，这个页面单独写
     $("#indicatorCard-operation").on('click', function () {
         $(this).text($(this).text()=="隐藏操作"?"显示操作":"隐藏操作");

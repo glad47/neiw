@@ -262,21 +262,21 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">包装要求：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="packageRequirements" autocomplete="off" class="layui-input" value="{{ d.params.packageRequirements || '' }}">
-                    </script>
+                <div class="layui-col-md6">
+                    <label class="layui-form-label">包装要求：</label>
+                    <div class="layui-input-block">
+                        <script type="text/html" template>
+                            <input type="text" name="packageRequirements" autocomplete="off" class="layui-input" value="{{ d.params.packageRequirements || '' }}">
+                        </script>
+                    </div>
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">出货报告：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <textarea name="deliveryReport" autocomplete="off" class="layui-textarea" lay-verify="required">
-                        {{ d.params.deliveryReport || '' }}
-                    </textarea>
-                    </script>
+                <div class="layui-col-md6">
+                    <label class="layui-form-label">出货报告：</label>
+                    <div class="layui-input-block">
+                        <script type="text/html" template>
+                            <input type="checkbox" name="deliveryReport" lay-skin="switch" lay-text="是|否" {{ d.params.deliveryReport === undefined || d.params.deliveryReport == '0' ? '' : 'checked' }} lay-filter="deliveryReport">
+                        </script>
+                    </div>
                 </div>
             </div>
         </div>

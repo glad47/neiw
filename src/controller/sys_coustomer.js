@@ -68,6 +68,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
                         form.render(null,'customer-add-edit-form-list');
                         var invalidMark;
                         form.on('switch(optionUser)',function (data) {
+                            console.log(data.field);
                             if (data.elem.checked == true){
                                 layer.msg('已启用');
                                 invalidMark =0;
@@ -87,6 +88,16 @@ layui.define(['admin', 'table','element','form'], function(exports){
                                 userType =0;
                             }
                         });
+                        var deliveryReport;
+                        form.on('switch(deliveryReport)',function (data) {
+                            if (data.elem.checked == true){
+                                layer.msg('需要出货报告');
+                                deliveryReport =1;
+                            } else {
+                                layer.msg('不需要出货报告');
+                                deliveryReport =0;
+                            }
+                        });
                         var auditMark;
                         form.on('switch(isAuditMark)',function(data){
                             if (data.elem.checked == true) {
@@ -104,6 +115,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
                             field.invalidMark = invalidMark;   
                             field.userType = userType;
                             field.auditMark = auditMark;
+                            field.deliveryReport = deliveryReport;
                             admin.req({
                                 url:setter.baseUrl+'sys/consumer/user/update',
                                 type:'POST',
