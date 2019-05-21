@@ -21,6 +21,16 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     laydate.render({
         elem: '#gmtCreate'
     });
+    // 全局变量
+    var defVal = {
+        orderType: 0,   //订单类型
+    };
+
+    // 监听tab选项卡
+    element.on('tab(ok_payment_tab)', function (data) {
+        defVal.orderType = data.index;
+        layer.msg(data.index)
+    });
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单-网上已支付
     table.render({
@@ -532,13 +542,27 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
     })
 
-    form.on('submit(LAY-app-orderReview-search)', function (data) {
+    form.on('submit(ok_payment_search)', function (data) {
         var field = data.field;
         delete field.quiz;
-        table.reload('or_Tabpcb',{
+        var reTab;
+        console.log(1);
+        if (defVal.orderType === 0) {   // PCB
+            reTab = 'or_Tabpcb_ok_payment';
+        } else if (defVal.orderType === 1) {    //  Stencil
+            reTab = 'stencil_orderTab_ok_payment';
+        }
+        //执行重载
+        table.reload(reTab, {
             where: field
         });
     });
+    document.onkeydown = function(e) {
+        var ev = document.all ? window.event : e;
+        if(ev.keyCode == 13) {
+            $("*[lay-filter='ok_payment_search']").click();
+        }
+    }
 
     // 手机端，数据太多，这个页面单独写
     $("#okPayment-operation").on('click', function () {

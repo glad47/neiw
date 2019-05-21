@@ -833,7 +833,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
     form.on('submit(Indicator_card_search)', function(data){
         var field = data.field;
         var reTab;
-        console.log(1);
         if (defVal.orderType === 0) {   // PCB
             reTab = 'epc_Tabpcb_ok_payment_order';
         } else if (defVal.orderType === 1) {    //  Stencil

@@ -201,12 +201,23 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
     //监听搜索
     form.on('submit(interior-order-search)', function(data){
         var field = data.field;
-        console.log(field);
+        var reTab;
+        if (defVal.orderType === 0) {   // PCB
+            reTab = 'interior_order_Tabpcb';
+        } else if (defVal.orderType === 1) {    //  Stencil
+            reTab = 'interior_order_Tabstencil';
+        }
         //执行重载
-        table.reload('interior_order_Tabpcb', {
+        table.reload(reTab, {
             where: field
         });
     });
+    document.onkeydown = function(e) {
+        var ev = document.all ? window.event : e;
+        if(ev.keyCode == 13) {
+            $("*[lay-filter='interior-order-search']").click();
+        }
+    }
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(interior_order_Tabpcb)', function(obj){
         var data = obj.data;
