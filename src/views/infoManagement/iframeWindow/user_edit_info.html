@@ -41,7 +41,7 @@
             <div class="layui-col-md6">
                 <label class="layui-form-label">上级：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks/" lay-data="{roleId: '{{ new Array(11,12) }}'}" lay-type="post" lay-done="layui.data.done(d);">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allUser" lay-type="post" lay-done="layui.data.done(d);">
                         <select name="superiorId">
                             <option></option>
                             {{# var superiorId = d.params.superiorId;
