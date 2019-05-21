@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/proMana_outbound_order.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/proMana_outbound_order.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/sys_coustomer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/sys_coustomer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/customer_edit_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/customer_edit_info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/productManagement/iframeWindow/packaging _requirements.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/productManagement/iframeWindow/packaging _requirements.html" afterDir="false" />
-    </list>
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -53,14 +45,14 @@
   <component name="FileEditorManager">
     <splitter split-orientation="horizontal" split-proportion="0.78656554">
       <split-first>
-        <splitter split-orientation="horizontal" split-proportion="0.5629139">
+        <splitter split-orientation="horizontal" split-proportion="0.31909028">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
               <file leaf-file-name="Indicator_card.html" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="84">
-                      <caret line="28" column="66" lean-forward="true" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
+                    <state relative-caret-position="169">
+                      <caret line="33" column="65" lean-forward="true" selection-start-line="33" selection-start-column="65" selection-end-line="33" selection-end-column="65" />
                       <folding>
                         <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                         <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -89,8 +81,8 @@
               <file leaf-file-name="Indicator_card.html" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="84">
-                      <caret line="133" column="49" lean-forward="true" selection-start-line="133" selection-start-column="49" selection-end-line="133" selection-end-column="49" />
+                    <state relative-caret-position="362">
+                      <caret line="127" column="29" lean-forward="true" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
                       <folding>
                         <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                         <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -113,7 +105,7 @@
             <entry file="file://$PROJECT_DIR$/src/controller/market_insideContract.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="414">
-                  <caret line="875" column="4" lean-forward="true" selection-start-line="875" selection-start-column="4" selection-end-line="882" selection-end-column="7" />
+                  <caret line="875" column="4" selection-start-line="875" selection-start-column="4" selection-end-line="882" selection-end-column="7" />
                 </state>
               </provider>
             </entry>
@@ -594,14 +586,7 @@
       <workItem from="1558055329650" duration="3178000" />
       <workItem from="1558319601220" duration="13445000" />
       <workItem from="1558352208687" duration="1758000" />
-      <workItem from="1558405702102" duration="3234000" />
-    </task>
-    <task id="LOCAL-00156" summary="印章">
-      <created>1556098955657</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1556098955657</updated>
+      <workItem from="1558405702102" duration="4937000" />
     </task>
     <task id="LOCAL-00157" summary="计划协同批量提交。">
       <created>1556110691598</created>
@@ -939,11 +924,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558351428399</updated>
     </task>
-    <option name="localTasksCounter" value="205" />
+    <task id="LOCAL-00205" summary="出货明细打印包装要求">
+      <created>1558409689951</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1558409689952</updated>
+    </task>
+    <option name="localTasksCounter" value="206" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2060454000" />
+    <option name="totallyTimeSpent" value="2062157000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -965,7 +957,7 @@
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49133262" weight="0.33333334" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49241602" visible="true" weight="0.6458333" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49241602" weight="0.6458333" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1039,7 +1031,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="外发报价跳过提交" />
     <MESSAGE value="七七八八dbug" />
     <MESSAGE value="pcb外协合同不显示价格问题" />
     <MESSAGE value="合同B，快递，国家bug解决" />
@@ -1064,7 +1055,8 @@
     <MESSAGE value="表格左右侧固定列" />
     <MESSAGE value="编辑PCB标题改中文，内部报价文件上传支持带点文件名去除后缀" />
     <MESSAGE value="客户快递、快递账号、包装要求、出货报告添加" />
-    <option name="LAST_COMMIT_MESSAGE" value="客户快递、快递账号、包装要求、出货报告添加" />
+    <MESSAGE value="出货明细打印包装要求" />
+    <option name="LAST_COMMIT_MESSAGE" value="出货明细打印包装要求" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1393,13 +1385,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/market_insideContract.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="875" column="4" lean-forward="true" selection-start-line="875" selection-start-column="4" selection-end-line="882" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/views/marketManagement/inside_contract.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="995">
@@ -1414,10 +1399,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/market_insideContract.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="875" column="4" selection-start-line="875" selection-start-column="4" selection-end-line="882" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="133" column="49" lean-forward="true" selection-start-line="133" selection-start-column="49" selection-end-line="133" selection-end-column="49" />
+        <state relative-caret-position="362">
+          <caret line="127" column="29" lean-forward="true" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
