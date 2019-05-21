@@ -43,6 +43,12 @@ layui.define(function (exports) {
                 }
             }
             return new_arr;
+        },
+
+        // 去除文件名后缀,支持文件名带点的
+        CleanFileSuffix: function (fileName) {
+            var suffix = fileName.substr((~-fileName.lastIndexOf(".") >>> 0) + 1)
+            return fileName.replace(suffix, "");
         }
 
     }

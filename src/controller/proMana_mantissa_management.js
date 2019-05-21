@@ -52,9 +52,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
             }
             ,cols: [[
-                {type:'checkbox'}
+                {type:'checkbox',fixed: 'left'}
+                ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left'}
                 ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}      // 1 ＝ 已指派  2= 已报价
-                ,{field: 'productNo', title: '聚谷型号', width: 124}
                 ,{field: '', title: '周期', width: 124}
                 ,{field: '', title: '摆放位置', width: 124}
                 ,{field: 'id',title: 'ID', hide: true}
@@ -203,9 +203,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
             }
             ,cols: [[
-                {type:'checkbox'}
+                {type:'checkbox',fixed: 'left'}
+                ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left'}
                 ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}      // 1 ＝ 已指派  2= 已报价
-                ,{field: 'productNo', title: '聚谷型号', width: 124}
                 ,{field: '', title: '周期', width: 124}
                 ,{field: '', title: '摆放位置', width: 124}
                 ,{field: 'id',title: 'ID', hide: true}

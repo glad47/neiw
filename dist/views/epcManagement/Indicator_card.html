@@ -15,29 +15,29 @@
                         <option value="OrderTime">Order Time</option>
                     </select>
                 </div>
-                <div class="layui-input-inline">
+                <div class="layui-input-inline" style="width: 120px;">
                     <input type="text" name="P/N" id="orderReview_sinp" autocomplete="off" class="layui-input" placeholder="P/N">
                 </div>
             </div>
             <!--电脑端-->
             <div class="layui-inline" id="orderReview_pcsear">
                 <label class="layui-form-label">P/N：</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="P/N" id="supplier_id" autocomplete="off" class="layui-input">
+                <div class="layui-input-inline" style="width: 120px;">
+                    <input type="text" name="productNo" id="supplier_id" autocomplete="off" class="layui-input">
                 </div>
 
                 <label class="layui-form-label">File Name：</label>
-                <div class="layui-input-inline">
+                <div class="layui-input-inline" style="width: 120px;">
                     <input type="text" name="gerberName" id="supplier_companyName" autocomplete="off" class="layui-input">
                 </div>
 
                 <label class="layui-form-label">Order ID：</label>
-                <div class="layui-input-inline">
+                <div class="layui-input-inline" style="width: 120px;">
                     <input type="text" name="orderId" id="supplier_type" autocomplete="off" class="layui-input">
                 </div>
 
                 <label class="layui-form-label">Order Time:</label>
-                <div class="layui-input-inline">
+                <div class="layui-input-inline" style="width: 120px;">
                     <!--<input type="text" name="gmtCreate" class="layui-input">-->
                     <input type="text" name="gmtCreate" id="gmtCreate" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                 </div>
@@ -45,17 +45,17 @@
 
             <div class="layui-inline">
                 <label class="layui-form-label">状态：</label>
-                <div class="layui-input-inline">
+                <div class="layui-input-inline" style="width: 120px;">
                     <select name="status" id="orderReview_statusSel">
                         <option value="">请选择状态</option>
-                        <option value="1">评审</option>
-                        <option value="2">修改中</option>
-                        <option value="3">退回中</option>
+                        <option value="6">已审核</option>
+                        <option value="8">已入库</option>
+                        <option value="9">已出货</option>
                     </select>
                 </div>
             </div>
             <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-orderReview-search" style="margin-bottom: 3px;">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="Indicator_card_search" style="margin-bottom: 3px;">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                 </button>
             </div>
@@ -198,10 +198,8 @@
 <style>
     #orderReview_form {background-color: white;}
     #orderReview_form .layui-input, .layui-textarea {width:100% !important;}
-    #orderReview_form .layui-form-label {width: 100px !important;}
-    #orderReview_form .layui-form-item .layui-input-inline{width: 80px !important;}
+    #orderReview_form .layui-form-label {width: 77px !important;}
     #orderReview_searchbtn {margin-left: 25px;}
-    #orderReview_form .layui-form-select .layui-edge{right: -20px;}
     #orderReview_form .layui-form-select dl{min-width: 100% !important;}
     #orderReview_card {background-color: white;}
     @media screen and (max-width: 800px) {
@@ -214,9 +212,6 @@
             width: 80px !important;
         }
 
-        #orderReview_form .layui-form-select .layui-edge {
-            right: -86px
-        }
         #orderReview_form .layui-form-select dl{
             width: 240% !important;
         }

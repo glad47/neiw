@@ -76,12 +76,15 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'panelWayY', title: 'panelWayY', hide: true}
                 ,{field: 'gerberName', title: 'gerberName', hide: true}
                 ,{field: 'gerberPath', title: 'gerberPath', hide: true}
+                ,{field: 'deliveryTime', title: 'deliveryTime', hide: true}
                 // ,{field: 'gerberName',title: '文件名'}
                 // ,{field: 'pcbType',title: 'PCB类型'}
                 ,{fixed: 'right', title:'操作', toolbar: '#quotatgt_tabbar',width: 130}
             ]]
             ,done: function (res, curr, count) {
-
+                $("a[data='isOk']").each(function (i, n) {
+                    $(this).parents('tr').css('background-color','#daf7da');
+                })
             }
         });
     }
@@ -229,7 +232,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{fixed: 'right', title:'操作', toolbar: '#quotatgt_tabbarS',width: 130}
             ]]
             ,done: function (res, curr, count) {
-
+                $("a[data='isOk']").each(function (i, n) {
+                    $(this).parents('tr').css('background-color','#daf7da');
+                })
             }
         });
     }

@@ -22,9 +22,17 @@
                 </script>
                 <script type="text/html" id="sqlManaqt_status">
                     {{#  if(d.status == '1'){ }}
-                        待报价
+                    {{# if(d.deliveryTime != null){ }}
+                    <a data="isOk"></a>待报价
+                    {{# } else{ }}
+                    <a>待报价</a>
+                    {{# } }}
                     {{#  } else { }}
-                        已报价
+                    {{# if(d.delivery != null){ }}
+                    <a data="isOk"></a>已报价
+                    {{# } else{ }}
+                    <a>已报价</a>
+                    {{# } }}
                     {{#  } }}
                 </script>
             </div>
