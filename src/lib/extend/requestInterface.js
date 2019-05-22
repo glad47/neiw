@@ -49,6 +49,12 @@ layui.define(['admin', 'index'],function (exports) {
             return supplierInfo;
         },
 
+        /**
+         * 获取客户信息
+         * @param url
+         * @returns {Object}
+         * @constructor
+         */
         GetCustomerInfo: function (url) {
             var customerInfo = new Object();
             admin.req({

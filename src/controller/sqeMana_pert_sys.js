@@ -160,7 +160,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             admin.popup({
                 title: '编辑PCB订单信息'
                 ,btn:['立即提交', '取消']
-                ,area: ['76%', '90%']
+                ,area: ['820px', '90%']
                 ,yes: function () {
                     $(".submit-ok").click();
                 }

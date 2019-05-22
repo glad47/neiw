@@ -529,6 +529,44 @@
             </div>
         </div>
 
+        <hr class="layui-bg-black">
+        <h3 style="text-align: center;padding-bottom: 15px;">PCBA</h3>
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">加工费：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="pcbaProcessFee" value="{{ d.params.pcbaProcessFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">零件费：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="pcbaPartsFee" value="{{ d.params.pcbaPartsFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">测试费：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="pcbaTestFee" value="{{ d.params.pcbaTestFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">钢网费：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="pcbaToolFee" value="{{ d.params.pcbaToolFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">小计：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="pcbaSubtotalFee" value="{{ d.params.pcbaSubtotalFee || 0 }}" autocomplete="off" class="layui-input pcbaSubtotal">
+                </div>
+            </div>
+        </div>
+
 
         <div class="layui-form-item layui-col-md-offset3" style="display: none;">
             <div class="layui-input-block">
@@ -562,6 +600,7 @@
                 q_params.pcbCost = a.toFixed(2);
                 $(".orderPCBupdateForm input[name='subtotal']").val(q_params.pcbCost);       // 小计
                 console.log("pcbCost:"+q_params.pcbCost);
+                getPCBA();
                 set_qObj();
             });
             // 获取对象
@@ -575,7 +614,6 @@
                 _quote_obj.testCostFee = parseFloat($(".orderPCBupdateForm input[name='testCostFee']").val());
                 _quote_obj.overworkFee = parseFloat($(".orderPCBupdateForm input[name='overworkFee']").val());
                 _quote_obj.toolingFee = parseFloat($(".orderPCBupdateForm input[name='toolingFee']").val());
-                console.log(_quote_obj);
                 for (var key in _quote_obj) {
                     if (isNaN(_quote_obj[key])) {
                         _quote_obj[key] = 0;
@@ -590,11 +628,29 @@
                 if (isNaN(postFee) || postFee == "") {
                     postFee = 0;
                 }
+                var pcbaSubtotal = parseFloat($("input[name='pcbaSubtotalFee']").val());
+                if (isNaN(pcbaSubtotal) || pcbaSubtotal == "") {
+                    pcbaSubtotal = 0;
+                }
                 q_params.shippingPrice = parseFloat(postFee);
                 q_params.pcbCost = parseFloat(q_params.pcbCost);
-                q_params.totalPrice = parseFloat(q_params.shippingPrice+q_params.pcbCost).toFixed(2);
+                q_params.totalPrice = parseFloat(q_params.shippingPrice+q_params.pcbCost+pcbaSubtotal).toFixed(2);
                 $(".orderPCBupdateForm input[name='totalFee']").val(q_params.totalPrice);      //总价
                 console.log("bug:"+q_params.totalPrice);
+            }
+
+            // 遍历获取PCBA所有表单的值
+            function getPCBA() {
+                var _val = 0;
+                $.each($(".pcbaInput"), function () {
+                    var this_val = $(this).val();
+                    if (isNaN(this_val) || this_val == "") {
+                        this_val = 0;
+                    }
+                    _val += parseFloat(this_val);
+                });
+                $("input[name='pcbaSubtotalFee']").val(_val);
+                console.log("_val:"+_val);
             }
         });
     }

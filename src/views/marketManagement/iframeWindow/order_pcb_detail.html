@@ -8,8 +8,10 @@
     </div>
     <div class="order_review_search printorder_review_search" id="pcborderPrint">
         <style>
+            .DetailBot-design{display: none;}
             @media print {
                 .printorder_review_search .layui-table[lay-skin=row] td, .layui-table[lay-skin=row] th{border: solid 1px black !important;}
+                .DetailBot-design{display: block;}
             }
         </style>
         <div class="searchPcb-header" style="text-align: center;margin-bottom: 17px;">
@@ -228,7 +230,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>阻抗</td>
+                    <td>阻抗:</td>
                     <td>
                         {{# if(d.params.contrlImpeance == '1') {d.params.contrlImpeance = '是'}else{d.params.contrlImpeance = '否'} }}
                         {{ d.params.contrlImpeance || '否'}}
@@ -253,8 +255,19 @@
                     <td>备注:</td>
                     <td colspan="3">{{ d.params.remark || '' }}</td>
                 </tr>
+                <tr>
+                    <td>客户标准:</td>
+                    <td colspan="3" name="customerStandards"></td>
+                </tr>
                 </tbody>
             </table>
+        <div class="DetailBot-design" style="width: 60%;position: fixed;bottom: 35px;right: 0">
+            工程________________&nbsp;&nbsp;采购_______________&nbsp;&nbsp;仓库_______________
+            <div class="bottime" style="text-align: right;margin-right: 15px;margin-top: 10px;">
+                {{# var myDate = new Date() }}
+                {{ myDate.toLocaleDateString() }}
+            </div>
+        </div>
     </div>
     </script>
     <!--{{# -->
@@ -278,12 +291,15 @@
 
 <script>
     layui.data.done = function (d) {
-        layui.use(['admin', 'table','setter','form','jquery'],function(){
+        var customerInfo;
+        var url = setter.baseUrl+'/sys/consumer/user/info/'+d.params.userId;
+        layui.use(['admin', 'table','setter','form','jquery', 'requestInterface'],function(){
             var $ = layui.jquery
                 ,table = layui.table
                 ,admin = layui.admin
                 ,setter = layui.setter
                 ,view = layui.view
+                ,requestInterface = layui.requestInterface
                 ,form = layui.form;
             $(".printOrderPcb-btnGrop>.printBtn").on("click", function () {
                 var printId = "pcborderPrint";
@@ -292,8 +308,11 @@
                 window.print();
                 window.location.reload();
             });
+            customerInfo = requestInterface.GetCustomerInfo(url);
+            if (customerInfo.customerStandards != null) {
+                $("*[name='customerStandards']").text(customerInfo.customerStandards);
+            }
             form.render();
-
         });
     }
 </script>

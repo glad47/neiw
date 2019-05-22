@@ -25,7 +25,8 @@
                                                     <input class="mto-input" type="radio" lay-filter="boardType" id="radioPanelad" name="boardType" value="2" title="Panel as design">
                                                     <!--<input type="radio" lay-filter="boardType" id="radioPanelbp" name="boardType" value="panelByPcbonline" title="Panel by PCBonline">-->
                                                     <div class="importPcbInfo" style="display: inline-block">
-                                                        <button class="layui-btn layui-btn-sm" type="button">导入报价信息</button>
+                                                        <button class="layui-btn layui-btn-sm importOrder" type="button">导入报价信息</button>
+                                                        <button class="layui-btn layui-btn-sm importReOrder" type="button">导入返单信息</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -43,7 +44,6 @@
                                                 </div>
                                                 <label class="layui-form-label">Quantity:</label>
                                                 <div class="layui-input-inline" style="width: 55px;">
-
                                                     <input type="text" name="quantityPcs"  autocomplete="off" class="layui-input mto-input" id="quantityPCS">
                                                 </div>
                                                 <div class="layui-form-mid">pcs</div>
@@ -766,13 +766,13 @@
                                   <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label">小计：</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" type="text" id="pcbCost" placeholder="0.00" >
+                                          <input class="layui-input" type="text" id="pcbCost" placeholder="0.00" name="subtotal">
                                       </div>
                                   </div>
                                   <div class="rig-others layui-col-md6">
                                       <label class="layui-form-label" style="padding: 9px 12px 0px 0px;">运费：</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" type="text" id="shippingPrice" placeholder="0.00" >
+                                          <input class="layui-input" type="text" id="shippingPrice" placeholder="0.00" name="postFee">
                                       </div>
                                   </div>
                               </div>
@@ -831,7 +831,7 @@
                                   <div class="layui-input-inline">
                                       <label class="layui-form-label">Stencil单价:</label>
                                       <div class="layui-input-block">
-                                          <input class="layui-input" type="text" id="sunitPrice" placeholder="0.00" readonly>
+                                          <input class="layui-input" type="text" id="sunitPrice" placeholder="0.00" name="unitPrice" readonly>
                                       </div>
                                   </div>
                               </div>

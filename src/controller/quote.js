@@ -1436,7 +1436,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
     // });
     
     // 2019-04-17 导入pcb订单信息
-    $(".importPcbInfo>button").on('click', function () {
+    $(".importPcbInfo>.importOrder").on('click', function () {
         admin.popup({
             title: '导入pcb订单信息'
             ,area: ['506px','288px']
@@ -1449,36 +1449,14 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
                 view(this.id).render('marketManagement/iframeWindow/import_pcbInfoForm').done(function () {
                     //  监听表单提交
                     form.on('submit(importPCBInfo)', function (data) {
-                        var postData = data.field;
-                        console.log(postData);
                         admin.req({
                             type: 'post',
                             url: setter.baseUrl+ 'pert/revieworder/reviewOrderInfo',
                             data: data.field,
                             success: function (res) {
-                                console.log(res.data);
                                 var importPcbInfo = res.data;
-                                console.log(importPcbInfo);
                                 if (importPcbInfo != null) {
-                                    $("#inside_quote_all input,#inside_quote_all select").each(function () {
-                                        var $name = $(this).attr("name");
-                                        var $Pthis = $(this);
-                                        var $Pthis_type = $(this).attr("type");
-                                        if ($Pthis.is("input")) {
-                                            if ($Pthis_type == "text" || $Pthis_type == "number") {
-                                                $Pthis.val(importPcbInfo[$name]);
-                                            } else if ($Pthis_type == 'checkbox') {
-                                                $("input[type=checkbox][name="+$name+"][value='"+importPcbInfo[$name]+"']").attr("checked","checked");
-                                            } else if ($Pthis_type == "radio") {
-                                                $("input[name="+$name+"][value='"+importPcbInfo[$name]+"']").prop("checked","checked");
-                                            }
-                                        }
-                                        if ($Pthis.is("select")) {
-                                            $("select[name="+$name+"]").find("option:contains('"+importPcbInfo[$name]+"')").attr("selected",true);
-                                        }
-                                    });
-                                    form.render();
-                                    layer.msg('导入PCB信息成功');
+                                    setAllInput(importPcbInfo);
                                 } else {
                                     layer.alert('当前不存在PCB参数详情！');
                                 }
@@ -1491,6 +1469,67 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
             }
         });
     });
+    
+    // 导入返单信息
+    $(".importPcbInfo>.importReOrder").on('click', function () {
+        admin.popup({
+            title: '导入返单信息'
+            ,area: ['506px','288px']
+            ,btn: ['导入', '取消']
+            ,id: 'popupImportReOrder'
+            ,yes: function (layero, index) {
+                $("#importRePCBInfo").click();
+                layer.closeAll();
+            }
+            ,success: function (layero, index) {
+                view(this.id).render('marketManagement/iframeWindow/import_pcbInfoReOreder').done(function () {
+                   form.on('submit(importRePCBInfo)', function (data) {
+                       var postData = data.field;
+                       admin.req({
+                           type: 'post',
+                           url: setter.baseUrl+'epc/pcborder/findOrderByUidAndProductNo',
+                           data: data.field,
+                           success: function (res) {
+                               var importPcbInfo = res.data;
+                               if (importPcbInfo != null) {
+                                   setAllInput(importPcbInfo);
+                               } else {
+                                   layer.alert('当前不存在PCB参数详情！');
+                               }
+                               layer.close(index);
+                           }
+                       });
+                       return false;
+                   });
+                });
+            }
+        })
+    });
+
+    // 导入参数给页面表单赋值
+    function setAllInput(importPcbInfo) {
+        $("#inside_quote_all input,#inside_quote_all select").each(function () {
+            var $name = $(this).attr("name");
+            var $Pthis = $(this);
+            var $Pthis_type = $(this).attr("type");
+            if ($Pthis.is("input")) {
+                if ($Pthis_type == "text" || $Pthis_type == "number") {
+                    $Pthis.val(importPcbInfo[$name]);
+                } else if ($Pthis_type == 'checkbox') {
+                    $("input[type=checkbox][name="+$name+"][value='"+importPcbInfo[$name]+"']").attr("checked","checked");
+                } else if ($Pthis_type == "radio") {
+                    $("input[name="+$name+"][value='"+importPcbInfo[$name]+"']").prop("checked","checked");
+                }
+            }
+            if ($Pthis.is("select")) {
+                $("select[name="+$name+"]").find("option:contains('"+importPcbInfo[$name]+"')").attr("selected",true);
+            }
+        });
+        // 总价
+        $("input[name='totalPrice']").val(importPcbInfo.subtotal+importPcbInfo.postFee);
+        form.render();
+        layer.msg('导入PCB信息成功');
+    }
 
     exports('quote',{})
 });

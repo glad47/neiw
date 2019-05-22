@@ -1,0 +1,90 @@
+<title>导入返单信息</title>
+<div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+        <form class="layui-form" lay-filter="pert_form" id="pertReSysAddForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label">客户编号</label>
+                <div class="layui-input-inline">
+                    <select name="userId" lay-search="" lay-filter="importSelCus">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">产品型号</label>
+                <div class="layui-input-inline">
+                    <!--<input class="layui-input" type="text" name="productNo">-->
+                    <select name="productNo" lay-search="" lay-filter="importSelpn"></select>
+                </div>
+            </div>
+            <div class="layui-form-item" style="display: none;">
+                <button class="layui-btn layuiadmin-btn-forum-list" lay-submit lay-filter="importRePCBInfo" id="importRePCBInfo">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </form>
+    </script>
+</div>
+
+<script>
+    layui.data.done = function (d) {
+        layui.use(['setter', 'upload', 'admin', 'index', 'element', 'jquery', 'form', 'filePathProcess'], function () {
+            var $ = layui.$,
+                table = layui.table,
+                form = layui.form,
+                admin = layui.admin,
+                view = layui.view,
+                setter = layui.setter;
+            var customerNo = $("#pertCustomerNo").text();
+            var _obj = {
+                "orderType": null,
+                "userId": null
+            };
+                admin.req({
+                type: 'post',
+                url: setter.baseUrl+'sys/consumer/user/all',
+                success: function (data) {
+                    var $html;
+                    for (var i=0;i<data.data.length;i++){
+                        if (customerNo == data.data[i].id) {
+                            $html += "<option id="+data.data[i].id+" value="+data.data[i].id+" selected>"+data.data[i].userSystemId+"</option>"
+                        } else {
+                            $html += "<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>"
+                        }
+                    }
+                    $("select[name='userId']").append($html);
+                    form.render('select');
+                }
+            })
+            form.render(null, "pert_form");
+
+            form.on('select(importSelCus)', function (data) {
+                admin.req({
+                    type: 'post',
+                    data: {"userId":data.value},
+                    async: false,
+                    url: setter.baseUrl + 'epc/pcborder/findAllProductNo',   // 查询客户所有产品号
+                    success: function (res) {
+                        if (res.data == null || res.data.length == 0) {
+                            layer.alert('没有查询到此当前类型下所对应的客户型号，请确定添加后再试！');
+                        } else {
+                            var $html;
+                            for (var i=0;i<res.data.length;i++) {
+                                $html += "<option value="+res.data[i]+">"+res.data[i]+"</option>"
+                            }
+                        }
+                        $("select[name='productNo']").append($html);
+                        form.render('select');
+                    }
+                });
+
+            });
+
+        });
+    }
+</script>
+
+<style>
+    .pertReSysAddForm .layui-form-item{width: 325px;}
+    #pertReSysAddForm .layui-form-item .layui-input-inline{width: 267px;}
+</style>

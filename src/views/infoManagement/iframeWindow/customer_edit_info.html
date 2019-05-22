@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="addcus-cusPWd layui-col-md6">
-                <label class="layui-form-label"><span class="span-required">*</span>密码：</label>
+                <label class="layui-form-label">密码：</label>
                 <div class="layui-input-block">
                     <input type="password" name="password" autocomplete="off" class="layui-input">
                 </div>
@@ -87,7 +87,7 @@
                 <label class="layui-form-label">快递公司：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <select name="userCourierName" lay-verify="required">
+                        <select name="userCourierName">
                             <option value="">请选择</option>
                             <option value="DHL" {{ d.params.userCourierName == 'DHL' ? 'selected' : '' }}>DHL</option>
                             <option value="FedEx" {{ d.params.userCourierName == 'FedEx' ? 'selected' : '' }}>FedEx</option>
@@ -262,19 +262,25 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <div class="layui-col-md6">
-                    <label class="layui-form-label">包装要求：</label>
+                <div class="layui-col-md12">
+                    <label class="layui-form-label">客户标准：</label>
                     <div class="layui-input-block">
                         <script type="text/html" template>
-                            <input type="text" name="packageRequirements" autocomplete="off" class="layui-input" value="{{ d.params.packageRequirements || '' }}">
+                            <textarea name="customerStandards" autocomplete="off" class="layui-textarea">
+                                {{ d.params.customerStandards || '' }}
+                            </textarea>
                         </script>
                     </div>
                 </div>
-                <div class="layui-col-md6">
-                    <label class="layui-form-label">出货报告：</label>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-col-md12">
+                    <label class="layui-form-label">包装要求：</label>
                     <div class="layui-input-block">
                         <script type="text/html" template>
-                            <input type="checkbox" name="deliveryReport" lay-skin="switch" lay-text="是|否" {{ d.params.deliveryReport === undefined || d.params.deliveryReport == '0' ? '' : 'checked' }} lay-filter="deliveryReport">
+                            <textarea name="packageRequirements" autocomplete="off" class="layui-textarea">
+                                {{ d.params.packageRequirements || '' }}
+                            </textarea>
                         </script>
                     </div>
                 </div>
@@ -284,7 +290,7 @@
           <input type="hidden" name="id" value="{{ d.params.id || '' }}">
         </script>
         <div class="layui-form-item">
-            <div class="addcus-cusNum layui-col-md4">
+            <div class="addcus-cusNum layui-col-md3">
                 <label class="layui-form-label">操作：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template lay-done="layui.data.done(d);">
@@ -292,7 +298,7 @@
                     </script>
                 </div>
             </div>
-            <div class="addcus-cusNum layui-col-md4">
+            <div class="addcus-cusNum layui-col-md3">
                 <label class="layui-form-label">内部用户：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template lay-done="layui.data.done(d);">
@@ -301,11 +307,20 @@
                 </div>
             </div>
 
-            <div class="addcus-cusNum layui-col-md4">
+            <div class="addcus-cusNum layui-col-md3">
                 <label class="layui-form-label">需要审核：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template lay-done="layui.data.done(d);">
                         <input type="checkbox" name="auditMark" lay-skin="switch" lay-text="是|否" {{ d.params.auditMark === undefined || d.params.auditMark === 1 ? '' : 'checked' }} lay-filter="isAuditMark">
+                    </script>
+                </div>
+            </div>
+
+            <div class="layui-col-md3">
+                <label class="layui-form-label">出货报告：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="checkbox" name="deliveryReport" lay-skin="switch" lay-text="是|否" {{ d.params.deliveryReport === undefined || d.params.deliveryReport == '0' ? '' : 'checked' }} lay-filter="deliveryReport">
                     </script>
                 </div>
             </div>
@@ -321,7 +336,7 @@
     </form>
 </div>
 <style>
-   .edit-cusInfo .layui-input-block {margin-top: 10px;}
+   /*.edit-cusInfo .layui-input-block {margin-top: 10px;}*/
    .layui-layout-body {overflow: scroll;} /**防止隐藏**/
     .span-required{color: red;}
 </style>

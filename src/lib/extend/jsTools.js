@@ -49,8 +49,16 @@ layui.define(function (exports) {
         CleanFileSuffix: function (fileName) {
             var suffix = fileName.substr((~-fileName.lastIndexOf(".") >>> 0) + 1)
             return fileName.replace(suffix, "");
-        }
+        },
 
+        // 生成指定位数的随机数
+        RandomNum: function (n) {
+            var t='';
+            for(var i=0;i<n;i++){
+                t+=Math.floor(Math.random()*10);
+            }
+            return t;
+        }
     }
 
     exports('jsTools', obj)
