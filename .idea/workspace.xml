@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,23 +46,23 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.5980498">
       <split-first>
         <leaf>
           <file leaf-file-name="interior_order.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/interior_order.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="260">
-                  <caret line="148" column="18" lean-forward="true" selection-start-line="148" selection-start-column="18" selection-end-line="148" selection-end-column="18" />
+                  <caret line="148" column="18" selection-start-line="148" selection-start-column="18" selection-end-line="148" selection-end-column="18" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Indicator_card.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Indicator_card.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="525">
-                  <caret line="137" column="26" selection-start-line="137" selection-start-column="23" selection-end-line="137" selection-end-column="26" />
+                <state relative-caret-position="113">
+                  <caret line="134" column="23" lean-forward="true" selection-start-line="134" selection-start-column="23" selection-end-line="134" selection-end-column="23" />
                   <folding>
                     <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -76,6 +76,15 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="orderPCB_update.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="351">
+                  <caret line="141" column="61" lean-forward="true" selection-start-line="141" selection-start-column="61" selection-end-line="141" selection-end-column="61" />
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-first>
       <split-second>
@@ -83,8 +92,8 @@
           <file leaf-file-name="Indicator_card.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="359">
-                  <caret line="54" column="54" lean-forward="true" selection-start-line="54" selection-start-column="54" selection-end-line="54" selection-end-column="54" />
+                <state relative-caret-position="308">
+                  <caret line="210" column="9" lean-forward="true" selection-start-line="210" selection-start-column="9" selection-end-line="210" selection-end-column="9" />
                   <folding>
                     <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -114,7 +123,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>测试方式</find>
       <find>订单协同</find>
       <find>requestInterface</find>
       <find>打印</find>
@@ -144,6 +152,7 @@
       <find>PCB</find>
       <find>已支付</find>
       <find>已审核</find>
+      <find>CTI</find>
     </findStrings>
     <replaceStrings>
       <replace>是</replace>
@@ -241,9 +250,9 @@
         <option value="$PROJECT_DIR$/src/views/marketManagement/ok_payment.html" />
         <option value="$PROJECT_DIR$/src/controller/market_orderOkPayment.js" />
         <option value="$PROJECT_DIR$/src/controller/market_interiorOrder.js" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/interior_order.html" />
         <option value="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" />
       </list>
     </option>
   </component>
@@ -684,14 +693,7 @@
       <workItem from="1558055329650" duration="3178000" />
       <workItem from="1558319601220" duration="13445000" />
       <workItem from="1558352208687" duration="1758000" />
-      <workItem from="1558405702102" duration="14750000" />
-    </task>
-    <task id="LOCAL-00162" summary="合同ABS样式[Company宽度]">
-      <created>1556183848258</created>
-      <option name="number" value="00162" />
-      <option name="presentableId" value="LOCAL-00162" />
-      <option name="project" value="LOCAL" />
-      <updated>1556183848258</updated>
+      <workItem from="1558405702102" duration="15108000" />
     </task>
     <task id="LOCAL-00163" summary="1">
       <created>1556187532434</created>
@@ -1029,11 +1031,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558491064313</updated>
     </task>
-    <option name="localTasksCounter" value="211" />
+    <task id="LOCAL-00211" summary="1">
+      <created>1558492296158</created>
+      <option name="number" value="00211" />
+      <option name="presentableId" value="LOCAL-00211" />
+      <option name="project" value="LOCAL" />
+      <updated>1558492296158</updated>
+    </task>
+    <option name="localTasksCounter" value="212" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2071970000" />
+    <option name="totallyTimeSpent" value="2072328000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1056,7 +1065,7 @@
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49133262" weight="0.33333334" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49241602" weight="0.396875" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49241602" visible="true" weight="0.396875" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1499,24 +1508,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="321" column="30" selection-start-line="321" selection-start-column="30" selection-end-line="321" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/interior_order.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
-          <caret line="148" column="18" lean-forward="true" selection-start-line="148" selection-start-column="18" selection-end-line="148" selection-end-column="18" />
+          <caret line="148" column="18" selection-start-line="148" selection-start-column="18" selection-end-line="148" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="54" column="54" lean-forward="true" selection-start-line="54" selection-start-column="54" selection-end-line="54" selection-end-column="54" />
+        <state relative-caret-position="113">
+          <caret line="134" column="23" lean-forward="true" selection-start-line="134" selection-start-column="23" selection-end-line="134" selection-end-column="23" />
           <folding>
             <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -1526,6 +1528,13 @@
             <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="141" column="61" lean-forward="true" selection-start-line="141" selection-start-column="61" selection-end-line="141" selection-end-column="61" />
         </state>
       </provider>
     </entry>
