@@ -104,20 +104,20 @@
                                                 <label class="layui-form-label">Thickness:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="finishThickness" lay-verify="required" lay-filter="finishThickness" id="selFinishThickness">
-                                                        <option id="lde">0.2mm</option>
-                                                        <option id="ldsn">0.3mm</option>
-                                                        <option id="lds">0.4mm</option>
-                                                        <option id="ldl">0.6mm</option>
-                                                        <option id="ldb">0.8mm</option>
-                                                        <option id="1dl">1.0mm</option>
-                                                        <option id="yde">1.2mm</option>
-                                                        <option id="ydw">1.5mm</option>
-                                                        <option id="ydl" selected="">1.6mm</option>
-                                                        <option id="ydb">1.8mm</option>
-                                                        <option id="edl">2.0mm</option>
-                                                        <option id="eds">2.4mm</option>
-                                                        <option id="sdl">3.0mm</option>
-                                                        <option id="sde">3.2mm</option>
+                                                        <option value="0.2mm" id="lde">0.2mm</option>
+                                                        <option value="0.3mm" id="ldsn">0.3mm</option>
+                                                        <option value="0.4mm" id="lds">0.4mm</option>
+                                                        <option value="0.6mm" id="ldl">0.6mm</option>
+                                                        <option value="0.8mm" id="ldb">0.8mm</option>
+                                                        <option value="1.0mm" id="1dl">1.0mm</option>
+                                                        <option value="1.2mm" id="yde">1.2mm</option>
+                                                        <option value="1.5mm" id="ydw">1.5mm</option>
+                                                        <option value="1.6mm" id="ydl" selected="">1.6mm</option>
+                                                        <option value="1.8mm" id="ydb">1.8mm</option>
+                                                        <option value="2.0mm" id="edl">2.0mm</option>
+                                                        <option value="2.4mm" id="eds">2.4mm</option>
+                                                        <option value="3.0mm" id="sdl">3.0mm</option>
+                                                        <option value="3.2mm" id="sde">3.2mm</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -145,10 +145,10 @@
                                                 <label class="layui-form-label">CTI:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="cti" id="selCti">
-                                                        <option id="ewl">175≤CTI<250</option>
-                                                        <option id="sll">250≤CTI<400</option>
-                                                        <option id="lll">400≤CTI<600</option>
-                                                        <option id="dlll">CTI≥600</option>
+                                                        <option value="175≤CTI<250" id="ewl">175≤CTI<250</option>
+                                                        <option value="250≤CTI<400" id="sll">250≤CTI<400</option>
+                                                        <option value="400≤CTI<600" id="lll">400≤CTI<600</option>
+                                                        <option value="CTI≥600" id="dlll">CTI≥600</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -156,19 +156,19 @@
                                                 <label class="layui-form-label">Halogen-free:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="halogenFree" id="selHf">
-                                                        <option>none</option>
-                                                        <option>NO</option>
-                                                        <option>YES</option>
+                                                        <option value="">none</option>
+                                                        <option value="NO">NO</option>
+                                                        <option value="YES">YES</option>
                                                     </select>
                                                 </div>
                                                 <label class="layui-form-label">Heat Conductivity:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="heatConductivity" id="selHc">
-                                                        <option>none</option>
-                                                        <option>1W</option>
-                                                        <option>2W</option>
-                                                        <option>3W</option>
-                                                        <option>PCBonline</option>
+                                                        <option value="">none</option>
+                                                        <option value="1W">1W</option>
+                                                        <option value="2W">2W</option>
+                                                        <option value="3W">3W</option>
+                                                        <option value="PCBonline">PCBonline</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -446,11 +446,11 @@
                                             <div class="layui-form-item">
                                                 <label class="layui-form-label">Remark:</label>
                                                 <div class="layui-input-block">
-                                                    <textarea name="remark" placeholder="请输入内容" class="layui-textarea" style="width: 100%"></textarea>
+                                                    <textarea data-type="textarea" name="remark" placeholder="请输入内容" class="layui-textarea" style="width: 100%"></textarea>
                                                 </div>
                                             </div>
 
-                                            <div class="layui-form-item" style="display: none;">
+                                            <div class="layui-form-item" style="display: ;">
                                                 <label class="layui-form-label">customerId:</label>
                                                 <div class="layui-input-block">
                                                     <input type="text" name="customerId"  autocomplete="off" class="layui-input mto-input" id="customerId">
@@ -643,7 +643,7 @@
                                   </select>
                               </div>
                               <div class="layui-input-inline layui-col-md5" id="selCustomer_container" data="" style="width: 47%;margin-left: 2%;">
-                                  <select id="selCustomer" lay-filter="filterCustomer" lay-search="">
+                                  <select id="selCustomer" lay-filter="filterCustomer" name="userId" lay-search="">
                                       <option value="" id="0">选择客户</option>
                                   </select>
                               </div>
@@ -651,7 +651,7 @@
 
                           <div class="layui-inline layui-col-md6">
                               <div class="layui-input-inline layui-col-md9">
-                                  <input type="text" class="layui-input" id="orderPN" placeholder="内部型号自动生成">
+                                  <input type="text" class="layui-input" name="productNo" id="orderPN" placeholder="内部型号自动生成">
                               </div>
                               <div class="layui-input-inline layui-col-md2" style="margin-left: 2%;">
                                   <!--<button class="layui-btn" data-type="lookQuote">详情</button>-->
@@ -681,7 +681,7 @@
                                   <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label">工程费：</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" name="engineeringFee" id="enginnerFee" type="text" placeholder="0.00" >
+                                          <input class="layui-input pcb-fee" name="engineeringFee" id="enginnerFee" type="text" placeholder="0.00" >
                                       </div>
                                   </div>
                                   <div class="rig-others layui-col-md6">
@@ -696,7 +696,7 @@
                                   <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label">板费：</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" name="boardFee" type="text" id="boardFee" placeholder="0.00" >
+                                          <input class="layui-input pcb-fee" name="boardFee" type="text" id="boardFee" placeholder="0.00" >
                                       </div>
                                   </div>
                                   <div class="layui-input-inline shipping-input-company" style="width: 142px;">
@@ -710,7 +710,7 @@
                                   <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label" id="testPointT">飞针费：</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" name="testCostFee" type="text" id="testFee" placeholder="0.00" >
+                                          <input class="layui-input pcb-fee" name="testCostFee" type="text" id="testFee" placeholder="0.00" >
                                       </div>
                                   </div>
                                   <div class="rig-others layui-col-md6">
@@ -730,7 +730,7 @@
                                   <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label">模具费：</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" name="toolingFee" type="text" id="toolingFee" placeholder="0.00" >
+                                          <input class="layui-input pcb-fee" name="toolingFee" type="text" id="toolingFee" placeholder="0.00" >
                                       </div>
                                   </div>
                                   <div class="rig-others layui-col-md6">
@@ -745,7 +745,7 @@
                                   <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label">加急费：</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" name="overworkFee" name="engineeringFee" type="text" id="urgentFee" placeholder="0.00" >
+                                          <input class="layui-input pcb-fee" name="overworkFee" name="engineeringFee" type="text" id="urgentFee" placeholder="0.00" >
                                       </div>
                                   </div>
                                   <div class="rig-others build-time-item layui-col-md6" style="display: none;width: 146px;">
@@ -766,13 +766,13 @@
                                   <div class="rig-price-input layui-col-md6">
                                       <label class="layui-form-label">小计：</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" type="text" id="pcbCost" placeholder="0.00" name="subtotal">
+                                          <input class="layui-input pcb-total-l" type="text" id="pcbCost" placeholder="0.00" name="subtotal">
                                       </div>
                                   </div>
                                   <div class="rig-others layui-col-md6">
                                       <label class="layui-form-label" style="padding: 9px 12px 0px 0px;">运费：</label>
                                       <div class="layui-input-inline">
-                                          <input class="layui-input" type="text" id="shippingPrice" placeholder="0.00" name="postFee">
+                                          <input class="layui-input pcb-total-l" type="text" id="shippingPrice" placeholder="0.00" name="postFee">
                                       </div>
                                   </div>
                               </div>

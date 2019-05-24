@@ -285,9 +285,8 @@
                         <tr>
                             <td>Unit price:US/pcs:</td>
                             {{# layui.each(d.params.data, function(index, item){  }}
-                            <!--单价，还没传，先占个位-->
                             <td value="{{ item.id }}">
-                                {{# var unitPrice = parseFloat(item.boardFee/item.quantityPcs).toFixed(2) }}
+                                {{# var unitPrice = parseFloat(item.boardFee/item.quantityPcs).toFixed(3) }}
                                 {{ unitPrice }}
                             </td>
                             {{#  }); }}
@@ -332,7 +331,6 @@
                         </tr>
                         <tr>
                             <td>Freight Fee:</td>
-                            <!--运费，还没传过来-->
                             {{# layui.each(d.params.data, function(index, item){  }}
                             <td value="{{ item.id }}">
                                 {{ item.postFee || '0' }}
@@ -347,7 +345,6 @@
                         </tr>
                         <tr>
                             <td>Lead Days:</td>
-                            <!--构造天数没传  没返回-->
                             {{# layui.each(d.params.data, function(index, item){  }}
                             <td value="{{ item.id }}">{{ item.buildTime }}</td>
                             {{#  }); }}
