@@ -931,6 +931,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         //发送请求获取构造天数
         admin.req({
             type: 'post',
+            async: false,
             url: setter.imUrl+'quote/getBuildTime',
             data: {areaSq:areaSq,layerNum: layerNum},
             success: function (data) {
@@ -974,6 +975,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         admin.req({
             type: 'post',
             url: setter.imUrl+'quote/getCouriers',
+            async: false,
             success: function (data) {
                 $("select[id='"+SelectId+"'] option").remove();
                 post_data.companyId = data.data[0].id;
@@ -1007,6 +1009,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         form.render();
         admin.req({
             type: 'post',
+            async: false,
             url: setter.imUrl+'quote/getCountry',
             success: function (data) {
                 post_data.countrysId = data.data[0].id;
@@ -1257,6 +1260,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         },
         // 添加当前报价
         addThisQuote: function () {
+            var strOrder;
             $(".up-subbtn").click();
             var quote_data = Object.assign(pcb_rigdetaily,pcb_container);
             if (pcb_container.userId == null || pcb_container.userId == ""){
@@ -1269,43 +1273,52 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
                 });
                 return false;
             } else {
-                var orderTypeObj = new Object();
-                orderTypeObj.A = quote_data;
-                orderTypeObj.B = importParams.importPCBInfo;
-                contrastOrder(orderTypeObj);    // 判断订单类型
-                // var orderType = contrastOrder(quote_data, importParams.importPCBInfo);    // 判断订单类型
-                if (tp.totalPric == tp.totalPriced && tp.isQuote == true) {
-                    // layer.confirm("你已经添加了相同参数的报价，是否再次添加？", function () {
-                    //     admin.req({
-                    //         type: 'post',
-                    //         data: quote_data,
-                    //         url: setter.baseUrl+"epc/pcborder/save",
-                    //         success: function (data) {
-                    //             $("#orderPN").val(data.pn);
-                    //             pcb_container.productNo = data.pn;
-                    //             form.render(null,'checkCustomer');
-                    //             if (data.code != "500"){
-                    //                 layer.alert("你已成功添加当前报价！");
-                    //             }
-                    //         }
-                    //     });
-                    // });
+                if (importParams.importPCBInfo) {
+                    var orderTypeObj = {"A":null,"B":null};
+                    orderTypeObj.A = quote_data;
+                    orderTypeObj.B = importParams.importPCBInfo;
+                    quote_data.orderType = contrastOrder(orderTypeObj);    // 获取订单类型
+                    if (quote_data.orderType == "2") {
+                        strOrder = "返单";
+                    } else if (quote_data.orderType == "3") {
+                        strOrder = "返单有改";
+                    }
                 } else {
-                    // admin.req({
-                    //     type: 'post',
-                    //     data: quote_data,
-                    //     url: setter.baseUrl+"epc/pcborder/save",
-                    //     success: function (data) {
-                    //         $("#orderPN").val(data.pn);
-                    //         pcb_container.productNo = data.pn;
-                    //         form.render(null,'checkCustomer');
-                    //         if (data.code != "500"){
-                    //             layer.alert("你已成功添加当前报价！");
-                    //         }
-                    //     }
-                    // });
-                    // tp.totalPric = tp.totalPriced;
-                    // tp.isQuote = true;
+                    quote_data.orderType = 1;       // 新单
+                    strOrder = "新单";
+                }
+                if (tp.totalPric == tp.totalPriced && tp.isQuote == true) {
+                    layer.confirm("你已经添加了相同参数的报价，是否再次添加？", function () {
+                        admin.req({
+                            type: 'post',
+                            data: quote_data,
+                            url: setter.baseUrl+"epc/pcborder/save",
+                            success: function (data) {
+                                $("#orderPN").val(data.pn);
+                                pcb_container.productNo = data.pn;
+                                form.render(null,'checkCustomer');
+                                if (data.code != "500"){
+                                    layer.alert("添加报价成功["+strOrder+"]");
+                                }
+                            }
+                        });
+                    });
+                } else {
+                    admin.req({
+                        type: 'post',
+                        data: quote_data,
+                        url: setter.baseUrl+"epc/pcborder/save",
+                        success: function (data) {
+                            $("#orderPN").val(data.pn);
+                            pcb_container.productNo = data.pn;
+                            form.render(null,'checkCustomer');
+                            if (data.code != "500"){
+                                layer.alert("添加报价成功["+strOrder+"]");
+                            }
+                        }
+                    });
+                    tp.totalPric = tp.totalPriced;
+                    tp.isQuote = true;
                 }
             }
         },
@@ -1510,6 +1523,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
                            success: function (res) {
                                var importPcbInfo = res.data;
                                if (importPcbInfo != null) {
+                                   getBuildTime();getCouriers();getCountrys();    // 获取国家快递信息
                                    setAllInput(importPcbInfo);
                                } else {
                                    layer.alert('当前不存在PCB参数详情！');
@@ -1555,9 +1569,9 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
             if ($Pthis.is("select")) {
                 // $("select[name="+$name+"]").find("option:contains('"+importPcbInfo[$name]+"')").attr("selected",true);
                 $("select[name='"+$name+"'] option[value='"+importPcbInfo[$name]+"']").attr("selected",true);
-                if ($name == "nOfPp") {
-                    console.log()
-                    $("select[name='nOfPp'] option[value='"+importPcbInfo["nOfPp"]+"']").attr("selected",true);
+                // 特殊处理下拉，根据value选中
+                if ($name == "nOfPp" || $name == "countries") {
+                    $("select[name='"+$name+"'] option[value='"+importPcbInfo[$name]+"']").attr("selected",true);
                 }
             }
             // 特殊处理表单
@@ -1568,6 +1582,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
                 $("input[name='customerId']").val(importPcbInfo['userId']);
                 pcb_container.userId = public_data.customerAid = importPcbInfo['userId'];
             }
+            // pcb_container[$name] = importPcbInfo[$name];
         });
         // userid表单赋值，不然报价后台会抛出500错误
         $("input[name='customerSysName']").val($("#selCustomer").find("option:selected").text());
@@ -1577,6 +1592,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         pcb_container.gerberPath = importPcbInfo['gerberPath'];
         pcb_container.pcbName = saveSMTStencil.pcbName = importPcbInfo['pcbName'];
         pcb_container.productNo = importPcbInfo['productNo'];
+        pcb_container.countries = post_data.countrysId = importPcbInfo['countries'];
+
         // $("select[name='nOfPp'] option[value='3']").attr("selected",true);
         // 总价
         var $pcbcost = parseFloat($("input[name='subtotal']").val());
