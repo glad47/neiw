@@ -349,17 +349,16 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
 
     //监听element==> 订单类型(PCB/Stencil/SMT)
     element.on('collapse(orderTypeCol)', function(data){
-        // console.log(data.show); //得到当前面板的展开状态，true或者false
-        // console.log(data.title); //得到当前点击面板的标题区域DOM对象
-        // console.log(data.content); //得到当前点击面板的内容区域DOM对象
         var this_col_title = data.title.context.innerText;
         if (this_col_title.indexOf('PCB Phototype') != -1) {
             $(".rig-price-cardbody form").removeClass("quote-avtive");
             $(".rig-price").addClass("quote-avtive");
+            $("*[data-type='addThisQuote']").show();
             post_data.bordType = 1;
         } else if (this_col_title.indexOf('SMT-Stencil') != -1) {
             $(".rig-price-cardbody form").removeClass("quote-avtive");
             $("#stencilForm").addClass("quote-avtive");
+            $("*[data-type='addThisQuote']").hide();s
             post_data.bordType = 2;
         } else if (this_col_title.indexOf('Assembly Service') != -1) {
             $(".rig-price-cardbody form").removeClass("quote-avtive");

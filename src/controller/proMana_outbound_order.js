@@ -105,8 +105,6 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
             }
             var newData = new Object();
             newData.shipmentVoList = postData;
-            console.log(newData);
-            console.log(postData);
             layer.confirm('确定出货？', function () {
                 $.ajax({
                     type: 'post',
@@ -120,6 +118,24 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                         layer.closeAll();
                     }
                 })
+            });
+        } else if (obj.event = 'outerLable') {
+            var checkData = checkStatus.data;
+            if (checkData.length<1) {
+                layer.msg('请选择一条数据');
+                return false;
+            }
+            admin.popup({
+                title: '外标签导出EXCEL'
+                ,area: ['100%', '100%']
+                ,id: 'popOuterLable'
+                ,toolbar: true
+                ,page: true
+                ,success: function (layero, index) {
+                    view(this.id).render('productManagement/iframeWindow/outer_lable', checkData).done(function () {
+
+                    });
+                }
             });
         }
     });
@@ -293,6 +309,18 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                         layer.closeAll();
                     }
                 })
+            });
+        } else if (obj.event = 'outerLable') {
+            var checkData = checkStatus.data;
+            admin.popup({
+                title: '外标签导出EXCEL'
+                ,area: ['45%', '70%']
+                ,id: 'popOuterLable'
+                ,success: function (layero, index) {
+                    view(this.id).render('productManagement/iframeWindow/outer_lable', checkData).done(function () {
+                        
+                    });
+                }
             });
         }
     });
