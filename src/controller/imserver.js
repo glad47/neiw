@@ -3,16 +3,29 @@ layui.define(function(exports) {
 	layui.use(['layer', 'jquery',], function() {
 		var layer = layui.layer,
 			$ = layui.jquery,
-			setter = layui.setter;
+			setter = layui.setter
+			,admin = layui.admin;
 			
 			// message = layui.message,
 			// messagebody = layui.messagebody;
 
 		var websocketurl = setter.webSocketUrl;
+		var currentsession = layui.data('layuiAdmin').userId;
+		//获取所有跟单员
+		var gdy = [];
+		admin.req({
+                type: 'post',
+                data: {'roleId': 10},
+                url: setter.baseUrl+'sys/consumer/user/findBusinessByRid',
+                async: false,
+                success: function (data) {
+                	gdy = data.data;
+                }
+        });
 
-		var currentsession = layui.data('layuiAdmin').userId+"";
 		console.log(currentsession);
-		var showmsg, lm,reconnectflag = false,socket,gdy=["12","17","18","20"]; //避免重复连接
+		console.log(gdy);
+		var showmsg, lm,reconnectflag = false,socket; //避免重复连接
 
 		function createWebSocket(url, callbak) {
 			try {
