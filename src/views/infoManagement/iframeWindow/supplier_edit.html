@@ -136,7 +136,7 @@
                 <label class="layui-form-label">供应商：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:14}" lay-done="layui.data.done(d);" lay-type="post">
-                        <select name="userId" lay-verify="required">
+                        <select name="userId"d>
                             {{# 
                                 var userId = d.params.userId;
                                 layui.each(d.data, function(index, item){   
@@ -144,7 +144,7 @@
                             <option></option>
                             <option value="{{ item.userId || ''}}" {{ userId == item.userId ? 'selected' : ''}}>{{ item.username }}</option>
                             {{#  }); }}
-                            {{#  if(d.data.length === 0){ }}
+                        {{#  if(d.data.length === 0){ }}
                             无数据
                             {{#  } }}
                         </select>    
