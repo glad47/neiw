@@ -1,5 +1,52 @@
 <title>供应链管理-外协合同</title>
 <div class="layui-fluid">
+    <div class="layui-form layui-card-header outsourcing-contract-search" style="margin-top: 15px;">
+        <div class="layui-form-item quote-detail-search">
+            <div class="layui-inline" style="display: none;">
+                <label class="layui-form-label">查询：</label>
+                <div class="layui-input-inline">
+                    <select name="quiz" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
+                        <option value="">请选择</option>
+                        <option value="productNo">P/N</option>
+                        <option value="FileName">File Name</option>
+                        <option value="OrderId">Order ID</option>
+                        <option value="OrderTime">Order Time</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <input type="text" name="P/N" autocomplete="off" class="layui-input" placeholder="P/N">
+                </div>
+            </div>
+            <!--电脑端-->
+            <div class="layui-inline">
+                <label class="layui-form-label">P/N：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                </div>
+
+                <label class="layui-form-label" style="width: 85px;">PCB Name：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pcbName" autocomplete="off" class="layui-input">
+                </div>
+
+                <label class="layui-form-label" style="width: 100px;">Factory Make：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="factoryMake" autocomplete="off" class="layui-input">
+                </div>
+
+                <label class="layui-form-label" style="width: 85px;">Supplier No:</label>
+                <div class="layui-input-inline">
+                    <!--<input type="text" name="gmtCreate" class="layui-input">-->
+                    <input type="text" name="supplierNo" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="outsourcing_contract_search">
+                    搜索
+                </button>
+            </div>
+        </div>
+    </div>
     <!--卡片－表格信息-->
     <div class="layui-tab layui-tab-brief" lay-filter="tab-scmManagement">
         <ul class="layui-tab-title">

@@ -187,7 +187,7 @@
                 var totalFee = $("#qt_pcb_totalFee").text();               // 总价
                 var a = parseFloat(quantityPcs*unitPrice);
                 var b = parseFloat(quantityPcs*unitPrice)+parseFloat(engineeringFee) + parseFloat(testCostFee) + parseFloat(toolingFee);
-                totalFee = parseFloat(b);
+                totalFee = parseFloat(b).toFixed(2);
                 $("#qt_pcb_totalFee").text(totalFee);
             }
             var active = {};

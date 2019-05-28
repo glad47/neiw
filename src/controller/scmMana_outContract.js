@@ -15,18 +15,19 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
     var $ = layui.jquery;
     var convertCurrency = layui.convertCurrency;
     var requestInterface = layui.requestInterface;
+    var defVal = {
+        orderType: 0,   //订单类型
+    }
 
     tabRenderPCB();
 
     var pcbtabObj;  // PCB表格数据对象
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-scmManagement)', function(data){
-        console.log(data.index);
+        defVal.orderType = data.index;
         if (data.index === 0){
-
             tabRenderPCB();
         } else if (data.index === 1){
-
             tabRenderStencil();
         } else if (data.index === 2){
 
@@ -492,5 +493,22 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             });
         }
     });
+    //监听搜索
+    form.on('submit(outsourcing_contract_search)', function(data){
+        var field = data.field;
+        var reTab;
+        if (defVal.orderType === 0) {   // PCB
+            reTab = 'scmManaOutSC_tabPcb';
+        } else if (defVal.orderType === 1) {    //  Stencil
+            reTab = 'scmManaOutSC_tabStencil';
+        }
+        table.reload(reTab, {
+            where: field
+        });
+    });
+    $(".outsourcing-contract-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='outsourcing_contract_search']").click();
+    })
+
     exports('scmMana_outContract', {});
 });
