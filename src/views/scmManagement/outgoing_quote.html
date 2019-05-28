@@ -9,7 +9,7 @@
                 <div class="layui-input-inline">
                     <select name="quiz" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
                         <option value="">请选择</option>
-                        <option value="P/N">P/N</option>
+                        <option value="productNo">P/N</option>
                         <option value="FileName">File Name</option>
                         <option value="OrderId">Order ID</option>
                         <option value="OrderTime">Order Time</option>
@@ -23,7 +23,7 @@
             <div class="layui-inline" id="orderReview_pcsear">
                 <label class="layui-form-label">P/N：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="P/N" id="supplier_id" autocomplete="off" class="layui-input">
+                    <input type="text" name="productNo" id="supplier_id" autocomplete="off" class="layui-input">
                 </div>
 
                 <label class="layui-form-label">File Name：</label>
@@ -42,20 +42,8 @@
                     <input type="text" name="gmtCreate" id="gmtCreate" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                 </div>
             </div>
-
             <div class="layui-inline">
-                <label class="layui-form-label">状态：</label>
-                <div class="layui-input-inline">
-                    <select name="status" id="orderReview_statusSel">
-                        <option value="">请选择状态</option>
-                        <option value="0">待评审</option>
-                        <option value="1">修改中</option>
-                        <option value="2">退回中</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-orderReview-search" style="margin-bottom: 3px;">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="Outgoing_quote_search" style="margin-bottom: 3px;">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                 </button>
             </div>

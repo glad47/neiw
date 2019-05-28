@@ -16,12 +16,15 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
         var $ = layui.jquery;
         var jstools = layui.jsTools;
 
-    // layerdate.render({
-    //     elem: '#gmtCreate'
-    // })
     laydate.render({
         elem: '#gmtCreate'
     });
+
+    // 全局变量
+    var defVal = {
+        orderType: 0,   //订单类型
+    };
+
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB内部订单-工程已审核
     table.render({
@@ -567,6 +570,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
     // 根据tab选项是否为pcb或者stencil监听表单，动态渲染表格
     element.on('tab(pcdorstencil_tab)', function (data) {
         var tabNum = data.index;
+        defVal.orderType = data.index;
         form.on('submit(LAY-app-orderReview-search)', function (data) {
             var field = data.field;
             delete field.quiz;
@@ -606,6 +610,28 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                 Domobj.attr("placeholder", "请选取搜索条件");
             }
         });
+    }
+
+    // 监听搜索 PCB
+    form.on('submit(Outgoing_quote_search)', function(data){
+        var field = data.field;
+        var reTab;
+        if (defVal.orderType === 0) {   // PCB
+            reTab = 'scm_Tabpcb_outgoing_quote';
+        } else if (defVal.orderType === 1) {    //  Stencil
+            reTab = 'scm_Tabstencil_outgoing_quote';
+        }
+        //执行重载
+        table.reload(reTab, {
+            where: field
+        });
+    });
+
+    document.onkeydown = function(e) {
+        var ev = document.all ? window.event : e;
+        if(ev.keyCode == 13) {
+            $("*[lay-filter='Outgoing_quote_search']").click();
+        }
     }
 
     exports('scm_outgoingQuote', {})
