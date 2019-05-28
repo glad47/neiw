@@ -1,8 +1,8 @@
-<title>网上待支付</title>
+<title>市场管理-网上待支付</title>
 
 <div class="layui-fluid">
     <input type="text" autocomplete="off" class="layui-input" placeholder="查询订单评审信息" style="display: none">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto" id="orderReview_form">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto no-payment-search" id="orderReview_form">
         <div class="layui-form-item">
             <div class="layui-inline" id="orderReview_searll" style="display: none;">
                 <label class="layui-form-label">查询：</label>
@@ -46,7 +46,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">状态：</label>
                 <div class="layui-input-inline">
-                    <select name="status" id="orderReview_statusSel">
+                    <select name="status" id="orderReview_statusSel" lay-filter="no-payment-search-sel">
                         <option value="">请选择状态</option>
                         <option value="0">待评审</option>
                         <option value="1">修改中</option>
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-orderReview-search" style="margin-bottom: 3px;">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-noPayment-search" style="margin-bottom: 3px;">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                 </button>
             </div>

@@ -1,6 +1,6 @@
-<title>内部订单</title>
+<title>市场管理-内部订单</title>
 <div class="layui-fluid">
-    <div class="layui-form">
+    <div class="layui-form interior-order-search">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">内部型号</label>
@@ -11,7 +11,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">状态</label>
                 <div class="layui-input-inline">
-                    <select name="status">
+                    <select name="status" lay-filter="interior-order-search1">
                         <option value="">请选择</option>
                         <option value="1">待报价</option>
                         <option value="2">待确认</option>
@@ -28,7 +28,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">订单类型</label>
                 <div class="layui-input-inline">
-                    <select name="orderType">
+                    <select name="orderType" lay-filter="interior-order-search2">
                         <option value="">请选择</option>
                         <option value="1">新单</option>
                         <option value="2">返单</option>

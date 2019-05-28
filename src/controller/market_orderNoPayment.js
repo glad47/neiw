@@ -15,9 +15,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,element = layui.element;
         var $ = layui.jquery;
 
-    // layerdate.render({
-    //     elem: '#gmtCreate'
-    // })
+    // 全局变量
+    var defVal = {
+        orderType: 0,   //订单类型
+    };
     laydate.render({
         elem: '#gmtCreate'
     });
@@ -352,15 +353,30 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
     })
 
-    form.on('submit(LAY-app-orderReview-search)', function (data) {
+    form.on('submit(LAY-app-noPayment-search)', function (data) {
         var field = data.field;
+        var reTab;
         delete field.quiz;
-            table.reload('or_Tabpcb',{
-                where: field
-            });
+        if (defVal.orderType === 0) {   // PCB
+            reTab = 'or_Tabpcb_no_payment';
+        } else if (defVal.orderType === 1) {    //  Stencil
+            reTab = 'stencil_orderTab_no_payment';
+        }
+        table.reload(reTab,{
+            where: field
+        });
     });
+    //监听select搜索
+    form.on('select(no-payment-search-sel)', function (data) {
+        $("*[lay-filter='LAY-app-noPayment-search']").click();
+    });
+    $(".no-payment-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='LAY-app-noPayment-search']").click();
+    })
+
     // 根据tab选项是否为pcb或者stencil监听表单，动态渲染表格
     element.on('tab(pcdorstencil_tab)', function (data) {
+        defVal.orderType = data.index;
         var tabNum = data.index;
         form.on('submit(LAY-app-orderReview-search)', function (data) {
             var field = data.field;

@@ -15,11 +15,14 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
     var $ = layui.jquery;
     var convertCurrency = layui.convertCurrency;
     var requestInterface = layui.requestInterface;
-
+    var defVal = {
+        orderType: 0,   //订单类型
+    }
     tabRenderPCB();
 
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-scmManagement)', function(data){
+        defVal.orderType = data.index;
         if (data.index === 0){
             tabRenderPCB();
         } else if (data.index === 1){
@@ -428,5 +431,21 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
             });
         }
     });
+    //监听搜索
+    form.on('submit(quote_detail_serch)', function(data){
+        var field = data.field;
+        var reTab;
+        if (defVal.orderType === 0) {   // PCB
+            reTab = 'scmMana_tabPcb';
+        } else if (defVal.orderType === 1) {    //  Stencil
+            reTab = 'scmMana_tabStencil';
+        }
+        table.reload(reTab, {
+            where: field
+        });
+    });
+    $(".quote-detail-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='quote_detail_serch']").click();
+    })
     exports('scmMana_quoteDetail', {});
 });

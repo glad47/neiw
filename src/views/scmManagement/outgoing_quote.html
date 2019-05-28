@@ -2,53 +2,53 @@
 
 <div class="layui-fluid">
     <input type="text" autocomplete="off" class="layui-input" placeholder="查询订单评审信息" style="display: none">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto" id="orderReview_form">
-        <div class="layui-form-item">
-            <div class="layui-inline" id="orderReview_searll" style="display: none;">
-                <label class="layui-form-label">查询：</label>
-                <div class="layui-input-inline">
-                    <select name="quiz" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
-                        <option value="">请选择</option>
-                        <option value="productNo">P/N</option>
-                        <option value="FileName">File Name</option>
-                        <option value="OrderId">Order ID</option>
-                        <option value="OrderTime">Order Time</option>
-                    </select>
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" id="orderReview_form">
+            <div class="layui-form-item">
+                <div class="layui-inline" id="orderReview_searll" style="display: none;">
+                    <label class="layui-form-label">查询：</label>
+                    <div class="layui-input-inline">
+                        <select name="quiz" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
+                            <option value="">请选择</option>
+                            <option value="productNo">P/N</option>
+                            <option value="FileName">File Name</option>
+                            <option value="OrderId">Order ID</option>
+                            <option value="OrderTime">Order Time</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" name="P/N" id="orderReview_sinp" autocomplete="off" class="layui-input" placeholder="P/N">
+                    </div>
                 </div>
-                <div class="layui-input-inline">
-                    <input type="text" name="P/N" id="orderReview_sinp" autocomplete="off" class="layui-input" placeholder="P/N">
-                </div>
-            </div>
-            <!--电脑端-->
-            <div class="layui-inline" id="orderReview_pcsear">
-                <label class="layui-form-label">P/N：</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="productNo" id="supplier_id" autocomplete="off" class="layui-input">
-                </div>
+                <!--电脑端-->
+                <div class="layui-inline outgoing-quote-search" id="orderReview_pcsear">
+                    <label class="layui-form-label">P/N：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="productNo" id="supplier_id" autocomplete="off" class="layui-input">
+                    </div>
 
-                <label class="layui-form-label">File Name：</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="gerberName" id="supplier_companyName" autocomplete="off" class="layui-input">
-                </div>
+                    <label class="layui-form-label">File Name：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="gerberName" id="supplier_companyName" autocomplete="off" class="layui-input">
+                    </div>
 
-                <label class="layui-form-label">Order ID：</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="orderId" id="supplier_type" autocomplete="off" class="layui-input">
-                </div>
+                    <label class="layui-form-label">Order ID：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="orderId" id="supplier_type" autocomplete="off" class="layui-input">
+                    </div>
 
-                <label class="layui-form-label">Order Time:</label>
-                <div class="layui-input-inline">
-                    <!--<input type="text" name="gmtCreate" class="layui-input">-->
-                    <input type="text" name="gmtCreate" id="gmtCreate" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                    <label class="layui-form-label">Order Time:</label>
+                    <div class="layui-input-inline">
+                        <!--<input type="text" name="gmtCreate" class="layui-input">-->
+                        <input type="text" name="gmtCreate" id="gmtCreate" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
-            </div>
-            <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="Outgoing_quote_search" style="margin-bottom: 3px;">
-                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                </button>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="Outgoing_quote_search" style="margin-bottom: 3px;">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
     <!--卡片－表格信息-->
     <div class="layui-tab layui-tab-brief" lay-filter="pcdorstencil_tab" id="orderReview_card">
         <ul class="layui-tab-title">

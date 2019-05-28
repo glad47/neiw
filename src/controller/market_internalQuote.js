@@ -384,12 +384,24 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
     //监听搜索
     form.on('submit(internal-quote-search)', function(data){
         var field = data.field;
-        console.log(field);
-        //执行重载
-        table.reload('iquote_Tabpcb', {
+        var reTab;
+        if (defVal.orderType === 0) {   // PCB
+            reTab = 'iquote_Tabpcb';
+        } else if (defVal.orderType === 1) {    //  Stencil
+            reTab = 'iquote_Tabstencil';
+        }
+        table.reload(reTab, {
             where: field
         });
     });
+    //监听select搜索
+    form.on('select(internal-quote-search-sel)', function (data) {
+        $("*[lay-filter='internal-quote-search']").click();
+    });
+
+    $(".internal-quote-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='internal-quote-search']").click();
+    })
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ Stencil订单
     function tabRenderStencil() {

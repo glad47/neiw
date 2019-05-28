@@ -8,14 +8,14 @@
                     <td>报价单号</td>
                     <td>{{ d.params.quoteOrderNo }}</td>
                     <td>报价时间</td>
-                    <td>{{ d.params.gmtCreate }}</td>
+                    <td>{{ d.params.gmtCreate || '' }}</td>
                     <td><strong>内部报价</strong></td>
                 </tr>
                 <tr>
                     <td>供应商编号</td>
                     <td>{{ d.params.supplierNo }}</td>
                     <td>数量(PCS)</td>
-                    <td id="qt_pcb_quantityPcs">{{ d.params.quantityPcs }}</td>
+                    <td id="qt_pcb_quantityPcs">{{ d.params.quantityPcs ||  0}}</td>
                     <td>/</td>
                 </tr>
                 <tr>
@@ -25,7 +25,7 @@
                     </td>
                     <td>单价</td>
                     <td>
-                        <input class="layui-input" type="text" value="{{ d.params.unitPrice || '' }}" id="qt_pcb_unitPrice">
+                        <input class="layui-input" type="text" value="{{ d.params.unitPrice || 0 }}" id="qt_pcb_unitPrice">
                     </td>
                     <td>
                         {{ d.params.unitPriceCustomer || '' }}
@@ -93,7 +93,7 @@
                     </td>
                     <td>模具费</td>
                     <td>
-                        <input class="layui-input" type="number" value="{{ d.params.toolingFee || '' }}" id="qt_pcb_toolingFee">
+                        <input class="layui-input" type="number" value="{{ d.params.toolingFee || 0 }}" id="qt_pcb_toolingFee">
                     </td>
                     <td>
                         <strong>{{ d.params.toolingFee || '0' }}</strong>

@@ -196,12 +196,26 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
     //监听搜索
     form.on('submit(nopayment-search)', function(data){
         var field = data.field;
-        console.log(field);
+        var reTab;
+        if (defVal.orderType === 0) {   // PCB
+            reTab = 'inside_no_payment_Tabpcb';
+        } else if (defVal.orderType === 1) {    //  Stencil
+            reTab = 'inside_no_payment_Tabstencil';
+        }
         //执行重载
-        table.reload('inside_no_payment_Tabpcb', {
+        table.reload(reTab, {
             where: field
         });
     });
+    //监听select搜索
+    form.on('select(inside-no-payment-search-sel)', function (data) {
+        $("*[lay-filter='nopayment-search']").click();
+    });
+
+    $(".inside-no-payment-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='nopayment-search']").click();
+    })
+
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(inside_no_payment_Tabpcb)', function(obj){
         var data = obj.data;

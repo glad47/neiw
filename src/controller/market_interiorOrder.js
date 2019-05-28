@@ -212,12 +212,18 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             where: field
         });
     });
-    document.onkeydown = function(e) {
-        var ev = document.all ? window.event : e;
-        if(ev.keyCode == 13) {
-            $("*[lay-filter='interior-order-search']").click();
-        }
-    }
+    //监听select搜索
+    form.on('select(interior-order-search1)', function (data) {
+        $("*[lay-filter='interior-order-search']").click();
+    });
+    form.on('select(interior-order-search2)', function (data) {
+        $("*[lay-filter='interior-order-search']").click();
+    });
+    $(".interior-order-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='interior-order-search']").click();
+    })
+
+
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(interior_order_Tabpcb)', function(obj){
         var data = obj.data;

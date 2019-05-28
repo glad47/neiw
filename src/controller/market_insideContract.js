@@ -875,12 +875,25 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
     //监听搜索
     form.on('submit(inside-contract-search)', function(data){
         var field = data.field;
-        console.log(field);
+        var reTab;
+        if (defVal.orderType === 0) {   // PCB
+            reTab = 'inside_cotract_Tabpcb';
+        } else if (defVal.orderType === 1) {    //  Stencil
+            reTab = 'icontract_Tabstencil';
+        }
         //执行重载
-        table.reload('inside_cotract_Tabpcb', {
+        table.reload(reTab, {
             where: field
         });
     });
+    //监听select搜索
+    form.on('select(inside-contract-sel)', function (data) {
+        $("*[lay-filter='inside-contract-search']").click();
+    });
+
+    $(".inside-contract-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='inside-contract-search']").click();
+    })
 
 
     function compare(property){

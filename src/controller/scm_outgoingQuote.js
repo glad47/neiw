@@ -627,12 +627,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
         });
     });
 
-    document.onkeydown = function(e) {
-        var ev = document.all ? window.event : e;
-        if(ev.keyCode == 13) {
-            $("*[lay-filter='Outgoing_quote_search']").click();
-        }
-    }
+    $(".outgoing-quote-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='Outgoing_quote_search']").click();
+    });
 
     exports('scm_outgoingQuote', {})
 });
