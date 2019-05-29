@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="过滤查询整改">
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/imserver.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/imserver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/scmMana_outContract.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/scmMana_outContract.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderPCB_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderPCB_update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/quote_detail_pcb.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/quote_detail_pcb.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/scmManagement/outsourcing_contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/scmManagement/outsourcing_contract.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/scmManagement/quote_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/scmManagement/quote_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/scmMana_outContract.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/scmMana_outContract.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/scmManagement/outsourcing_contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/scmManagement/outsourcing_contract.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/scmManagement/quote_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/scmManagement/quote_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/quote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/sqeMana_plan_together.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/sqeMana_plan_together.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/lib/extend/echarts.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/lib/extend/echarts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/style/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/style/admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/plan_together.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/sqeManagement/plan_together.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/quote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/sqeMana_plan_together.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/sqeMana_plan_together.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/sqeManagement/plan_together.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sqeManagement/plan_together.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -55,54 +53,50 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.70668775">
+    <splitter split-orientation="horizontal" split-proportion="0.5325027">
       <split-first>
         <leaf>
-          <file leaf-file-name="quote_detail.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/scmManagement/quote_detail.html">
+          <file leaf-file-name="quote.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="774">
-                  <caret line="112" column="34" selection-start-line="112" selection-start-column="15" selection-end-line="112" selection-end-column="34" />
+                <state relative-caret-position="135">
+                  <caret line="344" column="9" selection-start-line="344" selection-start-column="9" selection-end-line="344" selection-end-column="9" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="plan_together.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/views/sqeManagement/plan_together.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="295">
+                  <caret line="112" column="36" selection-start-line="112" selection-start-column="15" selection-end-line="112" selection-end-column="36" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="221">
+                  <caret line="897" column="32" selection-start-line="897" selection-start-column="32" selection-end-line="897" selection-end-column="32" />
                   <folding>
-                    <element signature="n#style#0;n#label#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#label#2;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#label#3;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#18;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#21;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#button#2;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="scmMana_quoteDetail.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/controller/scmMana_quoteDetail.js">
+          <file leaf-file-name="sqeMana_plan_together.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/controller/sqeMana_plan_together.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="527">
-                  <caret line="433" column="4" selection-start-line="433" selection-start-column="4" selection-end-line="448" selection-end-column="6" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="outsourcing_contract.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/scmManagement/outsourcing_contract.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="530">
-                  <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
-                  <folding>
-                    <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#label#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#label#2;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#label#3;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="quote_detail_pcb.html" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
-                  <caret line="195" column="60" lean-forward="true" selection-start-line="195" selection-start-column="60" selection-end-line="195" selection-end-column="60" />
+                <state relative-caret-position="410">
+                  <caret line="60" column="58" selection-start-line="60" selection-start-column="58" selection-end-line="60" selection-end-column="58" />
                 </state>
               </provider>
             </entry>
@@ -111,11 +105,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="scmMana_outContract.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/controller/scmMana_outContract.js">
+          <file leaf-file-name="sqeMana_plan_together.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/controller/sqeMana_plan_together.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="249">
-                  <caret line="504" column="29" lean-forward="true" selection-start-line="504" selection-start-column="29" selection-end-line="504" selection-end-column="29" />
+                <state relative-caret-position="238">
+                  <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
                 </state>
               </provider>
             </entry>
@@ -136,16 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>供应商</find>
-      <find>upSubbtn</find>
-      <find>productNo</find>
-      <find>icon-s</find>
-      <find>Indicator_card_search</find>
-      <find>监听tab选项卡</find>
-      <find>表格信息</find>
-      <find>indicator_card_tab</find>
-      <find>orderReview_pcsear</find>
-      <find>sele</find>
       <find>搜索</find>
       <find>key</find>
       <find>where: field</find>
@@ -159,13 +143,23 @@
       <find>quote_detail_serch</find>
       <find>供应商编号</find>
       <find>pcdorstencil_tab</find>
-      <find>element</find>
       <find>PCB报</find>
       <find>数量</find>
       <find>qt_pcb_totalFee</find>
       <find>defVal</find>
-      <find>监听</find>
       <find>PCB报价</find>
+      <find>监听</find>
+      <find>exports</find>
+      <find>filePath</find>
+      <find>outerHeight</find>
+      <find>getPosition</find>
+      <find>form.on('select(</find>
+      <find>sqe/pcborder/</find>
+      <find>element</find>
+      <find>PCB交货</find>
+      <find>addThisQuote</find>
+      <find>当前工序</find>
+      <find>sqeManaPlan_tabStencil</find>
     </findStrings>
     <replaceStrings>
       <replace>是</replace>
@@ -215,7 +209,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/controller/iqcMana_incoming_auditor.js" />
         <option value="$PROJECT_DIR$/start/index.html" />
         <option value="$PROJECT_DIR$/src/views/index.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" />
@@ -237,12 +230,9 @@
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" />
         <option value="$PROJECT_DIR$/src/views/productManagement/outbound_order.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" />
-        <option value="$PROJECT_DIR$/src/controller/quote.js" />
         <option value="$PROJECT_DIR$/src/controller/proMana_outbound_order.js" />
         <option value="$PROJECT_DIR$/src/views/productManagement/iframeWindow/outer_lable.html" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_edit.html" />
-        <option value="$PROJECT_DIR$/src/controller/sqeMana_plan_together.js" />
-        <option value="$PROJECT_DIR$/src/views/sqeManagement/plan_together.html" />
         <option value="$PROJECT_DIR$/src/controller/scm_outgoingQuote.js" />
         <option value="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" />
         <option value="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" />
@@ -266,6 +256,10 @@
         <option value="$PROJECT_DIR$/src/controller/scmMana_outContract.js" />
         <option value="$PROJECT_DIR$/src/views/scmManagement/outsourcing_contract.html" />
         <option value="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html" />
+        <option value="$PROJECT_DIR$/src/controller/optimizeSelectOption/optimizeSelectOption.js" />
+        <option value="$PROJECT_DIR$/src/views/sqeManagement/plan_together.html" />
+        <option value="$PROJECT_DIR$/src/controller/quote.js" />
+        <option value="$PROJECT_DIR$/src/controller/sqeMana_plan_together.js" />
       </list>
     </option>
   </component>
@@ -283,9 +277,9 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="89" />
-    <option name="y" value="25" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-34" />
+    <option name="y" value="23" />
     <option name="width" value="1867" />
     <option name="height" value="1057" />
   </component>
@@ -311,7 +305,14 @@
               <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
               <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="extend" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -322,7 +323,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SearchEverywhereHistoryKey" value="quote_detail_pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/quote_detail_pcb.html&#10;scmMana_quoteDetail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scmMana_quoteDetail.js&#10;scmMana_outContract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scmMana_outContract.js&#10;outsourcing_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/outsourcing_contract.html&#10;quote_detail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/quote_detail.html&#10;outgoing_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/outgoing_quote.html&#10;market_orderOkPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderOkPayment.js&#10;ok_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/ok_payment.html&#10;market_orderReview&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderReview.js&#10;order_review&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/order_review.html&#10;market_orderNoPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderNoPayment.js&#10;no_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/no_payment.html&#10;market_interiorOrder&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_interiorOrder.js&#10;interior_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/interior_order.html&#10;inside_no_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_no_payment.html&#10;market_insideNoPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_insideNoPayment.js&#10;market_insideContract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_insideContract.js&#10;inside_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_contract.html&#10;market_internalQuote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_internalQuote.js&#10;internal_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/internal_quote.html&#10;quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;epc_indicatorCard&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/epc_indicatorCard.js&#10;Indicator_card&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/Indicator_card.html&#10;scm_outgoingQuote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scm_outgoingQuote.js&#10;sqeMana_plan_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sqeMana_plan_together.js&#10;plan_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/plan_together.html&#10;supplier_edit&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/infoManagement/iframeWindow/supplier_edit.html&#10;q&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;inside&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;login&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/user/login.html&#10;epc_indicatorCardForm&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/epc_indicatorCardForm.js&#10;Indicator_cardform&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/dist/views/epcManagement/Indicator_cardform.html&#10;outbound_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/productManagement/outbound_order.html&#10;detai&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/order_pcb_detail.html&#10;contrac&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractA.html&#10;pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderPCB_update.html&#10;order_pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/order_pcb_detail.html&#10;nternal_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/internal_quote.html&#10;import_pcbInfoForm&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/import_pcbInfoForm.html&#10;quote.&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;ok_pay&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/ok_payment.html&#10;_requirements&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/productManagement/iframeWindow/packaging _requirements.html&#10;outbo&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_outbound_order.js&#10;sys_c&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sys_coustomer.js&#10;proMana_outbound_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_outbound_order.js&#10;cus&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/infoManagement/iframeWindow/customer_edit_info.html&#10;proMana_outbound_orderDetails&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_outbound_orderDetails.js&#10;sqeMana_quotation_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sqeMana_quotation_together.js&#10;quotation_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/quotation_together.html&#10;sqeMana_reconciliation&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sqeMana_reconciliation.js" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;sqeMana_plan_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sqeMana_plan_together.js&#10;plan_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/plan_together.html&#10;quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;inside_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderPCB_update.html&#10;details_delivery&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/iframeWindow/details_delivery.html&#10;quote_detail_pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/quote_detail_pcb.html&#10;scmMana_quoteDetail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scmMana_quoteDetail.js&#10;scmMana_outContract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scmMana_outContract.js&#10;outsourcing_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/outsourcing_contract.html&#10;quote_detail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/quote_detail.html&#10;outgoing_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/outgoing_quote.html&#10;market_orderOkPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderOkPayment.js&#10;ok_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/ok_payment.html&#10;market_orderReview&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderReview.js&#10;order_review&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/order_review.html&#10;market_orderNoPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderNoPayment.js&#10;no_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/no_payment.html&#10;market_interiorOrder&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_interiorOrder.js&#10;interior_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/interior_order.html&#10;inside_no_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_no_payment.html&#10;market_insideNoPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_insideNoPayment.js&#10;market_insideContract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_insideContract.js&#10;inside_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_contract.html&#10;market_internalQuote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_internalQuote.js&#10;internal_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/internal_quote.html&#10;epc_indicatorCard&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/epc_indicatorCard.js&#10;Indicator_card&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/Indicator_card.html&#10;scm_outgoingQuote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scm_outgoingQuote.js&#10;supplier_edit&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/infoManagement/iframeWindow/supplier_edit.html&#10;q&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;inside&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;login&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/user/login.html&#10;epc_indicatorCardForm&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/epc_indicatorCardForm.js&#10;Indicator_cardform&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/dist/views/epcManagement/Indicator_cardform.html&#10;outbound_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/productManagement/outbound_order.html&#10;detai&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/order_pcb_detail.html&#10;contrac&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractA.html&#10;order_pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/order_pcb_detail.html&#10;nternal_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/internal_quote.html&#10;import_pcbInfoForm&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/import_pcbInfoForm.html&#10;quote.&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;ok_pay&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/ok_payment.html&#10;_requirements&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/productManagement/iframeWindow/packaging _requirements.html&#10;outbo&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_outbound_order.js&#10;sys_c&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sys_coustomer.js&#10;proMana_outbound_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_outbound_order.js&#10;cus&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/infoManagement/iframeWindow/customer_edit_info.html&#10;proMana_outbound_orderDetails&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_outbound_orderDetails.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -331,19 +332,19 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/views/infoManagement/customer_info.html" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/style/res/template" />
-      <recent name="$PROJECT_DIR$/src/style/res" />
-      <recent name="$PROJECT_DIR$/dist/dist" />
-      <recent name="$PROJECT_DIR$/dist" />
-      <recent name="$PROJECT_DIR$/src/lib" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/views/marketManagement/iframeWindow" />
       <recent name="$PROJECT_DIR$/src/lib/extend" />
       <recent name="$PROJECT_DIR$/src/views/sqeManagement/iframeWindow" />
       <recent name="$PROJECT_DIR$/src/controller" />
       <recent name="$PROJECT_DIR$/src/views/marketManagement" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/controller" />
+      <recent name="$PROJECT_DIR$/src/style/res/template" />
+      <recent name="$PROJECT_DIR$/src/style/res" />
+      <recent name="$PROJECT_DIR$/dist/dist" />
+      <recent name="$PROJECT_DIR$/dist" />
     </key>
   </component>
   <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
@@ -664,14 +665,7 @@
       <workItem from="1558319601220" duration="13445000" />
       <workItem from="1558352208687" duration="1758000" />
       <workItem from="1558405702102" duration="82364000" />
-      <workItem from="1558920757788" duration="22488000" />
-    </task>
-    <task id="LOCAL-00171" summary="pcb外协合同不显示价格问题">
-      <created>1557025376565</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1557025376566</updated>
+      <workItem from="1558920757788" duration="35000000" />
     </task>
     <task id="LOCAL-00172" summary="1">
       <created>1557057879511</created>
@@ -1009,11 +1003,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559029580412</updated>
     </task>
-    <option name="localTasksCounter" value="220" />
+    <task id="LOCAL-00220" summary="1">
+      <created>1559033314780</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1559033314780</updated>
+    </task>
+    <option name="localTasksCounter" value="221" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2162072000" />
+    <option name="totallyTimeSpent" value="2174584000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1025,10 +1026,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <frame x="-1" y="23" width="1867" height="1057" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.18526544" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.18472372" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49349946" weight="0.26145834" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50812566" side_tool="true" weight="0.41354167" />
@@ -1036,7 +1037,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49133262" weight="0.33333334" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49187434" visible="true" weight="0.4119403" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49187434" visible="true" weight="0.41354167" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1132,10 +1133,10 @@
     <MESSAGE value="内部报价导入返单，修改自动判断订单类型" />
     <MESSAGE value="内部报价导入返单完成" />
     <MESSAGE value="外标签" />
-    <MESSAGE value="1" />
     <MESSAGE value="外发报价过滤查询" />
     <MESSAGE value="过滤查询整改" />
-    <option name="LAST_COMMIT_MESSAGE" value="过滤查询整改" />
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1143,60 +1144,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dist/views/productManagement/outbound_orderDetails.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" column="44" selection-start-line="55" selection-start-column="15" selection-end-line="55" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/sqeManagement/quotation_together.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/sqeMana_quotation_together.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="222" column="71" lean-forward="true" selection-start-line="222" selection-start-column="71" selection-end-line="222" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/sys_coustomer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-80">
-          <caret line="106" column="50" lean-forward="true" selection-start-line="106" selection-start-column="50" selection-end-line="106" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/views/marketManagement/inside_contract.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="995">
-          <caret line="64" column="29" lean-forward="true" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/productManagement/iframeWindow/packaging _requirements.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-268" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/start/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="52" lean-forward="true" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/extend/jsTools.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
@@ -1246,13 +1193,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2805">
-          <caret line="165" column="42" selection-start-line="165" selection-start-column="42" selection-end-line="165" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/epc_indicatorCardForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -1291,22 +1231,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="902" column="106" selection-start-line="902" selection-start-column="98" selection-end-line="902" selection-end-column="106" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#18;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#21;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#2;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/productManagement/iframeWindow/outer_lable.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -1318,27 +1242,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
           <caret line="150" column="29" lean-forward="true" selection-start-line="150" selection-start-column="29" selection-end-line="150" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/sqeMana_plan_together.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="65" column="79" selection-start-line="65" selection-start-column="65" selection-end-line="65" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/sqeManagement/plan_together.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="743">
-          <caret line="96" column="36" selection-start-line="96" selection-start-column="15" selection-end-line="96" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="178" column="74" selection-start-line="178" selection-start-column="60" selection-end-line="178" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -1529,15 +1432,115 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/scmMana_outContract.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
+        <state relative-caret-position="263">
           <caret line="504" column="29" lean-forward="true" selection-start-line="504" selection-start-column="29" selection-end-line="504" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="195" column="60" lean-forward="true" selection-start-line="195" selection-start-column="60" selection-end-line="195" selection-end-column="60" />
+        <state relative-caret-position="377">
+          <caret line="196" column="15" lean-forward="true" selection-start-line="196" selection-start-column="15" selection-end-line="196" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="15039" column="13" selection-start-line="15039" selection-start-column="13" selection-end-line="15039" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/extend/optimizeSelectOption/optimizeSelectOption.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/optimizeSelectOption/optimizeSelectOption.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3307">
+          <caret line="227" column="25" lean-forward="true" selection-start-line="227" selection-start-column="25" selection-end-line="227" selection-end-column="25" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="140" column="64" lean-forward="true" selection-start-line="140" selection-start-column="64" selection-end-line="140" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/sqeManagement/iframeWindow/details_delivery.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="162" column="34" lean-forward="true" selection-start-line="162" selection-start-column="34" selection-end-line="162" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/extend/filePathProcess.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/optimizeSelectOption.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="39" column="46" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/sys_process.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/extend/uploadCommon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="60" lean-forward="true" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/sqeManagement/plan_together.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="112" column="36" selection-start-line="112" selection-start-column="15" selection-end-line="112" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="897" column="32" selection-start-line="897" selection-start-column="32" selection-end-line="897" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#18;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#21;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#2;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="344" column="9" selection-start-line="344" selection-start-column="9" selection-end-line="344" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/sqeMana_plan_together.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
         </state>
       </provider>
     </entry>

@@ -1,16 +1,15 @@
 /**
 
  @Name:    供应商管理－－［报价协同］
-
+ 特别说明： 表格不支持下拉，这里引用了optimizeSelectOption扩展来实现表格里嵌套下拉的功能
  */
 
 
-layui.define(['admin','table','index','element','form','laydate','jsTools'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate','jsTools','optimizeSelectOption'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
-        // ,laydate = layui.laydate
         ,setter = layui.setter
         ,element = layui.element;
     var $ = layui.jquery;
@@ -19,21 +18,48 @@ layui.define(['admin','table','index','element','form','laydate','jsTools'], fun
     tabRenderPCB();
     // 全局变量
     var _public_val = {
-        orderType: 1        //订单类型 （1 pcb 2钢网 3 贴片）
+        orderType: 1,        //订单类型 （1 pcb 2钢网 3 贴片）
+        tableOn: 'sqeManaPlan_tabPcb',   // 监听表格
+        rowData: null       // 被监听表格点击的行数据
     };
 
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-planToger)', function(data){
-        console.log(data.index);
         if (data.index === 0){
             _public_val.orderType = 1;       //pcb
+            _public_val.tableOn = 'sqeManaPlan_tabPcb';     // 监听换成pcb
             tabRenderPCB();
         } else if (data.index === 1){
             _public_val.orderType = 2;      //钢网
+            _public_val.tableOn = 'sqeManaPlan_tabStencil'; // 监听换成stencil
             tabRenderStencil();
         } else if (data.index === 2){
             _public_val.orderType = 3;      //贴片
         }
+        // layer.msg(_public_val.tableOn);
+    });
+
+    form.on('select(currentProcess-sel)', function (data) {
+        var $this_val = data.value;
+        var $this_id = _public_val.rowData.id;
+        var url = 'scm/ordersupplier/update';
+        admin.req({
+           type: 'post',
+            data:{'currentProcess':$this_val,'id':$this_id},
+            url: setter.baseUrl+url,
+            success: function (res) {
+                layer.msg('当前工序修改成功!');
+            }
+        });
+
+    });
+    //监听行单击事件（单击事件为：rowDouble）
+    table.on('row(sqeManaPlan_tabPcb)', function(obj){
+        _public_val.rowData = obj.data;
+    });
+    //监听行单击事件（单击事件为：rowDouble）
+    table.on('row(sqeManaPlan_tabStencil)', function(obj){
+        _public_val.rowData = obj.data;
     });
 
     //▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ PCB订单
@@ -63,7 +89,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools'], fun
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
                 ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
                 ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
-                ,{field: '',title: '当前工序', width: 110,templet: '#currentProcess'}
+                ,{field: '',title: '当前工序', width: 160,templet: '#currentProcess'}
                 ,{field: '',title: '进度', width: 110}
                 ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
                 ,{field: 'gmtCreate',title: '签约日期', minWidth: 172}
@@ -223,7 +249,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools'], fun
                 ,{field: 'quantity', title: '订单数量(PCS)', width: 134}
                 ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
                 ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
-                ,{field: '',title: '当前工序', width: 110}
+                ,{field: '',title: '当前工序', width: 160,templet: '#currentProcess'}
                 ,{field: '',title: '进度', width: 110}
                 ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
                 ,{field: 'gmtCreate',title: '签约日期', minWidth: 172}
@@ -352,5 +378,6 @@ layui.define(['admin','table','index','element','form','laydate','jsTools'], fun
            });
        }
     });
+    
     exports('sqeMana_plan_together', {});
 });

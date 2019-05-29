@@ -358,7 +358,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         } else if (this_col_title.indexOf('SMT-Stencil') != -1) {
             $(".rig-price-cardbody form").removeClass("quote-avtive");
             $("#stencilForm").addClass("quote-avtive");
-            $("*[data-type='addThisQuote']").hide();s
+            $("*[data-type='addThisQuote']").hide();
             post_data.bordType = 2;
         } else if (this_col_title.indexOf('Assembly Service') != -1) {
             $(".rig-price-cardbody form").removeClass("quote-avtive");
