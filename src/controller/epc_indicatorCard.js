@@ -1,5 +1,5 @@
 
-layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'uploadCommon'], function(exports){
+layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'uploadCommon', 'filePathProcess'], function(exports){
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -10,6 +10,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
         ,upload = layui.upload
         var $ = layui.jquery;
         var uploadCommon = layui.uploadCommon;
+        var filePathProcess = layui.filePathProcess;
 
     var requestData = [];
     // pcb表格对象
@@ -370,12 +371,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             }
         } else if (obj.event == 'fileMana') {
             data.orderType = "pcbOrder";        // 根据orderType  发送不同的接口
+            data = filePathProcess.dataObj(data);
+            console.log(data);
             admin.popup({
                 title: 'PCB订单资料管理'
                 ,area: ['870px', '303px']
                 ,success: function (layero, index) {
                     view(this.id).render('epcManagement/iframeWindow/file_management', data).done(function () {
-
                     });
                 }
                 ,end: function () {
@@ -742,6 +744,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             })
         } else if (obj.event == 'fileMana') {
             data.orderType = "stencilOrder";        // 根据orderType  发送不同的接口
+            data = filePathProcess.dataObj(data);
             admin.popup({
                 title: 'PCB订单资料管理'
                 ,area: ['45%', '40%']

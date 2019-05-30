@@ -1361,8 +1361,6 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
                 var postData = Object.assign(saveSMTStencil, stencilSize);
                 postData.orderNo = $("#orderNo").val();     //客户PO号
                 postData.postFee = quoteSMTStencil.postFee;     //客户PO号
-                console.log(postData);
-                console.log("saveSMTStencil.gerberPath:"+saveSMTStencil.gerberPath);
                 if (postData.userId == null || postData.userId == "") {
                     layer.msg("请先选择客户");
                     return false;
