@@ -74,7 +74,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
         });
     }
-    table.on('toolbar(sqeManaPlan_tabPcb)', function (obj) {
+    table.on('toolbar(sqeManaShip_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         if(obj.event === 'submit'){
             var data = checkStatus.data;
@@ -94,7 +94,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     success: function (data) {
                         if (data.code == '0'){
                             layer.alert("提交成功！！");
-                            table.reload('ord_sqpManaShip_tb');
+                            table.reload('sqeManaShip_tabPcb');
                             layer.close(index);
                         }
                     }
@@ -104,7 +104,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(sqeManaPlan_tabPcb)', function (obj) {
+    table.on('tool(sqeManaShip_tabPcb)', function (obj) {
         var data = obj.data;
         if (obj.event == 'edit'){
             layer.msg('编辑操作');

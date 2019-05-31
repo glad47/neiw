@@ -1,5 +1,5 @@
 
-layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'uploadCommon', 'filePathProcess'], function(exports){
+layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'uploadCommon', 'filePathProcess', 'bug-tabRigTools'], function(exports){
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -384,6 +384,42 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     localStorage.removeItem("saveBackResult");  // 清除localStorage
                 }
             });
+        } else if (obj.event == 'orderUpdatePCB') {
+            admin.popup({
+                title: '编辑PCB订单信息'
+                ,area: ['820px', '90%']
+                ,btn:['立即提交', '取消']
+                ,id: 'indicatorPCBUp'
+                ,yes: function () {
+                    $(".submit-ok").click();
+                    layer.msg('yes');
+                }
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
+                        form.render(null, '');
+                        form.on('submit(LAY-pcborder-update-submit)',function (data) {
+                            var field = data.field;
+                            if (field.remark == "" || field.remark == "null") {
+                                field.remark = "";
+                            }
+                            admin.req({
+                                type: 'post'
+                                ,url: setter.baseUrl+'epc/pcborder/update'
+                                ,data: field
+                                ,done: function (res) {
+                                    layer.msg('订单信息修改成功');
+                                    layui.table.reload('epc_Tabpcb_ok_payment_order');
+                                }
+                                ,fail: function (res) {
+                                    layer.msg("订单信息修改失败，请稍后再试！");
+                                },
+                            });
+                            layer.close(index);
+                            return false;
+                        });
+                    });
+                }
+            });
         }
     });
 
@@ -757,8 +793,21 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     localStorage.removeItem("saveBackResult");  // 清除localStorage
                 }
             });
-        } else if (obj.event === 'supplier_update') {
-            layer.msg('上传文件可能需要一定的时间，请稍后....');
+        } else if (obj.event == 'orderUpdateStencil') {
+            admin.popup({
+                title: '编辑Stencil订单信息'
+                ,area: ['885px', '550px']
+                ,btn:['立即提交', '取消']
+                ,yes: function () {
+                    $(".submitStencilUpB").click();
+                    layui.table.reload('epc_Tabstencil_ok_payment_order');
+                }
+                ,success: function (layero, index) {
+                    view(this.id).render('marketManagement/iframeWindow/orderStencil_updateB', data).done(function () {
+
+                    });
+                }
+            });
         }
     });
 

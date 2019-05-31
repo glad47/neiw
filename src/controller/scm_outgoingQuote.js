@@ -293,6 +293,16 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                             
                         });
 
+                        form.on('submit(assign_supplier_search)', function (data) {
+                            var field = data.field;
+                            table.reload('scm_assign_supplier_table',{
+                                where: field
+                            });
+                        });
+                        $(".assign-supplier-searchform input").bind("input propertychange", function (even) {
+                            $("*[lay-filter='assign_supplier_search']").click();
+                        })
+
                         // PCB 供应商表格  工具栏事件
                         table.on('toolbar(scm_assign_supplier_table)', function (obj) {
                             var checkStatus = table.checkStatus(obj.config.id);

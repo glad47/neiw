@@ -135,6 +135,61 @@
                 </tr>
                 </tbody>
             </table>
+
+            <!--PCB-A-->
+            <h1>PCBA</h1>
+            <table class="layui-table qt-pcba-tab">
+                <tr>
+                    <td colspan="2"></td>
+                    <td>内部报价</td>
+                </tr>
+                <tr>
+                    <td>加工费</td>
+                    <td>
+                        <input class="layui-input" type="text" value="{{ d.params.pcbaProcessFee || '' }}" id="qt_pcbaProcessFee">
+                    </td>
+                    <td>
+                        {{ d.params.pcbaProcessFeeCustomer || 0 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>零件费</td>
+                    <td>
+                        <input class="layui-input" type="text" value="{{ d.params.pcbaPartsFee || 0 }}" id="qt_pcbaPartsFee">
+                    </td>
+                    <td>
+                        {{ d.params.pcbaPartsFeeCustomer || 0 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>测试费</td>
+                    <td>
+                        <input class="layui-input" type="text" value="{{ d.params.pcbaTestFee || '' }}" id="qt_pcbaTestFee">
+                    </td>
+                    <td>
+                        {{ d.params.pcbaTestFeeCustomer || 0 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>工具(钢网)费</td>
+                    <td>
+                        <input class="layui-input" type="text" value="{{ d.params.pcbaToolFee || 0 }}" id="qt_pcbaToolFee">
+                    </td>
+                    <td>
+                        {{ d.params.pcbaToolFeeCustomer || 0 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>小计：</td>
+                    <td id="qt_pcbaSubtotalFee">
+                        {{ d.params.pcbaSubtotalFee || 0 }}
+                    </td>
+                    <td>
+                        {{ d.params.pcbaSubtotalFeeCustomer || 0 }}
+                    </td>
+                </tr>
+            </table>
+
         </form>
         <!--<div class="quotation-bot-btn">-->
         <!--<button class="layui-btn" data-type="downloadFile">-->
@@ -195,6 +250,19 @@
                 var type = $(this).data('type');
                 active[type] ? active[type].call(this) : '';
             });
+
+            // PCBA
+            $(".qt-pcba-tab input").bind("input propertychange", function () {
+                var total = 0;
+                $(".qt-pcba-tab input").each(function () {
+                    var _val = parseFloat($(this).val());
+                   if (typeof _val === "undefined" || _val == null || isNaN(_val)) {
+                        _val = 0;
+                   }
+                    total += _val;
+                });
+                $("#qt_pcbaSubtotalFee").text(total.toFixed(2));
+            })
         });
     };
 </script>

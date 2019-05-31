@@ -444,6 +444,12 @@
                     <input type="text" name="productNo" value="{{ d.params.productNo || '' }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">交期：</label>
+                <div class="layui-input-block">
+                    <input type="text" id="oupBuildTime" name="buildTime" value="{{ d.params.buildTime || '' }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
         </div>
 
         <!--<div class="layui-form-item">-->
@@ -596,6 +602,7 @@
         layui.use(['admin', 'table', 'form', 'laydate'], function () {
             var $ = layui.jquery,
                 layer = layui.layer;
+                laydate = layui.laydate;
             var form = layui.form;
 
             var q_params = {
@@ -603,6 +610,9 @@
                 totalPrice: 0,      // 总价
                 shippingPrice: 0    // 运费
             }
+            laydate.render({
+               elem: '#oupBuildTime'
+            });
             $("#user_editInfo_form").bind('input propertychange', function () {
                 var cobj = get_qObj();
                 var a = 0;
