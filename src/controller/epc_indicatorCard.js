@@ -225,7 +225,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                         data.pop = res.pop;
                         admin.popup({
                             title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
-                            ,area: ['45%', '70%']
+                            ,area: ['100%', '100%']
                             ,success: function (layero, index) {
                                 view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
 
@@ -240,7 +240,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             }else{
                 admin.popup({
                     title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
-                    ,area: ['45%', '70%']
+                    ,area: ['100%', '100%']
                     ,success: function (layero, index) {
                         view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
 
@@ -634,7 +634,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                         data.pop = res.pop;
                         admin.popup({
                             title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
-                            ,area: ['45%', '70%']
+                            ,area: ['100%', '100%']
                             ,success: function (layero, index) {
                                 view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
 

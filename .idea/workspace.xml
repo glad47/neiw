@@ -5,13 +5,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/market_interiorOrder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/market_interiorOrder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/market_orderNoPayment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/market_orderNoPayment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/market_orderOkPayment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/market_orderOkPayment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/proMana_outbound_order.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/proMana_outbound_order.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/proMana_outbound_orderDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/proMana_outbound_orderDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/sqeMana_quotation_together.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/sqeMana_quotation_together.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/interior_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/interior_order.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/productManagement/outbound_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/productManagement/outbound_order.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/productManagement/outbound_orderDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/productManagement/outbound_orderDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/scm_outgoingQuote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/scm_outgoingQuote.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -54,26 +51,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="proMana_outbound_orderDetails.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/controller/proMana_outbound_orderDetails.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="107" column="67" lean-forward="true" selection-start-line="107" selection-start-column="67" selection-end-line="107" selection-end-column="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="outbound_orderDetails.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/productManagement/outbound_orderDetails.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -87,8 +65,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fileM</find>
-      <find>file_management</find>
       <find>dataObj</find>
       <find>filePathProcess</find>
       <find>upload</find>
@@ -117,6 +93,8 @@
       <find>yellow</find>
       <find>data=</find>
       <find>已出货</find>
+      <find>深圳聚谷科技有限公司-生产通知</find>
+      <find>order_pcb_detail</find>
     </findStrings>
     <replaceStrings>
       <replace>是</replace>
@@ -237,8 +215,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="44" />
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1867" />
     <option name="height" value="1057" />
@@ -514,14 +491,7 @@
       <workItem from="1558405702102" duration="82364000" />
       <workItem from="1558920757788" duration="36147000" />
       <workItem from="1559179205110" duration="22253000" />
-      <workItem from="1559525543133" duration="5625000" />
-    </task>
-    <task id="LOCAL-00177" summary="合同样式bug解决">
-      <created>1557385596999</created>
-      <option name="number" value="00177" />
-      <option name="presentableId" value="LOCAL-00177" />
-      <option name="project" value="LOCAL" />
-      <updated>1557385596999</updated>
+      <workItem from="1559525543133" duration="9234000" />
     </task>
     <task id="LOCAL-00178" summary="1">
       <created>1557390114263</created>
@@ -859,11 +829,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559305679774</updated>
     </task>
-    <option name="localTasksCounter" value="226" />
+    <task id="LOCAL-00226" summary="1">
+      <created>1559533731463</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1559533731464</updated>
+    </task>
+    <option name="localTasksCounter" value="227" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2203609000" />
+    <option name="totallyTimeSpent" value="2207218000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -875,10 +852,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1867" height="1057" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1867" height="1057" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17172265" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17172265" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49349946" weight="0.26145834" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50812566" side_tool="true" weight="0.41354167" />
@@ -886,7 +862,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49133262" weight="0.33333334" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49187434" weight="0.325" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49187434" visible="true" weight="0.325" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -983,9 +959,9 @@
     <MESSAGE value="计划协同当前工序完成" />
     <MESSAGE value="合同备注bug解决" />
     <MESSAGE value="网上订单文件呢下载bug解决" />
-    <MESSAGE value="1" />
     <MESSAGE value="1、更新layui 2.50&#10;2、文档28" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、更新layui 2.50&#10;2、文档28" />
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1357,8 +1333,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/proMana_outbound_orderDetails.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="107" column="67" lean-forward="true" selection-start-line="107" selection-start-column="67" selection-end-line="107" selection-end-column="67" />
+        <state relative-caret-position="233">
+          <caret line="96" column="29" lean-forward="true" selection-start-line="96" selection-start-column="29" selection-end-line="96" selection-end-column="29" />
         </state>
       </provider>
     </entry>
