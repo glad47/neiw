@@ -83,7 +83,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ]]
             ,done: function (res, curr, count) {
                 $("a[data='isOk']").each(function (i, n) {
-                    $(this).parents('tr').css('background-color','#daf7da');
+                    $(this).parents('tr').css('background-color','#00CC66');
                 })
             }
         });
@@ -233,7 +233,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ]]
             ,done: function (res, curr, count) {
                 $("a[data='isOk']").each(function (i, n) {
-                    $(this).parents('tr').css('background-color','#daf7da');
+                    $(this).parents('tr').css('background-color','#00CC66');
                 })
             }
         });

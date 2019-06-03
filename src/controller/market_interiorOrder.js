@@ -158,6 +158,9 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 pcbtabObj = data;
                 // 表格固定右侧失效 解决方案
                 $('.layui-table-fixed-r').removeClass('layui-hide');
+                $("a[data='isOk']").each(function (i, n) {
+                    $(this).parents('tr').css('background-color','#00CC66');
+                });
             }
         });
     }
@@ -573,6 +576,9 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             ,done: function (res, curr, count) {
                 var data = res.data;    //获取表格所有数据对象
                 stenciltabObj = data;
+                $("a[data='isOk']").each(function (i, n) {
+                    $(this).parents('tr').css('background-color','#00CC66');
+                });
             }
         });
     }

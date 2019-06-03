@@ -67,7 +67,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{fixed: 'right', title:'操作', toolbar: '#proMana_outBoundOD_tbar',width: 230}
             ]]
             ,done: function (res, curr, count) {
-
+                $("a[data='isOk']").each(function (i, n) {
+                    $(this).parents('tr').css('background-color','#00CC66');
+                    console.log(i)
+                });
             }
         });
     }
@@ -118,7 +121,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
             ]]
             ,done: function (res, curr, count) {
-
+                $("a[data='isOk']").each(function (i, n) {
+                    $(this).parents('tr').css('background-color','#00CC66');
+                });
             }
         });
     }

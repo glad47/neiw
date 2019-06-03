@@ -70,6 +70,9 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                 ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
             ]]
             ,done: function (res, curr, count) {
+                $("a[data='isOk']").each(function (i, n) {
+                    $(this).parents('tr').css('background-color','#00CC66');
+                });
                 $("a[data='notOutbound']").each(function (i,n) {
                     $(this).parents('tr').css('background-color','#d2d2d2');
                     $(this).parents('tr').find("input[type='checkbox']").prop("disabled",true);
@@ -266,6 +269,9 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                 ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
             ]]
             ,done: function (res, curr, count) {
+                $("a[data='isOk']").each(function (i, n) {
+                    $(this).parents('tr').css('background-color','#00CC66');
+                });
                 $("a[data='notOutbound']").each(function (i,n) {
                     $(this).parents('tr').css('background-color','#d2d2d2');
                     $(this).parents('tr').find("input[type='checkbox']").prop("disabled",true);
