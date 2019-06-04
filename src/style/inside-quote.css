@@ -1,0 +1,219 @@
+input:disabled{background-color: #d4d3d366;cursor: not-allowed;}
+#stencilForm,#assemblyForm{margin-top: 30px;}
+#stencilForm .layui-form-label,#assemblyForm .layui-form-label{width: 80px !important;}
+.rig-price-input .layui-form-label{width: 56px;}
+.rig-others .layui-form-label{width: 46px;}
+.build-time-item .layui-input-block{width: 100% !important;margin-left: unset;}
+.top-price-one .layui-input-block,.top-price-one .layui-input-block>.layui-input,.stencil-form .layui-input-block, .stencil-form .layui-input-block>.layui-input{width: 60%;}
+.top-price-one .layui-input,.stencil-form .layui-input-block>.layui-input,#totalPrice,#unitPrice{border: none;border-bottom: solid 1px silver;}
+/*shipping*/
+.shipping-item-list .layui-input-inline{width: 20%;}
+/*.shipping-item-list .text-input>.layui-input{border: none;border-bottom: solid 1px silver;}*/
+.build-time-block{text-align: center;}
+#assemblyService_form .layui-input-block{margin-left: 202px;}
+#assemblyService_form .layui-form-label{width: 156px;}
+
+.rig-price,#assemblyForm,#stencilForm{display: none;width: 100%;}
+.quote-avtive{display: inline-block !important;}
+.sub-group{display: inline-block;margin-top: 7px;margin-left: 4px;}
+/*.up-subbtn,.up-rsetbtn{border-radius: 2px;padding: 11px 30px;color: #f7ffff;cursor: pointer;width: 87px;}*/
+.up-subbtn:hover,.up-rsetbtn:hover{color: white;}
+.up-subbtn{background-color: #009588;}
+.up-rsetbtn{background-color: #FF5722;}
+/*.rig-price-input{float: right;}*/
+.rig-price-cardbody{width: 400px;}
+.rig-price .layui-input-inline{width: 84px;}
+.submit-group .layui-btn{width: 15%;padding: 0;}
+/*2019-02-26*/
+/*顶部模块==>输入计算*/
+/*.top-m-one .layui-form-item .layui-input-inline{width: 182px;}*/
+.top-m-one .layui-input, .layui-textarea{padding-left: 4px;}
+/*第二个模块==>选择参数*/
+.center-m-two .layui-form-item .layui-input-inline{width: 128px;}
+.test-sel .layui-form-select{width: 128px;display: flex;}
+.lots-checkbox-group .layui-form-checkbox[lay-skin=primary]{padding-left: 22px;}
+.lots-checkbox-group .layui-form-checkbox{width: 115px;}
+.rig-price-input.layui-col-md6{width: 53%;}
+.rig-price-input .layui-input-inline{width:110px;}
+.rig-others.layui-col-md6{width: 47%;}
+form.layui-form.rig-price.quote-type.quote-avtive {
+    margin-top: 30px;
+}
+.top-quote .layui-form-item .layui-input-inline.tqu {width: 55px;}
+.lots-checkbox-group .layui-input-block{width: 520px;}
+.customerPO {width: 48%;}
+.lii-customer-po {margin-top: 12px;width: 100%;}
+.lii-lookquote {position: absolute;}
+.lfl-differentDesign {width: 130px;}
+#addFile,.lii-lookquote button{height: 38px;border-radius: 0 4px 4px 0px;border: solid 1px #e6e6e6;border-left: none;}
+.layui-form-mid {
+    float: unset;
+    display: -webkit-inline-flex;
+    padding: unset;
+    line-height: unset;margin-right: unset;
+}
+.iblock-reamrk{
+    margin: 0 10px;
+}
+.layui-form-item .lii-unitPrice {
+    width: 73px;
+}
+.shipping-input-countrys {width: 37%;}
+.lcm-cncP {
+    text-align: center;width: 260px;
+}
+.lcm-cncP .layui-input-inline:first-of-type{width: 133px;margin-right: 0;}
+.lcm-cncP .layui-input-inline:last-of-type{width: 109px;display: inline;float: unset;margin-left: 0;}
+
+/*手机端样式调整*/
+@media screen and (max-width: 450px) {
+    .lib-pcbtoptypes {
+        margin-left: unset;
+    }
+    .lcm-cncP {
+        width: unset;
+        display: flex;
+        margin: 0px 0 16px 29px;
+    }
+    .lcm-cncP .layui-input-inline {
+        margin: 0;
+    }
+    .lfi-differentDesign .layui-input-block{display: inline-block;margin-left: 30px;}
+    .layui-fluid {
+        padding: 15px 0px;
+    }
+    .top-button-form {
+        margin-left: 15px;
+    }
+    .lfl-differentDesign {width: 117px !important;}
+    .top-m-one .layui-form-item .layui-input-inline {
+        display: inline-block;
+    }
+    .layui-form-item .layui-input-inline+.layui-form-mid {
+        margin-left: unset;
+    }
+    .top-m-one .layui-form-item .layui-input-inline {
+        margin: 0 0 10px 1px;
+    }
+    .layui-card-body {
+        padding: 10px 0px;
+    }
+    .layui-colla-content {
+        padding: 10px 0px;
+    }
+    .top-m-one .layui-form-label {
+        padding: 9px 17px 9px 0px;
+    }
+    /*.layui-input-inline {*/
+    /*width: 80px;*/
+    /*}*/
+    .top-quote .layui-form-item .layui-input-inline.tqu {
+        width: 112px;
+    }
+
+    /*第二大块*/
+    .center-m-two .layui-form-item .layui-input-inline {
+        width: unset;
+    }
+    .center-m-two .layui-form-item .layui-form-label {
+        width: 82px;
+    }
+    .lots-checkbox-group .layui-input-block {
+        width: unset;
+        margin-left: 30px;
+    }
+    .test-sel .layui-input-inline:first-of-type {
+        display: contents;
+    }
+    .test-sel .layui-form-select {
+        width: unset;
+        display: -webkit-inline-box;
+        margin-bottom: 15px;
+    }
+    .rig-price-cardbody {
+        width: unset;
+    }
+    .top-button-form .layui-col-md6:first-of-type {
+        margin-bottom: 15px;
+    }
+    input[name='pcbName'] {
+        /*margin-top: -15px;*/
+    }
+    input[name='productNo'] {
+        width: 97%;
+    }
+    .customerPO {width: 47%;}
+    .lii-customer-po {
+        display: flex;
+    }
+    .lii-lookquote {
+        left: 85%;
+    }
+    .lii-lookquote button {
+        padding: 3px 11px;
+        height: 38px;
+        border-radius: 0px 3px 3px 0px;
+    }
+    #addFile, .lii-lookquote button {margin-left: -12px;}
+    .top-price-one .layui-form-item{
+        display: inline-block;
+    }
+    .submit-group .layui-btn {
+        width: 80%;
+        margin-bottom: 15px;
+        height: 36px;
+    }
+    .submit-group .layui-btn+.layui-btn {
+        margin-left: unset;
+    }
+    .top-price-one .layui-form-item {
+        display: flex;
+        width: 100%;
+    }
+    .rig-price-input .layui-input-inline,.layui-form-item .lii-totalPrice,.layui-form-item .lii-unitPrice {
+        margin: 0 0 10px 86px;
+    }
+    .rig-others .layui-input-inline {
+        margin: 0 0 10px 61px;
+    }
+    .layui-form-item .shipping-input-company,.layui-form-item .shipping-input-countrys {
+        margin: 0 0 10px 7px;
+    }
+    .layui-form-item .lii-unitPrice {
+        width: 108px;
+    }
+    /*钢片*/
+    .layui-colla-content #assemblyService_form .top-radio {
+        display: unset;
+    }
+    #assemblyService_form .layui-input-block {
+        margin-left: 16px;
+    }
+    #assemblyService_form .layui-form-item {
+        display: flex;
+    }
+    #assemblyForm .stencil-form .layui-form-item .layui-input-block{
+        margin: 0 0 10px 86px;
+    }
+    /*钢网*/
+    form#stmStencil_form .layui-input-inline {
+        display: contents;
+    }
+    #assemblyForm .layui-form-item .layui-form-label {
+        width: 47px !important;
+    }
+    #stencilForm .layui-form-item .layui-form-label {
+        width: 86px !important;
+    }
+    .stencil-form .layui-form-item .stencil-lii {
+        margin: 0 0 10px 15px;
+    }
+    .shipping-input-countrys {width: 43%;}
+
+}
+
+@media screen and (max-width: 768px) {
+    .layui-layout-admin .layui-body .layadmin-tabsbody-item {
+        overflow-x: hidden;
+    }
+}

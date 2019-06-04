@@ -1,6 +1,6 @@
 <title>内部报价</title>
 <div class="layui-fluid" id="app">
-    <div style="padding: 10px;">
+    <div>
         <div class="layui-row layui-col-space15" id="inside_quote_all">
             <div class="layui-col-md7">
             <!--<div class="layui-col-md7" style="width: 40%;">-->
@@ -20,7 +20,7 @@
                                         <div class="top-m-one">
                                             <div class="layui-form-item">
                                                 <label class="layui-form-label">Order type:</label>
-                                                <div class="layui-input-block">
+                                                <div class="layui-input-block lib-pcbtoptypes">
                                                     <input class="mto-input" type="radio" lay-filter="boardType" id="radioSinglePcb" name="boardType" value="1" title="Single PCB">
                                                     <input class="mto-input" type="radio" lay-filter="boardType" id="radioPanelad" name="boardType" value="2" title="Panel as design">
                                                     <!--<input type="radio" lay-filter="boardType" id="radioPanelbp" name="boardType" value="panelByPcbonline" title="Panel by PCBonline">-->
@@ -33,17 +33,17 @@
                                             <div class="layui-form-item itSinlgesize">
                                                 <label class="layui-form-label">Single Size:</label>
                                                 <div class="layui-input-inline">
-                                                    <div class="layui-input-inline" style="width: 55px;">
+                                                    <div class="layui-input-inline tqu">
                                                         <input type="text" name="dimensionsX"  autocomplete="off" class="layui-input mto-input" id="singleSizeX">
                                                     </div>
                                                     <div class="layui-form-mid">x</div>
-                                                    <div class="layui-input-inline" style="width: 55px;">
+                                                    <div class="layui-input-inline tqu">
                                                         <input type="text" name="dimensionsY"  autocomplete="off" class="layui-input mto-input" id="singleSizeY">
                                                     </div>
                                                      <div class="layui-form-mid">mm</div>
                                                 </div>
                                                 <label class="layui-form-label">Quantity:</label>
-                                                <div class="layui-input-inline" style="width: 55px;">
+                                                <div class="layui-input-inline tqu">
                                                     <input type="text" name="quantityPcs"  autocomplete="off" class="layui-input mto-input" id="quantityPCS">
                                                 </div>
                                                 <div class="layui-form-mid">pcs</div>
@@ -51,17 +51,17 @@
                                             <div class="layui-form-item itPanelsize">
                                                 <label class="layui-form-label">Panel Size:</label>
                                                 <div class="layui-input-inline">
-                                                    <div class="layui-input-inline" style="width: 55px;">
+                                                    <div class="layui-input-inline tqu">
                                                         <input type="text" name="panelSizeX"  autocomplete="off" class="layui-input mto-input" id="panelSizeX">
                                                     </div>
                                                     <div class="layui-form-mid">x</div>
-                                                    <div class="layui-input-inline" style="width: 55px;">
+                                                    <div class="layui-input-inline tqu">
                                                         <input type="text" name="panelSizeY"  autocomplete="off" class="layui-input mto-input" id="panelSizeY">
                                                     </div>
                                                     <div class="layui-form-mid">mm</div>
                                                 </div>
                                                 <label class="layui-form-label">Quantity:</label>
-                                                <div class="layui-input-inline" style="width: 55px;">
+                                                <div class="layui-input-inline tqu">
                                                     <input type="text" name="quantityPanel"  autocomplete="off" class="layui-input mto-input" id="quantityPanel">
                                                 </div>
                                                 <div class="layui-form-mid">PAL</div>
@@ -70,17 +70,17 @@
                                                 <label class="layui-form-label">Panel Way:</label>
                                                 <div class="layui-input-inline">
 
-                                                    <div class="layui-input-inline" style="width: 55px;">
+                                                    <div class="layui-input-inline tqu">
                                                         <input type="text" name="panelWayX"  autocomplete="off" class="layui-input mto-input" id="panelWayX">
                                                     </div>
                                                     <div class="layui-form-mid">x</div>
-                                                    <div class="layui-input-inline" style="width: 55px;">
+                                                    <div class="layui-input-inline tqu">
                                                         <input type="text" name="panelWayY"  autocomplete="off" class="layui-input mto-input" id="panelWayY">
                                                      </div>
                                                     <div class="layui-form-mid">pcs</div>
                                                 </div>
                                                 <label class="layui-form-label">Area sq:</label>
-                                                <div class="layui-input-inline" style="width: 55px;">
+                                                <div class="layui-input-inline tqu">
                                                     <input type="text" name="areaSq"  autocomplete="off" class="layui-input mto-input" id="areasq" readonly>
                                                 </div>
                                                 <div class="layui-form-mid">㎡</div>
@@ -360,11 +360,11 @@
 
                                             <div class="layui-form-item">
                                                 <!-- <label class="layui-form-label">CNC Routing:</label> -->
-                                                <div class="layui-col-md6" style="text-align: center;width: 260px;">
-                                                    <div class="layui-input-inline" style="width: 133px;margin-right: 0;">
+                                                <div class="layui-col-md6 lcm-cncP">
+                                                    <div class="layui-input-inline">
                                                         <input type="radio" name="cncAndPunch" value="1" title="CNC Routing" id="routingOne" lay-filter="routingType">
                                                     </div>
-                                                    <div class="layui-input-inline" style="width: 109px;display: inline;float: unset;margin-left: 0;">
+                                                    <div class="layui-input-inline">
                                                         <input type="radio" name="cncAndPunch" value="2" title="Punching" lay-filter="routingType">
                                                     </div>
                                                 </div>
@@ -381,21 +381,21 @@
                                             </div>
 
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label" style="width: 80px;">CNC Path:</label>
+                                                <label class="layui-form-label">CNC Path:</label>
                                                 <div class="layui-input-inline">
                                                     <input type="text" name="panelRoutingPath"  autocomplete="off" class="layui-input">
                                                 </div>
-                                                <label class="layui-form-label" style="width: 83px;">Cost:</label>
+                                                <label class="layui-form-label">Cost:</label>
                                                 <div class="layui-input-inline">
                                                     <input type="text" name="cost"  autocomplete="off" class="layui-input" id="routingCost">
                                                 </div>
                                             </div>
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label" style="width: 80px;">N.of holes:</label>
+                                                <label class="layui-form-label">N.of holes:</label>
                                                 <div class="layui-input-inline">
                                                     <input type="text" name="punchingHoles"  autocomplete="off" class="layui-input" disabled value="0">
                                                 </div>
-                                                <label class="layui-form-label" style="width: 83px;">N.of Slots:</label>
+                                                <label class="layui-form-label">N.of Slots:</label>
                                                 <div class="layui-input-inline">
                                                     <input type="text" name="punchingSlots"  autocomplete="off" class="layui-input" disabled value="0">
                                                 </div>
@@ -423,7 +423,7 @@
                                             </div>
 
                                             <div class="layui-form-item lots-checkbox-group">
-                                                <div class="layui-input-block" style="margin-left: 0;width: 520px;">
+                                                <div class="layui-input-block">
                                                     <input value="1" type="checkbox" name="blindHoles" title="Blind holes" lay-skin="primary">
                                                     <input value="1" type="checkbox" name="edgePlated" title="Edge Plated" lay-skin="primary">
                                                     <input value="1" type="checkbox" name="halfHoleLated" title="Half Hole" lay-skin="primary">
@@ -434,8 +434,8 @@
                                                     <input value="1" type="checkbox" name="deepMillRouting" title="Deep Mill Routing" lay-skin="primary">
                                                 </div>
                                             </div>
-                                           <div class="layui-form-item">
-                                                <label class="layui-form-label" style="width: 130px;">Different Design:</label>
+                                           <div class="layui-form-item lfi-differentDesign">
+                                                <label class="layui-form-label lfl-differentDesign">Different Design:</label>
                                                 <div class="layui-input-block">
                                                     <input type="radio" name="differentDesign" value="1" title="1" checked>
                                                     <input type="radio" name="differentDesign" value="2" title="2">
@@ -445,7 +445,7 @@
                                             </div>
                                             <div class="layui-form-item">
                                                 <label class="layui-form-label">Remark:</label>
-                                                <div class="layui-input-block">
+                                                <div class="layui-input-block iblock-reamrk">
                                                     <textarea data-type="textarea" name="remark" placeholder="请输入内容" class="layui-textarea" style="width: 100%"></textarea>
                                                 </div>
                                             </div>
@@ -653,20 +653,20 @@
                               <div class="layui-input-inline layui-col-md9">
                                   <input type="text" class="layui-input" name="productNo" id="orderPN" placeholder="内部型号自动生成">
                               </div>
-                              <div class="layui-input-inline layui-col-md2" style="margin-left: 2%;">
+                              <div class="layui-input-inline layui-col-md2">
                                   <!--<button class="layui-btn" data-type="lookQuote">详情</button>-->
                                   <button type="button" class="layui-btn layui-btn-sm" data-type="addCustomerFile" id="addFile">资料</button>
                               </div>
                           </div>
 
-                          <div class="layui-input-inline" style="margin-top: 12px;width: 100%;">
-                              <div class="layui-input-inline layui-col-md6 layui-col-sm12" style="width: 48%;">
+                          <div class="layui-input-inline lii-customer-po">
+                              <div class="layui-input-inline layui-col-md6 layui-col-sm12 customerPO">
                                   <input type="text" class="layui-input" placeholder="客户PO" id="orderNo" name="orderNo">
                               </div>
                               <div class="layui-input-inline layui-col-md6 layui-col-sm12" style="width: 37.5%;margin-left: 2%;">
                                   <input type="text" class="layui-input" placeholder="客户型号" id="pcbName" name="pcbName">
                               </div>
-                              <div class="layui-input-inline" style="margin-left: 1%;position: absolute;">
+                              <div class="layui-input-inline lii-lookquote">
                                   <!--<button class="layui-btn up-subbtn" data-type="upSubbtn">报价</button>-->
                                   <button class="layui-btn layui-btn-sm" type="button" data-type="lookQuote">详情</button>
                               </div>
@@ -791,7 +791,7 @@
                       <form class="layui-form" id="stencilForm">
                           <div class="stencil-form">
                               <div class="layui-form-item" style="display: flex;">
-                                  <div class="layui-input-inline shipping-input-companyt" style="width: 49%;">
+                                  <div class="layui-input-inline stencil-lii shipping-input-companyt" style="width: 49%;">
                                       <select name="courierCompanyt" id="selCompanyt" lay-filter="companyt" lay-search="">
                                           <option value="">请选择</option>
                                       </select>
@@ -804,7 +804,7 @@
                               </div>
 
                               <div class="layui-form-item">
-                                  <div class="layui-input-inline">
+                                  <div class="layui-input-inline stencil-lii">
                                       <label class="layui-form-label">重量：</label>
                                       <div class="layui-input-block">
                                           <input class="layui-input" type="text" id="stencilWeight" placeholder="0.00" >
@@ -812,7 +812,7 @@
                                   </div>
                               </div>
                               <div class="layui-form-item">
-                                  <div class="layui-input-inline">
+                                  <div class="layui-input-inline stencil-lii">
                                       <label class="layui-form-label">运费:</label>
                                       <div class="layui-input-block">
                                           <input class="layui-input" name="postFee" type="text" id="postFees" placeholder="0.00" >
@@ -820,7 +820,7 @@
                                   </div>
                               </div>
                               <div class="layui-form-item">
-                                  <div class="layui-input-inline">
+                                  <div class="layui-input-inline stencil-lii">
                                       <label class="layui-form-label">Stencil Cost:</label>
                                       <div class="layui-input-block">
                                           <input class="layui-input" type="text" id="inStencilCost" placeholder="0.00">
@@ -828,7 +828,7 @@
                                   </div>
                               </div>
                               <div class="layui-form-item">
-                                  <div class="layui-input-inline">
+                                  <div class="layui-input-inline stencil-lii">
                                       <label class="layui-form-label">Stencil单价:</label>
                                       <div class="layui-input-block">
                                           <input class="layui-input" type="text" id="sunitPrice" placeholder="0.00" name="unitPrice" readonly>
@@ -836,7 +836,7 @@
                                   </div>
                               </div>
                               <div class="layui-form-item">
-                                  <div class="layui-input-inline">
+                                  <div class="layui-input-inline stencil-lii">
                                       <label class="layui-form-label">Stencil总价:</label>
                                       <div class="layui-input-block">
                                           <input class="layui-input" type="text" id="stotalPrice" placeholder="0.00" readonly>
@@ -887,11 +887,11 @@
                           <div class="stencil-form">
                               <div class="layui-form-item">
                                   <label class="layui-form-label" style="width: 56px;">总价：</label>
-                                  <div class="layui-input-inline" style="width: 108px;">
+                                  <div class="layui-input-inline lii-totalPrice" style="width: 108px;">
                                       <input class="layui-input" type="text" id="totalPrice" placeholder="0.00" readonly>
                                   </div>
-                                  <label class="layui-form-label" style="width: 42px;">单价：</label>
-                                  <div class="layui-input-inline" style="width: 73px;">
+                                  <label class="layui-form-label" style="width: 56px;">单价：</label>
+                                  <div class="layui-input-inline lii-unitPrice">
                                       <input class="layui-input" type="text" id="unitPrice" placeholder="0.00" readonly>
                                   </div>
                               </div>
@@ -910,54 +910,7 @@
     </div>
 </div>
 
-
-<style>
-    input:disabled{background-color: #d4d3d366;cursor: not-allowed;}
-    #stencilForm,#assemblyForm{margin-top: 30px;}
-    #stencilForm .layui-form-label,#assemblyForm .layui-form-label{width: 80px !important;}
-    .rig-price-input .layui-form-label{width: 56px;}
-    .rig-others .layui-form-label{width: 46px;}
-    .build-time-item .layui-input-block{width: 100% !important;margin-left: unset;}
-    .top-price-one .layui-input-block,.top-price-one .layui-input-block>.layui-input,.stencil-form .layui-input-block, .stencil-form .layui-input-block>.layui-input{width: 60%;}
-    .top-price-one .layui-input,.stencil-form .layui-input-block>.layui-input,#totalPrice,#unitPrice{border: none;border-bottom: solid 1px silver;}
-    /*shipping*/
-    .shipping-item-list .layui-input-inline{width: 20%;}
-    /*.shipping-item-list .text-input>.layui-input{border: none;border-bottom: solid 1px silver;}*/
-    .build-time-block{text-align: center;}
-    #assemblyService_form .layui-input-block{margin-left: 202px;}
-    #assemblyService_form .layui-form-label{width: 156px;}
-
-    .rig-price,#assemblyForm,#stencilForm{display: none;width: 100%;}
-    .quote-avtive{display: inline-block !important;}
-    .sub-group{display: inline-block;margin-top: 7px;margin-left: 4px;}
-    /*.up-subbtn,.up-rsetbtn{border-radius: 2px;padding: 11px 30px;color: #f7ffff;cursor: pointer;width: 87px;}*/
-    .up-subbtn:hover,.up-rsetbtn:hover{color: white;}
-    .up-subbtn{background-color: #009588;}
-    .up-rsetbtn{background-color: #FF5722;}
-    /*.rig-price-input{float: right;}*/
-    .rig-price-cardbody{width: 400px;}
-    .rig-price .layui-input-inline{width: 84px;}
-    .submit-group .layui-btn{width: 15%;padding: 0;}
-    /*2019-02-26*/
-    /*顶部模块==>输入计算*/
-    .top-m-one .layui-form-item .layui-input-inline{width: 182px;}
-    .top-m-one .layui-input, .layui-textarea{padding-left: 4px;}
-    /*第二个模块==>选择参数*/
-    .center-m-two .layui-form-item .layui-input-inline{width: 128px;}
-    .test-sel .layui-form-select{width: 128px;display: flex;}
-    .lots-checkbox-group .layui-form-checkbox[lay-skin=primary]{padding-left: 22px;}
-    .lots-checkbox-group .layui-form-checkbox{width: 115px;}
-    .rig-price-input.layui-col-md6{width: 53%;}
-    .rig-price-input .layui-input-inline{width:110px;}
-    .rig-others.layui-col-md6{width: 47%;}
-    form.layui-form.rig-price.quote-type.quote-avtive {
-        margin-top: 30px;
-    }
-    @media screen and (max-width: 800px) {
-
-    }
-
-</style>
+<link rel="stylesheet" href="../src/style/inside-quote.css" media="all">
 <script>
     //layui.use('inside_quote', layui.factory('inside_quote'));
     layui.use('quote', layui.factory('quote')).use(['element','setter', 'quote', 'admin', 'table', 'index', 'jquery'], function () {
