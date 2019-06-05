@@ -52,7 +52,9 @@
                     <td>聚谷物料号</td>
                     <td>{{ d.params.pcbName || '' }}</td>
                     <td>加急费</td>
-                    <td>{{ d.params.overworkFee || '0' }}</td>
+                    <td>
+                        <input class="layui-input" type="text" value="{{ d.params.overworkFee || '0' }}" id="qt_pcb_overworkFee">
+                    </td>
                     <td></td>
                 </tr>
                 <tr>
@@ -230,18 +232,19 @@
                 $("#hiddenTestPoint").val(data.value);
             });
             // input表单及时反应
-            $("#qt_pcb_quantityPcs,#qt_pcb_unitPrice,#qt_pcb_engineeringFee,#qt_pcb_testCostFee,#qt_pcb_toolingFee").bind("input propertychange", function () {
+            $("#qt_pcb_quantityPcs,#qt_pcb_unitPrice,#qt_pcb_engineeringFee,#qt_pcb_testCostFee,#qt_pcb_toolingFee,#qt_pcb_overworkFee").bind("input propertychange", function () {
                 _quote_total();
             });
             function _quote_total() {
                 var quantityPcs = $("#qt_pcb_quantityPcs").text();              // PCS数
                 var unitPrice = $("#qt_pcb_unitPrice").val();                  // 单价
                 var engineeringFee = $("#qt_pcb_engineeringFee").val();       // 工程费
-                var testCostFee = $("#qt_pcb_testCostFee").val();            // 工程费
+                var overworkFee = $("#qt_pcb_overworkFee").val();            // 加急费
+                var testCostFee = $("#qt_pcb_testCostFee").val();            // 测试费
                 var toolingFee = $("#qt_pcb_toolingFee").val();             // 模具费
                 var totalFee = $("#qt_pcb_totalFee").text();               // 总价
                 var a = parseFloat(quantityPcs*unitPrice);
-                var b = parseFloat(quantityPcs*unitPrice)+parseFloat(engineeringFee) + parseFloat(testCostFee) + parseFloat(toolingFee);
+                var b = parseFloat(quantityPcs*unitPrice)+parseFloat(engineeringFee) + parseFloat(testCostFee) + parseFloat(toolingFee)+ parseFloat(overworkFee);
                 totalFee = parseFloat(b).toFixed(2);
                 $("#qt_pcb_totalFee").text(totalFee);
             }

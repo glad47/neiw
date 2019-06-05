@@ -378,6 +378,22 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
            });
        }
     });
+    //监听搜索
+    form.on('submit(plan_together_search)', function(data){
+        var field = data.field;
+        var reTab;
+        if (_public_val.orderType === 0) {   // PCB
+            reTab = 'sqeManaPlan_tabPcb';
+        } else if (_public_val.orderType === 1) {    //  Stencil
+            reTab = 'sqeManaPlan_tabStencil';
+        }
+        table.reload(reTab, {
+            where: field
+        });
+    });
+    $(".plan-together-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='plan_together_search']").click();
+    })
     
     exports('sqeMana_plan_together', {});
 });

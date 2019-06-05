@@ -173,7 +173,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                     postData.testCostFee = $("#qt_pcb_testCostFee").val();      //测试费
                     postData.engineeringFee = $("#qt_pcb_engineeringFee").val();//工程费
                     postData.toolingFee = $("#qt_pcb_toolingFee").val();        //cnc磨具费
-                    postData.overworkFee = data.overworkFee;                    //加急费
+                    postData.overworkFee = $("#qt_pcb_overworkFee").val();      //加急费
                     postData.deliveryTime = $("#pcbDeliveryDate").val();        //交期
                     postData.unitPrice = $("#qt_pcb_unitPrice").val();          //单价
                     postData.remark = $("#qRemark").val();                      //备注

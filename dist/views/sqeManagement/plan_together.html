@@ -1,5 +1,52 @@
 <title>供应商管理-计划协同</title>
 <div class="layui-fluid">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto plan-together-search">
+        <div class="layui-form-item quote-detail-search">
+            <div class="layui-inline" id="orderReview_searll" style="display: none;">
+                <label class="layui-form-label">查询：</label>
+                <div class="layui-input-inline">
+                    <select name="quiz" lay-filter="planTogether-search-select">
+                        <option value="">请选择</option>
+                        <option value="productNo">P/N</option>
+                        <option value="FileName">File Name</option>
+                        <option value="OrderId">Order ID</option>
+                        <option value="OrderTime">Order Time</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <input type="text" name="P/N" autocomplete="off" class="layui-input" placeholder="P/N">
+                </div>
+            </div>
+            <!--电脑端-->
+            <div class="layui-inline" id="orderReview_pcsear">
+                <label class="layui-form-label">P/N：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                </div>
+
+                <label class="layui-form-label" style="width: 85px;">PCB Name：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pcbName" autocomplete="off" class="layui-input">
+                </div>
+
+                <label class="layui-form-label" style="width: 100px;">Factory Make：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="factoryMake" autocomplete="off" class="layui-input">
+                </div>
+
+                <label class="layui-form-label" style="width: 85px;">Supplier No:</label>
+                <div class="layui-input-inline">
+                    <!--<input type="text" name="gmtCreate" class="layui-input">-->
+                    <input type="text" name="supplierNo" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="plan_together_search" style="margin-bottom: 3px;">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     <!--卡片－表格信息-->
     <div class="layui-tab layui-tab-brief" lay-filter="tab-planToger">
         <ul class="layui-tab-title">

@@ -44,13 +44,7 @@
                 <div class="rig-y">
                     <label>
                         合同编号：
-                        {{# var invoiceNo = null }}
-                        {{# layui.each(d.params.data, function(index, item){  }}
-                            {{# if(invoiceNo == null){ }}
-                                {{# invoiceNo = item.invoiceNo }}
-                                {{ invoiceNo  }}
-                            {{# } }}
-                        {{#  }); }}
+                        {{ d.params.data[0].supplierContractNo || '' }}
                     </label>
                     <p>
                         <label>
@@ -116,11 +110,11 @@
                         {{ item.panelWayX || '1' }}*{{ item.panelWayY || '1' }}
                     </td>
                     <!--板厚-->
-                    <td>{{ item.finishThickness }}</td>
+                    <td>{{ item.finishThickness || '' }}</td>
                     <!--铜厚-->
-                    <td>{{ item.outerLayerCopper }}</td>
+                    <td>{{ item.outerLayerCopper || '' }}</td>
                     <!--板材-->
-                    <td>{{ item.pcbType }}</td>
+                    <td>{{ item.pcbType || '' }}</td>
                     <!--层数-->
                     <td>{{ item.layerNum }}</td>
                     <!--表面处理-->
