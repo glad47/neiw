@@ -239,6 +239,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             popupData.convertSubtotal = convertSubtotal;
             // 获取供应商信息
             popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+data.supplierId);
+            console.log(popupData)
             admin.popup({
                 title: '外协合同'
                 ,area: ['100%', '100%']

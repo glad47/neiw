@@ -445,7 +445,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'id', title: 'ID',hide: true}
-                ,{field:'productNo', fixed: 'left',title: 'Product No', align:'center', width: 114}
+                ,{field:'productNo', fixed: 'left',title: '聚谷型号', align:'center', width: 114}
                 ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
                 ,{field:'gerberName', title: '原始资料', align:'center', width: 254}
                 ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_fileS'}

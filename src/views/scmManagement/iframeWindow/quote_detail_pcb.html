@@ -28,7 +28,7 @@
                         <input class="layui-input" type="text" value="{{ d.params.unitPrice || 0 }}" id="qt_pcb_unitPrice">
                     </td>
                     <td>
-                        {{ d.params.unitPriceCustomer || '' }}
+                        {{ d.params.unitPriceCustomer || 0 }}
                     </td>
                 </tr>
                 <tr>
@@ -41,11 +41,7 @@
                         <input class="layui-input" type="text" value="{{ d.params.engineeringFee || '0' }}" id="qt_pcb_engineeringFee">
                     </td>
                     <td>
-                        {{# if(d.params.engineeringFeeCustomer == null || d.params.engineeringFeeCustomer == ''){ }}
-                            <strong>0</strong>
-                        {{# } else{ }}
-                            <strong>{{ d.params.engineeringFeeCustomer }}</strong>
-                        {{# } }}
+                        <strong>{{ d.params.engineeringFeeCustomer || 0 }}</strong>
                     </td>
                 </tr>
                 <tr>
@@ -55,7 +51,9 @@
                     <td>
                         <input class="layui-input" type="text" value="{{ d.params.overworkFee || '0' }}" id="qt_pcb_overworkFee">
                     </td>
-                    <td></td>
+                    <td>
+                        <strong>{{ d.params.overworkFeeCustomer || 0 }}</strong>
+                    </td>
                 </tr>
                 <tr>
                     <td>层别</td>
@@ -74,11 +72,7 @@
                         <input class="layui-input" type="number" value="{{ d.params.testCostFee || 0 }}" id="qt_pcb_testCostFee">
                     </td>
                     <td>
-                        {{# if(d.params.testCostFeeCustomer == null || d.params.testCostFeeCustomer == ''){ }}
-                            <strong>0</strong>
-                        {{# } else{ }}
-                            <strong>{{ d.params.testCostFee }}</strong>
-                         {{# } }}
+                        <strong>{{ d.params.testCostFeeCustomer || 0 }}</strong>
                     </td>
                 </tr>
                 <tr>
@@ -98,7 +92,7 @@
                         <input class="layui-input" type="number" value="{{ d.params.toolingFee || 0 }}" id="qt_pcb_toolingFee">
                     </td>
                     <td>
-                        <strong>{{ d.params.toolingFee || '0' }}</strong>
+                        <strong>{{ d.params.pcbaToolFeeCustomer || 0 }}</strong>
                     </td>
                 </tr>
                 <tr>
@@ -113,7 +107,11 @@
                             {{# if(d.params.subtotal != null){ }}
                             {{# d.params.subtotal = parseFloat(d.params.subtotal*6.6).toFixed(2) }}
                             {{# } }}
-                            {{ d.params.subtotal || '' }}
+                            {{# if(d.params.pcbaSubtotalFeeCustomer != null){ }}
+                            {{# d.params.pcbaSubtotalFeeCustomer = parseFloat(d.params.pcbaSubtotalFeeCustomer*6.6).toFixed(2) }}
+                            {{# } }}
+                            {{# var hj = parseFloat(d.params.subtotal+d.params.pcbaSubtotalFeeCustomer)}}
+                            {{ hj || '' }}
                         </strong>
                     </td>
                 </tr>

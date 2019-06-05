@@ -179,7 +179,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                                     }
                                     data.orderSupplierId = Pdata.data.id;                               // 供应商订单id
                                     data.supplierNo = Pdata.data.supplierNo;                            // 供应商编号
-                                    data.deliveryTime = Pdata.data.deliveryTime;               // 交期
+                                    data.deliveryTime = Pdata.data.deliveryTime;                        // 交期
                                     data.orderPcsNumber = Pdata.data.quantityPcs;                       // 订单PCS数
                                     data.orderId = Pdata.data.orderId;                                  // 订单id
                                     data.donePcsNumber = parseInt($("#donePcsNumber").text());          // 已交PCS数
@@ -382,9 +382,9 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
     form.on('submit(plan_together_search)', function(data){
         var field = data.field;
         var reTab;
-        if (_public_val.orderType === 0) {   // PCB
+        if (_public_val.orderType === 1) {   // PCB
             reTab = 'sqeManaPlan_tabPcb';
-        } else if (_public_val.orderType === 1) {    //  Stencil
+        } else if (_public_val.orderType === 2) {    //  Stencil
             reTab = 'sqeManaPlan_tabStencil';
         }
         table.reload(reTab, {

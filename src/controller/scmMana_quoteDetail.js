@@ -152,6 +152,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(scmMana_tabPcb)', function (obj) {
         var data = obj.data;
+        console.log(data)
         if (obj.event == 'eevScmedit'){
             layer.msg('编辑操作');
             admin.popup({

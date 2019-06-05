@@ -44,7 +44,7 @@
                 <div class="rig-y">
                     <label>
                         合同编号：
-                        {{ d.params.data[0].supplierContractNo || '' }}
+                        {{ d.params.data[1].supplierContractNo || '' }}
                     </label>
                     <p>
                         <label>
@@ -100,9 +100,9 @@
                     <!--交货尺寸-->
                     <td>
                         {{# if(item.panelSizeX != null){ }}
-                        {{ item.panelSizeX }}*{{ item.panelSizeY }}
+                        {{ item.panelSizeX || '' }}*{{ item.panelSizeY || '' }}
                         {{# } else{ }}
-                        {{ item.dimensionsX }}*{{ item.dimensionsX }}
+                        {{ item.dimensionsX || '' }}*{{ item.dimensionsX || ''' }}
                         {{# } }}
                     </td>
                     <!--拼版-->
@@ -116,7 +116,7 @@
                     <!--板材-->
                     <td>{{ item.pcbType || '' }}</td>
                     <!--层数-->
-                    <td>{{ item.layerNum }}</td>
+                    <td>{{ item.layerNum || '' }}</td>
                     <!--表面处理-->
                     <td>
                         {{# if(item.surfaceFinish == 'HASL_with_lead'){ }}
@@ -170,7 +170,7 @@
                         {{#} }}
                     </td>
                     <!--数量pcs-->
-                    <td>{{ item.quantityPcs }}</td>
+                    <td>{{ item.quantityPcs || '' }}</td>
                     <!--单价-->
                     <td>{{ item.unitPrice || '0' }}</td>
                     <!--工程费-->
