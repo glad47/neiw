@@ -1,0 +1,167 @@
+<div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">型号</label>
+                <div class="layui-input-inline">
+                    <select name="productNo" id="epcAdd_toolsPN"></select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">类型</label>
+                <div class="layui-input-inline">
+                    <select name="type">
+                        <option {{ d.params.type == '测试架' ? 'selected' : '' }}>测试架</option>
+                        <option {{ d.params.type == '模具' ? 'selected' : '' }}>模具</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">制作方式</label>
+                <div class="layui-input-inline">
+                    <select name="makeWay">
+                        <option {{ d.params.makeWay == '新开' ? 'selected' : '' }}>新开</option>
+                        <option {{ d.params.makeWay == '重开' ? 'selected' : '' }}>重开</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">制作时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="productionTime" value="{{d.params.productionTime || ''}}" id="epcAdd_toolProductionTime" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">存放时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="storageTime" value="{{d.params.storageTime || ''}}" id="epcAdd_toolStorageTime" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">制造商</label>
+                <div class="layui-input-inline">
+                    <select name="manufacturers" id="epcAdd_toolManufacturers"></select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">供应商存放</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="supplier" value="{{d.params.supplier || ''}}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">费用</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="cost" value="{{d.params.cost || ''}}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 100%;">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-inline" style="width: 79%;">
+                    <textarea class="layui-textarea" name="remark" value="{{d.params.remark || ''}}" id="" style="height: 30px;">{{d.params.remark || ''}}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" style="display: none;">
+            <div class="layui-input-block">
+                <button class="layui-btn" type="button" lay-submit="" lay-filter="add_tool_submit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    </script>
+</div>
+
+<script>
+    layui.data.done = function(d) {
+        var urlType,productNo,supplierId,id,isAdd;
+        if (d.params.productNo == null) {
+            urlType = 'epc/tool/save';
+        } else {
+            urlType = 'epc/tool/update';
+            productNo = d.params.productNo;
+            supplierId = d.params.manufacturers;
+            id = d.params.id;
+            isAdd = false;
+        }
+        layui.use(['form', 'jquery', 'admin', 'index', 'element', 'uploadCommon'],function () {
+            var $ = layui.jquery
+            laydate = layui.laydate
+            ,setter = layui.setter;
+
+            laydate.render({
+                elem: '#epcAdd_toolProductionTime'
+            });
+            laydate.render({
+                elem: '#epcAdd_toolStorageTime'
+            });
+            admin.req({
+                type: 'post',
+                async: false,
+                url: setter.baseUrl+'epc/pcborder/list',
+                success: function (res) {
+                    var resList = res.page.list;
+                    if (resList && resList.length>0) {
+                        for (var i=0;i<resList.length;i++) {
+                            $("select[id='epcAdd_toolsPN']").append("<option value="+resList[i].productNo+">"+resList[i].productNo+"</option>")
+                        }
+                    }
+                    if (!isAdd) {
+                        $("select[id='epcAdd_toolsPN']").find("option[value='"+productNo+"']").prop("selected",true);
+                    }
+                    form.render()
+                }
+            });
+            admin.req({
+               type: 'post',
+                async: false,
+               url: setter.baseUrl+'scm/pcborder/allSupplier',
+                success: function (res) {
+                    console.log(res)
+                    var resList = res.data;
+                    if (resList && resList.length>0) {
+                        for (var i=0;i<resList.length;i++) {
+                            $("select[id='epcAdd_toolManufacturers']").append("<option value="+resList[i].supplierId+">"+resList[i].companyName+"</option>");
+                        }
+                    }
+                    if (!isAdd) {
+                        $("select[id='epcAdd_toolManufacturers']").find("option[value='"+supplierId+"']").prop("selected",true);
+                    }
+                    form.render();
+                }
+            });
+            form.render();
+            // 监听表单提交
+            //监听提交
+            form.on('submit(add_tool_submit)', function(data){
+                console.log(urlType);
+                var tipMsg;
+                if (!isAdd) {
+                    data.field.id = id;
+                    tipMsg = '工具修改成功';
+                } else {
+                    tipMsg = '工具添加成功';
+                }
+                admin.req({
+                    type: 'post',
+                    url: setter.baseUrl+urlType,
+                    data: data.field,
+                    success: function (res) {
+                        layer.msg(tipMsg);
+                        layer.closeAll();
+                    }
+                })
+                return false;
+            });
+        })
+    }
+</script>
