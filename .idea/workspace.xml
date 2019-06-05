@@ -2,31 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/epc_indicatorCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/epc_indicatorCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/scmMana_outContract.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/scmMana_outContract.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/scmMana_quoteDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/scmMana_quoteDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/sqeMana_plan_together.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/sqeMana_plan_together.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/epcManagement/Indicator_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/epcManagement/Indicator_card.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/outs_contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/outs_contract.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/quote_detail_pcb.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/quote_detail_pcb.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/scmManagement/outgoing_quote.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/scmManagement/outgoing_quote.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/scmManagement/outsourcing_contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/scmManagement/outsourcing_contract.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/scmManagement/quote_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/scmManagement/quote_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/details_delivery.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/details_delivery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/plan_together.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/sqeManagement/plan_together.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/scmMana_outContract.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/scmMana_outContract.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/scmMana_quoteDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/scmMana_quoteDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/sqeMana_plan_together.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/sqeMana_plan_together.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/outs_contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/outs_contract.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/scmManagement/outgoing_quote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/scmManagement/outgoing_quote.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/scmManagement/outsourcing_contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/scmManagement/outsourcing_contract.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/scmManagement/quote_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/scmManagement/quote_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/sqeManagement/iframeWindow/details_delivery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sqeManagement/iframeWindow/details_delivery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/sqeManagement/plan_together.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sqeManagement/plan_together.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -91,11 +68,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quote_detail_pcb.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="quote_detail_pcb.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="116" column="21" lean-forward="true" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="21" />
+            <state relative-caret-position="228">
+              <caret line="106" column="65" selection-start-line="106" selection-start-column="65" selection-end-line="106" selection-end-column="65" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="outs_contract.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/scmManagement/iframeWindow/outs_contract.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="181">
+              <caret line="95" column="31" lean-forward="true" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -114,9 +100,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>typeof</find>
-      <find>外协合同</find>
-      <find>supplierCompanyName</find>
       <find>yellow</find>
       <find>data=</find>
       <find>已出货</find>
@@ -144,6 +127,9 @@
       <find>加急费</find>
       <find>单价</find>
       <find>quote_detail</find>
+      <find>合计</find>
+      <find>string</find>
+      <find>ellspacing=&quot;1&quot;  border=&quot;1&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>是</replace>
@@ -236,7 +222,6 @@
         <option value="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" />
         <option value="$PROJECT_DIR$/src/style/inside-quote.css" />
         <option value="$PROJECT_DIR$/src/controller/scmMana_outContract.js" />
-        <option value="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/outs_contract.html" />
         <option value="$PROJECT_DIR$/src/views/sqeManagement/iframeWindow/details_delivery.html" />
         <option value="$PROJECT_DIR$/src/controller/sqeMana_plan_together.js" />
         <option value="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" />
@@ -247,6 +232,7 @@
         <option value="$PROJECT_DIR$/src/views/scmManagement/quote_detail.html" />
         <option value="$PROJECT_DIR$/src/controller/scmMana_quoteDetail.js" />
         <option value="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html" />
+        <option value="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/outs_contract.html" />
       </list>
     </option>
   </component>
@@ -302,7 +288,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SearchEverywhereHistoryKey" value="scmMana_quoteDetail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scmMana_quoteDetail.js&#10;quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/quote_detail_pcb.html&#10;uote_detail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/quote_detail.html&#10;plan_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/plan_together.html&#10;outsourcing_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/outsourcing_contract.html&#10;quote_det&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/quote_detail.html&#10;quote_detail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/quote_detail_pcb.html&#10;outgoing_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/outgoing_quote.html&#10;epc_indicatorCard&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/epc_indicatorCard.js&#10;Indicator_card&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/Indicator_card.html&#10;details_delivery&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/iframeWindow/details_delivery.html&#10;outs_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/outs_contract.html&#10;scmMana_outContract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scmMana_outContract.js&#10;sqeMana_plan_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sqeMana_plan_together.js&#10;quote_detail_pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/quote_detail_pcb.html&#10;outs_con&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/outs_contract.html&#10;ins&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;inside&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;outbound_orderDetails&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/productManagement/outbound_orderDetails.html&#10;proMana_outbound_orderDetails&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_outbound_orderDetails.js&#10;proMana_outbound_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_outbound_order.js&#10;outbound_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/productManagement/outbound_order.html&#10;shipment_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/shipment_together.html&#10;order_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/order_together.html&#10;ok_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/ok_payment.html&#10;market_interiorOrder&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_interiorOrder.js&#10;sqeMana_quotation_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sqeMana_quotation_together.js&#10;quotation_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/quotation_together.html&#10;interior_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/interior_order.html&#10;outs_contractS&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/outs_contractS.html&#10;quotation_together_pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/iframeWindow/quotation_together_pcb.html&#10;sqeMana_shipment_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sqeMana_shipment_together.js&#10;market_internalQuote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_internalQuote.js&#10;internal_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/internal_quote.html&#10;scm_outgoingQuote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scm_outgoingQuote.js&#10;assign_supplier&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/assign_supplier.html&#10;orderPCB_update&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderPCB_update.html&#10;file_management&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/iframeWindow/file_management.html&#10;contractS&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractS.html&#10;inside_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderPCB_update.html&#10;market_orderOkPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderOkPayment.js&#10;market_orderReview&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderReview.js&#10;order_review&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/order_review.html&#10;market_orderNoPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderNoPayment.js&#10;no_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/no_payment.html&#10;inside_no_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_no_payment.html&#10;market_insideNoPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_insideNoPayment.js&#10;market_insideContract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_insideContract.js&#10;inside_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_contract.html" />
+    <property name="SearchEverywhereHistoryKey" value="outs_con&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/outs_contract.html&#10;scmMana_quoteDetail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scmMana_quoteDetail.js&#10;quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/quote_detail_pcb.html&#10;uote_detail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/quote_detail.html&#10;plan_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/plan_together.html&#10;outsourcing_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/outsourcing_contract.html&#10;quote_det&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/quote_detail.html&#10;quote_detail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/quote_detail_pcb.html&#10;outgoing_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/outgoing_quote.html&#10;epc_indicatorCard&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/epc_indicatorCard.js&#10;Indicator_card&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/Indicator_card.html&#10;details_delivery&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/iframeWindow/details_delivery.html&#10;outs_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/outs_contract.html&#10;scmMana_outContract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scmMana_outContract.js&#10;sqeMana_plan_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sqeMana_plan_together.js&#10;quote_detail_pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/quote_detail_pcb.html&#10;ins&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;inside&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;outbound_orderDetails&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/productManagement/outbound_orderDetails.html&#10;proMana_outbound_orderDetails&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_outbound_orderDetails.js&#10;proMana_outbound_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_outbound_order.js&#10;outbound_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/productManagement/outbound_order.html&#10;shipment_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/shipment_together.html&#10;order_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/order_together.html&#10;ok_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/ok_payment.html&#10;market_interiorOrder&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_interiorOrder.js&#10;sqeMana_quotation_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sqeMana_quotation_together.js&#10;quotation_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/quotation_together.html&#10;interior_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/interior_order.html&#10;outs_contractS&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/outs_contractS.html&#10;quotation_together_pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/iframeWindow/quotation_together_pcb.html&#10;sqeMana_shipment_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sqeMana_shipment_together.js&#10;market_internalQuote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_internalQuote.js&#10;internal_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/internal_quote.html&#10;scm_outgoingQuote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scm_outgoingQuote.js&#10;assign_supplier&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/assign_supplier.html&#10;orderPCB_update&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderPCB_update.html&#10;file_management&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/iframeWindow/file_management.html&#10;contractS&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractS.html&#10;inside_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderPCB_update.html&#10;market_orderOkPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderOkPayment.js&#10;market_orderReview&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderReview.js&#10;order_review&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/order_review.html&#10;market_orderNoPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderNoPayment.js&#10;no_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/no_payment.html&#10;inside_no_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_no_payment.html&#10;market_insideNoPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_insideNoPayment.js&#10;market_insideContract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_insideContract.js&#10;inside_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_contract.html" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -536,14 +522,7 @@
       <workItem from="1558920757788" duration="36147000" />
       <workItem from="1559179205110" duration="22253000" />
       <workItem from="1559525543133" duration="14797000" />
-      <workItem from="1559610506604" duration="25236000" />
-    </task>
-    <task id="LOCAL-00181" summary="合同样式修改[置底]">
-      <created>1557394656134</created>
-      <option name="number" value="00181" />
-      <option name="presentableId" value="LOCAL-00181" />
-      <option name="project" value="LOCAL" />
-      <updated>1557394656134</updated>
+      <workItem from="1559610506604" duration="26959000" />
     </task>
     <task id="LOCAL-00182" summary="编写指示卡退回">
       <created>1557396529500</created>
@@ -881,11 +860,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559699757714</updated>
     </task>
-    <option name="localTasksCounter" value="230" />
+    <task id="LOCAL-00230" summary="1">
+      <created>1559703992935</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1559703992935</updated>
+    </task>
+    <option name="localTasksCounter" value="231" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2238017000" />
+    <option name="totallyTimeSpent" value="2239740000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1003,11 +989,11 @@
     <MESSAGE value="合同备注bug解决" />
     <MESSAGE value="网上订单文件呢下载bug解决" />
     <MESSAGE value="1、更新layui 2.50&#10;2、文档28" />
-    <MESSAGE value="1" />
     <MESSAGE value="pcb订单详细页面大小调整" />
     <MESSAGE value="quote手机端调整" />
     <MESSAGE value="外协合同显示错误，报价协同加急费编辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="外协合同显示错误，报价协同加急费编辑" />
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1282,13 +1268,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/scmManagement/iframeWindow/outs_contract.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="172" column="50" selection-start-line="172" selection-start-column="50" selection-end-line="172" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/sqeManagement/iframeWindow/details_delivery.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
@@ -1381,8 +1360,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="116" column="21" lean-forward="true" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="21" />
+        <state relative-caret-position="228">
+          <caret line="106" column="65" selection-start-line="106" selection-start-column="65" selection-end-line="106" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/scmManagement/iframeWindow/outs_contract.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="95" column="31" lean-forward="true" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="31" />
         </state>
       </provider>
     </entry>
