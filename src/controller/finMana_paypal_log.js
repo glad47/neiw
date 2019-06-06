@@ -15,28 +15,12 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,element = layui.element
         ,$ = layui.jquery;
 
-    // 全局变量
-    var _public_val = {
-        orderType: 1        //订单类型 （1 pcb 2钢网 3 贴片）
-    };
-
-    // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
-    // element.on('tab(tab-quotationToger)', function(data){
-    //     console.log(data.index);
-    //     if (data.index === 0){
-    //         _public_val.orderType = 1;       //pcb
-    //     } else if (data.index === 1){
-    //         _public_val.orderType = 2;      //钢网
-    //     } else if (data.index === 2){
-    //         _public_val.orderType = 3;      //贴片
-    //     }
-    // });
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
         elem: '#finManaPaypalLog_tabPcb'
         ,url: setter.baseUrl+'paypal/paylog/list'
-        // ,toolbar: "#finManaOrderProfit_tb"
+        ,toolbar: "#finManaPaypalLog_toolbar"
         ,cellMinWidth: 80
         ,id: "finManaPaypalLog_tabPcb"
         ,page: true
@@ -59,10 +43,112 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'mcGross', title: '交易金额', width: 144}
             ,{field: 'paymentFee', title: 'payPal 手续费', width: 144}
             ,{field: 'totalNet', title: '总净额', width: 144}
+            ,{field: 'custom',title:'绑定信息',width:250}
+            ,{title: '操作', width: 160, align:'center', fixed: 'right', toolbar: '#finManaPaypalLog_tbar'}
         ]]
         ,done: function (res, curr, count) {
 
         }
     });
+
+    // 监听stencil表格工具条
+    table.on('tool(finManaPaypalLog_tabPcb)',function (obj) {
+        var d = obj.data;
+        console.log(d);
+        if (obj.event === 'paypal_binding_order'){
+            admin.popup({
+                title: '绑定订单信息'
+                ,shadeClose: true
+                ,shade: false
+                ,maxmin: true
+                ,btn:['提交', '取消']
+                ,yes: function () {
+                    $("#paypalLogBindingOrderSubmit").click();
+                }
+                ,area: ['766px', '510px']
+                ,success: function (layero,index) {
+                    view(this.id).render('/finManagement/paypal_binding_order').done(function () {
+                        form.render(null,'paypal_log_binding_order_form');
+                        form.on('submit(LAY-paypal-log-binding-order-submit)',function (data) {
+                            var field = data.field;
+                            field.id = d.id;
+                            console.log(field);
+                            admin.req({
+                                type: 'post'
+                                ,url: setter.baseUrl+'paypal/paylog/bindingOrder'
+                                ,data: field
+                                ,done: function (res) {
+                                    console.log(res);
+                                    layer.msg('绑定成功');
+                                    layui.table.reload('finManaPaypalLog_tabPcb'); //重载表格
+                                }
+                                ,fail: function (res) {
+                                    layer.msg("绑定失败");
+                                },
+                            });
+                            layer.close(index); //执行关闭
+                            return false;
+                        })
+                    })
+                }
+            })
+        }
+    });
+
+    var active = {
+        /**
+         * 动态获取id，并且传到下一个view子页面（子页面根据此id，动态渲染操作页面）
+         */
+        //供应商信息页面
+        evPaypalAdd:function(data){
+            console.log(data);
+            var this_id = $(this).attr('id');
+            admin.popup({
+                title: '添加支付记录'
+                ,shadeClose: true
+                ,shade: false
+                ,maxmin: true
+                ,area: ['55%', '75%']
+                ,btn:['立即提交', '取消']
+                ,yes: function () {
+                    $("#paypalLogSubmit").click();
+                }
+                ,id: 'fin_paypal_add'
+                ,success: function(layero, index){
+                    view(this.id).render('/finManagement/paypal_add_edit').done(function(){
+                        form.render(null, 'paypal_log_add_edit_form');
+                        //监听提交
+                        form.on('submit(LAY-paypal-log-submit)', function(data){
+                            var field = data.field; //获取提交的字段
+                            // layer.alert(JSON.stringify(data.field));
+                            admin.req({
+                                type:'post',
+                                url: setter.baseUrl+'paypal/paylog/save' //实际使用请改成服务端真实接口
+                                ,data: field
+                                ,done: function(res){
+                                    // console.log(res);
+                                    layer.msg('添加成功');
+                                    layui.table.reload('finManaPaypalLog_tabPcb'); //重载表格
+                                }
+                                ,fail: function (res) {
+                                    layer.msg('添加失败');
+                                },
+                            });
+                            layer.close(index); //执行关闭
+                            return false;
+                        });
+                    });
+                }
+            });
+        }
+
+
+    };
+
+    $('.layui-btn').on('click',function () {
+        var type = $(this).data('type');
+        active[type] && active[type].call(this);
+    })
+
     exports('finMana_paypal_log', {});
 });
