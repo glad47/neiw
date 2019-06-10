@@ -111,6 +111,13 @@
                     <a data="isOk">已出货</a>
                     {{# } }}
                 </script>
+                <script type="text/html" id="interiorPayLog">
+                {{# if(d.payLogId){ }}
+                <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已确认|待确认" checked disabled>
+                {{#  } else { }}
+                <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已确认|待确认" disabled>
+                {{#  } }}
+                </script>
                 <!--PCB 资料下载 -->
                 <script type="text/html" id="interiorOrder_downP">
                     <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}">
