@@ -32,14 +32,14 @@ layui.define(['admin','table','index','element','form'], function (exports) {
         ,cols: [[
             {type:'checkbox', fixed: 'left'}
             ,{field: 'productNo',title: '内部型号', width: 130, fixed: 'left'}      // 1 ＝ 待报价
+            ,{field: 'makeWay',title: '制作方式', minWidth: 89}
             ,{field: 'type',title: '类型', Width: 110}
-            ,{field: 'manufacturers',title: '制造商', Width: 110}
-            ,{field: 'supplier',title: '供应商存放', Width: 110}
-            ,{field: 'remark',title: '备注', Width: 110}
-            ,{field: 'makeWay',title: '制作方式', minWidth: 219}
-            ,{field: 'productionTime',title: '制作时间', Width: 110}
-            ,{field: 'storageTime',title: '存放时间', Width: 110}
             ,{field: 'cost',title: '费用', Width: 110}
+            ,{field: 'manufacturers',title: '制造商', Width: 110}
+            ,{field: 'productionTime',title: '制作时间', Width: 110}
+            ,{field: 'supplier',title: '供应商存放', Width: 110}
+            ,{field: 'storageTime',title: '存放时间', Width: 110}
+            ,{field: 'remark',title: '备注', Width: 110}
             ,{field: 'id',title: 'ID', hide: true}
             ,{fixed: 'right', title:'操作', toolbar: '#epcToolMana_tabbar',width: 150}
         ]]
