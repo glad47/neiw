@@ -10,13 +10,16 @@ layui.define(['admin', 'table','element','form'], function(exports){
     form.render(null,'app-content-comment');
 
     //监听搜索
-    form.on('submit(LAY-app-contlist-search)', function(data){
+    form.on('submit(customerQuoteConfig-search)', function(data){
         var field = data.field;
         console.log(field);
         //执行重载
         table.reload('customer_quote_config_listTab', {
             where: field
         });
+    });
+    $(".customerQuoteConfig-form-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='customerQuoteConfig-search']").click();
     });
 
 
@@ -96,7 +99,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
         ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,cols: [[
              {field:'consumerAdjustQuoteId', title: 'id', sort: true}
-            ,{field:'userSysName', title: '用户系统名'}
+            ,{field:'userSysName', title: '客户代码'}
             // ,{field:'userId', title: '用户id', sort: true}
             ,{field:'userEmail', title: '用户邮箱', sort: true}
             ,{field:'id', title: '报价id', sort: true}

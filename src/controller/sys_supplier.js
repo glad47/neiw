@@ -20,9 +20,16 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
     form.render(null,'supplierInfo_from');
     form.on('submit(LAY-app-supplier-search)',function (data) {
         var field = data.field;
+        console.log(field)
         table.reload('supplier_infoTab',{
             where:field
         });
+    });
+    $(".supplier-info-form-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='LAY-app-supplier-search']").click();
+    });
+    form.on('select(search-supplierInfo-type-sel)', function(){
+        $("*[lay-filter='LAY-app-supplier-search']").click();
     });
     table.render({
         elem: '#supplier_infoTab'

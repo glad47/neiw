@@ -401,7 +401,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
 
     $(".internal-quote-search input").bind("input propertychange", function (even) {
         $("*[lay-filter='internal-quote-search']").click();
-    })
+    });
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ Stencil订单
     function tabRenderStencil() {

@@ -1,7 +1,6 @@
-
-<title>供应商信息</title>
+<title>系统管理-供应商信息</title>
 <div class="layui-fluid">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="supplierInfo_from">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto supplier-info-form-search" lay-filter="supplierInfo_from">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">供应商编号</label>
@@ -18,7 +17,13 @@
             <div class="layui-inline">
                 <label class="layui-form-label">类别</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="supplier_type" name="type" autocomplete="off" class="layui-input">
+                    <!--<input type="text" id="supplier_type" name="type" autocomplete="off" class="layui-input">-->
+                    <select name="type" lay-filter="search-supplierInfo-type-sel">
+                        <option value=""></option>
+                        <option value="1">PCB</option>
+                        <option value="2">PCBA</option>
+                        <option value="3">SMT</option>
+                    </select>
                 </div>
             </div>
             <div class="layui-inline">
