@@ -1,6 +1,6 @@
 <title>用户信息管理</title>
 <div class="layui-fluid">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="user_info_formlist">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto user-info-search-form" lay-filter="user_info_formlist">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label" id="yonghuming">用户名</label>
@@ -11,7 +11,20 @@
             <div class="layui-inline">
                 <label class="layui-form-label">部门</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="deptName" autocomplete="off" class="layui-input">
+                    <!--<input type="text" name="deptName" autocomplete="off" class="layui-input">-->
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dept/list">
+                        <select name="deptName" lay-filter="search-dept-sel">
+                            <!--编辑部门自动回填-->
+                            <option value="{{ d.params.deptName || ''}}">{{ d.params.deptName || ''}}</option>
+                            <!--遍历异步请求到的数据且填充-->
+                            {{#  layui.each(d.data, function(index, item){ }}
+                            <option value="{{ item.deptName || ''}}" >{{ item.deptName }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据
+                            {{#  } }}
+                        </select>
+                    </script>
                 </div>
             </div>
             <div class="layui-inline">

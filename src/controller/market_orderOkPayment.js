@@ -51,6 +51,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             {field:'id', title: 'ID',hide: true}
             ,{field:'productNo',fixed: 'left', title: '内部型号', align:'center', width: 114}
             ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-okPayment-status',width: 110}
+            ,{field:'payLogId', title: '支付情况', align:'center',templet: '#okPaymentPayLog', width: 117}
             ,{field:'orderType', title: '订单类型', align:'center', width: 109, templet: '#orderOkPaymentOrdertype'}
             ,{field: '', title:'文件', toolbar: '#pcb-file', align:'center'}
             ,{field:'gerberName', title: '文件名', align:'center', width: 254}
@@ -288,6 +289,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
              {field: 'id', title: 'ID', hide: true}
             ,{field: 'productNo',fixed: 'left', title: '内部型号', align:'center', width: 134}
             ,{field: 'status' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-okPayment-status'}
+            ,{field:'payLogId', title: '支付情况', align:'center',templet: '#okPaymentPayLog', width: 117}
             ,{field: '', title:'文件', templet: '#stencil-file', align:'center'}
             ,{field: 'gerberName', title: '文件名', align:'center', width: 224}
             ,{field:'courierCompany', title: '快递公司', align:'center', width: 154}

@@ -8,14 +8,23 @@ layui.define(['admin', 'table','setter','form','jquery'], function(exports){
 
     // form.render(null,'app-content-comment');
    //  //监听搜索
-  	// form.on('submit(LAY-app-contlist-search)', function(data){
-   //  	var field = data.field;
-   //  	console.log(field);
-   //  	//执行重载
-   //  	table.reload('dept_listTab', {
-   //    		where: field
-   //  	});
-  	// });
+  	form.on('submit(plrTargerSet-search)', function(data){
+    	var field = data.field;
+    	console.log(field);
+    	//执行重载
+    	table.reload('pplr_targetListTab', {
+      		where: field
+    	});
+  	});
+    $(".pplrTargetSet-form-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='plrTargerSet-search']").click();
+    });
+    form.on('select(pplrTargetSet-dateType-sel)', function(data){
+        $("*[lay-filter='plrTargerSet-search']").click();
+    });
+    form.on('select(pplrTargetSet-type-sel)', function(data){
+        $("*[lay-filter='plrTargerSet-search']").click();
+    });
 
     table.render({
       elem: '#pplr_targetListTab'

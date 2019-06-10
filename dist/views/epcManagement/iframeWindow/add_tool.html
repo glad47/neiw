@@ -5,7 +5,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">型号</label>
                 <div class="layui-input-inline">
-                    <select name="productNo" id="epcAdd_toolsPN"></select>
+                    <select name="productNo" id="epcAdd_toolsPN" lay-search></select>
                 </div>
             </div>
             <div class="layui-inline">
@@ -29,6 +29,20 @@
                 </div>
             </div>
             <div class="layui-inline">
+                <label class="layui-form-label">费用</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="cost" value="{{d.params.cost || ''}}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">制造商</label>
+                <div class="layui-input-inline">
+                    <select name="manufacturers" id="epcAdd_toolManufacturers" lay-search></select>
+                </div>
+            </div>
+            <div class="layui-inline">
                 <label class="layui-form-label">制作时间</label>
                 <div class="layui-input-inline">
                     <input type="text" name="productionTime" value="{{d.params.productionTime || ''}}" id="epcAdd_toolProductionTime" autocomplete="off" class="layui-input">
@@ -37,29 +51,16 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-inline">
+                <label class="layui-form-label">供应商存放</label>
+                <div class="layui-input-inline">
+                    <!--<input type="text" name="supplier" value="{{d.params.supplier || ''}}" autocomplete="off" class="layui-input">-->
+                    <select name="supplier" id="epcAdd_toolSupplier" lay-search></select>
+                </div>
+            </div>
+            <div class="layui-inline">
                 <label class="layui-form-label">存放时间</label>
                 <div class="layui-input-inline">
                     <input type="text" name="storageTime" value="{{d.params.storageTime || ''}}" id="epcAdd_toolStorageTime" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">制造商</label>
-                <div class="layui-input-inline">
-                    <select name="manufacturers" id="epcAdd_toolManufacturers"></select>
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">供应商存放</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="supplier" value="{{d.params.supplier || ''}}" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">费用</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="cost" value="{{d.params.cost || ''}}" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </div>
@@ -83,13 +84,14 @@
 
 <script>
     layui.data.done = function(d) {
-        var urlType,productNo,supplierId,id,isAdd;
+        var urlType,productNo,supplierId,id,isAdd,supplier;
         if (d.params.productNo == null) {
             urlType = 'epc/tool/save';
         } else {
             urlType = 'epc/tool/update';
             productNo = d.params.productNo;
             supplierId = d.params.manufacturers;
+            supplier = d.params.supplier;
             id = d.params.id;
             isAdd = false;
         }
@@ -107,12 +109,12 @@
             admin.req({
                 type: 'post',
                 async: false,
-                url: setter.baseUrl+'epc/pcborder/list',
+                url: setter.baseUrl+'epc/pcborder/allProductNo',
                 success: function (res) {
-                    var resList = res.page.list;
-                    if (resList && resList.length>0) {
+                    var resList = res.data;
+                    if (resList != null && resList.length>0) {
                         for (var i=0;i<resList.length;i++) {
-                            $("select[id='epcAdd_toolsPN']").append("<option value="+resList[i].productNo+">"+resList[i].productNo+"</option>")
+                            $("select[id='epcAdd_toolsPN']").append("<option value="+resList[i]+">"+resList[i]+"</option>")
                         }
                     }
                     if (!isAdd) {
@@ -131,10 +133,12 @@
                     if (resList && resList.length>0) {
                         for (var i=0;i<resList.length;i++) {
                             $("select[id='epcAdd_toolManufacturers']").append("<option value="+resList[i].supplierId+">"+resList[i].companyName+"</option>");
+                            $("select[id='epcAdd_toolSupplier']").append("<option value="+resList[i].supplierId+">"+resList[i].companyName+"</option>");
                         }
                     }
                     if (!isAdd) {
                         $("select[id='epcAdd_toolManufacturers']").find("option[value='"+supplierId+"']").prop("selected",true);
+                        $("select[id='epcAdd_toolSupplier']").find("option[value='"+supplier+"']").prop("selected",true);
                     }
                     form.render();
                 }

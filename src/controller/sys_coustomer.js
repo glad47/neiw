@@ -17,7 +17,9 @@ layui.define(['admin', 'table','element','form'], function(exports){
             where: field
         });
     });
-
+    $(".customer-info-form-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='LAY-app-contlist-search']").click();
+    });
     table.render({
         elem: '#customer_listTab'
         ,url: setter.baseUrl+'sys/consumer/user/list'

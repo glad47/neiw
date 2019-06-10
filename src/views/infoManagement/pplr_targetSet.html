@@ -1,17 +1,36 @@
-
-<title>设置目标</title>
+<title>系统管理-目标设置</title>
 <div class="layui-fluid">
     <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
-        	<div class="layui-form-item layui-form" lay-filter="app-content-comment">
+        	<div class="layui-form-item layui-form pplrTargetSet-form-search" lay-filter="app-content-comment">
 	            <div class="layui-inline">
-	                <label class="layui-form-label">目标名称</label>
+	                <label class="layui-form-label">跟单员</label>
 	                <div class="layui-input-inline">
-	                    <input type="text" name="name" autocomplete="off" class="layui-input">
+	                    <input type="text" name="businessName" autocomplete="off" class="layui-input">
 	                </div>
 	            </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">时间类型</label>
+                    <div class="layui-input-inline">
+                        <select class="layui-select" name="dateType" lay-filter="pplrTargetSet-dateType-sel">
+                            <option value=""></option>
+                            <option value="1">月目标</option>
+                            <option value="2">年目标</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">目标类型</label>
+                    <div class="layui-input-inline">
+                        <select class="layui-select" name="type" lay-filter="pplrTargetSet-type-sel">
+                            <option value=""></option>
+                            <option value="1">款数目标</option>
+                            <option value="2">销售额目标</option>
+                        </select>
+                    </div>
+                </div>
 	            <div class="layui-inline">
-	                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+	                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="plrTargerSet-search">
 	                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
 	                </button>
 	            </div>

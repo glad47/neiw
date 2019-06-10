@@ -27,11 +27,17 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
     //监听搜索
     form.on('submit(LAY-user-info-search)', function (data) {
         var field = data.field;
-        console.log(field);
         table.reload('user_infoTab',{
             where: field
         });
     });
+    $(".user-info-search-form input").bind("input propertychange", function (even) {
+        $("*[lay-filter='LAY-user-info-search']").click();
+    });
+    form.on('select(search-dept-sel)', function(data){
+        $("*[lay-filter='LAY-user-info-search']").click();
+    });
+
 
     table.render({
         elem: '#user_infoTab'

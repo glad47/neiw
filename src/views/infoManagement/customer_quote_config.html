@@ -1,34 +1,15 @@
-<title>客户报价配置</title>
-
+<title>系统管理-客户报价配置</title>
 <div class="layui-fluid">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-comment">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto customerQuoteConfig-form-search" lay-filter="app-content-comment">
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label">用户名</label>
+                <label class="layui-form-label">客户代码</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="userName" autocomplete="off" class="layui-input">
+                    <input type="text" name="userSysName" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">系统id</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="userSystemId" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">skype</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="skypeId" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">手机</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="mobilePhone" class="layui-input" id="customer_orderTime">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="customerQuoteConfig-search">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                 </button>
             </div>

@@ -265,6 +265,13 @@
                     </a>
                     {{# } }}
                 </script>
+                <script type="text/html" id="okPaymentPayLog">
+                    {{# if(d.payLogId){ }}
+                    <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已支付|未支付" checked disabled>
+                    {{#  } else { }}
+                    <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已支付|未支付" disabled>
+                    {{#  } }}
+                </script>
             </div>
         </div>
     </div>

@@ -291,7 +291,7 @@
                 <label class="layui-form-label">测试方式：</label>
                 <div class="layui-input-block">
                     <select name="testPointType">
-                        <option value="">请选择</option>
+                        <option value="0"  {{ d.params.testPointType == '0' ? 'selected' : '' }}>无</option>
                         <option value="1"  {{ d.params.testPointType == '1' ? 'selected' : '' }}>飞针</option>
                         <option value="2"  {{ d.params.testPointType == '2' ? 'selected' : '' }}>测试架</option>
                     </select>
@@ -301,6 +301,7 @@
                 <label class="layui-form-label">表面处理：</label>
                 <div class="layui-input-block">
                     <select name="surfaceFinish">
+                        <option value="none"  {{ d.params.surfaceFinish == 'none' ? 'selected' : '' }}>无</option>
                         <option value="HASL_with_lead"  {{ d.params.surfaceFinish == 'HASL_with_lead' ? 'selected' : '' }}>HASL with lead</option>
                         <option value="HASL_lead_free"  {{ d.params.surfaceFinish == 'HASL_lead_free' ? 'selected' : '' }}>HASL lead free</option>
                         <option value="Immersion_Gold"  {{ d.params.surfaceFinish == 'Immersion_Gold' ? 'selected' : '' }}>Immersion Gold</option>
