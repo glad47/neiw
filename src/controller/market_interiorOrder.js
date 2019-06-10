@@ -58,7 +58,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 {type:'checkbox', fixed: 'left'}
                 ,{field: 'productNo', title: '内部型号',width: 130, fixed: 'left'}
                 ,{field:'status', title: '状态', align:'center',templet: '#interiorOrderStatus', width: 117}
-                ,{field:'payLogId', title: '确认支付', align:'center',templet: '#interiorPayLog', width: 117}
+                ,{field:'payLogId', title: '支付情况', align:'center',templet: '#interiorPayLog', width: 117}
                 ,{field: 'orderType',title: '订单类型', templet: '#order_type'}    //1=新单  2=返单    3=返单有改
                 ,{field: '',title: '资料下载', templet: '#interiorOrder_downP', align: 'center', width: 107}    //资料下载
                 ,{field: 'pcbName',title: '客户型号', width: 131}
@@ -479,7 +479,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 {type:'checkbox', fixed: 'left'}
                 ,{field: 'productNo', title: '内部型号', width: 130, fixed: 'left'}
                 ,{field:'status', title: '状态', templet: '#interiorOrderStatus', width: 117}
-                ,{field:'payLogId', title: '确认支付', align:'center',templet: '#interiorPayLog', width: 117}
+                ,{field:'payLogId', title: '支付情况', align:'center',templet: '#interiorPayLog', width: 117}
                 ,{field: 'orderType',title: '订单类型', templet: '#order_type', width: 117}    //1=新单  2=返单    3=返单有改
                 ,{field: '',title: '资料下载', templet: '#interiorOrder_downS', width: 107, align: 'center'}    //资料下载
                 ,{field: 'gerberName',title: '客户型号', width: 131}
