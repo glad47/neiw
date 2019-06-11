@@ -113,9 +113,9 @@
                 </script>
                 <script type="text/html" id="interiorPayLog">
                     {{# if(d.payLogId == null){ }}
-                    <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已支付|未支付" disabled>
+                    <a class="interiorPCB-payDetail" data-type="0" id="pcbDetail{{d.id}}">待支付</a>
                     {{#  } else { }}
-                    <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已支付|未支付" checked disabled>
+                    <a class="interiorPCB-payDetail isPcbDonePay" data-type="1" data="{{d.payLogId}}" id="pcbDetail{{d.id}}">已支付</a>
                     {{#  } }}
                 </script>
                 <!--PCB 资料下载 -->
@@ -164,3 +164,22 @@
         form.render();
     });
 </script>
+<style>
+    .interiorPCB-payDetail {
+        padding: 4px 16px;
+        border-radius: 20px;
+        font-size: 13px;
+        cursor: pointer;
+    }
+    .interiorPCB-payDetail[data-type='0'] {
+        background-color: #fff;
+        border: 1px solid #d2d2d2;
+        color: #999;
+    }
+    .interiorPCB-payDetail[data-type='1'] {
+        color: #ffffff;
+        border-color: #5FB878;
+        background: #5FB878;
+    }
+    .layui-layer-tips {width: 480px;}
+</style>

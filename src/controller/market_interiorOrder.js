@@ -20,6 +20,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
     var defVal = {
         orderType: 0,   //订单类型
         customerSn: null, //客户编号 如：a11
+        tabRowId: null,  // 表格行 id
+        tipsId: null,  // tip绑定dom
     };
 
     tabRenderPCB();
@@ -786,6 +788,24 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 }
             });
         }
+    });
+    // 鼠标经过事件，显示支付信息
+    $("table").delegate(".isPcbDonePay",'mouseover', function () {
+        var payLogId = $(this).attr('data');
+        var resData;
+        console.log('payLogId:'+payLogId);
+        admin.req({
+           type: 'post',
+            async: false,
+           url: setter.baseUrl+'paypal/paylog/info/'+payLogId,
+            success: function (res) {
+                resData = res.payLog;
+                console.log(res)
+            }
+        });
+        layer.tips('</br>付款Email：'+resData.payerEmail+'</br>交易金额：'+resData.mcGross+'</br>PayPal手续费：'+resData.paymentFee+'</br>总净额：'+resData.totalNet+'</br>付款时间：', '#'+$(this).attr('id'), {
+            tips: [1, '#0c0c0cab']
+        });
     });
 
 
