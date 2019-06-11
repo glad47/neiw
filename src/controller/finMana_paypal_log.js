@@ -92,6 +92,45 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     })
                 }
             })
+        }else if (obj.event === 'paypal_update') {
+            admin.popup({
+                title: '修改支付记录'
+                ,shadeClose: true
+                ,shade: false
+                ,maxmin: true
+                ,area: ['55%', '75%']
+                ,btn:['立即提交', '取消']
+                ,yes: function () {
+                    $("#paypalLogSubmit").click();
+                }
+                ,id: 'fin_paypal_add'
+                ,success: function(layero, index){
+                    view(this.id).render('/finManagement/paypal_add_edit',d).done(function(){
+                        form.render(null, 'paypal_log_add_edit_form');
+                        //监听提交
+                        form.on('submit(LAY-paypal-log-submit)', function(data){
+                            var field = data.field; //获取提交的字段
+                            field.id = d.id;
+                            // layer.alert(JSON.stringify(data.field));
+                            admin.req({
+                                type:'post',
+                                url: setter.baseUrl+'paypal/paylog/update' //实际使用请改成服务端真实接口
+                                ,data: field
+                                ,done: function(res){
+                                    // console.log(res);
+                                    layer.msg('修改成功');
+                                    layui.table.reload('finManaPaypalLog_tabPcb'); //重载表格
+                                }
+                                ,fail: function (res) {
+                                    layer.msg('修改失败');
+                                },
+                            });
+                            layer.close(index); //执行关闭
+                            return false;
+                        });
+                    });
+                }
+            });
         }
     });
 
