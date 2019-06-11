@@ -266,10 +266,10 @@
                     {{# } }}
                 </script>
                 <script type="text/html" id="okPaymentPayLog">
-                    {{# if(d.payLogId){ }}
-                    <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已支付|未支付" checked disabled>
-                    {{#  } else { }}
+                    {{# if(d.payLogId == null){ }}
                     <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已支付|未支付" disabled>
+                    {{#  } else { }}
+                    <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已支付|未支付" checked disabled>
                     {{#  } }}
                 </script>
             </div>

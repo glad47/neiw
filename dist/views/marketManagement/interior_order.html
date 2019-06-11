@@ -112,11 +112,11 @@
                     {{# } }}
                 </script>
                 <script type="text/html" id="interiorPayLog">
-                {{# if(d.payLogId){ }}
-                <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已支付|未支付" checked disabled>
-                {{#  } else { }}
-                <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已支付|未支付" disabled>
-                {{#  } }}
+                    {{# if(d.payLogId == null){ }}
+                    <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已支付|未支付" disabled>
+                    {{#  } else { }}
+                    <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已支付|未支付" checked disabled>
+                    {{#  } }}
                 </script>
                 <!--PCB 资料下载 -->
                 <script type="text/html" id="interiorOrder_downP">
