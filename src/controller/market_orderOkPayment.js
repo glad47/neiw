@@ -140,6 +140,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     $(".laytable-cell-1-0-22").css({"width":"130px"});
                 })
             }
+            showPayDetailMOK();
         }
     });
 
@@ -314,6 +315,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'note', title: 'Note', align:'center', width: 80, hide: true}
             ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-stencil-market-okPayment-option', width: 260}
         ]]
+        ,done: function () {
+            showPayDetailMOK();
+        }
     })
     // 监听stencil表格工具条
     table.on('tool(stencil_orderTab_ok_payment)',function (obj) {
@@ -488,6 +492,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'remark', title: 'Remark', align:'center', width: 80, hide: true}
             ,{title: '操作', fixed: 'right', align:'center', width: 260,toolbar: '#Tabtb-smt-market-okPayment-option'}
         ]]
+        ,done: function () {
+            layer.msg(1);
+            showPayDetailMOK();
+        }
     })
     // 监听smt表格工具条
     table.on('tool(smt_orderTab_ok_payment)',function (obj) {
@@ -604,24 +612,27 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             }
         });
     }
-    // 鼠标经过事件，显示支付信息
-    $("table").delegate(".isPcbDonePay",'mouseover', function () {
-        var payLogId = $(this).attr('data');
-        var resData;
-        console.log('payLogId:'+payLogId);
-        admin.req({
-            type: 'post',
-            async: false,
-            url: setter.baseUrl+'paypal/paylog/info/'+payLogId,
-            success: function (res) {
-                resData = res.payLog;
-                console.log(res)
-            }
+
+    function showPayDetailMOK () {
+        // 鼠标经过事件，显示支付信息
+        $("table .isPcbDonePay").on('mouseover', function () {
+            var payLogId = $(this).attr('data');
+            var resData;
+            console.log('payLogId:'+payLogId);
+            admin.req({
+                type: 'post',
+                async: false,
+                url: setter.baseUrl+'paypal/paylog/info/'+payLogId,
+                success: function (res) {
+                    resData = res.payLog;
+                    console.log(res)
+                }
+            });
+            layer.tips('付款Email：'+resData.payerEmail+'</br>交易金额：'+resData.mcGross+'</br>PayPal手续费：'+resData.paymentFee+'</br>总净额：'+resData.totalNet+'</br>付款时间：'+resData.paymentDate, '#'+$(this).attr('id'), {
+                tips: [1, '#0c0c0cab']
+            });
         });
-        layer.tips('</br>付款Email：'+resData.payerEmail+'</br>交易金额：'+resData.mcGross+'</br>PayPal手续费：'+resData.paymentFee+'</br>总净额：'+resData.totalNet+'</br>付款时间：', '#'+$(this).attr('id'), {
-            tips: [1, '#0c0c0cab']
-        });
-    });
+    }
 
     exports('market_orderOkPayment', {})
 });
