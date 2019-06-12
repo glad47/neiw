@@ -29,7 +29,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     // 监听tab选项卡
     element.on('tab(ok_payment_tab)', function (data) {
         defVal.orderType = data.index;
-        layer.msg(data.index)
     });
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单-网上已支付
@@ -140,7 +139,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     $(".laytable-cell-1-0-22").css({"width":"130px"});
                 })
             }
-            showPayDetailMOK();
+            showPayDetailMOK(0);
         }
     });
 
@@ -290,7 +289,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
              {field: 'id', title: 'ID', hide: true}
             ,{field: 'productNo',fixed: 'left', title: '内部型号', align:'center', width: 134}
             ,{field: 'status' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-okPayment-status'}
-            ,{field:'payLogId', title: '支付情况', align:'center',templet: '#okPaymentPayLog', width: 117}
+            ,{field:'payLogId', title: '支付情况', align:'center',templet: '#okPaymentPayLogS', width: 117}
             ,{field: '', title:'文件', templet: '#stencil-file', align:'center'}
             ,{field: 'gerberName', title: '文件名', align:'center', width: 224}
             ,{field:'courierCompany', title: '快递公司', align:'center', width: 154}
@@ -316,7 +315,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-stencil-market-okPayment-option', width: 260}
         ]]
         ,done: function () {
-            showPayDetailMOK();
+            showPayDetailMOK(1);
         }
     })
     // 监听stencil表格工具条
@@ -493,8 +492,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{title: '操作', fixed: 'right', align:'center', width: 260,toolbar: '#Tabtb-smt-market-okPayment-option'}
         ]]
         ,done: function () {
-            layer.msg(1);
-            showPayDetailMOK();
+            showPayDetailMOK(3);
         }
     })
     // 监听smt表格工具条
@@ -613,12 +611,18 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         });
     }
 
-    function showPayDetailMOK () {
+    function showPayDetailMOK (data) {
+        var mainDom;
+        console.log("data:"+data)
+        if (data === 0) {
+            mainDom = ".isOKPcbDonePay";
+        } else if (data === 1) {
+            mainDom = ".isOkStencilDonePay";
+        }
         // 鼠标经过事件，显示支付信息
-        $("table .isPcbDonePay").on('mouseover', function () {
+        $("table "+mainDom).on('mouseover', function () {
             var payLogId = $(this).attr('data');
             var resData;
-            console.log('payLogId:'+payLogId);
             admin.req({
                 type: 'post',
                 async: false,

@@ -118,6 +118,13 @@
                     <a class="interiorPCB-payDetail isPcbDonePay" data-type="1" data="{{d.payLogId}}" id="pcbDetail{{d.id}}">已支付</a>
                     {{#  } }}
                 </script>
+                <script type="text/html" id="interiorPayLogS">
+                    {{# if(d.payLogId == null){ }}
+                    <a class="interiorStencil-payDetail" data-type="0" id="stencilDetail{{d.id}}">待支付</a>
+                    {{#  } else { }}
+                    <a class="interiorStencil-payDetail isStencilDonePay" data-type="1" data="{{d.payLogId}}" id="stencilDetail{{d.id}}">已支付</a>
+                    {{#  } }}
+                </script>
                 <!--PCB 资料下载 -->
                 <script type="text/html" id="interiorOrder_downP">
                     <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}">

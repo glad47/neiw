@@ -164,7 +164,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 $("a[data='isOk']").each(function (i, n) {
                     $(this).parents('tr').css('background-color','#00CC66');
                 });
-                showPayDetail();
+                showPayDetail(0);
             }
         });
     }
@@ -482,7 +482,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 {type:'checkbox', fixed: 'left'}
                 ,{field: 'productNo', title: '内部型号', width: 130, fixed: 'left'}
                 ,{field:'status', title: '状态', templet: '#interiorOrderStatus', width: 117}
-                ,{field:'payLogId', title: '支付情况', align:'center',templet: '#interiorPayLog', width: 117}
+                ,{field:'payLogId', title: '支付情况', align:'center',templet: '#interiorPayLogS', width: 117}
                 ,{field: 'orderType',title: '订单类型', templet: '#order_type', width: 117}    //1=新单  2=返单    3=返单有改
                 ,{field: '',title: '资料下载', templet: '#interiorOrder_downS', width: 107, align: 'center'}    //资料下载
                 ,{field: 'gerberName',title: '客户型号', width: 131}
@@ -584,7 +584,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 $("a[data='isOk']").each(function (i, n) {
                     $(this).parents('tr').css('background-color','#00CC66');
                 });
-                showPayDetail();
+                showPayDetail(1);
             }
         });
     }
@@ -792,19 +792,24 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
         }
     });
 
-    function showPayDetail () {
+    function showPayDetail (data) {
+        var mainDom;
+        console.log("data:"+data)
+        if (data === 0) {
+            mainDom = ".isPcbDonePay";
+        } else if (data === 1) {
+            mainDom = ".isStencilDonePay";
+        }
         // 鼠标经过事件，显示支付信息
-        $("table .isPcbDonePay").on('mouseover', function () {
+        $("table "+mainDom).on('mouseover', function () {
             var payLogId = $(this).attr('data');
             var resData;
-            console.log('payLogId:'+payLogId);
             admin.req({
                 type: 'post',
                 async: false,
                 url: setter.baseUrl+'paypal/paylog/info/'+payLogId,
                 success: function (res) {
                     resData = res.payLog;
-                    console.log(res)
                 }
             });
             layer.tips('付款Email：'+resData.payerEmail+'</br>交易金额：'+resData.mcGross+'</br>PayPal手续费：'+resData.paymentFee+'</br>总净额：'+resData.totalNet+'</br>付款时间：'+resData.paymentDate, '#'+$(this).attr('id'), {
