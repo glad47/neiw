@@ -35,7 +35,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             // {type:'checkbox'}
             //{field: 'productNo',title: '内部型号', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
             {field: 'id', title: 'id', width: 124}
-            ,{field: 'txnId',title: '交易id', width: 166}
+            ,{field: 'txnId',title: '交易id', width: 180}
+            ,{field: 'businessName',title: '跟单员名', width: 150}
             ,{field: 'paymentDate',title: '付款时间', width: 210}
             ,{field: 'payerEmail', title: '付款人email', width: 250}
             ,{field: 'firstName', title: '付款人姓', width: 117}
