@@ -276,7 +276,7 @@
                     {{# if(d.payLogId == null){ }}
                     <a class="interiorPCB-payDetail" data-type="0" id="okpcbDetailS{{d.id}}">待支付</a>
                     {{#  } else { }}
-                    <a class="interiorPCB-payDetail isOkStencilDonePay" data-type="1" data="{{d.payLogId}}" id="okpcbDetailS{{d.id}}">已支付</a>
+                    <a class="interiorPCB-payDetail isOkStencilDonePay" data-type="1" data="{{d.id}}" id="okpcbDetailS{{d.id}}">已支付</a>
                     {{#  } }}
                 </script>
             </div>

@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/controller/market_interiorOrder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/market_interiorOrder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/market_orderOkPayment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/market_orderOkPayment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/interior_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/interior_order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/ok_payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/ok_payment.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/marketManagement/interior_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/interior_order.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/marketManagement/ok_payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/ok_payment.html" afterDir="false" />
     </list>
@@ -48,14 +49,14 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.51974726">
+    <splitter split-orientation="horizontal" split-proportion="0.5422446">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="interior_order.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="interior_order.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/interior_order.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="120" column="62" lean-forward="true" selection-start-line="120" selection-start-column="62" selection-end-line="120" selection-end-column="62" />
+                <state relative-caret-position="500">
+                  <caret line="133" column="36" lean-forward="true" selection-start-line="133" selection-start-column="36" selection-end-line="133" selection-end-column="36" />
                 </state>
               </provider>
             </entry>
@@ -63,17 +64,17 @@
           <file leaf-file-name="ok_payment.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/ok_payment.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="417">
+                <state relative-caret-position="54">
                   <caret line="322" column="40" selection-start-line="322" selection-start-column="19" selection-end-line="322" selection-end-column="40" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="market_orderOkPayment.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="market_orderOkPayment.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/controller/market_orderOkPayment.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="31" selection-start-line="31" selection-end-line="31" />
+                <state relative-caret-position="272">
+                  <caret line="29" column="55" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
                 </state>
               </provider>
             </entry>
@@ -85,8 +86,8 @@
           <file leaf-file-name="ok_payment.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/ok_payment.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="185">
-                  <caret line="271" column="66" selection-start-line="271" selection-start-column="52" selection-end-line="271" selection-end-column="66" />
+                <state relative-caret-position="232">
+                  <caret line="334" column="26" selection-start-line="334" selection-start-column="26" selection-end-line="334" selection-end-column="26" />
                 </state>
               </provider>
             </entry>
@@ -116,7 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pop</find>
       <find>option</find>
       <find>productId</find>
       <find>layui-col-xs4</find>
@@ -146,6 +146,7 @@
       <find>layer.msg(1</find>
       <find>showPayDetail</find>
       <find>okPaymentPayLog</find>
+      <find>layer.msg(</find>
     </findStrings>
     <replaceStrings>
       <replace>silkScreenTopColor</replace>
@@ -246,10 +247,10 @@
         <option value="$PROJECT_DIR$/src/controller/order_reviewB.js" />
         <option value="$PROJECT_DIR$/src/controller/finMana_paypal_log.js" />
         <option value="$PROJECT_DIR$/start/index.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/interior_order.html" />
         <option value="$PROJECT_DIR$/src/controller/market_interiorOrder.js" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/ok_payment.html" />
         <option value="$PROJECT_DIR$/src/controller/market_orderOkPayment.js" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/ok_payment.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/interior_order.html" />
       </list>
     </option>
   </component>
@@ -653,14 +654,7 @@
       <workItem from="1559823554455" duration="483000" />
       <workItem from="1560128785705" duration="12873000" />
       <workItem from="1560215190540" duration="10303000" />
-      <workItem from="1560314484780" duration="6912000" />
-    </task>
-    <task id="LOCAL-00196" summary="内部订单左右侧固定bug解决">
-      <created>1557559029615</created>
-      <option name="number" value="00196" />
-      <option name="presentableId" value="LOCAL-00196" />
-      <option name="project" value="LOCAL" />
-      <updated>1557559029615</updated>
+      <workItem from="1560314484780" duration="7688000" />
     </task>
     <task id="LOCAL-00197" summary="编辑PCB  PCB Type添加CEM-1">
       <created>1557572646321</created>
@@ -998,11 +992,18 @@
       <option name="project" value="LOCAL" />
       <updated>1560341485824</updated>
     </task>
-    <option name="localTasksCounter" value="245" />
+    <task id="LOCAL-00245" summary="1">
+      <created>1560344281639</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
+      <option name="project" value="LOCAL" />
+      <updated>1560344281639</updated>
+    </task>
+    <option name="localTasksCounter" value="246" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2285747000" />
+    <option name="totallyTimeSpent" value="2286523000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1017,7 +1018,7 @@
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.26750922" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16482359" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49349946" weight="0.26145834" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50921535" side_tool="true" weight="0.43283582" />
@@ -1025,7 +1026,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.43283582" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4913958" weight="0.45771143" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4913958" visible="true" weight="0.36119404" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1120,11 +1121,11 @@
     <MESSAGE value="pcb订单编辑 测试方式none,表面处理none" />
     <MESSAGE value="系统管理等小菜单的过滤搜索" />
     <MESSAGE value="工具管理型号显示不全" />
-    <MESSAGE value="1" />
     <MESSAGE value="2" />
     <MESSAGE value="内部/网上订单 已支付详情" />
     <MESSAGE value="显示订单详情表格重载不显示bug解决" />
-    <option name="LAST_COMMIT_MESSAGE" value="显示订单详情表格重载不显示bug解决" />
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1441,13 +1442,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/interior_order.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="120" column="62" lean-forward="true" selection-start-line="120" selection-start-column="62" selection-end-line="120" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/market_interiorOrder.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -1455,17 +1449,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/market_orderOkPayment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="29" column="55" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/ok_payment.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
+        <state relative-caret-position="54">
           <caret line="322" column="40" selection-start-line="322" selection-start-column="19" selection-end-line="322" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/market_orderOkPayment.js">
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/interior_order.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="500">
+          <caret line="133" column="36" lean-forward="true" selection-start-line="133" selection-start-column="36" selection-end-line="133" selection-end-column="36" />
         </state>
       </provider>
     </entry>
