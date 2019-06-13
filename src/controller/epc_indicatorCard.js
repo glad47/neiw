@@ -141,7 +141,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             ]]
             ,done : function (res, curr, count) {
                 $("a[data='isOk']").each(function (i, n) {
-                    $(this).parents('tr').css('background-color','#00CC66');
+                    $(this).css({'color':'#00CC66','font-weight':'500'});;
                 });
                 //手机端
                 if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) { //移动端
@@ -521,7 +521,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             ]]
             ,done : function (res, curr, count) {
                 $("a[data='isOk']").each(function (i, n) {
-                    $(this).parents('tr').css('background-color','#00CC66');
+                    $(this).css({'color':'#00CC66','font-weight':'500'});;
                 });
                 //手机端
                 if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) { //移动端

@@ -162,7 +162,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 // 表格固定右侧失效 解决方案
                 $('.layui-table-fixed-r').removeClass('layui-hide');
                 $("a[data='isOk']").each(function (i, n) {
-                    $(this).parents('tr').css('background-color','#00CC66');
+                    $(this).css({'color':'#00CC66','font-weight':'500'});;
                 });
                 showPayDetail(0);
             }
@@ -582,7 +582,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 var data = res.data;    //获取表格所有数据对象
                 stenciltabObj = data;
                 $("a[data='isOk']").each(function (i, n) {
-                    $(this).parents('tr').css('background-color','#00CC66');
+                    $(this).css({'color':'#00CC66','font-weight':'500'});;
                 });
                 showPayDetail(1);
             }

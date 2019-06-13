@@ -71,7 +71,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
             ]]
             ,done: function (res, curr, count) {
                 $("a[data='isOk']").each(function (i, n) {
-                    $(this).parents('tr').css('background-color','#00CC66');
+                    $(this).css({'color':'#00CC66','font-weight':'500'});;
                 });
                 $("a[data='notOutbound']").each(function (i,n) {
                     $(this).parents('tr').css('background-color','#d2d2d2');
@@ -270,7 +270,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
             ]]
             ,done: function (res, curr, count) {
                 $("a[data='isOk']").each(function (i, n) {
-                    $(this).parents('tr').css('background-color','#00CC66');
+                    $(this).css({'color':'#00CC66','font-weight':'500'});;
                 });
                 $("a[data='notOutbound']").each(function (i,n) {
                     $(this).parents('tr').css('background-color','#d2d2d2');

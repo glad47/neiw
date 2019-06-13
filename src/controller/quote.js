@@ -1688,6 +1688,14 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         return fdObj;
     }
 
+    计算运费
+    $(".importPcbInfo>.quotePostFee").on('click', function () {
+        admin.popup({
+            title: '运费计算'
+            ,area: ['506px','288px']
+            ,btn: ['返回']
+        })
+    });
 
     exports('quote',{})
 });
