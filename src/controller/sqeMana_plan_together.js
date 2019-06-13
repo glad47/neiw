@@ -192,7 +192,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                                         return false;
                                     }
                                     if (data.orderPcsNumber != data.donePcsNumber) {
-                                        if (data.currPcsNumber == null || data.currPcsNumber == "" || typeof data.currPcsNumber == "undefined") {
+                                        if (data.currPcsNumber == 0 || data.currPcsNumber == null || data.currPcsNumber == "" || typeof data.currPcsNumber == "undefined") {
                                             layer.alert('此次数量不能为空');
                                             return false;
                                         }
@@ -352,7 +352,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                                    if (data.deliveryOrderNo == null || data.deliveryOrderNo == "" || typeof data.deliveryOrderNo == 'undefined') {
                                        layer.alert('送货单号不能为空');
                                        return false;
-                                   } else if (data.currPcsNumber == null || data.currPcsNumber == "" || typeof data.currPcsNumber == 'undefined' && data.orderPcsNumber == data.donePcsNumber) {
+                                   } else if (data.currPcsNumber == 0 || data.currPcsNumber == null || data.currPcsNumber == "" || typeof data.currPcsNumber == 'undefined' && data.orderPcsNumber == data.donePcsNumber) {
                                        layer.alert('此次数量不能为空');
                                        return false;
                                    }
