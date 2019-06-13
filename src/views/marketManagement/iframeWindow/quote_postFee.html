@@ -21,10 +21,7 @@
             </div>
             <lable class="layui-form-label">国家：</lable>
             <div class="layui-input-inline">
-                <select name="quotePostFeeCountry" lay-search lay-filter="quotePostFeeCountry">
-                    <option value=""></option>
-                    <option value="">1212</option>
-                </select>
+                <select name="quotePostFeeCountry" lay-search lay-filter="quotePostFeeCountry"><option value="" selected></option></select>
             </div>
             <lable class="layui-form-label">运费：</lable>
             <div class="layui-input-inline">
@@ -44,14 +41,17 @@
         setter = layui.setter;
         var postData = {
             courierId: 1,   // 默认为DHL
-            countryId: 14,
+            countryId: null,
             totalWeight: null // 重量
         }
+        var timeMsg;
         getPostFee();
         $(".qp-data").bind("input propertychange", function (even) {
+            clearTimeout(timeMsg);
             quotePostFee();
         });
         $("input[name='quotePostFeeWeight']").bind("input propertychange", function (even) {
+            clearTimeout(timeMsg);
             var _val = $(this).val();
             if (_val >= 0 && _val != null && _val != "") {
                 postData.totalWeight = _val;
@@ -89,7 +89,7 @@
                     var $html;
                     var data = res.data;
                     for (var i=0;i<data.length;i++) {
-                        $html += "<option id="+data[i].id+" value="+data[i].id+" selected>"+data[i].name+"</option>"
+                        $html += "<option id="+data[i].id+" value="+data[i].id+">"+data[i].name+"</option>"
                     }
                     $("select[name='quotePostFeeCountry']").append($html);
                     form.render('select');
@@ -102,14 +102,20 @@
         });
         
         function getShippingFee() {
-            admin.req({
-                type: 'post',
-                url: setter.imUrl+'quote/getShippingCost',
-                data: postData,
-                success: function (res) {
-                    $("input[name='qtPostFee']").val(res.data.shippingCost);
-                }
-            });
+            if (postData.countryId != null && postData.countryId != "") {
+                admin.req({
+                    type: 'post',
+                    url: setter.imUrl+'quote/getShippingCost',
+                    data: postData,
+                    success: function (res) {
+                        $("input[name='qtPostFee']").val(res.data.shippingCost);
+                    }
+                });
+            } else {
+                timeMsg = setTimeout(function () {
+                    layer.msg("请选择国家！");
+                },1000);
+            }
         }
     });
 </script>

@@ -49,6 +49,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
             url: setter.baseUrl+url,
             success: function (res) {
                 layer.msg('当前工序修改成功!');
+                table.reload(_public_val.tableOn);
             }
         });
 
@@ -86,6 +87,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117}
                 ,{field: '',title: '当前工序', width: 160,templet: '#currentProcess'}
                 ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt'}
+                ,{field: 'gmtModified',title: '更新时间', width: 177}
                 ,{field: 'currPcsNumber', title: '此次数量(PCS)', width: 134}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
                 ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
@@ -246,6 +248,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117}
                 ,{field: 'supplierNo', title: '供应商编号', width: 117}
                 ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDtS'}
+                ,{field: 'gmtModified',title: '更新时间', width: 177}
                 ,{field: 'quantity', title: '订单数量(PCS)', width: 134}
                 ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
                 ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}

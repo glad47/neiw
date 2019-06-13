@@ -90,7 +90,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
                                 userType =0;
                             }
                         });
-                        var deliveryReport;
+                        var deliveryReport = 0;
                         form.on('switch(deliveryReport)',function (data) {
                             if (data.elem.checked == true){
                                 layer.msg('需要出货报告');
@@ -202,11 +202,23 @@ layui.define(['admin', 'table','element','form'], function(exports){
                             }
                         });
 
+                        var deliveryReport = 0;
+                        form.on('switch(deliveryReport)',function (data) {
+                            if (data.elem.checked == true){
+                                layer.msg('需要出货报告');
+                                deliveryReport =1;
+                            } else {
+                                layer.msg('不需要出货报告');
+                                deliveryReport =0;
+                            }
+                        });
+
                         form.on('submit(layuiadmin-app-form-submit)',function(data){
                             var field = data.field;
                             field.invalidMark = invalidMark;
                             field.userType = userType;
                             field.auditMark = auditMark;
+                            field.deliveryReport = deliveryReport;
                             // console.log(field);
                             admin.req({
                                 url: setter.baseUrl+'sys/consumer/user/save',
