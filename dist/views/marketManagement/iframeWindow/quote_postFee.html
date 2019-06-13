@@ -3,21 +3,21 @@
         <div class="layui-form-item">
             <lable class="layui-form-label">长：</lable>
             <div class="layui-input-inline">
-                <input class="layui-input qp-data" placeholder="cm">
+                <input type="text" class="layui-input qp-data" placeholder="cm">
             </div>
             <lable class="layui-form-label">宽：</lable>
             <div class="layui-input-inline">
-                <input class="layui-input qp-data" placeholder="cm">
+                <input type="text" class="layui-input qp-data" placeholder="cm">
             </div>
             <lable class="layui-form-label">高：</lable>
             <div class="layui-input-inline">
-                <input class="layui-input qp-data" placeholder="cm">
+                <input type="text" class="layui-input qp-data" placeholder="cm">
             </div>
         </div>
         <div class="layui-form-item">
             <lable class="layui-form-label">重量：</lable>
             <div class="layui-input-inline">
-                <input class="layui-input" name="quotePostFeeWeight" placeholder="kg">
+                <input type="text" class="layui-input" name="quotePostFeeWeight" placeholder="kg">
             </div>
             <lable class="layui-form-label">国家：</lable>
             <div class="layui-input-inline">
@@ -28,8 +28,11 @@
             </div>
             <lable class="layui-form-label">运费：</lable>
             <div class="layui-input-inline">
-                <input class="layui-input" name="qtPostFee">
+                <input type="text" class="layui-input" name="qtPostFee" readonly>
             </div>
+        </div>
+        <div class="layui-form-item" style="display: none;">
+            <button class="layui-btn layui-btn-primary" type="reset" id="quotePostFeeRest">清空</button>
         </div>
     </form>
 </div>
@@ -44,8 +47,18 @@
             countryId: 14,
             totalWeight: null // 重量
         }
+        getPostFee();
         $(".qp-data").bind("input propertychange", function (even) {
             quotePostFee();
+        });
+        $("input[name='quotePostFeeWeight']").bind("input propertychange", function (even) {
+            var _val = $(this).val();
+            if (_val >= 0 && _val != null && _val != "") {
+                postData.totalWeight = _val;
+            } else {
+                postData.totalWeight = 0;
+            }
+            getShippingFee();
         });
         function quotePostFee () {
             var area = 1;
@@ -63,11 +76,12 @@
             $("input[name='quotePostFeeWeight']").val(quotePostFeeWeight);
             if (quotePostFeeWeight != null && quotePostFeeWeight > 0) {
                 postData.totalWeight = quotePostFeeWeight;
-                getPostFee();
+                getShippingFee();
             }
         }
 
-        function getPostFee(quotePostFeeWeight) {
+
+        function getPostFee() {
             admin.req({
                 type: 'post',
                 url: setter.imUrl+'quote/getCountry',
@@ -81,7 +95,6 @@
                     form.render('select');
                 }
             });
-            getShippingFee();
         }
         form.on('select(quotePostFeeCountry)', function (data) {
             postData.countryId = data.value;

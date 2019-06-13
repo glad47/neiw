@@ -1693,9 +1693,13 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         admin.popup({
             title: '运费计算'
             ,area: ['660px','322px']
-            ,btn: ['返回']
+            ,btn: ['清空','返回']
             ,id: 'popupQuotePostFee'
             ,yes: function () {
+                layer.msg('清空数据')
+                $("#quotePostFeeRest").click();
+            },
+            btn1: function () {
                 layer.closeAll();
             }
             ,success: function (layero, index) {
