@@ -6,6 +6,16 @@
                 <label class="layui-form-label">内部型号</label>
                 <div class="layui-input-inline">
                     <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                    <!--<input type="text" name="page" value="1" autocomplete="off" class="layui-input" style="display: none;">-->
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">支付情况</label>
+                <div class="layui-input-inline">
+                    <select name="payLogId" lay-filter="interior-order-payLogId">
+                        <option value="">待支付</option>
+                        <option value="1">已支付</option>
+                    </select>
                 </div>
             </div>
             <div class="layui-inline">
@@ -48,7 +58,7 @@
                     <!--<input type="text" name="pcbName" class="layui-input" id="customer_orderTime">-->
                 <!--</div>-->
             <!--</div>-->
-            <div class="layui-inline">
+            <div class="layui-inline" style="display: none;">
                 <button class="layui-btn" lay-submit lay-filter="interior-order-search">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                 </button>

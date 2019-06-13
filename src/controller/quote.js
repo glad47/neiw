@@ -1688,12 +1688,21 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         return fdObj;
     }
 
-    计算运费
+    // 计算运费
     $(".importPcbInfo>.quotePostFee").on('click', function () {
         admin.popup({
             title: '运费计算'
-            ,area: ['506px','288px']
+            ,area: ['660px','322px']
             ,btn: ['返回']
+            ,id: 'popupQuotePostFee'
+            ,yes: function () {
+                layer.closeAll();
+            }
+            ,success: function (layero, index) {
+                view(this.id).render('marketManagement/iframeWindow/quote_postFee').done(function () {
+                    form.render();
+                });
+            }
         })
     });
 

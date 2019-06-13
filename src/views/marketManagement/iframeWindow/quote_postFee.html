@@ -1,0 +1,108 @@
+<div class="layui-fluid">
+    <form class="layui-form qp-fist-data">
+        <div class="layui-form-item">
+            <lable class="layui-form-label">长：</lable>
+            <div class="layui-input-inline">
+                <input class="layui-input qp-data" placeholder="cm">
+            </div>
+            <lable class="layui-form-label">宽：</lable>
+            <div class="layui-input-inline">
+                <input class="layui-input qp-data" placeholder="cm">
+            </div>
+            <lable class="layui-form-label">高：</lable>
+            <div class="layui-input-inline">
+                <input class="layui-input qp-data" placeholder="cm">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <lable class="layui-form-label">重量：</lable>
+            <div class="layui-input-inline">
+                <input class="layui-input" name="quotePostFeeWeight" placeholder="kg">
+            </div>
+            <lable class="layui-form-label">国家：</lable>
+            <div class="layui-input-inline">
+                <select name="quotePostFeeCountry" lay-search lay-filter="quotePostFeeCountry">
+                    <option value=""></option>
+                    <option value="">1212</option>
+                </select>
+            </div>
+            <lable class="layui-form-label">运费：</lable>
+            <div class="layui-input-inline">
+                <input class="layui-input" name="qtPostFee">
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['admin', 'form'], function () {
+        var $ = layui.jquery,
+        form = layui.form,
+        admin = layui.admin,
+        setter = layui.setter;
+        var postData = {
+            courierId: 1,   // 默认为DHL
+            countryId: 14,
+            totalWeight: null // 重量
+        }
+        $(".qp-data").bind("input propertychange", function (even) {
+            quotePostFee();
+        });
+        function quotePostFee () {
+            var area = 1;
+            $(".qp-fist-data .qp-data").each(function (k, v) {
+                var $val = $(this).val();
+                if (typeof $val == "undefined" || $val == null || $val == "" || isNaN($val)) {
+                    $val = 0;
+                }
+                area = parseFloat(area*$val)
+            });
+            var quotePostFeeWeight = parseFloat(area/5000).toFixed(3);
+            if (isNaN(quotePostFeeWeight)) {
+                quotePostFeeWeight = 0;
+            }
+            $("input[name='quotePostFeeWeight']").val(quotePostFeeWeight);
+            if (quotePostFeeWeight != null && quotePostFeeWeight > 0) {
+                postData.totalWeight = quotePostFeeWeight;
+                getPostFee();
+            }
+        }
+
+        function getPostFee(quotePostFeeWeight) {
+            admin.req({
+                type: 'post',
+                url: setter.imUrl+'quote/getCountry',
+                success: function (res) {
+                    var $html;
+                    var data = res.data;
+                    for (var i=0;i<data.length;i++) {
+                        $html += "<option id="+data[i].id+" value="+data[i].id+" selected>"+data[i].name+"</option>"
+                    }
+                    $("select[name='quotePostFeeCountry']").append($html);
+                    form.render('select');
+                }
+            });
+            getShippingFee();
+        }
+        form.on('select(quotePostFeeCountry)', function (data) {
+            postData.countryId = data.value;
+            getShippingFee();
+        });
+        
+        function getShippingFee() {
+            admin.req({
+                type: 'post',
+                url: setter.imUrl+'quote/getShippingCost',
+                data: postData,
+                success: function (res) {
+                    $("input[name='qtPostFee']").val(res.data.shippingCost);
+                }
+            });
+        }
+    });
+</script>
+<style>
+    .qp-fist-data .layui-form-label{width: 42px;padding: 9px 0;}
+    .qp-fist-data .layui-input-inline{width: 135px;}
+    .qp-fist-data .layui-input{border: none;border-bottom: solid 1px silver;}
+    .layui-form-select dl{max-height: 78px;}
+</style>

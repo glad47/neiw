@@ -226,6 +226,9 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
     form.on('select(interior-order-search2)', function (data) {
         $("*[lay-filter='interior-order-search']").click();
     });
+    form.on('select(interior-order-payLogId)', function (data) {
+        $("*[lay-filter='interior-order-search']").click();
+    });
     $(".interior-order-search input").bind("input propertychange", function (even) {
         $("*[lay-filter='interior-order-search']").click();
     })

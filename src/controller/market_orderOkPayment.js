@@ -419,7 +419,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     form.on('select(ok-payment-search-sel)', function (data) {
         $("*[lay-filter='ok_payment_search']").click();
     });
-
+    form.on('select(ok-payment-payLogId)', function (data) {
+        $("*[lay-filter='ok_payment_search']").click();
+    });
     $(".ok-payment-search input").bind("input propertychange", function (even) {
         $("*[lay-filter='ok_payment_search']").click();
     })
