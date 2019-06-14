@@ -52,9 +52,13 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
             }
             ,cols: [[
-                {type:'checkbox'}
+                {type:'checkbox', fixed: 'left'}
+                ,{field: 'productNo',title: '聚谷型号', width: 148, fixed: 'left'}
                 ,{field: 'status',title: '状态', width: 110, templet:'#sqeMan_shipto'}
                 ,{field: 'id',title: 'ID', hide: true}
+                ,{field: 'supplierId',title: '供应商编号', width: 117}
+                ,{field: 'factoryMake',title: '供应商厂编', width: 117}
+                ,{field: 'gmtModified',title: '修改时间', width: 175}
                 ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#scmManaShip_deliver'}
                 ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117}// 1 ＝ 待报价
                 ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117}
@@ -169,6 +173,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 {type:'checkbox'}
                 ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}
                 ,{field: 'id',title: 'ID', hide: true}
+                ,{field: 'gmtModified',title: '修改时间', width: 175}
                 ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#scmManaShip_deliverS'}
                 ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117}// 1 ＝ 待报价
                 ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117}
@@ -226,5 +231,22 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
        }
     });
+
+    //监听搜索
+    form.on('submit(shipmentTogether_search)', function(data){
+        var field = data.field;
+        var reTab;
+        if (_public_val.orderType === 1) {   // PCB
+            reTab = 'sqeManaShip_tabPcb';
+        } else if (_public_val.orderType === 2) {    //  Stencil
+            reTab = 'sqeManaShip_tabStencil';
+        }
+        table.reload(reTab, {
+            where: field
+        });
+    });
+    $(".shipment-together-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='shipmentTogether_search']").click();
+    })
     exports('sqeMana_shipment_together', {});
 });
