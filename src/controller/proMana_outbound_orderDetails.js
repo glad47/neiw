@@ -57,6 +57,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 {type:'checkbox',fixed: 'left'}
                 ,{field: 'productNo',title: '聚谷型号', minWidth: 141,fixed: 'left'}
                 ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status'}      // 1 ＝ 待报价
+                ,{field: 'gmtModified',title: '出货时间', width: 110, templet:'<a>{{d.gmtModified.substring(0,11)}}</a>'}
                 ,{field: 'invoiceNo',title: '合同号', minWidth: 165}
                 ,{field: 'deliveryDate',title: '交期', templet: '#outboundDDatePCB'}
                 ,{field: 'quantityPcs',title: '订单PCS数'}
@@ -111,6 +112,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 {type:'checkbox',fixed: 'left'}
                 ,{field: 'productNo',title: '聚谷型号', minWidth: 141,fixed: 'left'}
                 ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status'}      // 1 ＝ 待报价
+                ,{field: 'gmtModified',title: '出货时间', width: 110, templet:'<a>{{d.gmtModified.substring(0,11)}}</a>'}
                 ,{field: 'invoiceNo',title: '合同号', minWidth: 165}
                 ,{field: 'deliveryDate',title: '交期', templet: '#outboundDDateStencil'}
                 ,{field: 'quantity',title: '订单PCS数'}
