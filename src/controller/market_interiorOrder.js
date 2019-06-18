@@ -240,10 +240,23 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
         if(obj.event == 'edit'){
             admin.popup({
                 title: '编辑PCB订单信息'
-                ,btn:['立即提交', '取消']
+                ,btn:['立即提交','取消订单', '取消']
                 ,area: ['820px', '90%']
                 ,yes: function () {
                     $(".submit-ok").click();
+                }
+                ,btn2: function (index, layero) {
+                    layer.confirm('确定取消订单['+data.productNo+']?', function (index) {
+                       admin.req({
+                           type: 'post',
+                           data: {'id':data.id,'status':10},
+                           url: setter.baseUrl+'epc/pcborder/update',
+                           success: function () {
+                               layer.msg("已取消");
+                               layui.table.reload('interior_order_Tabpcb');
+                           }
+                       });
+                    });
                 }
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
@@ -627,10 +640,23 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             admin.popup({
                 title: '编辑Stencil 钢网订单信息'
                 , area: ['885px', '550px']
-                , btn: ['立即提交', '取消']
+                , btn: ['立即提交','取消订单','取消']
                 , yes: function () {
                     $(".submitStencilUpB").click();
                     table.reload('interior_order_Tabstencil');
+                }
+                ,btn2: function (index, layero) {
+                    layer.confirm('确定取消订单['+data.productNo+']?', function (index) {
+                       admin.req({
+                           type: 'post',
+                           data: {'id':data.id,'status':10},
+                           url: setter.baseUrl+'epc/stencilorder/update',
+                           success: function () {
+                               layer.msg("已取消");
+                               layui.table.reload('interior_order_Tabstencil');
+                           }
+                       });
+                    });
                 }
                 , success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderStencil_updateB', data).done(function () {
