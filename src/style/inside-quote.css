@@ -217,3 +217,10 @@ form.layui-form.rig-price.quote-type.quote-avtive {
         overflow-x: hidden;
     }
 }
+
+/*formSelect*/
+#selCustomer_container .xm-select-parent .xm-form-select .xm-select-dl {min-width: 128px;}
+#selCustomer_container .xm-select-parent .xm-form-select .xm-select-dl .xm-cz-group{max-width: 60px !important;}
+#selCustomer_container .xm-select-parent .xm-form-select .xm-select-dl .xm-cz-group .xm-cz{max-width: 60px;}
+#selCustomer_container .xm-select-parent .xm-select {border-color: #e6e6e6 !important;border: solid 1px;}
+.xm-select-parent .xm-select {border: none;border-bottom: solid 1px silver;}

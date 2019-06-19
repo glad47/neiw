@@ -3,7 +3,7 @@
  * _def_disableIn 默认值
  **/
 
-layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], function (exports) {
+layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'formSelects'], function (exports) {
     var $ = layui.jquery
         ,view = layui.view
         ,form = layui.form
@@ -11,6 +11,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         ,element = layui.element
         ,setter = layui.setter
         ,upload = layui.upload
+        ,formSelects = layui.formSelects
         ,jstools = layui.jsTools
         ,layer = layui.layer;
     element.render();
@@ -476,8 +477,19 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
     });
 
     //监听==>选择快递
-    form.on("select(company)",function (data) {
-        post_data.companyId = $(data.elem).find("option:selected").attr("value");
+    // form.on("select(company)",function (data) {
+    //     post_data.companyId = $(data.elem).find("option:selected").attr("value");
+    //     var courierId = post_data.companyId;
+    //     var countryId = post_data.countrysId;
+    //     getShippingCost(courierId,countryId);
+    //     getShippingCost();
+    // });
+
+    // formSelect 监听==>选择快递
+    layui.formSelects.on('selCompany', function (id, vals, val, isAdd, isDisabled) {
+        var $thisName = val.name;
+        var $thisID = val.value;
+        post_data.companyId = $thisID;
         var courierId = post_data.companyId;
         var countryId = post_data.countrysId;
         getShippingCost(courierId,countryId);
@@ -485,8 +497,22 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
     });
 
     //监听==>选择国家
-    form.on("select(countrys)",function (data) {
-        post_data.countrysId = $(data.elem).find("option:selected").attr("value");
+    // form.on("select(countrys)",function (data) {
+    //     post_data.countrysId = $(data.elem).find("option:selected").attr("value");
+    //     pcb_container.countries = post_data.countrysId;     // 国家
+    //     if (post_data.bordType === 2){
+    //         quoteSMTStencilFuc();
+    //     }
+    //     var courierId = post_data.companyId;
+    //     var countryId = post_data.countrysId;
+    //     getShippingCost(courierId,countryId);
+    // });
+
+    // formSelect 监听==>选择国家
+    layui.formSelects.on('selCountrys', function (id, vals, val, isAdd, isDisabled) {
+        var $thisName = val.name;
+        var $thisID = val.value;
+        post_data.countrysId = $thisID;
         pcb_container.countries = post_data.countrysId;     // 国家
         if (post_data.bordType === 2){
             quoteSMTStencilFuc();
@@ -494,19 +520,32 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         var courierId = post_data.companyId;
         var countryId = post_data.countrysId;
         getShippingCost(courierId,countryId);
-    });
 
+    });
     //监听 ==>选择客户
-    form.on('select(filterCustomer)',function (data) {
-        // $("#inCustomer").val($(data.elem).find("option:selected").text());
-        var dv = $(data.elem).find("option:selected").text();
-        $("#orderPN").val('');  //重新选择客户的时候，内部型号清空
-        public_data.customerAid = data.value;
-        pcb_container.userId = saveSMTStencil.userId = data.value;
-        saveSMTStencil.customerSysName = dv;
-        $("#customerId").val(data.value);
-        $("input[name='customerSysName']").val($(data.elem).find("option:selected").text());
-        form.render('');
+    // form.on('select(filterCustomer)',function (data) {
+    //     // $("#inCustomer").val($(data.elem).find("option:selected").text());
+    //     var dv = $(data.elem).find("option:selected").text();
+    //     layer.msg(dv)
+    //     $("#orderPN").val('');  //重新选择客户的时候，内部型号清空
+    //     public_data.customerAid = data.value;
+    //     pcb_container.userId = saveSMTStencil.userId = data.value;
+    //     saveSMTStencil.customerSysName = dv;
+    //     $("#customerId").val(data.value);
+    //     layer.msg(data.value)
+    //     $("input[name='customerSysName']").val($(data.elem).find("option:selected").text());
+    //     form.render('');
+    // });
+
+    // formSelect 监听==>选择客户
+    layui.formSelects.on('selCustomer', function (id, vals, val, isAdd, isDisabled) {
+        var $thisName = val.name;
+        var $thisID = val.value;
+        public_data.customerAid = $thisID;
+        pcb_container.userId = saveSMTStencil.userId = $thisID;
+        saveSMTStencil.customerSysName = $thisName;
+        $("#customerId").val($thisID);
+        $("input[name='customerSysName']").val($thisName);
     });
 
     //监听   ==>选择订单类型（新单/返单/返单有效）
@@ -970,19 +1009,20 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         } else if (post_data.bordType === 3) {
             SelectId ='selCompany';
         }
-        console.log("SelectId:"+SelectId);
         admin.req({
             type: 'post',
             url: setter.imUrl+'quote/getCouriers',
             async: false,
             success: function (data) {
                 $("select[id='"+SelectId+"'] option").remove();
+                formSelects.render(SelectId)
                 post_data.companyId = data.data[0].id;
                 for (var i=0;i<data.data.length;i++){
-                    $("#"+SelectId+"").append("<option value="+data.data[i].id+">"+data.data[i].courierName+"</option>");
+                    $("select[xm-select='"+SelectId+"']").append("<option value="+data.data[i].id+">"+data.data[i].courierName+"</option>");
                     def_expressCountry.courierId = data.data[0].id;  //默认选中 快递id赋值
                     post_data.companyId = def_expressCountry.courierId;
                 }
+                formSelects.render(SelectId)
                 form.render('select');
             },
             error: function () {
@@ -1005,6 +1045,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
             SelectId ='selCountryss';
         }
         $("select[id='"+SelectId+"'] option").remove();
+        formSelects.render(SelectId)
         form.render();
         admin.req({
             type: 'post',
@@ -1013,11 +1054,12 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
             success: function (data) {
                 post_data.countrysId = data.data[0].id;
                 for (var i=0;i<data.data.length;i++){
-                    $("#"+SelectId).append("<option value="+data.data[i].id+">"+data.data[i].name+"</option>");
+                    $("select[xm-select='"+SelectId+"']").append("<option value="+data.data[i].id+">"+data.data[i].name+"</option>");
                     def_expressCountry.countryId = data.data[0].id; //默认选中 国家id
                     post_data.countrysId = def_expressCountry.countryId;
                 }
                 form.render();
+                formSelects.render(SelectId)
             },
             error: function () {
                 layer.msg("Get Countrys Fail!!!");
@@ -1077,8 +1119,9 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
             url: setter.baseUrl+'sys/consumer/user/all',
             success: function (data) {
                 for (var i=0;i<data.data.length;i++){
-                    $("#selCustomer").append("<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>");
+                    $("select[xm-select='selCustomer']").append("<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>");
                 }
+                formSelects.render('selCustomer');
                 form.render('select');
             }
         })

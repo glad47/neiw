@@ -1,4 +1,5 @@
 <title>添加供应商报价</title>
+<link href="//raw.githack.com/hnzzmsf/layui-formSelects/master/dist/formSelects-v4.css" rel="stylesheet" />
 <div class="layui-fluid">
     <script type="text/html" template lay-done="layui.data.done(d);">
         <form class="layui-form" lay-filter="pert_form">
@@ -6,7 +7,7 @@
                 <label class="layui-form-label">供应商编号</label>
                 <div class="layui-input-inline">
                     <!--<input class="layui-input" type="text" name="supplierNo" value="{{ d.params.pcbInfo.supplierNo || '' }}">-->
-                    <select name="supplierNo" lay-search>
+                    <select name="supplierNo" xm-select="supplierNo" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
                         <option value=""></option>
                     </select>
                 </div>
@@ -63,26 +64,28 @@
 
 <script>
     layui.data.done = function (d) {
-        layui.use(['setter', 'upload', 'admin', 'index', 'element', 'jquery', 'form'], function () {
+        layui.use(['setter', 'upload', 'admin', 'index', 'element', 'jquery', 'form', 'formSelects'], function () {
             var $ = layui.$,
                 table = layui.table,
                 form = layui.form,
                 admin = layui.admin,
                 setter = layui.setter,
+                formSelects = layui.formSelects,
                 view = layui.view
             var upload = layui.upload;
             var supplierRes;
             admin.req({
                 type: 'get',
+                async: false,
                 url: setter.baseUrl+'scm/pcborder/allSupplier',
                 success: function (res) {
                     supplierRes = res.data;
-                    console.log(supplierRes)
                     var $html;
                     for (var i=0;i<supplierRes.length;i++){
                         $html += "<option id="+supplierRes[i].id+" value="+supplierRes[i].supplierId+">"+supplierRes[i].supplierId+"</option>"
                     }
-                    $("select[name='supplierNo']").append($html);
+                    $("select[xm-select='supplierNo']").append($html);
+                    formSelects.render('supplierNo');
                     form.render();
                 }
             })

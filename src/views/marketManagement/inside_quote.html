@@ -1,4 +1,5 @@
 <title>内部报价</title>
+<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
 <div class="layui-fluid" id="app">
     <div>
         <div class="layui-row layui-col-space15" id="inside_quote_all">
@@ -644,7 +645,7 @@
                                   </select>
                               </div>
                               <div class="layui-input-inline layui-col-md5" id="selCustomer_container" data="" style="width: 47%;margin-left: 2%;">
-                                  <select id="selCustomer" lay-filter="filterCustomer" name="userId" lay-search="">
+                                  <select id="selCustomer" name="selCustomer" xm-select="selCustomer" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
                                       <option value="" id="0">选择客户</option>
                                   </select>
                               </div>
@@ -701,7 +702,7 @@
                                       </div>
                                   </div>
                                   <div class="layui-input-inline shipping-input-company" style="width: 142px;">
-                                      <select name="courierCompany" id="selCompany" lay-filter="company" lay-search="">
+                                      <select name="courierCompany" id="selCompany" xm-select="selCompany" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
                                           <option value="">请选择</option>
                                       </select>
                                   </div>
@@ -718,7 +719,7 @@
                                       <div class="shipping-item-list">
                                           <div class="layui-form-item shipping-item">
                                               <div class="layui-input-inline shipping-input-countrys"  style="width: 142px;">
-                                                  <select name="countries" id="selCountrys" lay-filter="countrys" lay-search="">
+                                                  <select name="countries" id="selCountrys" xm-select="selCountrys" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
                                                       <option value="">请选择</option>
                                                   </select>
                                               </div>
@@ -793,12 +794,12 @@
                           <div class="stencil-form">
                               <div class="layui-form-item" style="display: flex;">
                                   <div class="layui-input-inline stencil-lii shipping-input-companyt" style="width: 49%;">
-                                      <select name="courierCompanyt" id="selCompanyt" lay-filter="companyt" lay-search="">
+                                      <select name="courierCompanyt" id="selCompanyt" lay-filter="companyt" xm-select="selCompanyt" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
                                           <option value="">请选择</option>
                                       </select>
                                   </div>
                                   <div class="layui-input-inline shipping-input-countrys"  style="width: 37%;">
-                                      <select name="quiz2" id="selCountryst" lay-filter="countrys" lay-search="">
+                                      <select name="quiz2" id="selCountryst" lay-filter="countrys" xm-select="selCountryst" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
                                           <option value="">请选择</option>
                                       </select>
                                   </div>
