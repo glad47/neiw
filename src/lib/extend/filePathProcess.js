@@ -27,7 +27,9 @@ layui.define(function (exports) {
             if (data && data.isInternal == '2') {   // 网上订单
                 $.each(data, function (k, v) {
                     if (k == 'quoteGerberPath') {
-                        data['quoteGerberPath'] = obj.pathProcess(v);
+                        if (v != null && v != "") {
+                            data['quoteGerberPath'] = obj.pathProcess(v);
+                        }
                     }
                 })
             }

@@ -15,9 +15,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,element = layui.element;
         var $ = layui.jquery;
 
-    // layerdate.render({
-    //     elem: '#gmtCreate'
-    // })
     laydate.render({
         elem: '#gmtCreate'
     });
@@ -29,6 +26,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     // 监听tab选项卡
     element.on('tab(ok_payment_tab)', function (data) {
         defVal.orderType = data.index;
+        $(window).resize();
+        $('.layui-table-fixed-r').removeClass('layui-hide');
     });
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单-网上已支付
@@ -127,7 +126,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'nofCore', title: 'NofCore', align:'center', width: 80,hide: true}
             ,{field:'nofPp', title: 'NofPp', align:'center', width: 80,hide: true}
             ,{field:'nofHoles', title: 'NofHoles', align:'center', width: 90,hide: true}
-            ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#Tabtb-pcb-market-okPayment-option'}
+            ,{title: '操作', width: 300, align:'center', fixed: 'right', toolbar: '#Tabtb-pcb-market-okPayment-option'}
         ]]
         ,done : function (res, curr, count) {
             //手机端
@@ -272,8 +271,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,page: true
         ,toolbar: true
         ,done: function () {
-            $(window).resize();
-            $('.layui-table-fixed-r').removeClass('layui-hide');
+
         }
         ,parseData: function (res) {
             return{
@@ -286,8 +284,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             access_token: layui.data('layuiAdmin').access_token
         }
         ,cols: [[
-             {field: 'id', title: 'ID', hide: true}
-            ,{field: 'productNo',fixed: 'left', title: '内部型号', align:'center', width: 134}
+
+            {field: 'productNo', title: '内部型号', align:'center', width: 134,fixed: 'left'}
             ,{field: 'status' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-okPayment-status'}
             ,{field:'payLogId', title: '支付情况', align:'center',templet: '#okPaymentPayLogS', width: 117}
             ,{field: '', title:'文件', templet: '#stencil-file', align:'center'}
@@ -300,6 +298,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'stencilSide', title: '钢网大小', align:'center', width: 124}
             ,{field: 'quantity', title: '数量', align:'center', width: 114}
             ,{field: 'size', title: '厚度', align:'center', width: 80}
+            ,{field: 'id', title: 'ID', hide: true,fixed: 'left'}
             ,{field: 'quoteId', title: 'Quote ID', align:'center', width: 114, hide: true}
             ,{field: 'thickness', title: 'Thickness', align:'center', width: 114, hide: true}
             ,{field: 'existingFiducials', title: 'Existing Fiducials', align:'center', width: 145, hide: true}
@@ -312,7 +311,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'weight', title: 'Weight', align:'center', width: 85}
             ,{field: 'gerberPath', title: 'gerberPath', hide: true, width: 124}
             ,{field: 'note', title: 'Note', align:'center', width: 80, hide: true}
-            ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-stencil-market-okPayment-option', width: 260}
+            ,{title: '操作', align:'center', toolbar: '#Tabtb-stencil-market-okPayment-option', width: 260, fixed: 'right'}
         ]]
         ,done: function () {
             showPayDetailMOK(1);
@@ -454,8 +453,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,page: true
         ,toolbar: true
         ,done: function () {
-            $(window).resize();
-            $('.layui-table-fixed-r').removeClass('layui-hide');
+
         }
         ,parseData: function (res) {
             return{
@@ -470,7 +468,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,cols: [[
             {field: 'id', title: 'ID', hide: true},
             {field: 'quoteId', title: 'ID', hide: true}
-            ,{field: 'productNo', title: '内部型号', align:'center', width: 134}
+            ,{field: 'productNo', fixed: 'left', title: '内部型号', align:'center', width: 134}
             ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-smt-market-okPayment-status'}
             ,{field: '', title:'文件', templet: '#stencil-file', align:'center'}
             ,{field: 'gerberName', title: '文件名', align:'center', width: 224}
