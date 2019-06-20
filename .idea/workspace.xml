@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="1">
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/supplier_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/supplier_edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_edit.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -49,8 +51,8 @@
       <file leaf-file-name="supplier_edit.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_edit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="139" column="32" lean-forward="true" selection-start-line="139" selection-start-column="32" selection-end-line="139" selection-end-column="32" />
+            <state relative-caret-position="304">
+              <caret line="142" column="30" lean-forward="true" selection-start-line="142" selection-start-column="30" selection-end-line="142" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -512,14 +514,7 @@
       <workItem from="1560502707150" duration="4802000" />
       <workItem from="1560825531199" duration="27885000" />
       <workItem from="1560997432550" duration="3845000" />
-      <workItem from="1561012816110" duration="7516000" />
-    </task>
-    <task id="LOCAL-00212" summary="1">
-      <created>1558492507172</created>
-      <option name="number" value="00212" />
-      <option name="presentableId" value="LOCAL-00212" />
-      <option name="project" value="LOCAL" />
-      <updated>1558492507172</updated>
+      <workItem from="1561012816110" duration="8119000" />
     </task>
     <task id="LOCAL-00213" summary="生成通知单添加客户标准，内部报价导入返单信息，用户登录验证码">
       <created>1558527208263</created>
@@ -857,11 +852,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561024002461</updated>
     </task>
-    <option name="localTasksCounter" value="261" />
+    <task id="LOCAL-00261" summary="供应商接口">
+      <created>1561034147688</created>
+      <option name="number" value="00261" />
+      <option name="presentableId" value="LOCAL-00261" />
+      <option name="project" value="LOCAL" />
+      <updated>1561034147689</updated>
+    </task>
+    <option name="localTasksCounter" value="262" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2347382000" />
+    <option name="totallyTimeSpent" value="2347985000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -882,9 +884,9 @@
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50921535" side_tool="true" weight="0.36119404" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.37711442" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.38507462" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" visible="true" weight="0.38507462" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" visible="true" weight="0.50945276" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" weight="0.50945276" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39972714" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -958,7 +960,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="合同备注bug解决" />
     <MESSAGE value="网上订单文件呢下载bug解决" />
     <MESSAGE value="1、更新layui 2.50&#10;2、文档28" />
     <MESSAGE value="pcb订单详细页面大小调整" />
@@ -983,7 +984,8 @@
     <MESSAGE value="pcb订单编辑 pcb类型无法选中bug解决" />
     <MESSAGE value="修改第三方组件formSelect源码：下拉搜索不区分大小写" />
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="供应商接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="供应商接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1356,8 +1358,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="139" column="32" lean-forward="true" selection-start-line="139" selection-start-column="32" selection-end-line="139" selection-end-column="32" />
+        <state relative-caret-position="304">
+          <caret line="142" column="30" lean-forward="true" selection-start-line="142" selection-start-column="30" selection-end-line="142" selection-end-column="30" />
         </state>
       </provider>
     </entry>
