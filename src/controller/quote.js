@@ -554,7 +554,6 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     });
 
 
-
     $("#postFees").bind("input propertychange", function (even) {
         quoteSMTStencil.postFee = parseFloat($(this).val());
         quoteSMTStencilSubtotal();
