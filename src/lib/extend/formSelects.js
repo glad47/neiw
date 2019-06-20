@@ -143,8 +143,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 on: null, //select值发生变化
                 opened: null,
                 closed: null,
-                filter: function filter(id, inputVal, choice, val, isDisabled) {
-                    return choice.name.indexOf(inputVal.toLowerCase()) == -1 ;
+                filter: function filter(id, inputVal, val, isDisabled) {
+                    return val.name.indexOf(inputVal.toLowerCase()) == -1 ;
                 },
                 clearid: -1,
                 direction: 'auto',
