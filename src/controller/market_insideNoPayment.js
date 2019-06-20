@@ -259,7 +259,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                     layer.msg('yes');
                 }
                 , success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
+                    view(this.id).render('marketManagement/iframeWindow/`', data).done(function () {
                         form.render(null, '');
                         form.on('submit(LAY-pcborder-update-submit)', function (data) {
                             var field = data.field;
