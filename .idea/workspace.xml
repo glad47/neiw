@@ -61,8 +61,8 @@
           <file leaf-file-name="formSelects.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/lib/extend/formSelects.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="280">
-                  <caret line="145" column="52" selection-start-line="145" selection-start-column="52" selection-end-line="145" selection-end-column="52" />
+                <state relative-caret-position="255">
+                  <caret line="146" column="89" lean-forward="true" selection-start-line="146" selection-start-column="89" selection-end-line="146" selection-end-column="89" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                     <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
@@ -83,7 +83,7 @@
             <entry file="file://$PROJECT_DIR$/src/config.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="1564">
-                  <caret line="92" column="16" lean-forward="true" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="16" />
+                  <caret line="92" column="16" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="16" />
                 </state>
               </provider>
             </entry>
@@ -108,8 +108,8 @@
           <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="224">
-                  <caret line="548" column="7" selection-start-line="548" selection-start-column="7" selection-end-line="548" selection-end-column="7" />
+                <state relative-caret-position="190">
+                  <caret line="546" column="38" selection-start-line="546" selection-start-column="38" selection-end-line="546" selection-end-column="38" />
                 </state>
               </provider>
             </entry>
@@ -281,10 +281,11 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="23" />
-    <option name="width" value="1867" />
-    <option name="height" value="1057" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="24" />
+    <option name="y" value="91" />
+    <option name="width" value="1590" />
+    <option name="height" value="830" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -573,14 +574,7 @@
       <workItem from="1560502707150" duration="4802000" />
       <workItem from="1560825531199" duration="27885000" />
       <workItem from="1560997432550" duration="3845000" />
-      <workItem from="1561012816110" duration="4916000" />
-    </task>
-    <task id="LOCAL-00210" summary="1">
-      <created>1558491064313</created>
-      <option name="number" value="00210" />
-      <option name="presentableId" value="LOCAL-00210" />
-      <option name="project" value="LOCAL" />
-      <updated>1558491064313</updated>
+      <workItem from="1561012816110" duration="5318000" />
     </task>
     <task id="LOCAL-00211" summary="1">
       <created>1558492296158</created>
@@ -918,11 +912,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561022667698</updated>
     </task>
-    <option name="localTasksCounter" value="259" />
+    <task id="LOCAL-00259" summary="1">
+      <created>1561023399254</created>
+      <option name="number" value="00259" />
+      <option name="presentableId" value="LOCAL-00259" />
+      <option name="project" value="LOCAL" />
+      <updated>1561023399255</updated>
+    </task>
+    <option name="localTasksCounter" value="260" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2344782000" />
+    <option name="totallyTimeSpent" value="2345184000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -944,7 +945,7 @@
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.38507462" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" weight="0.56616646" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" visible="true" weight="0.5651741" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39972714" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1039,12 +1040,12 @@
     <MESSAGE value="上次提交的bug解决" />
     <MESSAGE value="新增客户bug解决，计划协同更新时间" />
     <MESSAGE value="供应商管理-出货明细 搜索" />
-    <MESSAGE value="1" />
     <MESSAGE value="引入formSelect 插件，修改quote的下拉" />
     <MESSAGE value="编写指示卡 网上订单文件bug" />
     <MESSAGE value="pcb订单编辑 pcb类型无法选中bug解决" />
     <MESSAGE value="修改第三方组件formSelect源码：下拉搜索不区分大小写" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改第三方组件formSelect源码：下拉搜索不区分大小写" />
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1389,6 +1390,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1564">
+          <caret line="92" column="16" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
@@ -1396,17 +1404,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1564">
-          <caret line="92" column="16" lean-forward="true" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/extend/formSelects.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="145" column="52" selection-start-line="145" selection-start-column="52" selection-end-line="145" selection-end-column="52" />
+        <state relative-caret-position="255">
+          <caret line="146" column="89" lean-forward="true" selection-start-line="146" selection-start-column="89" selection-end-line="146" selection-end-column="89" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />

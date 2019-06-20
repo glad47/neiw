@@ -144,7 +144,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 opened: null,
                 closed: null,
                 filter: function filter(id, inputVal, val, isDisabled) {
-                    return val.name.indexOf(inputVal.toLowerCase()) == -1 ;
+                    return val.name.toLowerCase().indexOf(inputVal.toLowerCase()) == -1 ;
                 },
                 clearid: -1,
                 direction: 'auto',
