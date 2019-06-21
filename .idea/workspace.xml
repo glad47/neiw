@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_stencil.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_stencil.html" afterDir="false" />
-    </list>
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -50,8 +47,8 @@
       <file leaf-file-name="quote_detail_stencil.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_stencil.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="92" column="54" lean-forward="true" selection-start-line="92" selection-start-column="54" selection-end-line="92" selection-end-column="54" />
+            <state relative-caret-position="425">
+              <caret line="90" column="26" selection-start-line="90" selection-start-column="26" selection-end-line="90" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -516,14 +513,7 @@
       <workItem from="1560997432550" duration="3845000" />
       <workItem from="1561012816110" duration="8119000" />
       <workItem from="1561079916908" duration="1914000" />
-      <workItem from="1561102078226" duration="6876000" />
-    </task>
-    <task id="LOCAL-00218" summary="外发报价过滤查询">
-      <created>1559016992828</created>
-      <option name="number" value="00218" />
-      <option name="presentableId" value="LOCAL-00218" />
-      <option name="project" value="LOCAL" />
-      <updated>1559016992829</updated>
+      <workItem from="1561102078226" duration="7103000" />
     </task>
     <task id="LOCAL-00219" summary="过滤查询整改">
       <created>1559029580412</created>
@@ -861,11 +851,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561109354016</updated>
     </task>
-    <option name="localTasksCounter" value="267" />
+    <task id="LOCAL-00267" summary="钢网报价协同编辑总价显示">
+      <created>1561112165721</created>
+      <option name="number" value="00267" />
+      <option name="presentableId" value="LOCAL-00267" />
+      <option name="project" value="LOCAL" />
+      <updated>1561112165721</updated>
+    </task>
+    <option name="localTasksCounter" value="268" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2356775000" />
+    <option name="totallyTimeSpent" value="2357002000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -888,7 +885,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.38308457" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" weight="0.320398" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" visible="true" weight="0.320398" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39972714" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -962,7 +959,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="外协合同显示错误，报价协同加急费编辑" />
     <MESSAGE value="工程管理-工具管理" />
     <MESSAGE value="目标样式" />
     <MESSAGE value="内部订单确认支付" />
@@ -987,7 +983,8 @@
     <MESSAGE value="上个提交的bug" />
     <MESSAGE value="上个提交的bug1" />
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="钢网报价协同编辑总价显示" />
+    <option name="LAST_COMMIT_MESSAGE" value="钢网报价协同编辑总价显示" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1335,8 +1332,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_stencil.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="92" column="54" lean-forward="true" selection-start-line="92" selection-start-column="54" selection-end-line="92" selection-end-column="54" />
+        <state relative-caret-position="425">
+          <caret line="90" column="26" selection-start-line="90" selection-start-column="26" selection-end-line="90" selection-end-column="26" />
         </state>
       </provider>
     </entry>
