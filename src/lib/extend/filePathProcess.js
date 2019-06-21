@@ -42,8 +42,10 @@ layui.define(function (exports) {
             $.each(data, function (k, v) {
                 if (k == 'gerberPath') {
                     if (v != null && v != "") {
-                        data['gerberPath'] = r.exec(data.gerberPath);
-                        data.gerberPath = data.gerberPath[1];
+                        if (data.isInternal == "2") {
+                            data['gerberPath'] = r.exec(data.gerberPath);
+                            data.gerberPath = data.gerberPath[1];
+                        }
                     }
                 }
             });
