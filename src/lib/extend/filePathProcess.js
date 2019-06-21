@@ -40,15 +40,10 @@ layui.define(function (exports) {
         isInternal: function (data) {
             var r = /\[(.+?)\]/g;
             $.each(data, function (k, v) {
-                if (k == 'quoteGerberPath') {
+                if (k == 'gerberPath') {
                     if (v != null && v != "") {
-                        if (data['quoteGerberPath'].substring(0,1) == '[' && data['quoteGerberPath'].substring(data['quoteGerberPath'].length-1, data['quoteGerberPath'].length) == ']') {
-                            data['quoteGerberPath'] = r.exec(data.quoteGerberPath);
-                            console.log('网上订单处理完的路径为==>：'+data.quoteGerberPath[1]);
-                            return data.quoteGerberPath[1];
-                        } else {
-                            return data;
-                        }
+                        data['gerberPath'] = r.exec(data.gerberPath);
+                        data.gerberPath = data.gerberPath[1];
                     }
                 }
             });
