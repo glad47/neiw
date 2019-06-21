@@ -38,20 +38,21 @@ layui.define(function (exports) {
         // },
         // 网上订单 file ["xxx/xxx/xxx.zip"] 统一格式路径处理
         isInternal: function (data) {
-            if (data.isInternal == "1") {
-                obj.pathProcess(data.quoteGerberPath);
-            } else {
-                var r = /\[(.+?)\]/g;
-                $.each(data, function (k, v) {
-                    if (k == 'quoteGerberPath') {
-                        if (v != null && v != "") {
+            var r = /\[(.+?)\]/g;
+            $.each(data, function (k, v) {
+                if (k == 'quoteGerberPath') {
+                    if (v != null && v != "") {
+                        if (data['quoteGerberPath'].substring(0,1) == '[' && data['quoteGerberPath'].substring(data['quoteGerberPath'].length-1, data['quoteGerberPath'].length) == ']') {
                             data['quoteGerberPath'] = r.exec(data.quoteGerberPath);
                             console.log('网上订单处理完的路径为==>：'+data.quoteGerberPath[1]);
                             return data.quoteGerberPath[1];
+                        } else {
+                            return data;
                         }
                     }
-                });
-            }
+                }
+            });
+            return data;
         }
     }
     exports('filePathProcess', obj)
