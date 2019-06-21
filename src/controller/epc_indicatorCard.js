@@ -374,7 +374,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             }
         } else if (obj.event == 'fileMana') {
             data.orderType = "pcbOrder";        // 根据orderType  发送不同的接口
-            data = filePathProcess.dataObj(data);
+            data = filePathProcess.isInternal(data);
             console.log(data);
             admin.popup({
                 title: 'PCB订单资料管理'
@@ -786,7 +786,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             })
         } else if (obj.event == 'fileMana') {
             data.orderType = "stencilOrder";        // 根据orderType  发送不同的接口
-            data = filePathProcess.dataObj(data);
+            // 测试代码
+            data = filePathProcess.isInternal(data);
+            console.log(data);
             admin.popup({
                 title: 'PCB订单资料管理'
                 ,area: ['45%', '40%']
