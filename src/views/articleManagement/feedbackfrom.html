@@ -1,4 +1,4 @@
-
+<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
   <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list"style="padding: 20px 30px 0 0;">
     <div class="layui-form-item">
       <label class="layui-form-label">文章标题</label>
@@ -34,7 +34,7 @@
           <label class="layui-form-label">发布用户</label>
           <div class="layui-input-inline" style="width: 400px;">
               <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/consumer/user/all" lay-done="layui.data.done(d);">
-                  <select name="articleUserId" id="articleUserId">
+                  <select name="articleUserId" id="articleUserId" xm-select="articleUserId" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
                       <option value="{{ d.params.id || ''}}">{{ d.params.id || ''}}</option>
                       <!--遍历异步请求到的数据且填充-->
                       {{#  layui.each(d.data, function(index, item){ }}
@@ -106,9 +106,12 @@
 
   <script>
       layui.data.done = function(d){
-          layui.use(['jquery', 'form', 'admin','setter','layedit'], function(){
+          layui.use(['jquery', 'form', 'admin','setter','layedit', 'formSelects'], function(){
               var $ = layui.jquery
                   ,form = layui.form
+                  ,formSelects = layui.formSelects
+
+              formSelects.render('articleUserId')
               form.render()
           });
       }
