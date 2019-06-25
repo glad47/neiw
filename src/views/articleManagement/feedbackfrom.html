@@ -29,6 +29,25 @@
             <input type="checkbox" name="articleKing" lay-skin="primary" title="置顶" {{ d.params.articleKing == '1' ? 'checked' : '' }} style="margin-left: 100px;">
         </div>
     </div>
+
+      <div class="layui-form-item">
+          <label class="layui-form-label">发布用户</label>
+          <div class="layui-input-inline" style="width: 400px;">
+              <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/consumer/user/all" lay-done="layui.data.done(d);">
+                  <select name="articleUserId" id="articleUserId">
+                      <option value="{{ d.params.id || ''}}">{{ d.params.id || ''}}</option>
+                      <!--遍历异步请求到的数据且填充-->
+                      {{#  layui.each(d.data, function(index, item){ }}
+                      <option value="{{ item.id || ''}}" >{{ item.id }}</option>
+                      {{#  }); }}
+                      {{#  if(d.data.length === 0){ }}
+                      无数据
+                      {{#  } }}
+                  </select>
+              </script>
+          </div>
+      </div>
+
       <div class="layui-form-item">
           <label class="layui-form-label">主题</label>
           <div class="layui-input-inline" style="width: 400px;">
@@ -70,7 +89,7 @@
     <div class="layui-form-item">
        <script type="text/html" template>
          <textarea class="layui-textarea" id="blogcontent" style="display: none">
-          {{ d.params.articleContent === '' ? '' : d.params.articleContent}}
+          {{ d.params.articleContent === '' ? '' : d.params.articleContent || '' }}
          </textarea>
        </script>
     </div>
@@ -86,12 +105,11 @@
   </div>
 
   <script>
-    layui.use(['jquery', 'form', 'admin','setter','layedit'], function(){
-      var $ = layui.jquery
-      ,authtree = layui.authtree
-      ,form = layui.form
-      ,admin = layui.admin
-      ,setter = layui.setter
-      ,layedit = layui.layedit;
-    });
+      layui.data.done = function(d){
+          layui.use(['jquery', 'form', 'admin','setter','layedit'], function(){
+              var $ = layui.jquery
+                  ,form = layui.form
+              form.render()
+          });
+      }
   </script>

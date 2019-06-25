@@ -55,18 +55,15 @@
     </div>
     <!--卡片－表格信息-->
     <div class="layui-tab layui-tab-brief" lay-filter="pcdorstencil_tab" id="orderReview_card">
-        <ul class="layui-tab-title">
-            <!-- <li class="layui-this" id="pcborders-li">BlogAndFeedback</li> -->
-             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 5px;">                  
-                <button class="layui-btn" data-type="blog_add">新增Blog</button>
-            </div>
-            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 0px;">
-                <button class="layui-btn layui-btn-primary layui-btn-sm"  id="outgoingQuote-operation">隐藏操作栏</button>
-            </div>
-        </ul>
         <div class="layui-tab-content">
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
+                <script type="text/html" id="toolbarBlog">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+                        <!--<button class="layui-btn layui-btn-primary layui-btn-sm"  id="outgoingQuote-operation">隐藏操作栏</button>-->
+                    </div>
+                </script>
                 <table class="layui-table" id="article_Table_blog" lay-filter="article_Table_blog"></table>
                
                 <script type="text/html" id="Tabtb-article-management-option">

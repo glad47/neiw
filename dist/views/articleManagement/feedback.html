@@ -65,7 +65,12 @@
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
                 <table class="layui-table" id="article_Table_feedback" lay-filter="article_Table_feedback"></table>
-               
+
+                <script type="text/html" id="toolbarFeedback">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+                    </div>
+                </script>
                 <script type="text/html" id="Tabtb-feedback-management-option">
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("am:feedback:update") != -1){ }}
                     <a class="layui-btn layui-btn-xs" lay-event="edit" id="feedback_edit">审核</a>
