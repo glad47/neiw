@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/article_feedback.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/article_feedback.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/articleManagement/feedbackfrom.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/articleManagement/feedbackfrom.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -46,13 +47,13 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.60292524">
+    <splitter split-orientation="horizontal" split-proportion="0.7611051">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="feedback.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/articleManagement/feedback.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="415">
+                <state relative-caret-position="1224">
                   <caret line="72" column="25" selection-start-line="68" selection-start-column="16" selection-end-line="72" selection-end-column="25" />
                 </state>
               </provider>
@@ -61,8 +62,8 @@
           <file leaf-file-name="article_feedback.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/controller/article_feedback.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="7" column="76" lean-forward="true" selection-start-line="7" selection-start-column="76" selection-end-line="7" selection-end-column="76" />
+                <state relative-caret-position="368">
+                  <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
@@ -70,8 +71,8 @@
           <file leaf-file-name="feedbackfrom.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/articleManagement/feedbackfrom.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="70" selection-start-column="70" selection-end-column="70" />
+                <state relative-caret-position="579">
+                  <caret line="88" column="81" lean-forward="true" selection-start-line="88" selection-start-column="81" selection-end-line="88" selection-end-column="81" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                   </folding>
@@ -82,11 +83,11 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="blog.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/articleManagement/blog.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="278">
+                <state relative-caret-position="1088">
                   <caret line="64" column="26" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="26" />
                 </state>
               </provider>
@@ -95,7 +96,7 @@
           <file leaf-file-name="article_blog.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/controller/article_blog.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="469">
+                <state relative-caret-position="2771">
                   <caret line="163" column="75" selection-start-line="163" selection-start-column="64" selection-end-line="163" selection-end-column="75" />
                 </state>
               </provider>
@@ -104,8 +105,8 @@
           <file leaf-file-name="blogformadd.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/articleManagement/blogformadd.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="236">
-                  <caret line="53" column="12" lean-forward="true" selection-start-line="53" selection-start-column="12" selection-end-line="53" selection-end-column="12" />
+                <state relative-caret-position="901">
+                  <caret line="53" column="12" selection-start-line="53" selection-start-column="12" selection-end-line="53" selection-end-column="12" />
                 </state>
               </provider>
             </entry>
@@ -113,8 +114,8 @@
           <file leaf-file-name="quote.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="189">
-                  <caret line="1010" column="19" lean-forward="true" selection-start-line="1010" selection-start-column="19" selection-end-line="1010" selection-end-column="19" />
+                <state relative-caret-position="17170">
+                  <caret line="1010" column="19" selection-start-line="1010" selection-start-column="19" selection-end-line="1010" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
@@ -122,8 +123,8 @@
           <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
-                  <caret line="1" column="70" lean-forward="true" selection-start-line="1" selection-end-line="1" selection-end-column="70" />
+                <state relative-caret-position="544">
+                  <caret line="32" column="54" lean-forward="true" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
                 </state>
               </provider>
             </entry>
@@ -144,7 +145,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>FPC</find>
       <find>客户</find>
       <find>filter</find>
       <find>已支付</find>
@@ -174,6 +174,7 @@
       <find>test-table-operate-btn</find>
       <find>formSelects</find>
       <find>toolbarFeedback</find>
+      <find>feedbackf</find>
     </findStrings>
     <replaceStrings>
       <replace>surfaceFinish</replace>
@@ -318,19 +319,19 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/views/infoManagement/customer_info.html" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/controller" />
-      <recent name="$PROJECT_DIR$/src/lib/extend" />
-      <recent name="$PROJECT_DIR$/src/style" />
-      <recent name="$PROJECT_DIR$/src/style/res/template" />
-      <recent name="$PROJECT_DIR$/src/style/res" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/views/marketManagement/iframeWindow" />
       <recent name="$PROJECT_DIR$/src/lib/extend" />
       <recent name="$PROJECT_DIR$/src/views/sqeManagement/iframeWindow" />
       <recent name="$PROJECT_DIR$/src/controller" />
       <recent name="$PROJECT_DIR$/src/views/marketManagement" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/controller" />
+      <recent name="$PROJECT_DIR$/src/lib/extend" />
+      <recent name="$PROJECT_DIR$/src/style" />
+      <recent name="$PROJECT_DIR$/src/style/res/template" />
+      <recent name="$PROJECT_DIR$/src/style/res" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -554,21 +555,8 @@
       <workItem from="1561012816110" duration="8119000" />
       <workItem from="1561079916908" duration="1914000" />
       <workItem from="1561102078226" duration="7698000" />
-      <workItem from="1561444337785" duration="7159000" />
-    </task>
-    <task id="LOCAL-00221" summary="计划协同当前工序完成">
-      <created>1559122365547</created>
-      <option name="number" value="00221" />
-      <option name="presentableId" value="LOCAL-00221" />
-      <option name="project" value="LOCAL" />
-      <updated>1559122365548</updated>
-    </task>
-    <task id="LOCAL-00222" summary="合同备注bug解决">
-      <created>1559123199629</created>
-      <option name="number" value="00222" />
-      <option name="presentableId" value="LOCAL-00222" />
-      <option name="project" value="LOCAL" />
-      <updated>1559123199629</updated>
+      <workItem from="1561444337785" duration="8786000" />
+      <workItem from="1561516886732" duration="2597000" />
     </task>
     <task id="LOCAL-00223" summary="网上订单文件呢下载bug解决">
       <created>1559201948698</created>
@@ -899,11 +887,25 @@
       <option name="project" value="LOCAL" />
       <updated>1561452711659</updated>
     </task>
-    <option name="localTasksCounter" value="270" />
+    <task id="LOCAL-00270" summary="formselect 反馈">
+      <created>1561456839163</created>
+      <option name="number" value="00270" />
+      <option name="presentableId" value="LOCAL-00270" />
+      <option name="project" value="LOCAL" />
+      <updated>1561456839164</updated>
+    </task>
+    <task id="LOCAL-00271" summary="1">
+      <created>1561456875433</created>
+      <option name="number" value="00271" />
+      <option name="presentableId" value="LOCAL-00271" />
+      <option name="project" value="LOCAL" />
+      <updated>1561456875433</updated>
+    </task>
+    <option name="localTasksCounter" value="272" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2364756000" />
+    <option name="totallyTimeSpent" value="2368980000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -922,11 +924,10 @@
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49349946" weight="0.26145834" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50921535" side_tool="true" weight="0.36119404" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.37711442" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.38229167" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" weight="0.396875" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" weight="0.5364583" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39972714" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -936,24 +937,25 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.37711442" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11848341" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.25671643" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.29751244" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.25416666" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49836424" weight="0.20597015" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50353837" side_tool="true" weight="0.27462685" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.25416666" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.29751244" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -1000,7 +1002,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="目标样式" />
     <MESSAGE value="内部订单确认支付" />
     <MESSAGE value="pcb订单编辑 测试方式none,表面处理none" />
     <MESSAGE value="系统管理等小菜单的过滤搜索" />
@@ -1023,9 +1024,10 @@
     <MESSAGE value="上个提交的bug" />
     <MESSAGE value="上个提交的bug1" />
     <MESSAGE value="钢网报价协同编辑总价显示" />
-    <MESSAGE value="1" />
     <MESSAGE value="反馈添加" />
-    <option name="LAST_COMMIT_MESSAGE" value="反馈添加" />
+    <MESSAGE value="formselect 反馈" />
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1324,57 +1326,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/articleManagement/feedback.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
+        <state relative-caret-position="1224">
           <caret line="72" column="25" selection-start-line="68" selection-start-column="16" selection-end-line="72" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/articleManagement/blog.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
+        <state relative-caret-position="1088">
           <caret line="64" column="26" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/article_blog.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
+        <state relative-caret-position="2771">
           <caret line="163" column="75" selection-start-line="163" selection-start-column="64" selection-end-line="163" selection-end-column="75" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/articleManagement/blogformadd.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="53" column="12" lean-forward="true" selection-start-line="53" selection-start-column="12" selection-end-line="53" selection-end-column="12" />
+        <state relative-caret-position="901">
+          <caret line="53" column="12" selection-start-line="53" selection-start-column="12" selection-end-line="53" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="1010" column="19" lean-forward="true" selection-start-line="1010" selection-start-column="19" selection-end-line="1010" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/article_feedback.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="76" lean-forward="true" selection-start-line="7" selection-start-column="76" selection-end-line="7" selection-end-column="76" />
+        <state relative-caret-position="17170">
+          <caret line="1010" column="19" selection-start-line="1010" selection-start-column="19" selection-end-line="1010" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="70" lean-forward="true" selection-start-line="1" selection-end-line="1" selection-end-column="70" />
+        <state relative-caret-position="544">
+          <caret line="32" column="54" lean-forward="true" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/article_feedback.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/articleManagement/feedbackfrom.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="70" selection-start-column="70" selection-end-column="70" />
+        <state relative-caret-position="579">
+          <caret line="88" column="81" lean-forward="true" selection-start-line="88" selection-start-column="81" selection-end-line="88" selection-end-column="81" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>

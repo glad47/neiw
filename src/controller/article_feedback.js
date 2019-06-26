@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], function(exports){
+layui.define(['admin', 'table', 'index','element','form','laydate','layedit', 'formSelects'], function(exports){
     var table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -14,6 +14,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
         ,setter = layui.setter
         ,element = layui.element
         ,layedit = layui.layedit
+        ,formSelects = layui.formSelects
         ,$ = layui.jquery;
 
     // layerdate.render({
@@ -88,6 +89,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                 id: 'LAY-popup-role-add',
                 success: function (layero, index) {
                     view(this.id).render('articleManagement/feedbackfrom',data).done(function () {
+                        formSelects = layui.formSelects
                         //清空form表单
                         form.render(null,'layuiadmin-app-form-list');
                         layedit.set({
