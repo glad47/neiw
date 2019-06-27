@@ -1516,6 +1516,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             }
             ,success: function (layero, index) {
                 view(this.id).render('marketManagement/iframeWindow/import_pcbInfoForm').done(function () {
+                    formSelects.render()
                     //  监听表单提交
                     form.on('submit(importPCBInfo)', function (data) {
                         admin.req({
