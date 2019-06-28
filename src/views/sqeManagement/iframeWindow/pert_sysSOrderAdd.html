@@ -1,11 +1,15 @@
 <title>添加供应商报价</title>
+<link href="//raw.githack.com/hnzzmsf/layui-formSelects/master/dist/formSelects-v4.css" rel="stylesheet" />
 <div class="layui-fluid">
     <script type="text/html" template lay-done="layui.data.done(d);">
         <form class="layui-form" lay-filter="pert_form">
             <div class="layui-form-item">
                 <label class="layui-form-label">供应商编号</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" type="text" name="supplierNo" value="{{ d.params.pcbInfo.supplierNo || '' }}">
+                    <!--<input class="layui-input" type="text" name="supplierNo" value="{{ d.params.pcbInfo.supplierNo || '' }}">-->
+                    <select name="supplierNo" xm-select="supplierNo" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                        <option value=""></option>
+                    </select>
                 </div>
                 <label class="layui-form-label">单价</label>
                 <div class="layui-input-inline">
@@ -33,7 +37,7 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">cnc磨具费</label>
+                <label class="layui-form-label">cnc模具费</label>
                 <div class="layui-input-inline">
                     <input class="layui-input" type="text" name="toolingFee" value="{{ d.params.pcbInfo.toolingFee || '' }}">
                 </div>
@@ -46,7 +50,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">评审备注</label>
                 <div class="layui-input-inline" style="width: 75%;">
-                    <textarea class="layui-textarea" name="remark" id="" value="{{ d.params.pcbInfo.remark || '' }}">{{d.params.pcbInfo.remark}}</textarea>
+                    <textarea class="layui-textarea" name="remark" id="" value="{{ d.params.pcbInfo.remark || '' }}">{{d.params.pcbInfo.remark || ''}}</textarea>
                 </div>
             </div>
 
@@ -60,14 +64,31 @@
 
 <script>
     layui.data.done = function (d) {
-        layui.use(['setter', 'upload', 'admin', 'index', 'element', 'jquery', 'form'], function () {
+        layui.use(['setter', 'upload', 'admin', 'index', 'element', 'jquery', 'form', 'formSelects'], function () {
             var $ = layui.$,
                 table = layui.table,
                 form = layui.form,
                 admin = layui.admin,
+                setter = layui.setter,
+                formSelects = layui.formSelects,
                 view = layui.view
             var upload = layui.upload;
-            form.render(null, "pert_form");
+            var supplierRes;
+            admin.req({
+                type: 'get',
+                async: false,
+                url: setter.baseUrl+'scm/pcborder/allSupplier',
+                success: function (res) {
+                    supplierRes = res.data;
+                    var $html;
+                    for (var i=0;i<supplierRes.length;i++){
+                        $html += "<option id="+supplierRes[i].id+" value="+supplierRes[i].supplierId+">"+supplierRes[i].supplierId+"</option>"
+                    }
+                    $("select[xm-select='supplierNo']").append($html);
+                    formSelects.render('supplierNo');
+                    form.render();
+                }
+            })
         });
     }
 </script>

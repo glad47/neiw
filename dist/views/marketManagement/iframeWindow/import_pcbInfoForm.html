@@ -5,8 +5,8 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">客户编号</label>
                 <div class="layui-input-inline">
-                    <select name="customerNo" lay-search="" lay-filter="importSelCus">
-                        <option></option>
+                    <select name="customerNo" xm-select="customerNo" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                        <option value=""></option>
                     </select>
                 </div>
             </div>
@@ -14,7 +14,7 @@
                 <label class="layui-form-label">产品型号</label>
                 <div class="layui-input-inline">
                     <!--<input class="layui-input" type="text" name="productNo">-->
-                    <select name="productNo" lay-search="" lay-filter="importSelpn"></select>
+                    <select name="productNo" xm-select="productNo" xm-select-radio  xm-select-search="" xm-select-search-type="dl"></select>
                 </div>
             </div>
             <div class="layui-form-item" style="display: none;">
@@ -28,35 +28,35 @@
 
 <script>
     layui.data.done = function (d) {
-        layui.use(['setter', 'upload', 'admin', 'index', 'element', 'jquery', 'form', 'filePathProcess'], function () {
+        layui.use(['setter', 'upload', 'admin', 'index', 'element', 'jquery', 'form', 'filePathProcess', 'formSelects'], function () {
             var $ = layui.$,
                 table = layui.table,
                 form = layui.form,
                 admin = layui.admin,
                 view = layui.view,
+                formSelects = layui.formSelects,
                 setter = layui.setter;
             var customerNo = $("#pertCustomerNo").text();
             admin.req({
                 type: 'post',
+                async: false,
                 url: setter.baseUrl+'sys/consumer/user/all',
                 success: function (data) {
                     var $html;
                     for (var i=0;i<data.data.length;i++){
-                        if (customerNo == data.data[i].id) {
-                            $html += "<option id="+data.data[i].id+" value="+data.data[i].id+" selected>"+data.data[i].userSystemId+"</option>"
-                        } else {
-                            $html += "<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>"
-                        }
+                        $html += "<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>"
                     }
-                    $("select[name='customerNo']").append($html);
+                    $("select[xm-select='customerNo']").append($html);
                     form.render('select');
+                    formSelects.render('customerNo');
+                    formSelects.value('customerNo',[customerNo]);
                 }
-            })
+            });
             form.render(null, "pert_form");
-            
-            form.on('select(importSelCus)', function (data) {
-                $("select[name='productNo']").empty();
-                var customerNo = data.value;
+
+            layui.formSelects.on('customerNo', function (id, vals, val, isAdd, isDisabled) {
+                $("select[xm-select='productNo']").empty();
+                var customerNo = val.value;
                 admin.req({
                     type: 'post',
                     data: {customerNo: customerNo},
@@ -70,7 +70,8 @@
                                 $html += "<option value="+res.data[i]+">"+res.data[i]+"</option>"
                             }
                         }
-                        $("select[name='productNo']").append($html);
+                        $("select[xm-select='productNo']").append($html);
+                        formSelects.render('productNo');
                         form.render('select');
                     }
                 });

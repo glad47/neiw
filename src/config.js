@@ -85,6 +85,7 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
       'filePathProcess', //文件上传路径处理
       'jsTools', // 小工具集
       'requestInterface', // 复用接口方法
+      'formSelects', // formSelects 下拉增强组件
     ]
 
     //主题配置

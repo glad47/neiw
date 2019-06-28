@@ -30,7 +30,7 @@ layui.define(['admin', 'index'],function (exports) {
         },
 
         /**
-         * 外协合同 获取供应商信息【目前用于要求选框的选中】
+         * 外协合同 获取供应商信息【目前用于要求选框的选中传入供应商的id】
          */
         GetSupplierInfo: function (url) {
             var supplierInfo = new Object();

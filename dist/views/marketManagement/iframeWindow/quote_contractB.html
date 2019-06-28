@@ -178,6 +178,7 @@
         <!--模块三 contract-module-three，表格明细-->
         <div class="contract-module-three layui-col-md12">
             <script type="text/html" template>
+                {{# var Total = 0 }}
                 <table class="contract-module-three-tab">
                     <thead>
                         <th>P/O&File Name</th>
@@ -274,8 +275,18 @@
                         </td>
                         <!--总价格-->
                         <td>{{ item.totalFee }}</td>
+                        {{# Total += parseFloat(item.totalFee)}}
                     </tr>
                     {{#  }); }}
+
+
+                    <tr>
+                        <td colspan="8"></td>
+                        <td>Total:</td>
+                        <td>
+                            {{Total.toFixed(3)}}
+                        </td>
+                    </tr>
 
 
                     <!--<tr>-->
@@ -297,7 +308,7 @@
                     <div class="remark" style="width: 85%;">
                         <span style="position: absolute;">Remark:</span>
                         {{# layui.each(d.params.data, function(index, item){  }}
-                        {{# if(item.remark != null){}}
+                        {{# if(item.remark != null && item.remark.replace(/(^s*)|(s*$)/g, "").length == 0){ }}
                         <a style="margin-left: 80px;color: #1E9FFF;">{{ item.pcbName || item.gerberName }}:</a> {{ item.remark}}<br>
                         {{# }}}
                         {{#  }); }}

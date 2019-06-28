@@ -27,7 +27,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
     table.render({
         elem: '#article_Table_blog'
         ,url: setter.baseUrl+'/article/list'
-        ,toolbar: true
+        ,toolbar: '#toolbarBlog'
         ,cellMinWidth: 80
         ,id:"article_Table_blog"
         ,page: true
@@ -43,18 +43,18 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
         }
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
-            ,{field:'articleName', title: '文章名称', hide: false, align:'center',width: 110}
-            ,{field:'articleTime', title: '发布时间', align:'center', width: 165}
-            ,{field:'articleIp', title: '发布ip', align:'center', width: 165}
-            ,{field:'articleClick', title: '查看人数', align:'center', width: 114}
-            ,{field:'articleLike', title: '点赞数', align:'center', width: 114}
-            ,{field:'articleComment', title: '评论数', align:'center', width: 114}
-            ,{field:'articleClassify', title: '文章分类', align:'center', width: 134}
-            ,{field:'articleType', title: '文章类型', align:'center', width: 114,templet:'#Tabtb-blog-type'}
+            ,{field:'articleName', title: '文章名称', hide: false, align:'center'}
+            ,{field:'articleTime', title: '发布时间', align:'center', width: 176}
+            ,{field:'articleIp', title: '发布ip', align:'center'}
+            ,{field:'articleClick', title: '查看人数', align:'center'}
+            ,{field:'articleLike', title: '点赞数', align:'center'}
+            ,{field:'articleComment', title: '评论数', align:'center'}
+            ,{field:'articleClassify', title: '文章分类', align:'center'}
+            ,{field:'articleType', title: '文章类型', align:'center',templet:'#Tabtb-blog-type'}
             ,{field:'articleUserName', title: '文章发布用户', align:'center', width: 130}
-            ,{field:'articleStatus', title: '文章状态', align:'center', width: 114 ,templet: '#Tabtb-article-management-status'}
+            ,{field:'articleStatus', title: '文章状态', align:'center',templet: '#Tabtb-article-management-status'}
 
-            ,{title: '操作', width: 360, align:'center', fixed: 'right', toolbar: '#Tabtb-article-management-option'}
+            ,{title: '操作', width: 120, align:'center', fixed: 'right', toolbar: '#Tabtb-article-management-option'}
         ]]
         ,done : function (res, curr, count) {
             //手机端
@@ -139,56 +139,64 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
 
     var  active = {
         blog_add: function (othis) {
-            clickTr = {};
-            admin.popup({
-                title: '添加Blog',
-                area: ['750px', '750px'],
-                btn: ['提交', '取消'],
-                yes: function (index, layero) {
-                    $('#layuiadmin-app-form-submit').click();
-                },
-                btn2: function (index, layero) {
-                },
-                end: function () {
-                    clickTr = {};
-                },
-                id: 'LAY-popup-role-add',
-                success: function (layero, index) {
-                    view(this.id).render('articleManagement/blogformadd').done(function () {
-                        //清空form表单
-                        form.render(null,'layuiadmin-app-form-list');
-                        _t_layedit();
-                        var i = layedit.build('blogcontent',{
-                            uploadImage:{
-                                url:setter.imUrl+'file/fileupload'
-                            }
-                        });
-                        //监听提交
-                        form.on('submit(layuiadmin-app-form-submit)', function (data) {
-                            var field = data.field;
-                            console.log(field);
-                            var c = layedit.getContent(i);
-                            console.log(c);
-                            field.articleContent = c;
-                            admin.req({
-                                url: setter.baseUrl + 'article/save',
-                                type: 'POST',
-                                //dataType:'json',
-                                //contentType:'application/json',
-                                data: field,
-                                success: function (data) {
-                                    console.log(data);
-                                    layui.table.reload('article_Table_blog'); //重载表格
-                                    layer.close(index); //执行关闭
-                                }
-                            })
 
-                        });
-                    });
-                }
-            });
         }
     }
+
+    table.on('toolbar(article_Table_blog)', function(obj) {
+        switch (obj.event) {
+            case 'add':
+                clickTr = {};
+                admin.popup({
+                    title: '添加Blog',
+                    area: ['750px', '750px'],
+                    btn: ['提交', '取消'],
+                    yes: function (index, layero) {
+                        $('#layuiadmin-app-form-submit').click();
+                    },
+                    btn2: function (index, layero) {
+                    },
+                    end: function () {
+                        clickTr = {};
+                    },
+                    id: 'LAY-popup-role-add',
+                    success: function (layero, index) {
+                        view(this.id).render('articleManagement/blogformadd').done(function () {
+                            //清空form表单
+                            form.render(null,'layuiadmin-app-form-list');
+                            _t_layedit();
+                            var i = layedit.build('blogcontent',{
+                                uploadImage:{
+                                    url:setter.imUrl+'file/fileupload'
+                                }
+                            });
+                            //监听提交
+                            form.on('submit(layuiadmin-app-form-submit)', function (data) {
+                                var field = data.field;
+                                console.log(field);
+                                var c = layedit.getContent(i);
+                                console.log(c);
+                                field.articleContent = c;
+                                admin.req({
+                                    url: setter.baseUrl + 'article/save',
+                                    type: 'POST',
+                                    //dataType:'json',
+                                    //contentType:'application/json',
+                                    data: field,
+                                    success: function (data) {
+                                        console.log(data);
+                                        layui.table.reload('article_Table_blog'); //重载表格
+                                        layer.close(index); //执行关闭
+                                    }
+                                })
+
+                            });
+                        });
+                    }
+                });
+                break;
+        }
+    });
 
     /**
      * 扩展富文本

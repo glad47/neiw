@@ -37,7 +37,7 @@ input:disabled{background-color: #d4d3d366;cursor: not-allowed;}
 .rig-price-input .layui-input-inline{width:110px;}
 .rig-others.layui-col-md6{width: 47%;}
 form.layui-form.rig-price.quote-type.quote-avtive {
-    margin-top: 30px;
+    margin-top: 0px;
 }
 .top-quote .layui-form-item .layui-input-inline.tqu {width: 55px;}
 .lots-checkbox-group .layui-input-block{width: 520px;}
@@ -217,3 +217,10 @@ form.layui-form.rig-price.quote-type.quote-avtive {
         overflow-x: hidden;
     }
 }
+
+/*formSelect*/
+#selCustomer_container .xm-select-parent .xm-form-select .xm-select-dl {min-width: 128px;}
+#selCustomer_container .xm-select-parent .xm-form-select .xm-select-dl .xm-cz-group{max-width: 60px !important;}
+#selCustomer_container .xm-select-parent .xm-form-select .xm-select-dl .xm-cz-group .xm-cz{max-width: 60px;}
+#selCustomer_container .xm-select-parent .xm-select {border-color: #e6e6e6 !important;border: solid 1px;}
+.xm-select-parent .xm-select {border: none;border-bottom: solid 1px silver;}

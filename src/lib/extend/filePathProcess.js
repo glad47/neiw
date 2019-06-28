@@ -21,16 +21,34 @@ layui.define(function (exports) {
             }
             return filePath;
         },
-        // 网上订单文件上传的路径未处理的，所以增加这个方法
-        dataObj: function (data) {
-            console.log(data)
-            if (data && data.isInternal == '2') {   // 网上订单
-                $.each(data, function (k, v) {
-                    if (k == 'quoteGerberPath') {
-                        data['quoteGerberPath'] = obj.pathProcess(v);
+        // // 网上订单文件上传的路径未处理的，所以增加这个方法
+        // dataObj: function (data) {
+        //     console.log(data)
+        //     if (data && data.isInternal == '2') {   // 网上订单
+        //         console.log('网上订单！！！')
+        //         $.each(data, function (k, v) {
+        //             if (k == 'quoteGerberPath') {
+        //                 if (v != null && v != "") {
+        //                     data['quoteGerberPath'] = obj.pathProcess(v);
+        //                 }
+        //             }
+        //         });
+        //     }
+        //     return data;
+        // },
+        // 网上订单 file ["xxx/xxx/xxx.zip"] 统一格式路径处理
+        isInternal: function (data) {
+            var r = /\[(.+?)\]/g;
+            $.each(data, function (k, v) {
+                if (k == 'gerberPath') {
+                    if (v != null && v != "") {
+                        if (data.isInternal == "2") {
+                            data['gerberPath'] = r.exec(data.gerberPath);
+                            data.gerberPath = data.gerberPath[1];
+                        }
                     }
-                })
-            }
+                }
+            });
             return data;
         }
     }

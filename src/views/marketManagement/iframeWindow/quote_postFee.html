@@ -21,7 +21,9 @@
             </div>
             <lable class="layui-form-label">国家：</lable>
             <div class="layui-input-inline">
-                <select name="quotePostFeeCountry" lay-search lay-filter="quotePostFeeCountry"><option value="" selected></option></select>
+                <select name="quotePostFeeCountry" xm-select="quotePostFeeCountry" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                    <option value=""></option>
+                </select>
             </div>
             <lable class="layui-form-label">运费：</lable>
             <div class="layui-input-inline">
@@ -34,10 +36,11 @@
     </form>
 </div>
 <script>
-    layui.use(['admin', 'form'], function () {
+    layui.use(['admin', 'form', 'formSelects'], function () {
         var $ = layui.jquery,
         form = layui.form,
         admin = layui.admin,
+        formSelects = layui.formSelects,
         setter = layui.setter;
         var postData = {
             courierId: 1,   // 默认为DHL
@@ -91,13 +94,14 @@
                     for (var i=0;i<data.length;i++) {
                         $html += "<option id="+data[i].id+" value="+data[i].id+">"+data[i].name+"</option>"
                     }
-                    $("select[name='quotePostFeeCountry']").append($html);
-                    form.render('select');
+                    $("select[xm-select='quotePostFeeCountry']").append($html);
+                    formSelects.render('quotePostFeeCountry');
+                    layui.formSelects.config('quotePostFeeCountry', {direction: 'down'});
                 }
             });
         }
-        form.on('select(quotePostFeeCountry)', function (data) {
-            postData.countryId = data.value;
+        layui.formSelects.on('quotePostFeeCountry', function (id, vals, val, isAdd, isDisabled) {
+            postData.countryId = val.value;
             getShippingFee();
         });
         

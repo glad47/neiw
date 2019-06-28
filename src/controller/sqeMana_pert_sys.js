@@ -96,45 +96,53 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 break;
             case 'addOffer':
                 var data = checkStatus.data;
-                admin.req({
-                    type: 'post',
-                    url: setter.baseUrl + 'sys/consumer/user/all',
-                    success: function (resCus) {
-                        var resData = {};
-                        var pcbInfo = {supplierNo:'', unitPrice:'',boardFee: '',postFee:'',testCostFee:'',engineeringFee:'',toolingFee:'',overworkFee:''}
-                        resData.cInfo = resCus.data;
-                        resData.pcbInfo = pcbInfo;
-                        admin.popup({
-                            title: '添加供应商报价',
-                            area: ['749px','486px'],
-                            btn: ['保存', '取消'],
-                            yes: function (index, layero) {
-                                $("#pertSysSOrderAddSubmit").click();
-                            }
-                            ,success: function (layero, index) {
-                                view(this.id).render('sqeManagement/iframeWindow/pert_sysSOrderAdd', resData).done(function () {
-                                    form.render();
-                                    form.on('submit(pertSysSOrderAddSubmit)', function (data) {
-                                        var field = data.field;
-                                        field.orderId = _this_id;
-                                        admin.req({
-                                            type: 'post',
-                                            data: field,
-                                            url: setter.baseUrl + 'pert/supplierquote/save',
-                                            success: function () {
-                                                layer.alert('供应商报价添加成功！', function () {
-                                                    table.reload('sqeMana_pertSys');
-                                                    layer.closeAll();
-                                                });
-                                            }
-                                        });
-                                        console.log(field);
-                                    })
-                                });
-                            }
-                        });
-                    }
-                });
+                if (data.length >1) {
+                    layer.msg('最多只能选择一条数据！')
+                } else if (data.length === 0) {
+                    layer.msg('请选择一条数据！')
+                } else {
+                    var _this_id = data[0].id;
+                    console.log('this_id:'+_this_id);
+                    admin.req({
+                        type: 'post',
+                        url: setter.baseUrl + 'sys/consumer/user/all',
+                        success: function (resCus) {
+                            var resData = {};
+                            var pcbInfo = {supplierNo:'', unitPrice:'',boardFee: '',postFee:'',testCostFee:'',engineeringFee:'',toolingFee:'',overworkFee:''}
+                            resData.cInfo = resCus.data;
+                            resData.pcbInfo = pcbInfo;
+                            admin.popup({
+                                title: '添加供应商报价',
+                                area: ['749px','486px'],
+                                btn: ['保存', '取消'],
+                                yes: function (index, layero) {
+                                    $("#pertSysSOrderAddSubmit").click();
+                                }
+                                ,success: function (layero, index) {
+                                    view(this.id).render('sqeManagement/iframeWindow/pert_sysSOrderAdd', resData).done(function () {
+                                        form.render();
+                                        form.on('submit(pertSysSOrderAddSubmit)', function (data) {
+                                            var field = data.field;
+                                            field.orderId = _this_id;
+                                            admin.req({
+                                                type: 'post',
+                                                data: field,
+                                                url: setter.baseUrl + 'pert/supplierquote/save',
+                                                success: function () {
+                                                    layer.alert('供应商报价添加成功！', function () {
+                                                        table.reload('sqeMana_pertSys');
+                                                        layer.closeAll();
+                                                    });
+                                                }
+                                            });
+                                            console.log(field);
+                                        })
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
                 break;
         }
     });

@@ -1,4 +1,4 @@
-
+<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
   <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list"style="padding: 20px 30px 0 0;">
     <div class="layui-form-item">
       <label class="layui-form-label">文章标题</label>
@@ -29,6 +29,23 @@
             <input type="checkbox" name="articleKing" lay-skin="primary" title="置顶" {{ d.params.articleKing == '1' ? 'checked' : '' }} style="margin-left: 100px;">
         </div>
     </div>
+
+      <div class="layui-form-item">
+          <label class="layui-form-label">发布用户</label>
+          <div class="layui-input-inline" style="width: 400px;">
+              <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/consumer/user/all" lay-done="layui.data.done(d);">
+                  <select name="articleUserId" id="articleUserId" xm-select="articleUserId" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                      {{#  layui.each(d.data, function(index, item){ }}
+                      <option value="{{ item.id || ''}}">{{ item.id }}</option>
+                      {{#  }); }}
+                      {{#  if(d.data.length === 0){ }}
+                      无数据
+                      {{#  } }}
+                  </select>
+              </script>
+          </div>
+      </div>
+
       <div class="layui-form-item">
           <label class="layui-form-label">主题</label>
           <div class="layui-input-inline" style="width: 400px;">
@@ -60,9 +77,9 @@
       <div class="layui-input-inline">
         <script type="text/html" template>
            <select name="articleStatus" lay-filter="orderReview-search-select">
-              <option value="" {{ d.params.articleStatus === '' ? 'selected' : '' }}>请选择</option>
-              <option value="1" {{ d.params.articleStatus === '1' ? 'selected' : '' }}>否</option>
-              <option value="2" {{ d.params.articleStatus === '2' ? 'selected' : '' }}>是</option>
+              <option value="" {{ d.params.articleStatus == '' ? 'selected' : '' }}>请选择</option>
+              <option value="1" {{ d.params.articleStatus == '1' ? 'selected' : '' }}>否</option>
+              <option value="2" {{ d.params.articleStatus == '2' ? 'selected' : '' }}>是</option>
           </select>
         </script>
       </div>
@@ -70,7 +87,7 @@
     <div class="layui-form-item">
        <script type="text/html" template>
          <textarea class="layui-textarea" id="blogcontent" style="display: none">
-          {{ d.params.articleContent === '' ? '' : d.params.articleContent}}
+          {{ d.params.articleContent === '' ? '' : d.params.articleContent || '' }}
          </textarea>
        </script>
     </div>
@@ -86,12 +103,15 @@
   </div>
 
   <script>
-    layui.use(['jquery', 'form', 'admin','setter','layedit'], function(){
-      var $ = layui.jquery
-      ,authtree = layui.authtree
-      ,form = layui.form
-      ,admin = layui.admin
-      ,setter = layui.setter
-      ,layedit = layui.layedit;
-    });
+      layui.data.done = function(d){
+          var articleUserId = d.params.articleUserId;
+          layui.use(['jquery', 'form', 'admin','setter','layedit', 'formSelects'], function(){
+              var $ = layui.jquery
+                  ,form = layui.form
+                  ,formSelects = layui.formSelects
+              formSelects.render('articleUserId');
+              formSelects.value('articleUserId',[articleUserId]);   // 默认选中
+              form.render()
+          });
+      }
   </script>

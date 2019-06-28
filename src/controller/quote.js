@@ -3,7 +3,7 @@
  * _def_disableIn 默认值
  **/
 
-layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], function (exports) {
+layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'formSelects'], function (exports) {
     var $ = layui.jquery
         ,view = layui.view
         ,form = layui.form
@@ -11,6 +11,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         ,element = layui.element
         ,setter = layui.setter
         ,upload = layui.upload
+        ,formSelects = layui.formSelects
         ,jstools = layui.jsTools
         ,layer = layui.layer;
     element.render();
@@ -109,7 +110,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         gerberPath: '',
         pcbName: '',     //客户型号
         orderNo: '',    //客户订单编号
-        countries: 'Afghanistan'     //国家  默认Afghanistan
+        countries: 'Afghanistan',     //国家  默认Afghanistan
+        exchangeId: 1      // 币种  默认为 => 美元
         // pcbCost: '',
     };
     var pcb_rigdetaily = {};
@@ -165,6 +167,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
     _defkbsy_selOptions();           // kb/sy/yg
     _kbsy_linkage("kb");            // kb/sy/yg联动 默认kb
     getMerchandiser();              //获取客户信息
+    getExchangerate();              // 获取币种信息
 
     /**
      * 顶部计算模块
@@ -476,8 +479,19 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
     });
 
     //监听==>选择快递
-    form.on("select(company)",function (data) {
-        post_data.companyId = $(data.elem).find("option:selected").attr("value");
+    // form.on("select(company)",function (data) {
+    //     post_data.companyId = $(data.elem).find("option:selected").attr("value");
+    //     var courierId = post_data.companyId;
+    //     var countryId = post_data.countrysId;
+    //     getShippingCost(courierId,countryId);
+    //     getShippingCost();
+    // });
+
+    // formSelect 监听==>选择快递
+    layui.formSelects.on('selCompany', function (id, vals, val, isAdd, isDisabled) {
+        var $thisName = val.name;
+        var $thisID = val.value;
+        post_data.companyId = $thisID;
         var courierId = post_data.companyId;
         var countryId = post_data.countrysId;
         getShippingCost(courierId,countryId);
@@ -485,8 +499,22 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
     });
 
     //监听==>选择国家
-    form.on("select(countrys)",function (data) {
-        post_data.countrysId = $(data.elem).find("option:selected").attr("value");
+    // form.on("select(countrys)",function (data) {
+    //     post_data.countrysId = $(data.elem).find("option:selected").attr("value");
+    //     pcb_container.countries = post_data.countrysId;     // 国家
+    //     if (post_data.bordType === 2){
+    //         quoteSMTStencilFuc();
+    //     }
+    //     var courierId = post_data.companyId;
+    //     var countryId = post_data.countrysId;
+    //     getShippingCost(courierId,countryId);
+    // });
+
+    // formSelect 监听==>选择国家
+    layui.formSelects.on('selCountrys', function (id, vals, val, isAdd, isDisabled) {
+        var $thisName = val.name;
+        var $thisID = val.value;
+        post_data.countrysId = $thisID;
         pcb_container.countries = post_data.countrysId;     // 国家
         if (post_data.bordType === 2){
             quoteSMTStencilFuc();
@@ -494,26 +522,38 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         var courierId = post_data.companyId;
         var countryId = post_data.countrysId;
         getShippingCost(courierId,countryId);
-    });
 
+    });
     //监听 ==>选择客户
-    form.on('select(filterCustomer)',function (data) {
-        // $("#inCustomer").val($(data.elem).find("option:selected").text());
-        var dv = $(data.elem).find("option:selected").text();
-        $("#orderPN").val('');  //重新选择客户的时候，内部型号清空
-        public_data.customerAid = data.value;
-        pcb_container.userId = saveSMTStencil.userId = data.value;
-        saveSMTStencil.customerSysName = dv;
-        $("#customerId").val(data.value);
-        $("input[name='customerSysName']").val($(data.elem).find("option:selected").text());
-        form.render('');
+    // form.on('select(filterCustomer)',function (data) {
+    //     // $("#inCustomer").val($(data.elem).find("option:selected").text());
+    //     var dv = $(data.elem).find("option:selected").text();
+    //     layer.msg(dv)
+    //     $("#orderPN").val('');  //重新选择客户的时候，内部型号清空
+    //     public_data.customerAid = data.value;
+    //     pcb_container.userId = saveSMTStencil.userId = data.value;
+    //     saveSMTStencil.customerSysName = dv;
+    //     $("#customerId").val(data.value);
+    //     layer.msg(data.value)
+    //     $("input[name='customerSysName']").val($(data.elem).find("option:selected").text());
+    //     form.render('');
+    // });
+
+    // formSelect 监听==>选择客户
+    layui.formSelects.on('selCustomer', function (id, vals, val, isAdd, isDisabled) {
+        var $thisName = val.name;
+        var $thisID = val.value;
+        public_data.customerAid = $thisID;
+        pcb_container.userId = saveSMTStencil.userId = $thisID;
+        saveSMTStencil.customerSysName = $thisName;
+        $("#customerId").val($thisID);
+        $("input[name='customerSysName']").val($thisName);
     });
 
     //监听   ==>选择订单类型（新单/返单/返单有效）
     form.on('select(filterOrderType)', function (data) {
         pcb_container.orderType = saveSMTStencil.orderType = data.value;
     });
-
 
 
     $("#postFees").bind("input propertychange", function (even) {
@@ -827,6 +867,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         data.orderNo = $("#orderNo").val();//客户PO号
         pcb_container.orderNo = data.orderNo;
         data.pcbName = pcb_container.pcbName;
+        data.exchangeId = pcb_container.exchangeId; // 币种
         if (topRadioType===2){
             if (data.panelWayX == null || data.panelWayX == "" || data.panelWayY == null || data.panelWayY == "") {
                 layer.tips('请输入拼版方式 !', '#panelWayX', {
@@ -970,19 +1011,21 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         } else if (post_data.bordType === 3) {
             SelectId ='selCompany';
         }
-        console.log("SelectId:"+SelectId);
         admin.req({
             type: 'post',
             url: setter.imUrl+'quote/getCouriers',
             async: false,
             success: function (data) {
                 $("select[id='"+SelectId+"'] option").remove();
+                formSelects.render(SelectId)
                 post_data.companyId = data.data[0].id;
                 for (var i=0;i<data.data.length;i++){
-                    $("#"+SelectId+"").append("<option value="+data.data[i].id+">"+data.data[i].courierName+"</option>");
+                    $("select[xm-select='"+SelectId+"']").append("<option value="+data.data[i].id+">"+data.data[i].courierName+"</option>");
                     def_expressCountry.courierId = data.data[0].id;  //默认选中 快递id赋值
                     post_data.companyId = def_expressCountry.courierId;
                 }
+                formSelects.render(SelectId);
+                formSelects.value(SelectId, [data.data[0].id]);
                 form.render('select');
             },
             error: function () {
@@ -1005,6 +1048,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
             SelectId ='selCountryss';
         }
         $("select[id='"+SelectId+"'] option").remove();
+        formSelects.render(SelectId)
         form.render();
         admin.req({
             type: 'post',
@@ -1013,11 +1057,13 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
             success: function (data) {
                 post_data.countrysId = data.data[0].id;
                 for (var i=0;i<data.data.length;i++){
-                    $("#"+SelectId).append("<option value="+data.data[i].id+">"+data.data[i].name+"</option>");
+                    $("select[xm-select='"+SelectId+"']").append("<option value="+data.data[i].id+">"+data.data[i].name+"</option>");
                     def_expressCountry.countryId = data.data[0].id; //默认选中 国家id
                     post_data.countrysId = def_expressCountry.countryId;
                 }
                 form.render();
+                formSelects.render(SelectId);
+                formSelects.value(SelectId, [data.data[0].id]);
             },
             error: function () {
                 layer.msg("Get Countrys Fail!!!");
@@ -1044,7 +1090,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
         admin.req({
             type: 'post',
             url: setter.imUrl+'quote/getShippingCost',
-            data: {courierId:courierId,countryId:countryId,totalWeight:this_weight},
+            data: {courierId:courierId,countryId:countryId,totalWeight:this_weight,exchangeId:pcb_container},
             success: function (data) {
                 if (data.data != null && post_data.bordType === 1){
                     // 给pcb明细容器赋值
@@ -1077,14 +1123,37 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
             url: setter.baseUrl+'sys/consumer/user/all',
             success: function (data) {
                 for (var i=0;i<data.data.length;i++){
-                    $("#selCustomer").append("<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>");
+                    $("select[xm-select='selCustomer']").append("<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>");
                 }
+                formSelects.render('selCustomer');
                 form.render('select');
             }
         })
-
     }
 
+    /**
+     * 查询所有汇率
+     */
+    function getExchangerate() {
+        admin.req({
+            type: 'post',
+            url: setter.baseUrl+'market/exchangerate/all',
+            success: function (res) {
+                var $html;
+                for (var i=0;i<res.data.length;i++){
+                    $html += "<option id="+res.data[i].id+" value="+res.data[i].id+">"+res.data[i].currency+"</option>"
+                }
+                $("select[xm-select='exchangeId']").append($html);
+                form.render('select');
+                formSelects.render('exchangeId');
+                formSelects.value('exchangeId',[res.data[0].id]);
+            }
+        });
+    }
+    // 监听选择汇率
+    layui.formSelects.on('exchangeId', function (id, vals, val, isAdd, isDisabled) {
+        pcb_container.exchangeId = val.value;
+    });
     /**
      * Stencil 订单弹出页面
      * @type {{addCustomer: addCustomer}}
@@ -1474,6 +1543,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools'], fu
             }
             ,success: function (layero, index) {
                 view(this.id).render('marketManagement/iframeWindow/import_pcbInfoForm').done(function () {
+                    formSelects.render()
                     //  监听表单提交
                     form.on('submit(importPCBInfo)', function (data) {
                         admin.req({
