@@ -252,7 +252,7 @@
                         {{#
                         if(d.params.bevellingCamfer == '1'){
                         d.params.bevellingCamfer = '是';
-                            } else {
+                            } else if(d.params.bevellingCamfer == '0') {
                         d.params.bevellingCamfer = '否';
                         }
                         }}

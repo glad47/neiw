@@ -5,7 +5,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">客户编号</label>
                 <div class="layui-input-inline">
-                    <select name="userId" lay-search="" lay-filter="importSelCus">
+                    <select name="userId" xm-select="userId" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
                         <option></option>
                     </select>
                 </div>
@@ -14,7 +14,8 @@
                 <label class="layui-form-label">产品型号</label>
                 <div class="layui-input-inline">
                     <!--<input class="layui-input" type="text" name="productNo">-->
-                    <select name="productNo" lay-search="" lay-filter="importSelpn"></select>
+                    <select name="productNo" xm-select="productNo" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                    </select>
                 </div>
             </div>
             <div class="layui-form-item" style="display: none;">
@@ -28,12 +29,13 @@
 
 <script>
     layui.data.done = function (d) {
-        layui.use(['setter', 'upload', 'admin', 'index', 'element', 'jquery', 'form', 'filePathProcess'], function () {
+        layui.use(['setter', 'upload', 'admin', 'index', 'element', 'jquery', 'form', 'filePathProcess', 'formSelects'], function () {
             var $ = layui.$,
                 table = layui.table,
                 form = layui.form,
                 admin = layui.admin,
                 view = layui.view,
+                formSelects = layui.formSelects,
                 setter = layui.setter;
             var customerNo = $("#pertCustomerNo").text();
             var _obj = {
@@ -52,16 +54,17 @@
                             $html += "<option id="+data.data[i].id+" value="+data.data[i].id+">"+data.data[i].userSystemId+"</option>"
                         }
                     }
-                    $("select[name='userId']").append($html);
-                    form.render('select');
+                    $("select[xm-select='userId']").append($html);
+                    formSelects.render('userId');
+                    formSelects.render('productNo');
                 }
             })
             form.render(null, "pert_form");
 
-            form.on('select(importSelCus)', function (data) {
+            layui.formSelects.on('userId', function (id, vals, val, isAdd, isDisabled) {
                 admin.req({
                     type: 'post',
-                    data: {"userId":data.value},
+                    data: {"userId":val.value},
                     async: false,
                     url: setter.baseUrl + 'epc/pcborder/findAllProductNo',   // 查询客户所有产品号
                     success: function (res) {
@@ -73,8 +76,11 @@
                                 $html += "<option value="+res.data[i]+">"+res.data[i]+"</option>"
                             }
                         }
-                        $("select[name='productNo']").append($html);
-                        form.render('select');
+                        $("select[xm-select='productNo']").append($html);
+                        formSelects.render('productNo');
+                        if (res.data.length>0) {
+                            formSelects.value('productNo',[res.data[0]]);
+                        }
                     }
                 });
 

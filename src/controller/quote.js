@@ -1535,7 +1535,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     $(".importPcbInfo>.importOrder").on('click', function () {
         admin.popup({
             title: '导入pcb订单信息'
-            ,area: ['506px','288px']
+            ,area: ['506px','506px']
             ,btn: ['导入', '取消']
             ,yes: function (layero, index) {
                 $("#importPCBInfo").click();
@@ -1572,7 +1572,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     $(".importPcbInfo>.importReOrder").on('click', function () {
         admin.popup({
             title: '导入返单信息'
-            ,area: ['506px','288px']
+            ,area: ['506px','506px']
             ,btn: ['导入', '取消']
             ,id: 'popupImportReOrder'
             ,yes: function (layero, index) {
