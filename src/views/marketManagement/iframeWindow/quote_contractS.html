@@ -176,7 +176,15 @@
                     <th>QTY</th>
                     <th>Price</th>
                     <th>Post Fee</th>
-                    <th>Amount(USD)</th>
+                    <th>Amount(
+                        {{# if(d.params.data[0].exchangeId == '1'){ }}
+                        USD
+                        {{# }else if(d.params.data[0].exchangeId == '2'){ }}
+                        CNY
+                        {{# }else if(d.params.data[0].exchangeId == '3') }}
+                        EUR
+                        {{# } }}
+                        )</th>
                     </thead>
                     <tbody>
                     {{#}}
@@ -259,7 +267,15 @@
         <div class="contract-module-four layui-col-md12">
             <div class="contract-module-four-lef layui-col-md6">
                 <ul>
-                    <li>1. This above quoted is based on USD;</li>
+                    <li>1. This above quoted is based on
+                        {{# if(d.params.data[0].exchangeId == '1'){ }}
+                        USD
+                        {{# }else if(d.params.data[0].exchangeId == '2'){ }}
+                        CNY
+                        {{# }else if(d.params.data[0].exchangeId == '3') }}
+                        EUR
+                        {{# } }}
+                        ;</li>
                     <li>2. Valid of 30 days upon issued date;</li>
                     <li>3. Payment terms: TT in advance;</li>
                     <li>4. shipment terms: DHL BY AIR;</li>
