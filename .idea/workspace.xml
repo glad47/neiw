@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/market_insideNoPayment.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/market_insideNoPayment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/quote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/style/inside-quote.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/style/inside-quote.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_postFee.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_postFee.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/inside_quote.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/inside_quote.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/market_insideNoPayment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/market_insideNoPayment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/quote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/style/inside-quote.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/style/inside-quote.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_postFee.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_postFee.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" afterDir="false" />
-    </list>
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -68,8 +56,8 @@
       <file leaf-file-name="market_insideNoPayment.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controller/market_insideNoPayment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="269" column="39" lean-forward="true" selection-start-line="269" selection-start-column="39" selection-end-line="269" selection-end-column="39" />
+            <state relative-caret-position="344">
+              <caret line="264" column="51" lean-forward="true" selection-start-line="264" selection-start-column="51" selection-end-line="264" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -240,8 +228,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="40" />
+    <option name="x" value="64" />
+    <option name="y" value="26" />
     <option name="width" value="1867" />
     <option name="height" value="1057" />
   </component>
@@ -517,14 +505,7 @@
       <workItem from="1561534984806" duration="593000" />
       <workItem from="1561537137258" duration="5463000" />
       <workItem from="1561598574494" duration="7106000" />
-      <workItem from="1561626314377" duration="1031000" />
-    </task>
-    <task id="LOCAL-00225" summary="1、更新layui 2.50&#10;2、文档28">
-      <created>1559305679773</created>
-      <option name="number" value="00225" />
-      <option name="presentableId" value="LOCAL-00225" />
-      <option name="project" value="LOCAL" />
-      <updated>1559305679774</updated>
+      <workItem from="1561626314377" duration="1747000" />
     </task>
     <task id="LOCAL-00226" summary="1">
       <created>1559533731463</created>
@@ -862,11 +843,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561598695331</updated>
     </task>
-    <option name="localTasksCounter" value="274" />
+    <task id="LOCAL-00274" summary="报价页面币种选择">
+      <created>1561627554565</created>
+      <option name="number" value="00274" />
+      <option name="presentableId" value="LOCAL-00274" />
+      <option name="project" value="LOCAL" />
+      <updated>1561627554566</updated>
+    </task>
+    <option name="localTasksCounter" value="275" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2384733000" />
+    <option name="totallyTimeSpent" value="2385449000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -878,8 +866,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="40" width="1867" height="1057" extended-state="0" />
-    <editor active="true" />
+    <frame x="208" y="94" width="1867" height="1057" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18959913" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49349946" weight="0.26145834" />
@@ -963,7 +950,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="系统管理等小菜单的过滤搜索" />
     <MESSAGE value="工具管理型号显示不全" />
     <MESSAGE value="2" />
     <MESSAGE value="内部/网上订单 已支付详情" />
@@ -988,7 +974,8 @@
     <MESSAGE value="1" />
     <MESSAGE value="修改反馈下拉回显bug解决" />
     <MESSAGE value="导入订单下拉formSelect" />
-    <option name="LAST_COMMIT_MESSAGE" value="导入订单下拉formSelect" />
+    <MESSAGE value="报价页面币种选择" />
+    <option name="LAST_COMMIT_MESSAGE" value="报价页面币种选择" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1340,8 +1327,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/market_insideNoPayment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="269" column="39" lean-forward="true" selection-start-line="269" selection-start-column="39" selection-end-line="269" selection-end-column="39" />
+        <state relative-caret-position="344">
+          <caret line="264" column="51" lean-forward="true" selection-start-line="264" selection-start-column="51" selection-end-line="264" selection-end-column="51" />
         </state>
       </provider>
     </entry>
