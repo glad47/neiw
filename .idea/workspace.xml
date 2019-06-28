@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractS.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -70,26 +68,35 @@
       <file leaf-file-name="quote_contractB.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="195" column="30" selection-start-line="195" selection-start-column="28" selection-end-line="195" selection-end-column="30" />
+            <state relative-caret-position="625">
+              <caret line="366" column="21" lean-forward="true" selection-start-line="366" selection-start-column="12" selection-end-line="366" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quote_contractS.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="quote_contractS.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractS.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="276" column="32" selection-start-line="276" selection-start-column="32" selection-end-line="276" selection-end-column="32" />
+            <state relative-caret-position="508">
+              <caret line="299" column="38" lean-forward="true" selection-start-line="299" selection-start-column="38" selection-end-line="299" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quote_contractA.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="outs_contract.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/outs_contract.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1207">
+              <caret line="71" column="50" selection-start-line="71" selection-start-column="50" selection-end-line="71" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="quote_contractA.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="394" column="30" lean-forward="true" selection-start-line="394" selection-start-column="30" selection-end-line="394" selection-end-column="30" />
+            <state relative-caret-position="219">
+              <caret line="354" column="65" selection-start-line="354" selection-start-column="63" selection-end-line="354" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -108,8 +115,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>test-table-operate-btn</find>
-      <find>toolbarFeedback</find>
       <find>feedbackf</find>
       <find>xm</find>
       <find>ormSelects.render</find>
@@ -137,6 +142,8 @@
       <find>customerId</find>
       <find>导入</find>
       <find>内部合同</find>
+      <find>exchan</find>
+      <find>USD</find>
       <find>US</find>
     </findStrings>
     <replaceStrings>
@@ -240,8 +247,8 @@
         <option value="$PROJECT_DIR$/src/controller/quote.js" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoForm.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractS.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractS.html" />
       </list>
     </option>
   </component>
@@ -565,21 +572,7 @@
       <workItem from="1561598574494" duration="7106000" />
       <workItem from="1561626314377" duration="1747000" />
       <workItem from="1561690497001" duration="7536000" />
-      <workItem from="1561723723458" duration="553000" />
-    </task>
-    <task id="LOCAL-00232" summary="工程管理-工具管理">
-      <created>1559734027410</created>
-      <option name="number" value="00232" />
-      <option name="presentableId" value="LOCAL-00232" />
-      <option name="project" value="LOCAL" />
-      <updated>1559734027410</updated>
-    </task>
-    <task id="LOCAL-00233" summary="目标样式">
-      <created>1559820584441</created>
-      <option name="number" value="00233" />
-      <option name="presentableId" value="LOCAL-00233" />
-      <option name="project" value="LOCAL" />
-      <updated>1559820584441</updated>
+      <workItem from="1561723723458" duration="1685000" />
     </task>
     <task id="LOCAL-00234" summary="1">
       <created>1559823751589</created>
@@ -910,11 +903,25 @@
       <option name="project" value="LOCAL" />
       <updated>1561722245505</updated>
     </task>
-    <option name="localTasksCounter" value="281" />
+    <task id="LOCAL-00281" summary="合同币种判断">
+      <created>1561724482753</created>
+      <option name="number" value="00281" />
+      <option name="presentableId" value="LOCAL-00281" />
+      <option name="project" value="LOCAL" />
+      <updated>1561724482754</updated>
+    </task>
+    <task id="LOCAL-00282" summary="合同币种判断1">
+      <created>1561725348679</created>
+      <option name="number" value="00282" />
+      <option name="presentableId" value="LOCAL-00282" />
+      <option name="project" value="LOCAL" />
+      <updated>1561725348679</updated>
+    </task>
+    <option name="localTasksCounter" value="283" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2393538000" />
+    <option name="totallyTimeSpent" value="2394670000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -929,14 +936,14 @@
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18957347" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18957347" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49349946" weight="0.26145834" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50921535" side_tool="true" weight="0.36119404" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.38229167" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" visible="true" weight="0.25771144" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" visible="true" weight="0.25771144" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39972714" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1011,8 +1018,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="显示订单详情表格重载不显示bug解决" />
-    <MESSAGE value="工序+工程" />
     <MESSAGE value="运费计算，内部、网上订单 已支付待支付过滤" />
     <MESSAGE value="上次提交的bug解决" />
     <MESSAGE value="新增客户bug解决，计划协同更新时间" />
@@ -1036,7 +1041,9 @@
     <MESSAGE value="1" />
     <MESSAGE value="导入返单信息formSelect" />
     <MESSAGE value="导入返单信息 不能计算价格bug解决" />
-    <option name="LAST_COMMIT_MESSAGE" value="导入返单信息 不能计算价格bug解决" />
+    <MESSAGE value="合同币种判断" />
+    <MESSAGE value="合同币种判断1" />
+    <option name="LAST_COMMIT_MESSAGE" value="合同币种判断1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1044,13 +1051,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/views/productManagement/outbound_orderDetails.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/sqeManagement/plan_together.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2567">
@@ -1368,24 +1368,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractS.html">
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="276" column="32" selection-start-line="276" selection-start-column="32" selection-end-line="276" selection-end-column="32" />
+        <state relative-caret-position="219">
+          <caret line="354" column="65" selection-start-line="354" selection-start-column="63" selection-end-line="354" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/outs_contract.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="50" selection-start-line="71" selection-start-column="50" selection-end-line="71" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="195" column="30" selection-start-line="195" selection-start-column="28" selection-end-line="195" selection-end-column="30" />
+        <state relative-caret-position="625">
+          <caret line="366" column="21" lean-forward="true" selection-start-line="366" selection-start-column="12" selection-end-line="366" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html">
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractS.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="394" column="30" lean-forward="true" selection-start-line="394" selection-start-column="30" selection-end-line="394" selection-end-column="30" />
+        <state relative-caret-position="508">
+          <caret line="299" column="38" lean-forward="true" selection-start-line="299" selection-start-column="38" selection-end-line="299" selection-end-column="38" />
         </state>
       </provider>
     </entry>
