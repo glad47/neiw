@@ -192,13 +192,16 @@
                         <th>Overwork Fee</th>
                         <th>Post Fee</th>
                         <th>Amount(
-                            {{# if(d.params.data[0].exchangeId == '1'){ }}
-                            USD
-                            {{# }else if(d.params.data[0].exchangeId == '2'){ }}
-                            CNY
-                            {{# }else if(d.params.data[0].exchangeId == '3') }}
-                            EUR
-                            {{# } }}
+                            {{#
+                            if(d.params.data[0].exchangeId == '1') {
+                            d.params.data[0].exchangeId = 'USD'
+                            } else if(d.params.data[0].exchangeId == '2') {
+                            d.params.data[0].exchangeId = 'CNY'
+                            } else if(d.params.data[0].exchangeId == '3') {
+                            d.params.data[0].exchangeId = 'EUR'
+                            }
+                            }}
+                            {{ d.params.data[0].exchangeId }}
                             )</th>
                     </thead>
                     <tbody>
@@ -331,13 +334,16 @@
             <div class="contract-module-four-lef layui-col-md6">
                 <ul>
                     <li>1. This above quoted is based on
-                        {{# if(d.params.data[0].exchangeId == '1'){ }}
-                        USD
-                        {{# }else if(d.params.data[0].exchangeId == '2'){ }}
-                        CNY
-                        {{# }else if(d.params.data[0].exchangeId == '3') }}
-                        EUR
-                        {{# } }}
+                        {{#
+                        if(d.params.data[0].exchangeId == '1') {
+                        d.params.data[0].exchangeId = 'USD'
+                        } else if(d.params.data[0].exchangeId == '2') {
+                        d.params.data[0].exchangeId = 'CNY'
+                        } else if(d.params.data[0].exchangeId == '3') {
+                        d.params.data[0].exchangeId = 'EUR'
+                        }
+                        }}
+                        {{ d.params.data[0].exchangeId }}
                         ;</li>
                     <li>2. Valid of 30 days upon issued date;</li>
                     <li>3. Payment terms: {{ d.params.paymentType || '' }};</li>
