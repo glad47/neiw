@@ -1090,7 +1090,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         admin.req({
             type: 'post',
             url: setter.imUrl+'quote/getShippingCost',
-            data: {courierId:courierId,countryId:countryId,totalWeight:this_weight,exchangeId:pcb_container},
+            data: {courierId:courierId,countryId:countryId,totalWeight:this_weight,exchangeId:pcb_container.exchangeId},
             success: function (data) {
                 if (data.data != null && post_data.bordType === 1){
                     // 给pcb明细容器赋值
