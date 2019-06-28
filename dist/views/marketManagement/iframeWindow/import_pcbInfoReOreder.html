@@ -62,6 +62,9 @@
             form.render(null, "pert_form");
 
             layui.formSelects.on('userId', function (id, vals, val, isAdd, isDisabled) {
+                // formSelect 选择客户，单独处理
+                formSelects.render('selCustomer');
+                formSelects.value('selCustomer', [val.value]);
                 admin.req({
                     type: 'post',
                     data: {"userId":val.value},
@@ -79,7 +82,6 @@
                         $("select[xm-select='productNo']").append($html);
                         formSelects.render('productNo');
                         if (res.data.length>0) {
-                            formSelects.value('productNo',[res.data[0]]);
                         }
                     }
                 });

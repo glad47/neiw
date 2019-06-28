@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="1">
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/quote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -48,23 +48,23 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4839389">
+    <splitter split-orientation="horizontal" split-proportion="0.56345445">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="import_pcbInfoForm.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="import_pcbInfoForm.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoForm.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="647">
-                  <caret line="58" column="42" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="42" />
+                <state relative-caret-position="527">
+                  <caret line="60" column="50" lean-forward="true" selection-start-line="60" selection-start-column="50" selection-end-line="60" selection-end-column="50" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="quote.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="1537" column="32" selection-start-line="1537" selection-start-column="32" selection-end-line="1537" selection-end-column="32" />
+                <state relative-caret-position="365">
+                  <caret line="1544" column="86" selection-start-line="1544" selection-start-column="68" selection-end-line="1544" selection-end-column="86" />
                 </state>
               </provider>
             </entry>
@@ -73,11 +73,20 @@
       </split-first>
       <split-second>
         <leaf>
+          <file leaf-file-name="quote.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="88">
+                  <caret line="549" column="58" lean-forward="true" selection-start-line="549" selection-start-column="8" selection-end-line="549" selection-end-column="58" />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="import_pcbInfoReOreder.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="640">
-                  <caret line="64" selection-start-line="64" selection-end-line="64" />
+                <state relative-caret-position="447">
+                  <caret line="66" column="62" lean-forward="true" selection-start-line="64" selection-start-column="16" selection-end-line="66" selection-end-column="62" />
                 </state>
               </provider>
             </entry>
@@ -98,8 +107,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>layuiadmin</find>
-      <find>blog_add</find>
       <find>outgoingQuote-operation</find>
       <find>新增</find>
       <find>test-table-operate-btn</find>
@@ -126,8 +133,10 @@
       <find>添加菜单</find>
       <find>斜边</find>
       <find>menu/erpselect</find>
+      <find>setAllInput</find>
       <find>导入返单</find>
       <find>导入</find>
+      <find>customerId</find>
     </findStrings>
     <replaceStrings>
       <replace>surfaceFinish</replace>
@@ -224,14 +233,14 @@
         <option value="$PROJECT_DIR$/src/views/articleManagement/blogformadd.html" />
         <option value="$PROJECT_DIR$/src/controller/article_feedback.js" />
         <option value="$PROJECT_DIR$/src/views/articleManagement/feedbackfrom.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoForm.html" />
         <option value="$PROJECT_DIR$/src/style/inside-quote.css" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_postFee.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" />
         <option value="$PROJECT_DIR$/src/controller/market_insideNoPayment.js" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" />
-        <option value="$PROJECT_DIR$/src/controller/quote.js" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html" />
+        <option value="$PROJECT_DIR$/src/controller/quote.js" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoForm.html" />
       </list>
     </option>
   </component>
@@ -639,14 +648,7 @@
       <workItem from="1561537137258" duration="5463000" />
       <workItem from="1561598574494" duration="7106000" />
       <workItem from="1561626314377" duration="1747000" />
-      <workItem from="1561690497001" duration="3721000" />
-    </task>
-    <task id="LOCAL-00230" summary="1">
-      <created>1559703992935</created>
-      <option name="number" value="00230" />
-      <option name="presentableId" value="LOCAL-00230" />
-      <option name="project" value="LOCAL" />
-      <updated>1559703992935</updated>
+      <workItem from="1561690497001" duration="7240000" />
     </task>
     <task id="LOCAL-00231" summary="1">
       <created>1559706604802</created>
@@ -984,11 +986,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561705036159</updated>
     </task>
-    <option name="localTasksCounter" value="279" />
+    <task id="LOCAL-00279" summary="导入返单信息formSelect">
+      <created>1561717867280</created>
+      <option name="number" value="00279" />
+      <option name="presentableId" value="LOCAL-00279" />
+      <option name="project" value="LOCAL" />
+      <updated>1561717867281</updated>
+    </task>
+    <option name="localTasksCounter" value="280" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2389170000" />
+    <option name="totallyTimeSpent" value="2392689000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1011,7 +1020,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.38229167" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" weight="0.600995" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" weight="0.38208956" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39972714" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1085,7 +1094,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2" />
     <MESSAGE value="内部/网上订单 已支付详情" />
     <MESSAGE value="显示订单详情表格重载不显示bug解决" />
     <MESSAGE value="工序+工程" />
@@ -1110,7 +1118,8 @@
     <MESSAGE value="报价页面币种选择" />
     <MESSAGE value="斜边 是/否" />
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="导入返单信息formSelect" />
+    <option name="LAST_COMMIT_MESSAGE" value="导入返单信息formSelect" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1446,24 +1455,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoForm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="647">
-          <caret line="58" column="42" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="1537" column="32" selection-start-line="1537" selection-start-column="32" selection-end-line="1537" selection-end-column="32" />
+        <state relative-caret-position="365">
+          <caret line="1544" column="86" selection-start-line="1544" selection-start-column="68" selection-end-line="1544" selection-end-column="86" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        <state relative-caret-position="447">
+          <caret line="66" column="62" lean-forward="true" selection-start-line="64" selection-start-column="16" selection-end-line="66" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoForm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="60" column="50" lean-forward="true" selection-start-line="60" selection-start-column="50" selection-end-line="60" selection-end-column="50" />
         </state>
       </provider>
     </entry>

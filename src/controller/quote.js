@@ -1660,6 +1660,9 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         pcb_container.pcbName = saveSMTStencil.pcbName = importPcbInfo['pcbName'];
         pcb_container.productNo = importPcbInfo['productNo'];
         pcb_container.countries = post_data.countrysId = importPcbInfo['countries'];
+        // 绑定客户id和客户名
+        $("#customerId").val($("dl[xid='selCustomer']").children(".xm-select-this").attr("lay-value"));
+        $("input[name='customerSysName']").val($("dl[xid='selCustomer']").children(".xm-select-this").find("span").attr("name"));
 
         // $("select[name='nOfPp'] option[value='3']").attr("selected",true);
         // 总价
