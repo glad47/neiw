@@ -57,6 +57,9 @@
             layui.formSelects.on('customerNo', function (id, vals, val, isAdd, isDisabled) {
                 $("select[xm-select='productNo']").empty();
                 var customerNo = val.value;
+                // formSelect 选择客户，单独处理
+                formSelects.render('selCustomer');
+                formSelects.value('selCustomer', [val.value]);
                 admin.req({
                     type: 'post',
                     data: {customerNo: customerNo},

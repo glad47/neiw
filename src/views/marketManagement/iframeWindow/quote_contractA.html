@@ -283,7 +283,18 @@
                             {{#  }); }}
                         </tr>
                         <tr>
-                            <td>Unit price:US/pcs:</td>
+                            <td>Unit price:
+                                {{#
+                                if(d.params.data[0].exchangeId == '1') {
+                                d.params.data[0].exchangeId = 'USD'
+                                } else if(d.params.data[0].exchangeId == '2') {
+                                d.params.data[0].exchangeId = 'CNY'
+                                } else if(d.params.data[0].exchangeId == '3') {
+                                d.params.data[0].exchangeId = 'EUR'
+                                }
+                                }}
+                                {{ d.params.data[0].exchangeId }}
+                                /pcs:</td>
                             {{# layui.each(d.params.data, function(index, item){  }}
                             <td value="{{ item.id }}">
                                 {{# var unitPrice = parseFloat(item.boardFee/item.quantityPcs).toFixed(3) }}
@@ -338,7 +349,18 @@
                             {{#  }); }}
                         </tr>
                         <tr>
-                            <td>Total Price(US):</td>
+                            <td>Total Price(
+                                {{#
+                                if(d.params.data[0].exchangeId == '1') {
+                                d.params.data[0].exchangeId = 'USD'
+                                } else if(d.params.data[0].exchangeId == '2') {
+                                d.params.data[0].exchangeId = 'CNY'
+                                } else if(d.params.data[0].exchangeId == '3') {
+                                d.params.data[0].exchangeId = 'EUR'
+                                }
+                                }}
+                                {{ d.params.data[0].exchangeId }}
+                                ):</td>
                             {{# layui.each(d.params.data, function(index, item){  }}
                             <td value="{{ item.id }}">{{ item.totalFee }}</td>
                             {{#  }); }}
@@ -368,7 +390,18 @@
         <div class="contract-module-four layui-col-md12">
             <div class="contract-module-four-lef layui-col-md6">
                 <ul>
-                    <li>1. This above quoted is based on USD;</li>
+                    <li>1. This above quoted is based on
+                        {{#
+                        if(d.params.data[0].exchangeId == '1') {
+                        d.params.data[0].exchangeId = 'USD'
+                        } else if(d.params.data[0].exchangeId == '2') {
+                        d.params.data[0].exchangeId = 'CNY'
+                        } else if(d.params.data[0].exchangeId == '3') {
+                        d.params.data[0].exchangeId = 'EUR'
+                        }
+                        }}
+                        {{ d.params.data[0].exchangeId }}
+                        ;</li>
                     <li>2. Valid of 30 days upon issued date;</li>
                     <li>3. Payment terms: TT in advance;</li>
                     <li>4. shipment terms: DHL BY AIR;</li>

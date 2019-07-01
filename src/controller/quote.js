@@ -1090,7 +1090,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         admin.req({
             type: 'post',
             url: setter.imUrl+'quote/getShippingCost',
-            data: {courierId:courierId,countryId:countryId,totalWeight:this_weight,exchangeId:pcb_container},
+            data: {courierId:courierId,countryId:countryId,totalWeight:this_weight,exchangeId:pcb_container.exchangeId},
             success: function (data) {
                 if (data.data != null && post_data.bordType === 1){
                     // 给pcb明细容器赋值
@@ -1535,7 +1535,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     $(".importPcbInfo>.importOrder").on('click', function () {
         admin.popup({
             title: '导入pcb订单信息'
-            ,area: ['506px','288px']
+            ,area: ['506px','506px']
             ,btn: ['导入', '取消']
             ,yes: function (layero, index) {
                 $("#importPCBInfo").click();
@@ -1572,7 +1572,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     $(".importPcbInfo>.importReOrder").on('click', function () {
         admin.popup({
             title: '导入返单信息'
-            ,area: ['506px','288px']
+            ,area: ['506px','506px']
             ,btn: ['导入', '取消']
             ,id: 'popupImportReOrder'
             ,yes: function (layero, index) {
@@ -1660,6 +1660,9 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         pcb_container.pcbName = saveSMTStencil.pcbName = importPcbInfo['pcbName'];
         pcb_container.productNo = importPcbInfo['productNo'];
         pcb_container.countries = post_data.countrysId = importPcbInfo['countries'];
+        // 绑定客户id和客户名
+        $("#customerId").val($("dl[xid='selCustomer']").children(".xm-select-this").attr("lay-value"));
+        $("input[name='customerSysName']").val($("dl[xid='selCustomer']").children(".xm-select-this").find("span").attr("name"));
 
         // $("select[name='nOfPp'] option[value='3']").attr("selected",true);
         // 总价
