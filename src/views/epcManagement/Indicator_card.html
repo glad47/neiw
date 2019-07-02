@@ -145,6 +145,10 @@
                    <a data="isOk">
                        已出货
                    </a>
+                   {{# } else if(d.status === 10){ }}
+                   <a style="color: red;">
+                       订单取消
+                   </a>
                     {{# } }}
                 </script>
                 <!--<button class="layui-btn layui-btn-sm indicatorAddFile" data-type="indicatorAddFile" ">添加客户资料</button>-->
