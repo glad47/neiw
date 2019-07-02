@@ -478,16 +478,18 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
 
     });
 
-    //监听==>选择快递
-    // form.on("select(company)",function (data) {
-    //     post_data.companyId = $(data.elem).find("option:selected").attr("value");
+    // formSelect 监听==>选择 币种
+    // layui.formSelects.on('exchangeId', function (id, vals, val, isAdd, isDisabled) {
+    //     var $thisName = val.name;
+    //     var $thisID = val.value;
+    //     post_data.companyId = $thisID;
     //     var courierId = post_data.companyId;
     //     var countryId = post_data.countrysId;
     //     getShippingCost(courierId,countryId);
     //     getShippingCost();
     // });
 
-    // formSelect 监听==>选择快递
+    // formSelect 监听==>选择 快递
     layui.formSelects.on('selCompany', function (id, vals, val, isAdd, isDisabled) {
         var $thisName = val.name;
         var $thisID = val.value;
@@ -498,19 +500,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         getShippingCost();
     });
 
-    //监听==>选择国家
-    // form.on("select(countrys)",function (data) {
-    //     post_data.countrysId = $(data.elem).find("option:selected").attr("value");
-    //     pcb_container.countries = post_data.countrysId;     // 国家
-    //     if (post_data.bordType === 2){
-    //         quoteSMTStencilFuc();
-    //     }
-    //     var courierId = post_data.companyId;
-    //     var countryId = post_data.countrysId;
-    //     getShippingCost(courierId,countryId);
-    // });
-
-    // formSelect 监听==>选择国家
+    // formSelect 监听==>选择 国家
     layui.formSelects.on('selCountrys', function (id, vals, val, isAdd, isDisabled) {
         var $thisName = val.name;
         var $thisID = val.value;
@@ -524,20 +514,6 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         getShippingCost(courierId,countryId);
 
     });
-    //监听 ==>选择客户
-    // form.on('select(filterCustomer)',function (data) {
-    //     // $("#inCustomer").val($(data.elem).find("option:selected").text());
-    //     var dv = $(data.elem).find("option:selected").text();
-    //     layer.msg(dv)
-    //     $("#orderPN").val('');  //重新选择客户的时候，内部型号清空
-    //     public_data.customerAid = data.value;
-    //     pcb_container.userId = saveSMTStencil.userId = data.value;
-    //     saveSMTStencil.customerSysName = dv;
-    //     $("#customerId").val(data.value);
-    //     layer.msg(data.value)
-    //     $("input[name='customerSysName']").val($(data.elem).find("option:selected").text());
-    //     form.render('');
-    // });
 
     // formSelect 监听==>选择客户
     layui.formSelects.on('selCustomer', function (id, vals, val, isAdd, isDisabled) {
@@ -550,11 +526,26 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         $("input[name='customerSysName']").val($thisName);
     });
 
-    //监听   ==>选择订单类型（新单/返单/返单有效）
+    // 监听   ==>选择订单类型（新单/返单/返单有效）
     form.on('select(filterOrderType)', function (data) {
         pcb_container.orderType = saveSMTStencil.orderType = data.value;
     });
 
+    // 监听 钢网选择 快递
+    layui.formSelects.on('selCompanyt', function (id, vals, val, isAdd, isDisabled) {
+        post_data.companyId = val.value;
+        var courierId = post_data.companyId;
+        var countryId = post_data.countrysId;
+        getShippingCost(courierId,countryId);
+    });
+
+    // 监听 钢网选择 国家
+    layui.formSelects.on('selCountryst', function (id, vals, val, isAdd, isDisabled) {
+        post_data.countrysId = val.value;
+        var courierId = post_data.companyId;
+        var countryId = post_data.countrysId;
+        getShippingCost(courierId,countryId);
+    });
 
     $("#postFees").bind("input propertychange", function (even) {
         quoteSMTStencil.postFee = parseFloat($(this).val());
