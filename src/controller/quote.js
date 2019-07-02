@@ -23,6 +23,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     var arr_selkbsy_kb = [{text: 'KB6160', value: 'KB6160'}, {text: 'KB6150', value: 'KB6150'}, {text: 'KB6165', value: 'KB6165'}, {text: 'KB6167', value: 'KB6167'}];
     var arr_selkbsy_sy = [{text: 'SY1130', value: 'SY1130'}, {text: 'SY1141', value: 'SY1141'}, {text: 'SY1150', value: 'SY1150'}, {text: 'SY1170', value: 'SY1170'}, {text: 'SY1180', value: 'SY1180'}, {text: 'SY1000', value: 'SY1000'}, {text: 'SY1000-2', value: 'SY1000-2'}, {text: 'SY1600', value: 'SY1600'}];
     var arr_selkbsy_yg = [{text: 'YG0001', value: 'YG0001'}, {text: 'YG0002', value: 'YG0002'}, {text: 'YG0003', value: 'YG0003'}, {text: 'YG0004', value: 'YG0004'}];
+    // 切换订单类型需要 显示/隐藏 的html元素 [class]
+    var ct_hide = ['totalForm','addQuote'];
     // var arr_surfinish = [{text: 'HASL with lead', value: 'HASL_with_lead'},{text: 'HASL lead free', value: 'HASL_lead_free'},{text: 'Immersion Gold', value: 'Immersion_Gold'},{text: 'Immersion tin', value: 'Immersion_tin'},{text: 'Immersion silver', value: 'Immersion_silver'},{text: 'OSP', value: 'OSP'}];
     // var arr_selsurf_Hash_width_lead = [{text: '2.54-25.4um', value: '2.54-25.4um'}];
     // var arr_selsurf_Immer_tin = [{text: '0.5um-0.7um', value: '0.5um-0.7um'}];
@@ -356,12 +358,12 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         if (this_col_title.indexOf('PCB Phototype') != -1) {
             $(".rig-price-cardbody form").removeClass("quote-avtive");
             $(".rig-price").addClass("quote-avtive");
-            $("*[data-type='addThisQuote']").show();
+            ctHide(1);
             post_data.bordType = 1;
         } else if (this_col_title.indexOf('SMT-Stencil') != -1) {
             $(".rig-price-cardbody form").removeClass("quote-avtive");
             $("#stencilForm").addClass("quote-avtive");
-            $("*[data-type='addThisQuote']").hide();
+            ctHide(0);
             post_data.bordType = 2;
         } else if (this_col_title.indexOf('Assembly Service') != -1) {
             $(".rig-price-cardbody form").removeClass("quote-avtive");
@@ -478,17 +480,6 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
 
     });
 
-    // formSelect 监听==>选择 币种
-    // layui.formSelects.on('exchangeId', function (id, vals, val, isAdd, isDisabled) {
-    //     var $thisName = val.name;
-    //     var $thisID = val.value;
-    //     post_data.companyId = $thisID;
-    //     var courierId = post_data.companyId;
-    //     var countryId = post_data.countrysId;
-    //     getShippingCost(courierId,countryId);
-    //     getShippingCost();
-    // });
-
     // formSelect 监听==>选择 快递
     layui.formSelects.on('selCompany', function (id, vals, val, isAdd, isDisabled) {
         var $thisName = val.name;
@@ -497,7 +488,6 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         var courierId = post_data.companyId;
         var countryId = post_data.countrysId;
         getShippingCost(courierId,countryId);
-        getShippingCost();
     });
 
     // formSelect 监听==>选择 国家
@@ -1144,6 +1134,9 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     // 监听选择汇率
     layui.formSelects.on('exchangeId', function (id, vals, val, isAdd, isDisabled) {
         pcb_container.exchangeId = val.value;
+        var courierId = post_data.companyId;
+        var countryId = post_data.countrysId;
+        getShippingCost(courierId,countryId);
     });
     /**
      * Stencil 订单弹出页面
@@ -1305,7 +1298,6 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         form.render();
         // $("button[type='reset']").click();
     }
-    
 
     var active = {
         // 重置报价表
@@ -1774,5 +1766,20 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         })
     });
 
+    /**
+     *  遍历 ct_hide 数组 显示/隐藏表单[class, 切换订单类型的时候]
+     */
+    function ctHide(type) {
+        var type = type;
+        if (type === 0) {
+            for (var i=0;i<ct_hide.length;i++) {
+                $("."+ct_hide[i]).hide();
+            }
+        } else if (type === 1) {
+            for (var i=0;i<ct_hide.length;i++) {
+                $("."+ct_hide[i]).show();
+            }
+        }
+    }
     exports('quote',{})
 });
