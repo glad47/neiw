@@ -155,13 +155,11 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>无卤素:</td>
+                    {{# if(d.params.halogenFree == '1') {d.params.halogenFree = '是'}else{d.params.halogenFree = '否'} }}
+                    <td>{{ d.params.halogenFree || ''}}</td>
                     <td>最小孔:</td>
                     <td>{{ d.params.minHoleSize }}</td>
-                    <td>盲孔:</td>
-                    <td>
-                        {{# if(d.params.blindHoles == '1') {d.params.blindHoles = '是'}else{d.params.blindHoles = '否'} }}
-                        {{ d.params.blindHoles || ''}}
-                    </td>
                 </tr>
                 <tr>
                     <td>过孔方式:</td>
@@ -211,23 +209,25 @@
                     <td>{{ d.params.thickness || ''}}</td>
                 </tr>
                 <tr>
-                    <td>无卤素:</td>
-                    {{# if(d.params.halogenFree == '1') {d.params.halogenFree = '是'}else{d.params.halogenFree = '否'} }}
-                    <td>{{ d.params.halogenFree || ''}}</td>
-                    <td>半孔:</td>
+                    <td>盲孔:</td>
                     <td>
-                        {{# if(d.params.halfHoleLated == '1') {d.params.halfHoleLated = '是'}else{d.params.halfHoleLated = '否'} }}
-                        {{ d.params.halfHoleLated || '否'}}
+                        {{# if(d.params.blindHoles == '1') {d.params.blindHoles = '是'}else{d.params.blindHoles = '否'} }}
+                        {{ d.params.blindHoles || ''}}
+                    </td>
+                    <td>埋孔:</td>
+                    <td>
+                        {{# if(d.params.buriedHoles == '1') {d.params.buriedHoles = '是'}else{d.params.buriedHoles = '否'} }}
+                        {{ d.params.buriedHoles || '否'}}
                     </td>
                 </tr>
                 <tr>
                     <td>金属包边:</td>
                     {{# if(d.params.edgePlated == '1') {d.params.edgePlated = '是'}else{d.params.edgePlated = '否'} }}
                     <td>{{ d.params.edgePlated || '否'}}</td>
-                    <td>埋孔:</td>
+                    <td>半孔:</td>
                     <td>
-                        {{# if(d.params.buriedHoles == '1') {d.params.buriedHoles = '是'}else{d.params.buriedHoles = '否'} }}
-                        {{ d.params.buriedHoles || '否'}}
+                        {{# if(d.params.halfHoleLated == '1') {d.params.halfHoleLated = '是'}else{d.params.halfHoleLated = '否'} }}
+                        {{ d.params.halfHoleLated || '否'}}
                     </td>
                 </tr>
                 <tr>
