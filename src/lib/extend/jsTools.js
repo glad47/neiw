@@ -4,8 +4,9 @@
 
  */
 
-layui.define(function (exports) {
-    var $ = layui.jquery;
+layui.define(['admin', 'index'],function (exports) {
+    var $ = layui.jquery,
+    admin = layui.admin;
     var obj = {
 
         // 时间对比 [最新时间]
@@ -58,6 +59,29 @@ layui.define(function (exports) {
                 t+=Math.floor(Math.random()*10);
             }
             return t;
+        },
+
+        // 货币转换 ===>> 人民币
+        CurrenCyConversion: function (money,exchangeId) {
+            var resultVal,rate;
+            if (exchangeId != '2' && exchangeId != null) {    // 不是人民币
+                admin.req({
+                    type: 'post',
+                    async: false,
+                    url: setter.baseUrl+'market/exchangerate/info/'+exchangeId,
+                    success: function (res) {
+                        console.log(res);
+                        rate = res.exchangeRate.exchangeRate;
+                        resultVal = parseFloat(money*rate).toFixed(2);
+                        console.log('转换币种为：'+res.exchangeRate.currency+'\n转换率为：'+res.exchangeRate.exchangeRate);
+                        console.log("初始价格为："+money+"\n转化后的价格为："+resultVal);
+                    },
+                    error: function (err) {
+                        resultVal = "请求异常， 没有获取到任何有用的信息！"
+                    }
+                });
+            }
+            return resultVal;
         }
     }
 

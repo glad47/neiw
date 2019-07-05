@@ -103,16 +103,7 @@
                         {{ d.params.totalFee || '0' }}
                     </td>
                     <td>
-                        <strong>
-                            {{# if(d.params.subtotal != null){ }}
-                            {{# d.params.subtotal = parseFloat(d.params.subtotal*6.6).toFixed(2) }}
-                            {{# } }}
-                            {{# if(d.params.pcbaSubtotalFeeCustomer != null){ }}
-                            {{# d.params.pcbaSubtotalFeeCustomer = parseFloat(d.params.pcbaSubtotalFeeCustomer*6.6).toFixed(2) }}
-                            {{# } }}
-                            {{# var hj = parseFloat(d.params.subtotal+d.params.pcbaSubtotalFeeCustomer)}}
-                            {{ hj || '' }}
-                        </strong>
+                        <strong id="quoteDetail_sysTotal"></strong>
                     </td>
                 </tr>
                 <tr>
@@ -212,9 +203,21 @@
 
 <script>
     layui.data.done = function(d) {
-        layui.use(['admin', 'table', 'form', 'laydate'], function () {
+        var exchangeId = d.params.exchangeId;
+        if(d.params.subtotal == null || typeof(d.params.subtotal) == 'undefined' || isNaN(d.params.subtotal)) {
+            d.params.subtotal = 0;
+        }
+        if(d.params.pcbaSubtotalFeeCustomer == null || typeof(d.params.pcbaSubtotalFeeCustomer) == 'undefined' || isNaN(d.params.pcbaSubtotalFeeCustomer)) {
+            d.params.pcbaSubtotalFeeCustomer = 0;
+        }
+        var subtotal = d.params.subtotal;
+        var pcbaSubtotalFeeCustomer = d.params.pcbaSubtotalFeeCustomer;
+        var defSysMoney = parseFloat(subtotal+pcbaSubtotalFeeCustomer);
+
+        layui.use(['admin', 'table', 'form', 'laydate', 'jsTools'], function () {
             var laydate = layui.laydate,
                 $ = layui.jquery,
+                jsTools = layui.jsTools,
                 layer = layui.layer;
             var form = layui.form;
             $("#hiddenTestPoint").val(1);   //测试方式给个默认值
@@ -263,7 +266,11 @@
                     total += _val;
                 });
                 $("#qt_pcbaSubtotalFee").text(total.toFixed(2));
-            })
+            });
+
+            // 系统报价的货币转换
+            var resSysMoney = jsTools.CurrenCyConversion(defSysMoney,exchangeId);
+            $("#quoteDetail_sysTotal").text(resSysMoney);
         });
     };
 </script>
