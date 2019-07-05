@@ -64,7 +64,10 @@ layui.define(['admin', 'index'],function (exports) {
         // 货币转换 ===>> 人民币
         CurrenCyConversion: function (money,exchangeId) {
             var resultVal,rate;
-            if (exchangeId != '2' && exchangeId != null) {    // 不是人民币
+            if (exchangeId == '2') {
+                console.log('初始币种为人民币，无需转换！');
+                resultVal = money;
+            } else if (exchangeId != '2' && exchangeId != null) {    // 不是人民币
                 admin.req({
                     type: 'post',
                     async: false,

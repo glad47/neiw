@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/jsTools.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/lib/extend/jsTools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/quote_detail_pcb.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/quote_detail_pcb.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_pcb.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_pcb.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/extend/jsTools.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/extend/jsTools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/sqeManagement/iframeWindow/quotation_together_pcb.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sqeManagement/iframeWindow/quotation_together_pcb.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -57,8 +51,8 @@
           <file leaf-file-name="jsTools.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/lib/extend/jsTools.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="449">
-                  <caret line="61" column="10" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
+                <state relative-caret-position="137">
+                  <caret line="67" column="46" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
                 </state>
               </provider>
             </entry>
@@ -140,7 +134,7 @@
                 <entry file="file://$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="233">
-                      <caret line="275" column="9" selection-start-line="275" selection-start-column="9" selection-end-line="275" selection-end-column="9" />
+                      <caret line="275" column="9" lean-forward="true" selection-start-line="275" selection-start-column="9" selection-end-line="275" selection-end-column="9" />
                     </state>
                   </provider>
                 </entry>
@@ -620,14 +614,7 @@
       <workItem from="1562033916168" duration="13644000" />
       <workItem from="1562117104823" duration="3536000" />
       <workItem from="1562316697548" duration="424000" />
-      <workItem from="1562321069428" duration="4189000" />
-    </task>
-    <task id="LOCAL-00243" summary="内部/网上订单 已支付详情">
-      <created>1560248945794</created>
-      <option name="number" value="00243" />
-      <option name="presentableId" value="LOCAL-00243" />
-      <option name="project" value="LOCAL" />
-      <updated>1560248945795</updated>
+      <workItem from="1562321069428" duration="4620000" />
     </task>
     <task id="LOCAL-00244" summary="显示订单详情表格重载不显示bug解决">
       <created>1560341485824</created>
@@ -965,11 +952,18 @@
       <option name="project" value="LOCAL" />
       <updated>1562317109830</updated>
     </task>
-    <option name="localTasksCounter" value="292" />
+    <task id="LOCAL-00292" summary="对比系统报价自动转换人民币">
+      <created>1562326319887</created>
+      <option name="number" value="00292" />
+      <option name="presentableId" value="LOCAL-00292" />
+      <option name="project" value="LOCAL" />
+      <updated>1562326319887</updated>
+    </task>
+    <option name="localTasksCounter" value="293" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2420621000" />
+    <option name="totallyTimeSpent" value="2421052000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1066,7 +1060,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="编写指示卡 网上订单文件bug" />
     <MESSAGE value="pcb订单编辑 pcb类型无法选中bug解决" />
     <MESSAGE value="修改第三方组件formSelect源码：下拉搜索不区分大小写" />
     <MESSAGE value="供应商接口" />
@@ -1091,7 +1084,8 @@
     <MESSAGE value="内部报价  钢网选择快递价格变化" />
     <MESSAGE value="内部报价 切换订单类型 显示/隐藏 整理到一个数组" />
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="对比系统报价自动转换人民币" />
+    <option name="LAST_COMMIT_MESSAGE" value="对比系统报价自动转换人民币" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1432,17 +1426,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/extend/jsTools.js">
+    <entry file="file://$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="61" column="10" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
+        <state relative-caret-position="188">
+          <caret line="220" column="36" selection-start-line="220" selection-start-column="36" selection-end-line="220" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html">
+    <entry file="file://$PROJECT_DIR$/src/lib/extend/jsTools.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="275" column="9" selection-start-line="275" selection-start-column="9" selection-end-line="275" selection-end-column="9" />
+        <state relative-caret-position="137">
+          <caret line="67" column="46" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
         </state>
       </provider>
     </entry>
