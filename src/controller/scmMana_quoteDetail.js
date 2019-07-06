@@ -154,7 +154,6 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
         var data = obj.data;
         console.log(data)
         if (obj.event == 'eevScmedit'){
-            layer.msg('编辑操作');
             admin.popup({
                 title: 'PCB报价协同编辑'
                 ,area: ['50%','80%']
@@ -181,6 +180,13 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                     postData.factoryMake = $("#pcbfactoryMake").val();          //厂编
                     postData.testPointType = $("#hiddenTestPoint").val();     //侧孔方式
                     postData.totalFee = $("#qt_pcb_totalFee").text();          //总价
+                    // PCBA
+                    postData.pcbaProcessFee = $("#qt_pcbaProcessFee").val();    //加工费
+                    postData.pcbaPartsFee = $("#qt_pcbaPartsFee").val();        //零件费
+                    postData.pcbaTestFee = $("#qt_pcbaTestFee").val();          //测试费
+                    postData.pcbaToolFee = $("#qt_pcbaToolFee").val();          //工具费
+                    postData.pcbaSubtotalFee = $("#qt_pcbaSubtotalFee").text(); //小计
+
                     // console.log(postData);
                     admin.req({
                         type: 'post',
