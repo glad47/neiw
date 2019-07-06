@@ -8,8 +8,10 @@
     <form id="stencilorderPrint">
         <div class="order_review_search">
             <style>
+                .DetailBot-design{display: none;text-align: right;margin-right: 20px;}
                 @media print {
                     .printOrderStencil-btnGrop .layui-table[lay-skin=row] td, .layui-table[lay-skin=row] th{border: solid 1px black !important;}
+                    .DetailBot-design{display: block;}
                 }
             </style>
             <script type="text/html" template lay-done="layui.data.done(d);">
@@ -78,6 +80,13 @@
                     </tr>
                     </tbody>
                 </table>
+                <div class="DetailBot-design" style="width: 100%;position: fixed;bottom: 35px;right: 0">
+                    工程________________&nbsp;&nbsp;采购_______________&nbsp;&nbsp;仓库_______________
+                    <div class="bottime">
+                        {{# var myDate = new Date() }}
+                        {{ myDate.toLocaleDateString() }}
+                    </div>
+                </div>
             </script>
         </div>
     </form>
