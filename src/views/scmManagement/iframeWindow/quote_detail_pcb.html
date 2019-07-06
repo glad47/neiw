@@ -176,7 +176,9 @@
                         {{ d.params.pcbaSubtotalFee || 0 }}
                     </td>
                     <td>
-                        {{ d.params.pcbaSubtotalFeeCustomer || 0 }}
+                        <strong id="quoteDetail_pcbaSubtotalFeeCustomer">
+                            {{ d.params.pcbaSubtotalFeeCustomer || 0 }}
+                        </strong>
                     </td>
                 </tr>
             </table>
@@ -213,6 +215,8 @@
         var subtotal = d.params.subtotal;
         var pcbaSubtotalFeeCustomer = d.params.pcbaSubtotalFeeCustomer;
         var defSysMoney = parseFloat(subtotal+pcbaSubtotalFeeCustomer);
+
+        var pcbaSubtotalFeeCustomer = d.params.pcbaSubtotalFeeCustomer;
 
         layui.use(['admin', 'table', 'form', 'laydate', 'jsTools'], function () {
             var laydate = layui.laydate,
@@ -271,6 +275,9 @@
             // 系统报价的货币转换
             var resSysMoney = jsTools.CurrenCyConversion(defSysMoney,exchangeId);
             $("#quoteDetail_sysTotal").text(resSysMoney);
+            // PCBA 货币转换
+            var resSysMoneyPCBA = jsTools.CurrenCyConversion(pcbaSubtotalFeeCustomer, exchangeId)
+            $("#quoteDetail_pcbaSubtotalFeeCustomer").text(resSysMoneyPCBA);
         });
     };
 </script>
