@@ -191,6 +191,7 @@
                         <th>Tooling Fee</th>
                         <th>Overwork Fee</th>
                         <th>Post Fee</th>
+                        <th>PCBA Fee</th>
                         <th>Amount(
                             {{#
                             if(d.params.data[0].exchangeId == '1') {
@@ -284,6 +285,10 @@
                                 {{ item.buildTime }}
                             {{# } }}
                         </td>
+                        <!--PCBA 费用小计-->
+                        <td>
+                            {{item.pcbaSubtotalFee || '0'}}
+                        </td>
                         <!--总价格-->
                         <td>{{ item.totalFee }}</td>
                         {{# Total += parseFloat(item.totalFee)}}
@@ -292,7 +297,11 @@
 
 
                     <tr>
-                        <td colspan="8"></td>
+                        <td colspan="8">
+                            {{# if(item.pcbaSubtotalFee != null){ }}
+                                <strong style="color: orangered;">+ PCBA</strong>
+                            {{# } }}
+                        </td>
                         <td>Total:</td>
                         <td>
                             {{Total.toFixed(3)}}
