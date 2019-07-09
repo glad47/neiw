@@ -41,10 +41,10 @@
             .contract-module-three-tab tbody tr td:nth-of-type(4){width: 9%;min-width: 59px;}
             .contract-module-three-tab tbody tr td:nth-of-type(5){width: 9%;min-width: 115px;}
             .contract-module-three-tab tbody tr td:nth-of-type(6){width: 9%;min-width: 101px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(7){width: 9%;min-width: 103px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(7){width: 8%;min-width: 103px;}
             .contract-module-three-tab tbody tr td:nth-of-type(8){width: 9%;min-width: 108px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(9){width: 9%;min-width: 92px;}
-            .contract-module-three-tab tbody tr td:nth-of-type(10){width: 8%;min-width: 102px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(9){width: 8%;min-width: 92px;}
+            .contract-module-three-tab tbody tr td:nth-of-type(10){width: 6%;min-width: 102px;}
             .contract-module-three-tab tbody tr td:nth-of-type(11){width: 8%;min-width: 102px;}
             .contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;border-bottom: solid #086aafdb 1px;}
             .tr-orderInfo,.tr-orderTotal{border-bottom: solid 1px #086aafdb;}
@@ -258,7 +258,10 @@
                                 {{ item.surfaceFinish}}<br>
                             {{# } }}
                             <!--组焊色-->
-                            Solder Mask:{{ item.solderMaskTopColor}}
+                            Solder Mask:{{ item.solderMaskTopColor}}<br>
+                            {{# if(item.pcbaSubtotalFee != null){ }}
+                            <strong style="color: orangered;">+ PCBA</strong>
+                            {{# } }}
                         </td>
                         <!--PCS数量-->
                         <td>{{ item.quantityPcs}}</td>
@@ -296,11 +299,7 @@
                     </tr>
 
                     <tr>
-                        <td colspan="9">
-                            {{# if(item.pcbaSubtotalFee != null){ }}
-                                <strong style="color: orangered;">+ PCBA</strong>
-                            {{# } }}
-                        </td>
+                        <td colspan="9"></td>
                         <td>Total:</td>
                         <td>
                             {{Total.toFixed(3)}}

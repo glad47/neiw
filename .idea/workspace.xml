@@ -1,8 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="1-1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/lib/extend/echarts.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/lib/extend/echarts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/lib/extend/echartsTheme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/lib/extend/filePathProcess.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/lib/extend/formSelects.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/lib/extend/jsTools.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/lib/extend/message.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/lib/extend/messagebody.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/lib/extend/requestInterface.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/lib/extend/uploadCommon.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/rate/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/auto.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/cellEdit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/cellEvent.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/checkbox.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/data.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/fixed.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/height.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/initSort.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/operate.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/page.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/reload.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/resetPage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/simple.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/static.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/style.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/thead.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/table/tostatic.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/tabs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/timeline/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/upload/demo1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/upload/demo2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/upload/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/component/util/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/epcManagement/iframeWindow/add_tool.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/epcManagement/iframeWindow/audit_orders.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/epcManagement/iframeWindow/file_management.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/epcManagement/iframeWindow/pert_pcbDetail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/epcManagement/iframeWindow/pert_pcbDetailAdd.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/epcManagement/iframeWindow/pert_sysPCB_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/iframe/layer/iframe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/iframe/link/baidu.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/iframe/link/layui.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/iframe/link/layuiAdmin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/customer_edit_info.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/customer_quote_config_form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/supplier_edit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/supplier_search.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/supplier_set.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/sys_menuAdd.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/sys_menuSearch.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/user_edit_info.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/user_edit_role.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/viewtest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/renderEdit/supplier_edit_render.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/renderEdit/user_edit_render.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/iqcManagement/iframeWindow/incoming_auditor_edit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/import_pcbInfoForm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderPCB_update.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderSMT_update.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderStencil_update.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderStencil_updateB.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/order_pcb_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/order_process.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/order_smt_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/order_stencil_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/pert_sysAdd.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractA.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractS.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_detaily.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_postFee.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/secondary_iframe/stencil_size.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/stencil_size_list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/productManagement/iframeWindow/outbound_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/productManagement/iframeWindow/outbound_info.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/productManagement/iframeWindow/outer_lable.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/productManagement/iframeWindow/packaging _requirements.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/outs_contract.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/outs_contractS.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/quote_detail_pcb.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/scmManagement/iframeWindow/quote_detail_stencil.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/senior/echarts/bar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/senior/echarts/line.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/senior/echarts/map.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/senior/im/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/senior/im/kefu.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/set/system/email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/set/system/website.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/set/user/info.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/set/user/password.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/details_delivery.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/order_together_edit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/pert_sysOrderAdd.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/pert_sysSOrderAdd.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_pcb.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_smt.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_stencil.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/statements.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/supplierOrder_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/template/tips/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/template/tips/error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/template/tips/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/template/user/forget.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/template/user/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/template/user/reg.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/user/administrators/adminform.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/user/administrators/list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/user/administrators/role.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/user/administrators/roleform.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/user/user/list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/user/user/userform.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -59,8 +174,14 @@
       <file leaf-file-name="quote_contractB.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="45" column="93" lean-forward="true" selection-start-line="45" selection-start-column="93" selection-end-line="45" selection-end-column="93" />
+            <state relative-caret-position="618">
+              <caret line="57" column="24" lean-forward="true" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
+              <folding>
+                <element signature="e#20383#20389#0" expanded="true" />
+                <element signature="e#20389#20395#0" expanded="true" />
+                <element signature="e#20472#20478#0" expanded="true" />
+                <element signature="e#20478#20484#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -68,7 +189,7 @@
       <file leaf-file-name="quote_contractS.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractS.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
+            <state relative-caret-position="994">
               <caret line="313" column="80" selection-start-line="313" selection-start-column="80" selection-end-line="313" selection-end-column="80" />
             </state>
           </provider>
@@ -568,14 +689,7 @@
       <workItem from="1562548633692" duration="23000" />
       <workItem from="1562665667998" duration="2529000" />
       <workItem from="1562673328426" duration="37000" />
-      <workItem from="1562673377567" duration="987000" />
-    </task>
-    <task id="LOCAL-00251" summary="新增客户bug解决，计划协同更新时间">
-      <created>1560424246361</created>
-      <option name="number" value="00251" />
-      <option name="presentableId" value="LOCAL-00251" />
-      <option name="project" value="LOCAL" />
-      <updated>1560424246361</updated>
+      <workItem from="1562673377567" duration="1270000" />
     </task>
     <task id="LOCAL-00252" summary="1">
       <created>1560506056294</created>
@@ -913,11 +1027,18 @@
       <option name="project" value="LOCAL" />
       <updated>1562674236433</updated>
     </task>
-    <option name="localTasksCounter" value="300" />
+    <task id="LOCAL-00300" summary="1-1">
+      <created>1562674459092</created>
+      <option name="number" value="00300" />
+      <option name="presentableId" value="LOCAL-00300" />
+      <option name="project" value="LOCAL" />
+      <updated>1562674459092</updated>
+    </task>
+    <option name="localTasksCounter" value="301" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2432898000" />
+    <option name="totallyTimeSpent" value="2433181000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1014,7 +1135,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="上个提交的bug1" />
     <MESSAGE value="钢网报价协同编辑总价显示" />
     <MESSAGE value="反馈添加" />
     <MESSAGE value="formselect 反馈" />
@@ -1039,7 +1159,8 @@
     <MESSAGE value="工具管理  添加 formSelects" />
     <MESSAGE value="合同B PCBA价格显示" />
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="1-1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1-1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1373,13 +1494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractS.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="313" column="80" selection-start-line="313" selection-start-column="80" selection-end-line="313" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -1387,10 +1501,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractS.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="994">
+          <caret line="313" column="80" selection-start-line="313" selection-start-column="80" selection-end-line="313" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="45" column="93" lean-forward="true" selection-start-line="45" selection-start-column="93" selection-end-line="45" selection-end-column="93" />
+        <state relative-caret-position="618">
+          <caret line="57" column="24" lean-forward="true" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
+          <folding>
+            <element signature="e#20383#20389#0" expanded="true" />
+            <element signature="e#20389#20395#0" expanded="true" />
+            <element signature="e#20472#20478#0" expanded="true" />
+            <element signature="e#20478#20484#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
