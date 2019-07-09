@@ -287,14 +287,12 @@
                         </td>
                         <!--PCBA 费用小计-->
                         <td>
-                            {{item.pcbaSubtotalFee || '0'}}
+                            {{ item.pcbaSubtotalFee || '0'}}
                         </td>
                         <!--总价格-->
                         <td>{{ item.totalFee }}</td>
                         {{# Total += parseFloat(item.totalFee)}}
                     </tr>
-                    {{#  }); }}
-
 
                     <tr>
                         <td colspan="8">
@@ -307,7 +305,7 @@
                             {{Total.toFixed(3)}}
                         </td>
                     </tr>
-
+                    {{#  }); }}
 
                     <!--<tr>-->
                         <!--<td>remark:</td>-->
