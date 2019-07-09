@@ -1,3 +1,4 @@
+<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
 <div class="layui-fluid">
     <script type="text/html" template lay-done="layui.data.done(d);">
     <form class="layui-form">
@@ -5,7 +6,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">型号</label>
                 <div class="layui-input-inline">
-                    <select name="productNo" id="epcAdd_toolsPN" lay-search></select>
+                    <select name="productNo" id="epcAdd_toolsPN" xm-select="productNo" xm-select-radio  xm-select-search="" xm-select-search-type="dl"></select>
                 </div>
             </div>
             <div class="layui-inline">
@@ -39,7 +40,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">制造商</label>
                 <div class="layui-input-inline">
-                    <select name="manufacturers" id="epcAdd_toolManufacturers" lay-search></select>
+                    <select name="manufacturers" id="epcAdd_toolManufacturers" xm-select="manufacturers" xm-select-radio  xm-select-search="" xm-select-search-type="dl"></select>
                 </div>
             </div>
             <div class="layui-inline">
@@ -54,7 +55,7 @@
                 <label class="layui-form-label">供应商存放</label>
                 <div class="layui-input-inline">
                     <!--<input type="text" name="supplier" value="{{d.params.supplier || ''}}" autocomplete="off" class="layui-input">-->
-                    <select name="supplier" id="epcAdd_toolSupplier" lay-search></select>
+                    <select name="supplier" id="epcAdd_toolSupplier" xm-select="supplier" xm-select-radio  xm-select-search="" xm-select-search-type="dl"></select>
                 </div>
             </div>
             <div class="layui-inline">
@@ -95,9 +96,10 @@
             id = d.params.id;
             isAdd = false;
         }
-        layui.use(['form', 'jquery', 'admin', 'index', 'element', 'uploadCommon'],function () {
+        layui.use(['form', 'jquery', 'admin', 'index', 'element', 'uploadCommon', 'formSelects'],function () {
             var $ = layui.jquery
             laydate = layui.laydate
+            ,formSelects = layui.formSelects
             ,setter = layui.setter;
 
             laydate.render({
@@ -114,13 +116,14 @@
                     var resList = res.data;
                     if (resList != null && resList.length>0) {
                         for (var i=0;i<resList.length;i++) {
-                            $("select[id='epcAdd_toolsPN']").append("<option value="+resList[i]+">"+resList[i]+"</option>")
+                            $("select[xm-select='productNo']").append("<option value="+resList[i]+">"+resList[i]+"</option>")
+                            formSelects.render('productNo');
                         }
                     }
-                    if (!isAdd) {
-                        $("select[id='epcAdd_toolsPN']").find("option[value='"+productNo+"']").prop("selected",true);
-                    }
-                    form.render()
+                    // if (!isAdd) {
+                    //     formSelects.render('productNo');
+                    // }
+                    formSelects.value('productNo', [productNo]);
                 }
             });
             admin.req({
@@ -132,15 +135,18 @@
                     var resList = res.data;
                     if (resList && resList.length>0) {
                         for (var i=0;i<resList.length;i++) {
-                            $("select[id='epcAdd_toolManufacturers']").append("<option value="+resList[i].supplierId+">"+resList[i].companyName+"</option>");
-                            $("select[id='epcAdd_toolSupplier']").append("<option value="+resList[i].supplierId+">"+resList[i].companyName+"</option>");
+                            $("select[xm-select='manufacturers']").append("<option value="+resList[i].supplierId+">"+resList[i].companyName+"</option>");
+                            $("select[xm-select='supplier']").append("<option value="+resList[i].supplierId+">"+resList[i].companyName+"</option>");
+                            formSelects.render('manufacturers');
+                            formSelects.render('supplier');
                         }
                     }
-                    if (!isAdd) {
-                        $("select[id='epcAdd_toolManufacturers']").find("option[value='"+supplierId+"']").prop("selected",true);
-                        $("select[id='epcAdd_toolSupplier']").find("option[value='"+supplier+"']").prop("selected",true);
-                    }
-                    form.render();
+                    // if (!isAdd) {
+                    //     $("select[xm-select='epcAdd_toolManufacturers']").find("option[value='"+supplierId+"']").prop("selected",true);
+                    //     $("select[xm-select='epcAdd_toolSupplier']").find("option[value='"+supplier+"']").prop("selected",true);
+                    // }
+                    formSelects.value('manufacturers', [supplierId]);
+                    formSelects.value('supplier', [supplier]);
                 }
             });
             form.render();
@@ -169,3 +175,6 @@
         })
     }
 </script>
+<style>
+    .xm-select-title {height: unset !important;}
+</style>
