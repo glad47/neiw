@@ -59,8 +59,8 @@
       <file leaf-file-name="quote_contractB.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="188" column="46" selection-start-line="188" selection-start-column="46" selection-end-line="188" selection-end-column="46" />
+            <state relative-caret-position="375">
+              <caret line="47" column="95" lean-forward="true" selection-start-line="47" selection-start-column="95" selection-end-line="47" selection-end-column="95" />
               <folding>
                 <element signature="e#20383#20389#0" expanded="true" />
                 <element signature="e#20389#20395#0" expanded="true" />
@@ -103,7 +103,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>orderT</find>
       <find>PCB pho</find>
       <find>totalForm</find>
       <find>addThisQuote</find>
@@ -133,6 +132,7 @@
       <find>This a</find>
       <find>PCBA</find>
       <find>Overw</find>
+      <find>Eng</find>
     </findStrings>
     <replaceStrings>
       <replace>surfaceFinish</replace>
@@ -574,21 +574,7 @@
       <workItem from="1562548633692" duration="23000" />
       <workItem from="1562665667998" duration="2529000" />
       <workItem from="1562673328426" duration="37000" />
-      <workItem from="1562673377567" duration="1306000" />
-    </task>
-    <task id="LOCAL-00253" summary="供应商管理-出货明细 搜索">
-      <created>1560509415207</created>
-      <option name="number" value="00253" />
-      <option name="presentableId" value="LOCAL-00253" />
-      <option name="project" value="LOCAL" />
-      <updated>1560509415207</updated>
-    </task>
-    <task id="LOCAL-00254" summary="1">
-      <created>1560858938792</created>
-      <option name="number" value="00254" />
-      <option name="presentableId" value="LOCAL-00254" />
-      <option name="project" value="LOCAL" />
-      <updated>1560858938793</updated>
+      <workItem from="1562673377567" duration="2077000" />
     </task>
     <task id="LOCAL-00255" summary="引入formSelect 插件，修改quote的下拉">
       <created>1560932361307</created>
@@ -919,11 +905,25 @@
       <option name="project" value="LOCAL" />
       <updated>1562674860059</updated>
     </task>
-    <option name="localTasksCounter" value="302" />
+    <task id="LOCAL-00302" summary="1-2">
+      <created>1562674994673</created>
+      <option name="number" value="00302" />
+      <option name="presentableId" value="LOCAL-00302" />
+      <option name="project" value="LOCAL" />
+      <updated>1562674994673</updated>
+    </task>
+    <task id="LOCAL-00303" summary="1-3">
+      <created>1562675572011</created>
+      <option name="number" value="00303" />
+      <option name="presentableId" value="LOCAL-00303" />
+      <option name="project" value="LOCAL" />
+      <updated>1562675572011</updated>
+    </task>
+    <option name="localTasksCounter" value="304" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2433217000" />
+    <option name="totallyTimeSpent" value="2433988000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1020,7 +1020,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="反馈添加" />
     <MESSAGE value="formselect 反馈" />
     <MESSAGE value="修改反馈下拉回显bug解决" />
     <MESSAGE value="导入订单下拉formSelect" />
@@ -1045,7 +1044,8 @@
     <MESSAGE value="1" />
     <MESSAGE value="1-1" />
     <MESSAGE value="1-2" />
-    <option name="LAST_COMMIT_MESSAGE" value="1-2" />
+    <MESSAGE value="1-3" />
+    <option name="LAST_COMMIT_MESSAGE" value="1-3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1395,8 +1395,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="188" column="46" selection-start-line="188" selection-start-column="46" selection-end-line="188" selection-end-column="46" />
+        <state relative-caret-position="375">
+          <caret line="47" column="95" lean-forward="true" selection-start-line="47" selection-start-column="95" selection-end-line="47" selection-end-column="95" />
           <folding>
             <element signature="e#20383#20389#0" expanded="true" />
             <element signature="e#20389#20395#0" expanded="true" />
