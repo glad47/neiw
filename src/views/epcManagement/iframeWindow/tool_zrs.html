@@ -5,21 +5,24 @@
             .zrs-content{font-size: 16px;width: 95%;margin: 0 auto;}
             .zrs-content .zrs-title{font-size: 26px;font-weight: 400;text-align: center;}
             .zrs-title p{padding-top: 8px;}
-            .zrs-bot{display: flex;margin-top: 40px;}
+            .zrs-bot{display: flex;margin-top: 150px;}
             .zrs-bot img{position: absolute;margin-left: 42px;margin-top: -56px;}
             .zrs-ul li{float: left;width: 50%;}
             .zrs-remark{display: inline-flex;}
-            .zrs-info-intro,.zrs-remark,.zrc-jyr{padding-top: 22px;}
+            .zrs-info-intro,.zrs-remark,.zrc-jyr{padding-top: 40px;}
             @media print {
-                .zrs-content .zrs-title{text-align: center;}
-                .zrs-content{font-size: 16px !important;width: 95%;margin: 0 auto;}
-                .zrs-content .zrs-title{font-size: 26px !important;font-weight: 400;text-align: center;}
+                .zrs-title{font-size: 26px !important;font-weight: 400;text-align: center;}
+                .zrs-content{font-size: 16pt !important;width: 95%;margin: 0 auto;}
+                .zrs-content a{font-size: 26pt;color: red !important;}
+                body   {   font-size:   20px}
             }
         </style>
         <script type="text/html" template lay-done="layui.data.done(d);">
         <div class="zrs-title" style="text-align: center !important;">
-            深圳聚谷科技有限公司<br>
-            <p>资产保管责任书</p>
+            <a>深圳聚谷科技有限公司</a><br>
+            <p>
+                <a>资产保管责任书</a>
+            </p>
         </div>
         <div class="zrs-info-intro">
             为进一步加强公司资产管理工作，确保资产的安全与完整，强化资产使用的责任意识，制定本资产保管责任书。
@@ -28,13 +31,13 @@
             <ul>
                 <li style="width: 50%;float: left;">甲方：深圳聚谷科技有限公司</li> <li>乙方：<span class="zrc-top-yf"></span></li>
             </ul>
-            备注：{{d.params.remark}}
+            备注：{{d.params.remark || ''}}
         </div>
         <div class="zrs-ul">
             <ul>
-                <li>资产类别：{{d.params.type}}</li> <li>金额：{{d.params.cost}}</li>
-                <li>制作时间：{{d.params.productionTime}}</li> <li>存放时间：{{d.params.storageTime}}</li>
-                <li>聚谷型号：{{d.params.productNo}}</li> <li>乙方型号：__________</li>
+                <li>资产类别：{{d.params.type || ''}}</li> <li>金额：{{d.params.cost || ''}}</li>
+                <li>制作时间：{{d.params.productionTime || ''}}</li> <li>存放时间：{{d.params.storageTime || ''}}</li>
+                <li>聚谷型号：{{d.params.productNo || ''}}</li> <li>乙方型号：__________</li>
             </ul>
         </div>
         <div class="zrs-remark">
