@@ -41,7 +41,7 @@ layui.define(['admin','table','index','element','form'], function (exports) {
             ,{field: 'storageTime',title: '存放时间', Width: 110}
             ,{field: 'remark',title: '备注', Width: 110}
             ,{field: 'id',title: 'ID', hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#epcToolMana_tabbar',width: 150}
+            ,{fixed: 'right', title:'操作', toolbar: '#epcToolMana_tabbar',width: 210}
         ]]
         ,done: function (res, curr, count) {
 
@@ -93,6 +93,23 @@ layui.define(['admin','table','index','element','form'], function (exports) {
 
         } else if (obj.event == 'detail') {
 
+        } else if (obj.event == 'zrs') {
+            admin.popup({
+                title: '资产保管责任书',
+                area: ['56%','80%'],
+                id: 'popup_zrs',
+                btn: ['打印', '取消'],
+                yes: function (index, layero) {
+                    document.body.innerHTML=document.getElementById('print_toolZrs').innerHTML;
+                    window.print();
+                    window.location.reload();
+                },
+                success: function (layero, index) {
+                    view(this.id).render('epcManagement/iframeWindow/tool_zrs', data).done(function () {
+                        console.log(data);
+                    });
+                }
+            })
         }
     });
     exports('epc_toolMangement', {});

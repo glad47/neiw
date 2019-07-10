@@ -42,7 +42,7 @@ layui.define(['admin', 'index'],function (exports) {
                     if (data.supplier != null) {
                         supplierInfo = data.supplier;
                     } else {
-                        return "没有查询到用户信息";
+                        console.log("没有查询到用户信息");
                     }
                 }
             });

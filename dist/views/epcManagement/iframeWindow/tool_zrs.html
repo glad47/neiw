@@ -1,0 +1,70 @@
+<title>资产保管责任书</title>
+<div class="layui-fluid">
+    <div class="content zrs-content" id="print_toolZrs">
+        <style media="all">
+            .zrs-content{font-size: 16px;width: 95%;margin: 0 auto;}
+            .zrs-content .zrs-title{font-size: 26px;font-weight: 400;text-align: center;}
+            .zrs-title p{padding-top: 8px;}
+            .zrs-bot{display: flex;margin-top: 40px;}
+            .zrs-bot img{position: absolute;margin-left: 42px;margin-top: -56px;}
+            .zrs-ul li{float: left;width: 50%;}
+            .zrs-remark{display: inline-flex;}
+            .zrs-info-intro,.zrs-remark,.zrc-jyr{padding-top: 22px;}
+            @media print {
+                .zrs-content .zrs-title{text-align: center;}
+                .zrs-content{font-size: 16px !important;width: 95%;margin: 0 auto;}
+                .zrs-content .zrs-title{font-size: 26px !important;font-weight: 400;text-align: center;}
+            }
+        </style>
+        <script type="text/html" template lay-done="layui.data.done(d);">
+        <div class="zrs-title" style="text-align: center !important;">
+            深圳聚谷科技有限公司<br>
+            <p>资产保管责任书</p>
+        </div>
+        <div class="zrs-info-intro">
+            为进一步加强公司资产管理工作，确保资产的安全与完整，强化资产使用的责任意识，制定本资产保管责任书。
+        </div>
+        <div class="zrc-jyr">
+            <ul>
+                <li style="width: 50%;float: left;">甲方：深圳聚谷科技有限公司</li> <li>乙方：<span class="zrc-top-yf"></span></li>
+            </ul>
+            备注：{{d.params.remark}}
+        </div>
+        <div class="zrs-ul">
+            <ul>
+                <li>资产类别：{{d.params.type}}</li> <li>金额：{{d.params.cost}}</li>
+                <li>制作时间：{{d.params.productionTime}}</li> <li>存放时间：{{d.params.storageTime}}</li>
+                <li>聚谷型号：{{d.params.productNo}}</li> <li>乙方型号：__________</li>
+            </ul>
+        </div>
+        <div class="zrs-remark">
+            甲方的资产，乙方有保管的责任，如有损坏，及时通知甲方沟通处理，如有丢失，应按原价赔偿给甲方。
+        </div>
+        <div class="zrs-bot">
+            <img src="../../../src/style/res/template/seal.png">
+            <ul style="width: 50%;">
+                <li>甲方：深圳聚谷科技有限公司</li>
+                <li>时间：{{d.params.storageTime}}</li>
+            </ul>
+            <ul style="width: 50%;">
+                <li>乙方：_____________</li>
+                <li>时间：
+                    {{# var myDate = new Date() }}
+                    {{ myDate.toLocaleDateString() }}
+                </li>
+            </ul>
+        </div>
+        </script>
+    </div>
+</div>
+<script>
+    layui.data.done = function(d){
+        var supplierId = d.params.supplier;
+        layui.use(['form', 'requestInterface'], function(){
+            var $ = layui.$;
+            var requestInterface = layui.requestInterface;
+            var supplierInfo = requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+supplierId);
+            $(".zrc-top-yf").text(supplierInfo.companyName);
+        });
+    }
+</script>
