@@ -51,8 +51,8 @@
       <file leaf-file-name="add_tool.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/epcManagement/iframeWindow/add_tool.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="25" />
+            <state relative-caret-position="377">
+              <caret line="115" column="43" selection-start-line="115" selection-start-column="43" selection-end-line="115" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -69,7 +69,7 @@
       <file leaf-file-name="epc_toolMangement.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/epc_toolMangement.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="743">
+            <state relative-caret-position="1207">
               <caret line="71" column="23" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
             </state>
           </provider>
@@ -78,8 +78,8 @@
       <file leaf-file-name="tool_zrs.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/epcManagement/iframeWindow/tool_zrs.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="89" lean-forward="true" selection-start-line="5" selection-start-column="89" selection-end-line="5" selection-end-column="89" />
+            <state relative-caret-position="315">
+              <caret line="76" column="50" lean-forward="true" selection-start-line="76" selection-start-column="50" selection-end-line="76" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -87,7 +87,7 @@
       <file leaf-file-name="requestInterface.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lib/extend/requestInterface.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="715">
+            <state relative-caret-position="748">
               <caret line="44" column="47" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
             </state>
           </provider>
@@ -116,9 +116,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.params.pcbaSubtotalFeeCustomer*6.6</find>
-      <find>报价时间</find>
-      <find>内部报价</find>
       <find>pcbaToolFee</find>
       <find>pcborder/updateQuoteBeOt</find>
       <find>pcbaSubtotalFee</find>
@@ -146,6 +143,9 @@
       <find>GetSupplierInfo</find>
       <find>requestInterface.GetSupplierInfo</find>
       <find>ayui.data.done = function(d){</find>
+      <find>zrs-info-intro</find>
+      <find>zrs-ul</find>
+      <find>zrc-jyr</find>
     </findStrings>
     <replaceStrings>
       <replace>surfaceFinish</replace>
@@ -268,8 +268,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="125" />
-    <option name="y" value="90" />
+    <option name="x" value="209" />
+    <option name="y" value="55" />
     <option name="width" value="1689" />
     <option name="height" value="893" />
   </component>
@@ -582,14 +582,10 @@
       <workItem from="1562673377567" duration="3265000" />
       <workItem from="1562730118776" duration="9259000" />
       <workItem from="1562750878225" duration="30000" />
-      <workItem from="1562752751941" duration="1826000" />
-    </task>
-    <task id="LOCAL-00258" summary="修改第三方组件formSelect源码：下拉搜索不区分大小写">
-      <created>1561022667696</created>
-      <option name="number" value="00258" />
-      <option name="presentableId" value="LOCAL-00258" />
-      <option name="project" value="LOCAL" />
-      <updated>1561022667698</updated>
+      <workItem from="1562752751941" duration="2209000" />
+      <workItem from="1562755783323" duration="26000" />
+      <workItem from="1562755829402" duration="4000" />
+      <workItem from="1562813210539" duration="1423000" />
     </task>
     <task id="LOCAL-00259" summary="1">
       <created>1561023399254</created>
@@ -927,11 +923,18 @@
       <option name="project" value="LOCAL" />
       <updated>1562750597670</updated>
     </task>
-    <option name="localTasksCounter" value="307" />
+    <task id="LOCAL-00307" summary="工具管理资产保管责任书 [打印样式调整]">
+      <created>1562755148902</created>
+      <option name="number" value="00307" />
+      <option name="presentableId" value="LOCAL-00307" />
+      <option name="project" value="LOCAL" />
+      <updated>1562755148902</updated>
+    </task>
+    <option name="localTasksCounter" value="308" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2446291000" />
+    <option name="totallyTimeSpent" value="2448127000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -943,7 +946,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="125" y="90" width="1689" height="893" extended-state="0" />
+    <frame x="209" y="55" width="1689" height="893" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21402878" />
@@ -969,19 +972,19 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11848341" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.25671643" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.29751244" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.25416666" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49836424" weight="0.20597015" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50353837" side_tool="true" weight="0.27462685" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.25416666" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.29751244" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -1028,7 +1031,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="报价页面币种选择" />
     <MESSAGE value="斜边 是/否" />
     <MESSAGE value="导入返单信息formSelect" />
     <MESSAGE value="导入返单信息 不能计算价格bug解决" />
@@ -1053,7 +1055,8 @@
     <MESSAGE value="1-4" />
     <MESSAGE value="1-5" />
     <MESSAGE value="工具管理资产保管责任书" />
-    <option name="LAST_COMMIT_MESSAGE" value="工具管理资产保管责任书" />
+    <MESSAGE value="工具管理资产保管责任书 [打印样式调整]" />
+    <option name="LAST_COMMIT_MESSAGE" value="工具管理资产保管责任书 [打印样式调整]" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1370,13 +1373,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/epcManagement/iframeWindow/add_tool.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/epcManagement/tool_mangement.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1393,22 +1389,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/extend/requestInterface.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="715">
+        <state relative-caret-position="748">
           <caret line="44" column="47" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/epc_toolMangement.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="743">
+        <state relative-caret-position="1207">
           <caret line="71" column="23" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/epcManagement/iframeWindow/add_tool.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="115" column="43" selection-start-line="115" selection-start-column="43" selection-end-line="115" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/epcManagement/iframeWindow/tool_zrs.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="89" lean-forward="true" selection-start-line="5" selection-start-column="89" selection-end-line="5" selection-end-column="89" />
+        <state relative-caret-position="315">
+          <caret line="76" column="50" lean-forward="true" selection-start-line="76" selection-start-column="50" selection-end-line="76" selection-end-column="50" />
         </state>
       </provider>
     </entry>
