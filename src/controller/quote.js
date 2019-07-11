@@ -954,7 +954,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             type: 'post',
             async: false,
             url: setter.imUrl+'quote/getBuildTime',
-            data: {areaSq:areaSq,layerNum: layerNum},
+            data: {areaSq:areaSq,layerNum: layerNum,'exchangeId':pcb_container.exchangeId},
             success: function (data) {
                 $(".build-time-item").css("display","");
                 var def_buildTime;
@@ -1163,7 +1163,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                layer.closeAll();
            },
            success: function (layero, index) {
-               view(this.id).render("marketManagement/iframeWindow/stencil_size_list",null).done(function () {
+               view(this.id).render("marketManagement/iframeWindow/stencil_size_list",{'exchangeId':pcb_container.exchangeId}).done(function () {
 
                });
            }

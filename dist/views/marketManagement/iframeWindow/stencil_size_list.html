@@ -1,8 +1,12 @@
 <div class="layui-fluid">
-    <table class="layui-table" id="stencilSize" lay-filter="stencilList"></table>
-    <input type="text" value="999" id="stenContainer" style="display: none;">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+        <table class="layui-table" id="stencilSize" lay-filter="stencilList"></table>
+        <input type="text" value="999" id="stenContainer" style="display: none;">
+    </script>
 </div>
 <script type="text/javascript">
+    layui.data.done = function(d){
+        var exchangeId = d.params.exchangeId;
         layui.use(['form','table','admin','setter'], function(){
             var $ = layui.$
                 ,form = layui.form
@@ -11,6 +15,7 @@
                 ,table = layui.table;
             table.render({
                 elem: '#stencilSize'
+                ,where: {'exchangeId':exchangeId}
                 ,url: setter.imUrl+'quote/getStencilSize'
                 ,toolbar: true
                 ,cellMinWidth: 80
@@ -57,5 +62,5 @@
             })
             form.render();
         });
-
+    }
 </script>
