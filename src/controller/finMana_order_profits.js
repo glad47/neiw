@@ -53,9 +53,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             {field: 'productNo', title: '内部型号', width: 124}
             ,{field: 'gmtCreate',title: '报价时间', width: 166}
             ,{field: 'invoiceNo',title: '合同编号', width: 210}
-            ,{field: 'subtotal', title: '客户报价', width: 124,templet:'<div>{{ (d.subtotal * 6.6).toFixed(2) }}</div>'}
+            ,{field: 'subtotal', title: '客户报价', width: 124}
             ,{field: 'totalFee', title: '供应商报价', width: 117}
-            ,{field: 'profits', title: '利润', width: 144,templet:'<div>{{ (d.subtotal * 6.6 - d.totalFee).toFixed(2) }}</div>'}
+            ,{field: 'profits', title: '利润', width: 144,templet:'<div>{{ (d.subtotal - d.totalFee).toFixed(2) }}</div>'}
             // ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
             // ,{field: 'unitPrice', title: '单价', width: 96}
             // ,{field: 'subtotal', title: '合计', width: 96}
