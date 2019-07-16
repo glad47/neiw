@@ -6,7 +6,11 @@
             <div class="layui-inline">
                 <label class="layui-form-label">型号</label>
                 <div class="layui-input-inline">
-                    <select name="productNo" id="epcAdd_toolsPN" xm-select="productNo" xm-select-radio  xm-select-search="" xm-select-search-type="dl"></select>
+                    <select name="productNo" id="epcAdd_toolsPN" xm-select="productNo" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                        {{# if(d.params.productNo != null){ }}
+                        <option class="def-option" value="{{d.params.productNo}}" selected>{{d.params.productNo}}</option>
+                        {{# } }}
+                    </select>
                 </div>
             </div>
             <div class="layui-inline">
@@ -37,25 +41,42 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <div class="layui-inline">
+            <div class="layui-inline" style="width: 100%;display: inline-flex;">
                 <label class="layui-form-label">制造商</label>
-                <div class="layui-input-inline">
-                    <select name="manufacturers" id="epcAdd_toolManufacturers" xm-select="manufacturers" xm-select-radio  xm-select-search="" xm-select-search-type="dl"></select>
+                <div class="layui-input-inline" style="width: 79.2%;max-width: 513px;">
+                    <select name="manufacturers" id="epcAdd_toolManufacturers" xm-select="manufacturers" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                        {{# if(d.params.manufacturers != null){ }}
+                        <option class="def-option" value="{{d.params.manufacturers}}" selected>{{d.params.manufacturers}}</option>
+                        {{# } }}
+                    </select>
                 </div>
             </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">制作时间</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="productionTime" value="{{d.params.productionTime || ''}}" id="epcAdd_toolProductionTime" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 100%;display: inline-flex;">
+                <label class="layui-form-label">供应商存放</label>
+                <div class="layui-input-inline" style="width: 79.2%;max-width: 513px;">
+                    <select name="supplier" id="epcAdd_toolSupplier" xm-select="supplier" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                        {{# if(d.params.supplier != null){ }}
+                        <option class="def-option" value="{{d.params.supplier}}" selected>{{d.params.supplier}}</option>
+                        {{# } }}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 100%;display: inline-flex;">
+                <label class="layui-form-label">供应商编号</label>
+                <div class="layui-input-inline" style="width: 79.2%;max-width: 513px;">
+                   <input name="supplierNo" class="layui-input" type="text" value="{{d.params.supplierNo || ''}}">
                 </div>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label">供应商存放</label>
+                <label class="layui-form-label">制作时间</label>
                 <div class="layui-input-inline">
-                    <!--<input type="text" name="supplier" value="{{d.params.supplier || ''}}" autocomplete="off" class="layui-input">-->
-                    <select name="supplier" id="epcAdd_toolSupplier" xm-select="supplier" xm-select-radio  xm-select-search="" xm-select-search-type="dl"></select>
+                    <input type="text" name="productionTime" value="{{d.params.productionTime || ''}}" id="epcAdd_toolProductionTime" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
@@ -86,6 +107,7 @@
 <script>
     layui.data.done = function(d) {
         var urlType,productNo,supplierId,id,isAdd,supplier;
+        console.log(d)
         if (d.params.productNo == null) {
             urlType = 'epc/tool/save';
         } else {
@@ -108,47 +130,87 @@
             laydate.render({
                 elem: '#epcAdd_toolStorageTime'
             });
-            admin.req({
-                type: 'post',
-                async: false,
-                url: setter.baseUrl+'epc/pcborder/allProductNo',
-                success: function (res) {
-                    var resList = res.data;
-                    if (resList != null && resList.length>0) {
-                        for (var i=0;i<resList.length;i++) {
-                            $("select[xm-select='productNo']").append("<option value="+resList[i]+">"+resList[i]+"</option>")
-                            formSelects.render('productNo');
-                        }
+            renderAllFormSelects();
+
+            // 打开页面-先默认渲染所有 FormSelects 下拉
+            function renderAllFormSelects() {
+                $(".xm-select-label").remove();
+                formSelects.render('productNo');
+                formSelects.render('manufacturers');
+                formSelects.render('supplier');
+                formSelects.value('productNo', [productNo]);
+                formSelects.value('manufacturers', [supplierId]);
+                formSelects.value('supplier', [supplier]);
+            }
+
+            var isGetProductNo = false;
+            var isGetManufacturers,isGetSupplier = false;
+            // 点击事件 ==>> 发送请求获取各下拉的列表
+            $("div").delegate(".xm-select-title","click", function () {
+                var $this = $(this).parents(".xm-select-parent").attr("fs_id");
+                if ($this == "productNo") {
+                    if (!isGetProductNo) {
+                        getProductNo($this);
+                        isGetProductNo = true;
                     }
-                    // if (!isAdd) {
-                    //     formSelects.render('productNo');
-                    // }
-                    formSelects.value('productNo', [productNo]);
+                } else if ($this == "manufacturers" || $this == "supplier") {
+                    if (!isGetManufacturers) {
+                        getSupplier($this);
+                        isGetManufacturers = isGetSupplier = true;
+                    }
                 }
             });
-            admin.req({
-               type: 'post',
-                async: false,
-               url: setter.baseUrl+'scm/pcborder/allSupplier',
-                success: function (res) {
-                    console.log(res)
-                    var resList = res.data;
-                    if (resList && resList.length>0) {
-                        for (var i=0;i<resList.length;i++) {
-                            $("select[xm-select='manufacturers']").append("<option value="+resList[i].supplierId+">"+resList[i].companyName+"</option>");
-                            $("select[xm-select='supplier']").append("<option value="+resList[i].supplierId+">"+resList[i].companyName+"</option>");
-                            formSelects.render('manufacturers');
-                            formSelects.render('supplier');
+
+            // 获取型号
+            function getProductNo(dom) {
+                layer.msg("正在加载列表.....");
+                $("select[xm-select='"+dom+"']").find("option").remove();
+                admin.req({
+                    type: 'post',
+                    async: true,
+                    url: setter.baseUrl+'epc/pcborder/allProductNo',
+                    success: function (res) {
+                        var resList = res.data;
+                        if (resList != null && resList.length>0) {
+                            for (var i=0;i<resList.length;i++) {
+                                $("select[xm-select='productNo']").append("<option value="+resList[i]+">"+resList[i]+"</option>")
+                                formSelects.render('productNo');
+                            }
                         }
+                        formSelects.value('productNo', [productNo]);
+                        $(".xm-select-parent[fs_id='"+dom+"']").children(".xm-form-select").addClass("xm-form-selected");
+                        layer.msg("加载成功！");
                     }
-                    // if (!isAdd) {
-                    //     $("select[xm-select='epcAdd_toolManufacturers']").find("option[value='"+supplierId+"']").prop("selected",true);
-                    //     $("select[xm-select='epcAdd_toolSupplier']").find("option[value='"+supplier+"']").prop("selected",true);
-                    // }
-                    formSelects.value('manufacturers', [supplierId]);
-                    formSelects.value('supplier', [supplier]);
-                }
-            });
+                });
+            }
+
+            // 获取制造商和供应商存放
+            function getSupplier(dom) {
+                layer.msg("正在加载列表.....");
+                $("select[xm-select='manufacturers']").find("option").remove();
+                $("select[xm-select='supplier']").find("option").remove();
+                admin.req({
+                    type: 'post',
+                    async: true,
+                    url: setter.baseUrl+'scm/pcborder/allSupplier',
+                    success: function (res) {
+                        var resList = res.data;
+                        if (resList && resList.length>0) {
+                            for (var i=0;i<resList.length;i++) {
+                                $("select[xm-select='manufacturers']").append("<option value="+resList[i].companyName+">"+resList[i].companyName+"</option>");
+                                $("select[xm-select='supplier']").append("<option value="+resList[i].companyName+">"+resList[i].companyName+"</option>");
+                                formSelects.render('manufacturers');
+                                formSelects.render('supplier');
+                            }
+                        }
+                        formSelects.value('manufacturers', [supplierId]);
+                        formSelects.value('supplier', [supplier]);
+                        console.log("dom:"+dom);
+                        $(".xm-select-parent[fs_id='supplier']").children(".xm-form-select").addClass("xm-form-selected");
+                        layer.msg("加载成功！");
+                    }
+                });
+            }
             form.render();
             // 监听表单提交
             //监听提交
@@ -168,6 +230,7 @@
                     success: function (res) {
                         layer.msg(tipMsg);
                         layer.closeAll();
+                        table.reload('epcToolMana_tab');
                     }
                 })
                 return false;

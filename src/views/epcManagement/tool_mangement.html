@@ -1,5 +1,42 @@
 <title>工程管理-工具管理</title>
 <div class="layui-fluid">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto tool-mana-form-search" lay-filter="app-content-comment">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">内部型号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">类型</label>
+                <div class="layui-input-inline">
+                    <select name="type" id="" lay-filter="search-toolMana">
+                        <option value=""></option>
+                        <option value="测试架">测试架</option>
+                        <option value="模具">模具</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">制造商</label>
+                <div class="layui-input-inline">
+                    <input name="manufacturers" type="text" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">供应商存放</label>
+                <div class="layui-input-inline">
+                    <input name="supplier" type="text" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="tool-mangement-search">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     <table class="layui-table" id="epcToolMana_tab" lay-filter="epcToolMana_tab"></table>
     <script type="text/html" id="epcToolMana_tb">
         <div class="layui-btn-container">
@@ -9,7 +46,6 @@
     <script type="text/html" id="epcToolMana_tabbar">
         <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="zrs">责任书</a>
         <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">修改</a>
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detail">详情</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
 </div>

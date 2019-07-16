@@ -259,7 +259,7 @@
                             {{# } }}
                             <!--组焊色-->
                             Solder Mask:{{ item.solderMaskTopColor}}<br>
-                            {{# if(item.pcbaSubtotalFee != null){ }}
+                            {{# if(item.pcbaSubtotalFee != null && item.pcbaSubtotalFee != '0'){ }}
                             <strong style="color: orangered;">+ PCBA</strong>
                             {{# } }}
                         </td>

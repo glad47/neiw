@@ -1,6 +1,6 @@
 /**
 
- @Name:    市场管理－－［订单评审］
+ @Name:    工程管理－－［工具管理］
 
  */
 
@@ -32,14 +32,17 @@ layui.define(['admin','table','index','element','form'], function (exports) {
         ,cols: [[
             {type:'checkbox', fixed: 'left'}
             ,{field: 'productNo',title: '内部型号', width: 130, fixed: 'left'}      // 1 ＝ 待报价
-            ,{field: 'makeWay',title: '制作方式', minWidth: 89}
-            ,{field: 'type',title: '类型', Width: 110}
-            ,{field: 'cost',title: '费用', Width: 110}
-            ,{field: 'manufacturers',title: '制造商', Width: 110}
-            ,{field: 'productionTime',title: '制作时间', Width: 110}
-            ,{field: 'supplier',title: '供应商存放', Width: 110}
-            ,{field: 'storageTime',title: '存放时间', Width: 110}
-            ,{field: 'remark',title: '备注', Width: 110}
+            ,{field: 'makeWay',title: '制作方式', width: 89}
+            ,{field: 'type',title: '类型', width: 110}
+            ,{field: 'cost',title: '费用', width: 110}
+            ,{field: 'manufacturers',title: '制造商', width: 200}
+            ,{field: 'productionTime',title: '制作时间', width: 110}
+            ,{field: 'supplier',title: '供应商存放', width: 200}
+            ,{field: 'supplierNo',title: '供应商编号', width: 110}
+            ,{field: 'gmtCreate',title: '创建时间', width: 177}
+            ,{field: 'gmtModified',title: '修改时间', width: 177}
+            ,{field: 'storageTime',title: '存放时间', width: 177}
+            ,{field: 'remark',title: '备注', width: 130}
             ,{field: 'id',title: 'ID', hide: true}
             ,{fixed: 'right', title:'操作', toolbar: '#epcToolMana_tabbar',width: 210}
         ]]
@@ -81,7 +84,6 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                 ,btn: ['保存', '取消']
                 ,yes: function (index, layero) {
                     $("button[lay-filter='add_tool_submit']").click();
-                    table.reload('epcToolMana_tab');
                 }
                 ,success: function (layero, index) {
                     view(this.id).render('epcManagement/iframeWindow/add_tool', data).done(function () {
@@ -112,5 +114,22 @@ layui.define(['admin','table','index','element','form'], function (exports) {
             })
         }
     });
+
+    //监听搜索
+    form.on('submit(tool-mangement-search)', function(data){
+        var field = data.field;
+        //执行重载
+        table.reload('epcToolMana_tab', {
+            where: field
+        });
+    });
+    form.on('select(search-toolMana)', function(data){
+        $("*[lay-filter='tool-mangement-search']").click();
+    });
+
+    $(".tool-mana-form-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='tool-mangement-search']").click();
+    });
+
     exports('epc_toolMangement', {});
 });
