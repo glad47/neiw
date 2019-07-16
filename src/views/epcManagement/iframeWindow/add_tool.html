@@ -172,10 +172,12 @@
                     success: function (res) {
                         var resList = res.data;
                         if (resList != null && resList.length>0) {
+                            var $html = "";
                             for (var i=0;i<resList.length;i++) {
-                                $("select[xm-select='productNo']").append("<option value="+resList[i]+">"+resList[i]+"</option>")
-                                formSelects.render('productNo');
+                                $html += "<option value="+resList[i]+">"+resList[i]+"</option>"
                             }
+                            $("select[xm-select='productNo']").append($html)
+                            formSelects.render('productNo');
                         }
                         formSelects.value('productNo', [productNo]);
                         $(".xm-select-parent[fs_id='"+dom+"']").children(".xm-form-select").addClass("xm-form-selected");
@@ -196,12 +198,14 @@
                     success: function (res) {
                         var resList = res.data;
                         if (resList && resList.length>0) {
+                            var $html = "";
                             for (var i=0;i<resList.length;i++) {
-                                $("select[xm-select='manufacturers']").append("<option value="+resList[i].companyName+">"+resList[i].companyName+"</option>");
-                                $("select[xm-select='supplier']").append("<option value="+resList[i].companyName+">"+resList[i].companyName+"</option>");
-                                formSelects.render('manufacturers');
-                                formSelects.render('supplier');
+                                $html += "<option value="+resList[i].companyName+">"+resList[i].companyName+"</option>";
                             }
+                            $("select[xm-select='manufacturers']").append($html);
+                            $("select[xm-select='supplier']").append($html);
+                            formSelects.render('manufacturers');
+                            formSelects.render('supplier');
                         }
                         formSelects.value('manufacturers', [supplierId]);
                         formSelects.value('supplier', [supplier]);

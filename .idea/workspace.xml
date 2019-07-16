@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractB.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/stencil_size_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/stencil_size_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/epc_toolMangement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/epc_toolMangement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/epcManagement/iframeWindow/add_tool.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/epcManagement/iframeWindow/add_tool.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/epcManagement/tool_mangement.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/epcManagement/tool_mangement.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/stencil_size_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/stencil_size_list.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -52,14 +46,14 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5302791">
+    <splitter split-orientation="horizontal" split-proportion="0.7455404">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="add_tool.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="add_tool.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/epcManagement/iframeWindow/add_tool.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="201">
-                  <caret line="205" column="73" selection-start-line="205" selection-start-column="73" selection-end-line="205" selection-end-column="73" />
+                <state relative-caret-position="499">
+                  <caret line="185" column="19" lean-forward="true" selection-start-line="185" selection-start-column="19" selection-end-line="185" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
@@ -67,7 +61,7 @@
           <file leaf-file-name="table.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/start/layui/lay/modules/table.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="297">
+                <state relative-caret-position="204">
                   <caret line="1" column="11663" selection-start-line="1" selection-start-column="11663" selection-end-line="1" selection-end-column="11663" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
@@ -76,11 +70,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="tool_mangement.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="tool_mangement.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/epcManagement/tool_mangement.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="19" column="18" lean-forward="true" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+                <state relative-caret-position="714">
+                  <caret line="42" column="80" selection-start-line="42" selection-start-column="80" selection-end-line="42" selection-end-column="80" />
                 </state>
               </provider>
             </entry>
@@ -88,7 +82,7 @@
           <file leaf-file-name="customer_info.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/infoManagement/customer_info.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="567">
+                <state relative-caret-position="1224">
                   <caret line="72" column="32" selection-start-line="72" selection-start-column="19" selection-end-line="72" selection-end-column="32" />
                 </state>
               </provider>
@@ -97,8 +91,8 @@
           <file leaf-file-name="sys_coustomer.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/controller/sys_coustomer.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
-                  <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+                <state relative-caret-position="238">
+                  <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
                 </state>
               </provider>
             </entry>
@@ -106,12 +100,12 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="epc_toolMangement.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/controller/epc_toolMangement.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="399">
-                  <caret line="41" column="59" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="59" />
+                <state relative-caret-position="830">
+                  <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
                 </state>
               </provider>
             </entry>
@@ -272,9 +266,9 @@
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/stencil_size_list.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" />
         <option value="$PROJECT_DIR$/start/layui/lay/modules/table.js" />
-        <option value="$PROJECT_DIR$/src/views/epcManagement/iframeWindow/add_tool.html" />
         <option value="$PROJECT_DIR$/src/views/epcManagement/tool_mangement.html" />
         <option value="$PROJECT_DIR$/src/controller/epc_toolMangement.js" />
+        <option value="$PROJECT_DIR$/src/views/epcManagement/iframeWindow/add_tool.html" />
       </list>
     </option>
   </component>
@@ -292,7 +286,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-13" />
     <option name="y" value="23" />
     <option name="width" value="1927" />
@@ -639,14 +633,8 @@
       <workItem from="1562813210539" duration="1681000" />
       <workItem from="1562843539592" duration="1129000" />
       <workItem from="1563177684231" duration="401000" />
-      <workItem from="1563245052485" duration="9997000" />
-    </task>
-    <task id="LOCAL-00262" summary="供应商修改选择供应商接口改变">
-      <created>1561083855814</created>
-      <option name="number" value="00262" />
-      <option name="presentableId" value="LOCAL-00262" />
-      <option name="project" value="LOCAL" />
-      <updated>1561083855815</updated>
+      <workItem from="1563245052485" duration="11061000" />
+      <workItem from="1563272514536" duration="262000" />
     </task>
     <task id="LOCAL-00263" summary="编写指示卡网上订单下载文件bug">
       <created>1561106585276</created>
@@ -984,11 +972,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563177873402</updated>
     </task>
-    <option name="localTasksCounter" value="311" />
+    <task id="LOCAL-00311" summary="工具管理搜索">
+      <created>1563265121740</created>
+      <option name="number" value="00311" />
+      <option name="presentableId" value="LOCAL-00311" />
+      <option name="project" value="LOCAL" />
+      <updated>1563265121740</updated>
+    </task>
+    <option name="localTasksCounter" value="312" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2459912000" />
+    <option name="totallyTimeSpent" value="2461238000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1000,18 +995,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <frame x="-13" y="23" width="1927" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.18746708" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49349946" weight="0.26145834" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50921535" side_tool="true" weight="0.36119404" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.37513283" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.38229167" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" visible="true" weight="0.23184079" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49078462" weight="0.23184079" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39972714" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1021,24 +1015,25 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.37513283" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11848341" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.25671643" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.29751244" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.25416666" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49836424" weight="0.20597015" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50353837" side_tool="true" weight="0.27462685" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.25416666" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.29751244" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -1085,7 +1080,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="合同币种判断" />
     <MESSAGE value="合同币种判断1" />
     <MESSAGE value="合同币种判断2" />
     <MESSAGE value="反馈富文本bug解决" />
@@ -1110,7 +1104,8 @@
     <MESSAGE value="工具管理资产保管责任书 [打印样式调整]-1" />
     <MESSAGE value="内部报价  钢网尺寸加上 币种参数" />
     <MESSAGE value="-1" />
-    <option name="LAST_COMMIT_MESSAGE" value="-1" />
+    <MESSAGE value="工具管理搜索" />
+    <option name="LAST_COMMIT_MESSAGE" value="工具管理搜索" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1430,15 +1425,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="4301" selection-start-line="1" selection-start-column="4296" selection-end-line="1" selection-end-column="4301" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/start/layui/lay/modules/table.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
+        <state relative-caret-position="204">
           <caret line="1" column="11663" selection-start-line="1" selection-start-column="11663" selection-end-line="1" selection-end-column="11663" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -1446,38 +1438,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/epcManagement/iframeWindow/add_tool.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="58" column="42" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/infoManagement/customer_info.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
+        <state relative-caret-position="1224">
           <caret line="72" column="32" selection-start-line="72" selection-start-column="19" selection-end-line="72" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/sys_coustomer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/epcManagement/tool_mangement.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="19" column="18" lean-forward="true" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+        <state relative-caret-position="238">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/epc_toolMangement.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="41" column="59" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="59" />
+        <state relative-caret-position="830">
+          <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/epcManagement/tool_mangement.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="80" selection-start-line="42" selection-start-column="80" selection-end-line="42" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/epcManagement/iframeWindow/add_tool.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="185" column="19" lean-forward="true" selection-start-line="185" selection-start-column="19" selection-end-line="185" selection-end-column="19" />
         </state>
       </provider>
     </entry>
