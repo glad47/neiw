@@ -38,7 +38,7 @@ layui.define(['admin','table','index','element','form'], function (exports) {
             ,{field: 'manufacturers',title: '制造商', width: 200}
             ,{field: 'productionTime',title: '制作时间', width: 110}
             ,{field: 'supplier',title: '供应商存放', width: 200}
-            ,{field: 'supplierNo',title: '供应商编号', width: 110}
+            ,{field: 'supplierNo',title: '供应商编号', width: 183}
             ,{field: 'gmtCreate',title: '创建时间', width: 177}
             ,{field: 'gmtModified',title: '修改时间', width: 177}
             ,{field: 'storageTime',title: '存放时间', width: 177}
