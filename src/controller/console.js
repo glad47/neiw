@@ -52,7 +52,7 @@ layui.define(function(exports){
       type:'get',
       url:set.baseUrl+'allGraphs/monthlySales',
       success: function (res) {
-          console.log(res.data);
+          // console.log(res.data);
           var result = lineChartCheckData(res.data);
           // console.log(result);
           var result3 =lineChartCheckData(res.userData);
@@ -114,8 +114,8 @@ layui.define(function(exports){
         //总的月销售额
         {
           title : {
-            text: currentYear+'年每月总销售额'
-            // subtext: '纯属虚构'
+            text: currentYear+'年每月总销售额',
+            subtext: '单位（$）'
           },
           tooltip : {
             trigger: 'axis'
@@ -140,12 +140,12 @@ layui.define(function(exports){
               name:'月销售额',
               type:'bar',
               data:data4,
-              markPoint : {
-                data : [
-                  {type : 'max', name: '最大值'},
-                  // {type : 'min', name: '最小值'}
-                ]
-              },
+              // markPoint : {
+              //   data : [
+              //     {type : 'max', name: '最大值'},
+              //     // {type : 'min', name: '最小值'}
+              //   ]
+              // },
               // markLine : {
               //   data : [{type : 'average', name: '平均值'}]
               // }
@@ -244,10 +244,10 @@ layui.define(function(exports){
       var result = [0,0,0,0,0,0,0,0,0,0,0,0];
       data.forEach(function(d){
           for (var i = d.data.length - 1; i >= 0; i--) {
-            result[i] = result[i]+d.data[i];
+            result[i] = (result[i]*100+d.data[i]*100)/100;
           }
       });
-      //console.log(result);
+      console.log(result);
       return result;
     }
   
