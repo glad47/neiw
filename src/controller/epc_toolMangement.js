@@ -38,7 +38,7 @@ layui.define(['admin','table','index','element','form'], function (exports) {
             ,{field: 'manufacturers',title: '制造商', width: 200}
             ,{field: 'productionTime',title: '制作时间', width: 110}
             ,{field: 'supplier',title: '供应商存放', width: 200}
-            ,{field: 'supplierNo',title: '供应商编号', width: 110}
+            ,{field: 'supplierNo',title: '供应商编号', width: 183}
             ,{field: 'gmtCreate',title: '创建时间', width: 177}
             ,{field: 'gmtModified',title: '修改时间', width: 177}
             ,{field: 'storageTime',title: '存放时间', width: 177}
@@ -92,9 +92,22 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                 }
             });
         } else if (obj.event == 'del'){
-
-        } else if (obj.event == 'detail') {
-
+            layer.confirm('确定删除？', {
+                btn: ['删除', '取消']
+                ,btn1: function(index, layero){
+                    admin.req({
+                        type: 'post',
+                        data: {'ids':_this_id},
+                        url: setter.baseUrl + '/epc/tool/delete',
+                        success: function () {
+                            // table.reload('epcToolMana_tab');
+                            obj.del();
+                            layer.close(index);
+                            layer.msg('删除成功');
+                        }
+                    });
+                }
+            });
         } else if (obj.event == 'zrs') {
             admin.popup({
                 title: '资产保管责任书',

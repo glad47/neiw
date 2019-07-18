@@ -31,7 +31,9 @@
         </div>
         <div class="zrc-jyr">
             <ul>
-                <li style="width: 50%;float: left;">甲方：深圳聚谷科技有限公司</li> <li>乙方：<span class="zrc-top-yf"></span></li>
+                <li style="width: 50%;float: left;">甲方：深圳聚谷科技有限公司</li>
+                <!--<li>乙方：<span class="zrc-top-yf"></span></li>-->
+                <li>乙方：{{d.params.supplier || ''}}</li>
             </ul>
         </div>
         <div class="zrs-ul">
@@ -40,7 +42,7 @@
                     <td>聚谷型号：</td>
                     <td>{{d.params.productNo || ''}}</td>
                     <td>乙方型号：</td>
-                    <td></td>
+                    <td>{{d.params.supplierNo || ''}}</td>
                 </tr>
                 <tr>
                     <td>资料类别：</td>
@@ -72,7 +74,8 @@
                 <li>时间：{{d.params.storageTime}}</li>
             </ul>
             <ul style="width: 50%;">
-                <li>乙方：<span class="zrc-top-yf"></span></li>
+                <!--<li>乙方：<span class="zrc-top-yf"></span></li>-->
+                <li>乙方：{{d.params.supplier || ''}}</span></li>
                 <li>时间：
                     {{# var myDate = new Date() }}
                     {{ myDate.toLocaleDateString() }}
@@ -87,9 +90,9 @@
         var supplierId = d.params.supplier;
         layui.use(['form', 'requestInterface'], function(){
             var $ = layui.$;
-            var requestInterface = layui.requestInterface;
-            var supplierInfo = requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+supplierId);
-            $(".zrc-top-yf").text(supplierInfo.companyName);
+            // var requestInterface = layui.requestInterface;
+            // var supplierInfo = requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+supplierId);
+            // $(".zrc-top-yf").text(supplierInfo.companyName);
         });
     }
 </script>
