@@ -92,9 +92,22 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                 }
             });
         } else if (obj.event == 'del'){
-
-        } else if (obj.event == 'detail') {
-
+            layer.confirm('确定删除？', {
+                btn: ['删除', '取消']
+                ,btn1: function(index, layero){
+                    admin.req({
+                        type: 'post',
+                        data: {'ids':_this_id},
+                        url: setter.baseUrl + '/epc/tool/delete',
+                        success: function () {
+                            // table.reload('epcToolMana_tab');
+                            obj.del();
+                            layer.close(index);
+                            layer.msg('删除成功');
+                        }
+                    });
+                }
+            });
         } else if (obj.event == 'zrs') {
             admin.popup({
                 title: '资产保管责任书',
