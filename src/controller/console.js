@@ -52,16 +52,18 @@ layui.define(function(exports){
       type:'get',
       url:set.baseUrl+'allGraphs/monthlySales',
       success: function (res) {
+          console.log(res.data);
           var result = lineChartCheckData(res.data);
-          //console.log(result);
+          // console.log(result);
           var result3 =lineChartCheckData(res.userData);
-          //console.log(result3);
+          // console.log(result3);
+          var result4 = barChartCheckData(res.data);
           //填充数据
-          fillData(result,res.pieOrder,result3);
+          fillData(result,res.pieOrder,result3,result4);
       }
     });
 
-    function fillData(data1,data2,data3){
+    function fillData(data1,data2,data3,data4){
       // var series =[],legend=[];
       // data.data.forEach(function(x){
       //   var d = [];
@@ -109,7 +111,47 @@ layui.define(function(exports){
           }],
           series : data1.seriesData
         },
-        
+        //总的月销售额
+        {
+          title : {
+            text: currentYear+'年每月总销售额'
+            // subtext: '纯属虚构'
+          },
+          tooltip : {
+            trigger: 'axis'
+          },
+          legend: {
+            data:['月销售额']
+          },
+          calculable : true,
+          xAxis : [
+            {
+              type : 'category',
+              data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+            }
+          ],
+          yAxis : [
+            {
+              type : 'value'
+            }
+          ],
+          series : [
+            {
+              name:'月销售额',
+              type:'bar',
+              data:data4,
+              markPoint : {
+                data : [
+                  {type : 'max', name: '最大值'},
+                  // {type : 'min', name: '最小值'}
+                ]
+              },
+              // markLine : {
+              //   data : [{type : 'average', name: '平均值'}]
+              // }
+            }
+          ]
+        },
         //访客浏览器分布
         { 
           title : {
@@ -197,13 +239,17 @@ layui.define(function(exports){
     }
 
     
-    
-    
-    
-    
-    
-    
-    
+   //柱状图数据拼接 
+    function barChartCheckData(data){
+      var result = [0,0,0,0,0,0,0,0,0,0,0,0];
+      data.forEach(function(d){
+          for (var i = d.data.length - 1; i >= 0; i--) {
+            result[i] = result[i]+d.data[i];
+          }
+      });
+      //console.log(result);
+      return result;
+    }
   
 
     //折线图数据拼接
