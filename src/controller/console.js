@@ -244,10 +244,10 @@ layui.define(function(exports){
       var result = [0,0,0,0,0,0,0,0,0,0,0,0];
       data.forEach(function(d){
           for (var i = d.data.length - 1; i >= 0; i--) {
-            result[i] = (result[i]*100+d.data[i]*100)/100;
+            result[i] = Math.round(result[i]*100+d.data[i]*100)/100;
           }
       });
-      console.log(result);
+      // console.log(result);
       return result;
     }
   
