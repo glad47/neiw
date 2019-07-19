@@ -226,9 +226,9 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     });
     // 计算单价
     function quoteUnitPrice(data) {
-        var a = $("#quantityPcs").val(); // PCS数
-        var c = $("#areasq").val();     // 面积
-        var f = $("#boardFee").val();   // 板费
+        var a = parseFloat($("#quantityPcs").val()); // PCS数
+        var c = parseFloat($("#areasq").val());     // 面积
+        var f = parseFloat($("#boardFee").val());   // 板费
         var unitPrice = parseFloat(f/a).toFixed(3); // 单价
         var mPrice = parseFloat(f/c).toFixed(3);    // 平米价
         $("#mPrice").val(mPrice);
@@ -237,7 +237,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     }
     // 计算板费
     function quoteBoardPrice(mPrice) {
-        var c = $("#areasq").val();     // 面积
+        var c = parseFloat($("#areasq").val());     // 面积
         var boardPrice = parseFloat(c*mPrice).toFixed(2);
         $("#boardFee").val(boardPrice);
         quoteUnitPrice();

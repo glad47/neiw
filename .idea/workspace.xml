@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="保存报价传入单价，">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/quote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractB.html" afterDir="false" />
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/quote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -55,8 +51,8 @@
           <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="256">
-                  <caret line="224" column="51" lean-forward="true" selection-start-line="224" selection-start-column="51" selection-end-line="224" selection-end-column="51" />
+                <state relative-caret-position="433">
+                  <caret line="232" column="51" selection-start-line="232" selection-start-column="51" selection-end-line="232" selection-end-column="51" />
                 </state>
               </provider>
             </entry>
@@ -86,8 +82,8 @@
           <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="177">
-                  <caret line="96" column="8" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="8" />
+                <state relative-caret-position="76">
+                  <caret line="89" column="27" lean-forward="true" selection-start-line="89" selection-start-column="27" selection-end-line="89" selection-end-column="27" />
                 </state>
               </provider>
             </entry>
@@ -637,14 +633,7 @@
       <workItem from="1563440003961" duration="1090000" />
       <workItem from="1563446912043" duration="749000" />
       <workItem from="1563519032006" duration="2524000" />
-      <workItem from="1563530527506" duration="4554000" />
-    </task>
-    <task id="LOCAL-00275" summary="1">
-      <created>1561690680758</created>
-      <option name="number" value="00275" />
-      <option name="presentableId" value="LOCAL-00275" />
-      <option name="project" value="LOCAL" />
-      <updated>1561690680758</updated>
+      <workItem from="1563530527506" duration="5060000" />
     </task>
     <task id="LOCAL-00276" summary="1">
       <created>1561692769620</created>
@@ -982,11 +971,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563532471342</updated>
     </task>
-    <option name="localTasksCounter" value="324" />
+    <task id="LOCAL-00324" summary="保存报价传入单价">
+      <created>1563538135043</created>
+      <option name="number" value="00324" />
+      <option name="presentableId" value="LOCAL-00324" />
+      <option name="project" value="LOCAL" />
+      <updated>1563538135043</updated>
+    </task>
+    <option name="localTasksCounter" value="325" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2481124000" />
+    <option name="totallyTimeSpent" value="2481630000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1083,7 +1079,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="内部报价 切换订单类型 显示/隐藏 整理到一个数组" />
     <MESSAGE value="对比系统报价自动转换人民币" />
     <MESSAGE value="系统报价对比 转换人民币完善" />
     <MESSAGE value="报价协同，计划协同PCBA价格修改" />
@@ -1108,7 +1103,8 @@
     <MESSAGE value="-1" />
     <MESSAGE value="1" />
     <MESSAGE value="合同B打印布局调整" />
-    <option name="LAST_COMMIT_MESSAGE" value="合同B打印布局调整" />
+    <MESSAGE value="保存报价传入单价" />
+    <option name="LAST_COMMIT_MESSAGE" value="保存报价传入单价" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1467,8 +1463,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="224" column="51" lean-forward="true" selection-start-line="224" selection-start-column="51" selection-end-line="224" selection-end-column="51" />
+        <state relative-caret-position="433">
+          <caret line="232" column="51" selection-start-line="232" selection-start-column="51" selection-end-line="232" selection-end-column="51" />
         </state>
       </provider>
     </entry>
