@@ -45,7 +45,7 @@
         var postData = {
             courierId: 1,   // 默认为DHL
             countryId: null,
-            totalWeight: null // 重量
+            totalWeight: 0 // 重量
         }
         var timeMsg;
         getPostFee();
@@ -56,7 +56,7 @@
         $("input[name='quotePostFeeWeight']").bind("input propertychange", function (even) {
             clearTimeout(timeMsg);
             var _val = $(this).val();
-            if (_val >= 0 || _val != null || _val != "") {
+            if (_val >= 0 && _val != null && _val != "") {
                 postData.totalWeight = _val;
             } else {
                 postData.totalWeight = 0;
