@@ -234,6 +234,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         $("#mPrice").val(mPrice);
         $("#unitPrice").val(unitPrice);
         pcb_container.unitPrice = unitPrice;
+        console.log("板费/PCS="+f+"/"+a+"="+unitPrice);
+        console.log("mPrice="+c+"/"+f+"="+mPrice);
     }
     // 计算板费
     function quoteBoardPrice(mPrice) {
