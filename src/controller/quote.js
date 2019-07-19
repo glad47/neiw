@@ -113,7 +113,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         pcbName: '',     //客户型号
         orderNo: '',    //客户订单编号
         countries: 'Afghanistan',     //国家  默认Afghanistan
-        exchangeId: 1      // 币种  默认为 => 美元
+        exchangeId: 1,      // 币种  默认为 => 美元
+        unitPrice: ''
         // pcbCost: '',
     };
     var pcb_rigdetaily = {};
@@ -214,16 +215,33 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             $(".up-subbtn").click();    //重新报价
         },1800);
     });
-    $("#mPrice").bind("input propertychange", function (even) {
-        var a = $("#mPrice").val();
-        var c = $("#areasq").val();
-        var d = parseFloat(a*c).toFixed(2);
-        var f = $("#boardFee").val()
-        $("#unitPrice").val(parseFloat(f/c).toFixed(2));
-        $("#boardFee").val(d);
-        // quotePCBTotalPrice();
-        layer.msg(d);
+    $("#boardFee").bind("input propertychange", function (even) {
+        quoteUnitPrice();
     });
+    $("#quantityPCS").bind("input propertychange", function (even) {
+        quoteUnitPrice();
+    });
+    $("#mPrice").bind("input propertychange", function (even) {
+        quoteBoardPrice(parseFloat($(this).val()));
+    });
+    // 计算单价
+    function quoteUnitPrice(data) {
+        var a = $("#quantityPcs").val(); // PCS数
+        var c = $("#areasq").val();     // 面积
+        var f = $("#boardFee").val();   // 板费
+        var unitPrice = parseFloat(f/a).toFixed(3); // 单价
+        var mPrice = parseFloat(f/c).toFixed(3);    // 平米价
+        $("#mPrice").val(mPrice);
+        $("#unitPrice").val(unitPrice);
+        pcb_container.unitPrice = unitPrice;
+    }
+    // 计算板费
+    function quoteBoardPrice(mPrice) {
+        var c = $("#areasq").val();     // 面积
+        var boardPrice = parseFloat(c*mPrice).toFixed(2);
+        $("#boardFee").val(boardPrice);
+        quoteUnitPrice();
+    }
 
     // 右侧价格表单及时响应
     $("#rPcbForm").bind('input propertychange', function () {       //监听右侧所有费用的变化

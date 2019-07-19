@@ -269,7 +269,7 @@
                         <!--单价-->
                         <td>
                             {{# var unitPrice = parseFloat(item.boardFee/item.quantityPcs).toFixed(3) }}
-                            {{ unitPrice }}
+                            {{ d.params.unitPrice || '' }}
                         </td>
                         <!--工程费-->
                         <td>{{ item.engineeringFee }}</td>
