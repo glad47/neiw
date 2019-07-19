@@ -56,7 +56,7 @@
         $("input[name='quotePostFeeWeight']").bind("input propertychange", function (even) {
             clearTimeout(timeMsg);
             var _val = $(this).val();
-            if (_val >= 0 && _val != null && _val != "") {
+            if (_val >= 0 || _val != null || _val != "") {
                 postData.totalWeight = _val;
             } else {
                 postData.totalWeight = 0;
