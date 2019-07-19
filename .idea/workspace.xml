@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/quote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/quote.js" afterDir="false" />
-    </list>
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -53,8 +49,8 @@
           <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="243">
-                  <caret line="240" column="38" selection-start-line="240" selection-start-column="38" selection-end-line="240" selection-end-column="38" />
+                <state relative-caret-position="143">
+                  <caret line="228" column="42" selection-start-line="228" selection-start-column="42" selection-end-line="228" selection-end-column="42" />
                 </state>
               </provider>
             </entry>
@@ -71,8 +67,8 @@
           <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="700" column="91" selection-start-line="700" selection-start-column="85" selection-end-line="700" selection-end-column="91" />
+                <state relative-caret-position="118">
+                  <caret line="48" column="155" selection-start-line="48" selection-start-column="144" selection-end-line="48" selection-end-column="155" />
                 </state>
               </provider>
             </entry>
@@ -84,7 +80,7 @@
           <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
+                <state relative-caret-position="57">
                   <caret line="108" column="26" selection-start-line="108" selection-start-column="26" selection-end-line="108" selection-end-column="26" />
                 </state>
               </provider>
@@ -106,7 +102,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>类型</find>
       <find>app-content-comment</find>
       <find>getSupplier</find>
       <find>element.on</find>
@@ -134,8 +129,9 @@
       <find>rig-price-cardbody</find>
       <find>input propertychange</find>
       <find>layer.msg</find>
-      <find>.contract-module-three-tab</find>
       <find>unitPrice</find>
+      <find>.contract-module-three-tab</find>
+      <find>quantityPCS</find>
     </findStrings>
     <replaceStrings>
       <replace>Width</replace>
@@ -257,7 +253,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
     <option name="x" value="178" />
     <option name="y" value="140" />
     <option name="width" value="1561" />
@@ -635,14 +631,7 @@
       <workItem from="1563440003961" duration="1090000" />
       <workItem from="1563446912043" duration="749000" />
       <workItem from="1563519032006" duration="2524000" />
-      <workItem from="1563530527506" duration="5626000" />
-    </task>
-    <task id="LOCAL-00277" summary="斜边 是/否">
-      <created>1561704709039</created>
-      <option name="number" value="00277" />
-      <option name="presentableId" value="LOCAL-00277" />
-      <option name="project" value="LOCAL" />
-      <updated>1561704709039</updated>
+      <workItem from="1563530527506" duration="5844000" />
     </task>
     <task id="LOCAL-00278" summary="1">
       <created>1561705036159</created>
@@ -980,11 +969,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563538673337</updated>
     </task>
-    <option name="localTasksCounter" value="326" />
+    <task id="LOCAL-00326" summary="1">
+      <created>1563539105577</created>
+      <option name="number" value="00326" />
+      <option name="presentableId" value="LOCAL-00326" />
+      <option name="project" value="LOCAL" />
+      <updated>1563539105577</updated>
+    </task>
+    <option name="localTasksCounter" value="327" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2482196000" />
+    <option name="totallyTimeSpent" value="2482414000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -996,17 +992,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <frame x="178" y="140" width="1561" height="801" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.15113218" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49349946" weight="0.26145834" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50974196" side_tool="true" visible="true" weight="0.46467662" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50974023" side_tool="true" visible="true" weight="0.37357953" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.38229167" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49025804" visible="true" weight="0.46467662" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49025974" visible="true" weight="0.37357953" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39972714" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1449,13 +1445,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="700" column="91" selection-start-line="700" selection-start-column="85" selection-end-line="700" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="635">
@@ -1463,10 +1452,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="48" column="155" selection-start-line="48" selection-start-column="144" selection-end-line="48" selection-end-column="155" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="240" column="38" selection-start-line="240" selection-start-column="38" selection-end-line="240" selection-end-column="38" />
+        <state relative-caret-position="143">
+          <caret line="228" column="42" selection-start-line="228" selection-start-column="42" selection-end-line="228" selection-end-column="42" />
         </state>
       </provider>
     </entry>

@@ -226,7 +226,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     });
     // 计算单价
     function quoteUnitPrice(data) {
-        var a = parseFloat($("#quantityPcs").val()); // PCS数
+        var a = parseFloat($("#quantityPCS").val()); // PCS数
         var c = parseFloat($("#areasq").val());     // 面积
         var f = parseFloat($("#boardFee").val());   // 板费
         var unitPrice = parseFloat(f/a).toFixed(3); // 单价
