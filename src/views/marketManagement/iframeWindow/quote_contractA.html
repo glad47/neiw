@@ -324,7 +324,7 @@
                             {{# if(item.testPointType === 1){ }}
                             <td value="{{ item.id }}">{{ item.testCostFee || '0' }}</td>
                             {{# }else{ }}
-                            <td></td>
+                            <td>0</td>
                             {{# } }}
                             {{#  }); }}
                         </tr>
@@ -348,6 +348,14 @@
                             </td>
                             {{#  }); }}
                         </tr>
+                        {{# layui.each(d.params.data, function(index, item){  }}
+                        {{# if(item.pcbaSubtotalFee != null && item.pcbaSubtotalFee != '0'){ }}
+                        <tr>
+                            <td><strong style="color: orangered;">+ PCBA</strong></td>
+                            <td>{{ item.pcbaSubtotalFee }}</td>
+                        </tr>
+                        {{# } }}
+                        {{#  }); }}
                         <tr>
                             <td>Total Price(
                                 {{#
