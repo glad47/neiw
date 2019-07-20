@@ -22,8 +22,8 @@
                 ,id: 'stencilSize'
                 ,page: true
                 ,cols: [[
-                    {type:'radio',title: 'Check'},
                     {field: 'id',title: 'id', hide: true},
+                    {type:'radio',title: 'Check'},
                     {field: 'materialName',title: 'Type', align: 'center',width: 135},
                     {field: 'stencilSizex',title: 'stencilSizex', align: 'center',width: 130},
                     {field: 'stencilSizey',title: 'stencilSizey', align: 'center',width: 130},
@@ -32,6 +32,17 @@
                     {field: 'weight',title: 'weight', align: 'center',width: 130},
                     {field: 'priceToUSD',title: 'price($)', align: 'center',width: 130}
                 ]]
+                ,done: function () {
+                    var thType;
+                    if (exchangeId == '1') {
+                        thType = "$";
+                    } else if (exchangeId == '2') { // 人民币
+                        thType = "￥";
+                    } else if (exchangeId == '3') {
+                        thType = "€";
+                    }
+                    $("*[data-field='priceToUSD'] span").text("Price("+thType+")");
+                }
             });
             //监听行单击事件
             table.on('row(stencilList)', function (obj) {
