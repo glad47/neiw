@@ -4,8 +4,6 @@
     <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractS.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -48,14 +46,14 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.23239437">
+    <splitter split-orientation="horizontal" split-proportion="0.33315277">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="orderPCB_update.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="141">
-                  <caret line="439" column="14" lean-forward="true" selection-start-line="439" selection-start-column="14" selection-end-line="439" selection-end-column="14" />
+                <state relative-caret-position="291">
+                  <caret line="551" column="151" selection-start-line="551" selection-start-column="142" selection-end-line="551" selection-end-column="151" />
                 </state>
               </provider>
             </entry>
@@ -67,8 +65,8 @@
           <file leaf-file-name="orderPCB_update.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="475">
-                  <caret line="684" column="37" lean-forward="true" selection-start-line="684" selection-start-column="37" selection-end-line="684" selection-end-column="37" />
+                <state relative-caret-position="267">
+                  <caret line="688" selection-start-line="688" selection-end-line="688" />
                 </state>
               </provider>
             </entry>
@@ -89,9 +87,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>StencilFee</find>
-      <find>确定要删除</find>
-      <find>zrs</find>
       <find>退回</find>
       <find>编辑pcb</find>
       <find>重量计算</find>
@@ -119,6 +114,9 @@
       <find>get_qObj</find>
       <find>Post</find>
       <find>Post Fee</find>
+      <find>pcbaSubtotalFee</find>
+      <find>pcbaInput</find>
+      <find>subtotal</find>
     </findStrings>
     <replaceStrings>
       <replace>Width</replace>
@@ -617,14 +615,7 @@
       <workItem from="1563440003961" duration="1090000" />
       <workItem from="1563446912043" duration="749000" />
       <workItem from="1563519032006" duration="2524000" />
-      <workItem from="1563530527506" duration="16011000" />
-    </task>
-    <task id="LOCAL-00280" summary="导入返单信息 不能计算价格bug解决">
-      <created>1561722245505</created>
-      <option name="number" value="00280" />
-      <option name="presentableId" value="LOCAL-00280" />
-      <option name="project" value="LOCAL" />
-      <updated>1561722245505</updated>
+      <workItem from="1563530527506" duration="17060000" />
     </task>
     <task id="LOCAL-00281" summary="合同币种判断">
       <created>1561724482753</created>
@@ -962,11 +953,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563588101607</updated>
     </task>
-    <option name="localTasksCounter" value="329" />
+    <task id="LOCAL-00329" summary="PCB订单编辑 单价回传、计算">
+      <created>1563608723943</created>
+      <option name="number" value="00329" />
+      <option name="presentableId" value="LOCAL-00329" />
+      <option name="project" value="LOCAL" />
+      <updated>1563608723943</updated>
+    </task>
+    <option name="localTasksCounter" value="330" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2492581000" />
+    <option name="totallyTimeSpent" value="2493630000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -989,7 +987,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.38229167" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49025974" weight="0.35208333" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49025974" visible="true" weight="0.35208333" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39972714" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1063,7 +1061,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="系统报价对比 转换人民币完善" />
     <MESSAGE value="报价协同，计划协同PCBA价格修改" />
     <MESSAGE value="PCBA货币转换" />
     <MESSAGE value="钢网出货通知单 底部信息" />
@@ -1088,7 +1085,8 @@
     <MESSAGE value="保存报价传入单价" />
     <MESSAGE value="1" />
     <MESSAGE value="内部报价 平米计算bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="内部报价 平米计算bug" />
+    <MESSAGE value="PCB订单编辑 单价回传、计算" />
+    <option name="LAST_COMMIT_MESSAGE" value="PCB订单编辑 单价回传、计算" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1447,8 +1445,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="684" column="37" lean-forward="true" selection-start-line="684" selection-start-column="37" selection-end-line="684" selection-end-column="37" />
+        <state relative-caret-position="267">
+          <caret line="688" selection-start-line="688" selection-end-line="688" />
         </state>
       </provider>
     </entry>

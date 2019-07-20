@@ -651,7 +651,6 @@
                 _quote_obj.testCostFee = parseFloat($(".orderPCBupdateForm input[name='testCostFee']").val());
                 _quote_obj.overworkFee = parseFloat($(".orderPCBupdateForm input[name='overworkFee']").val());
                 _quote_obj.toolingFee = parseFloat($(".orderPCBupdateForm input[name='toolingFee']").val());
-                _quote_obj.quantityPcs = parseFloat($(".orderPCBupdateForm input[name='quantityPcs']").val());
                 for (var key in _quote_obj) {
                     if (isNaN(_quote_obj[key])) {
                         _quote_obj[key] = 0;
