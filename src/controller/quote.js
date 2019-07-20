@@ -216,10 +216,10 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         },1800);
     });
     $("#boardFee").bind("input propertychange", function (even) {
-        quoteUnitPrice();
+        quoteUnitPrice(0);
     });
     $("#quantityPCS").bind("input propertychange", function (even) {
-        quoteUnitPrice();
+        quoteUnitPrice(0);
     });
     $("#mPrice").bind("input propertychange", function (even) {
         quoteBoardPrice(parseFloat($(this).val()));
@@ -231,8 +231,11 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         var f = parseFloat($("#boardFee").val());   // 板费
         var unitPrice = parseFloat(f/a).toFixed(3); // 单价
         var mPrice = parseFloat(f/c).toFixed(3);    // 平米价
-        $("#mPrice").val(mPrice);
-        $("#unitPrice").val(unitPrice);
+        if (data === 0) {
+            $("#mPrice").val(mPrice);
+        } else if (data === 1) {
+            $("#unitPrice").val(unitPrice);
+        }
         pcb_container.unitPrice = unitPrice;
         console.log("板费/PCS="+f+"/"+a+"="+unitPrice);
         console.log("mPrice="+c+"/"+f+"="+mPrice);
@@ -242,7 +245,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         var c = parseFloat($("#areasq").val());     // 面积
         var boardPrice = parseFloat(c*mPrice).toFixed(2);
         $("#boardFee").val(boardPrice);
-        quoteUnitPrice();
+        quoteUnitPrice(1);
     }
 
     // 右侧价格表单及时响应
