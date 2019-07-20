@@ -452,6 +452,12 @@
                     <input type="text" id="oupBuildTime" name="buildTime" value="{{ d.params.buildTime || '' }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">单价：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="unitPrice" value="{{ d.params.unitPrice || '' }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
         </div>
 
         <!--<div class="layui-form-item">-->
@@ -612,8 +618,14 @@
                 totalPrice: 0,      // 总价
                 shippingPrice: 0    // 运费
             }
+            var $this = {
+                name: null  // 元素属性名
+            }
             laydate.render({
                elem: '#oupBuildTime'
+            });
+            $("#user_editInfo_form input").on("click", function () {
+                $this.name = $(this).attr("name");
             });
             $("#user_editInfo_form").bind('input propertychange', function () {
                 var cobj = get_qObj();
@@ -624,7 +636,7 @@
                 });
                 q_params.pcbCost = a.toFixed(2);
                 $(".orderPCBupdateForm input[name='subtotal']").val(q_params.pcbCost);       // 小计
-                console.log("pcbCost:"+q_params.pcbCost);
+                quoteBPU($this.name);
                 getPCBA();
                 set_qObj();
             });
@@ -639,6 +651,7 @@
                 _quote_obj.testCostFee = parseFloat($(".orderPCBupdateForm input[name='testCostFee']").val());
                 _quote_obj.overworkFee = parseFloat($(".orderPCBupdateForm input[name='overworkFee']").val());
                 _quote_obj.toolingFee = parseFloat($(".orderPCBupdateForm input[name='toolingFee']").val());
+                _quote_obj.quantityPcs = parseFloat($(".orderPCBupdateForm input[name='quantityPcs']").val());
                 for (var key in _quote_obj) {
                     if (isNaN(_quote_obj[key])) {
                         _quote_obj[key] = 0;
@@ -660,8 +673,7 @@
                 q_params.shippingPrice = parseFloat(postFee);
                 q_params.pcbCost = parseFloat(q_params.pcbCost);
                 q_params.totalPrice = parseFloat(q_params.shippingPrice+q_params.pcbCost+pcbaSubtotal).toFixed(2);
-                $(".orderPCBupdateForm input[name='totalFee']").val(q_params.totalPrice);      //总价
-                console.log("bug:"+q_params.totalPrice);
+                $(".orderPCBupdateForm input[name='totalFee']").val(q_params.totalPrice);      // 总价
             }
 
             // 遍历获取PCBA所有表单的值
@@ -675,7 +687,20 @@
                     _val += parseFloat(this_val);
                 });
                 $("input[name='pcbaSubtotalFee']").val(_val);
-                console.log("_val:"+_val);
+            }
+
+            // 板费、PCS、单价 联动计算
+            function quoteBPU(type) {
+                var boardFee = parseFloat($(".orderPCBupdateForm input[name='boardFee']").val());   // 板费
+                var unitPrice = parseFloat($(".orderPCBupdateForm input[name='unitPrice']").val()); // 单价
+                var quantityPcs = parseFloat($(".orderPCBupdateForm input[name='quantityPcs']").val()); // PCS数
+                if (type == "boardFee" || type == "quantityPcs") {
+                    var up = parseFloat(boardFee/quantityPcs).toFixed(3);
+                    $(".orderPCBupdateForm input[name='unitPrice']").val(up);
+                } else if (type == "unitPrice") {
+                    var bf = parseFloat(unitPrice*quantityPcs).toFixed(3);
+                    $(".orderPCBupdateForm input[name='boardFee']").val(bf);
+                }
             }
         });
     }
