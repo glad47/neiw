@@ -912,6 +912,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                 pcb_container.testCostFee = data.data.totalTestPointToUSD;
                 pcb_container.toolingFee= data.data.cncAndPunchingQuoteToUSD;
                 pcb_container.weight = data.data.totalQuoteWeight;
+                pcb_container.unitPrice = data.data.unitPrice;
                 //给页面元素赋值
                 post_data.totalWeight = data.data.totalQuoteWeight;
                 $("#boardFee").val(data.data.totalBoardQuoteToUSD);
