@@ -1,6 +1,21 @@
 <title>财务管理-订单利润</title>
 <div class="layui-fluid">
     <!--卡片－表格信息-->
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto order-profits-form-search" lay-filter="app-content-comment">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">内部型号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="order-profits-mangement-search">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     <div class="layui-tab layui-tab-brief">
         <ul class="layui-tab-title">
             <li class="layui-this">PCB订单</li>

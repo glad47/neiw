@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="无法添加报价bug解决">
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/epc_indicatorCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/epc_indicatorCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/quote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/epcManagement/Indicator_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/epcManagement/Indicator_card.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderPCB_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderPCB_update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/order_pcb_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/order_pcb_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractB.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/inside_quote.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/inside_quote.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/quote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -76,12 +62,12 @@
       <split-second>
         <splitter split-orientation="vertical" split-proportion="0.3283582">
           <split-first>
-            <leaf>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
               <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="108">
-                      <caret line="1681" column="76" selection-start-line="1681" selection-start-column="60" selection-end-line="1681" selection-end-column="76" />
+                    <state relative-caret-position="52">
+                      <caret line="1678" column="37" selection-start-line="1678" selection-start-column="37" selection-end-line="1678" selection-end-column="37" />
                     </state>
                   </provider>
                 </entry>
@@ -89,7 +75,7 @@
               <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="284">
+                    <state relative-caret-position="12121">
                       <caret line="713" column="82" selection-start-line="713" selection-start-column="72" selection-end-line="713" selection-end-column="82" />
                     </state>
                   </provider>
@@ -98,7 +84,7 @@
               <file leaf-file-name="orderPCB_update.html" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="255">
+                    <state relative-caret-position="2346">
                       <caret line="138" column="22" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
                     </state>
                   </provider>
@@ -107,12 +93,12 @@
             </leaf>
           </split-first>
           <split-second>
-            <leaf>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
               <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="245">
-                      <caret line="1674" column="79" selection-start-line="1674" selection-start-column="79" selection-end-line="1674" selection-end-column="79" />
+                    <state relative-caret-position="143">
+                      <caret line="1668" column="21" selection-start-line="1668" selection-start-column="21" selection-end-line="1668" selection-end-column="21" />
                     </state>
                   </provider>
                 </entry>
@@ -120,7 +106,7 @@
               <file leaf-file-name="import_pcbInfoReOreder.html" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-15">
+                    <state relative-caret-position="1122">
                       <caret line="66" column="33" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="33" />
                     </state>
                   </provider>
@@ -431,6 +417,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/controller/finMana_order_profits.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/views/finManagement/order_profits.html</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -438,21 +426,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/.DS_Store</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/html/chatlog.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/html/find.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/html/getmsg.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/html/msgbox.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/layim.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/mobile/layim.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/skin/1.jpg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/skin/2.jpg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/skin/3.jpg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/skin/4.jpg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/skin/5.jpg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/skin/logo.jpg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/voice/default.mp3</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/lay/modules/layim.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -806,14 +779,8 @@
       <workItem from="1563610317915" duration="1152000" />
       <workItem from="1563614769851" duration="1789000" />
       <workItem from="1563778604754" duration="1741000" />
-      <workItem from="1563870882402" duration="15142000" />
-    </task>
-    <task id="LOCAL-00286" summary="完成板厚 1.8mm">
-      <created>1562035026566</created>
-      <option name="number" value="00286" />
-      <option name="presentableId" value="LOCAL-00286" />
-      <option name="project" value="LOCAL" />
-      <updated>1562035026567</updated>
+      <workItem from="1563870882402" duration="15637000" />
+      <workItem from="1563953279613" duration="478000" />
     </task>
     <task id="LOCAL-00287" summary="内部报价  钢网选择快递价格变化">
       <created>1562056119924</created>
@@ -1151,11 +1118,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563781359810</updated>
     </task>
-    <option name="localTasksCounter" value="335" />
+    <task id="LOCAL-00335" summary="内部报价导入订单[无法回显国家、快递、多级联动bug，表单禁用bug]&#10;生产通知单调整，合同B调整">
+      <created>1563939350380</created>
+      <option name="number" value="00335" />
+      <option name="presentableId" value="LOCAL-00335" />
+      <option name="project" value="LOCAL" />
+      <updated>1563939350380</updated>
+    </task>
+    <option name="localTasksCounter" value="336" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2513645000" />
+    <option name="totallyTimeSpent" value="2514618000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1174,13 +1148,12 @@
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49349946" weight="0.26145834" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50974023" side_tool="true" weight="0.48011363" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.37513283" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.38208956" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.38208956" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49025974" visible="true" weight="0.39800996" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49025974" visible="true" weight="0.24477611" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39972714" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1188,24 +1161,25 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.37513283" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11848341" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.25671643" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.29751244" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.25416666" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49836424" weight="0.20597015" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50353837" side_tool="true" weight="0.27462685" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.25416666" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.29751244" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -1252,7 +1226,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="合同B PCBA价格显示" />
     <MESSAGE value="1-1" />
     <MESSAGE value="1-2" />
     <MESSAGE value="1-3" />
@@ -1277,7 +1250,8 @@
     <MESSAGE value="钢网尺寸  币种动态显示" />
     <MESSAGE value="单价不显示bug解决" />
     <MESSAGE value="无法添加报价bug解决" />
-    <option name="LAST_COMMIT_MESSAGE" value="无法添加报价bug解决" />
+    <MESSAGE value="内部报价导入订单[无法回显国家、快递、多级联动bug，表单禁用bug]&#10;生产通知单调整，合同B调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="内部报价导入订单[无法回显国家、快递、多级联动bug，表单禁用bug]&#10;生产通知单调整，合同B调整" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1598,7 +1572,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="2346">
           <caret line="138" column="22" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
         </state>
       </provider>
@@ -1619,22 +1593,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
+        <state relative-caret-position="1122">
           <caret line="66" column="33" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
+        <state relative-caret-position="12121">
           <caret line="713" column="82" selection-start-line="713" selection-start-column="72" selection-end-line="713" selection-end-column="82" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="1674" column="79" selection-start-line="1674" selection-start-column="79" selection-end-line="1674" selection-end-column="79" />
+        <state relative-caret-position="143">
+          <caret line="1668" column="21" selection-start-line="1668" selection-start-column="21" selection-end-line="1668" selection-end-column="21" />
         </state>
       </provider>
     </entry>
