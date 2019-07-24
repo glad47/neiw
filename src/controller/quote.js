@@ -59,7 +59,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     };
     // 快递/国家/重量 默认选中
     var def_expressCountry = {
-        courierId: '',
+        courierId: 1,
         countryId: '',
         totalWeight: ''
     };
@@ -113,6 +113,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         pcbName: '',     //客户型号
         orderNo: '',    //客户订单编号
         countries: 'Afghanistan',     //国家  默认Afghanistan
+        courierName: def_expressCountry.courierId,    // 快递公司 String
         exchangeId: 1,      // 币种  默认为 => 美元
         unitPrice: ''
         // pcbCost: '',
@@ -299,13 +300,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     // 监听select==>
     form.on('select(material)', function (data) {   // material
         var this_type = data.value;
-        if (this_type == "KB"){
-            _kbsy_linkage("kb");
-        } else if (this_type == "SY"){
-            _kbsy_linkage("sy");
-        } else if (this_type == "YG"){
-            _kbsy_linkage("yg");
-        }
+        _kbsy_linkage(this_type);
     });
 
     form.on('select(selSurfacefinish)', function (data) {   //Surface finis
@@ -713,26 +708,29 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     /**
      * kb/sy/yg对应下拉的联动效果
      */
-    function _kbsy_linkage(e) {
+    function _kbsy_linkage(material,productCode) {
             $("#selkbsy").children().remove();
-            if (e == "kb"){
+            if (material == "KB"){
                 for (var i=0;i < arr_selkbsy_kb.length;i++){
                     var title = arr_selkbsy_kb[i].text;
                     var options_val = arr_selkbsy_kb[i].value;
                     $("#selkbsy").append("<option value="+options_val+">"+title+"</option>");
                 }
-            } else if (e == "yg"){
+            } else if (material == "YG"){
                 for (var i=0;i < arr_selkbsy_yg.length;i++){
                     var title = arr_selkbsy_yg[i].text;
                     var options_val = arr_selkbsy_yg[i].value;
                     $("#selkbsy").append("<option value="+options_val+">"+title+"</option>");
                 }
-            } else if (e == "sy"){
+            } else if (material == "SY"){
                 for (var i=0;i < arr_selkbsy_sy.length;i++){
                     var title = arr_selkbsy_sy[i].text;
                     var options_val = arr_selkbsy_sy[i].value;
                     $("#selkbsy").append("<option value="+options_val+">"+title+"</option>");
                 }
+            }
+            if (productCode != null || productCode != "") {
+                $("#selkbsy").find("option[value='"+productCode+"']").prop("selected",true);
             }
         form.render('select');
         }
@@ -859,6 +857,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     form.on('submit(quoteForm)',function (data) {
         var data = data.field;
         var cncAndPunchType = data.cncAndPunch;
+        console.log(data)
+        console.log('提价表单')
         pcb_rigdetaily = data;
         data.isExistSmt = 0;
         data.stackUp = "none";
@@ -905,7 +905,6 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                         public_data.ids = data.data.pcbPriceDetail.qcidList;
                     }
                 }
-                console.log(data);
                 // 给pcb明细容器赋值
                 pcb_container.engineeringFee = data.data.projectQuoteToUSD;
                 pcb_container.boardFee = data.data.totalBoardQuoteToUSD;
@@ -1285,7 +1284,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     function doBackUnitStencil() {
         var cost = parseInt($("#inStencilCost").val());
         var quantity = parseInt($("#stencil_quantity").val());
-        var sunitPrice = (cost/quantity).toFixed(2);
+        var sunitPrice = (cost/quantity).toFixed(3);
         stencilSize.unitPrice = sunitPrice;
         $("#sunitPrice").val(sunitPrice);
     }
@@ -1337,6 +1336,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         addThisQuote: function () {
             var strOrder;
             $(".up-subbtn").click();
+            $("*[lay-filter='quoteForm']").click();
             var quote_data = Object.assign(pcb_rigdetaily,pcb_container);
             if (pcb_container.userId == null || pcb_container.userId == ""){
                 layer.msg("请先选择客户");
@@ -1423,6 +1423,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         },
         // 报价
         upSubbtn: function () {
+            console.log('开始进入报价....');
             if (post_data.bordType == '1') {
                 if (public_data.customerAid == null || public_data.customerAid == "") {
                     layer.tips('请先选择客户 !', '#selCustomer_container', {
@@ -1638,12 +1639,15 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                     $("input[type=checkbox][name="+$name+"][value='"+importPcbInfo[$name]+"']").attr("checked","checked");
                 } else if ($Pthis_type == "radio") {
                     $("input[name="+$name+"][value='"+importPcbInfo[$name]+"']").prop("checked","checked");
+                    if ($name == "boardType") {     // 单独判断板类型 ==> 用于表单的 启/禁用
+                        _MT_oneInput(importPcbInfo["boardType"]);
+                    }
                 }
             }
             if ($Pthis.is("select")) {
                 // $("select[name="+$name+"]").find("option:contains('"+importPcbInfo[$name]+"')").attr("selected",true);
                 $("select[name='"+$name+"'] option[value='"+importPcbInfo[$name]+"']").attr("selected",true);
-                // 特殊处理下拉，根据value选中
+                // 特殊处理下拉[普通下拉]，根据value选中
                 if ($name == "nOfPp" || $name == "countries") {
                     $("select[name='"+$name+"'] option[value='"+importPcbInfo[$name]+"']").attr("selected",true);
                 }
@@ -1658,18 +1662,22 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             }
             // pcb_container[$name] = importPcbInfo[$name];
         });
+        // 特殊处理下拉[多级联动 KB&SY]
+        _kbsy_linkage(importPcbInfo['material'],importPcbInfo['productCode']);
         // userid表单赋值，不然报价后台会抛出500错误
         $("input[name='customerSysName']").val($("#selCustomer").find("option:selected").text());
         // 给保存报价的对象赋值
-        pcb_container.userId = importPcbInfo['userId'];
+        pcb_container.userId = public_data.customerAid = importPcbInfo['userId'];
         pcb_container.gerberName = importPcbInfo['gerberName'];
         pcb_container.gerberPath = importPcbInfo['gerberPath'];
         pcb_container.pcbName = saveSMTStencil.pcbName = importPcbInfo['pcbName'];
         pcb_container.productNo = importPcbInfo['productNo'];
         pcb_container.countries = post_data.countrysId = importPcbInfo['countries'];
+        pcb_container.postFee = importPcbInfo['postFee'];
         // 绑定客户id和客户名
-        $("#customerId").val($("dl[xid='selCustomer']").children(".xm-select-this").attr("lay-value"));
-        $("input[name='customerSysName']").val($("dl[xid='selCustomer']").children(".xm-select-this").find("span").attr("name"));
+        var userId = $("dl[xid='selCustomer']").children(".xm-select-this").attr("lay-value");
+        $("#customerId").val(userId);
+        $("input[name='customerSysName']").val(userId);
 
         // $("select[name='nOfPp'] option[value='3']").attr("selected",true);
         // 总价
@@ -1687,7 +1695,12 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         // 对象合并对比
         $('.bot-subbtn').click();
         var def_obj = Object.assign(pcb_rigdetaily,pcb_container);  // 默认要添加当前报价的对象
-        console.log(def_obj);
+        // 特殊处理下拉[formSelects] ==> 国家、快递
+        var countries,courierId;
+        countries =importPcbInfo['countries'];
+        courierId =importPcbInfo['courierId'];
+        formSelects.value('selCompany',[1]);
+        formSelects.value('selCountrys',[countries]);
         layer.msg('导入PCB信息成功');
     }
 
@@ -1717,11 +1730,13 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                     iflag = false;
                 }
                 if (qk == ik) {
+                    var aa = filterStrA.fd.indexOf(qk);
+                    var bb = filterStrA.fdyg.indexOf(qk);
                     if (qv == iv) {
                         orderType = 2;
                     } else if (qflag && iflag) {
                         orderType = 2;
-                    } else if (qv != iv && filterStrA.fd.indexOf(qk) == "-1" && filterStrA.fdyg.indexOf(qk)) {
+                    } else if (qv != iv && filterStrA.fd.indexOf(qk) == "-1" || filterStrA.fdyg.indexOf(qk) == "-1") {
                         console.log("key值不同的q["+qk+","+qv+"],i["+ik+","+iv+"]");
                         if (filterStrA.fdyg.indexOf(qk) >= 0) {
                             orderType = 3;
@@ -1764,7 +1779,6 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             }
         });
         var fdObj = {"fd":fd,"fdyg":fdyg};
-        console.log(fdObj)
         return fdObj;
     }
 

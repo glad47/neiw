@@ -237,21 +237,31 @@
                             <!--P/N-->
                             P/N:{{ item.productNo }}<br>
                             <!--订单类型-->
-                            {{# if(d.params.tabType == '0'){}}
-                                [PCB prototype]<br>
-                            {{# }else if(d.params.tabType == '1'){ }}
-                                [钢网订单]<br>
-                            {{# } else { }}
-                                [PCB Prototype]<br>
-                            {{# } }}
+                            <!--{{# if(d.params.tabType == '0'){}}-->
+                                <!--[PCB prototype]<br>-->
+                            <!--{{# }else if(d.params.tabType == '1'){ }}-->
+                                <!--[钢网订单]<br>-->
+                            <!--{{# } else { }}-->
+                                <!--[PCB Prototype]<br>-->
+                            <!--{{# } }}-->
+                            {{ item.pcbType || '' }}<br>
                             <!--FinishThickness 完成板厚-->
                             {{ item.finishThickness }}
+
                             <!--尺寸-->
-                            {{# if(item.panelSizeX != null && item.panelSizeX != ''){ }}
-                                {{ item.panelSizeX }}*{{ item.panelSizeY }}mm<br>
-                            {{# } else { }}
-                                {{ item.dimensionsX }}*{{ item.dimensionsY }}mm<br>
-                            {{# }}}
+                            <!--{{# if(item.panelSizeX != null && item.panelSizeX != ''){ }}-->
+                                <!--{{ item.panelSizeX }}*{{ item.panelSizeY }}mm<br>-->
+                            <!--{{# } else { }}-->
+                                <!--{{ item.dimensionsX }}*{{ item.dimensionsY }}mm<br>-->
+                            <!--{{# }}}-->
+                            {{# if(item.panelSizeX != null){ }}
+                            {{# var panelWay = item.panelWayX*item.panelWayY }}
+                            {{ item.panelSizeX }} * {{ item.panelSizeY }}mm / {{ panelWay }}<br>
+                            {{# }else if(item.dimensionsX != null){ }}
+                            {{ item.dimensionsX}} * {{ item.dimensionsY}}mm /1<br>
+                            {{# }else{ }}
+                            都为空<br>
+                            {{# } }}
                             <!--层数-->
                             Layer: {{ item.layerNum}}<br>
                             <!--完成表面-->

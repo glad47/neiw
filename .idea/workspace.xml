@@ -1,100 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="无法添加报价bug解决">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/epc_indicatorCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/epc_indicatorCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/quote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/echarts.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/lib/extend/echarts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/messagebody.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/requestInterface.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/uploadCommon.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/anim/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/auxiliar/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/badge/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/button/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/carousel/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/code/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/flow/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/form/element.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/form/group.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/grid/all.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/grid/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/grid/mobile-pc.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/grid/mobile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/grid/speed-dial.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/grid/stack.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laydate/demo1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laydate/demo2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laydate/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laydate/special-demo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laydate/theme.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/layer/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/layer/special-demo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/layer/theme.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laypage/demo1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laypage/demo2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laypage/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laytpl/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/nav/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/panel/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/progress/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/rate/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/auto.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/cellEdit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/cellEvent.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/checkbox.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/data.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/fixed.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/height.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/initSort.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/operate.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/page.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/reload.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/resetPage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/simple.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/static.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/style.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/thead.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/tostatic.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/tabs/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/timeline/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/upload/demo1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/upload/demo2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/upload/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/util/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/import_pcbInfoForm.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderPCB_update.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderSMT_update.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderStencil_update.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderStencil_updateB.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/order_pcb_detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/order_process.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/order_smt_detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/order_stencil_detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/pert_sysAdd.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractA.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractS.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_detaily.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_postFee.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/secondary_iframe/stencil_size.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/stencil_size_list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/details_delivery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/order_together_edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/pert_sysOrderAdd.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/pert_sysSOrderAdd.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_pcb.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_smt.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_stencil.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/statements.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/supplierOrder_detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/user/administrators/roleform.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/user/administrators/roleform.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/user/user/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/user/user/userform.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/epcManagement/Indicator_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/epcManagement/Indicator_card.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderPCB_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/orderPCB_update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/order_pcb_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/order_pcb_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/quote_contractB.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/inside_quote.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/inside_quote.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/quote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -137,17 +59,78 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="919" column="70" selection-start-line="919" selection-start-column="70" selection-end-line="919" selection-end-column="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.4623486">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="172">
+                  <caret line="733" column="13" selection-start-line="733" selection-start-column="13" selection-end-line="733" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <splitter split-orientation="vertical" split-proportion="0.3283582">
+          <split-first>
+            <leaf>
+              <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="108">
+                      <caret line="1681" column="76" selection-start-line="1681" selection-start-column="60" selection-end-line="1681" selection-end-column="76" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="284">
+                      <caret line="713" column="82" selection-start-line="713" selection-start-column="72" selection-end-line="713" selection-end-column="82" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="orderPCB_update.html" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="255">
+                      <caret line="138" column="22" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-first>
+          <split-second>
+            <leaf>
+              <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="245">
+                      <caret line="1674" column="79" selection-start-line="1674" selection-start-column="79" selection-end-line="1674" selection-end-column="79" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="import_pcbInfoReOreder.html" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="-15">
+                      <caret line="66" column="33" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="33" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-second>
+        </splitter>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -161,39 +144,38 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tbody</find>
-      <find>assign</find>
-      <find>quote_data</find>
-      <find>pcb_rigdetaily</find>
-      <find>单价</find>
-      <find>console</find>
-      <find>countAdd</find>
-      <find>mPrice</find>
-      <find>rig-price-cardbody</find>
-      <find>input propertychange</find>
-      <find>layer.msg</find>
-      <find>pcb</find>
-      <find>unitPrice</find>
-      <find>.contract-module-three-tab</find>
-      <find>quantityPCS</find>
-      <find>编辑PCB</find>
+      <find>d.params.data[0]</find>
+      <find>bottime</find>
+      <find>Size</find>
+      <find>导入PCB信息成功</find>
       <find>交期</find>
-      <find>_quote_obj</find>
-      <find>get_qObj</find>
-      <find>Post</find>
-      <find>Post Fee</find>
-      <find>pcbaSubtotalFee</find>
-      <find>pcbaInput</find>
-      <find>subtotal</find>
-      <find>+</find>
-      <find>Order QTY(PCS)</find>
-      <find>truew</find>
-      <find>exchangeId</find>
-      <find>Stencil Size</find>
-      <find>if (exchangeId</find>
+      <find>filterStrA</find>
+      <find>编辑PCB</find>
+      <find>成品</find>
+      <find>生产通知单</find>
+      <find>orderTypeObj</find>
+      <find>setAllInput</find>
+      <find>stop</find>
+      <find>center-m-two</find>
+      <find>contrastOrder</find>
+      <find>quoteForm</find>
+      <find>quoteForm</find>
+      <find>pcb_rigdetaily</find>
+      <find>up-subbtn</find>
+      <find>unitPrice</find>
+      <find>customerSysName</find>
+      <find>导入返单</find>
+      <find>导入</find>
+      <find>pcb_container.userId</find>
+      <find>customerAid</find>
+      <find>selCustomer</find>
+      <find>选择客户</find>
+      <find>courierId</find>
+      <find>selCountrys</find>
+      <find>countries</find>
+      <find>formSelects.value</find>
     </findStrings>
     <replaceStrings>
-      <replace>Width</replace>
       <replace>iqcMana_pertSys</replace>
       <replace>courierCompany</replace>
       <replace>markerMana_tabbar</replace>
@@ -223,6 +205,7 @@
       <replace />
       <replace>thead</replace>
       <replace>th</replace>
+      <replace>item</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/views/marketManagement/iframeWindow</dir>
@@ -244,7 +227,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/controller/sqeMana_plan_together.js" />
         <option value="$PROJECT_DIR$/src/controller/proMana_outbound_orderDetails.js" />
         <option value="$PROJECT_DIR$/src/views/productManagement/outbound_orderDetails.html" />
         <option value="$PROJECT_DIR$/src/views/sqeManagement/shipment_together.html" />
@@ -260,7 +242,6 @@
         <option value="$PROJECT_DIR$/src/config.js" />
         <option value="$PROJECT_DIR$/src/lib/extend/formSelects.js" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_edit.html" />
-        <option value="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" />
         <option value="$PROJECT_DIR$/src/lib/extend/filePathProcess.js" />
         <option value="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_stencil.html" />
         <option value="$PROJECT_DIR$/src/views/articleManagement/feedback.html" />
@@ -270,18 +251,15 @@
         <option value="$PROJECT_DIR$/src/views/articleManagement/feedbackfrom.html" />
         <option value="$PROJECT_DIR$/src/style/inside-quote.css" />
         <option value="$PROJECT_DIR$/src/controller/market_insideNoPayment.js" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoForm.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractS.html" />
         <option value="$PROJECT_DIR$/src/controller/article_feedback.js" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" />
         <option value="$PROJECT_DIR$/src/views/sqeManagement/iframeWindow/quotation_together_pcb.html" />
         <option value="$PROJECT_DIR$/src/lib/extend/jsTools.js" />
         <option value="$PROJECT_DIR$/src/controller/scmMana_quoteDetail.js" />
         <option value="$PROJECT_DIR$/src/controller/scm_outsourcing_contract.js" />
         <option value="$PROJECT_DIR$/src/views/scmManagement/iframeWindow/quote_detail_pcb.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_stencil_detail.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" />
         <option value="$PROJECT_DIR$/src/lib/extend/requestInterface.js" />
         <option value="$PROJECT_DIR$/start/layui/lay/modules/table.js" />
         <option value="$PROJECT_DIR$/src/views/epcManagement/tool_mangement.html" />
@@ -290,10 +268,15 @@
         <option value="$PROJECT_DIR$/src/controller/epc_toolMangement.js" />
         <option value="$PROJECT_DIR$/src/views/epcManagement/iframeWindow/tool_zrs.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_postFee.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/stencil_size_list.html" />
+        <option value="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" />
+        <option value="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" />
+        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html" />
         <option value="$PROJECT_DIR$/src/controller/quote.js" />
       </list>
     </option>
@@ -312,7 +295,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="y" value="23" />
     <option name="width" value="1867" />
     <option name="height" value="1057" />
@@ -323,7 +306,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -406,11 +388,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SearchEverywhereHistoryKey" value="quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;q&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractA.html&#10;stencil_size_list&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/stencil_size_list.html&#10;quote.js&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;orderPCB_update&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderPCB_update.html&#10;inside&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;contra&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractB.html&#10;quote_postFee&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_postFee.html&#10;tool_zrs&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/iframeWindow/tool_zrs.html&#10;add_tool&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/iframeWindow/add_tool.html&#10;epc_toolMangement&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/epc_toolMangement.js&#10;orderStencil_update&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderStencil_update.html&#10;market_orderReview&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderReview.js&#10;order_review&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/order_review.html&#10;sys_coustomer&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sys_coustomer.js&#10;customer_info&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/infoManagement/customer_info.html&#10;table.&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/dist/controller/tableSelect.js&#10;table.js&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/start/layui/lay/modules/table.js&#10;tool_mangement&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/tool_mangement.html&#10;too&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/iframeWindow/tool_zrs.html&#10;B&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractB.html&#10;cont&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractA.html&#10;order_stencil_detail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/order_stencil_detail.html&#10;order_pcb_detail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/order_pcb_detail.html&#10;epc_indicatorCard&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/epc_indicatorCard.js&#10;Indicator_card&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/Indicator_card.html&#10;outsourcing_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scm_outsourcing_contract.js&#10;scmMana_quoteDetail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scmMana_quoteDetail.js&#10;quote_detail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/quote_detail.html&#10;quote_det&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/quote_detail_pcb.html&#10;quotation_together_pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/iframeWindow/quotation_together_pcb.html&#10;order_pc&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/order_pcb_detail.html&#10;market_interiorOrder&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_interiorOrder.js&#10;interior_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/interior_order.html&#10;quo&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;update&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderPCB_update.html&#10;article_blog&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/article_blog.js&#10;blog&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/articleManagement/blog.html&#10;article_feedback&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/article_feedback.js&#10;feedback&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/articleManagement/feedback.html&#10;contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/dist/views/scmManagement/iframeWindow/outs_contract.html&#10;quote_contractB&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractB.html&#10;market_insideContract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_insideContract.js&#10;inside_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_contract.html&#10;import_pcbInfoForm&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/import_pcbInfoForm.html&#10;import_pcbInfoReOreder&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html&#10;sys_menuAdd&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/infoManagement/iframeWindow/sys_menuAdd.html&#10;nterior_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/interior_order.html&#10;market_insideNoPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_insideNoPayment.js&#10;inside_no_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_no_payment.html" />
+    <property name="SearchEverywhereHistoryKey" value="import_pcbInfoReOreder&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html&#10;order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/order_pcb_detail.html&#10;orderPCB_update&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderPCB_update.html&#10;order_pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/order_pcb_detail.html&#10;epc_indicatorCard&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/epc_indicatorCard.js&#10;Indicator_card&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/Indicator_card.html&#10;quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;q&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractA.html&#10;stencil_size_list&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/stencil_size_list.html&#10;quote.js&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;inside&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;contra&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractB.html&#10;quote_postFee&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_postFee.html&#10;tool_zrs&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/iframeWindow/tool_zrs.html&#10;add_tool&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/iframeWindow/add_tool.html&#10;epc_toolMangement&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/epc_toolMangement.js&#10;orderStencil_update&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderStencil_update.html&#10;market_orderReview&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderReview.js&#10;order_review&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/order_review.html&#10;sys_coustomer&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sys_coustomer.js&#10;customer_info&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/infoManagement/customer_info.html&#10;table.&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/dist/controller/tableSelect.js&#10;table.js&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/start/layui/lay/modules/table.js&#10;tool_mangement&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/tool_mangement.html&#10;too&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/iframeWindow/tool_zrs.html&#10;B&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractB.html&#10;cont&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractA.html&#10;order_stencil_detail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/order_stencil_detail.html&#10;order_pcb_detail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/order_pcb_detail.html&#10;outsourcing_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scm_outsourcing_contract.js&#10;scmMana_quoteDetail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scmMana_quoteDetail.js&#10;quote_detail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/quote_detail.html&#10;quote_det&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/iframeWindow/quote_detail_pcb.html&#10;quotation_together_pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/iframeWindow/quotation_together_pcb.html&#10;order_pc&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/order_pcb_detail.html&#10;market_interiorOrder&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_interiorOrder.js&#10;interior_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/interior_order.html&#10;quo&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;update&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderPCB_update.html&#10;article_blog&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/article_blog.js&#10;blog&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/articleManagement/blog.html&#10;article_feedback&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/article_feedback.js&#10;feedback&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/articleManagement/feedback.html&#10;contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/dist/views/scmManagement/iframeWindow/outs_contract.html&#10;quote_contractB&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractB.html&#10;market_insideContract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_insideContract.js&#10;inside_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_contract.html&#10;import_pcbInfoForm&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/import_pcbInfoForm.html&#10;sys_menuAdd&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/infoManagement/iframeWindow/sys_menuAdd.html&#10;nterior_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/interior_order.html" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -433,6 +416,130 @@
       <recent name="$PROJECT_DIR$/src/style/res/template" />
       <recent name="$PROJECT_DIR$/src/style/res" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/.DS_Store</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/html/chatlog.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/html/find.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/html/getmsg.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/html/msgbox.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/layim.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/mobile/layim.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/skin/1.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/skin/2.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/skin/3.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/skin/4.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/skin/5.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/skin/logo.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/css/modules/layim/voice/default.mp3</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/start/layui/lay/modules/layim.js</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -698,14 +805,8 @@
       <workItem from="1563530527506" duration="17251000" />
       <workItem from="1563610317915" duration="1152000" />
       <workItem from="1563614769851" duration="1789000" />
-      <workItem from="1563778604754" duration="1316000" />
-    </task>
-    <task id="LOCAL-00285" summary="1">
-      <created>1561980245632</created>
-      <option name="number" value="00285" />
-      <option name="presentableId" value="LOCAL-00285" />
-      <option name="project" value="LOCAL" />
-      <updated>1561980245632</updated>
+      <workItem from="1563778604754" duration="1741000" />
+      <workItem from="1563870882402" duration="15142000" />
     </task>
     <task id="LOCAL-00286" summary="完成板厚 1.8mm">
       <created>1562035026566</created>
@@ -1043,11 +1144,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563778975143</updated>
     </task>
-    <option name="localTasksCounter" value="334" />
+    <task id="LOCAL-00334" summary="无法添加报价bug解决">
+      <created>1563781359809</created>
+      <option name="number" value="00334" />
+      <option name="presentableId" value="LOCAL-00334" />
+      <option name="project" value="LOCAL" />
+      <updated>1563781359810</updated>
+    </task>
+    <option name="localTasksCounter" value="335" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2498078000" />
+    <option name="totallyTimeSpent" value="2513645000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1059,17 +1167,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1867" height="1057" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15005417" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.14955239" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49349946" weight="0.26145834" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50974023" side_tool="true" weight="0.48011363" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.38229167" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.37513283" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.38208956" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49025974" visible="true" weight="0.35208333" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49025974" visible="true" weight="0.39800996" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39972714" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1079,25 +1188,24 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.37513283" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11848341" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.25671643" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.29751244" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.25416666" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49836424" weight="0.20597015" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50353837" side_tool="true" weight="0.27462685" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.29751244" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.25416666" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -1144,7 +1252,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="工具管理  添加 formSelects" />
     <MESSAGE value="合同B PCBA价格显示" />
     <MESSAGE value="1-1" />
     <MESSAGE value="1-2" />
@@ -1169,7 +1276,8 @@
     <MESSAGE value="1" />
     <MESSAGE value="钢网尺寸  币种动态显示" />
     <MESSAGE value="单价不显示bug解决" />
-    <option name="LAST_COMMIT_MESSAGE" value="单价不显示bug解决" />
+    <MESSAGE value="无法添加报价bug解决" />
+    <option name="LAST_COMMIT_MESSAGE" value="无法添加报价bug解决" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1237,13 +1345,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="60" column="50" selection-start-line="60" selection-start-column="50" selection-end-line="60" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
         </state>
       </provider>
     </entry>
@@ -1352,31 +1453,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4216">
-          <caret line="248" column="32" selection-start-line="248" selection-start-column="15" selection-end-line="248" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/epc_indicatorCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="419" column="24" selection-start-line="419" selection-start-column="24" selection-end-line="419" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_stencil_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="86" selection-start-line="10" selection-start-column="86" selection-end-line="10" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="50" column="56" lean-forward="true" selection-start-line="50" selection-start-column="56" selection-end-line="50" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -1481,20 +1561,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="44" column="83" selection-start-line="44" selection-start-column="81" selection-end-line="44" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="551" column="151" selection-start-line="551" selection-start-column="142" selection-end-line="551" selection-end-column="151" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/stencil_size_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
@@ -1511,22 +1577,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="271" column="35" selection-start-line="271" selection-start-column="35" selection-end-line="271" selection-end-column="35" />
+        <state relative-caret-position="524">
+          <caret line="258" column="96" selection-start-line="258" selection-start-column="96" selection-end-line="258" selection-end-column="96" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractA.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="374" column="29" selection-start-line="374" selection-start-column="29" selection-end-line="374" selection-end-column="29" />
+        <state relative-caret-position="291">
+          <caret line="235" column="45" lean-forward="true" selection-start-line="235" selection-start-column="45" selection-end-line="235" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="161" column="28" lean-forward="true" selection-start-line="155" selection-start-column="20" selection-end-line="161" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="138" column="22" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/epc_indicatorCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="61" column="49" lean-forward="true" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="284" column="21" selection-start-line="284" selection-start-column="21" selection-end-line="284" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15">
+          <caret line="66" column="33" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="713" column="82" selection-start-line="713" selection-start-column="72" selection-end-line="713" selection-end-column="82" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="919" column="70" selection-start-line="919" selection-start-column="70" selection-end-line="919" selection-end-column="70" />
+        <state relative-caret-position="245">
+          <caret line="1674" column="79" selection-start-line="1674" selection-start-column="79" selection-end-line="1674" selection-end-column="79" />
         </state>
       </provider>
     </entry>

@@ -151,6 +151,16 @@
                    </a>
                     {{# } }}
                 </script>
+                <!--订单类型-->
+                <script type="text/html" id="Tabtb-pcb-epc-indicatorCard-orderType">
+                    {{# if(d.orderType === 1){ }}
+                        <a style="color: rgb(0, 204, 102);">新单</a>
+                    {{# } else if(d.orderType === 2){ }}
+                        <a style="color: saddlebrown;">返单</a>
+                    {{# } else if(d.orderType === 3){ }}
+                    <a style="color: orangered;">返单有改</a>
+                    {{# } }}
+                </script>
                 <!--<button class="layui-btn layui-btn-sm indicatorAddFile" data-type="indicatorAddFile" ">添加客户资料</button>-->
                 <!--<script type="text/thml" id="quote_gerber_file">-->
                     <!--{{# if(d.quoteGerberName === null){ }}-->

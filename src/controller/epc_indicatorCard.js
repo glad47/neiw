@@ -62,6 +62,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'id', title: 'ID',hide: true}
                 ,{field:'productNo',fixed: 'left', title: 'Product No', align:'center', width: 114}
+                ,{field:'orderType', title: 'Order Type', align:'center', width: 109, templet:'#Tabtb-pcb-epc-indicatorCard-orderType'}
                 ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
                 ,{field:'gerberName', title: '原始资料', align:'center', width: 254}
                 ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_file'}
@@ -76,7 +77,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'userId', title: 'User ID',width: 80,hide: true}
                 ,{field:'engineeringRemark', title: '工程备注',width: 80,hide: true}
                 ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
-                ,{field:'orderType', title: 'Order Type', align:'center', width: 109,hide: true}
                 ,{field:'dimensionsX', title: 'DimensionsX',templet: '#type', align:'center', width: 114,hide: true}
                 ,{field:'dimensionsY', title: 'DimensionsY', align:'center', width: 114,hide: true}
                 ,{field:'panelSizeX', title: 'PanelSizeX', align:'center', width: 114,hide: true}

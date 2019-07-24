@@ -3,6 +3,13 @@
 <div class="layui-fluid">
     <!--<a class="layui-btn" lay-event="edit">查看合同</a>-->
     <script type="text/html" template lay-done="layui.data.done(d);">
+        {{# if(d.params.orderType === 1){ }}
+            {{# d.params.orderType = '新单' }}
+        {{# }else if(d.params.orderType === 2){ }}
+            {{# d.params.orderType = '返单' }}
+        {{# }else if(d.params.orderType === 3){ }}
+            {{# d.params.orderType = '返单有改' }}
+        {{# }}}
     <div class="printOrderPcb-btnGrop">
         <button class="layui-btn layui-btn-sm printBtn" style="float: right;">打印</button>
     </div>
@@ -27,9 +34,9 @@
                 </colgroup>
                 <tbody>
                 <tr>
-                    <td>创建时间:</td>
-                    <td>{{ d.params.gmtCreate || ''}}</td>
-                    <td>制造时间:</td>
+                    <td>订单类型:</td>
+                    <td>{{ d.params.orderType || ''}}</td>
+                    <td>交期:</td>
                     <td>{{ d.params.buildTime || ''}}</td>
                 </tr>
                 <tr>
@@ -272,8 +279,13 @@
         <div class="DetailBot-design" style="width: 100%;position: fixed;bottom: 35px;right: 0">
             工程________________&nbsp;&nbsp;采购_______________&nbsp;&nbsp;仓库_______________
             <div class="bottime">
+                创建时间：{{ d.params.gmtCreate || ''}}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 {{# var myDate = new Date() }}
+                打印时间：
+                {{# var tt = myDate.toLocaleTimeString('chinese',{hour12:false}) }}
                 {{ myDate.toLocaleDateString() }}
+                {{ tt }}
             </div>
         </div>
     </div>
