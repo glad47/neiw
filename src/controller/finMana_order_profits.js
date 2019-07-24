@@ -144,5 +144,18 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     //         layer.msg('查看订单协同');
     //     }
     // });
+    //监听搜索
+    form.on('submit(order-profits-mangement-search)', function(data){
+        var field = data.field;
+        //执行重载
+        table.reload('finManaOrderProfit_tabPcb', {
+            where: field
+        });
+    });
+    
+    $(".order-profits-form-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='order-profits-mangement-search']").click();
+    });
+
     exports('finMana_order_profits', {});
 });
