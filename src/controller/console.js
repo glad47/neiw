@@ -60,7 +60,7 @@ layui.define(function(exports){
           var result4 = barChartCheckData(res.data);
 
           var result5 = barStackChartCheckData(res.data);
-          // console.log(result5);
+          console.log(result5);
           //填充数据
           fillData(result,result5,result3,result4);
       }
@@ -184,7 +184,13 @@ layui.define(function(exports){
           legend: {
             data: data1.legendData
           },
-          calculable : true,
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            // containLabel: true
+          },
+          // calculable : true,
           xAxis : [
             {
               type : 'category',
@@ -326,7 +332,15 @@ layui.define(function(exports){
           successData.type = 'bar';
           successData.stack = '款数';
           result.push(successData);
-        })
+        });
+        var sum = [0,0,0,0,0,0,0,0,0,0,0,0],sd={name:'总计',type:'bar',stack:'款数',label:{normal:{offset:['50', '80'],show: true,position: 'insideBottom',formatter:'{c}',textStyle:{ color:'#000' },formatter:''}},itemStyle:{normal:{color:'rgba(128, 128, 128, 0)'}}};
+        result.forEach(function(d){
+           for (var i = d.data.length - 1; i >= 0; i--) {
+            sum[i] = (sum[i]+d.data[i]);
+          }
+        });
+        sd.data = sum;
+        result.push(sd);
         return result;
     }
 
