@@ -58,39 +58,26 @@ layui.define(function(exports){
           var result3 =lineChartCheckData(res.userData);
           // console.log(result3);
           var result4 = barChartCheckData(res.data);
+
+          var result5 = barStackChartCheckData(res.data);
+          // console.log(result5);
           //填充数据
-          fillData(result,res.pieOrder,result3,result4);
+          fillData(result,result5,result3,result4);
       }
     });
 
     function fillData(data1,data2,data3,data4){
-      // var series =[],legend=[];
-      // data.data.forEach(function(x){
-      //   var d = [];
-      //   x.series.forEach(function(y){
-      //     for(var i in y){
-      //       d.push(y[i]);
-      //     }
-      //   })
-      //   var s = {};
-      //   //d.name = x.name;
-      //   s.data = d;
-      //   s.type = 'line';
-      //   s.name = x.name;
-      //   series.push(s);
-      //   legend.push(x.name);
-      // });
-      // console.log(series);
       var currentYear = new Date().getFullYear();
       var echartsApp = [], options = [
         //今年月销售额
         {
           title: {
             text: currentYear+'年跟单员月销售额',
-            x: 'left',
-            textStyle: {
-              fontSize: 14
-            }
+            // x: 'left',
+            // textStyle: {
+            //   fontSize: 14
+            // }
+            subtext: '单位（$）'
           },
           tooltip : {
             trigger: 'axis'
@@ -152,41 +139,74 @@ layui.define(function(exports){
             }
           ]
         },
-        //访客浏览器分布
-        { 
-          title : {
-            text: '跟单员销售额分布图',
-            x: 'center',
-            textStyle: {
-              fontSize: 14
-            }
+        //跟单员销售额
+        // { 
+        //   title : {
+        //     text: '跟单员销售额分布图',
+        //     x: 'center',
+        //     textStyle: {
+        //       fontSize: 14
+        //     }
+        //   },
+        //   tooltip : {
+        //     trigger: 'item',
+        //     formatter: "{a} <br/>{b} : ${c} ({d}%)"
+        //   },
+        //   legend: {
+        //     orient : 'vertical',
+        //     x : 'left',
+        //     data: data1.legendData
+        //   },
+        //   series : [{
+        //     name:'销售额',
+        //     type:'pie',
+        //     radius : '55%',
+        //     center: ['50%', '50%'],
+        //     data:data2
+        //   }]
+        // },
+        //跟单员款数
+        {
+          title: {
+            text: currentYear+'年跟单员月销售款数',
+            // x: 'left',
+            // textStyle: {
+            //   fontSize: 14
+            // }
+            subtext: '单位（款）'
           },
           tooltip : {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : ${c} ({d}%)"
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+              type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
           },
           legend: {
-            orient : 'vertical',
-            x : 'left',
             data: data1.legendData
           },
-          series : [{
-            name:'销售额',
-            type:'pie',
-            radius : '55%',
-            center: ['50%', '50%'],
-            data:data2
-          }]
+          calculable : true,
+          xAxis : [
+            {
+              type : 'category',
+              data : data1.months
+            }
+          ],
+          yAxis : [
+            {
+              type : 'value'
+            }
+          ],
+          series : data2
         },
-        
         //新增的用户量
         {
           title: {
             text: currentYear+'年跟单员月客户数',
-            x: 'left',
-            textStyle: {
-              fontSize: 14
-            }
+            // x: 'left',
+            // textStyle: {
+            //   fontSize: 14
+            // }
+            subtext: '单位（个）'
           },
           tooltip : { //提示框
             trigger: 'axis',
@@ -251,9 +271,67 @@ layui.define(function(exports){
       return result;
     }
   
+    function barStackChartCheckData(data){
+        var result = [];
+        var currentYear = new Date().getFullYear();
+        var mKey = [];
+        var mKeyStr = [];
+        var yueFen = [
+          {name: "一月", value: '01'},
+          {name: "二月", value: '02'},
+          {name: "三月", value: '03'},
+          {name: "四月", value: '04'},
+          {name: "五月", value: '05'},
+          {name: "六月", value: '06'},
+          {name: "七月", value: '07'},
+          {name: "八月", value: '08'},
+          {name: "九月", value: '09'},
+          {name: "十月", value: '10'},
+          {name: "十月", value: '11'},
+          {name: "十二月", value: '12'}
+        ];
+        //var legend = [];
+        yueFen.forEach(function (x) {
+          mKey.push(x.value);
+          mKeyStr.push(x.name);
+        });
+        data.forEach(function (user) {
+          var successData = {};
+          var map = new Map();
+          //为空补0操作
+          if(user.series.length){
+           user.series.forEach(function (y) {
+            for (var i = 0; i < mKey.length; i++) {
+             if (y.months!=currentYear+mKey[i]) {
+              if (!map.has(currentYear+mKey[i])) {
+               map.set(currentYear+mKey[i], 0);
+              }
+             } else {
+              map.set(y.months, y.orderNumber);
+             }
+            }
+           })
+          }else{
+           for (var i = 0; i < mKey.length; i++) {
+            map.set(currentYear+mKey[i], 0);
+           }
+          }
+          //console.log(map);
+          var data = [];
+          map.forEach(function (k, v) {
+           data.push(k);
+          })
+          successData.data = data;
+          successData.name = user.name;
+          successData.type = 'bar';
+          successData.stack = '款数';
+          result.push(successData);
+        })
+        return result;
+    }
 
     //折线图数据拼接
-    function lineChartCheckData(data){
+    function lineChartCheckData(data,data2){
      var successData = {};
      var currentYear = new Date().getFullYear();
      var mKey = [];
