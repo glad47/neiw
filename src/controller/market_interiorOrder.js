@@ -91,6 +91,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 ,{field: 'overworkFee',title: '加急费', hide: true}
                 ,{field: 'postFee',title: '运费', hide: true}
                 ,{field: 'subtotal',title: '总价', hide: true}
+                ,{field: 'exchangeId',title: '币别', hide: true, templet: '#exchangeId_flag'}
                 ,{field: 'boardType',title: '出货方式', hide: true}    // 1=单只 2=拼板
                 ,{field: 'areaSq',title: '面积', hide: true}
                 ,{field: 'material',title: '材料', hide: true}
@@ -527,7 +528,9 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 ,{field: 'toolingFee',title: '工具费', hide: true}
                 ,{field: 'overworkFee',title: '加急费', hide: true}
                 ,{field: 'postFee',title: '运费', hide: true}
+                ,{field: 'exchangeId',title: '币别', hide: true, templet: '#exchangeId_flag'}
                 ,{field: 'subtotal',title: '总价', hide: true}
+                ,{field: 'exchangeId',title: '币别', hide: true, templet: '#exchangeId_flag'}
                 ,{field: 'boardType',title: '出货方式', hide: true}    // 1=单只 2=拼板
                 // ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-iQuote-status',width: 110}
                 ,{field: 'areaSq',title: '面积', hide: true}

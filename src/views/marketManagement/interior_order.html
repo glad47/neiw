@@ -150,6 +150,16 @@
                         <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" id="stencilfile-i" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
                     </a>
                 </script>
+                <!--币别判断-->
+                <script type="text/html" id="exchangeId_flag">
+                    {{# if(d.exchangeId == '1') { }}
+                        $
+                    {{# } else if(d.exchangeId == '2'){ }}
+                        ￥
+                    {{# } else if (d.exchangeId == '3'){ }}
+                        €
+                    {{# }}}
+                </script>
             </div>
             <!--钢网订单-->
             <div class="layui-tab-item">
