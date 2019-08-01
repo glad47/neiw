@@ -274,6 +274,13 @@
                     <td>客户标准:</td>
                     <td colspan="3" name="customerStandards"></td>
                 </tr>
+                {{# if(d.params.productionVerification != null && d.params.productionVerification === 1){ }}
+                <tr>
+                    <td colspan="4" style="text-align: left;color: red;">
+                        <strong>需要确定生产资料后投产</strong>
+                    </td>
+                </tr>
+                {{# }}}
                 </tbody>
             </table>
         <div class="DetailBot-design" style="width: 100%;position: fixed;bottom: 35px;right: 0">

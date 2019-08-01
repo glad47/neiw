@@ -239,6 +239,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
     table.on('tool(interior_order_Tabpcb)', function(obj){
         var data = obj.data;
         if(obj.event == 'edit'){
+            data.tabId = "interior_order_Tabpcb";
             admin.popup({
                 title: '编辑PCB订单信息'
                 ,btn:['立即提交','取消订单', '取消']
@@ -263,27 +264,6 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                     view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
                         console.log(data);
                         form.render(null, '');
-                        form.on('submit(LAY-pcborder-update-submit)',function (data) {
-                            var field = data.field;
-                            console.log("提交的字段信息："+JSON.stringify(field));
-                            if (field.remark == "" || field.remark == "null") {
-                                field.remark = " ";
-                            }
-                            admin.req({
-                                type: 'post'
-                                ,url: setter.baseUrl+'epc/pcborder/update'
-                                ,data: field
-                                ,done: function (res) {
-                                    layer.msg('订单信息修改成功');
-                                    layui.table.reload('interior_order_Tabpcb');
-                                }
-                                ,fail: function (res) {
-                                    layer.msg("订单信息修改失败，请稍后再试！");
-                                },
-                            });
-                            layer.close(index);
-                            return false;
-                        });
                     });
                 }
             });
