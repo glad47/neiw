@@ -194,12 +194,16 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                                         return false;
                                     }
                                     if (data.orderPcsNumber != data.donePcsNumber) {
-                                        if (data.currPcsNumber == 0 || data.currPcsNumber == null || data.currPcsNumber == "" || typeof data.currPcsNumber == "undefined") {
-                                            layer.alert('此次数量不能为空');
+                                        if (data.currPcsNumber <= 0 || data.currPcsNumber == null || data.currPcsNumber == "" || typeof data.currPcsNumber == "undefined") {
+                                            layer.alert('此次数量不能为空或小于0');
+                                            return false;
+                                        }
+                                        if(data.currPcsNumber > data.surplusPcsNumber){
+                                            layer.alert('此次数量不能超过未交PCS数量！');
                                             return false;
                                         }
                                     }
-                                    console.log(data);
+                                    // console.log(data);
                                     admin.req({
                                         type: 'post',
                                         data: data,
