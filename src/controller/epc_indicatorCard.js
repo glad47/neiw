@@ -388,6 +388,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 }
             });
         } else if (obj.event == 'orderUpdatePCB') {
+            data.tabId = "epc_Tabpcb_ok_payment_order";
             admin.popup({
                 title: '编辑PCB订单信息'
                 ,area: ['820px', '90%']
@@ -400,26 +401,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
                         form.render(null, '');
-                        form.on('submit(LAY-pcborder-update-submit)',function (data) {
-                            var field = data.field;
-                            if (field.remark == "" || field.remark == "null") {
-                                field.remark = "";
-                            }
-                            admin.req({
-                                type: 'post'
-                                ,url: setter.baseUrl+'epc/pcborder/update'
-                                ,data: field
-                                ,done: function (res) {
-                                    layer.msg('订单信息修改成功');
-                                    layui.table.reload('epc_Tabpcb_ok_payment_order');
-                                }
-                                ,fail: function (res) {
-                                    layer.msg("订单信息修改失败，请稍后再试！");
-                                },
-                            });
-                            layer.close(index);
-                            return false;
-                        });
                     });
                 }
             });

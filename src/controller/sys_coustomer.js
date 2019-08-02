@@ -111,6 +111,17 @@ layui.define(['admin', 'table','element','form'], function(exports){
                             }
                         });
 
+                        var productionVerification;
+                        form.on('switch(productionVerification)', function (data) {
+                            if (data.elem.checked == true) {
+                                layer.msg('需要确定生产资料');
+                                productionVerification = 1;
+                            }  else {
+                                layer.msg('不需要确定生产资料');
+                                productionVerification = 0;
+                            }
+                        });
+
                         //监听提交
                         form.on('submit(layuiadmin-app-form-submit)',function(data){
                             var field = data.field;
@@ -118,6 +129,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
                             field.userType = userType;
                             field.auditMark = auditMark;
                             field.deliveryReport = deliveryReport;
+                            field.productionVerification = productionVerification;
                             admin.req({
                                 url:setter.baseUrl+'sys/consumer/user/update',
                                 type:'POST',
@@ -169,6 +181,16 @@ layui.define(['admin', 'table','element','form'], function(exports){
                     }).done(function(){
                         form.render(null,'customer-add-edit-form-list');
                         //监听提交
+                        var productionVerification;
+                        form.on('switch(productionVerification)', function (data) {
+                           if (data.elem.checked == true) {
+                               layer.msg('需要确定生产资料');
+                               productionVerification = 0;
+                           }  else {
+                               layer.msg('不需要确定生产资料');
+                               productionVerification = 1;
+                           }
+                        });
                         var invalidMark;
                         form.on('switch(optionUser)',function (data) {
                             if (data.elem.checked == true){
@@ -219,6 +241,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
                             field.userType = userType;
                             field.auditMark = auditMark;
                             field.deliveryReport = deliveryReport;
+                            field.productionVerification = productionVerification;
                             // console.log(field);
                             admin.req({
                                 url: setter.baseUrl+'sys/consumer/user/save',
