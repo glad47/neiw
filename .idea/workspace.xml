@@ -278,21 +278,11 @@
     </option>
   </component>
   <component name="RunManager" selected="JavaScript Debug.quotation_together_pcb.html">
-    <configuration name="quotation_together_pcb.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8089/ERP-PCBOnline/src/views/sqeManagement/iframeWindow/quotation_together_pcb.html">
-      <method v="2" />
-    </configuration>
-    <configuration name="convertCurrency.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/lib/extend/convertCurrency.js" working-dir="$PROJECT_DIR$/src/controller">
-      <method v="2" />
-    </configuration>
-    <configuration name="quote.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="quote.js" working-dir="$PROJECT_DIR$/src/controller">
-      <method v="2" />
-    </configuration>
-    <configuration name="scmMana_outContract.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/controller/scmMana_outContract.js" working-dir="$PROJECT_DIR$/src/controller">
-      <method v="2" />
-    </configuration>
-    <configuration name="scm_outgoingQuote.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="scm_outgoingQuote.js" working-dir="$PROJECT_DIR$/src/controller">
-      <method v="2" />
-    </configuration>
+    <configuration name="quotation_together_pcb.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:8089/ERP-PCBOnline/src/views/sqeManagement/iframeWindow/quotation_together_pcb.html" />
+    <configuration name="convertCurrency.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/lib/extend/convertCurrency.js" working-dir="$PROJECT_DIR$/src/controller" />
+    <configuration name="quote.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="quote.js" working-dir="$PROJECT_DIR$/src/controller" />
+    <configuration name="scmMana_outContract.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/controller/scmMana_outContract.js" working-dir="$PROJECT_DIR$/src/controller" />
+    <configuration name="scm_outgoingQuote.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="scm_outgoingQuote.js" working-dir="$PROJECT_DIR$/src/controller" />
     <list>
       <item itemvalue="JavaScript Debug.quotation_together_pcb.html" />
       <item itemvalue="Node.js.convertCurrency.js" />
