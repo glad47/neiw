@@ -72,18 +72,21 @@ layui.define(function(exports){
         //今年月销售额
         {
           title: {
-            text: currentYear+'年跟单员月销售额',
-            // x: 'left',
-            // textStyle: {
-            //   fontSize: 14
-            // }
+                text: currentYear+'年跟单员月销售额',
+                x: 'center',
+                itemGap: 10,
+                textStyle: {
+                    fontSize: 18,
+                    // padding: 5,
+                },
             subtext: '单位（$）'
           },
           tooltip : {
             trigger: 'axis'
           },
           legend: {
-            data:data1.legendData
+              padding: 25,
+              data:data1.legendData
           },
           xAxis : [{
             type : 'category',
@@ -102,12 +105,19 @@ layui.define(function(exports){
         {
           title : {
             text: currentYear+'年每月总销售额',
-            subtext: '单位（$）'
+            x: 'center',
+            itemGap: 12,
+            textStyle: {
+              fontSize: 18,
+              // padding: 5,
+            },
+            subtext: '单位（$）',
           },
           tooltip : {
             trigger: 'axis'
           },
           legend: {
+            padding: 25,
             data:['月销售额']
           },
           calculable : true,
@@ -125,6 +135,7 @@ layui.define(function(exports){
           series : [
             {
               name:'月销售额',
+                x: 'center',
               type:'bar',
               data:data4,
               // markPoint : {
@@ -169,10 +180,12 @@ layui.define(function(exports){
         {
           title: {
             text: currentYear+'年跟单员月销售款数',
-            // x: 'left',
-            // textStyle: {
-            //   fontSize: 14
-            // }
+            x: 'center',
+            itemGap: 12,
+            textStyle: {
+                fontSize: 18,
+                  // padding: 5,
+            },
             subtext: '单位（款）'
           },
           tooltip : {
@@ -182,6 +195,7 @@ layui.define(function(exports){
             }
           },
           legend: {
+            padding: 25,
             data: data1.legendData
           },
           grid: {
@@ -208,10 +222,12 @@ layui.define(function(exports){
         {
           title: {
             text: currentYear+'年跟单员月客户数',
-            // x: 'left',
-            // textStyle: {
-            //   fontSize: 14
-            // }
+            x: 'center',
+            itemGap: 12,
+            textStyle: {
+              fontSize: 18,
+              // padding: 5,
+            },
             subtext: '单位（个）'
           },
           tooltip : { //提示框
@@ -219,6 +235,7 @@ layui.define(function(exports){
             //formatter: "{b}<br>用户数：{c}"
           },
           legend: {
+            padding: 25,
             data:data3.legendData
           },
           xAxis : [{ //X轴
@@ -486,6 +503,9 @@ layui.define(function(exports){
       ]]
       ,skin: 'line'
     });
+    // 手机端横屏显示
+      // transform 强制横屏
+
   });
   
   exports('console', {})

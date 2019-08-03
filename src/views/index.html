@@ -1,4 +1,4 @@
-<div class="layui-fluid">
+<div class="layui-fluid index-fluid">
   <div class="layui-row layui-col-space15">
     <div class="layui-col-md12">
       <div class="layui-row layui-col-space15">
@@ -132,15 +132,15 @@
       </div>
     </div>
 
-            <div class="layui-col-md12" style="margin-top: 20px;">
-              <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12" style="margin-top: 20px;padding: unset;width: 100%;">
+              <div class="layui-row layui-col-space15" style="padding: unset;width: 100%;">
                 <div class="layui-col-md12">
                   <div class="layui-card">
                     <div class="layui-card-header">统计表图</div>
                     {{#
                     if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:index:target") != -1){
                     }}
-                    <div class="layui-card-body">
+                    <div class="layui-card-body" style="padding: unset;width: 100%;">
                       <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-dataview">
                         <div carousel-item id="LAY-index-dataview">
                           <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
@@ -178,5 +178,7 @@ layui.data.done = function(d){
     .layadmin-backlog-body p{padding: 0 0 0px 3px;}
     .layadmin-backlog-body h3 {width: 59px;text-overflow: ellipsis;overflow: hidden;}
     .layadmin-backlog .layadmin-backlog-body{overflow: hidden;white-space: nowrap;padding: 10px 4px;}
+    .layui-card-body{padding: 0 ;}
+    .layui-card-body .layui-col-md12,.index-fluid{padding: unset;}
   }
 </style>
