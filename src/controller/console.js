@@ -505,6 +505,16 @@ layui.define(function(exports){
     });
     // 手机端横屏显示
       // transform 强制横屏
+      // var conW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+      // var conH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      //
+      // $("body").css({
+      //     "transform":"rotate(90deg) translate("+((conH-conW)/2)+"px,"+((conH-conW)/2)+"px)",
+      //     "width":conH+"px",
+      //     "height":conW+"px",
+      //     "transform-origin":"center center",
+      //     "-webkit-transform-origin": "center center"
+      // });
 
   });
   

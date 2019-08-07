@@ -82,6 +82,14 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>材料品牌:</td>
+                    <td>{{ d.params.material || '无指定'}}</td>
+                    <td>材料型号:</td>
+                    <td>
+                        {{ d.params.productCode || '无指定'}}
+                    </td>
+                </tr>
+                <tr>
                     <td>导热系数:</td>
                     <td>
                         {{# if(d.params.heatConductivity != null && d.params.heatConductivity == 'none'){ }}
