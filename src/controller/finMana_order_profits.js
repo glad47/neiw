@@ -14,63 +14,105 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,setter = layui.setter
         ,element = layui.element;
     var $ = layui.jquery;
-
     // 全局变量
-    var _public_val = {
-        orderType: 1        //订单类型 （1 pcb 2钢网 3 贴片）
+    var defVal = {
+        orderType: 0,   //订单类型
     };
-
+    tabRenderPCB();
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
-    // element.on('tab(tab-quotationToger)', function(data){
-    //     console.log(data.index);
-    //     if (data.index === 0){
-    //         _public_val.orderType = 1;       //pcb
-    //     } else if (data.index === 1){
-    //         _public_val.orderType = 2;      //钢网
-    //     } else if (data.index === 2){
-    //         _public_val.orderType = 3;      //贴片
-    //     }
-    // });
-
-    //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
-    table.render({
-        elem: '#finManaOrderProfit_tabPcb'
-        ,url: setter.baseUrl+'fms/reconciliation/orderProfit'
-        ,toolbar: "#finManaOrderProfit_tb"
-        ,cellMinWidth: 80
-        ,id: "finManaOrderProfit_tabPcb"
-        ,page: true
-        ,parseData: function (res) {
-            return{
-                "code": 0,
-                "data": res.page.list,
-                "count": res.page.totalCount
-            }
-        }
-        ,cols: [[
-            // {type:'checkbox'}
-            //{field: 'productNo',title: '内部型号', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
-            {field: 'productNo', title: '内部型号', width: 124}
-            ,{field: 'gmtCreate',title: '报价时间', width: 166}
-            ,{field: 'invoiceNo',title: '合同编号', width: 210}
-            ,{field: 'subtotal', title: '客户报价', width: 124}
-            ,{field: 'testCost', title: '测试架', width: 117}
-            ,{field: 'modelCost', title: '模具', width: 117}
-            ,{field: 'totalFee', title: '供应商报价', width: 117}
-            ,{field: 'profits', title: '利润', width: 144,templet:'<div>{{ (d.subtotal - d.totalFee - d.modelCost - d.testCost).toFixed(2) }}</div>'}
-            ,{field: 'profitsThan',title:'利润比',width:144, templet:'<div>{{ (((d.subtotal - d.totalFee - d.modelCost - d.testCost)/d.subtotal)*100).toFixed(2) }}%</div>'}
-            // ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-            // ,{field: 'unitPrice', title: '单价', width: 96}
-            // ,{field: 'subtotal', title: '合计', width: 96}
-            // ,{field: 'remark', title: '订单备注', width: 168}
-            // ,{field: 'gerberName',title: '文件名'}
-            // ,{field: 'pcbType',title: 'PCB类型'}
-            // ,{fixed: 'right', title:'操作', toolbar: '#finManaOrderProfit_tbar',width: 150}
-        ]]
-        ,done: function (res, curr, count) {
-
+    element.on('tab(tab-profitsToger)', function(data){
+         defVal.orderType = data.index;
+        if (defVal.orderType === 1){
+             tabRenderStencil();
+        } else if (defVal.orderType === 2){
+            console.log("贴片订单选项卡");
+        } else {
+            tabRenderPCB();
         }
     });
+
+    //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
+    function tabRenderPCB(){
+        table.render({
+            elem: '#finManaOrderProfit_tabPcb'
+            ,url: setter.baseUrl+'fms/reconciliation/orderProfit'
+            ,toolbar: "#finManaOrderProfit_tb"
+            ,cellMinWidth: 80
+            ,id: "finManaOrderProfit_tabPcb"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
+            }
+            ,cols: [[
+                // {type:'checkbox'}
+                //{field: 'productNo',title: '内部型号', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
+                {field: 'productNo', title: '内部型号', width: 124}
+                ,{field: 'gmtCreate',title: '报价时间', width: 166}
+                ,{field: 'invoiceNo',title: '合同编号', width: 210}
+                ,{field: 'subtotal', title: '客户报价', width: 124}
+                ,{field: 'testCost', title: '测试架', width: 117}
+                ,{field: 'modelCost', title: '模具', width: 117}
+                ,{field: 'totalFee', title: '供应商报价', width: 117}
+                ,{field: 'profits', title: '利润', width: 144,templet:'<div>{{ (d.subtotal - d.totalFee - d.modelCost - d.testCost).toFixed(2) }}</div>'}
+                ,{field: 'profitsThan',title:'利润比',width:144, templet:'<div>{{ (((d.subtotal - d.totalFee - d.modelCost - d.testCost)/d.subtotal)*100).toFixed(2) }}%</div>'}
+                // ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
+                // ,{field: 'unitPrice', title: '单价', width: 96}
+                // ,{field: 'subtotal', title: '合计', width: 96}
+                // ,{field: 'remark', title: '订单备注', width: 168}
+                // ,{field: 'gerberName',title: '文件名'}
+                // ,{field: 'pcbType',title: 'PCB类型'}
+                // ,{fixed: 'right', title:'操作', toolbar: '#finManaOrderProfit_tbar',width: 150}
+            ]]
+            ,done: function (res, curr, count) {
+
+            }
+        });
+    }
+    
+    function tabRenderStencil(){
+        table.render({
+            elem: '#finManaOrderProfit_tabSmt'
+            ,url: setter.baseUrl+'fms/reconciliation/orderProfitSml'
+            ,toolbar: "#finManaOrderProfit_tb"
+            ,cellMinWidth: 80
+            ,id: "finManaOrderProfit_tabSmt"
+            ,page: true
+            ,parseData: function (res) {
+                return{
+                    "code": 0,
+                    "data": res.page.list,
+                    "count": res.page.totalCount
+                }
+            }
+            ,cols: [[
+                // {type:'checkbox'}
+                //{field: 'productNo',title: '内部型号', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
+                {field: 'productNo', title: '内部型号', width: 124}
+                ,{field: 'gmtCreate',title: '报价时间', width: 166}
+                ,{field: 'invoiceNo',title: '合同编号', width: 210}
+                ,{field: 'subtotal', title: '客户报价', width: 124}
+                // ,{field: 'testCost', title: '测试架', width: 117}
+                // ,{field: 'modelCost', title: '模具', width: 117}
+                ,{field: 'totalFee', title: '供应商报价', width: 117}
+                ,{field: 'profits', title: '利润', width: 144,templet:'<div>{{ (d.subtotal - d.totalFee).toFixed(2) }}</div>'}
+                ,{field: 'profitsThan',title:'利润比',width:144, templet:'<div>{{ (((d.subtotal - d.totalFee)/d.subtotal)*100).toFixed(2) }}%</div>'}
+                // ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
+                // ,{field: 'unitPrice', title: '单价', width: 96}
+                // ,{field: 'subtotal', title: '合计', width: 96}
+                // ,{field: 'remark', title: '订单备注', width: 168}
+                // ,{field: 'gerberName',title: '文件名'}
+                // ,{field: 'pcbType',title: 'PCB类型'}
+                // ,{fixed: 'right', title:'操作', toolbar: '#finManaOrderProfit_tbar',width: 150}
+            ]]
+            ,done: function (res, curr, count) {
+
+            }
+        });
+    }
     // table.on('toolbar(finManaSupRe_tabPcb)', function (obj) {
     //     var checkStatus = table.checkStatus(obj.config.id);
     //     if(obj.event === 'submit'){
@@ -148,7 +190,14 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     form.on('submit(order-profits-mangement-search)', function(data){
         var field = data.field;
         //执行重载
-        table.reload('finManaOrderProfit_tabPcb', {
+        var reTab;
+        if (defVal.orderType === 0) {   // PCB
+            reTab = 'finManaOrderProfit_tabPcb';
+        } else if (defVal.orderType === 1) {    //  Stencil
+            reTab = 'finManaOrderProfit_tabSmt';
+        }
+        //执行重载
+        table.reload(reTab, {
             where: field
         });
     });
