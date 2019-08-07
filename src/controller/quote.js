@@ -18,7 +18,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     var arr_layer_options = [{text: 0,value: 0},{text: 1,value: 1},{text: 2,value: 2},{text: 4,value: 4},{text: 6,value: 6},{text: 8,value: 8}];
     var arr_layer_optionst = [{text: 0,value: 0},{text: 1,value: 1},{text: 2,value: 2}];
     var arr_layer_optionss = [{text: 0,value: 0},{text: 4,value: 4},{text: 6,value: 6},{text: 8,value: 8}];
-    var arr_selkbsy_options = [{text: '', value: ''},{text: 'KB', value: 'KB'}, {text: 'SY', value: 'SY'}];
+    var arr_selkbsy_options = [{text: 'none', value: 'none'},{text: 'KB', value: 'KB'}, {text: 'SY', value: 'SY'}];
     var arr_selkbsy_optionst = [{text: 'YG', value: 'YG'}];
     var arr_selkbsy_kb = [{text: 'KB6160', value: 'KB6160'}, {text: 'KB6150', value: 'KB6150'}, {text: 'KB6165', value: 'KB6165'}, {text: 'KB6167', value: 'KB6167'}];
     var arr_selkbsy_sy = [{text: 'SY1130', value: 'SY1130'}, {text: 'SY1141', value: 'SY1141'}, {text: 'SY1150', value: 'SY1150'}, {text: 'SY1170', value: 'SY1170'}, {text: 'SY1180', value: 'SY1180'}, {text: 'SY1000', value: 'SY1000'}, {text: 'SY1000-2', value: 'SY1000-2'}, {text: 'SY1600', value: 'SY1600'}];
