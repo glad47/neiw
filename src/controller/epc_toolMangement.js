@@ -11,8 +11,10 @@ layui.define(['admin','table','index','element','form'], function (exports) {
         ,admin = layui.admin
         ,form = layui.form
         ,setter = layui.setter
-        ,element = layui.element;
-    var $ = layui.jquery;
+        ,element = layui.element
+        ,$ = layui.jquery
+        ,uploadCommon = layui.uploadCommon
+        ,filePathProcess = layui.filePathProcess;
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
@@ -44,7 +46,7 @@ layui.define(['admin','table','index','element','form'], function (exports) {
             ,{field: 'storageTime',title: '存放时间', width: 177}
             ,{field: 'remark',title: '备注', width: 130}
             ,{field: 'id',title: 'ID', hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#epcToolMana_tabbar',width: 210}
+            ,{fixed: 'right', title:'操作', toolbar: '#epcToolMana_tabbar',width: 230}
         ]]
         ,done: function (res, curr, count) {
 
@@ -125,6 +127,20 @@ layui.define(['admin','table','index','element','form'], function (exports) {
                     });
                 }
             })
+        } else if (obj.event == 'tool-fileMang') {
+            // data = filePathProcess.isInternal(data);
+            console.log(data);
+            admin.popup({
+                title: '测试架资料管理'
+                ,area: ['870px', '303px']
+                ,success: function (layero, index) {
+                    view(this.id).render('epcManagement/iframeWindow/tool_file_management', data).done(function () {
+                    });
+                }
+                ,end: function () {
+                    localStorage.removeItem("saveBackResult");  // 清除localStorage
+                }
+            });
         }
     });
 
