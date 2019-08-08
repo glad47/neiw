@@ -43,8 +43,14 @@
                 </div>
                 <div class="rig-y">
                     <label>
+                        {{# var supplierContractNo }}
                         合同编号：
-                        {{ d.params.data[1].supplierContractNo || '' }}
+                        {{# if(typeof(d.params.data[0]) == 'undefined'){ }}
+                        {{# supplierContractNo = d.params.data[1].supplierContractNo }}
+                        {{# } else { }}
+                        {{# supplierContractNo = d.params.data[0].supplierContractNo }}
+                        {{# } }}
+                        {{ supplierContractNo || '' }}
                     </label>
                     <p>
                         <label>
