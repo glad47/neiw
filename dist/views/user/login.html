@@ -71,46 +71,68 @@
                 ,dataType: 'json'
                 ,contentType: 'application/json'
                 ,data: obj.field
-                ,done: function(res){
-                    // 请求成功后，写入 access_token
-                    layui.data(setter.tableName, {
-                        key: setter.request.tokenName
-                        ,value: res.data.access_token
-                    });
-                    layui.data(setter.tableName, {
-                        key: setter.userIdKeys
-                        ,value: res.data.userId
-                    });
-                    //写入用户名到tableName本地表存储
-                    layui.data(setter.tableName,{
-                        key: setter.usernameKeys
-                        ,value:TabUsername
-                    });
-                      //登入成功的提示与跳转
-                      layer.msg('登入成功', {
-                          offset: '15px'
-                          ,icon: 1
-                          ,time: 1000
-                      }, function(obj){
-                          location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
-                          location.reload();
-                      });
-                    // 登录成功保存用户名
-                    layui.data('userInfo',{
-                        key: 'uname',
-                        value: TabUsername
-                    });
-                    // 登录成功保存用户名--中文
-                    layui.data('userInfo',{
-                        key: 'userChinaName',
-                        value: res.data.userChinaName
-                    });
+                ,success: function(res){
+                    if (res.code != -1) {
+                        // 请求成功后，写入 access_token
+                        layui.data(setter.tableName, {
+                            key: setter.request.tokenName
+                            ,value: res.data.access_token
+                        });
+                        layui.data(setter.tableName, {
+                            key: setter.userIdKeys
+                            ,value: res.data.userId
+                        });
+                        //写入用户名到tableName本地表存储
+                        layui.data(setter.tableName,{
+                            key: setter.usernameKeys
+                            ,value:TabUsername
+                        });
+                        //登入成功的提示与跳转
+                        layer.msg('登入成功', {
+                            offset: '15px'
+                            ,icon: 1
+                            ,time: 1000
+                        }, function(obj){
+                            location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
+                            location.reload();
+                        });
+                        // 登录成功保存用户名
+                        layui.data('userInfo',{
+                            key: 'uname',
+                            value: TabUsername
+                        });
+                        // 登录成功保存用户名--中文
+                        layui.data('userInfo',{
+                            key: 'userChinaName',
+                            value: res.data.userChinaName
+                        });
+                    } else {
+                        refrenchCode();
+                    }
                 }
                 ,fail: function (res) {
                     console.log(res);
                 },
             });
 
+        });
+
+        // 刷新验证码
+        function refrenchCode() {
+            $(".layadmin-user-login-codeimg").click();
+            var url = $(".layadmin-user-login-codeimg").attr("src");
+            var uuid = jstools.GetRequertParams(url)['uuid'];
+            $("input[name='uuid']").val(uuid);  // 刷新 uuid
+        }
+
+        // 回车 登录
+        $(".layadmin-user-login-box").keyup(function (e) {
+            // 兼容FF和IE和Opera
+            var theEvent = e || window.event;
+            var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+            if (code == 13) {
+                $(this).find("button[lay-filter='LAY-user-login-submit']").click();
+            }
         });
     });
 </script>

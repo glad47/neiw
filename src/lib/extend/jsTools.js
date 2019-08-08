@@ -85,6 +85,22 @@ layui.define(['admin', 'index'],function (exports) {
                 });
             }
             return resultVal;
+        },
+
+        // 获取 url 上的参数  取值 obj['参数名']
+        GetRequertParams: function (url) {
+            try {
+                var result = url.split("?")[1];
+                var keyValue = result.split("&");
+                var obj = {};
+                for (var i = 0; i < keyValue.length; i++) {
+                    var item = keyValue[i].split("=");
+                    obj[item[0]] = item[1];
+                }
+                return obj;
+            } catch (e) {
+                console.log(e);
+            }
         }
     }
 
