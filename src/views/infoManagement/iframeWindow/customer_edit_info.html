@@ -77,6 +77,7 @@
                             <option value="FOB" {{ d.params.deliveryType == 'FOB' ? 'selected' : '' }}>FOB</option>
                             <option value="DDU" {{ d.params.deliveryType == 'DDU' ? 'selected' : '' }}>DDU</option>
                             <option value="DDP" {{ d.params.deliveryType == 'DDP' ? 'selected' : '' }}>DDP</option>
+                            <option value="DDP" {{ d.params.deliveryType == 'EXW' ? 'selected' : '' }}>EXW</option>
                         </select>
                     </script>
                 </div>
@@ -266,7 +267,7 @@
                     <label class="layui-form-label" style="width: 126px;">需要确认生产资料：</label>
                     <div class="layui-input-block">
                         <script type="text/html" template>
-                            <input type="checkbox" name="productionVerification" lay-skin="switch" lay-text="是|否" {{ d.params.productionVerification === undefined || d.params.productionVerification === 0 ? '' : 'checked' }} lay-filter="productionVerification">
+                            <input type="checkbox" name="productionVerification" lay-skin="switch" lay-text="是|否" {{ d.params.productionVerification == '0' ? 'checked' : '' }} lay-filter="productionVerification">
                         </script>
                     </div>
                 </div>
