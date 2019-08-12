@@ -83,10 +83,14 @@
                 </tr>
                 <tr>
                     <td>材料品牌:</td>
-                    <td>{{ d.params.material || '无指定'}}</td>
+                    <td>
+                        {{# if(d.params.material == 'none' || d.params.material == null){ d.params.material = '未指定' } }}
+                        {{ d.params.material || '未指定'}}
+                    </td>
                     <td>材料型号:</td>
                     <td>
-                        {{ d.params.productCode || '无指定'}}
+                        {{# if(d.params.productCode == 'none' || d.params.productCode == null){ d.params.productCode = '未指定' } }}
+                        {{ d.params.productCode || '未指定'}}
                     </td>
                 </tr>
                 <tr>
