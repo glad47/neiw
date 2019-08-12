@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form','laydate', 'jsTools', 'requestInterface'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate', 'jsTools', 'requestInterface','uploadCommon', 'filePathProcess'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -16,6 +16,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
         var $ = layui.jquery;
         var jstools = layui.jsTools;
         var requestInterface = layui.requestInterface;
+        var uploadCommon = layui.uploadCommon;
+        var filePathProcess = layui.filePathProcess;
 
     tabRenderPCB();
     // 全局变量
@@ -160,7 +162,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                 ,{field: 'quoteGerberPath',title: 'quoteGerberPath',edit: 'text',hide: true}
                 ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',edit: 'text',hide: true}
                 ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',edit: 'text',hide: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#inside_cotract_Bar', width:192}
+                ,{fixed: 'right', title:'操作', toolbar: '#inside_cotract_Bar', width:220}
             ]]
             ,done: function (res, curr, count) {
                 var data = res.data;    //获取表格所有数据对象
@@ -495,6 +497,21 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                     });
                 }
             });
+        } else if (obj.event == 'inside_contract_fileMana') {
+            data.orderType = "pcbOrder";        // 根据orderType  发送不同的接口
+            data = filePathProcess.isInternal(data);
+            console.log(data);
+            admin.popup({
+                title: 'PCB订单资料管理'
+                ,area: ['870px', '303px']
+                ,success: function (layero, index) {
+                    view(this.id).render('epcManagement/iframeWindow/file_management', data).done(function () {
+                    });
+                }
+                ,end: function () {
+                    localStorage.removeItem("saveBackResult");  // 清除localStorage
+                }
+            });
         }
     });
     //监听行点击获取用户信息
@@ -630,7 +647,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                 ,{field: 'quoteGerberPath',title: 'quoteGerberPath',edit: 'text',hide: true}
                 ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',edit: 'text',hide: true}
                 ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',edit: 'text',hide: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#inside_cotract_BarS', width:192}
+                ,{fixed: 'right', title:'操作', toolbar: '#inside_cotract_BarS', width:220}
             ]]
             ,done: function (res, curr, count) {
                 var data = res.data;    //获取表格所有数据对象
@@ -742,6 +759,23 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                     view(this.id).render('marketManagement/iframeWindow/orderStencil_updateB', data).done(function () {
 
                     });
+                }
+            });
+        }  else if (obj.event == 'inside_contract_fileMana') {
+            data.orderType = "stencilOrder";        // 根据orderType  发送不同的接口
+            // 测试代码
+            data = filePathProcess.isInternal(data);
+            console.log(data);
+            admin.popup({
+                title: 'PCB订单资料管理'
+                ,area: ['45%', '40%']
+                ,success: function (layero, index) {
+                    view(this.id).render('epcManagement/iframeWindow/file_management', data).done(function () {
+
+                    });
+                }
+                ,end: function () {
+                    localStorage.removeItem("saveBackResult");  // 清除localStorage
                 }
             });
         }

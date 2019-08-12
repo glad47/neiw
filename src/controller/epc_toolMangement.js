@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form'], function (exports) {
+layui.define(['admin','table','index','element','form','uploadCommon', 'filePathProcess'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
