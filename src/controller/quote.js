@@ -1369,7 +1369,9 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                             data: quote_data,
                             url: setter.baseUrl+"epc/pcborder/save",
                             success: function (data) {
-                                // $("#orderPN").val(data.pn);
+                                if ($("#orderPN").val() == null || $("#orderPN").val == "") {
+                                    $("#orderPN").val(data.pn);
+                                }
                                 pcb_container.productNo = data.pn;
                                 form.render(null,'checkCustomer');
                                 if (data.code != "500"){
@@ -1384,7 +1386,9 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                         data: quote_data,
                         url: setter.baseUrl+"epc/pcborder/save",
                         success: function (data) {
-                            $("#orderPN").val(data.pn);
+                            if ($("#orderPN").val() == null || $("#orderPN").val == "") {
+                                $("#orderPN").val(data.pn);
+                            }
                             pcb_container.productNo = data.pn;
                             form.render(null,'checkCustomer');
                             if (data.code != "500"){
