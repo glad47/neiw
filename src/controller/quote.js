@@ -1369,7 +1369,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                             data: quote_data,
                             url: setter.baseUrl+"epc/pcborder/save",
                             success: function (data) {
-                                if ($("#orderPN").val() == null || $("#orderPN").val == "") {
+                                var _orderPN = $("#orderPN").val();
+                                if (_orderPN.val() == null || _orderPN.val == "" ) {
                                     $("#orderPN").val(data.pn);
                                     pcb_container.productNo = data.pn;
                                     console.log("型号赋值："+data.pn);
@@ -1389,7 +1390,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                         data: quote_data,
                         url: setter.baseUrl+"epc/pcborder/save",
                         success: function (data) {
-                            if ($("#orderPN").val() == null || $("#orderPN").val == "") {
+                            var _orderPN = $("#orderPN").val();
+                            if (_orderPN == null || _orderPN == "") {
                                 $("#orderPN").val(data.pn);
                                 pcb_container.productNo = data.pn;
                                 console.log("型号赋值："+data.pn);
