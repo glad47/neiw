@@ -1371,8 +1371,11 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                             success: function (data) {
                                 if ($("#orderPN").val() == null || $("#orderPN").val == "") {
                                     $("#orderPN").val(data.pn);
+                                    pcb_container.productNo = data.pn;
+                                    console.log("型号赋值："+data.pn);
+                                } else {
+                                    console.log("型号不为空:"+$("#orderPN").val());
                                 }
-                                pcb_container.productNo = data.pn;
                                 form.render(null,'checkCustomer');
                                 if (data.code != "500"){
                                     layer.alert("添加报价成功["+strOrder+"]");
@@ -1388,8 +1391,11 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                         success: function (data) {
                             if ($("#orderPN").val() == null || $("#orderPN").val == "") {
                                 $("#orderPN").val(data.pn);
+                                pcb_container.productNo = data.pn;
+                                console.log("型号赋值："+data.pn);
+                            } else {
+                                console.log("型号不为空:"+$("#orderPN").val());
                             }
-                            pcb_container.productNo = data.pn;
                             form.render(null,'checkCustomer');
                             if (data.code != "500"){
                                 layer.alert("添加报价成功["+strOrder+"]");
