@@ -31,6 +31,9 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     // var arr_selsurf_Immer_sil = [{text: '≥0.05um', value: '≥0.05um'}];
     // var arr_selsurf_osp = [{text: '0.25-0.5um', value: '0.25-0.5um'}];
 
+    var firstQuote_data = null; // 第一次报价的参数（用来对比第二次的报价，判断是订单类型 新单/返单/返单有改）
+    var strOrder = {"1":"新单", "2":"返单", "3":"返单有改"};
+
     var _MO_data = {
         isDis:{
             itPanelway: true,
@@ -1334,7 +1337,6 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         },
         // 添加当前报价
         addThisQuote: function () {
-            var strOrder;
             $(".up-subbtn").click();
             $("*[lay-filter='quoteForm']").click();
             var quote_data = Object.assign(pcb_rigdetaily,pcb_container);
@@ -1353,14 +1355,16 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                     orderTypeObj.A = quote_data;
                     orderTypeObj.B = importParams.importPCBInfo;
                     quote_data.orderType = contrastOrder(orderTypeObj);    // 获取订单类型
-                    if (quote_data.orderType == "2") {
-                        strOrder = "返单";
-                    } else if (quote_data.orderType == "3") {
-                        strOrder = "返单有改";
-                    }
                 } else {
                     quote_data.orderType = 1;       // 新单
-                    strOrder = "新单";
+                }
+                if (firstQuote_data == null) {  // 给第一次报价的对象赋值
+                    firstQuote_data = quote_data;
+                } else {    // 不为空的情况下，两个对象进行对比
+                    var orderTypeObj = {"A":null,"B":null};
+                    orderTypeObj.A = quote_data;
+                    orderTypeObj.B = firstQuote_data;
+                    quote_data.orderType = contrastOrder(orderTypeObj);    // 获取订单类型
                 }
                 if (tp.totalPric == tp.totalPriced && tp.isQuote == true) {
                     layer.confirm("你已经添加了相同参数的报价，是否再次添加？", function () {
@@ -1369,17 +1373,11 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                             data: quote_data,
                             url: setter.baseUrl+"epc/pcborder/save",
                             success: function (data) {
-                                var _orderPN = $("#orderPN").val();
-                                if (_orderPN.val() == null || _orderPN.val == "" ) {
-                                    $("#orderPN").val(data.pn);
-                                    pcb_container.productNo = data.pn;
-                                    console.log("型号赋值："+data.pn);
-                                } else {
-                                    console.log("型号不为空:"+$("#orderPN").val());
-                                }
+                                $("#orderPN").val(data.pn);
+                                pcb_container.productNo = data.pn;
                                 form.render(null,'checkCustomer');
-                                if (data.code != "500"){
-                                    layer.alert("添加报价成功["+strOrder+"]");
+                                if (data.code != "500") {
+                                    layer.alert("添加报价成功["+strOrder[quote_data.orderType]+"]");
                                 }
                             }
                         });
@@ -1390,17 +1388,11 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                         data: quote_data,
                         url: setter.baseUrl+"epc/pcborder/save",
                         success: function (data) {
-                            var _orderPN = $("#orderPN").val();
-                            if (_orderPN == null || _orderPN == "") {
-                                $("#orderPN").val(data.pn);
-                                pcb_container.productNo = data.pn;
-                                console.log("型号赋值："+data.pn);
-                            } else {
-                                console.log("型号不为空:"+$("#orderPN").val());
-                            }
+                            $("#orderPN").val(data.pn);
+                            pcb_container.productNo = data.pn;
                             form.render(null,'checkCustomer');
                             if (data.code != "500"){
-                                layer.alert("添加报价成功["+strOrder+"]");
+                                layer.alert("添加报价成功["+strOrder[quote_data.orderType]+"]");
                             }
                         }
                     });
@@ -1435,7 +1427,6 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         },
         // 报价
         upSubbtn: function () {
-            console.log('开始进入报价....');
             if (post_data.bordType == '1') {
                 if (public_data.customerAid == null || public_data.customerAid == "") {
                     layer.tips('请先选择客户 !', '#selCustomer_container', {
