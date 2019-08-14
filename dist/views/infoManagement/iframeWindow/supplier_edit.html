@@ -19,6 +19,7 @@
                         <option value="1" {{ d.params.type =='1' ? 'selected' : '' }}>PCB</option>
                         <option value="2" {{ d.params.type =='2' ? 'selected' : '' }}>PCBA</option>
                         <option value="3" {{ d.params.type =='3' ? 'selected' : '' }}>SMT</option>
+                        <option value="4" {{ d.params.type =='4' ? 'selected' : '' }}>物料</option>
                     </select>
                     </script>
                 </div>
@@ -173,6 +174,7 @@
                             <input type="radio" name="strengths" value="4" {{ d.params.strengths == '4' ? 'checked' : '' }} title="HDI">
                             <input type="radio" name="strengths" value="5" {{ d.params.strengths == '5' ? 'checked' : '' }} title="软板">
                             <input type="radio" name="strengths" value="7" {{ d.params.strengths == '7' ? 'checked' : '' }} title="铝基板">
+                            <input type="radio" name="strengths" value="8" {{ d.params.strengths == '8' ? 'checked' : '' }} title="物料">
                             </script>
                         </div>
                         <script type="text/html" template>
