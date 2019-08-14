@@ -1,0 +1,236 @@
+<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
+<div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">产品型号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="productNo" value="{{d.params.productNo || ''}}" autocomplete="off" class="layui-input"  lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">订单型号</label>
+                <div class="layui-input-inline">
+                    <select name="pcbProductNo" xm-select="productNo" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                        {{# if(d.params.pcbProductNo != null){ }}
+                        <option class="def-option" value="{{d.params.pcbProductNo}}" selected>{{d.params.pcbProductNo}}</option>
+                        {{# } }}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">规格</label>
+                <div class="layui-input-inline">
+                   <input type="text" name="productSpecification" value="{{d.params.productSpecification || ''}}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">尺寸</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="productSize" value="{{d.params.productSize || ''}}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">数量</label>
+                <div class="layui-input-inline">
+                   <input type="text" name="number" value="{{d.params.number || ''}}" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">单位</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="unit" value="{{d.params.unit || ''}}" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">单价</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="unitPrice" value="{{d.params.unitPrice || ''}}" id="epcAdd_toolProductionTime" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">交期</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="deliveryTime" value="{{d.params.deliveryTime || ''}}" id="scm_material_purchasing_deliveryTime" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 100%;display: inline-flex;">
+                <label class="layui-form-label">供应商</label>
+                <div class="layui-input-inline" style="width: 79.2%;max-width: 513px;">
+                    <select name="supplier" id="epcAdd_toolManufacturers" xm-select="supplier" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                        {{# if(d.params.supplier != null){ }}
+                        <option class="def-option" value="{{d.params.supplier}}" selected>{{d.params.supplier}}</option>
+                        {{# } }}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 100%;">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-inline" style="width: 79%;">
+                    <textarea class="layui-textarea" name="remark" value="{{d.params.remark || ''}}" id="" style="height: 30px;">{{d.params.remark || ''}}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" style="display: none;">
+            <div class="layui-input-block">
+                <button class="layui-btn" type="button" lay-submit="" lay-filter="scm_add_material_purchasing_submit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    </script>
+</div>
+
+<script>
+    layui.data.done = function(d) {
+        var urlType,productNo,supplierId,id,isAdd,supplier;
+        console.log(d)
+        if (d.params.productNo == null) {
+            urlType = 'scm/procurement/save';
+        } else {
+            urlType = 'scm/procurement/update';
+            productNo = d.params.pcbProductNo;
+            supplierId = d.params.manufacturers;
+            supplier = d.params.supplier;
+            id = d.params.id;
+            isAdd = false;
+        }
+        layui.use(['form', 'jquery', 'admin', 'index', 'element', 'uploadCommon', 'formSelects','table'],function () {
+            var $ = layui.jquery
+            laydate = layui.laydate
+            ,formSelects = layui.formSelects
+            ,setter = layui.setter
+            ,table = layui.table;
+
+            // laydate.render({
+            //     elem: '#epcAdd_toolProductionTime'
+            // });
+            laydate.render({
+                elem: '#scm_material_purchasing_deliveryTime'
+            });
+            renderAllFormSelects();
+
+            // 打开页面-先默认渲染所有 FormSelects 下拉
+            function renderAllFormSelects() {
+                $(".xm-select-label").remove();
+                formSelects.render('productNo');
+                // formSelects.render('manufacturers');
+                formSelects.render('supplier');
+                formSelects.value('productNo', [productNo]);
+                // formSelects.value('manufacturers', [supplierId]);
+                formSelects.value('supplier', [supplier]);
+            }
+
+            var isGetProductNo = false;
+            var isGetManufacturers,isGetSupplier = false;
+            // 点击事件 ==>> 发送请求获取各下拉的列表
+            $("div").delegate(".xm-select-title","click", function () {
+                var $this = $(this).parents(".xm-select-parent").attr("fs_id");
+                if ($this == "productNo") {
+                    if (!isGetProductNo) {
+                        getProductNo($this);
+                        isGetProductNo = true;
+                    }
+                } else if ($this == "manufacturers" || $this == "supplier") {
+                    if (!isGetManufacturers) {
+                        getSupplier($this);
+                        isGetManufacturers = isGetSupplier = true;
+                    }
+                }
+            });
+
+            // 获取型号
+            function getProductNo(dom) {
+                layer.msg("正在加载列表.....");
+                $("select[xm-select='"+dom+"']").find("option").remove();
+                admin.req({
+                    type: 'post',
+                    async: true,
+                    url: setter.baseUrl+'epc/pcborder/allProductNo',
+                    success: function (res) {
+                        var resList = res.data;
+                        if (resList != null && resList.length>0) {
+                            var $html = "";
+                            for (var i=0;i<resList.length;i++) {
+                                $html += "<option value="+resList[i]+">"+resList[i]+"</option>"
+                            }
+                            $("select[xm-select='productNo']").append($html)
+                            formSelects.render('productNo');
+                        }
+                        formSelects.value('productNo', [productNo]);
+                        $(".xm-select-parent[fs_id='"+dom+"']").children(".xm-form-select").addClass("xm-form-selected");
+                        layer.msg("加载成功！");
+                    }
+                });
+            }
+
+            // 获取制造商和供应商存放
+            function getSupplier(dom) {
+                layer.msg("正在加载列表.....");
+                $("select[xm-select='manufacturers']").find("option").remove();
+                $("select[xm-select='supplier']").find("option").remove();
+                admin.req({
+                    type: 'post',
+                    async: true,
+                    url: setter.baseUrl+'scm/pcborder/allSupplier',
+                    success: function (res) {
+                        var resList = res.data;
+                        if (resList && resList.length>0) {
+                            var $html = "";
+                            for (var i=0;i<resList.length;i++) {
+                                $html += "<option value="+resList[i].companyName+">"+resList[i].companyName+"</option>";
+                            }
+                            $("select[xm-select='manufacturers']").append($html);
+                            $("select[xm-select='supplier']").append($html);
+                            formSelects.render('manufacturers');
+                            formSelects.render('supplier');
+                        }
+                        formSelects.value('manufacturers', [supplierId]);
+                        formSelects.value('supplier', [supplier]);
+                        console.log("dom:"+dom);
+                        $(".xm-select-parent[fs_id='supplier']").children(".xm-form-select").addClass("xm-form-selected");
+                        layer.msg("加载成功！");
+                    }
+                });
+            }
+            form.render();
+            // 监听表单提交
+            //监听提交
+            form.on('submit(scm_add_material_purchasing_submit)', function(data){
+                console.log(urlType);
+                var tipMsg;
+                if (!isAdd) {
+                    data.field.id = id;
+                    tipMsg = '物料修改成功';
+                } else {
+                    tipMsg = '物料添加成功';
+                }
+                admin.req({
+                    type: 'post',
+                    url: setter.baseUrl+urlType,
+                    data: data.field,
+                    success: function (res) {
+                        layer.msg(tipMsg);
+                        layer.closeAll();
+                        table.reload('scm_material_purchasing_tb');
+                    }
+                })
+                return false;
+            });
+        })
+    }
+</script>
+<style>
+    .xm-select-title {height: unset !important;}
+</style>
