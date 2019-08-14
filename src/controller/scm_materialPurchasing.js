@@ -4,7 +4,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form','uploadCommon', 'filePathProcess','convertCurrency'], function (exports) {
+layui.define(['admin','table','index','element','form','uploadCommon', 'filePathProcess','convertCurrency','requestInterface'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -14,7 +14,8 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
         ,$ = layui.jquery
         ,uploadCommon = layui.uploadCommon
         ,filePathProcess = layui.filePathProcess
-        ,convertCurrency = layui.convertCurrency;
+        ,convertCurrency = layui.convertCurrency
+        ,requestInterface = layui.requestInterface;
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 物料采购
     table.render({
@@ -210,6 +211,7 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
                 async: false,
                 success: function (result) {
                     var d = result.data;
+                    d[0].supplierInfo = requestInterface.GetSupplierInfoByCompanyName(setter.baseUrl+'sys/supplier/getByCompanyName/'+d[0].supplier);
                     admin.popup({
                         title: '物料采购合同'
                         ,area: ['100%', '100%']

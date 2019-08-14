@@ -109,9 +109,9 @@
                 <ul style="width: 50%;">
                     <script type="text/html" template>
                         <li>供方：{{ d.params[0].supplier || ''}} </li>
-                        <li>地址：</li>
-                        <li>电话：</li>
-                        <li>传真：</li>
+                        <li>地址：{{ d.params[0].supplierInfo.address || ''}}</li>
+                        <li>电话：{{ d.params[0].supplierInfo.officePhone || ''}}</li>
+                        <li>传真：{{ d.params[0].supplierInfo.fax || ''}}</li>
                         <li>代表签字：</li>
                     </script>
                 </ul>

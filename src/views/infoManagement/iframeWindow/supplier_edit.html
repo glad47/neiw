@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <div class="addcus-tel layui-col-md4">
+            <div class="addcus-tel layui-col-md6">
                 <label class="layui-form-label">办公电话：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
@@ -52,7 +52,7 @@
                     </script>
                 </div>
             </div>
-            <div class="addcus-skype layui-col-md4">
+            <div class="addcus-skype layui-col-md6">
                 <label class="layui-form-label">手机：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
@@ -60,11 +60,21 @@
                     </script>
                 </div>
             </div>
-            <div class="addcus-email layui-col-md4">
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-email layui-col-md6">
                 <label class="layui-form-label">Email：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="text" name="email" value="{{ d.params.email || ''}}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">传真：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="fax" value="{{ d.params.fax || ''}}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
@@ -159,6 +169,7 @@
                 <li class="layui-this">内容分类</li>
                 <li>附件</li>
                 <li>备注</li>
+                <li>地址</li>
             </ul>
             <div class="layui-tab-content" style="height: 100px;">
                 <div class="layui-tab-item layui-show">
@@ -222,6 +233,13 @@
                     <div class="layui-form-item layui-form-text">
                         <script type="text/html" template>
                             <textarea placeholder="请输入备注信息" value="{{ d.params.remark || ''}}" class="layui-textarea" name="remark"></textarea>
+                        </script>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-form-item layui-form-text">
+                        <script type="text/html" template>
+                            <textarea placeholder="请输入地址信息" value="{{ d.params.address || ''}}" class="layui-textarea" name="address"></textarea>
                         </script>
                     </div>
                 </div>

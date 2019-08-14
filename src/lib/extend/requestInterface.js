@@ -66,6 +66,23 @@ layui.define(['admin', 'index'],function (exports) {
                 }
             });
             return customerInfo;
+        },
+
+        GetSupplierInfoByCompanyName: function(url){
+            var result = new Object();
+            admin.req({
+                type: 'get',
+                url: url,
+                async: false,
+                success: function (data) {
+                    if (data.data != null) {
+                        result = data.data;
+                    } else {
+                        console.log("没有查询到用户信息");
+                    }
+                }
+            });
+            return result;
         }
     }
 

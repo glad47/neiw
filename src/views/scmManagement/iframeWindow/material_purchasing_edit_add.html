@@ -101,7 +101,7 @@
         } else {
             urlType = 'scm/procurement/update';
             productNo = d.params.pcbProductNo;
-            supplierId = d.params.manufacturers;
+            supplierId = d.params.supplierId;
             supplier = d.params.supplier;
             id = d.params.id;
             isAdd = false;
@@ -178,7 +178,7 @@
             // 获取制造商和供应商存放
             function getSupplier(dom) {
                 layer.msg("正在加载列表.....");
-                $("select[xm-select='manufacturers']").find("option").remove();
+                // $("select[xm-select='manufacturers']").find("option").remove();
                 $("select[xm-select='supplier']").find("option").remove();
                 admin.req({
                     type: 'post',
@@ -191,12 +191,12 @@
                             for (var i=0;i<resList.length;i++) {
                                 $html += "<option value="+resList[i].companyName+">"+resList[i].companyName+"</option>";
                             }
-                            $("select[xm-select='manufacturers']").append($html);
+                            // $("select[xm-select='manufacturers']").append($html);
                             $("select[xm-select='supplier']").append($html);
-                            formSelects.render('manufacturers');
+                            // formSelects.render('manufacturers');
                             formSelects.render('supplier');
                         }
-                        formSelects.value('manufacturers', [supplierId]);
+                        // formSelects.value('manufacturers', [supplierId]);
                         formSelects.value('supplier', [supplier]);
                         console.log("dom:"+dom);
                         $(".xm-select-parent[fs_id='supplier']").children(".xm-form-select").addClass("xm-form-selected");
