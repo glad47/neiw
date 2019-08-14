@@ -174,28 +174,35 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'okquote':
-                var postData = new Array();
-                for (var i=0;i<checkStatus.data.length;i++) {
-                    postData[i] = {'id': checkStatus.data[i].id,'isInternal':checkStatus.data[i].isInternal,'businessId':checkStatus.data[i].businessId,'totalFee':checkStatus.data[i].totalFee,'orderTime':checkStatus.data[i].orderTime,'exchangeId':checkStatus.data[i].exchangeId,'firstStatus':checkStatus.data[i].firstStatus}
-                }
-                console.log(postData);
-                // return false;
-                // var ids = checkStatus.data.map(function(elem){return elem.id}).join(",");
-                   layer.confirm('确定提交？', function () {
-                       admin.req({
-                           type: 'post'
-                           ,url: setter.baseUrl+'epc/pcborder/submitInternalOrder'
-                           ,contentType: "application/json;charset=utf-8"
-                           ,data: JSON.stringify(postData)
-                           ,success: function (res) {
-                               layer.msg('订单信息修改成功');
-                               layui.table.reload('interior_order_Tabpcb');
-                           }
-                           ,error: function (res) {
-                               layer.msg("订单信息修改失败，请稍后再试！");
-                           },
+                var postData = new Array(),bool = false;
+                if (!bool) {
+                    bool = true;
+                    for (var i=0;i<checkStatus.data.length;i++) {
+                        postData[i] = {'id': checkStatus.data[i].id,'isInternal':checkStatus.data[i].isInternal,'businessId':checkStatus.data[i].businessId,'totalFee':checkStatus.data[i].totalFee,'orderTime':checkStatus.data[i].orderTime,'exchangeId':checkStatus.data[i].exchangeId,'firstStatus':checkStatus.data[i].firstStatus}
+                    }
+                    console.log(postData);
+                    // return false;
+                    // var ids = checkStatus.data.map(function(elem){return elem.id}).join(",");
+                       layer.confirm('确定提交？', function () {
+                           admin.req({
+                               type: 'post'
+                               ,url: setter.baseUrl+'epc/pcborder/submitInternalOrder'
+                               ,contentType: "application/json;charset=utf-8"
+                               ,data: JSON.stringify(postData)
+                               ,success: function (res) {
+                                   layer.msg('订单信息修改成功');
+                                   layui.table.reload('interior_order_Tabpcb');
+                                   bool = false;
+                               }
+                               ,error: function (res) {
+                                   layer.msg("订单信息修改失败，请稍后再试！");
+                                   bool = false;
+                               },
+                           });
                        });
-                   });
+                }else{
+                    layer.msg("请不要重复提交！！");
+                }
                 break;
             case 'getCheckLength':
                 var data = checkStatus.data;
@@ -399,18 +406,29 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 }
             });
         } else if(obj.event == 'submit'){
+            var bool  = false;//提交锁
             layer.confirm('确定要提交此订单？', function () {
-               admin.req({
-                   type: 'post',
-                   contentType: "application/json;charset=utf-8",
-                   data: JSON.stringify([{'id':data.id,'isInternal':data.isInternal,'businessId':data.businessId,'totalFee':data.totalFee,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.firstStatus}]),
-                   url: setter.baseUrl+'epc/pcborder/submitInternalOrder',
-                   success: function (result) {
-                       layer.alert("订单提交成功");
-                       table.reload('interior_order_Tabpcb');
-                       layer.closeAll();
-                   }
-               });
+                if (!bool) {
+                    bool = true;
+                    $.ajax({
+                       type: 'post',
+                       contentType: "application/json;charset=utf-8",
+                       data: JSON.stringify([{'id':data.id,'isInternal':data.isInternal,'businessId':data.businessId,'totalFee':data.totalFee,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.firstStatus}]),
+                       url: setter.baseUrl+'epc/pcborder/submitInternalOrder',
+                       success: function (result) {
+                           layer.alert("订单提交成功");
+                           table.reload('interior_order_Tabpcb');
+                           layer.closeAll();
+                           bool = false;
+                       },
+                       error:function(result){
+                            bool = false;
+                       }
+                   });
+                }else{
+                    layer.msg("请不要重复提交！！");
+                }
+               
             });
         } else if (obj.event == 'del') {
             layer.confirm('真的删除行么', function(index){
@@ -592,27 +610,35 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'okquote':
-                var postData = new Array();
-                for (var i=0;i<checkStatus.data.length;i++) {
-                    postData[i] = {'id': checkStatus.data[i].id,'isInternal':checkStatus.data[i].isInternal,'businessId':checkStatus.data[i].businessId,'totalStencilFee':checkStatus.data[i].totalStencilFee,'orderTime':checkStatus.data[i].orderTime,'exchangeId':checkStatus.data[i].exchangeId,'firstStatus':checkStatus.data[i].firstStatus}
-                }
-                console.log(postData);
-                // var contractNos = checkStatus.data.map(function(elem){return elem.invoiceNo}).join(",");
-                layer.confirm('确定提交？', function () {
-                    admin.req({
-                        type: 'post'
-                        ,url: setter.baseUrl+'epc/stencilorder/submitInternalOrder'
-                        ,contentType: "application/json;charset=utf-8"
-                        ,data: JSON.stringify(postData)
-                        ,success: function (res) {
-                            layer.msg('订单信息修改成功');
-                            layui.table.reload('interior_order_Tabstencil');
-                        }
-                        ,error: function (res) {
-                            layer.msg("订单信息修改失败，请稍后再试！");
-                        },
+                var postData = new Array(),bool = false;
+                if (!bool) {
+                    bool = true;
+                    for (var i=0;i<checkStatus.data.length;i++) {
+                        postData[i] = {'id': checkStatus.data[i].id,'isInternal':checkStatus.data[i].isInternal,'businessId':checkStatus.data[i].businessId,'totalStencilFee':checkStatus.data[i].totalStencilFee,'orderTime':checkStatus.data[i].orderTime,'exchangeId':checkStatus.data[i].exchangeId,'firstStatus':checkStatus.data[i].firstStatus}
+                    }
+                    console.log(postData);
+                    // var contractNos = checkStatus.data.map(function(elem){return elem.invoiceNo}).join(",");
+                    layer.confirm('确定提交？', function () {
+                        admin.req({
+                            type: 'post'
+                            ,url: setter.baseUrl+'epc/stencilorder/submitInternalOrder'
+                            ,contentType: "application/json;charset=utf-8"
+                            ,data: JSON.stringify(postData)
+                            ,success: function (res) {
+                                layer.msg('订单信息修改成功');
+                                layui.table.reload('interior_order_Tabstencil');
+                                bool = false;
+                            }
+                            ,error: function (res) {
+                                layer.msg("订单信息修改失败，请稍后再试！");
+                                bool = false;
+                            },
+                        });
                     });
-                });
+                }else{
+                    layer.msg("请不要重复提交！！");
+                }
+                
                 break;
         };
     });
@@ -746,17 +772,28 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             });
         } else if(obj.event == 'submit'){
             layer.confirm('确定要提交此订单？', function () {
-                admin.req({
-                    type: 'post',
-                    contentType: "application/json;charset=utf-8",
-                    data: JSON.stringify([{'id':data.id,'isInternal':data.isInternal,'businessId':data.businessId,'totalStencilFee':data.totalStencilFee,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.firstStatus}]),
-                    url: setter.baseUrl+'epc/stencilorder/submitInternalOrder',
-                    success: function (result) {
-                        layer.alert("订单提交成功");
-                        table.reload('interior_order_Tabstencil');
-                        layer.closeAll();
-                    }
-                });
+                var bool = false;
+                if (!bool) {
+                    bool = true;
+                    admin.req({
+                        type: 'post',
+                        contentType: "application/json;charset=utf-8",
+                        data: JSON.stringify([{'id':data.id,'isInternal':data.isInternal,'businessId':data.businessId,'totalStencilFee':data.totalStencilFee,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.firstStatus}]),
+                        url: setter.baseUrl+'epc/stencilorder/submitInternalOrder',
+                        success: function (result) {
+                            layer.alert("订单提交成功");
+                            table.reload('interior_order_Tabstencil');
+                            layer.closeAll();
+                            bool = false;
+                        },
+                        error: function(result){
+                            bool = false;
+                        }
+                    });
+                }else{
+                    layer.msg("请不要重复提交！！");
+                }
+                
             });
         } else if (obj.event == 'del') {
             layer.confirm('真的删除行么', function(index){

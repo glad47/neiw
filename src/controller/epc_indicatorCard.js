@@ -250,22 +250,29 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             }
         } else if(obj.event === 'back'){
             layer.confirm('真的退回合同号为［'+data.productNo+'］吗', function(index){
-                var contractNos = data.productNo;
-                var isInternal = data.isInternal;
-
-                admin.req({
-                    type: 'post',
-                    url: setter.baseUrl+'epc/pcborder/backByIo'    // 需要修改成退回的接口
-                    ,data:{id:data.id,isInternal:isInternal,onlineOid:data.onlineOid,'bid':data.businessId,'sales':data.totalFee,'onlineSales':data.subtotal,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.status}
-                    ,done: function (res) {
-                        layer.msg('成功退回');
-                        table.reload('epc_Tabpcb_ok_payment_order');
-                        layer.close(index);
-                    }
-                    ,fail: function (res) {
-                        layer.msg('服务器异常，稍后再试！');
-                    }
-                })
+                var bool = false;
+                if (!bool) {
+                    bool = true;
+                    var contractNos = data.productNo;
+                    var isInternal = data.isInternal;
+                    admin.req({
+                        type: 'post',
+                        url: setter.baseUrl+'epc/pcborder/backByIo'    // 需要修改成退回的接口
+                        ,data:{id:data.id,isInternal:isInternal,onlineOid:data.onlineOid,'bid':data.businessId,'sales':data.totalFee,'onlineSales':data.subtotal,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.status}
+                        ,done: function (res) {
+                            layer.msg('成功退回');
+                            table.reload('epc_Tabpcb_ok_payment_order');
+                            layer.close(index);
+                            bool = false;
+                        }
+                        ,fail: function (res) {
+                            layer.msg('服务器异常，稍后再试！');
+                            bool = false;
+                        }
+                    })
+                }else{
+                    layer.msg('请不要重复提交!!');
+                }
             });
         } else if(obj.event === 'epc-write-indicator'){
             admin.popup({
@@ -640,19 +647,28 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             }
         } else if(obj.event === 'back'){
             layer.confirm('真的退回钢网订单号为［'+data.invoiceNo+'］吗', function(index){
-                admin.req({
-                    type: 'post',
-                    url: setter.baseUrl+'epc/stencilorder/backByAo'       // 需要修改成退回的接口
-                    ,data:{id:data.id,isInternal:data.isInternal,onlineOid:data.onlineOid,'bid':data.businessId,'sales':data.totalStencilFee,'onlineSales':data.totalStencilFee,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.status}
-                    ,done: function (res) {
-                        layer.msg('成功退回')
-                        table.reload('epc_Tabstencil_ok_payment_order');
-                    }
-                    ,fail: function (res) {
-                        layer.msg('服务器异常，稍后再试！');
-                    }
-                })
-                layer.close(index);
+                var bool = false;
+                if (!bool) {
+                    bool = true;
+                    admin.req({
+                        type: 'post',
+                        url: setter.baseUrl+'epc/stencilorder/backByAo'       // 需要修改成退回的接口
+                        ,data:{id:data.id,isInternal:data.isInternal,onlineOid:data.onlineOid,'bid':data.businessId,'sales':data.totalStencilFee,'onlineSales':data.totalStencilFee,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.status}
+                        ,done: function (res) {
+                            layer.msg('成功退回')
+                            table.reload('epc_Tabstencil_ok_payment_order');
+                            bool = false;
+                        }
+                        ,fail: function (res) {
+                            layer.msg('服务器异常，稍后再试！');
+                            bool = false;
+                        }
+                    })
+                    layer.close(index);
+                }else{
+                    layer.msg("请不要重复提交！！");
+                }
+                
             });
         } else if(obj.event === 'epc-write-indicator'){
             admin.popup({

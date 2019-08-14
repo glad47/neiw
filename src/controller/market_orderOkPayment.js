@@ -210,21 +210,29 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             })
         } else if (obj.event === 'pcb-submit') {
             layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
-                admin.req({
-                    type: 'post'
-                    ,url: setter.baseUrl+'market/quote/okPaymentList/submit'
-                    ,data: {"id":data.id,"contractNos":data.productNo,"isLock":data.isLock,"bid":data.businessId,"onlineSales":data.subtotal,"orderTime":data.orderTime}
-                    ,done: function () {
-                        layer.msg('订单［'+data.productNo+'］提交成功！');
-                        table.reload('or_Tabpcb_ok_payment');
-                    }
-                    ,fail: function () {
-                        layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
-                    }
-                });
-                layui.table.reload('or_Tabpcb_ok_payment');
-                layer.close(index);
-            })
+                var bool = false;
+                if (!bool) {
+                    bool = true;
+                    admin.req({
+                        type: 'post'
+                        ,url: setter.baseUrl+'market/quote/okPaymentList/submit'
+                        ,data: {"id":data.id,"contractNos":data.productNo,"isLock":data.isLock,"bid":data.businessId,"onlineSales":data.subtotal,"orderTime":data.orderTime}
+                        ,done: function () {
+                            layer.msg('订单［'+data.productNo+'］提交成功！');
+                            table.reload('or_Tabpcb_ok_payment');
+                            bool = false;
+                        }
+                        ,fail: function () {
+                            layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
+                            bool = false;
+                        }
+                    });
+                    layui.table.reload('or_Tabpcb_ok_payment');
+                    layer.close(index);
+                }else{
+                    layer.msg("请不要重复提交!!");
+                }
+            });
         } else if (obj.event === 'pcb-sendback') {
             layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
                 layer.msg('退回'+data.productNo);
@@ -342,22 +350,31 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 ,yes: function(index, layero){}
             });
         } else if (obj.event === 'stencil-submit') {
-            layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
-                admin.req({
-                    type: 'post'
-                    ,url: setter.baseUrl+'market/stencil/okPayment/submit'
-                    ,data: {"id":data.id,"isLock":data.isLock,"productNo":data.productNo,'bid':data.businessId,"onlineSales":data.totalStencilFee,"orderTime":data.orderTime}
-                    ,done: function () {
-                        layer.msg('订单［'+data.productNo+'］提交成功！');
-                        table.reload('stencil_orderTab_ok_payment');
-                    }
-                    ,fail: function () {
-                        layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
-                    }
+            var bool = false;
+            if(!bool){
+                bool = true;
+                layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
+                    admin.req({
+                        type: 'post'
+                        ,url: setter.baseUrl+'market/stencil/okPayment/submit'
+                        ,data: {"id":data.id,"isLock":data.isLock,"productNo":data.productNo,'bid':data.businessId,"onlineSales":data.totalStencilFee,"orderTime":data.orderTime}
+                        ,done: function () {
+                            layer.msg('订单［'+data.productNo+'］提交成功！');
+                            table.reload('stencil_orderTab_ok_payment');
+                            bool = false;
+                        }
+                        ,fail: function () {
+                            layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
+                            bool = false;
+                        }
+                    })
+                    layui.table.reload('stencil_orderTab_ok_payment');
+                    layer.close(index);
                 })
-                layui.table.reload('stencil_orderTab_ok_payment');
-                layer.close(index);
-            })
+            }else{
+                layer.msg("请不要重复提交！！");
+            }
+            
         } else if (obj.event === 'stencil-sendback') {
             layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
                 layer.msg('退回'+data.productNo);
@@ -519,7 +536,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 ,btn: ['确定', '取消']
                 ,yes: function(index, layero){}
             });
-        } else if (obj.event === 'stencil-submit') {
+        } else if (obj.event === 'smt-submit') {
             layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
                 data.isLock = 3;
                 admin.req({

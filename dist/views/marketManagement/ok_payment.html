@@ -248,8 +248,8 @@
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:assembly_ok_payment:submit") != -1){ }}
                     {{# if(d.isLock != 3) { }}
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stencil-submit">提交</a>
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="stencil-del">删除</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="smt-submit">提交</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="smt-del">删除</a>
                     {{# } }}
                     {{# if(d.isLock == 3) {}}
                     <a class="layui-btn layui-btn-normal layui-btn-xs" >已提交</a>
