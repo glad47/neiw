@@ -199,7 +199,7 @@
                     <td>测试方式:</td>
                     <td>
                         {{# var testWay }}
-                        {{# if(d.params.testPointType == '1'){testWay = '飞针'}else{testWay='测试架'} }}
+                        {{# if(d.params.testPointType == '1'){testWay = '飞针'}else if(d.params.testPointType == '2'){testWay='测试架'}else{testWay='无'} }}
                         {{ testWay || '' }}
                     </td>
                 </tr>
