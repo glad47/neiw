@@ -185,6 +185,18 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
     };
 
+    //监听搜索
+    form.on('submit(paypalLog-search)', function(data){
+        var field = data.field;
+        //执行重载
+        table.reload('finManaPaypalLog_tabPcb', {
+            where: field
+        });
+    });
+    $(".paypal-form-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='paypalLog-search']").click();
+    })
+
     $('.layui-btn').on('click',function () {
         var type = $(this).data('type');
         active[type] && active[type].call(this);

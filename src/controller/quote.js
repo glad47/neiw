@@ -1350,22 +1350,22 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                 });
                 return false;
             } else {
-                if (importParams.importPCBInfo) {
-                    var orderTypeObj = {"A":null,"B":null};
-                    orderTypeObj.A = quote_data;
-                    orderTypeObj.B = importParams.importPCBInfo;
-                    quote_data.orderType = contrastOrder(orderTypeObj);    // 获取订单类型
-                } else {
-                    quote_data.orderType = 1;       // 新单
-                }
-                if (firstQuote_data == null) {  // 给第一次报价的对象赋值
-                    firstQuote_data = quote_data;
-                } else {    // 不为空的情况下，两个对象进行对比
-                    var orderTypeObj = {"A":null,"B":null};
-                    orderTypeObj.A = quote_data;
-                    orderTypeObj.B = firstQuote_data;
-                    quote_data.orderType = contrastOrder(orderTypeObj);    // 获取订单类型
-                }
+                // if (importParams.importPCBInfo) {
+                //     var orderTypeObj = {"A":null,"B":null};
+                //     orderTypeObj.A = quote_data;
+                //     orderTypeObj.B = importParams.importPCBInfo;
+                //     quote_data.orderType = contrastOrder(orderTypeObj);    // 获取订单类型
+                // } else {
+                //     quote_data.orderType = 1;       // 新单
+                // }
+                // if (firstQuote_data == null) {  // 给第一次报价的对象赋值
+                //     firstQuote_data = quote_data;
+                // } else {    // 不为空的情况下，两个对象进行对比
+                //     var orderTypeObj = {"A":null,"B":null};
+                //     orderTypeObj.A = quote_data;
+                //     orderTypeObj.B = firstQuote_data;
+                //     quote_data.orderType = contrastOrder(orderTypeObj);    // 获取订单类型
+                // }
                 if (tp.totalPric == tp.totalPriced && tp.isQuote == true) {
                     layer.confirm("你已经添加了相同参数的报价，是否再次添加？", function () {
                         admin.req({
@@ -1713,50 +1713,51 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
      * @param importPcbInfo
      * @returns {*}
      */
-    function contrastOrder(orderTypeObj) {
-        var filterStrA = flagStr();
-        var orderType;
-        var qflag,iflag;
-        var stop;
-        // 特殊处理字段
-        orderTypeObj.A.customerSysName = orderTypeObj.B.customerSysName;
-        $.each(orderTypeObj.A,function (qk,qv) {
-            if (qv == "" || qv == null || qv == "none") {       // 所有空值类型都过滤掉
-                qflag = true;
-            } else {
-                qflag = false;
-            }
-            $.each(orderTypeObj.B,function (ik,iv) {
-                if (iv == "" || iv == null || iv == "none") {       // 所有空值类型都过滤掉
-                    iflag = true;
-                } else {
-                    iflag = false;
-                }
-                if (qk == ik) {
-                    var aa = filterStrA.fd.indexOf(qk);
-                    var bb = filterStrA.fdyg.indexOf(qk);
-                    if (qv == iv) {
-                        orderType = 2;
-                    } else if (qflag && iflag) {
-                        orderType = 2;
-                    } else if (qv != iv && filterStrA.fd.indexOf(qk) == "-1" || filterStrA.fdyg.indexOf(qk) == "-1") {
-                        console.log("key值不同的q["+qk+","+qv+"],i["+ik+","+iv+"]");
-                        if (filterStrA.fdyg.indexOf(qk) >= 0) {
-                            orderType = 3;
-                            stop = true;
-                        } else {
-                            orderType = 2;
-                        }
-                    }
-                }
-            });
-            if (stop == true) {
-                return false;
-            }
-        });
-        console.log("orderType:===>"+orderType)
-        return orderType;
-    }
+    // function contrastOrder(orderTypeObj) {
+    //     var filterStrA = flagStr();
+    //     var orderType;
+    //     var qflag,iflag;
+    //     var stop;
+    //     // 特殊处理字段
+    //     orderTypeObj.A.customerSysName = orderTypeObj.B.customerSysName;
+    //     $.each(orderTypeObj.A,function (qk,qv) {
+    //         if (qv == "" || qv == null || qv == "none") {       // 所有空值类型都过滤掉
+    //             qflag = true;
+    //         } else {
+    //             qflag = false;
+    //         }
+    //         $.each(orderTypeObj.B,function (ik,iv) {
+    //             if (iv == "" || iv == null || iv == "none") {       // 所有空值类型都过滤掉
+    //                 iflag = true;
+    //             } else {
+    //                 iflag = false;
+    //             }
+    //             if (qk == ik) {
+    //                 var aa = filterStrA.fd.indexOf(qk);
+    //                 var bb = filterStrA.fdyg.indexOf(qk);
+    //                 if (qv == iv) {
+    //                     orderType = 2;
+    //                 } else if (qflag && iflag) {
+    //                     orderType = 2;
+    //                 } else if (qv != iv && filterStrA.fd.indexOf(qk) == "-1" || filterStrA.fdyg.indexOf(qk) == "-1") {
+    //                     console.log("key值不同的q["+qk+","+qv+"],i["+ik+","+iv+"]");
+    //                     if (filterStrA.fdyg.indexOf(qk) >= 0) {
+    //                         orderType = 3;
+    //                         stop = true;
+    //                     } else {
+    //                         orderType = 2;
+    //                     }
+    //                 }
+    //             }
+    //         });
+    //         if (stop == true) {
+    //             return false;
+    //         }
+    //     });
+    //     console.log("orderType:===>"+orderType);
+    //     formSelects.value("orderType", orderType);
+    //     return orderType;
+    // }
 
     function flagStr() {
         var fd = "";
@@ -1822,5 +1823,6 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             }
         }
     }
+
     exports('quote',{})
 });

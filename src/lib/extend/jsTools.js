@@ -101,6 +101,52 @@ layui.define(['admin', 'index'],function (exports) {
             } catch (e) {
                 console.log(e);
             }
+        },
+
+        // 对比两个 对象的数据 传两个对象A、B到 obj
+        contrastObj: function (orderTypeObj) {
+            var filterStrA = flagStr();
+            var orderType;
+            var qflag,iflag;
+            var stop;
+            // 特殊处理字段
+            orderTypeObj.A.customerSysName = orderTypeObj.B.customerSysName;
+            $.each(orderTypeObj.A,function (qk,qv) {
+                if (qv == "" || qv == null || qv == "none") {       // 所有空值类型都过滤掉
+                    qflag = true;
+                } else {
+                    qflag = false;
+                }
+                $.each(orderTypeObj.B,function (ik,iv) {
+                    if (iv == "" || iv == null || iv == "none") {       // 所有空值类型都过滤掉
+                        iflag = true;
+                    } else {
+                        iflag = false;
+                    }
+                    if (qk == ik) {
+                        var aa = filterStrA.fd.indexOf(qk);
+                        var bb = filterStrA.fdyg.indexOf(qk);
+                        if (qv == iv) {
+                            orderType = 2;
+                        } else if (qflag && iflag) {
+                            orderType = 2;
+                        } else if (qv != iv && filterStrA.fd.indexOf(qk) == "-1" || filterStrA.fdyg.indexOf(qk) == "-1") {
+                            console.log("key值不同的q["+qk+","+qv+"],i["+ik+","+iv+"]");
+                            if (filterStrA.fdyg.indexOf(qk) >= 0) {
+                                orderType = 3;
+                                stop = true;
+                            } else {
+                                orderType = 2;
+                            }
+                        }
+                    }
+                });
+                if (stop == true) {
+                    return false;
+                }
+            });
+            console.log("orderType:===>"+orderType);
+            return orderType;
         }
     }
 
