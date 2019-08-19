@@ -16,9 +16,13 @@
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label" name="gerberName">Gerber：</label>
+                <label class="layui-form-label" name="orderType">订单类型：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="gerberName" value="{{ d.params.gerberName || '' }}" autocomplete="off" class="layui-input">
+                    <select name="orderType" lay-search="">
+                        <option value="1" {{ d.params.orderType == '1' ? 'selected' : '' }}>新单</option>
+                        <option value="2" {{ d.params.orderType == '2' ? 'selected' : '' }}>返单</option>
+                        <option value="3" {{ d.params.orderType == '3' ? 'selected' : '' }}>返单有改</option>
+                    </select>
                 </div>
             </div>
         </div>
