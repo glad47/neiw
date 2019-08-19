@@ -186,6 +186,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                        layer.confirm('确定提交？', function () {
                            admin.req({
                                type: 'post'
+                               ,headers: {access_token:layui.data('layuiAdmin').access_token}
                                ,url: setter.baseUrl+'epc/pcborder/submitInternalOrder'
                                ,contentType: "application/json;charset=utf-8"
                                ,data: JSON.stringify(postData)
@@ -412,6 +413,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                     bool = true;
                     $.ajax({
                        type: 'post',
+                       headers: {access_token:layui.data('layuiAdmin').access_token},
                        contentType: "application/json;charset=utf-8",
                        data: JSON.stringify([{'id':data.id,'isInternal':data.isInternal,'businessId':data.businessId,'totalFee':data.totalFee,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.firstStatus}]),
                        url: setter.baseUrl+'epc/pcborder/submitInternalOrder',
@@ -621,6 +623,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                     layer.confirm('确定提交？', function () {
                         admin.req({
                             type: 'post'
+                            ,headers: {access_token:layui.data('layuiAdmin').access_token}
                             ,url: setter.baseUrl+'epc/stencilorder/submitInternalOrder'
                             ,contentType: "application/json;charset=utf-8"
                             ,data: JSON.stringify(postData)
@@ -777,6 +780,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                     bool = true;
                     admin.req({
                         type: 'post',
+                        headers: {access_token:layui.data('layuiAdmin').access_token},
                         contentType: "application/json;charset=utf-8",
                         data: JSON.stringify([{'id':data.id,'isInternal':data.isInternal,'businessId':data.businessId,'totalStencilFee':data.totalStencilFee,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.firstStatus}]),
                         url: setter.baseUrl+'epc/stencilorder/submitInternalOrder',
