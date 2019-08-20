@@ -390,6 +390,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
             });
         } else if (obj.event == 'inside_no_payment_fileMana') {
             data.orderType = "pcbOrder";        // 根据orderType  发送不同的接口
+            data.retab = "inside_no_payment_Tabpcb";
             data = filePathProcess.isInternal(data);
             console.log(data);
             admin.popup({
@@ -697,6 +698,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
             });
         } else if (obj.event == 'inside_no_payment_fileMana') {
             data.orderType = "stencilOrder";        // 根据orderType  发送不同的接口
+            data.retab = "inside_no_payment_Tabstencil";
             // 测试代码
             data = filePathProcess.isInternal(data);
             console.log(data);

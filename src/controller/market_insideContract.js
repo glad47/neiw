@@ -499,6 +499,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
             });
         } else if (obj.event == 'inside_contract_fileMana') {
             data.orderType = "pcbOrder";        // 根据orderType  发送不同的接口
+            data.retab = "inside_cotract_Tabpcb"; //刷新的表单
             data = filePathProcess.isInternal(data);
             console.log(data);
             admin.popup({
@@ -763,6 +764,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
             });
         }  else if (obj.event == 'inside_contract_fileMana') {
             data.orderType = "stencilOrder";        // 根据orderType  发送不同的接口
+            data.retab = "icontract_Tabstencil";
             // 测试代码
             data = filePathProcess.isInternal(data);
             console.log(data);

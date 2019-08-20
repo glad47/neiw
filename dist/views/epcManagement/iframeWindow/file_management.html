@@ -106,6 +106,7 @@
         <input type="text" name="gerberNames" value="{{ d.params.gerberName }}">
         <input type="text" name="gerberPath" value="{{ d.params.gerberPath }}">
         <input type="text" name="orderType" value="{{ d.params.orderType }}">
+        <input type="text" name="retab" value="{{ d.params.retab }}">
     </div>
     </script>
 </div>
@@ -120,16 +121,16 @@
             var $dataGerberName = $("input[name='gerberNames']").val();    // 行gerber名字
             var $dataGerberPath = $("input[name='gerberPath']").val();    // 行gerber路径
             var $orderType = $("input[name='orderType']").val();        // 订单类型。    根据订单类型来发送到不同的接口
-            var $retab;     // 操作成功以后要刷新的表格id
+            var $retab = $("input[name='retab']").val();     // 操作成功以后要刷新的表格id
             var uploadUrl = setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token;  // 文件上传接口;
             var saveUrl;
             if ($orderType == 'pcbOrder') {
                 saveUrl = setter.baseUrl+'epc/pcborder/update';      // 将字段保存到数据库的接口
-                $retab = 'epc_Tabpcb_ok_payment_order';
+                //$retab = 'epc_Tabpcb_ok_payment_order';
                 console.log('PCB订单==>'+saveUrl);
             } else if($orderType == 'stencilOrder') {
                 saveUrl = setter.baseUrl+'epc/stencilorder/update';      // 将字段保存到数据库的接口
-                $retab = 'epc_Tabstencil_ok_payment_order';
+                //$retab = 'epc_Tabstencil_ok_payment_order';
                 console.log('钢网订单==>'+saveUrl);
             }
             pcb_omgerberUpload();   // 原始资料修改
