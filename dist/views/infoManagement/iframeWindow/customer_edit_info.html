@@ -57,19 +57,32 @@
             <div class="addcus-cusCom layui-col-md6">
                 <label class="layui-form-label"><span class="span-required">*</span>付款方式：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template>
+                    <!-- <script type="text/html" template>
                         <select name="paymentType" lay-verify="required">
                             <option value="">请选择</option>
                             <option value="TT IN 100%" {{ d.params.paymentType == 'TT IN 100%' ? 'selected' : '' }}>TT IN 100%</option>
                             <option value="TT IN 14 DAYS" {{ d.params.paymentType == 'TT IN 14 DAYS' ? 'selected' : '' }}>TT IN 14 DAYS</option>
                         </select>
+                    </script> -->
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'付款方式'}" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="paymentType" lay-verify="required">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option value=""></option>
+                            <option value="{{ item.dictKey || ''}}" {{ d.params.paymentType == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
                     </script>
                 </div>
             </div>
             <div class="addcus-merchandiser layui-col-md6">
                 <label class="layui-form-label"><span class="span-required">*</span>发货方式：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template>
+                    <!-- <script type="text/html" template>
                         <select name="deliveryType" lay-verify="required">
                             <option value="">请选择</option>
                             <option value="DHL BY AIR" {{ d.params.deliveryType == 'DHL BY AIR' ? 'selected' : '' }}>DHL BY AIR</option>
@@ -79,6 +92,19 @@
                             <option value="DDP" {{ d.params.deliveryType == 'DDP' ? 'selected' : '' }}>DDP</option>
                             <option value="DDP" {{ d.params.deliveryType == 'EXW' ? 'selected' : '' }}>EXW</option>
                         </select>
+                    </script> -->
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'发货方式'}" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="deliveryType" lay-verify="required">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option value=""></option>
+                            <option value="{{ item.dictKey || ''}}" {{ d.params.deliveryType == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
                     </script>
                 </div>
             </div>
@@ -87,12 +113,25 @@
             <div class="addcus-cusCom layui-col-md6">
                 <label class="layui-form-label">快递公司：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template>
+                   <!--  <script type="text/html" template>
                         <select name="userCourierName">
                             <option value="">请选择</option>
                             <option value="DHL" {{ d.params.userCourierName == 'DHL' ? 'selected' : '' }}>DHL</option>
                             <option value="FedEx" {{ d.params.userCourierName == 'FedEx' ? 'selected' : '' }}>FedEx</option>
                         </select>
+                    </script> -->
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'快递公司'}" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="userCourierName" lay-verify="required">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option value=""></option>
+                            <option value="{{ item.dictKey || ''}}" {{ d.params.userCourierName == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
                     </script>
                 </div>
             </div>
