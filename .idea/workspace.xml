@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/finMana_paypal_log.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/finMana_paypal_log.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/finManagement/paypal_add_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/finManagement/paypal_add_edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/finManagement/paypal_log.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/finManagement/paypal_log.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/customer_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/infoManagement/customer_info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/finMana_paypal_log.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/finMana_paypal_log.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/scmMana_outContract.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/scmMana_outContract.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/scmMana_quoteDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/scmMana_quoteDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/finManagement/paypal_add_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/finManagement/paypal_add_edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/finManagement/paypal_log.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/finManagement/paypal_log.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/infoManagement/customer_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/infoManagement/customer_info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/scmManagement/outsourcing_contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/scmManagement/outsourcing_contract.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/scmManagement/quote_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/scmManagement/quote_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/quote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/quote.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,14 +16,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.55713534">
+    <splitter split-orientation="horizontal" split-proportion="0.5218536">
       <split-first>
         <leaf>
-          <file leaf-file-name="quote.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="5" column="89" selection-start-line="5" selection-start-column="78" selection-end-line="5" selection-end-column="89" />
+                <state relative-caret-position="340">
+                  <caret line="1647" column="87" selection-start-line="1647" selection-start-column="87" selection-end-line="1647" selection-end-column="87" />
                 </state>
               </provider>
             </entry>
@@ -43,7 +32,7 @@
             <entry file="file://$PROJECT_DIR$/src/views/scmManagement/outsourcing_contract.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="-756">
-                  <caret line="42" column="56" lean-forward="true" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
+                  <caret line="42" column="56" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
                   <folding>
                     <element signature="n#style#0;n#label#3;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -52,11 +41,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="scmMana_outContract.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="scmMana_outContract.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/controller/scmMana_outContract.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="808">
-                  <caret line="522" column="7" lean-forward="true" selection-start-line="522" selection-start-column="7" selection-end-line="522" selection-end-column="7" />
+                <state relative-caret-position="825">
+                  <caret line="524" column="39" selection-start-line="524" selection-start-column="39" selection-end-line="524" selection-end-column="39" />
                 </state>
               </provider>
             </entry>
@@ -64,8 +53,8 @@
           <file leaf-file-name="inside_quote.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
-                  <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="70" />
+                <state relative-caret-position="306">
+                  <caret line="700" column="91" selection-start-line="700" selection-start-column="85" selection-end-line="700" selection-end-column="91" />
                 </state>
               </provider>
             </entry>
@@ -77,8 +66,8 @@
           <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="531" column="31" lean-forward="true" selection-start-line="531" selection-start-column="22" selection-end-line="531" selection-end-column="31" />
+                <state relative-caret-position="306">
+                  <caret line="748" column="26" selection-start-line="748" selection-start-column="26" selection-end-line="748" selection-end-column="26" />
                 </state>
               </provider>
             </entry>
@@ -99,15 +88,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>search</find>
-      <find>测试方式</find>
-      <find>xm-select=</find>
-      <find>formSele</find>
-      <find>contr</find>
-      <find>orderType</find>
-      <find>新单</find>
-      <find>filterOrderType</find>
-      <find>Gerber</find>
       <find>添加支付</find>
       <find>币种</find>
       <find>欧元</find>
@@ -129,6 +109,15 @@
       <find>formSelects</find>
       <find>customer</find>
       <find>formSel</find>
+      <find>areasq</find>
+      <find>singleSizeX</find>
+      <find>quantityPanel</find>
+      <find>mPrice</find>
+      <find>singleSizeY</find>
+      <find>_get_topQuoteParam</find>
+      <find>topRadioType</find>
+      <find>boardType</find>
+      <find>_top_quote</find>
     </findStrings>
     <replaceStrings>
       <replace>iqcMana_pertSys</replace>
@@ -223,7 +212,6 @@
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" />
         <option value="$PROJECT_DIR$/src/lib/extend/jsTools.js" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/inside_quote.html" />
-        <option value="$PROJECT_DIR$/src/controller/quote.js" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/customer_info.html" />
         <option value="$PROJECT_DIR$/src/views/finManagement/paypal_log.html" />
@@ -233,6 +221,7 @@
         <option value="$PROJECT_DIR$/src/controller/scmMana_quoteDetail.js" />
         <option value="$PROJECT_DIR$/src/views/scmManagement/outsourcing_contract.html" />
         <option value="$PROJECT_DIR$/src/controller/scmMana_outContract.js" />
+        <option value="$PROJECT_DIR$/src/controller/quote.js" />
       </list>
     </option>
   </component>
@@ -740,14 +729,7 @@
       <workItem from="1566033728409" duration="842000" />
       <workItem from="1566179838078" duration="265000" />
       <workItem from="1566210410198" duration="2039000" />
-      <workItem from="1566353735443" duration="3028000" />
-    </task>
-    <task id="LOCAL-00310" summary="-1">
-      <created>1563177873401</created>
-      <option name="number" value="00310" />
-      <option name="presentableId" value="LOCAL-00310" />
-      <option name="project" value="LOCAL" />
-      <updated>1563177873402</updated>
+      <workItem from="1566353735443" duration="4682000" />
     </task>
     <task id="LOCAL-00311" summary="工具管理搜索">
       <created>1563265121740</created>
@@ -1085,11 +1067,18 @@
       <option name="project" value="LOCAL" />
       <updated>1566210819040</updated>
     </task>
-    <option name="localTasksCounter" value="359" />
+    <task id="LOCAL-00359" summary="修改文档31">
+      <created>1566357045203</created>
+      <option name="number" value="00359" />
+      <option name="presentableId" value="LOCAL-00359" />
+      <option name="project" value="LOCAL" />
+      <updated>1566357045204</updated>
+    </task>
+    <option name="localTasksCounter" value="360" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2586450000" />
+    <option name="totallyTimeSpent" value="2588104000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1107,12 +1096,12 @@
       <window_info content_ui="combo" id="Project" order="0" weight="0.16850974" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49349946" weight="0.26145834" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50974023" side_tool="true" weight="0.47875354" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.51026857" side_tool="true" weight="0.38905472" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.52708334" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.67562187" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49025974" weight="0.38905472" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.48973143" visible="true" weight="0.38905472" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3989071" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1186,7 +1175,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="保存报价传入单价" />
     <MESSAGE value="内部报价 平米计算bug" />
     <MESSAGE value="PCB订单编辑 单价回传、计算" />
     <MESSAGE value="PCB订单编辑小计bug解决" />
@@ -1211,7 +1199,8 @@
     <MESSAGE value="内部订单 查看 测试架" />
     <MESSAGE value="内部报价 废弃数据对比(订单类型)，paypal订单搜索" />
     <MESSAGE value="订单类型可修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="订单类型可修改" />
+    <MESSAGE value="修改文档31" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改文档31" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
@@ -1542,17 +1531,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/scmManagement/outsourcing_contract.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-756">
-          <caret line="42" column="56" lean-forward="true" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
+          <caret line="42" column="56" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
           <folding>
             <element signature="n#style#0;n#label#3;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -1560,17 +1542,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+    <entry file="file://$PROJECT_DIR$/src/controller/scmMana_outContract.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="89" selection-start-line="5" selection-start-column="78" selection-end-line="5" selection-end-column="89" />
+        <state relative-caret-position="825">
+          <caret line="524" column="39" selection-start-line="524" selection-start-column="39" selection-end-line="524" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/scmMana_outContract.js">
+    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/inside_quote.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="808">
-          <caret line="522" column="7" lean-forward="true" selection-start-line="522" selection-start-column="7" selection-end-line="522" selection-end-column="7" />
+        <state relative-caret-position="306">
+          <caret line="700" column="91" selection-start-line="700" selection-start-column="85" selection-end-line="700" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="1647" column="87" selection-start-line="1647" selection-start-column="87" selection-end-line="1647" selection-end-column="87" />
         </state>
       </provider>
     </entry>

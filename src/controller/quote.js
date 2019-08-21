@@ -187,6 +187,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         _top_quote();
     });
     $("#panelSizeX,#panelSizeY,#quantityPanel").bind("input propertychange", function (even) {
+        // _get_topQuoteParam(topRadioType);
         if (panelSizeX != null && panelSizeY != null && quantityPanel != null){
             _top_quote();
         }
@@ -1644,6 +1645,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                     $("input[name="+$name+"][value='"+importPcbInfo[$name]+"']").prop("checked","checked");
                     if ($name == "boardType") {     // 单独判断板类型 ==> 用于表单的 启/禁用
                         _MT_oneInput(importPcbInfo["boardType"]);
+                        topRadioType = importPcbInfo["boardType"];  // 去掉会导致导入订单后无法计算面积
                     }
                 }
             }
