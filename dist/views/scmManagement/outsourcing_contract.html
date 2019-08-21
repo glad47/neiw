@@ -1,4 +1,5 @@
 <title>供应链管理-外协合同</title>
+<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
 <div class="layui-fluid">
     <div class="layui-form layui-card-header outsourcing-contract-search" style="margin-top: 15px;">
         <div class="layui-form-item quote-detail-search">
@@ -33,6 +34,16 @@
                 <div class="layui-input-inline">
                     <!--<input type="text" name="gmtCreate" class="layui-input">-->
                     <input type="text" name="supplierNo" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label" style="width: 85px;">状态:</label>
+                <div class="layui-input-inline" style="width: 139px;">
+                    <!--<input type="text" name="gmtCreate" class="layui-input">-->
+                    <select name="status" xm-select="status" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                        <option value="6">已确认交期</option>
+                        <option value="5">交期已回复</option>
+                        <option value="4">待确认交期</option>
+                        <option value="3">合同未回签</option>
+                    </select>
                 </div>
             </div>
             <div class="layui-inline">

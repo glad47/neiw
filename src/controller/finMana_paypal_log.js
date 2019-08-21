@@ -135,14 +135,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
     });
 
-    var active = {
-        /**
-         * 动态获取id，并且传到下一个view子页面（子页面根据此id，动态渲染操作页面）
-         */
-        //供应商信息页面
-        evPaypalAdd:function(data){
-            console.log(data);
-            var this_id = $(this).attr('id');
+    table.on('toolbar(finManaPaypalLog_tabPcb)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        if (obj.event === 'evPaypalAdd') {
             admin.popup({
                 title: '添加支付记录'
                 ,shadeClose: true
@@ -181,9 +176,8 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
             });
         }
+    });
 
-
-    };
 
     //监听搜索
     form.on('submit(paypalLog-search)', function(data){

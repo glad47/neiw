@@ -147,6 +147,41 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                     });
                 }
             })
+        } else if (obj.event === 'directlySubmit') {
+            var _len = data.length;
+            var orderSupplierList = new Array();
+            var supplierNo;
+            if (_len < 1) {
+                layer.msg('请至少选择一条数据');
+            } else {
+                for (var i = 0; i<_len; i++) {
+                    if (supplierNo == null) {
+                        supplierNo = data[i].supplierNo;
+                    } else if (supplierNo != null && data[i].supplierNo != supplierNo) {
+                        layer.alert('请选择相同的供应商!');
+                        console.log(111);
+                        return false;
+                    }
+                    var forSt = data[i].totalFee;
+                    orderSupplierList.push({id:data[i].id,orderId:data[i].orderId,orderType:data[i].orderType,isInternal:data[i].isInternal,onlineOid:data[i].onlineOid});
+                }
+                layer.confirm('确定要直接提交？', function () {
+                    $.ajax({
+                        type: 'post',
+                        headers: {access_token:layui.data('layuiAdmin').access_token},
+                        data:  JSON.stringify(orderSupplierList),
+                        contentType: "application/json;charset=utf-8",
+                        url: setter.baseUrl+'/scm/pcborder/createContractBeOt',
+                        success: function (data) {
+                            if (data.code == '0'){
+                                layer.alert("提交成功！！");
+                                table.reload('scmMana_tabPcb');
+                                layer.closeAll();
+                            }
+                        }
+                    });
+                });
+            }
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
@@ -356,6 +391,41 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                     });
                 }
             })
+        } else if (obj.event === 'directlySubmit') {
+            var _len = data.length;
+            var orderSupplierList = new Array();
+            var supplierNo;
+            if (_len < 1) {
+                layer.msg('请至少选择一条数据');
+            } else {
+                for (var i = 0; i<_len; i++) {
+                    if (supplierNo == null) {
+                        supplierNo = data[i].supplierNo;
+                    } else if (supplierNo != null && data[i].supplierNo != supplierNo) {
+                        layer.alert('请选择相同的供应商!');
+                        console.log(111);
+                        return false;
+                    }
+                    var forSt = data[i].totalFee;
+                    orderSupplierList.push({id:data[i].id,orderId:data[i].orderId,orderType:data[i].orderType,isInternal:data[i].isInternal,onlineOid:data[i].onlineOid});
+                }
+                layer.confirm('确定要直接提交？', function () {
+                    $.ajax({
+                        type: 'post',
+                        headers: {access_token:layui.data('layuiAdmin').access_token},
+                        data:  JSON.stringify(orderSupplierList),
+                        contentType: "application/json;charset=utf-8",
+                        url: setter.baseUrl+'/scm/stencilorder/createContractBeOt',
+                        success: function (data) {
+                            if (data.code == '0'){
+                                layer.alert("提交成功！！");
+                                table.reload('scmMana_tabStencil');
+                                layer.closeAll();
+                            }
+                        }
+                    });
+                });
+            }
         }
     });
     //监听行工具事件＝＝＝＝》Stencil 钢网订单

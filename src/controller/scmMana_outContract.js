@@ -5,12 +5,13 @@
  */
 
 
-layui.define(['admin','table','index','element','form','convertCurrency', 'requestInterface'], function (exports) {
+layui.define(['admin','table','index','element','form','convertCurrency', 'requestInterface', 'formSelects'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
         ,setter = layui.setter
+        ,formSelects = layui.formSelects
         ,element = layui.element;
     var $ = layui.jquery;
     var convertCurrency = layui.convertCurrency;
@@ -515,7 +516,11 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
     });
     $(".outsourcing-contract-search input").bind("input propertychange", function (even) {
         $("*[lay-filter='outsourcing_contract_search']").click();
-    })
+    });
+    layui.formSelects.on('status', function (id, vals, val, isAdd, isDisabled) {
+        formSelects.value('status', [val.value]);
+        $("*[lay-filter='outsourcing_contract_search']").click();
+    });
 
     exports('scmMana_outContract', {});
 });
