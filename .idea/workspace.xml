@@ -1,116 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="报价  内部型号问题">
-      <change beforePath="$PROJECT_DIR$/dist/controller/optimizeSelectOption/optimizeSelectOption.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/optimizeSelectOption/optimizeSelectOption.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/quote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/echarts.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/lib/extend/echarts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/echartsTheme.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/filePathProcess.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/formSelects.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/jsTools.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/message.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/messagebody.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/requestInterface.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/lib/extend/uploadCommon.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/anim/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/auxiliar/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/badge/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/button/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/carousel/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/code/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/flow/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/form/element.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/form/group.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/grid/all.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/grid/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/grid/mobile-pc.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/grid/mobile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/grid/speed-dial.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/grid/stack.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laydate/demo1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laydate/demo2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laydate/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laydate/special-demo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laydate/theme.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/layer/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/layer/special-demo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/layer/theme.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laypage/demo1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laypage/demo2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laypage/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/laytpl/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/nav/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/panel/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/progress/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/rate/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/auto.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/cellEdit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/cellEvent.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/checkbox.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/data.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/fixed.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/height.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/initSort.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/operate.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/page.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/reload.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/resetPage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/simple.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/static.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/style.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/thead.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/table/tostatic.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/tabs/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/timeline/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/upload/demo1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/upload/demo2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/upload/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/component/util/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/supplier_edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/supplier_search.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/supplier_set.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/sys_menuAdd.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/sys_menuSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/user_edit_info.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/user_edit_role.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/iframeWindow/viewtest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/renderEdit/supplier_edit_render.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/renderEdit/user_edit_render.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/iframeWindow/secondary_iframe/stencil_size.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/productManagement/iframeWindow/outbound_detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/productManagement/iframeWindow/outbound_info.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/productManagement/iframeWindow/outer_lable.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/productManagement/iframeWindow/packaging _requirements.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/set/system/email.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/set/system/website.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/set/user/info.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/set/user/password.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/details_delivery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/order_together_edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/pert_sysOrderAdd.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/pert_sysSOrderAdd.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_pcb.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_smt.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/quotation_together_stencil.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/statements.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/sqeManagement/iframeWindow/supplierOrder_detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/template/tips/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/template/tips/error.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/template/tips/test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/template/user/forget.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/template/user/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/template/user/reg.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/user/administrators/adminform.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/user/administrators/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/user/administrators/role.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/user/administrators/roleform.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/user/user/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/user/user/userform.html" beforeDir="false" />
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/quote.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -130,8 +22,8 @@
           <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="213">
-                  <caret line="1686" column="20" lean-forward="true" selection-start-line="1686" selection-start-column="20" selection-end-line="1686" selection-end-column="20" />
+                <state relative-caret-position="190">
+                  <caret line="1683" column="100" selection-start-line="1683" selection-start-column="100" selection-end-line="1683" selection-end-column="100" />
                 </state>
               </provider>
             </entry>
@@ -174,8 +66,8 @@
           <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="134">
-                  <caret line="1383" column="7" selection-start-line="1383" selection-start-column="7" selection-end-line="1383" selection-end-column="7" />
+                <state relative-caret-position="202">
+                  <caret line="1387" column="37" selection-start-line="1387" selection-start-column="37" selection-end-line="1387" selection-end-column="37" />
                 </state>
               </provider>
             </entry>
@@ -222,10 +114,10 @@
       <find>boardFee</find>
       <find>productCode</find>
       <find>orderPN</find>
-      <find>selCustomer</find>
       <find>customerSysName</find>
       <find>customerId</find>
       <find>userId</find>
+      <find>selCustomer</find>
     </findStrings>
     <replaceStrings>
       <replace>iqcMana_pertSys</replace>
@@ -819,14 +711,7 @@
       <workItem from="1566179838078" duration="265000" />
       <workItem from="1566210410198" duration="2039000" />
       <workItem from="1566353735443" duration="5014000" />
-      <workItem from="1566558078014" duration="2280000" />
-    </task>
-    <task id="LOCAL-00314" summary="网上订单钢网修改重量">
-      <created>1563354958562</created>
-      <option name="number" value="00314" />
-      <option name="presentableId" value="LOCAL-00314" />
-      <option name="project" value="LOCAL" />
-      <updated>1563354958562</updated>
+      <workItem from="1566558078014" duration="2814000" />
     </task>
     <task id="LOCAL-00315" summary="1">
       <created>1563363664579</created>
@@ -1164,11 +1049,18 @@
       <option name="project" value="LOCAL" />
       <updated>1566560759777</updated>
     </task>
-    <option name="localTasksCounter" value="363" />
+    <task id="LOCAL-00363" summary="+1">
+      <created>1566561745375</created>
+      <option name="number" value="00363" />
+      <option name="presentableId" value="LOCAL-00363" />
+      <option name="project" value="LOCAL" />
+      <updated>1566561745375</updated>
+    </task>
+    <option name="localTasksCounter" value="364" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2590716000" />
+    <option name="totallyTimeSpent" value="2591250000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1190,7 +1082,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.67562187" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.48973143" visible="true" weight="0.48059702" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.48973143" visible="true" weight="0.34626865" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3989071" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -1278,7 +1170,6 @@
     <MESSAGE value="1" />
     <MESSAGE value="责任书条款添加" />
     <MESSAGE value="内部报价，重复订单型号不变" />
-    <MESSAGE value="+1" />
     <MESSAGE value="++1" />
     <MESSAGE value="+++1" />
     <MESSAGE value="报价页二次报价订单类型判断" />
@@ -1290,7 +1181,8 @@
     <MESSAGE value="导入订单无法计算面积bug解决" />
     <MESSAGE value="平米  触发单价计算" />
     <MESSAGE value="报价  内部型号问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="报价  内部型号问题" />
+    <MESSAGE value="+1" />
+    <option name="LAST_COMMIT_MESSAGE" value="+1" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/quote_contractB.html">
@@ -1645,8 +1537,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="1686" column="20" lean-forward="true" selection-start-line="1686" selection-start-column="20" selection-end-line="1686" selection-end-column="20" />
+        <state relative-caret-position="190">
+          <caret line="1683" column="100" selection-start-line="1683" selection-start-column="100" selection-end-line="1683" selection-end-column="100" />
         </state>
       </provider>
     </entry>
