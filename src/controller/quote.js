@@ -1680,10 +1680,13 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         pcb_container.countries = post_data.countrysId = importPcbInfo['countries'];
         pcb_container.postFee = importPcbInfo['postFee'];
         // 绑定客户id和客户名
-        // var userId = $("dl[xid='selCustomer']").children(".xm-select-this").attr("lay-value");
-        var userId = $("dl[xid='selCustomer']").children(".xm-select-this span").text();
+        var userId = $("dl[xid='selCustomer']").children(".xm-select-this").attr("lay-value");
+        var customerSysName = $("dl[xid='selCustomer']").children(".xm-select-this span").text();
         $("#customerId").val(userId);
-        $("input[name='customerSysName']").val(userId);
+        $("input[name='customerSysName']").val(customerSysName);
+        console.log(
+            "userId:"+userId+"/ncustomerSysName:"+customerSysName
+        );
 
         // $("select[name='nOfPp'] option[value='3']").attr("selected",true);
         // 总价
