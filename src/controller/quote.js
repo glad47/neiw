@@ -220,7 +220,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             $(".up-subbtn").click();    //重新报价
         },1800);
     });
-    $("#boardFee").bind("input propertychange", function (even) {
+    $("#boardFee,#mPrice").bind("input propertychange", function (even) {
         quoteUnitPrice(0);
     });
     $("#quantityPCS").bind("input propertychange", function (even) {
