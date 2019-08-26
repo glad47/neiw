@@ -41,10 +41,10 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'payerEmail', title: '付款人email', width: 250}
             ,{field: 'firstName', title: '付款人姓', width: 117}
             ,{field: 'lastName', title: '付款人名', width: 144}
+            ,{field: 'currency',title:'币种',width:100}
             ,{field: 'mcGross', title: '交易金额', width: 144}
             ,{field: 'paymentFee', title: 'payPal 手续费', width: 144}
             ,{field: 'totalNet', title: '总净额', width: 144}
-            ,{field: 'currency',title:'币种',width:100}
             ,{field: 'custom',title:'绑定信息',width:250}
             ,{title: '操作', width: 160, align:'center', fixed: 'right', toolbar: '#finManaPaypalLog_tbar'}
         ]]

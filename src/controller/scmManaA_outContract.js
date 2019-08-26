@@ -1,6 +1,6 @@
 /**
 
- @Name:    供应商管理－－［确认交期］
+ @Name:    供应商管理－－［报价协同］
 
  */
 
@@ -34,14 +34,14 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
         }
     });
 
-    //▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ PCB订单
-    function tabRenderPCB() {
+ 
+
+    function tabRenderPCB(){
         table.render({
-            elem: '#scmManaOutSC_tabPcb'
-            ,url: setter.baseUrl+'/scm/pcborder/outsourcingContract/list'
-            ,toolbar: "#scmManaOutSC_toolbar"
+            elem: '#scmManaOutSCA_tabPcb'
+            ,url: setter.baseUrl+'scm/pcborder/outsourcingContractAll/list'
             ,cellMinWidth: 80
-            ,id: "scmManaOutSC_tabPcb"
+            ,id: "scmManaOutSCA_tabPcb"
             ,page: true
             ,parseData: function (res) {
                 return{
@@ -52,7 +52,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field: 'status',title: '状态',templet: '#og_status', minWidth: 104}      // 1 ＝ 待报价
+                ,{field: 'status',title: '状态',templet: '#og_statusA', minWidth: 104}      // 1 ＝ 待报价
                 ,{field: 'supplierContractNo',title: '合同编号', minWidth: 171}
                 ,{field: 'gmtCreate',title: '创建时间', width: 166}
                 ,{field: 'supplierNo', title: '供应商编号', width: 124}
@@ -82,7 +82,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                 ,{field: 'subtotal', title: 'subtotal', hide: true}
                 // ,{field: 'gerberName',title: '文件名'}
                 // ,{field: 'pcbType',title: 'PCB类型'}
-                ,{fixed: 'right', title:'操作', toolbar: '#scmManaOutsource_tabbar',width: 160}
+                ,{fixed: 'right', title:'操作', toolbar: '#scmManaOutsourceA_tabbar',width: 160}
             ]]
             ,done: function (res, curr, count) {
                 var data = res.data;    //获取表格所有数据对象
@@ -90,67 +90,8 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             }
         });
     }
-    table.on('toolbar(scmManaOutSC_tabPcb)', function (obj) {
-        var checkStatus = table.checkStatus(obj.config.id);
-        var data = checkStatus.data;
-        if(obj.event === 'evScmSubmit'){
-            var data = checkStatus.data;
-            console.log(data);
-            var supplierContractNo = null;
-            var ids = null;
-            if(data.length < 1){
-                layer.msg("至少选择一条数据！");
-                return false;
-            }
-            for (var i=0;i<data.length;i++){
-                if (ids == null){
-                    ids += + data[i].id;
-                } else {
-                    ids += ',' + data[i].id;
-                }
-                if (supplierContractNo == null){
-                    supplierContractNo = data[i].supplierContractNo;
-                } else {
-                    supplierContractNo += ',' + data[i].supplierContractNo;
-                }
-            }
-            layer.confirm('确认回签 ['+supplierContractNo+'] ?', function(index){
-                admin.req({
-                    type: 'post',
-                    data: {'supplierContractNo':supplierContractNo},
-                    url: setter.baseUrl+'scm/pcborder/signBackByOc',
-                    success: function (data) {
-                        if (data.code == '0'){
-                            layer.alert("提交成功！！");
-                            table.reload('scmManaOutSC_tabPcb');
-                            layer.close(index);
-                        }
-                    }
-                });
-            });
-        } else if (obj.event == 'confirmDate') {
-            var orderSupplierList = new Array();
-            for (var i=0;i<data.length;i++) {
-                orderSupplierList.push({orderId:data[i].orderId,supplierContractNo:data[i].supplierContractNo});
-            }
-            layer.confirm('是否确认交期？', function () {
-               $.ajax({
-                   type: 'post',
-                   headers: {access_token:layui.data('layuiAdmin').access_token},
-                   data:  JSON.stringify(orderSupplierList),
-                   contentType: "application/json;charset=utf-8",
-                   url: setter.baseUrl+'scm/pcborder/confirmDeliveryByOc',
-                   success: function () {
-                       layer.alert('已确认');
-                       table.reload('scmManaOutSC_tabPcb');
-                   }
-               });
-            layer.closeAll();
-            }); 
-        }
-    });
     //监听行工具事件＝＝＝＝》pcb订单
-    table.on('tool(scmManaOutSC_tabPcb)', function (obj) {
+    table.on('tool(scmManaOutSCA_tabPcb)', function (obj) {
         var data = obj.data;
         var supplierContractNo = data.supplierContractNo;
         if (obj.event == 'eevScmedit'){
@@ -195,7 +136,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                         success: function (data) {
                             layer.alert("供应商报价修改成功");
                             // layer.closeAll();
-                            table.reload('scmManaOutSC_tabPcb');
+                            table.reload('scmManaOutSCA_tabPcb');
                             layer.close(index);
                         }
                     });
@@ -257,30 +198,15 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                     })
                 }
             });
-        } else if (obj.event == 'signBack'){
-            layer.confirm('确定退回？', function(index){
-                admin.req({
-                    type: 'post',
-                    data: {'supplierContractNo':supplierContractNo},
-                    url: setter.baseUrl+ 'scm/pcborder/rollbackOrderByOc',
-                    success: function () {
-                        layer.alert("退回成功！");
-                        table.reload('scmManaOutSC_tabPcb');
-                    }
-                });
-                layer.close(index);
-            });
         }
     });
 
-    //▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ Stencil 钢网 订单
-    function tabRenderStencil() {
+    function tabRenderStencil(){
         table.render({
-            elem: '#scmManaOutSC_tabStencil'
-            ,url: setter.baseUrl+'scm/stencilorder/outsourcingContract/list'
-            ,toolbar: "#scmManaOutSC_toolbarS"
+            elem: '#scmManaOutSCA_tabStencil'
+            ,url: setter.baseUrl+'scm/stencilorder/outsourcingContractAll/list'
             ,cellMinWidth: 80
-            ,id: "scmManaOutSC_tabStencil"
+            ,id: "scmManaOutSCA_tabStencil"
             ,page: true
             ,parseData: function (res) {
                 return{
@@ -291,7 +217,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field: 'status',title: '状态',templet: '#og_statusS', minWidth: 104}      // 1 ＝ 待报价
+                ,{field: 'status',title: '状态',templet: '#og_statusSA', minWidth: 104}      // 1 ＝ 待报价
                 ,{field: 'supplierContractNo',title: '合同编号', minWidth: 171}
                 ,{field: 'gmtCreate',title: '创建时间', width: 166}
                 ,{field: 'supplierNo', title: '供应商编号', width: 124}
@@ -321,7 +247,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                 ,{field: 'subtotal', title: 'subtotal', hide: true}
                 // ,{field: 'gerberName',title: '文件名'}
                 // ,{field: 'pcbType',title: 'PCB类型'}
-                ,{fixed: 'right', title:'操作', toolbar: '#scmManaOutsource_tabbarS',width: 160}
+                ,{fixed: 'right', title:'操作', toolbar: '#scmManaOutsourceA_tabbarS',width: 160}
             ]]
             ,done: function (res, curr, count) {
                 var data = res.data;    //获取表格所有数据对象
@@ -329,68 +255,8 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             }
         });
     }
-    table.on('toolbar(scmManaOutSC_tabStencil)', function (obj) {
-        var checkStatus = table.checkStatus(obj.config.id);
-        var data = checkStatus.data;
-        if(obj.event === 'evScmSubmit'){
-            var data = checkStatus.data;
-            console.log(data);
-            var supplierContractNo = null;
-            var ids = null;
-            if(data.length < 1){
-                layer.msg("至少选择一条数据！");
-                return false;
-            }
-            for (var i=0;i<data.length;i++){
-                if (ids == null){
-                    ids += + data[i].id;
-                } else {
-                    ids += ',' + data[i].id;
-                }
-                if (supplierContractNo == null){
-                    supplierContractNo = data[i].supplierContractNo;
-                } else {
-                    supplierContractNo += ',' + data[i].supplierContractNo;
-                }
-            }
-            layer.confirm('确认回签 ['+supplierContractNo+'] ?', function(index){
-                admin.req({
-                    type: 'post',
-                    data: {'supplierContractNo':supplierContractNo},
-                    url: setter.baseUrl+'scm/stencilorder/signBackByOc',
-                    success: function (data) {
-                        if (data.code == '0'){
-                            layer.alert("提交成功！！");
-                            table.reload('scmManaOutSC_tabStencil');
-                            layer.close(index);
-                        }
-                    }
-                });
-            });
-        } else if (obj.event == 'confirmDate') {
-            var orderSupplierList = new Array();
-            for (var i=0;i<data.length;i++) {
-                orderSupplierList.push({orderId:data[i].orderId,supplierContractNo:data[i].supplierContractNo});
-            }
-            layer.confirm('是否确认交期？', function () {
-                admin.req({
-                    type: 'post',
-                    headers: {access_token:layui.data('layuiAdmin').access_token},
-                    data:  JSON.stringify(orderSupplierList),
-                    contentType: "application/json;charset=utf-8",
-                    url: setter.baseUrl+'scm/stencilorder/confirmDeliveryByOc',
-                    success: function () {
-                        layer.alert('已确认');
-                        table.reload('scmManaOutSC_tabStencil');
-                    }
-                });
-                layer.closeAll();
-            });
-        }
-    });
-
     //监听行工具事件＝＝＝＝》Stencil 钢网 订单
-    table.on('tool(scmManaOutSC_tabStencil)', function (obj) {
+    table.on('tool(scmManaOutSCA_tabStencil)', function (obj) {
         var data = obj.data;
         var supplierContractNo = data.supplierContractNo;
         if (obj.event == 'eevScmedit'){
@@ -485,41 +351,29 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                     })
                 }
             });
-        } else if (obj.event == 'signBack'){
-            layer.confirm('确定退回？', function(index){
-                admin.req({
-                    type: 'post',
-                    data: {'supplierContractNo':supplierContractNo},
-                    url: setter.baseUrl+ 'scm/stencilorder/rollbackOrderByOc',
-                    success: function () {
-                        layer.alert("退回成功！");
-                        table.reload('scmManaOutSC_tabStencil');
-                    }
-                });
-                layer.close(index);
-            });
         }
     });
-    //监听搜索
-    form.on('submit(outsourcing_contract_search)', function(data){
+
+   //监听搜索
+    form.on('submit(outsourcing_contract_all_search)', function(data){
         var field = data.field;
         var reTab;
         if (defVal.orderType === 0) {   // PCB
-            reTab = 'scmManaOutSC_tabPcb';
+            reTab = 'scmManaOutSCA_tabPcb';
         } else if (defVal.orderType === 1) {    //  Stencil
-            reTab = 'scmManaOutSC_tabStencil';
+            reTab = 'scmManaOutSCA_tabStencil';
         }
         table.reload(reTab, {
             where: field
         });
     });
-    $(".outsourcing-contract-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='outsourcing_contract_search']").click();
+
+    $(".outsourcing-contract-all-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='outsourcing_contract_all_search']").click();
     });
     layui.formSelects.on('status', function (id, vals, val, isAdd, isDisabled) {
         formSelects.value('status', [val.value]);
-        $("*[lay-filter='outsourcing_contract_search']").click();
+        $("*[lay-filter='outsourcing_contract_all_search']").click();
     });
-
-    exports('scmMana_outContract', {});
+    exports('scmManaA_outContract', {});
 });

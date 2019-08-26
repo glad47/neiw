@@ -1,7 +1,7 @@
-<title>供应链管理-确认交期</title>
+<title>供应链管理-外协合同</title>
 <link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
 <div class="layui-fluid">
-    <div class="layui-form layui-card-header outsourcing-contract-search" style="margin-top: 15px;">
+    <div class="layui-form layui-card-header outsourcing-contract-all-search" style="margin-top: 15px;">
         <div class="layui-form-item quote-detail-search">
             <div class="layui-inline" style="display: none;">
                 <label class="layui-form-label">查询：</label>
@@ -44,11 +44,12 @@
                         <option value="5">交期已回复</option>
                         <option value="4">待确认交期</option>
                         <option value="3">合同未回签</option>
+                        <option value="7">通知出货</option>
                     </select>
                 </div>
             </div>
             <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="outsourcing_contract_search">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="outsourcing_contract_all_search">
                     搜索
                 </button>
             </div>
@@ -64,19 +65,12 @@
         <div class="layui-tab-content">
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="scmManaOutSC_tabPcb" lay-filter="scmManaOutSC_tabPcb"></table>
-                <script type="text/html" id="scmManaOutSC_toolbar">
-                    <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-sm" lay-event="evScmSubmit">回签</button>
-                        <button class="layui-btn layui-btn-sm" lay-event="confirmDate">确认交期</button>
-                    </div>
-                </script>
-                <script type="text/html" id="scmManaOutsource_tabbar">
+                <table class="layui-table" id="scmManaOutSCA_tabPcb" lay-filter="scmManaOutSCA_tabPcb"></table>
+                <script type="text/html" id="scmManaOutsourceA_tabbar">
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="eevScmedit">编辑</a>
                     <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
-                    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="signBack">退回</a>
                 </script>
-                <script type="text/html" id="og_status">
+                <script type="text/html" id="og_statusA">
                     {{# if(d.status == '6') { }}
                         已确认交期
                     {{# } else if(d.status == '5'){ }}
@@ -85,6 +79,8 @@
                         待确认交期
                     {{# } else if(d.status == '3'){ }}
                         已生成合同
+                    {{# } else if(d.status == '7'){ }}
+                        通知出货
                     {{# } else if(d.status == null || d.status == '' ){ }}
                         合同未回签
                     {{# } }}
@@ -92,19 +88,12 @@
             </div>
             <!--钢网订单-->
             <div class="layui-tab-item">
-                <table class="layui-table" id="scmManaOutSC_tabStencil" lay-filter="scmManaOutSC_tabStencil"></table>
-                <script type="text/html" id="scmManaOutSC_toolbarS">
-                    <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-sm" lay-event="evScmSubmit">回签</button>
-                        <button class="layui-btn layui-btn-sm" lay-event="confirmDate">确认交期</button>
-                    </div>
-                </script>
-                <script type="text/html" id="scmManaOutsource_tabbarS">
+                <table class="layui-table" id="scmManaOutSCA_tabStencil" lay-filter="scmManaOutSCA_tabStencil"></table>
+                <script type="text/html" id="scmManaOutsourceA_tabbarS">
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="eevScmedit">编辑</a>
                     <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
-                    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="signBack">退回</a>
                 </script>
-                <script type="text/html" id="og_statusS">
+                <script type="text/html" id="og_statusSA">
                     {{# if(d.status == '6') { }}
                     已确认交期
                     {{# } else if(d.status == '5'){ }}
@@ -113,6 +102,8 @@
                     待确认交期
                     {{# } else if(d.status == '3'){ }}
                     已生成合同
+                    {{# } else if(d.status == '7'){ }}
+                    出货通知
                     {{# } else if(d.status == null || d.status == '' ){ }}
                     合同未回签
                     {{# } }}
@@ -127,12 +118,12 @@
 </div>
 
 <script>
-    layui.use('scmMana_outContract', layui.factory('scmMana_outContract')).use(['scmMana_outContract', 'table', 'index','element','form'], function(){
+    layui.use('scmManaA_outContract', layui.factory('scmManaA_outContract')).use(['scmMana_outContract', 'table', 'index','element','form'], function(){
         var form = layui.form;
         form.render();
     });
 </script>
 
 <style>
-    .outsourcing-contract-search .layui-form-item .layui-input-inline{width: 110px;}
+    .outsourcing-contract-all-search .layui-form-item .layui-input-inline{width: 110px;}
 </style>
