@@ -1681,13 +1681,9 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         pcb_container.postFee = importPcbInfo['postFee'];
         // 绑定客户id和客户名
         var userId = $("dl[xid='selCustomer']").children(".xm-select-this").attr("lay-value");
-        var customerSysName = $("dl[xid='selCustomer']").children(".xm-select-this span").attr("name");
+        var customerSysName = $("dl[xid='selCustomer'] .xm-select-this").find("span").attr("name");
         $("#customerId").val(userId);
         $("input[name='customerSysName']").val(customerSysName);
-        console.log(
-            "userId:"+userId+"/ncustomerSysName:"+customerSysName
-        );
-
         // $("select[name='nOfPp'] option[value='3']").attr("selected",true);
         // 总价
         var $pcbcost = parseFloat($("input[name='subtotal']").val());

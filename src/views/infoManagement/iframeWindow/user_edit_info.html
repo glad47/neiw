@@ -2,7 +2,10 @@
     <form class="layui-form" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 650px">
         <div class="layui-form-item">
             <div class="addcus-cusNum layui-col-md6 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label" name="editUsername">用户名：</label>
+                <label class="layui-form-label" name="editUsername">
+                    <span class="span-required">*</span>
+                    用户名：
+                </label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="text" name="username" value="{{ d.params.username || '' }}" autocomplete="off" class="layui-input" lay-verify="username">
@@ -58,7 +61,10 @@
         </div>
         <div class="layui-form-item">
             <div class="addcus-cusID layui-col-md6 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">Email：</label>
+                <label class="layui-form-label">
+                    <span class="span-required">*</span>
+                    Email：
+                </label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="text" name="email" value="{{ d.params.email || '' }}" autocomplete="off" class="layui-input" id="user_edit_cusid" lay-verify="eamil">
@@ -158,6 +164,9 @@
     </form>
 </div>
 
+<style>
+    .span-required{color: red;}
+</style>
 <script>
     layui.data.done = function(d){
         layui.use(['form'], function(){

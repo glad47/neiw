@@ -215,6 +215,11 @@
 
             function quote(_domVal) {
                 // var a = parseFloat(_domVal.side*_domVal.unitPrice*_domVal.quantity)+_domVal.postFee;
+                $.each(_domVal, function (i, val) {
+                    if (isNaN(val) || val == "" || val == null) {    // 判断对象的值是否为空，则为0
+                        _domVal[i] = 0;
+                    }
+                });
                 var a = parseFloat(_domVal.unitPrice*_domVal.quantity)+_domVal.postFee;
                 $("#orderStencilUpdateB input[name='totalStencilFee']").val(a);
             }

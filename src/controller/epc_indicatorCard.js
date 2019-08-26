@@ -74,6 +74,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114}
                 ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
 
+                ,{field:'businessName', title: '跟单员',width: 80,hide: true}
+                ,{field:'isInternal', title: '内部/网上订单',width: 126,hide: true, templet:'#Tabtb-pcb-epc-indicatorCard-isInternal'}
                 ,{field:'userId', title: 'User ID',width: 80,hide: true}
                 ,{field:'engineeringRemark', title: '工程备注',width: 80,hide: true}
                 ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
@@ -444,6 +446,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}
                 ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114}
                 ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
+                ,{field:'businessName', title: '跟单员',width: 80,hide: true}
+                ,{field:'isInternal', title: '内部/网上订单',width: 110,hide: true, templet:'#Tabtb-pcb-epc-indicatorCard-isInternal'}
                 ,{field:'userId', title: 'User ID',width: 80,hide: true}
                 ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
                 ,{field:'orderType', title: 'Order Type', align:'center', width: 109,hide: true}

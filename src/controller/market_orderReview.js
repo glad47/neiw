@@ -211,7 +211,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
                     }
                 })
-                layui.table.reload('or_Tabpcb');
+                table.reload('or_Tabpcb');
                 layer.close(index);
             })
         } else if (obj.event === 'pcb-lock') {

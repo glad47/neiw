@@ -161,6 +161,14 @@
                     <a style="color: orangered;">返单有改</a>
                     {{# } }}
                 </script>
+                <!--内部/网上订单-->
+                <script type="text/html" id="Tabtb-pcb-epc-indicatorCard-isInternal">
+                    {{# if(d.isInternal === 1){ }}
+                        内部订单
+                    {{# } else if(d.isInternal === 2){ }}
+                        网上订单
+                    {{# } }}
+                </script>
                 <!--<button class="layui-btn layui-btn-sm indicatorAddFile" data-type="indicatorAddFile" ">添加客户资料</button>-->
                 <!--<script type="text/thml" id="quote_gerber_file">-->
                     <!--{{# if(d.quoteGerberName === null){ }}-->
