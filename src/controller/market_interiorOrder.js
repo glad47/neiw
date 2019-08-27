@@ -59,6 +59,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
                 ,{field: 'productNo', title: '内部型号',width: 130, fixed: 'left'}
+                ,{field:'businessName',title:'跟单员名字',width:100}
                 ,{field:'status', title: '状态', align:'center',templet: '#interiorOrderStatus', width: 117}
                 ,{field:'payLogId', title: '支付情况', align:'center',templet: '#interiorPayLog', width: 117}
                 ,{field: 'orderType',title: '订单类型', templet: '#order_type'}    //1=新单  2=返单    3=返单有改

@@ -48,6 +48,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
             ,{field:'productNo',fixed: 'left', title: '内部型号', align:'center', width: 114}
+            ,{field:'businessName',title:'跟单员名字',width:100}
             ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-okPayment-status',width: 110}
             ,{field:'payLogId', title: '支付情况', align:'center',templet: '#okPaymentPayLog', width: 117}
             ,{field:'orderType', title: '订单类型', align:'center', width: 109, templet: '#orderOkPaymentOrdertype'}
@@ -294,6 +295,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,cols: [[
 
             {field: 'productNo', title: '内部型号', align:'center', width: 134,fixed: 'left'}
+            ,{field:'businessName',title:'跟单员名字',width:100}
             ,{field: 'status' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-okPayment-status'}
             ,{field:'payLogId', title: '支付情况', align:'center',templet: '#okPaymentPayLogS', width: 117}
             ,{field: '', title:'文件', templet: '#stencil-file', align:'center'}
