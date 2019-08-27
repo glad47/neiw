@@ -50,12 +50,8 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
                 ,{field:'productNo', title: '内部型号', align:'center', width: 114,fixed: 'left'}
-                ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115}      // 1 ＝ 待报价
-                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172}
-                ,{field: 'gmtCreate',title: '报价时间', width: 166}
                 ,{field: 'supplierNo', title: '供应商编号', width: 124}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-                ,{field: 'pcbName', title: '聚谷物料号', width: 144}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
                 ,{field: 'unitPrice', title: '单价', width: 96}
                 ,{field: 'engineeringFee', title: '工程费', width: 96}
@@ -63,8 +59,12 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                 ,{field: 'testCostFee', title: '测试架费', width: 96}
                 ,{field: 'toolingFee', title: '模具', width: 96}
                 ,{field: 'totalFee', title: '合计', width: 96}
+                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172}
+                ,{field: 'pcbName', title: '聚谷物料号', width: 144}
+                ,{field: 'gmtCreate',title: '报价时间', width: 166}
                 ,{field: 'remark', title: '报价备注', width: 168}
                 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
+                ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115, hide: true}      // 1 ＝ 待报价
                 ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
                 ,{field: 'existContractMark', title: 'existContractMark', hide: true}   // 是否生成合同标识 0 否 1 是
                 ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
@@ -298,17 +298,17 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
                 ,{field:'productNo', title: '内部型号', align:'center', width: 114,fixed: 'left'}
-                ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115}      // 1 ＝ 待报价
-                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172}
-                ,{field: 'gmtCreate',title: '报价时间', width: 166}
                 ,{field: 'supplierNo', title: '供应商编号', width: 124}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-                ,{field: 'pcbName', title: '聚谷物料号', width: 144}
                 ,{field: 'quantity', title: '订单数量(PCS)', width: 134}
                 ,{field: 'unitPrice', title: '单价', width: 96}
                 ,{field: 'totalFee', title: '合计', width: 96}
                 ,{field: 'remark', title: '报价备注', width: 168}
+                ,{field: 'pcbName', title: '聚谷物料号', width: 144}
+                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172}
+                ,{field: 'gmtCreate',title: '报价时间', width: 166}
                 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
+                ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115, hide: true}      // 1 ＝ 待报价
                 ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
                 ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
                 ,{field: 'panelSizeX', title: 'panelSizeX', hide: true}
