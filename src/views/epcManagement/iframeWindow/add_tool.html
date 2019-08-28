@@ -210,7 +210,7 @@
                         formSelects.value('manufacturers', [supplierId]);
                         formSelects.value('supplier', [supplier]);
                         console.log("dom:"+dom);
-                        $(".xm-select-parent[fs_id='supplier']").children(".xm-form-select").addClass("xm-form-selected");
+                        $(".xm-select-parent[fs_id='"+dom+"']").children(".xm-form-select").addClass("xm-form-selected");
                         layer.msg("加载成功！");
                     }
                 });
