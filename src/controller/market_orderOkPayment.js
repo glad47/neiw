@@ -55,7 +55,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: '', title:'文件', toolbar: '#pcb-file', align:'center'}
             ,{field:'gerberName', title: '文件名', align:'center', width: 254}
             ,{field:'courierCompany', title: '快递公司', align:'center', width: 154}
-            ,{field:'courierNumber', title: '快递单号', align:'center', width: 154}
+            ,{field:'courierNo', title: '快递单号', align:'center', width: 154, templet:'#marker_orderOkPayment_courierNo'}
             ,{field:'pcbType', title: 'PCB 类型', align:'center', width: 114}
             ,{field:'gmtCreate', title: '创建时间', align:'center', width: 165}
             ,{field:'layerNum', title: '层数', align:'center', width: 114}

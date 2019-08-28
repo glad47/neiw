@@ -67,8 +67,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 ,{field: 'pcbName',title: '客户型号', width: 131}
                 ,{field: 'invoiceNo',title: '合同号', width: 172}
                 ,{field: 'orderNo',title: '客户PO'}
-                ,{field: 'courierName',title: '快递公司'}
-                ,{field: 'courierNumber',title: '快递单号'}
+                ,{field: 'courierName',title: '快递公司',width:100}
+                ,{field: 'courierNo',title: '快递单号',width:150, templet:'#market_interior_courierNo'}
                 ,{field: 'gmtCreate',title: '创建时间', width: 230}
                 ,{field: 'gmtModified',title: '修改时间', width: 230}
                 // 型号占位
