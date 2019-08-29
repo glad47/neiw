@@ -92,6 +92,9 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     var importParams = {
         importPCBInfo: null
     };
+    // 汇率 对象
+    var exchangerate = [];
+    var def_exchangeRate = 1;   // 汇率默认为 美元 所以为1
     /**
      * 报存当前报价需要传输的字段 所有对象
      * @type {{enginnerFee: *}}
@@ -1150,6 +1153,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                 var $html;
                 for (var i=0;i<res.data.length;i++){
                     $html += "<option id="+res.data[i].id+" value="+res.data[i].id+">"+res.data[i].currency+"</option>"
+                    exchangerate.push(res.data[i]);
                 }
                 $("select[xm-select='exchangeId']").append($html);
                 form.render('select');
@@ -1163,6 +1167,14 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         pcb_container.exchangeId = val.value;
         var courierId = post_data.companyId;
         var countryId = post_data.countrysId;
+        var _currency = exchangerate.find(item => item.id == val.value).currency;   // 币种
+        if (_currency == "USD") {   // 因为默认是美元，所当币种为美元的时候，汇率为1。
+            def_exchangeRate = 1;
+        } else if (_currency == "CNY") {    // 当币种为人民币的时候，汇率应当按美元的汇率
+            def_exchangeRate = exchangerate.find(item => item.currency == "USD").exchangeRate;
+        } else {
+            def_exchangeRate = exchangerate.find(item => item.currency == _currency).exchangeRate;
+        }
         getShippingCost(courierId,countryId);
     });
     /**
@@ -1182,7 +1194,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                stmStencil_container.stencilWeight = stencil_data.stencilWeight; // 右侧 SMT-Stencil 明细容器
                $("#stencilWeight").val(stencil_data.stencilWeight+" KG ");  //页面重量
                stmStencil_container.stencilWeight = stencil_data.stencilSize_price; // 右侧 SMT-Stencil 明细容器
-               // $("#sunitPrice").val(stencil_data.stencilSize_price);
+               $("#sunitPrice").val(stencil_data.stencilSize_price);
                $("#inStencilSize").val($("#stenContainer").val());
                getCouriers();
                getCountrys();
@@ -1265,7 +1277,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         } else {
             b=2;
         }
-        quoteSMTStencil.inStencilCost = quoteSMTStencil.sQuantity*stencil_data.stencilSize_price*b;
+        // 钢网总价 = 钢网数量 * 单价 * 层数 * 汇率
+        quoteSMTStencil.inStencilCost = quoteSMTStencil.sQuantity*stencil_data.stencilSize_price*b*def_exchangeRate;
         $("#inStencilCost").val(quoteSMTStencil.inStencilCost);
         quoteSMTStencilFuc();
     }
