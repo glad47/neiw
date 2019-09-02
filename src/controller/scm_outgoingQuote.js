@@ -147,7 +147,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             admin.popup({
                 title: '指定供应商'
                 ,area: ['912px', '545px']
-                ,btn:['提交', '跳过提交','取消']
+                ,btn:['提交', /*'跳过提交',*/'取消']    // 跳过提交先隐藏，功能已经写好了的
                 ,yes:function(index, layero){
                     var checkStatus = table.checkStatus('scm_assign_supplier_table'),checkdata = checkStatus.data;
                     var ids = checkdata.map(function(elem){return elem.id}).join(",");
