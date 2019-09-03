@@ -80,31 +80,36 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     }
     table.on('toolbar(sqeManaShip_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
-        if(obj.event === 'submit'){
-            var data = checkStatus.data;
-            var supplierContractNo = null;
-            for (var i=0;i<data.length;i++){
-                if (supplierContractNo == null){
-                    supplierContractNo = data[i].supplierContractNo;
-                } else {
-                    supplierContractNo += ',' + data[i].supplierContractNo;
-                }
-            }
-            layer.confirm('确认提交 ['+supplierContractNo+'] ?', function(index){
-                admin.req({
-                    type: 'post',
-                    data: {'supplierContractNo':supplierContractNo},
-                    url: setter.baseUrl+'sqe/pcborder/submitByOt',
-                    success: function (data) {
-                        if (data.code == '0'){
-                            layer.alert("提交成功！！");
-                            table.reload('sqeManaShip_tabPcb');
-                            layer.close(index);
-                        }
+        var data = checkStatus.data;
+        if (data.length == 0) {
+            layer.msg('请选择一条数据！');
+            return false;
+        } else {
+            if(obj.event === 'submit'){
+                var supplierContractNo = null;
+                for (var i=0;i<data.length;i++){
+                    if (supplierContractNo == null){
+                        supplierContractNo = data[i].supplierContractNo;
+                    } else {
+                        supplierContractNo += ',' + data[i].supplierContractNo;
                     }
+                }
+                layer.confirm('确认提交 ['+supplierContractNo+'] ?', function(index){
+                    admin.req({
+                        type: 'post',
+                        data: {'supplierContractNo':supplierContractNo},
+                        url: setter.baseUrl+'sqe/pcborder/submitByOt',
+                        success: function (data) {
+                            if (data.code == '0'){
+                                layer.alert("提交成功！！");
+                                table.reload('sqeManaShip_tabPcb');
+                                layer.close(index);
+                            }
+                        }
+                    });
+                    table.reload('sqeManaPlan_tabPcb');
                 });
-                table.reload('sqeManaPlan_tabPcb');
-            });
+            }
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单

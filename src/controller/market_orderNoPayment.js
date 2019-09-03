@@ -287,7 +287,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 ,area: ['45%', '70%']
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderStencil_update', data).done(function () {
-                        form.render(null, '')
+                        form.render()
                         form.on('submit(LAY-stencilorder-update-submit)',function (data) {
                             var field = data.field;
                             console.log("提交的字段信息："+JSON.stringify(field));
@@ -303,7 +303,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                                     layer.msg("订单信息修改失败，请稍后再试！");
                                 },
                             });
-                            layer.close(index);
+                            layer.closeAll();
                             return false;
                         })
                     })

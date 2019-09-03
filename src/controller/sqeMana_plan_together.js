@@ -111,33 +111,51 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
         var supplierOrderIds = null;
-        if(obj.event === 'submit') {     //通知出货
-            layer.confirm('确定通知出货？', function () {
-                if (data.length == 0) {
-                    layer.msg('请选择一条数据！');
-                    return false;
-                }
-                var orderSupplierList = new Array();
-                for (var i=0;i<data.length;i++){
-                    orderSupplierList.push({'id':data[i].id,'isInternal':data[i].isInternal,'onlineOid':data[i].onlineOid,'orderId':data[i].orderId,'surplusPcsNumber':data[i].surplusPcsNumber,'orderPcsNumber':data[i].quantityPcs,'donePcsNumber':data[i].donePcsNumber,'currPcsNumber':data[i].currPcsNumber,'orderType':data[i].orderType});
-                }
-                // supplierOrderIds = jstools.ArrayClearRepeat(supplierOrderIds.split(",")).join(",");     // 字符串转数组去重再转字符串类型  jstools.ArrayCleaRepeat 数组去重扩展
-                $.ajax({
-                   type: 'post',
-                   url: setter.baseUrl + 'sqe/pcborder/saveShipmentOrderByPt',
-                   headers: {access_token:layui.data('layuiAdmin').access_token},
-                   data:  JSON.stringify(orderSupplierList),
-                   contentType: "application/json;charset=utf-8",
-                   success: function () {
-                       layer.alert('通知出货成功！',function () {
-                           table.reload('sqeManaPlan_tabPcb');
-                           layer.closeAll();
-                       });
-                   } ,error: function () {
+        if (data.length == 0) {
+            layer.msg('请选择一条数据！');
+            return false;
+        } else {
+            var orderSupplierList = new Array();
+            for (var i=0;i<data.length;i++){
+                orderSupplierList.push({'id':data[i].id,'isInternal':data[i].isInternal,'onlineOid':data[i].onlineOid,'orderId':data[i].orderId,'surplusPcsNumber':data[i].surplusPcsNumber,'orderPcsNumber':data[i].quantityPcs,'donePcsNumber':data[i].donePcsNumber,'currPcsNumber':data[i].currPcsNumber,'orderType':data[i].orderType});
+            }
+            if(obj.event === 'submit') {     //通知出货
+                layer.confirm('确定通知出货？', function () {
+                    $.ajax({
+                        type: 'post',
+                        url: setter.baseUrl + 'sqe/pcborder/saveShipmentOrderByPt',
+                        headers: {access_token:layui.data('layuiAdmin').access_token},
+                        data:  JSON.stringify(orderSupplierList),
+                        contentType: "application/json;charset=utf-8",
+                        success: function () {
+                            layer.alert('通知出货成功！',function () {
+                                table.reload('sqeManaPlan_tabPcb');
+                                layer.closeAll();
+                            });
+                        } ,error: function () {
 
-                    }
+                        }
+                    });
                 });
-            });
+            } else if (obj.event === 'submitX') {   // 直接出货
+                layer.confirm('确定通知出货？', function () {
+                    $.ajax({
+                        type: 'post',
+                        url: setter.baseUrl + 'sqe/pcborder/saveAllShipmentOrder',
+                        headers: {access_token:layui.data('layuiAdmin').access_token},
+                        data:  JSON.stringify(orderSupplierList),
+                        contentType: "application/json;charset=utf-8",
+                        success: function () {
+                            layer.alert('通知出货成功！',function () {
+                                table.reload('sqeManaPlan_tabPcb');
+                                layer.closeAll();
+                            });
+                        } ,error: function () {
+
+                        }
+                    });
+                });
+            }
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
@@ -234,7 +252,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
         table.render({
             elem: '#sqeManaPlan_tabStencil'
             ,url: setter.baseUrl+'sqe/stencilorder/planTogether/list'
-            ,toolbar: "#ord_sqpManaPlan_tbS"
+            ,toolbar: "#ord_sqpManaPlan_tb"
             ,cellMinWidth: 80
             ,id: "sqeManaPlan_tabStencil"
             ,page: true
@@ -307,6 +325,33 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                     }
                 });
             });
+        } else if (obj.event === 'submitX') {
+            if (data.length<1) {
+                layer.msg('请选择一条数据！');
+            } else {
+                var ids = null;
+                for (var i=0;i<data.length;i++){
+                    if (ids == null){
+                        ids = ids + data[i].id;
+                    } else {
+                        ids = ids + ',' + data[i].id;
+                    }
+                }
+                layer.confirm('直接提交['+ids+']?', function () {
+                    admin.req({
+                        type: 'post',
+                        data: {ids},
+                        url: setter.baseUrl+'sqe/pcborder/batch/submit',
+                        success: function (data) {
+                            if (data.code == '0'){
+                                layer.alert("提交成功！！");
+                                table.reload('sqeManaPlan_tabStencil');
+                                layer.closeAll();
+                            }
+                        }
+                    });
+                })
+            }
         }
     });
     //监听行工具事件＝＝＝＝》stencil订单

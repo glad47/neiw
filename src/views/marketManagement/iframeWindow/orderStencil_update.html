@@ -199,13 +199,6 @@
                 }
             }
 
-            // 监听form表单提交
-            // form.on('submit(*)', function (data) {
-            //    var field = data.field;
-            //
-            //    layer.alert("最终提交的信息为"+data.field);
-            // });
-
             form.on('submit(LAY-stencilorder-update-submit)',function (data) {
                 var field = data.field;
                 field = Object.assign(field,ssObj);
