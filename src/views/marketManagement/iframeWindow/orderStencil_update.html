@@ -199,23 +199,23 @@
                 }
             }
 
-            form.on('submit(LAY-stencilorder-update-submit)',function (data) {
-                var field = data.field;
-                field = Object.assign(field,ssObj);
-                console.log(field);
-                console.log("提交的字段信息："+JSON.stringify(field));
-                admin.req({
-                    type: 'post'
-                    ,url: setter.baseUrl+'market/stencil/audit/update'
-                    ,data: field
-                    ,done: function (res) {
-                        layer.msg('订单信息修改成功');
-                        layui.table.reload('stencil_orderTab');
-                    }
-                });
-                layer.close(index);
-                return false;
-            })
+            // form.on('submit(LAY-stencilorder-update-submit)',function (data) {
+            //     var field = data.field;
+            //     field = Object.assign(field,ssObj);
+            //     console.log(field);
+            //     console.log("提交的字段信息："+JSON.stringify(field));
+            //     admin.req({
+            //         type: 'post'
+            //         ,url: setter.baseUrl+'market/stencil/audit/update'
+            //         ,data: field
+            //         ,done: function (res) {
+            //             layer.msg('订单信息修改成功');
+            //             layui.table.reload('stencil_orderTab');
+            //         }
+            //     });
+            //     layer.close(index);
+            //     return false;
+            // })
 
         });
     };
