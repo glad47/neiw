@@ -46,7 +46,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
             ,{field:'applications', title: '应用', sort: true, hide: true}
             ,{field:'gmtCreate', title: '注册时间', sort: true}
             ,{field:'gmtModified', title: '更新时间', sort: true}
-            ,{width:150, align:'center',align:'center',fixed: 'right',toolbar:'#role-table-operate-barDemo',title:'操作'}
+            ,{width:200, align:'center',align:'center',fixed: 'right',toolbar:'#role-table-operate-barDemo',title:'操作'}
         ]]
         ,page: true
     });
@@ -58,11 +58,17 @@ layui.define(['admin', 'table','element','form'], function(exports){
         if (obj.event === 'edit') {
             admin.popup({
                 title:'编辑客户',
-                area:['40%', '85%'],
+                area:['40%', '100%'],
                 id:'LAY-popup-customer-edit',
                 btn:['提交','取消'],
                 yes:function(index, layero){
                     $("#layuiadmin-app-form-submit").click();
+                },
+                btn3: function() {
+                    $(".edit-cusInfo input").each(function (index) {
+                       $(this).removeAttr("lay-verify");
+                        // $("#layuiadmin-app-form-submit").click();
+                    });
                 },
                 end:function(){},
                 success:function(layero,index){
@@ -155,6 +161,21 @@ layui.define(['admin', 'table','element','form'], function(exports){
                     }
                 });
             });
+        } else if (obj.event === 'conversionCustomer') {    // 转客户
+            admin.popup({
+                type: 1,
+                title: '选择跟单员',
+                btn: ['转换', '取消'],
+                area: ["300px","233px"],
+                yes: function() {
+                    $("*[lay-filter='conversionCustomer-submit']").click();
+                },
+                success: function (layero, index) {
+                    view(this.id).render('/infoManagement/iframeWindow/conversionCustomer', data).done(function () {
+                        form.render();
+                    });
+                }
+            })
         }
     });
 
@@ -168,7 +189,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
                 shadeClose: true,
                 shade: false,
                 maxmin: false, //开启最大化最小化按钮
-                area: ['40%', '85%'],
+                area: ['40%', '100%'],
                 content:'<div class="layui-row" id="customer_edit_info"></div>',
                 btn:['确定','取消'],
                 yes: function(index, layero) {
