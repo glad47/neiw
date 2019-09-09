@@ -120,40 +120,50 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                 orderSupplierList.push({'id':data[i].id,'isInternal':data[i].isInternal,'onlineOid':data[i].onlineOid,'orderId':data[i].orderId,'surplusPcsNumber':data[i].surplusPcsNumber,'orderPcsNumber':data[i].quantityPcs,'donePcsNumber':data[i].donePcsNumber,'currPcsNumber':data[i].currPcsNumber,'orderType':data[i].orderType});
             }
             if(obj.event === 'submit') {     //通知出货
+                var bool  = false;//提交锁
                 layer.confirm('确定通知出货？', function () {
-                    $.ajax({
-                        type: 'post',
-                        url: setter.baseUrl + 'sqe/pcborder/saveShipmentOrderByPt',
-                        headers: {access_token:layui.data('layuiAdmin').access_token},
-                        data:  JSON.stringify(orderSupplierList),
-                        contentType: "application/json;charset=utf-8",
-                        success: function () {
-                            layer.alert('通知出货成功！',function () {
-                                table.reload('sqeManaPlan_tabPcb');
-                                layer.closeAll();
-                            });
-                        } ,error: function () {
-
-                        }
-                    });
+                    if (!bool) {
+                        bool = true;
+                        $.ajax({
+                            type: 'post',
+                            url: setter.baseUrl + 'sqe/pcborder/saveShipmentOrderByPt',
+                            headers: {access_token:layui.data('layuiAdmin').access_token},
+                            data:  JSON.stringify(orderSupplierList),
+                            contentType: "application/json;charset=utf-8",
+                            success: function () {
+                                layer.alert('通知出货成功！',function () {
+                                    table.reload('sqeManaPlan_tabPcb');
+                                    layer.closeAll();
+                                });
+                                bool = false;
+                            } ,error: function () {
+                                bool = false;
+                            }
+                        });
+                    }
                 });
             } else if (obj.event === 'submitX') {   // 直接出货
+                var bool  = false;//提交锁
                 layer.confirm('确定通知出货？', function () {
-                    $.ajax({
-                        type: 'post',
-                        url: setter.baseUrl + 'sqe/pcborder/saveAllShipmentOrder',
-                        headers: {access_token:layui.data('layuiAdmin').access_token},
-                        data:  JSON.stringify(orderSupplierList),
-                        contentType: "application/json;charset=utf-8",
-                        success: function () {
-                            layer.alert('通知出货成功！',function () {
-                                table.reload('sqeManaPlan_tabPcb');
-                                layer.closeAll();
-                            });
-                        } ,error: function () {
-
-                        }
-                    });
+                    if (!bool) {
+                        bool = true;
+                        $.ajax({
+                            type: 'post',
+                            url: setter.baseUrl + 'sqe/pcborder/saveAllShipmentOrder',
+                            headers: {access_token:layui.data('layuiAdmin').access_token},
+                            data:  JSON.stringify(orderSupplierList),
+                            contentType: "application/json;charset=utf-8",
+                            success: function () {
+                                layer.alert('通知出货成功！',function () {
+                                    table.reload('sqeManaPlan_tabPcb');
+                                    layer.closeAll();
+                                });
+                                bool = false;
+                            } ,error: function () {
+                                bool = false;
+                            }
+                        });
+                    }
                 });
             }
         }
@@ -294,6 +304,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
         if(obj.event === 'submit') {     //通知出货
+            var bool  = false;//提交锁
             layer.confirm('确定通知出货', function () {
                 if (data.length == 0) {
                     layer.msg('请选择一条数据！');
@@ -309,21 +320,26 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                     orderSupplierList.push({'id':data[i].id,'isInternal':data[i].isInternal,'onlineOid':data[i].onlineOid,'orderId':data[i].orderId,'surplusPcsNumber':data[i].surplusPcsNumber,'orderPcsNumber':data[i].quantity,'donePcsNumber':data[i].donePcsNumber,'currPcsNumber':data[i].currPcsNumber,'orderType':data[i].orderType});
                 }
                 // supplierOrderIds = jstools.ArrayClearRepeat(supplierOrderIds.split(",")).join(",");     // 字符串转数组去重再转字符串类型  jstools.ArrayCleaRepeat 数组去重扩展
-                 $.ajax({
-                   type: 'post',
-                   url: setter.baseUrl + 'sqe/pcborder/saveShipmentOrderByPt',
-                   headers: {access_token:layui.data('layuiAdmin').access_token},
-                   data:  JSON.stringify(orderSupplierList),
-                   contentType: "application/json;charset=utf-8",
-                    success: function () {
-                        layer.alert('通知出货成功！',function () {
-                            table.reload('sqeManaPlan_tabStencil');
-                            layer.closeAll();
-                        });
-                    } ,error: function () {
-
-                    }
-                });
+                if (!bool) {
+                    bool = true;
+                    $.ajax({
+                       type: 'post',
+                       url: setter.baseUrl + 'sqe/pcborder/saveShipmentOrderByPt',
+                       headers: {access_token:layui.data('layuiAdmin').access_token},
+                       data:  JSON.stringify(orderSupplierList),
+                       contentType: "application/json;charset=utf-8",
+                        success: function () {
+                            layer.alert('通知出货成功！',function () {
+                                table.reload('sqeManaPlan_tabStencil');
+                                layer.closeAll();
+                            });
+                            bool = false;
+                        } ,error: function () {
+                            bool = false;
+                        }
+                    });
+                }
+                 
             });
         } else if (obj.event === 'submitX') {
             if (data.length<1) {
@@ -337,19 +353,25 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                         ids = ids + ',' + data[i].id;
                     }
                 }
+                var bool  = false;//提交锁
                 layer.confirm('直接提交['+ids+']?', function () {
-                    admin.req({
-                        type: 'post',
-                        data: {ids},
-                        url: setter.baseUrl+'sqe/pcborder/batch/submit',
-                        success: function (data) {
-                            if (data.code == '0'){
-                                layer.alert("提交成功！！");
-                                table.reload('sqeManaPlan_tabStencil');
-                                layer.closeAll();
+                    if (!bool) {
+                        bool = true;
+                        admin.req({
+                            type: 'post',
+                            data: {ids},
+                            url: setter.baseUrl+'sqe/pcborder/batch/submit',
+                            success: function (data) {
+                                if (data.code == '0'){
+                                    layer.alert("提交成功！！");
+                                    table.reload('sqeManaPlan_tabStencil');
+                                    layer.closeAll();
+                                }
+                                bool = false;
                             }
-                        }
-                    });
+                        });
+                    }
+                    
                 })
             }
         }
