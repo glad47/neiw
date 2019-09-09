@@ -116,6 +116,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         orderType: 1,  //订单类型（新单/返单/返单有效）
         gerberName: '',
         gerberPath: '',
+        quoteGerberName: '', // 正式资料
+        quoteGerberPath: '', // 正式资料路径
         pcbName: '',     //客户型号
         orderNo: '',    //客户订单编号
         countries: 'Afghanistan',     //国家  默认Afghanistan
@@ -1692,6 +1694,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         pcb_container.productNo = importPcbInfo['productNo'];
         pcb_container.countries = post_data.countrysId = importPcbInfo['countries'];
         pcb_container.postFee = importPcbInfo['postFee'];
+        pcb_container.quoteGerberName = importPcbInfo['quoteGerberName'];
+        pcb_container.quoteGerberPath = importPcbInfo['quoteGerberPath'];
         // 绑定客户id和客户名
         var userId = $("dl[xid='selCustomer']").children(".xm-select-this").attr("lay-value");
         var customerSysName = $("dl[xid='selCustomer'] .xm-select-this").find("span").attr("name");

@@ -182,7 +182,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                     success:function(data){
                         if (data.code == 0 ) {
                             layer.msg("指派成功！");
-                            layer.close(index);
+                            layer.closeAll();
                         }else{
                             layer.msg(data.msg);
                         }
