@@ -147,50 +147,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             admin.popup({
                 title: '指定供应商'
                 ,area: ['912px', '545px']
-                ,btn:['提交', /*'跳过提交',*/'取消']    // 跳过提交先隐藏，功能已经写好了的
+                ,btn:['跳过提交', /*'提交',*/'取消']    // 跳过提交先隐藏，功能已经写好了的
                 ,yes:function(index, layero){
-                    var checkStatus = table.checkStatus('scm_assign_supplier_table'),checkdata = checkStatus.data;
-                    var ids = checkdata.map(function(elem){return elem.id}).join(",");
-                    console.log("ids:"+ids);
-                    var ids_arr = [ids.split(',')];
-                    var same_result = new Array();
-                    var c = dIds_arr.toString();
-                    for (var i = 0; i < ids_arr[0].length; i++) {
-                        if (c.indexOf(ids_arr[0][i].toString()) > -1) {
-                            for (var j = 0; j < dIds_arr.length; j++) {
-                                if (ids_arr[0][i] == parseInt(dIds_arr[j])) {
-                                    same_result.push(parseInt(ids_arr[0][i]));
-                                    break;
-                                }
-                            }
-                        }
-                        for (var s=0;s<same_result.length;s++) {
-                            if (parseInt(ids_arr[0][i]) == same_result[s]) {
-                                ids_arr[0].splice(i,1);
-                            }
-                        }
-                    }
-                    admin.req({
-                    url:setter.baseUrl+"scm/pcborder/assignOrderToSupplier",
-                    type:"POST",
-                    data:{
-                        id: data.id
-                        ,supplierIds: ids_arr[0].toString()
-                        ,isInternal:data.isInternal
-                        ,onlineOid:data.onlineOid
-                    },
-                    success:function(data){
-                        if (data.code == 0 ) {
-                            layer.msg("指派成功！");
-                            layer.closeAll();
-                        }else{
-                            layer.msg(data.msg);
-                        }
-                    }
-                });
-
-                },
-                btn2: function (index, layero) {
                     $("#assignSupplierTbData").click();     // 获取选中的表格数据
                     layer.confirm('确定跳过提交？', function () {
                         var supplierIds = openAssignSupplier_data.map(function(elem){return elem.id}).join(",");
@@ -219,6 +177,47 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                                     });
                                 }
                             });
+                        }
+                    });
+                },
+                btn4: function (index, layero) {    // 注释的隐藏按钮
+                    var checkStatus = table.checkStatus('scm_assign_supplier_table'),checkdata = checkStatus.data;
+                    var ids = checkdata.map(function(elem){return elem.id}).join(",");
+                    console.log("ids:"+ids);
+                    var ids_arr = [ids.split(',')];
+                    var same_result = new Array();
+                    var c = dIds_arr.toString();
+                    for (var i = 0; i < ids_arr[0].length; i++) {
+                        if (c.indexOf(ids_arr[0][i].toString()) > -1) {
+                            for (var j = 0; j < dIds_arr.length; j++) {
+                                if (ids_arr[0][i] == parseInt(dIds_arr[j])) {
+                                    same_result.push(parseInt(ids_arr[0][i]));
+                                    break;
+                                }
+                            }
+                        }
+                        for (var s=0;s<same_result.length;s++) {
+                            if (parseInt(ids_arr[0][i]) == same_result[s]) {
+                                ids_arr[0].splice(i,1);
+                            }
+                        }
+                    }
+                    admin.req({
+                        url:setter.baseUrl+"scm/pcborder/assignOrderToSupplier",
+                        type:"POST",
+                        data:{
+                            id: data.id
+                            ,supplierIds: ids_arr[0].toString()
+                            ,isInternal:data.isInternal
+                            ,onlineOid:data.onlineOid
+                        },
+                        success:function(data){
+                            if (data.code == 0 ) {
+                                layer.msg("指派成功！");
+                                layer.closeAll();
+                            }else{
+                                layer.msg(data.msg);
+                            }
                         }
                     });
                 }
