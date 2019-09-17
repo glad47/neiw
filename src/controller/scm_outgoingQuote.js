@@ -215,7 +215,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                             if (data.code == 0 ) {
                                 layer.msg("指派成功！");
                                 layer.closeAll();
-                            }else{
+                            } else {
                                 layer.msg(data.msg);
                             }
                         }

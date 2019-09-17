@@ -234,7 +234,22 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                 return '工号不能为空！！！';
             }
         },
-    })
+    });
+
+    // 搜索  部门下拉
+    admin.req({
+        type: 'get',
+        url:  layui.setter.baseUrl + 'sys/dept/list',
+        success: function (res) {
+            var $html = "";
+            var _data = res.data;
+            for (var i=0;i<_data.length;i++) {
+                $html += "<option value='"+_data[i].deptName+"'>"+_data[i].deptName+"</option>"
+            }
+            $("select[name='deptName']").append($html);
+            form.render();
+        }
+    });
 
 
     exports('sys_user', {})

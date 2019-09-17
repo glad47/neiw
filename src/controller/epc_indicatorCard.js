@@ -68,13 +68,14 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'gerberName', title: '原始资料', align:'center', width: 254}
                 ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_file'}
                 ,{field:'productionGerberName', title: '生产资料', align:'center', width: 254, templet:'#quote_gerber_file'}
-                ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
+                ,{field:'orderTime', title: 'Order Time', align:'center', width: 165}
                 ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
                 ,{field:'layerNum', title: 'Layer', align:'center', width: 114}
                 ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}
                 ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114}
                 ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
 
+                ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165,hide: true}
                 ,{field:'businessName', title: '跟单员',width: 80,hide: true}
                 ,{field:'isInternal', title: '内部/网上订单',width: 126,hide: true, templet:'#Tabtb-pcb-epc-indicatorCard-isInternal'}
                 ,{field:'userId', title: 'User ID',width: 80,hide: true}
@@ -442,7 +443,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
                 ,{field:'gerberName', title: '原始资料', align:'center', width: 254}
                 ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_fileS'}
-                ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
+                ,{field:'orderTime', title: 'Order Time', align:'center', width: 165}
+                ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165,hide: true}
                 ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
                 ,{field:'layerNum', title: 'Layer', align:'center', width: 114}
                 ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}
