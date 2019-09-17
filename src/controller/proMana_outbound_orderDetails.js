@@ -55,16 +55,16 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field: 'productNo',title: '聚谷型号', minWidth: 141,fixed: 'left'}
-                ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status'}      // 1 ＝ 待报价
-                ,{field: 'gmtModified',title: '出货时间', width: 110, templet:'<a>{{d.gmtModified.substring(0,11)}}</a>'}
-                ,{field: 'invoiceNo',title: '合同号', minWidth: 165}
-                ,{field: 'deliveryDate',title: '交期', templet: '#outboundDDatePCB'}
-                ,{field: 'quantityPcs',title: '订单PCS数'}
-                ,{field: 'finishPcsNumber',title: '已交PCS数', templet: '<div>{{ d.finishPcsNumber || 0 }}</div>'}
-                ,{field: 'courierName',title: '快递公司'}
-                ,{field: 'courierNumber',title: '快递单号'}
-                ,{field: 'pcbName',title: '客户型号', width: 132}
+                ,{field: 'productNo',title: '聚谷型号', minWidth: 141,fixed: 'left', sort: true}
+                ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status', sort: true}      // 1 ＝ 待报价
+                ,{field: 'gmtModified',title: '出货时间', width: 110, templet:'<a>{{d.gmtModified.substring(0,11)}}</a>', sort: true}
+                ,{field: 'invoiceNo',title: '合同号', minWidth: 165, sort: true}
+                ,{field: 'deliveryDate',title: '交期', templet: '#outboundDDatePCB', sort: true}
+                ,{field: 'quantityPcs',title: '订单PCS数', sort: true}
+                ,{field: 'finishPcsNumber',title: '已交PCS数', templet: '<div>{{ d.finishPcsNumber || 0 }}</div>', sort: true}
+                ,{field: 'courierName',title: '快递公司', sort: true}
+                ,{field: 'courierNumber',title: '快递单号', sort: true}
+                ,{field: 'pcbName',title: '客户型号', width: 132, sort: true}
                 ,{fixed: 'right', title:'操作', toolbar: '#proMana_outBoundOD_tbar',width: 230}
             ]]
             ,done: function (res, curr, count) {
@@ -110,16 +110,16 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field: 'productNo',title: '聚谷型号', minWidth: 141,fixed: 'left'}
-                ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status'}      // 1 ＝ 待报价
-                ,{field: 'gmtModified',title: '出货时间', width: 110, templet:'<a>{{d.gmtModified.substring(0,11)}}</a>'}
-                ,{field: 'invoiceNo',title: '合同号', minWidth: 165}
-                ,{field: 'deliveryDate',title: '交期', templet: '#outboundDDateStencil'}
-                ,{field: 'quantity',title: '订单PCS数'}
-                ,{field: 'finishNumber',title: '已交PCS数', templet: '<div>{{ d.finishNumber || 0 }}</div>'}
-                ,{field: 'courierName',title: '快递公司'}
-                ,{field: 'courierNumber',title: '快递单号'}
-                ,{field: 'pcbName',title: '客户型号', width: 132}
+                ,{field: 'productNo',title: '聚谷型号', minWidth: 141,fixed: 'left', sort: true}
+                ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status', sort: true}      // 1 ＝ 待报价
+                ,{field: 'gmtModified',title: '出货时间', width: 110, templet:'<a>{{d.gmtModified.substring(0,11)}}</a>', sort: true}
+                ,{field: 'invoiceNo',title: '合同号', minWidth: 165, sort: true}
+                ,{field: 'deliveryDate',title: '交期', templet: '#outboundDDateStencil', sort: true}
+                ,{field: 'quantity',title: '订单PCS数', sort: true}
+                ,{field: 'finishNumber',title: '已交PCS数', templet: '<div>{{ d.finishNumber || 0 }}</div>', sort: true}
+                ,{field: 'courierName',title: '快递公司', sort: true}
+                ,{field: 'courierNumber',title: '快递单号', sort: true}
+                ,{field: 'pcbName',title: '客户型号', width: 132, sort: true}
                 ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
             ]]
             ,done: function (res, curr, count) {

@@ -33,18 +33,18 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
         }
         ,cols: [[
             {type:'checkbox', fixed: 'left'}
-            ,{field: 'productNo',title: '内部型号', width: 130, fixed: 'left'}      // 1 ＝ 待报价
-            ,{field: 'makeWay',title: '制作方式', width: 89}
-            ,{field: 'type',title: '类型', width: 110}
-            ,{field: 'cost',title: '费用', width: 110}
-            ,{field: 'manufacturers',title: '制造商', width: 200}
-            ,{field: 'productionTime',title: '制作时间', width: 110}
-            ,{field: 'supplier',title: '供应商存放', width: 200}
-            ,{field: 'supplierNo',title: '供应商编号', width: 183}
-            ,{field: 'gmtCreate',title: '创建时间', width: 177}
-            ,{field: 'gmtModified',title: '修改时间', width: 177}
-            ,{field: 'storageTime',title: '存放时间', width: 177}
-            ,{field: 'remark',title: '备注', width: 130}
+            ,{field: 'productNo',title: '内部型号', width: 130, fixed: 'left', sort: true}      // 1 ＝ 待报价
+            ,{field: 'makeWay',title: '制作方式', width: 89, sort: true}
+            ,{field: 'type',title: '类型', width: 110, sort: true}
+            ,{field: 'cost',title: '费用', width: 110, sort: true}
+            ,{field: 'manufacturers',title: '制造商', width: 200, sort: true}
+            ,{field: 'productionTime',title: '制作时间', width: 110, sort: true}
+            ,{field: 'supplier',title: '供应商存放', width: 200, sort: true}
+            ,{field: 'supplierNo',title: '供应商编号', width: 183, sort: true}
+            ,{field: 'gmtCreate',title: '创建时间', width: 177, sort: true}
+            ,{field: 'gmtModified',title: '修改时间', width: 177, sort: true}
+            ,{field: 'storageTime',title: '存放时间', width: 177, sort: true}
+            ,{field: 'remark',title: '备注', width: 130, sort: true}
             ,{field: 'id',title: 'ID', hide: true}
             ,{fixed: 'right', title:'操作', toolbar: '#epcToolMana_tabbar',width: 230}
         ]]

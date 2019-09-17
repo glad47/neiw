@@ -43,13 +43,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
         }
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
-            ,{field:'productNo',fixed: 'left', title: '聚谷编号', align:'center', minWidth: 114}
-            ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-scm-outgoingQuote-status',minWidth: 130}
-            ,{field: '', title:'下载', toolbar: '#pcb-file', align:'center'}
-            ,{field: 'difficultyLevel', title:'难易度', align:'center', templet: '#Tabtb-pcb-scm-outgoingQuote-difficultyLevel'}
+            ,{field:'productNo',fixed: 'left', title: '聚谷编号', align:'center', minWidth: 114, sort: true}
+            ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-scm-outgoingQuote-status',minWidth: 130, sort: true}
+            ,{field: '', title:'下载', toolbar: '#pcb-file', align:'center', sort: true}
+            ,{field: 'difficultyLevel', title:'难易度', align:'center', templet: '#Tabtb-pcb-scm-outgoingQuote-difficultyLevel', sort: true}
             ,{field:'id',title:'ID',align:'center',hide: true}
             ,{field:'quoteGerberName', title: '正式资料', align:'center', minWidth: 254, hide: true}
-            ,{field:'gmtCreate', title: '创建时间', align:'center', minWidth: 165}
+            ,{field:'gmtCreate', title: '创建时间', align:'center', minWidth: 165, sort: true}
             ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114,hide: true}
             ,{field:'layerNum', title: 'Layer', align:'center', width: 114,hide: true}
             ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134,hide: true}
@@ -360,17 +360,17 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             }
         }
         ,cols: [[
-             {field: 'id', title: 'ID', hide: true}
-            ,{field: 'productNo', title: 'Product No', align:'center', width: 134}
-            ,{field: 'status', title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-scm-outgoingQuote-status', minWidth: 130}
-            ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
-            ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
-            ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
-            ,{field: 'totalStencilFee', title: 'TotalStencilFee($)', align:'center', width: 144}
-            ,{field: 'stencilType', title: 'Stencil Type', align:'center', width: 124}
-            ,{field: 'stencilSide', title: 'Stencil Side', align:'center', width: 124}
-            ,{field: 'quantity', title: 'Quantity', align:'center', width: 114}
-            ,{field: 'size', title: 'Size', align:'center', width: 80}
+             {field: 'id', title: 'ID', hide: true, sort: true}
+            ,{field: 'productNo', title: 'Product No', align:'center', width: 134, sort: true}
+            ,{field: 'status', title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-scm-outgoingQuote-status', minWidth: 130, sort: true}
+            ,{field: '', title:'File', templet: '#stencil-file', align:'center', sort: true}
+            ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224, sort: true}
+            ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165, sort: true}
+            ,{field: 'totalStencilFee', title: 'TotalStencilFee($)', align:'center', width: 144, sort: true}
+            ,{field: 'stencilType', title: 'Stencil Type', align:'center', width: 124, sort: true}
+            ,{field: 'stencilSide', title: 'Stencil Side', align:'center', width: 124, sort: true}
+            ,{field: 'quantity', title: 'Quantity', align:'center', width: 114, sort: true}
+            ,{field: 'size', title: 'Size', align:'center', width: 80, sort: true}
             ,{field: 'quoteId', title: 'Quote ID', align:'center', width: 114, hide: true}
             ,{field: 'thickness', title: 'Thickness', align:'center', width: 114, hide: true}
             ,{field: 'existingFiducials', title: 'Existing Fiducials', align:'center', width: 145, hide: true}
@@ -378,9 +378,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             ,{field: 'stencilSizeY', title: 'stencilSizeY', align:'center', width: 124, hide: true}
             ,{field: 'stencilAreaX', title: 'stencilSizeY', align:'center', width: 124, hide: true}
             ,{field: 'stencilAreaY', title: 'stencilSizeY', align:'center', width: 124, hide: true}
-            ,{field: 'userId', title: 'User ID', align:'center', width: 100, hide: true}
+            ,{field: 'userId', title: 'User ID', align:'center', width: 100, hide: true, sort: true}
             ,{field: 'gmtModified', title: 'gmtModified', hide: true, width: 124}
-            ,{field: 'weight', title: 'Weight', align:'center', width: 85}
+            ,{field: 'weight', title: 'Weight', align:'center', width: 85, sort: true}
             ,{field: 'gerberPath', title: 'gerberPath', hide: true, width: 124}
             ,{field: 'note', title: 'Note', align:'center', width: 80, hide: true}
             ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-stencil-scm-outgoingQuote-option', width: 260}

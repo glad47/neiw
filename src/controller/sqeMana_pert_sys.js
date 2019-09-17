@@ -49,9 +49,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field: 'status',title: '状态', width: 110}      // 1 ＝ 待报价
-            ,{field: 'customerNo',title: '客户编号', Width: 110}
-            ,{field: 'productNo',title: 'P/N', minWidth: 219}
+            ,{field: 'status',title: '状态', width: 110, sort: true}      // 1 ＝ 待报价
+            ,{field: 'customerNo',title: '客户编号', Width: 110, sort: true}
+            ,{field: 'productNo',title: 'P/N', minWidth: 219, sort: true}
             // ,{field: 'boardFee',title: '板费', Width: 110}
             // ,{field: 'engineeringFee',title: '工程费', Width: 110}
             // ,{field: 'overworkFee',title: '加急费', Width: 110}

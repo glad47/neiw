@@ -34,16 +34,16 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
         }
         ,cols: [[
             {type:'checkbox', fixed: 'left'}
-            ,{field: 'productNo',title: '产品型号', width: 130, fixed: 'left'}      // 1 ＝ 待报价
-            ,{field: 'productSpecification',title: '产品规格', width: 110}
-            ,{field: 'productSize',title: '产品尺寸', width: 110}
-            ,{field: 'number',title: '数量', width: 200}
-            ,{field: 'unitPrice',title: '单价', width: 110}
-            ,{field: 'unit',title: '单位', width: 200}
-            ,{field: 'totalPrice',title: '总价', width: 183}
-            ,{field: 'deliveryTime',title: '交期', width: 177}
-            ,{field: 'remark',title: '备注', width: 177}
-            ,{field: 'gmtCreate',title: '创建时间', width: 177}
+            ,{field: 'productNo',title: '产品型号', width: 130, fixed: 'left', sort: true}      // 1 ＝ 待报价
+            ,{field: 'productSpecification',title: '产品规格', width: 110, sort: true}
+            ,{field: 'productSize',title: '产品尺寸', width: 110, sort: true}
+            ,{field: 'number',title: '数量', width: 200, sort: true}
+            ,{field: 'unitPrice',title: '单价', width: 110, sort: true}
+            ,{field: 'unit',title: '单位', width: 200, sort: true}
+            ,{field: 'totalPrice',title: '总价', width: 183, sort: true}
+            ,{field: 'deliveryTime',title: '交期', width: 177, sort: true}
+            ,{field: 'remark',title: '备注', width: 177, sort: true}
+            ,{field: 'gmtCreate',title: '创建时间', width: 177, sort: true}
             ,{fixed: 'right', title:'操作', toolbar: '#scm_material_purchasing_tab_tabbar',width: 210}
         ]]
         ,done: function (res, curr, count) {
@@ -184,16 +184,16 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
         }
         ,cols: [[
             {type:'checkbox', fixed: 'left'}
-            ,{field: 'productNo',title: '产品型号', width: 130, fixed: 'left'}      // 1 ＝ 待报价
-            ,{field: 'productSpecification',title: '产品规格', width: 110}
-            ,{field: 'productSize',title: '产品尺寸', width: 110}
-            ,{field: 'number',title: '数量', width: 200}
-            ,{field: 'unitPrice',title: '单价', width: 110}
-            ,{field: 'unit',title: '单位', width: 200}
-            ,{field: 'totalPrice',title: '总价', width: 183}
-            ,{field: 'deliveryTime',title: '交期', width: 177}
-            ,{field: 'remark',title: '备注', width: 177}
-            ,{field: 'gmtCreate',title: '创建时间', width: 177}
+            ,{field: 'productNo',title: '产品型号', width: 130, fixed: 'left', sort: true}      // 1 ＝ 待报价
+            ,{field: 'productSpecification',title: '产品规格', width: 110, sort: true}
+            ,{field: 'productSize',title: '产品尺寸', width: 110, sort: true}
+            ,{field: 'number',title: '数量', width: 200, sort: true}
+            ,{field: 'unitPrice',title: '单价', width: 110, sort: true}
+            ,{field: 'unit',title: '单位', width: 200, sort: true}
+            ,{field: 'totalPrice',title: '总价', width: 183, sort: true}
+            ,{field: 'deliveryTime',title: '交期', width: 177, sort: true}
+            ,{field: 'remark',title: '备注', width: 177, sort: true}
+            ,{field: 'gmtCreate',title: '创建时间', width: 177, sort: true}
             ,{fixed: 'right', title:'操作', toolbar: '#scm_purchase_contract_tab_tabbar',width: 210}
         ]]
         ,done: function (res, curr, count) {

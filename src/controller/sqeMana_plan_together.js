@@ -81,20 +81,20 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
             }
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left'}
-                ,{field: 'status',title: '状态',templet: '#planStatus', width: 110}      // 1 ＝ 待报价
-                ,{field: 'supplierNo', title: '供应商编号', width: 117}
-                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-                ,{field: '',title: '当前工序', width: 160,templet: '#currentProcess'}
-                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt'}
-                ,{field: 'gmtModified',title: '更新时间', width: 177}
-                ,{field: 'currPcsNumber', title: '此次数量(PCS)', width: 134}
-                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-                ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
-                ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
-                ,{field: '',title: '进度', width: 110}
-                ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
-                ,{field: 'gmtCreate',title: '签约日期', minWidth: 172}
+                ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left', sort: true}
+                ,{field: 'status',title: '状态',templet: '#planStatus', width: 110, sort: true}      // 1 ＝ 待报价
+                ,{field: 'supplierNo', title: '供应商编号', width: 117, sort: true}
+                ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
+                ,{field: '',title: '当前工序', width: 160,templet: '#currentProcess', sort: true}
+                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt', sort: true}
+                ,{field: 'gmtModified',title: '更新时间', width: 177, sort: true}
+                ,{field: 'currPcsNumber', title: '此次数量(PCS)', width: 134, sort: true}
+                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
+                ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134, sort: true}
+                ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134, sort: true}
+                ,{field: '',title: '进度', width: 110, sort: true}
+                ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171, sort: true}
+                ,{field: 'gmtCreate',title: '签约日期', minWidth: 172, sort: true}
                 // ,{field: 'gerberName',title: '文件名'}
                 // ,{field: 'pcbType',title: 'PCB类型'}
                 ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',minWidth: 160}
@@ -275,19 +275,19 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left'}
-                ,{field: 'status',title: '状态',templet: '#planStatusS', width: 110}      // 1 ＝ 待报价
-                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-                ,{field: 'supplierNo', title: '供应商编号', width: 117}
-                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDtS'}
-                ,{field: 'gmtModified',title: '更新时间', width: 177}
-                ,{field: 'quantity', title: '订单数量(PCS)', width: 134}
-                ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134}
-                ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134}
-                ,{field: '',title: '当前工序', width: 160,templet: '#currentProcess'}
-                ,{field: '',title: '进度', width: 110}
-                ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171}
-                ,{field: 'gmtCreate',title: '签约日期', minWidth: 172}
+                ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left', sort: true}
+                ,{field: 'status',title: '状态',templet: '#planStatusS', width: 110, sort: true}      // 1 ＝ 待报价
+                ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
+                ,{field: 'supplierNo', title: '供应商编号', width: 117, sort: true}
+                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDtS', sort: true}
+                ,{field: 'gmtModified',title: '更新时间', width: 177, sort: true}
+                ,{field: 'quantity', title: '订单数量(PCS)', width: 134, sort: true}
+                ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134, sort: true}
+                ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134, sort: true}
+                ,{field: '',title: '当前工序', width: 160,templet: '#currentProcess', sort: true}
+                ,{field: '',title: '进度', width: 110, sort: true}
+                ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171, sort: true}
+                ,{field: 'gmtCreate',title: '签约日期', minWidth: 172, sort: true}
                 // ,{field: 'gerberName',title: '文件名'}
                 // ,{field: 'pcbType',title: 'PCB类型'}
                 ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbarS',minWidth: 160}

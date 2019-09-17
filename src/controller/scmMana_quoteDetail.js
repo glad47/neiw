@@ -49,20 +49,20 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field:'productNo', title: '内部型号', align:'center', width: 114,fixed: 'left'}
-                ,{field: 'supplierNo', title: '供应商编号', width: 124}
-                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-                ,{field: 'unitPrice', title: '单价', width: 96}
-                ,{field: 'engineeringFee', title: '工程费', width: 96}
-                ,{field: 'testCostFee', title: '飞针费', width: 96}
-                ,{field: 'testCostFee', title: '测试架费', width: 96}
-                ,{field: 'toolingFee', title: '模具', width: 96}
-                ,{field: 'totalFee', title: '合计', width: 96}
-                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172}
-                ,{field: 'pcbName', title: '聚谷物料号', width: 144}
-                ,{field: 'gmtCreate',title: '报价时间', width: 166}
-                ,{field: 'remark', title: '报价备注', width: 168}
+                ,{field:'productNo', title: '内部型号', align:'center', width: 114,fixed: 'left', sort: true}
+                ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
+                ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
+                ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
+                ,{field: 'unitPrice', title: '单价', width: 96, sort: true}
+                ,{field: 'engineeringFee', title: '工程费', width: 96, sort: true}
+                ,{field: 'testCostFee', title: '飞针费', width: 96, sort: true}
+                ,{field: 'testCostFee', title: '测试架费', width: 96, sort: true}
+                ,{field: 'toolingFee', title: '模具', width: 96, sort: true}
+                ,{field: 'totalFee', title: '合计', width: 96, sort: true}
+                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172, sort: true}
+                ,{field: 'pcbName', title: '聚谷物料号', width: 144, sort: true}
+                ,{field: 'gmtCreate',title: '报价时间', width: 166, sort: true}
+                ,{field: 'remark', title: '报价备注', width: 168, sort: true}
                 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
                 ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115, hide: true}      // 1 ＝ 待报价
                 ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
@@ -297,16 +297,16 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field:'productNo', title: '内部型号', align:'center', width: 114,fixed: 'left'}
-                ,{field: 'supplierNo', title: '供应商编号', width: 124}
-                ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-                ,{field: 'quantity', title: '订单数量(PCS)', width: 134}
-                ,{field: 'unitPrice', title: '单价', width: 96}
-                ,{field: 'totalFee', title: '合计', width: 96}
-                ,{field: 'remark', title: '报价备注', width: 168}
-                ,{field: 'pcbName', title: '聚谷物料号', width: 144}
-                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172}
-                ,{field: 'gmtCreate',title: '报价时间', width: 166}
+                ,{field:'productNo', title: '内部型号', align:'center', width: 114,fixed: 'left', sort: true}
+                ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
+                ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
+                ,{field: 'quantity', title: '订单数量(PCS)', width: 134, sort: true}
+                ,{field: 'unitPrice', title: '单价', width: 96, sort: true}
+                ,{field: 'totalFee', title: '合计', width: 96, sort: true}
+                ,{field: 'remark', title: '报价备注', width: 168, sort: true}
+                ,{field: 'pcbName', title: '聚谷物料号', width: 144, sort: true}
+                ,{field: 'supplierQuoteNo',title: '报价单号', width: 172, sort: true}
+                ,{field: 'gmtCreate',title: '报价时间', width: 166, sort: true}
                 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
                 ,{field: 'status',title: '状态',templet: '#scmManaquo_status',width: 115, hide: true}      // 1 ＝ 待报价
                 ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
