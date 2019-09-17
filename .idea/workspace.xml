@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="外发报价隐藏提交按钮">
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="部门下拉不显示bug解决">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/epc_indicatorCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/epc_indicatorCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/sys_user.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/sys_user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/views/infoManagement/user_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/infoManagement/user_info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/scm_outgoingQuote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/scm_outgoingQuote.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/sys_user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/sys_user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/infoManagement/user_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/infoManagement/user_info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/quote.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,35 +16,34 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="quote.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="249" column="53" selection-start-line="249" selection-start-column="53" selection-end-line="249" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Indicator_card.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
-              <caret line="266" column="32" selection-start-line="266" selection-start-column="15" selection-end-line="266" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="epc_indicatorCard.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/controller/epc_indicatorCard.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="82" column="90" lean-forward="true" selection-start-line="82" selection-start-column="90" selection-end-line="82" selection-end-column="90" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="459">
+                  <caret line="246" column="31" selection-start-line="246" selection-start-column="31" selection-end-line="246" selection-end-column="31" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="quote.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="374">
+                  <caret line="235" column="7" selection-start-line="235" selection-start-column="7" selection-end-line="235" selection-end-column="7" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -64,9 +57,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>LAY-stencilorder-update-submit</find>
-      <find>weight</find>
-      <find>GetRequertParams</find>
       <find>independents</find>
       <find>extend</find>
       <find>提交</find>
@@ -94,6 +84,9 @@
       <find>/sys/supplier/info</find>
       <find>是否含税</find>
       <find>Create T</find>
+      <find>boardFee</find>
+      <find>mPrice</find>
+      <find>quoteUnitPrice</find>
     </findStrings>
     <replaceStrings>
       <replace>iqcMana_pertSys</replace>
@@ -192,12 +185,12 @@
         <option value="$PROJECT_DIR$/src/controller/sys_coustomer.js" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/conversionCustomer.html" />
         <option value="$PROJECT_DIR$/src/views/scmManagement/quote_detail.html" />
-        <option value="$PROJECT_DIR$/src/controller/quote.js" />
         <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" />
         <option value="$PROJECT_DIR$/src/controller/scm_outgoingQuote.js" />
         <option value="$PROJECT_DIR$/src/views/infoManagement/user_info.html" />
         <option value="$PROJECT_DIR$/src/controller/sys_user.js" />
         <option value="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" />
+        <option value="$PROJECT_DIR$/src/controller/quote.js" />
       </list>
     </option>
   </component>
@@ -215,9 +208,9 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="51" />
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="277" />
+    <option name="y" value="50" />
     <option name="width" value="1867" />
     <option name="height" value="1057" />
   </component>
@@ -256,6 +249,117 @@
       <recent name="$PROJECT_DIR$/src/controller" />
       <recent name="$PROJECT_DIR$/src/views/marketManagement" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/dist/views/epcManagement/Indicator_card.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -570,14 +674,7 @@
       <workItem from="1568269129036" duration="1970000" />
       <workItem from="1568596557815" duration="303000" />
       <workItem from="1568615024877" duration="1519000" />
-      <workItem from="1568705779600" duration="1057000" />
-    </task>
-    <task id="LOCAL-00328" summary="内部报价 平米计算bug">
-      <created>1563588101607</created>
-      <option name="number" value="00328" />
-      <option name="presentableId" value="LOCAL-00328" />
-      <option name="project" value="LOCAL" />
-      <updated>1563588101607</updated>
+      <workItem from="1568705779600" duration="5770000" />
     </task>
     <task id="LOCAL-00329" summary="PCB订单编辑 单价回传、计算">
       <created>1563608723943</created>
@@ -915,11 +1012,18 @@
       <option name="project" value="LOCAL" />
       <updated>1568168032320</updated>
     </task>
-    <option name="localTasksCounter" value="377" />
+    <task id="LOCAL-00377" summary="部门下拉不显示bug解决">
+      <created>1568709616350</created>
+      <option name="number" value="00377" />
+      <option name="presentableId" value="LOCAL-00377" />
+      <option name="project" value="LOCAL" />
+      <updated>1568709616351</updated>
+    </task>
+    <option name="localTasksCounter" value="378" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2643818000" />
+    <option name="totallyTimeSpent" value="2648531000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -931,17 +1035,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="23" width="1867" height="1057" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.14691943" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49349946" weight="0.26145834" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.51026857" side_tool="true" weight="0.38905472" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.5260417" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49078462" weight="0.561194" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.32238805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.48973143" visible="true" weight="0.321875" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.48973143" visible="true" weight="0.32139304" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3989071" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
@@ -951,7 +1056,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49646163" weight="0.5269583" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1016,7 +1120,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="采购合同供应商编号不显示bug解决" />
     <MESSAGE value="责任书条款添加" />
     <MESSAGE value="内部报价，重复订单型号不变" />
     <MESSAGE value="+++1" />
@@ -1041,7 +1144,8 @@
     <MESSAGE value="切换跟单员" />
     <MESSAGE value="更改内容 33" />
     <MESSAGE value="外发报价隐藏提交按钮" />
-    <option name="LAST_COMMIT_MESSAGE" value="外发报价隐藏提交按钮" />
+    <MESSAGE value="部门下拉不显示bug解决" />
+    <option name="LAST_COMMIT_MESSAGE" value="部门下拉不显示bug解决" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
@@ -1170,10 +1274,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
+    <entry file="file://$PROJECT_DIR$/src/controller/epc_indicatorCard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="249" column="53" selection-start-line="249" selection-start-column="53" selection-end-line="249" selection-end-column="53" />
+        <state relative-caret-position="178">
+          <caret line="85" column="97" lean-forward="true" selection-start-line="85" selection-start-column="97" selection-end-line="85" selection-end-column="97" />
         </state>
       </provider>
     </entry>
@@ -1184,10 +1288,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/epc_indicatorCard.js">
+    <entry file="file://$PROJECT_DIR$/src/controller/quote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="82" column="90" lean-forward="true" selection-start-line="82" selection-start-column="90" selection-end-line="82" selection-end-column="90" />
+        <state relative-caret-position="374">
+          <caret line="235" column="7" selection-start-line="235" selection-start-column="7" selection-end-line="235" selection-end-column="7" />
         </state>
       </provider>
     </entry>
