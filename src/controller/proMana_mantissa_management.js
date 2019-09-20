@@ -72,7 +72,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'deliveryNo', title: '交货批次', width: 144, sort: true}
                 ,{field: 'gmtModified', title: '修改时间', sort: true}
                 ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#iqcManaIncau_tabbar',width: 160}
+                ,{fixed: 'right', title:'操作', toolbar: '#proManaMantissaMana_tabbar',width: 160}
             ]]
             ,done: function (res, curr, count) {
 
@@ -145,7 +145,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     table.on('tool(proMana_MantissaMana)', function (obj) {
         var data = obj.data;
         if (obj.event == 'edit'){
-            layer.msg('编辑操作');
             admin.popup({
                 title: '订单协同编辑'
                 ,area: ['434px','448px']

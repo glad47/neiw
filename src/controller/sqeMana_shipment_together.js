@@ -87,17 +87,23 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         } else {
             if(obj.event === 'submit'){
                 var supplierContractNo = null;
+                var orderId = null;
                 for (var i=0;i<data.length;i++){
                     if (supplierContractNo == null){
                         supplierContractNo = data[i].supplierContractNo;
                     } else {
                         supplierContractNo += ',' + data[i].supplierContractNo;
                     }
+                    if (orderId == null){
+                        orderId = data[i].orderId;
+                    } else {
+                        orderId += ',' + data[i].orderId;
+                    }
                 }
                 layer.confirm('确认提交 ['+supplierContractNo+'] ?', function(index){
                     admin.req({
                         type: 'post',
-                        data: {'supplierContractNo':supplierContractNo},
+                        data: {'supplierContractNo':supplierContractNo,"orderId":orderId},
                         url: setter.baseUrl+'sqe/pcborder/submitByOt',
                         success: function (data) {
                             if (data.code == '0'){
