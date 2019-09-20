@@ -49,21 +49,21 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
         ,cols: [[
             {type:'checkbox',fixed: 'left'}
-            ,{field:'productNo',fixed: 'left', title: 'Product No', align:'center', width: 114}
-            ,{field: 'status',title: '状态', width: 110}      // 1 ＝ 待报价
-            ,{field: 'customerNo',title: '客户编号', Width: 110}
-            ,{field: 'productNo',title: 'P/N', minWidth: 219}
-            ,{field: 'boardFee',title: '板费', Width: 110}
-            ,{field: 'engineeringFee',title: '工程费', Width: 110}
-            ,{field: 'overworkFee',title: '加急费', Width: 110}
-            ,{field: 'postFee',title: '邮费', Width: 110}
-            ,{field: 'testCostFee',title: '测试费', Width: 110}
-            ,{field: 'toolingFee',title: '工具费', Width: 110}
-            ,{field: 'unitPrice',title: '单价', Width: 110}
-            ,{field: 'quoteGerberName',title: '文件名', Width: 110, hide: true}
-            ,{field: 'quoteGerberPath',title: '文件路径', Width: 110, hide: true}
-            ,{field: 'id',title: 'ID', hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#orderReviewB_pertSys_tabbar',width: 220}
+            ,{field:'productNo',fixed: 'left', title: 'Product No', align:'center', width: 114, sort: true}
+            ,{field: 'status',title: '状态', width: 110, sort: true}      // 1 ＝ 待报价
+            ,{field: 'customerNo',title: '客户编号', Width: 110, sort: true}
+            ,{field: 'productNo',title: 'P/N', minWidth: 219, sort: true}
+            ,{field: 'boardFee',title: '板费', Width: 110, sort: true}
+            ,{field: 'engineeringFee',title: '工程费', Width: 110, sort: true}
+            ,{field: 'overworkFee',title: '加急费', Width: 110, sort: true}
+            ,{field: 'postFee',title: '邮费', Width: 110, sort: true}
+            ,{field: 'testCostFee',title: '测试费', Width: 110, sort: true}
+            ,{field: 'toolingFee',title: '工具费', Width: 110, sort: true}
+            ,{field: 'unitPrice',title: '单价', Width: 110, sort: true}
+            ,{field: 'quoteGerberName',title: '文件名', Width: 110, hide: true, sort: true}
+            ,{field: 'quoteGerberPath',title: '文件路径', Width: 110, hide: true, sort: true}
+            ,{field: 'id',title: 'ID', hide: true, sort: true}
+            ,{fixed: 'right', title:'操作', toolbar: '#orderReviewB_pertSys_tabbar',width: 220, sort: true}
         ]]
         ,done: function (res, curr, count) {
 

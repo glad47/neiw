@@ -38,18 +38,18 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             }
         }
         ,cols: [[
-            {field:'id', title: 'ID',hide: true,fixed: 'left'}
-            ,{field:'productNo',fixed: 'left', title: '内部型号', align:'center', width: 114}
-            ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-orderReview-status',width: 110}
-            ,{field: '', title:'File', toolbar: '#pcb-file', align:'center'}
-            ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254}
-            ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
-            ,{field:'layerNum', title: 'Layer', align:'center', width: 114}
-            ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}
-            ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114}
-            ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
-            ,{field:'boardFee', title: 'BoardFee', align:'center', width: 114}
-            ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
+            {field:'id', title: 'ID',hide: true,fixed: 'left', sort: true}
+            ,{field:'productNo',fixed: 'left', title: '内部型号', align:'center', width: 114, sort: true}
+            ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-orderReview-status',width: 110, sort: true}
+            ,{field: '', title:'File', toolbar: '#pcb-file', align:'center', sort: true}
+            ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254, sort: true}
+            ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114, sort: true}
+            ,{field:'layerNum', title: 'Layer', align:'center', width: 114, sort: true}
+            ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134, sort: true}
+            ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114, sort: true}
+            ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110, sort: true}
+            ,{field:'boardFee', title: 'BoardFee', align:'center', width: 114, sort: true}
+            ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165, sort: true}
             ,{field:'userId', title: 'User ID',width: 80,hide: true}
             ,{field:'isLock', title: 'Is Lock',width: 80,hide: true}
             ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
@@ -273,17 +273,17 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             access_token: layui.data('layuiAdmin').access_token
         }
         ,cols: [[
-            {field: 'id', title: 'ID', hide: true,fixed: 'left'}
-            ,{field: 'productNo', title: 'Product No', align:'center', width: 134,fixed: 'left'}
-            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-orderReview-status'}
-            ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
-            ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
-            ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
-            ,{field: 'totalStencilFee', title: 'TotalStencilFee($)', align:'center', width: 144}
-            ,{field: 'stencilType', title: 'Stencil Type', align:'center', width: 124}
-            ,{field: 'stencilSide', title: 'Stencil Side', align:'center', width: 124}
-            ,{field: 'quantity', title: 'Quantity', align:'center', width: 114}
-            ,{field: 'size', title: 'Size', align:'center', width: 80}
+            {field: 'id', title: 'ID', hide: true,fixed: 'left', sort: true}
+            ,{field: 'productNo', title: 'Product No', align:'center', width: 134,fixed: 'left', sort: true}
+            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-orderReview-status', sort: true}
+            ,{field: '', title:'File', templet: '#stencil-file', align:'center', sort: true}
+            ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224, sort: true}
+            ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165, sort: true}
+            ,{field: 'totalStencilFee', title: 'TotalStencilFee($)', align:'center', width: 144, sort: true}
+            ,{field: 'stencilType', title: 'Stencil Type', align:'center', width: 124, sort: true}
+            ,{field: 'stencilSide', title: 'Stencil Side', align:'center', width: 124, sort: true}
+            ,{field: 'quantity', title: 'Quantity', align:'center', width: 114, sort: true}
+            ,{field: 'size', title: 'Size', align:'center', width: 80, sort: true}
             ,{field: 'quoteId', title: 'Quote ID', align:'center', width: 114, hide: true}
             ,{field: 'isLock', title: 'Is Lock', align:'center', width: 114, hide: true}
             ,{field: 'thickness', title: 'Thickness', align:'center', width: 114, hide: true}
@@ -445,29 +445,29 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             status: 1,
         }
         ,cols: [[
-            {field: 'id', title: 'ID', hide: true,fixed: 'left'}
-            ,{field: 'productNo', title: 'Product No', align:'center', width: 134,fixed: 'left'}
-            ,{field: 'quoteId', title: 'ID', hide: true}
-            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-orderReview-status'}
-            ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
-            ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
-            ,{field: 'smtPartNum', title: 'SMT PartNum', align:'center', width: 124}
-            ,{field: 'throughHolePartNum', title: 'Through Hole PartNum', align:'center', width: 224}
+            {field: 'id', title: 'ID', hide: true,fixed: 'left', sort: true}
+            ,{field: 'productNo', title: 'Product No', align:'center', width: 134,fixed: 'left', sort: true}
+            ,{field: 'quoteId', title: 'ID', hide: true, sort: true}
+            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-orderReview-status', sort: true}
+            ,{field: '', title:'File', templet: '#stencil-file', align:'center', sort: true}
+            ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224, sort: true}
+            ,{field: 'smtPartNum', title: 'SMT PartNum', align:'center', width: 124, sort: true}
+            ,{field: 'throughHolePartNum', title: 'Through Hole PartNum', align:'center', width: 224, sort: true}
             // ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
-            ,{field: 'assemblySide', title: 'Assembly Side', align:'center', width: 165}
-            ,{field: 'invoiceNo', title: 'Invoice No', align:'center', width: 134}
-            ,{field: 'totalAssemblyFee', title: 'TotalAssemblyFee($)', align:'center', width: 144}
-            ,{field: 'assemblyType', title: 'Assembly Type', align:'center', width: 124}
-            ,{field: 'uniquePartNum', title: 'Unique PartNum', align:'center', width: 124}
-            ,{field: 'quantity', title: 'Quantity', align:'center', width: 114}
+            ,{field: 'assemblySide', title: 'Assembly Side', align:'center', width: 165, sort: true}
+            ,{field: 'invoiceNo', title: 'Invoice No', align:'center', width: 134, sort: true}
+            ,{field: 'totalAssemblyFee', title: 'TotalAssemblyFee($)', align:'center', width: 144, sort: true}
+            ,{field: 'assemblyType', title: 'Assembly Type', align:'center', width: 124, sort: true}
+            ,{field: 'uniquePartNum', title: 'Unique PartNum', align:'center', width: 124, sort: true}
+            ,{field: 'quantity', title: 'Quantity', align:'center', width: 114, sort: true}
             ,{field: 'orderId', title: 'Order ID', align:'center', width: 114, hide: true}
             ,{field: 'orderNo', title: 'Order No', align:'center', width: 114, hide: true}
             ,{field: 'isLock', title: 'Is Lock', align:'center', width: 114, hide: true}
             ,{field: 'userId', title: 'User ID', align:'center', width: 100, hide: true}
-            ,{field: 'gmtModified', title: 'gmtModified',width: 124}
-            ,{field: 'gerberPath', title: 'gerberPath', hide: true, width: 124}
-            ,{field: 'ordertime', title: 'Order Time', width: 124}
-            ,{field: 'remark', title: 'Remark', align:'center', width: 80, hide: true}
+            ,{field: 'gmtModified', title: 'gmtModified',width: 124, sort: true}
+            ,{field: 'gerberPath', title: 'gerberPath', hide: true, width: 124, sort: true}
+            ,{field: 'ordertime', title: 'Order Time', width: 124, sort: true}
+            ,{field: 'remark', title: 'Remark', align:'center', width: 80, hide: true, sort: true}
             ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-smt-market-orderReview-option', width: 260}
         ]]
     });

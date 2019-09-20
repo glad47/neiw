@@ -53,18 +53,18 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
             ,cols: [[
                 {type:'checkbox'}
-                ,{field: 'status',title: '状态', width: 110, templet:'#incoming_detail_pcb_status'}
-                ,{field: 'id',title: 'ID', hide: true}
-                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#incoming_detail_pcb_deliver'}
-                ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117}// 1 ＝ 待报价
-                ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117}
-                ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117}
-                ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133}
-                ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117}
-                ,{field: 'courierCompany', title: '快递公司', width: 124}
-                ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
-                ,{field: 'deliveryNo', title: '交货批次', width: 144}
-                ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122}
+                ,{field: 'status',title: '状态', width: 110, templet:'#incoming_detail_pcb_status', sort: true}
+                ,{field: 'id',title: 'ID', hide: true, sort: true}
+                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#incoming_detail_pcb_deliver', sort: true}
+                ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117, sort: true}// 1 ＝ 待报价
+                ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117, sort: true}
+                ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117, sort: true}
+                ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133, sort: true}
+                ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117, sort: true}
+                ,{field: 'courierCompany', title: '快递公司', width: 124, sort: true}
+                ,{field: 'courierOrderNo', title: '快递订单号', width: 117, sort: true}
+                ,{field: 'deliveryNo', title: '交货批次', width: 144, sort: true}
+                ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122, sort: true}
                 ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
                 ,{field: 'gmtModified', title: 'gmtModified', hide: true}
                 ,{fixed: 'right', title:'操作', toolbar: '#incoming_detail_pcb_tabbar',width: 150}
@@ -167,18 +167,18 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
             ,cols: [[
                 {type:'checkbox'}
-                ,{field: 'status',title: '状态', width: 110, templet:'#incoming_detail_stencil_status'}
-                ,{field: 'id',title: 'ID', hide: true}
-                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#incoming_detail_stencil_deliver'}
-                ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117}// 1 ＝ 待报价
-                ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117}
-                ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117}
-                ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133}
-                ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117}
-                ,{field: 'courierCompany', title: '快递公司', width: 124}
-                ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
-                ,{field: 'deliveryNo', title: '交货批次', width: 144}
-                ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122}
+                ,{field: 'status',title: '状态', width: 110, templet:'#incoming_detail_stencil_status', sort: true}
+                ,{field: 'id',title: 'ID', hide: true, sort: true}
+                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#incoming_detail_stencil_deliver', sort: true}
+                ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117, sort: true}// 1 ＝ 待报价
+                ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117, sort: true}
+                ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117, sort: true}
+                ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133, sort: true}
+                ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117, sort: true}
+                ,{field: 'courierCompany', title: '快递公司', width: 124, sort: true}
+                ,{field: 'courierOrderNo', title: '快递订单号', width: 117, sort: true}
+                ,{field: 'deliveryNo', title: '交货批次', width: 144, sort: true}
+                ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122, sort: true}
                 ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
                 ,{field: 'gmtModified', title: 'gmtModified', hide: true}
                 ,{fixed: 'right', title:'操作', toolbar: '#incoming_detail_stencil_tabbar',width: 150}

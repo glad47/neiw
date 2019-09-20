@@ -225,7 +225,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             $(".up-subbtn").click();    //重新报价
         },1800);
     });
-    $("#boardFee,#mPrice").bind("input propertychange", function (even) {
+    $("#boardFee").bind("input propertychange", function (even) {
         quoteUnitPrice(0);
     });
     $("#quantityPCS").bind("input propertychange", function (even) {
@@ -235,15 +235,16 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         quoteBoardPrice(parseFloat($(this).val()));
     });
     // 计算单价
-    function quoteUnitPrice(data) {
+    function quoteUnitPrice(_d) {
+        console.log("data："+_d)
         var a = parseFloat($("#quantityPCS").val()); // PCS数
         var c = parseFloat($("#areasq").val());     // 面积
         var f = parseFloat($("#boardFee").val());   // 板费
         var unitPrice = parseFloat(f/a).toFixed(3); // 单价
         var mPrice = parseFloat(f/c).toFixed(3);    // 平米价
-        if (data === 0) {
+        if (_d == "0") {
             $("#mPrice").val(mPrice);
-        } else if (data === 1) {
+        } else if (_d == "1") {
             $("#unitPrice").val(unitPrice);
         }
         pcb_container.unitPrice = unitPrice;

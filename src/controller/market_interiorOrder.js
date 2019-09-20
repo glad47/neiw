@@ -58,19 +58,19 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             }
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field: 'productNo', title: '内部型号',width: 130, fixed: 'left'}
-                ,{field:'businessName',title:'跟单员名字',width:100}
-                ,{field:'status', title: '状态', align:'center',templet: '#interiorOrderStatus', width: 117}
-                ,{field:'payLogId', title: '支付情况', align:'center',templet: '#interiorPayLog', width: 117}
-                ,{field: 'orderType',title: '订单类型', templet: '#order_type'}    //1=新单  2=返单    3=返单有改
-                ,{field: '',title: '资料下载', templet: '#interiorOrder_downP', align: 'center', width: 107}    //资料下载
-                ,{field: 'pcbName',title: '客户型号', width: 131}
-                ,{field: 'invoiceNo',title: '合同号', width: 172}
-                ,{field: 'orderNo',title: '客户PO'}
-                ,{field: 'courierName',title: '快递公司',width:100}
-                ,{field: 'courierNo',title: '快递单号',width:150, templet:'#market_interior_courierNo'}
-                ,{field: 'gmtCreate',title: '创建时间', width: 230}
-                ,{field: 'gmtModified',title: '修改时间', width: 230}
+                ,{field: 'productNo', title: '内部型号',width: 130, fixed: 'left', sort: true}
+                ,{field:'businessName',title:'跟单员名字',width:100, sort: true}
+                ,{field:'status', title: '状态', align:'center',templet: '#interiorOrderStatus', width: 117, sort: true}
+                ,{field:'payLogId', title: '支付情况', align:'center',templet: '#interiorPayLog', width: 117, sort: true}
+                ,{field: 'orderType',title: '订单类型', templet: '#order_type', sort: true}    //1=新单  2=返单    3=返单有改
+                ,{field: '',title: '资料下载', templet: '#interiorOrder_downP', align: 'center', width: 107, sort: true}    //资料下载
+                ,{field: 'pcbName',title: '客户型号', width: 131, sort: true}
+                ,{field: 'invoiceNo',title: '合同号', width: 172, sort: true}
+                ,{field: 'orderNo',title: '客户PO', sort: true}
+                ,{field: 'courierName',title: '快递公司',width:100, sort: true}
+                ,{field: 'courierNo',title: '快递单号',width:150, templet:'#market_interior_courierNo', sort: true}
+                ,{field: 'gmtCreate',title: '创建时间', width: 230, sort: true}
+                ,{field: 'gmtModified',title: '修改时间', width: 230, sort: true}
                 // 型号占位
                 ,{field: 'gerberName',title: '文件名',width: 160, hide: true}
                 ,{field: 'pcbType',title: 'PCB类型',width: 130, hide: true}
@@ -498,17 +498,17 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             }
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field: 'productNo', title: '内部型号', width: 130, fixed: 'left'}
-                ,{field:'status', title: '状态', templet: '#interiorOrderStatus', width: 117}
-                ,{field:'payLogId', title: '支付情况', align:'center',templet: '#interiorPayLogS', width: 117}
-                ,{field: 'orderType',title: '订单类型', templet: '#order_type', width: 117}    //1=新单  2=返单    3=返单有改
-                ,{field: '',title: '资料下载', templet: '#interiorOrder_downS', width: 107, align: 'center'}    //资料下载
-                ,{field: 'gerberName',title: '客户型号', width: 131}
-                ,{field: 'invoiceNo',title: '合同号', width: 172}
-                ,{field: 'pcbName',title: 'F/N'}
-                ,{field: 'orderNo',title: '客户PO'}
-                ,{field: 'gmtCreate',title: '创建时间',minWidth: 230}
-                ,{field: 'gmtModified',title: '修改时间',minWidth: 230}
+                ,{field: 'productNo', title: '内部型号', width: 130, fixed: 'left', sort: true}
+                ,{field:'status', title: '状态', templet: '#interiorOrderStatus', width: 117, sort: true}
+                ,{field:'payLogId', title: '支付情况', align:'center',templet: '#interiorPayLogS', width: 117, sort: true}
+                ,{field: 'orderType',title: '订单类型', templet: '#order_type', width: 117, sort: true}    //1=新单  2=返单    3=返单有改
+                ,{field: '',title: '资料下载', templet: '#interiorOrder_downS', width: 107, align: 'center', sort: true}    //资料下载
+                ,{field: 'gerberName',title: '客户型号', width: 131, sort: true}
+                ,{field: 'invoiceNo',title: '合同号', width: 172, sort: true}
+                ,{field: 'pcbName',title: 'F/N', sort: true}
+                ,{field: 'orderNo',title: '客户PO', sort: true}
+                ,{field: 'gmtCreate',title: '创建时间',minWidth: 230, sort: true}
+                ,{field: 'gmtModified',title: '修改时间',minWidth: 230, sort: true}
                 // 型号占位
                 ,{field: 'quoteOrderNo',title: '报价单号',minWidth: 130, hide: true}
                 ,{field: 'pcbType',title: 'PCB类型',minWidth: 130, hide: true}

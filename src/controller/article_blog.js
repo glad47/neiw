@@ -43,18 +43,18 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
         }
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
-            ,{field:'articleName', title: '文章名称', hide: false, align:'center'}
-            ,{field:'articleTime', title: '发布时间', align:'center', width: 176}
-            ,{field:'articleIp', title: '发布ip', align:'center'}
-            ,{field:'articleClick', title: '查看人数', align:'center'}
-            ,{field:'articleLike', title: '点赞数', align:'center'}
-            ,{field:'articleComment', title: '评论数', align:'center'}
-            ,{field:'articleClassify', title: '文章分类', align:'center'}
-            ,{field:'articleType', title: '文章类型', align:'center',templet:'#Tabtb-blog-type'}
-            ,{field:'articleUserName', title: '文章发布用户', align:'center', width: 130}
-            ,{field:'articleStatus', title: '文章状态', align:'center',templet: '#Tabtb-article-management-status'}
+            ,{field:'articleName', title: '文章名称', hide: false, align:'center', sort: true}
+            ,{field:'articleTime', title: '发布时间', align:'center', width: 176, sort: true}
+            ,{field:'articleIp', title: '发布ip', align:'center', sort: true}
+            ,{field:'articleClick', title: '查看人数', align:'center', sort: true}
+            ,{field:'articleLike', title: '点赞数', align:'center', sort: true}
+            ,{field:'articleComment', title: '评论数', align:'center', sort: true}
+            ,{field:'articleClassify', title: '文章分类', align:'center', sort: true}
+            ,{field:'articleType', title: '文章类型', align:'center',templet:'#Tabtb-blog-type', sort: true}
+            ,{field:'articleUserName', title: '文章发布用户', align:'center', width: 130, sort: true}
+            ,{field:'articleStatus', title: '文章状态', align:'center',templet: '#Tabtb-article-management-status', sort: true}
 
-            ,{title: '操作', width: 120, align:'center', fixed: 'right', toolbar: '#Tabtb-article-management-option'}
+            ,{title: '操作', width: 120, align:'center', fixed: 'right', toolbar: '#Tabtb-article-management-option', sort: true}
         ]]
         ,done : function (res, curr, count) {
             //手机端

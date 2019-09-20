@@ -60,21 +60,22 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             }
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                ,{field:'id', title: 'ID',hide: true}
-                ,{field:'productNo',fixed: 'left', title: 'Product No', align:'center', width: 114}
-                ,{field:'businessName',title:'跟单员名字',width:100}
-                ,{field:'orderType', title: 'Order Type', align:'center', width: 109, templet:'#Tabtb-pcb-epc-indicatorCard-orderType'}
-                ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
-                ,{field:'gerberName', title: '原始资料', align:'center', width: 254}
-                ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_file'}
-                ,{field:'productionGerberName', title: '生产资料', align:'center', width: 254, templet:'#quote_gerber_file'}
-                ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
-                ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
-                ,{field:'layerNum', title: 'Layer', align:'center', width: 114}
-                ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}
-                ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114}
-                ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
+                ,{field:'id', title: 'ID',hide: true, sort: true}
+                ,{field:'productNo',fixed: 'left', title: 'Product No', align:'center', width: 114, sort: true}
+                ,{field:'businessName',title:'跟单员名字',width:100, sort: true}
+                ,{field:'orderType', title: 'Order Type', align:'center', width: 109, templet:'#Tabtb-pcb-epc-indicatorCard-orderType', sort: true}
+                ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130, sort: true}
+                ,{field:'gerberName', title: '原始资料', align:'center', width: 254, sort: true}
+                ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_file', sort: true}
+                ,{field:'productionGerberName', title: '生产资料', align:'center', width: 254, templet:'#quote_gerber_file', sort: true}
+                ,{field:'orderTime', title: 'Order Time', align:'center', width: 165, sort: true}
+                ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114, sort: true}
+                ,{field:'layerNum', title: 'Layer', align:'center', width: 114, sort: true}
+                ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134, sort: true}
+                ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114, sort: true}
+                ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110, sort: true}
 
+                ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165,hide: true}
                 ,{field:'businessName', title: '跟单员',width: 80,hide: true}
                 ,{field:'isInternal', title: '内部/网上订单',width: 126,hide: true, templet:'#Tabtb-pcb-epc-indicatorCard-isInternal'}
                 ,{field:'userId', title: 'User ID',width: 80,hide: true}
@@ -436,20 +437,21 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             }
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                ,{field:'id', title: 'ID',hide: true}
-                ,{field:'productNo', fixed: 'left',title: '聚谷型号', align:'center', width: 114}
-                ,{field:'businessName',title:'跟单员名字',width:100}
-                ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130}
-                ,{field:'gerberName', title: '原始资料', align:'center', width: 254}
-                ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_fileS'}
-                ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
-                ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
-                ,{field:'layerNum', title: 'Layer', align:'center', width: 114}
-                ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}
-                ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114}
-                ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
+                ,{field:'id', title: 'ID',hide: true, sort: true}
+                ,{field:'productNo', fixed: 'left',title: '聚谷型号', align:'center', width: 114, sort: true}
+                ,{field:'businessName',title:'跟单员名字',width:100, sort: true}
+                ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130, sort: true}
+                ,{field:'gerberName', title: '原始资料', align:'center', width: 254, sort: true}
+                ,{field:'quoteGerberName', title: '正式资料', align:'center', width: 254, templet:'#quote_gerber_fileS', sort: true}
+                ,{field:'orderTime', title: 'Order Time', align:'center', width: 165, sort: true}
+                ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165,hide: true, sort: true}
+                ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114, sort: true}
+                ,{field:'layerNum', title: 'Layer', align:'center', width: 114, sort: true}
+                ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134, sort: true}
+                ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114, sort: true}
+                ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110, sort: true}
                 ,{field:'businessName', title: '跟单员',width: 80,hide: true}
-                ,{field:'isInternal', title: '内部/网上订单',width: 110,hide: true, templet:'#Tabtb-pcb-epc-indicatorCard-isInternal'}
+                ,{field:'isInternal', title: '内部/网上订单',width: 110,hide: true, templet:'#Tabtb-pcb-epc-indicatorCard-isInternal', sort: true}
                 ,{field:'userId', title: 'User ID',width: 80,hide: true}
                 ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
                 ,{field:'orderType', title: 'Order Type', align:'center', width: 109,hide: true}

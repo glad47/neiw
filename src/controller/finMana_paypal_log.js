@@ -34,18 +34,18 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,cols: [[
             // {type:'checkbox'}
             //{field: 'productNo',title: '内部型号', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
-            {field: 'id', title: 'id', width: 124}
-            ,{field: 'txnId',title: '交易id', width: 180}
-            ,{field: 'businessName',title: '跟单员名', width: 150}
-            ,{field: 'paymentDate',title: '付款时间', width: 210}
-            ,{field: 'payerEmail', title: '付款人email', width: 250}
-            ,{field: 'firstName', title: '付款人姓', width: 117}
-            ,{field: 'lastName', title: '付款人名', width: 144}
-            ,{field: 'currency',title:'币种',width:100}
-            ,{field: 'mcGross', title: '交易金额', width: 144}
-            ,{field: 'paymentFee', title: 'payPal 手续费', width: 144}
-            ,{field: 'totalNet', title: '总净额', width: 144}
-            ,{field: 'custom',title:'绑定信息',width:250}
+            {field: 'id', title: 'id', width: 124, sort: true}
+            ,{field: 'txnId',title: '交易id', width: 180, sort: true}
+            ,{field: 'businessName',title: '跟单员名', width: 150, sort: true}
+            ,{field: 'paymentDate',title: '付款时间', width: 210, sort: true}
+            ,{field: 'payerEmail', title: '付款人email', width: 250, sort: true}
+            ,{field: 'firstName', title: '付款人姓', width: 117, sort: true}
+            ,{field: 'lastName', title: '付款人名', width: 144, sort: true}
+            ,{field: 'currency',title:'币种',width:100, sort: true}
+            ,{field: 'mcGross', title: '交易金额', width: 144, sort: true}
+            ,{field: 'paymentFee', title: 'payPal 手续费', width: 144, sort: true}
+            ,{field: 'totalNet', title: '总净额', width: 144, sort: true}
+            ,{field: 'custom',title:'绑定信息',width:250, sort: true}
             ,{title: '操作', width: 160, align:'center', fixed: 'right', toolbar: '#finManaPaypalLog_tbar'}
         ]]
         ,done: function (res, curr, count) {

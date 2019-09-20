@@ -41,17 +41,17 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
         ,cols: [[
             {type:'checkbox'}
-            ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
-            ,{field: 'gmtCreate',title: '报价时间', width: 166}
-            ,{field: 'reconciliationNo',title: '对账编号', width: 210}
-            ,{field: 'supplierNo', title: '供应商编号', width: 124}
-            ,{field: 'factoryMake', title: '供应商厂编', width: 117}
-            ,{field: 'productNo', title: '聚谷型号', width: 124}
-            ,{field: 'pcbName', title: '聚谷物料号', width: 144}
-            ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
-            ,{field: 'unitPrice', title: '单价', width: 96}
-            ,{field: 'subtotal', title: '合计', width: 96}
-            ,{field: 'remark', title: '订单备注', width: 168}
+            ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>', sort: true}      // 1 ＝ 待报价
+            ,{field: 'gmtCreate',title: '报价时间', width: 166, sort: true}
+            ,{field: 'reconciliationNo',title: '对账编号', width: 210, sort: true}
+            ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
+            ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
+            ,{field: 'productNo', title: '聚谷型号', width: 124, sort: true}
+            ,{field: 'pcbName', title: '聚谷物料号', width: 144, sort: true}
+            ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
+            ,{field: 'unitPrice', title: '单价', width: 96, sort: true}
+            ,{field: 'subtotal', title: '合计', width: 96, sort: true}
+            ,{field: 'remark', title: '订单备注', width: 168, sort: true}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
             ,{fixed: 'right', title:'操作', toolbar: '#finManaSupRe_tbar',width: 150}

@@ -56,16 +56,16 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
             }
             ,cols: [[
                 {type:'checkbox'}
-                ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
-                ,{field: 'gmtCreate',title: '报价时间', width: 168}
-                ,{field: 'supplierNo', title: '供应商编号'}
-                ,{field: 'factoryMake', title: '供应商厂编'}
-                ,{field: 'productNo', title: '聚谷型号'}
-                ,{field: 'pcbName', title: '聚谷物料号'}
-                ,{field: 'quantityPcs', title: '订单数量(PCS)'}
-                ,{field: 'unitPrice', title: '单价'}
-                ,{field: 'totalFee', title: '合计'}
-                ,{field: 'remark', title: '订单备注'}
+                ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>', sort: true}      // 1 ＝ 待报价
+                ,{field: 'gmtCreate',title: '报价时间', width: 168, sort: true}
+                ,{field: 'supplierNo', title: '供应商编号', sort: true}
+                ,{field: 'factoryMake', title: '供应商厂编', sort: true}
+                ,{field: 'productNo', title: '聚谷型号', sort: true}
+                ,{field: 'pcbName', title: '聚谷物料号', sort: true}
+                ,{field: 'quantityPcs', title: '订单数量(PCS)', sort: true}
+                ,{field: 'unitPrice', title: '单价', sort: true}
+                ,{field: 'totalFee', title: '合计', sort: true}
+                ,{field: 'remark', title: '订单备注', sort: true}
                 ,{field: 'engineeringFee', title: '工程费', width: 96, hide: true}
                 ,{field: 'testCostFee', title: '飞针费', width: 96, hide: true}
                 ,{field: 'testCostFee', title: '测试架费', width: 96, hide: true}
@@ -242,16 +242,16 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
             }
             ,cols: [[
                 {type:'checkbox'}
-                ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
-                ,{field: 'gmtCreate',title: '报价时间', width: 168}
-                ,{field: 'supplierNo', title: '供应商编号'}
-                ,{field: 'factoryMake', title: '供应商厂编'}
-                ,{field: 'productNo', title: '聚谷型号'}
-                ,{field: 'pcbName', title: '聚谷物料号'}
-                ,{field: 'quantityPcs', title: '订单数量(PCS)'}
-                ,{field: 'unitPrice', title: '单价'}
-                ,{field: 'totalFee', title: '合计'}
-                ,{field: 'remark', title: '订单备注'}
+                ,{field: 'status',title: '状态',templet: '#pcb', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>', sort: true}      // 1 ＝ 待报价
+                ,{field: 'gmtCreate',title: '报价时间', width: 168, sort: true}
+                ,{field: 'supplierNo', title: '供应商编号', sort: true}
+                ,{field: 'factoryMake', title: '供应商厂编', sort: true}
+                ,{field: 'productNo', title: '聚谷型号', sort: true}
+                ,{field: 'pcbName', title: '聚谷物料号', sort: true}
+                ,{field: 'quantityPcs', title: '订单数量(PCS)', sort: true}
+                ,{field: 'unitPrice', title: '单价', sort: true}
+                ,{field: 'totalFee', title: '合计', sort: true}
+                ,{field: 'remark', title: '订单备注', sort: true}
                 ,{field: 'engineeringFee', title: '工程费', width: 96, hide: true}
                 ,{field: 'testCostFee', title: '飞针费', width: 96, hide: true}
                 ,{field: 'testCostFee', title: '测试架费', width: 96, hide: true}

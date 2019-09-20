@@ -53,22 +53,22 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field: 'productNo',title: '聚谷型号', width: 148, fixed: 'left'}
-                ,{field: 'status',title: '状态', width: 110, templet:'#sqeMan_shipto'}
-                ,{field: 'id',title: 'ID', hide: true}
-                ,{field: 'supplierId',title: '供应商编号', width: 117}
-                ,{field: 'factoryMake',title: '供应商厂编', width: 117}
-                ,{field: 'gmtModified',title: '修改时间', width: 175}
-                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#scmManaShip_deliver'}
-                ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117}// 1 ＝ 待报价
-                ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117}
-                ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117}
-                ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133}
-                ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117}
-                ,{field: 'courierCompany', title: '快递公司', width: 124}
-                ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
-                ,{field: 'deliveryNo', title: '交货批次', width: 144}
-                ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122}
+                ,{field: 'productNo',title: '聚谷型号', width: 148, fixed: 'left', sort: true}
+                ,{field: 'status',title: '状态', width: 110, templet:'#sqeMan_shipto', sort: true}
+                ,{field: 'id',title: 'ID', hide: true, sort: true}
+                ,{field: 'supplierId',title: '供应商编号', width: 117, sort: true}
+                ,{field: 'factoryMake',title: '供应商厂编', width: 117, sort: true}
+                ,{field: 'gmtModified',title: '修改时间', width: 175, sort: true}
+                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#scmManaShip_deliver', sort: true}
+                ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117, sort: true}// 1 ＝ 待报价
+                ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117, sort: true}
+                ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117, sort: true}
+                ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133, sort: true}
+                ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117, sort: true}
+                ,{field: 'courierCompany', title: '快递公司', width: 124, sort: true}
+                ,{field: 'courierOrderNo', title: '快递订单号', width: 117, sort: true}
+                ,{field: 'deliveryNo', title: '交货批次', width: 144, sort: true}
+                ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122, sort: true}
                 ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
                 ,{field: 'gmtModified', title: 'gmtModified', hide: true}
                 ,{fixed: 'right', title:'操作', toolbar: '#scmManaShip_tabbar',width: 150}
@@ -176,22 +176,22 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
             ,cols: [[
                 {type:'checkbox'}
-                ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia'}
-                ,{field: 'id',title: 'ID', hide: true}
-                ,{field: 'gmtModified',title: '修改时间', width: 175}
-                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#scmManaShip_deliverS'}
-                ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117}// 1 ＝ 待报价
-                ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117}
-                ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117}
-                ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133}
-                ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117}
-                ,{field: 'courierCompany', title: '快递公司', width: 124}
-                ,{field: 'courierOrderNo', title: '快递订单号', width: 117}
-                ,{field: 'deliveryNo', title: '交货批次', width: 144}
-                ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122}
-                ,{field: 'gmtCreate', title: 'gmtCreate', hide: true}
-                ,{field: 'gmtModified', title: 'gmtModified', hide: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#scmManaShip_tabbarS',width: 150}
+                ,{field: 'status',title: '状态', width: 110, templet:'#iqcMana_ia', sort: true}
+                ,{field: 'id',title: 'ID', hide: true, sort: true}
+                ,{field: 'gmtModified',title: '修改时间', width: 175, sort: true}
+                ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#scmManaShip_deliverS', sort: true}
+                ,{field: 'orderPcsNumber', title: '订单PCS数', minWidth: 117, sort: true}// 1 ＝ 待报价
+                ,{field: 'donePcsNumber', title: '已提交PCS数', minWidth: 117, sort: true}
+                ,{field: 'surplusPcsNumber', title: '未交PCS数', minWidth: 117, sort: true}
+                ,{field: 'currPcsNumber', title: '当前提交PCS数', minWidth: 133, sort: true}
+                ,{field: 'totalPcsNumber', title: '总PCS数', minWidth: 117, sort: true}
+                ,{field: 'courierCompany', title: '快递公司', width: 124, sort: true}
+                ,{field: 'courierOrderNo', title: '快递订单号', width: 117, sort: true}
+                ,{field: 'deliveryNo', title: '交货批次', width: 144, sort: true}
+                ,{field: 'orderSupplierId', title: '供应商订单ID', minWidth: 122, sort: true}
+                ,{field: 'gmtCreate', title: 'gmtCreate', hide: true, sort: true}
+                ,{field: 'gmtModified', title: 'gmtModified', hide: true, sort: true}
+                ,{fixed: 'right', title:'操作', toolbar: '#scmManaShip_tabbarS',width: 150, sort: true}
             ]]
             ,done: function (res, curr, count) {
 
