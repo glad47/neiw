@@ -53,13 +53,13 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 {field: 'productNo', title: '内部型号', width: 124, sort: true}
                 ,{field: 'gmtCreate',title: '报价时间', width: 166, sort: true}
                 ,{field: 'invoiceNo',title: '合同编号', width: 210, sort: true}
-                ,{field: 'subtotal', title: '客户报价', width: 124, sort: true}
+                ,{field: 'subtotal', title: '客户报价', width: 124, sort: true, templet:'<div>{{ (d.subtotal + d.pcbaSubtotalFee).toFixed(2) }}</div>'}
                 ,{field: 'testCost', title: '测试架', width: 117, sort: true}
                 ,{field: 'modelCost', title: '模具', width: 117, sort: true}
                 ,{field: 'materialCost', title: '物料费   ', width: 117, sort: true}
                 ,{field: 'totalFee', title: '供应商报价', width: 117, sort: true}
                 ,{field: 'profits', title: '利润', width: 144,templet:'<div>{{ (d.subtotal + d.pcbaSubtotalFee - d.totalFee - d.modelCost - d.testCost - d.materialCost).toFixed(2) }}</div>', sort: true}
-                ,{field: 'profitsThan',title:'利润比',width:144, templet:'<div>{{ (((d.subtotal + d.pcbaSubtotalFee - d.totalFee - d.modelCost - d.testCost - d.materialCost)/d.subtotal)*100).toFixed(2) }}%</div>', sort: true}
+                ,{field: 'profitsThan',title:'利润比',width:144, templet:'<div>{{ (((d.subtotal + d.pcbaSubtotalFee - d.totalFee - d.modelCost - d.testCost - d.materialCost)/(d.subtotal+d.pcbaSubtotalFee))*100).toFixed(2) }}%</div>', sort: true}
                 // ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
                 // ,{field: 'unitPrice', title: '单价', width: 96}
                 // ,{field: 'subtotal', title: '合计', width: 96}
