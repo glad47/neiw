@@ -119,7 +119,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
                                 type:"POST",
                                 data:field,
                                 success:function(data){
-                                    layer.alert("订单协同修改成功");
+                                    layer.alert("修改成功！");
                                     // layer.closeAll();
                                     table.reload('sys_dict_listTab');
                                     layer.close(index);   
