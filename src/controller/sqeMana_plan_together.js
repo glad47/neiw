@@ -85,14 +85,14 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                 ,{field: 'status',title: '状态',templet: '#planStatus', width: 110, sort: true}      // 1 ＝ 待报价
                 ,{field: 'supplierNo', title: '供应商编号', width: 117, sort: true}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
-                ,{field: '',title: '当前工序', width: 160,templet: '#currentProcess', sort: true}
+                ,{field: 'currentProcess',title: '当前工序', width: 160,templet: '#currentProcess', sort: true}
                 ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt', sort: true}
                 ,{field: 'gmtModified',title: '更新时间', width: 177, sort: true}
                 ,{field: 'currPcsNumber', title: '此次数量(PCS)', width: 134, sort: true}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
                 ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134, sort: true}
                 ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134, sort: true}
-                ,{field: '',title: '进度', width: 110, sort: true}
+                // ,{field: '',title: '进度', width: 110, sort: true}
                 ,{field: 'supplierContractNo', title: '合同单号', minWidth: 171, sort: true}
                 ,{field: 'gmtCreate',title: '签约日期', minWidth: 172, sort: true}
                 // ,{field: 'gerberName',title: '文件名'}
