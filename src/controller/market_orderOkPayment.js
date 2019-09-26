@@ -217,7 +217,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     admin.req({
                         type: 'post'
                         ,url: setter.baseUrl+'market/quote/okPaymentList/submit'
-                        ,data: {"id":data.id,"contractNos":data.productNo,"isLock":data.isLock,"bid":data.businessId,"onlineSales":data.subtotal,"orderTime":data.orderTime}
+                        ,data: {"id":data.id,"contractNos":data.productNo,"isLock":data.isLock,"bid":data.businessId,"onlineSales":data.subtotal,"orderTime":data.orderTime,"firstStatus":data.firstStatus}
                         ,done: function () {
                             layer.msg('订单［'+data.productNo+'］提交成功！');
                             table.reload('or_Tabpcb_ok_payment');
