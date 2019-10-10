@@ -326,6 +326,29 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
             case 'isAll':
                 layer.msg(checkStatus.isAll ? '全选': '未全选');
                 break;
+            case 'batchDelP':
+                if (checkStatus.data.length < 1) {
+                    layer.msg('请选择一条数据');
+                    return false;
+                }
+                var ids = checkStatus.data.map(function(elem){return elem.id}).join(",");
+                // console.log(ids);
+                layer.confirm('确认批量删除?', function(index){
+                    admin.req({
+                        type: 'post',
+                        data: {ids:ids},
+                        url: setter.baseUrl+'epc/pcborder/batchDelete',
+                        success: function (data) {
+                            if (data.code == '0'){
+                                layer.alert("删除成功！！");
+                                table.reload('iquote_Tabpcb');
+                                layer.close(index);
+                            }
+                        }
+                    });
+                });
+                break;
+
         };
     });
     //监听行工具事件＝＝＝＝》pcb订单
@@ -679,6 +702,28 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
                 break;
             case 'isAll':
                 layer.msg(checkStatus.isAll ? '全选': '未全选');
+                break;
+            case 'batchDelS':
+                if (checkStatus.data.length < 1) {
+                    layer.msg('请选择一条数据');
+                    return false;
+                }
+                var ids = checkStatus.data.map(function(elem){return elem.id}).join(",");
+                // console.log(ids);
+                layer.confirm('确认批量删除?', function(index){
+                    admin.req({
+                        type: 'post',
+                        data: {ids:ids},
+                        url: setter.baseUrl+'epc/stencilorder/batchDelete',
+                        success: function (data) {
+                            if (data.code == '0'){
+                                layer.alert("删除成功！！");
+                                table.reload('iquote_Tabstencil');
+                                layer.close(index);
+                            }
+                        }
+                    });
+                });
                 break;
         };
     });
