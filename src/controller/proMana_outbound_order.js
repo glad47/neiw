@@ -108,6 +108,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
             }
             var newData = new Object();
             newData.shipmentVoList = postData;
+            console.log(newData)
             layer.confirm('确定出货？', function () {
                 $.ajax({
                     type: 'post',
