@@ -120,7 +120,15 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                         table.reload("iqcMana_outBound");
                         layer.closeAll();
                     }
+                });
+                $.ajax({
+                    type: 'post',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(data),
+                    url: setter.imUrl+'sendShippingEmail',
+                    success: function () {}
                 })
+
             });
         } else if (obj.event = 'outerLable') {
             var checkData = checkStatus.data;
@@ -205,6 +213,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                                //监听出货提交
                                form.on('submit(fomrOutboundInfo)', function (data) {
                                    var field = data.field;
+                                   field.orderType = 1;
                                    console.log(field);
                                    admin.req({
                                        url: setter.baseUrl+"iqc/pcborder/saveShippingInfo",
@@ -314,6 +323,14 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                         table.reload("iqcMana_outBoundS");
                         layer.closeAll();
                     }
+                });
+                $.ajax({
+                    type: 'post',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(data),
+                    url: setter.imUrl+'sendShippingEmail',
+                    success: function () {
+                    }
                 })
             });
         } else if (obj.event = 'outerLable') {
@@ -332,7 +349,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
     });
     
     // 钢网行事件
-    table.on('tool()', function (obj) {
+    table.on('toolbar(iqcMana_outBoundS)', function (obj) {
        var data = obj.data;
        if (obj.event == 'search') {
            admin.popup({
@@ -373,6 +390,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                                //监听出货提交
                                form.on('submit(fomrOutboundInfo)', function (data) {
                                    var field = data.field;
+                                   field.orderType = 2;
                                    console.log(field);
                                    admin.req({
                                        url: setter.baseUrl+"iqc/stencilorder/saveShippingInfo",
