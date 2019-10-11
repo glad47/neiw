@@ -242,6 +242,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         var f = parseFloat($("#boardFee").val());   // 板费
         var unitPrice = parseFloat(f/a).toFixed(3); // 单价
         var mPrice = parseFloat(f/c).toFixed(3);    // 平米价
+        console.log("计算单价")
         if (_d == "0") {
             $("#mPrice").val(mPrice);
         } else if (_d == "1") {
