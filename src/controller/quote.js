@@ -1502,12 +1502,21 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         }
     };
 
+    var $progress = $(".customerProgress");
+    var $progressShow = $("button[data-type='lookQuote']");
     var uploadInst = upload.render({
         elem: '#addFile' //绑定元素
         ,url: setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token//上传接口
         ,field: 'file'  //文件上传的字段名
         ,accept: 'file'
         ,exts: 'zip|rar|7z'
+        ,progress: function (n) {
+            $progress.fadeIn();
+            $progress.css({
+               width: n+'%'
+            });
+            $progressShow.text(n + '%')
+        }
         ,before: function (obj) {
             obj.preview(function (index, file, result) {
                 var fileName = file.name;   //文件名
@@ -1523,6 +1532,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         ,done: function(res, index, upload){
             //上传完毕回调
             layer.msg("文件上传成功！");
+            $progress.fadeOut();
+            $progressShow.text("详情");
             var url = res.url;
             var r = /\[(.+?)\]/g;
             var filePatha = url.match(r);
@@ -1530,6 +1541,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             var filePath = filePatha[0].replace(/\[|]/g,'');    //去除前后两端的中括号
             pcb_container.gerberPath = saveSMTStencil.gerberPath = filePath;
             console.log("处理完的路径为："+filePath);
+            layer.closeAll();
         }
         ,error: function(){
             layer.msg("文件上传失败！");

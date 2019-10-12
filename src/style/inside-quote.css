@@ -224,3 +224,10 @@ form.layui-form.rig-price.quote-type.quote-avtive {
 #selCustomer_container .xm-select-parent .xm-form-select .xm-select-dl .xm-cz-group .xm-cz{max-width: 60px;}
 #selCustomer_container .xm-select-parent .xm-select {border-color: #e6e6e6 !important;border: solid 1px;}
 .xm-select-parent .xm-select {border: none;border-bottom: solid 1px silver;}
+
+.customerProgress {
+    position: absolute;
+    background-color: #5fb878;
+    height: 38px;
+    display: none;
+}
