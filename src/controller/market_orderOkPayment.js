@@ -54,7 +54,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'orderType', title: '订单类型', align:'center', width: 109, templet: '#orderOkPaymentOrdertype', sort: true}
             ,{field: '', title:'文件', toolbar: '#pcb-file', align:'center', sort: true}
             ,{field:'gerberName', title: '文件名', align:'center', width: 254, sort: true}
-            ,{field:'courierCompany', title: '快递公司', align:'center', width: 154, sort: true}
+            ,{field:'courierName', title: '快递公司', align:'center', width: 154, sort: true}
             ,{field:'courierNo', title: '快递单号', align:'center', width: 154, templet:'#marker_orderOkPayment_courierNo', sort: true}
             ,{field:'pcbType', title: 'PCB 类型', align:'center', width: 114, sort: true}
             ,{field:'gmtCreate', title: '创建时间', align:'center', width: 165, sort: true}
@@ -300,7 +300,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'payLogId', title: '支付情况', align:'center',templet: '#okPaymentPayLogS', width: 117, sort: true}
             ,{field: '', title:'文件', templet: '#stencil-file', align:'center', sort: true}
             ,{field: 'gerberName', title: '文件名', align:'center', width: 224, sort: true}
-            ,{field:'courierCompany', title: '快递公司', align:'center', width: 154, sort: true}
+            ,{field:'courierName', title: '快递公司', align:'center', width: 154, sort: true}
             ,{field:'courierNumber', title: '快递单号', align:'center', width: 154, sort: true}
             ,{field: 'totalStencilFee', title: 'TotalStencilFee($)', align:'center', width: 144, sort: true}
             ,{field: 'gmtCreate', title: '创建时间', align:'center', width: 165, sort: true}
