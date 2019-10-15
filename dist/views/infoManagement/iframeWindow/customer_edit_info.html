@@ -217,9 +217,9 @@
                       <select name="businessType">
                         <option value="">请选择类型</option>
                         <option value="Manufacturer" {{ d.params.businessType === 'Manufacturer' ? 'selected' : '' }}>Manufacturer</option>
-                        <option value="Trading Company" {{ d.params.businessType === 'Trading Company' ? 'selected' : '' }}>Trading Company</option>
-                        <option value="Solution Provider" {{ d.params.businessType === 'SolutionProvider' ? 'selected' : '' }}>Solution Provider</option>
-                        <option value="Research Institute" {{ d.params.businessType === 'Research Institute' ? 'selected' : '' }}>Research Institute</option>
+                        <option value="TradingCompany" {{ d.params.businessType === 'TradingCompany' ? 'selected' : '' }}>TradingCompany</option>
+                        <option value="SolutionProvider" {{ d.params.businessType === 'SolutionProvider' ? 'selected' : '' }}>SolutionProvider</option>
+                        <option value="ResearchInstitute" {{ d.params.businessType === 'Research Institute' ? 'selected' : '' }}>ResearchInstitute</option>
                         <option value="University" {{ d.params.businessType === 'University' ? 'selected' : '' }}>University</option>
                         <option value="Other" {{ d.params.businessType === 'Other' ? 'selected' : '' }}>Other</option>
                       </select>
@@ -232,18 +232,17 @@
                     <script type="text/html" template>
                       <select name="jobrole">
                         <option value="">请选择角色</option>
-                        <option value="Admin  Clerk  Expeditor" {{ d.params.jobrole === 'Admin  Clerk  Expeditor' ? 'selected' : '' }}>Admin  Clerk  Expeditor</option>
-                        <option value="Buyer  Purchasing" {{ d.params.jobrole === 'Buyer  Purchasing' ? 'selected' : '' }}>Buyer  Purchasing</option>
-                        <option value="Design Engineer - Mechanical  Electrical Focus" {{ d.params.jobrole === 'Design Engineer - Mechanical  Electrical Focus' ? 'selected' : '' }}>Design Engineer - Mechanical
-                         Electrical Focus</option>
-                        <option value="Design Engineer - PCB  Components Focus" {{ d.params.jobrole === 'Design Engineer - PCB Components Focus' ? 'selected' : '' }}>Design Engineer - PCB Components Focus</option>
-                        <option value="Design Engineer - PCB Electrical Focus" {{ d.params.jobrole === 'Design Engineer - PCB Electrical Focus' ? 'selected' : '' }}>Design Engineer - PCB Electrical Focus</option>
-                        <option value="Engineer - Maintenance Repair" {{ d.params.jobrole === 'Engineer - Maintenance  Repair' ? 'selected' : '' }}>Engineer - Maintenance Repair</option>
-                        <option value="Engineer - Production" {{ d.params.jobrole === 'ngineer - Production' ? 'selected' : '' }}>Engineer - Production</option>
-                        <option value="Engineer - Research Development" {{ d.params.jobrole === 'Engineer - Research  Development' ? 'selected' : '' }}>Engineer - Research Development</option>
-                        <option value="Engineer Test" {{ d.params.jobrole === 'Engineer Test' ? 'selected' : '' }}>Engineer Test</option>
-                        <option value="Home  Personal  Hobbyist  Maker" {{ d.params.jobrole === 'Home  Personal  Hobbyist  Maker' ? 'selected' : '' }}>Home  Personal  Hobbyist  Maker</option>
-                        <option value="Professor  Academic Researcher" {{ d.params.jobrole === 'Professor  Academic Researcher' ? 'selected' : '' }}>Professor  Academic Researcher</option>
+                        <option value="AdminClerkExpeditor" {{ d.params.jobrole === 'AdminClerkExpeditor' ? 'selected' : '' }}>AdminClerkExpeditor</option>
+                        <option value="Buyer Purchasing" {{ d.params.jobrole === 'BuyerPurchasing' ? 'selected' : '' }}>BuyerPurchasing</option>
+                        <option value="DesignEngineer-MechanicalElectricalFocus" {{ d.params.jobrole === 'DesignEngineer-MechanicalElectricalFocus' ? 'selected' : '' }}>DesignEngineer-MechanicalElectricalFocus</option>
+                        <option value="DesignEngineer-PCBComponentsFocus" {{ d.params.jobrole === 'DesignEngineer-PCBComponentsFocus' ? 'selected' : '' }}>DesignEngineer-PCBComponentsFocus</option>
+                        <option value="DesignEngineer-PCBElectricalFocus" {{ d.params.jobrole === 'DesignEngineer-PCBElectricalFocus' ? 'selected' : '' }}>DesignEngineer-PCBElectricalFocus</option>
+                        <option value="Engineer-MaintenanceRepair" {{ d.params.jobrole === 'Engineer-MaintenanceRepair' ? 'selected' : '' }}>Engineer-MaintenanceRepair</option>
+                        <option value="Engineer-Production" {{ d.params.jobrole === 'ngineer-Production' ? 'selected' : '' }}>Engineer-Production</option>
+                        <option value="Engineer-ResearchDevelopment" {{ d.params.jobrole === 'Engineer-ResearchDevelopment' ? 'selected' : '' }}>Engineer-ResearchDevelopment</option>
+                        <option value="EngineerTest" {{ d.params.jobrole === 'EngineerTest' ? 'selected' : '' }}>EngineerTest</option>
+                        <option value="HomePersonalHobbyistMaker" {{ d.params.jobrole === 'HomePersonalHobbyistMaker' ? 'selected' : '' }}>HomePersonalHobbyistMaker</option>
+                        <option value="ProfessorAcademicResearcher" {{ d.params.jobrole === 'ProfessorAcademicResearcher' ? 'selected' : '' }}>ProfessorAcademicResearcher</option>
                         <option value="Student" {{ d.params.jobrole === 'Student' ? 'selected' : '' }}>Student</option>    
                         <option value="Technician" {{ d.params.jobrole === 'Technician' ? 'selected' : '' }}>Technician</option>
                         <option value="Other" {{ d.params.jobrole === 'Other' ? 'selected' : '' }}>Other</option>
@@ -261,8 +260,8 @@
                           <select name="applications">
                             <option value="">请选择应用</option>
                             <option value="Audio" {{ d.params.applications === 'Audio' ? 'selected' : ''}}>Audio</option>
-                            <option value="Avionics &amp; Defense" {{ d.params.applications === 'Avionics &amp; Defense' ? 'selected' : ''}}>Avionics &amp; Defense</option>
-                            <option value="Auto &amp; Transportation" {{ d.params.applications === 'Auto &amp; Transportation' ? 'selected' : ''}}>Auto &amp; Transportation</option>
+                            <option value="AvionicsDefense" {{ d.params.applications === 'AvionicsDefense' ? 'selected' : ''}}>AvionicsDefense</option>
+                            <option value="AutoTransportation" {{ d.params.applications === 'AutoTransportation' ? 'selected' : ''}}>AutoTransportation</option>
                             <option value="Broadcast" {{ d.params.applications === 'Broadcast' ? 'selected' : ''}}>Broadcast</option>
                             <option value="Communications" {{ d.params.applications === 'Communications' ? 'selected' : ''}}>Communications</option>
                             <option value="Consumer Electronics" {{ d.params.applications === 'Consumer Electronics' ? 'selected' : ''}}>Consumer Electronics</option>
@@ -272,8 +271,8 @@
                             <option value="Instrumentation" {{ d.params.applications === 'Instrumentation' ? 'selected' : ''}}>Instrumentation</option>
                             <option value="Lighting" {{ d.params.applications === 'Lighting' ? 'selected' : ''}}>Lighting</option>
                             <option value="Medical" {{ d.params.applications === 'Medical' ? 'selected' : ''}}>Medical</option>
-                            <option value="Motor Control" {{ d.params.applications === 'Motor Control' ? 'selected' : ''}}>Motor Control</option>
-                            <option value="Power Management" {{ d.params.applications === 'Power Management' ? 'selected' : ''}}>Power Management</option>
+                            <option value="MotorControl" {{ d.params.applications === 'MotorControl' ? 'selected' : ''}}>MotorControl</option>
+                            <option value="Power Management" {{ d.params.applications === 'PowerManagement' ? 'selected' : ''}}>PowerManagement</option>
                             <option value="Robotics" {{ d.params.applications === 'Robotics' ? 'selected' : ''}}>Robotics</option>
                             <option value="Security" {{ d.params.applications === 'Security' ? 'selected' : ''}}>Security</option>
                             <option value="Other" {{ d.params.applications === 'Other' ? 'selected' : ''}}>Other</option>
