@@ -1384,8 +1384,28 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                 //     orderTypeObj.B = firstQuote_data;
                 //     quote_data.orderType = contrastOrder(orderTypeObj);    // 获取订单类型
                 // }
-                if (tp.totalPric == tp.totalPriced && tp.isQuote == true) {
-                    layer.confirm("你已经添加了相同参数的报价，是否再次添加？", function () {
+                var progress = $("button[data-type='addCustomerFile']").attr("data");
+                if (progress != '100%') {
+                    layer.msg('等待文件上传完毕，当前进度：' + progress);
+                    return false;
+                } else if (progress == '100%') {
+                    if (tp.totalPric == tp.totalPriced && tp.isQuote == true) {
+                        layer.confirm("你已经添加了相同参数的报价，是否再次添加？", function () {
+                            admin.req({
+                                type: 'post',
+                                data: quote_data,
+                                url: setter.baseUrl+"epc/pcborder/save",
+                                success: function (data) {
+                                    $("#orderPN").val(data.pn);
+                                    pcb_container.productNo = data.pn;
+                                    form.render(null,'checkCustomer');
+                                    if (data.code != "500") {
+                                        layer.alert("添加报价成功["+strOrder[quote_data.orderType]+"]");
+                                    }
+                                }
+                            });
+                        });
+                    } else {
                         admin.req({
                             type: 'post',
                             data: quote_data,
@@ -1394,28 +1414,14 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                                 $("#orderPN").val(data.pn);
                                 pcb_container.productNo = data.pn;
                                 form.render(null,'checkCustomer');
-                                if (data.code != "500") {
+                                if (data.code != "500"){
                                     layer.alert("添加报价成功["+strOrder[quote_data.orderType]+"]");
                                 }
                             }
                         });
-                    });
-                } else {
-                    admin.req({
-                        type: 'post',
-                        data: quote_data,
-                        url: setter.baseUrl+"epc/pcborder/save",
-                        success: function (data) {
-                            $("#orderPN").val(data.pn);
-                            pcb_container.productNo = data.pn;
-                            form.render(null,'checkCustomer');
-                            if (data.code != "500"){
-                                layer.alert("添加报价成功["+strOrder[quote_data.orderType]+"]");
-                            }
-                        }
-                    });
-                    tp.totalPric = tp.totalPriced;
-                    tp.isQuote = true;
+                        tp.totalPric = tp.totalPriced;
+                        tp.isQuote = true;
+                    }
                 }
             }
         },
@@ -1515,14 +1521,14 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             $progress.css({
                width: n+'%'
             });
-            $progressShow.text(n + '%')
+            $progressShow.text(n + '%');
+            $("button[data-type='addCustomerFile']").attr("data",n + '%');
         }
         ,before: function (obj) {
             obj.preview(function (index, file, result) {
                 var fileName = file.name;   //文件名
                 pcb_container.gerberName = saveSMTStencil.gerberName = fileName;
                 pcb_container.pcbName = saveSMTStencil.pcbName = jstools.CleanFileSuffix(fileName);
-                console.log("显示的文件名为："+pcb_container.pcbName)
                 if ($("#pcbName").val != null || $("#pcbName").val != ""){
                     $("#pcbName").val(pcb_container.pcbName);
                 }
