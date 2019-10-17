@@ -310,7 +310,7 @@ layui.define(function(exports){
           {name: "八月", value: '08'},
           {name: "九月", value: '09'},
           {name: "十月", value: '10'},
-          {name: "十月", value: '11'},
+          {name: "十一月", value: '11'},
           {name: "十二月", value: '12'}
         ];
         //var legend = [];
@@ -378,7 +378,7 @@ layui.define(function(exports){
       {name: "八月", value: '08'},
       {name: "九月", value: '09'},
       {name: "十月", value: '10'},
-      {name: "十月", value: '11'},
+      {name: "十一月", value: '11'},
       {name: "十二月", value: '12'}
      ];
      var legend = [];

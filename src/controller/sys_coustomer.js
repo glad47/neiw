@@ -33,13 +33,13 @@ layui.define(['admin', 'table','element','form'], function(exports){
             ,{field:'userIp',title:'注册IP',sort:true}
             ,{field:'email', title: '邮箱', sort: true, minWidth: 196}
             ,{field:'skypeId', title: 'Skype', sort: true, hide: true}
-            ,{field:'mobilePhone', title: '电话', sort: true}
+            ,{field:'receiverTelephone', title: '收货电话',minWidth: 120, sort: true}
             ,{field:'googleId', title: 'Google', sort: true, align: 'right', hide: true} //单元格内容水平居中
             ,{field:'facebookId', title: 'Facebook', sort: true, align: 'right', hide: true}
-            ,{field:'companName',title:'公司名',sort:true, align:'right'}
-            ,{field:'address', title: '地址', sort: true, align: 'right'}
-            ,{field:'country', title: '国家', sort: true}
-            ,{field:'city', title: '城市', sort: true}
+            ,{field:'receiverCompany',title:'公司名',sort:true, align:'right'}
+            ,{field:'receiverAddress', title: '收货地址', sort: true, align: 'right'}
+            ,{field:'countryName', title: '收货国家', sort: true}
+            ,{field:'receiverCity', title: '收货城市', sort: true}
             ,{field:'jobrole', title: '工作角色', sort: true, hide: true}
             ,{field:'contact', title: '联系人', sort: true, hide: true}
             ,{field:'businessType', title: '业务类型', sort: true, hide: true}
