@@ -38,7 +38,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             }
         }
         ,cols: [[
-            {field:'id', title: 'ID',hide: true,fixed: 'left', sort: true}
+            {type:'checkbox', fixed: 'left'}
+            ,{field:'id', title: 'ID',hide: true,fixed: 'left', sort: true}
             ,{field:'productNo',fixed: 'left', title: '内部型号', align:'center', width: 114, sort: true}
             ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-orderReview-status',width: 110, sort: true}
             ,{field: '', title:'File', toolbar: '#pcb-file', align:'center', sort: true}

@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin', 'table', 'index','element','form','laydate'], function(exports){
+layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], function(exports){
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -14,10 +14,12 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,setter = layui.setter
         ,element = layui.element;
         var $ = layui.jquery;
+        var jstools = layui.jsTools;
 
     // 全局变量
     var defVal = {
         orderType: 0,   //订单类型
+        canOpenView: false //是否可以打开合同弹出页
     };
     laydate.render({
         elem: '#gmtCreate'
@@ -28,7 +30,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     table.render({
         elem: '#or_Tabpcb_no_payment'
         ,url: setter.baseUrl+'market/quote/noPaymentList'
-        ,toolbar: true
+        ,toolbar: '#noPaymentToolbar'
         ,cellMinWidth: 80
         ,id:"or_Tabpcb_no_payment"
         ,page: true
@@ -39,7 +41,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             }
         }
         ,cols: [[
-            {field:'id', title: 'ID',hide: true}
+             {type:'checkbox', fixed: 'left'}
+            ,{field:'id', title: 'ID',hide: true}
             ,{field:'productNo',fixed: 'left', title: '内部型号', align:'center', width: 114, sort: true}
             ,{field:'status', title: '状态', hide: false, align:'center',templet: '#pcbor_status',width: 150, sort: true}
             ,{field: '', title:'文件名', toolbar: '#pcb-file', align:'center', sort: true}
@@ -220,13 +223,26 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
     });
 
+    // 监听头部工具
+    table.on('toolbar(or_Tabpcb_no_payment)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        if (checkStatus.data.length < 1) {
+            layer.msg('请选择一条数据');
+            return false;
+        }
+        if (obj.event == 'noPaymentToolbar-lookOrder') {
+            openPopup(data, 1);
+        }
+    });
+
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 钢网订单-网上待支付
     table.render({
         elem: '#stencil_orderTab_no_payment'
         ,id: "stencil_orderTab_no_payment"
         ,url: setter.baseUrl+'market/stencil/noPayment/list'
         ,page: true
-        ,toolbar: true
+        ,toolbar: '#noPaymentToolbar'
         ,done: function () {
             $(window).resize();
             $('.layui-table-fixed-r').removeClass('layui-hide');
@@ -242,8 +258,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             access_token: layui.data('layuiAdmin').access_token,
         }
         ,cols: [[
-             {field: 'id', title: 'ID', hide: true, sort: true}
-            ,{field: 'productNo', title: 'Product No', align:'center', width: 134, sort: true}
+             {type:'checkbox', fixed: 'left'}
+            ,{field: 'productNo', title: 'Product No', align:'center', width: 134, sort: true, fixed: 'left'}
+            ,{field: 'id', title: 'ID', hide: true, sort: true}
             ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#stencil-status', sort: true}
             ,{field: '', title:'File', templet: '#stencil-file', align:'center', sort: true}
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224, sort: true}
@@ -393,7 +410,20 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 });
             }
         });
-    })
+    });
+
+    // 监听头部工具
+    table.on('toolbar(stencil_orderTab_no_payment)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        if (checkStatus.data.length < 1) {
+            layer.msg('请选择一条数据');
+            return false;
+        }
+        if (obj.event == 'noPaymentToolbar-lookOrder') {
+            openPopup(data, 2);
+        }
+    });
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－SMT订单-网上待支付
     table.render({
@@ -401,7 +431,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,id: "smt_orderTab_no_payment"
         ,url: setter.baseUrl+'market/assembly/listByStatus'
         ,page: true
-        ,toolbar: true
+        ,toolbar: '#noPaymentToolbar'
         ,done: function () {
             $(window).resize();
             $('.layui-table-fixed-r').removeClass('layui-hide');
@@ -417,8 +447,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             status: 2
         }
         ,cols: [[
-            {field: 'id', title: 'ID', hide: true, sort: true},
-            {field: 'quoteId', title: 'ID', hide: true, sort: true}
+            {type:'checkbox', fixed: 'left'}
+            ,{field: 'id', title: 'ID', hide: true, sort: true}
+            ,{field: 'quoteId', title: 'ID', hide: true, sort: true}
             ,{field: 'productNo', title: 'Product No', align:'center', width: 134, sort: true}
             ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-smt-market-orderReview-status', sort: true}
             ,{field: '', title:'File', templet: '#stencil-file', align:'center', sort: true}
@@ -535,6 +566,130 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             where: field
         });
     });
+
+    // 打开订单详情
+    function openPopup(obj, type) {
+        var tabdata = {data:{}};
+        tabdata.data = obj;
+        tabdata.tabType = defVal.orderType;
+        var productNo;
+        var viewName;
+        var contractType = 2;
+        var contractTotal = 0;
+        $.each(tabdata.data, function (idx, obj) {
+            contractTotal = parseFloat(contractTotal+obj.subtotal);
+            tabdata.total = contractTotal;
+            tabdata.data[idx].totalFee = obj.subtotal;
+            if (type === 2) {
+                viewName = "marketManagement/iframeWindow/quote_contractS";
+                defVal.canOpenView = true;
+            } else if (type === 1) {
+                if (productNo == null || productNo == "") {
+                    productNo = obj.productNo;
+                    viewName = "marketManagement/iframeWindow/quote_contractA";
+                    contractType = 1;
+                    defVal.canOpenView = true;
+                } else if (productNo != null && productNo != obj.productNo) {
+                    contractType = 2;
+                    viewName = "marketManagement/iframeWindow/quote_contractB";
+                    layer.msg("选择了不同型号");
+                    defVal.canOpenView = true;
+                }
+            }
+            if (defVal.customerSn != null && defVal.customerSn != obj.productNo.substring(0,3)) {
+                layer.alert("请选择同一个客户的订单！");
+                defVal.customerSn = null;   //初始化客户编号 如a11
+                defVal.canOpenView = false;
+                return false;
+            }
+        });
+        if (defVal.canOpenView) {
+            // 获取地址，公司名
+            admin.req({
+                type: 'get',
+                url: setter.baseUrl+'sys/consumer/user/info/'+tabdata.data[0].userId,
+                success: function (data) {
+                    tabdata.userName = data.user.userName;
+                    tabdata.companyName = data.user.companName;
+                    tabdata.country = data.user.country;
+                    tabdata.city = data.user.city;
+                    tabdata.address = data.user.address;
+                    tabdata.mobilePhone = data.user.mobilePhone;
+                    tabdata.postcode = data.user.postcode;
+                    tabdata.paymentType = data.user.paymentType;
+                    tabdata.deliveryType = data.user.deliveryType;
+                    tabdata.contact = data.user.contact;
+                    admin.popup({
+                        title: '报价合同'
+                        ,area: ['100%', '100%']
+                        ,maxmin: true
+                        ,btn: ['打印', '取消']
+                        ,yes: function () {
+                            var printId;
+                            if (contractType == "1"){
+                                printId = "quoteContract_AllA";
+                            } else if (contractType == "2"){
+                                printId = "quoteContract_AllB";
+                            }
+                            document.body.innerHTML=document.getElementById(printId).innerHTML;
+                            window.print();
+                            window.location.reload();
+                        }
+                        ,success: function () {
+                            tabdata.htmlType = 1;     //页面标识 0为报价明细合同 主要用于判断头部左侧标题
+                            view(this.id).render(viewName, tabdata).done(function () {
+                                if (contractType === 1){
+                                    // layui.each遍历的数据，td最少为6条，没有数据的显示空白
+                                    var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
+                                    var dataLength = tabdata.data.length;
+                                    var addTrNum;
+                                    if (dataLength < 3){
+                                        addTrNum = 4;
+                                    } else if (dataLength >= 4) {
+                                        addTrNum = 7;
+                                    }
+                                    for (var i=tdSize;i<addTrNum;i++){
+                                        $(".contract-module-three-tab tbody").find("tr").append("<td></td>");
+                                    }
+                                    if (addTrNum == 4){
+                                        for (var i=1;i<addTrNum;i++){
+                                            $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"27.3%"});
+                                        }
+                                    } else {
+                                        for (var i=1;i<addTrNum;i++){
+                                            $(".contract-module-three-tab tbody tr").find("td").eq(i).css({"width":"13.6%"});
+                                        }
+                                    }
+                                }
+                                // 实时时间设置   最新时间显示
+                                var timeArray = [];     // 修改时间
+                                var ctimeArray = [];    // 创建时间
+                                var newEstTime;
+                                if ( obj != null) {
+                                    var nullNum = 0;
+                                    for (var i=0;i< obj.length;i++) {
+                                        timeArray[i] =  obj[i].gmtModified;
+                                        ctimeArray[i] = obj[i].gmtCreate;
+                                        if (timeArray[i] == null) {
+                                            nullNum ++;
+                                        }
+                                    }
+                                    if (nullNum == obj.length) {   // 判断 修改时间数组 是否全为null
+                                        newEstTime = jstools.TimeContrast(ctimeArray);
+                                        console.log(ctimeArray);
+                                    } else {
+                                        newEstTime = jstools.TimeContrast(timeArray);
+                                    }
+                                    $("#contractBotDate").text(newEstTime.substring(0,10));
+                                    $("#topDate").text(newEstTime.substring(0,10));
+                                }
+                            })
+                        }
+                    });
+                }
+            });
+        }
+    }
 
 
     // 手机端，数据太多，这个页面单独写

@@ -184,6 +184,8 @@
                         d.params.data[0].exchangeId = 'CNY'
                         } else if(d.params.data[0].exchangeId == '3') {
                         d.params.data[0].exchangeId = 'EUR'
+                        } else {
+                        d.params.data[0].exchangeId = 'USD'
                         }
                         }}
                         {{ d.params.data[0].exchangeId }}
@@ -198,6 +200,7 @@
                     {{# data = d.params }}
                     {{# } }}
 
+                    {{# var allTotal = 0 }}
                     {{# layui.each(d.params.data, function(index, item){  }}
                     <tr class="tr-orderInfo">
                         <!--客户资料名-->
@@ -226,31 +229,21 @@
                         <td>{{ item.quantity }}</td>
                         <!--单价-->
                         <td>
-                            {{ item.unitPrice }}
+                            {{ item.unitPrice || parseFloat(item.totalStencilFee/item.quantity)}}
                         </td>
                         <!--邮费-->
                         <td>
-                            {{ item.postFee }}
+                            {{ item.postFee || '/' }}
                         </td>
                         <!--总价格-->
                         <td>{{ item.totalStencilFee }}</td>
+                        {{# allTotal += parseFloat(item.totalStencilFee) }}
                     </tr>
                     {{#  }); }}
-                    <!--<tr>-->
-                        <!--<td>remark:</td>-->
-                        <!--<td colspan="3">-->
-                            <!--{{# layui.each(d.params.data, function(index, item){  }}-->
-                            <!--{{ item.remark || ''}}-->
-                            <!--{{#  }); }}-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--Total(USD):-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--{{# var total = (d.params.total).toFixed(2) }}-->
-                            <!--{{ total }}-->
-                        <!--</td>-->
-                    <!--</tr>-->
+                    <tr>
+                        <td colspan="5" style="text-align: right;margin-right: 10px;">Total Price：</td>
+                        <td>{{allTotal}}</td>
+                    </tr>
                     </tbody>
                 </table>
                 <div class="contract-module-remark">

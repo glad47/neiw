@@ -138,8 +138,14 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
             }
             admin.popup({
                 title: '外标签导出EXCEL'
-                ,area: ['100%', '100%']
+                ,area: ['292px', '277px']
                 ,id: 'popOuterLable'
+                ,btn: ['打印', '取消']
+                ,yes: function () {
+                    document.body.innerHTML=document.getElementById("outerLableContainer").innerHTML;
+                    window.print();
+                    window.location.reload();
+                }
                 ,toolbar: true
                 ,page: true
                 ,success: function (layero, index) {

@@ -1,28 +1,76 @@
 <div class="layui-fluid">
     <script type="text/html" template lay-done="layui.data.done(d);">
-    <table class="layui-table" id="outerLableTab" lay-filter="outerLableTab"></table>
+        <div class="outer-lable-container" id="outerLableContainer">
+            <style media="all">
+                .outer-lable-info ul li lable,.outer-lable-top-ul li lable {
+                    width: 4em;
+                    font-size: .758rem;
+                }
+                .outer-lable-info ul li {display: flex;line-height: 1.8rem;}
+                .outer-lable-info ul li .layui-input-inline{width: 80px;}
+                .outer-lable-info ul li .layui-input-inline input{width: 80px;border: none;padding-left: unset;height: 1.4rem;}
+                .outer-lable-info ul,.outer-lable-top-ul {color: black;}
+                .outer-lable-info {display: flex;}
+                .outer-lable-header img{max-width: 40%;padding: 0 0 .2em 0;}
+                .outer-lable-info .outer-lable-QrCode {}
+                .outer-lable-info .outer-lable-QrCode img {width: 50%;object-fit: scale-down;max-height: 83px;}
+                .outer-lable-info .outer-lable-QrCode a {font-size: 0.8em;}
+                @media print {
+                    .outer-lable-info .layui-input-inline input {background-color: unset;}
+                    .outer-lable-info .outer-lable-QrCode img {width: 45px;}
+                }
+            </style>
+            <div class="outer-lable-header">
+                <img src="../../../src/style/res/logoMax-black.png" alt="">
+            </div>
+            <ul class="outer-lable-top-ul">
+                <li>
+                    <lable>P/N:</lable>
+                    <span>{{ d.params[0].pcbName || '' }}</span>
+                </li>
+            </ul>
+            <div class="outer-lable-info">
+                <ul>
+                    <li>
+                        <lable>QTY:</lable>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" value="{{ d.params[0].quantityPcs || '' }}">
+                        </div>
+                    </li>
+                    <li>
+                        <lable>DATE:</lable>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" name="date" id="outerLableData" value="{{new Date().toLocaleDateString()}}">
+                        </div>
+                    </li>
+                    <li>
+                        <lable>I/N:</lable>
+                        <span>{{ d.params[0].productNo || '' }}</span>
+                    </li>
+                </ul>
+                <div class="outer-lable-QrCode">
+                    <img src="http://apis.juhe.cn/qrcode/api?key=c4b8ea2f2d464ec664e439d2b17b3cd8&type=2&fgcolor=000000&w=90&m=5&text={{d.params[0].productNo}}" alt="">
+                    <!--<br>-->
+                    <!--<a>{{ d.params[0].productNo || '' }}</a>-->
+                </div>
+            </div>
+        </div>
+        <div id="qrcode"></div>
     </script>
 </div>
 <script>
     layui.data.done = function(d){
         console.log(d);
         var this_data = d.params;
-        layui.use(['table', 'index', 'form'], function () {
+        layui.use(['table', 'index', 'form', 'laydate'], function () {
             var $ = layui.jquery
                 ,table = layui.table
-                ,form = layui.form;
-            table.render({
-                elem: '#outerLableTab'
-                ,toolbar: true
-                ,title: '外标签'
-                ,cols:[[
-                    {field: 'pcbName', title: 'P/N'}
-                    ,{field: 'quantityPcs', title: 'QTY'}
-                    ,{field: 'productNo', title: '内部型号'}
-                ]]
-                ,data: this_data
+                ,form = layui.form
+                ,laydate = layui.laydate;
+            laydate.render({
+                elem: '#outerLableData'
+                ,value: new Date().toLocaleDateString()
             });
-            console.log(this_data)
         })
     }
 </script>
