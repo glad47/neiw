@@ -231,3 +231,15 @@ form.layui-form.rig-price.quote-type.quote-avtive {
     height: 38px;
     display: none;
 }
+
+/*右侧价格栏fix定位*/
+.rig-all-detail {
+    position: fixed;
+    right: 0;
+    width: 37%;
+}
+@media screen and (max-width: 900px) {
+    .rig-all-detail {
+        width: 100%;
+    }
+}
