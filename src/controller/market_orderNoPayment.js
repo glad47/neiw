@@ -582,6 +582,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             tabdata.data[idx].totalFee = obj.subtotal;
             if (type === 2) {
                 viewName = "marketManagement/iframeWindow/quote_contractS";
+                contractType = 3;
                 defVal.canOpenView = true;
             } else if (type === 1) {
                 if (productNo == null || productNo == "") {
@@ -630,6 +631,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                                 printId = "quoteContract_AllA";
                             } else if (contractType == "2"){
                                 printId = "quoteContract_AllB";
+                            } else if (contractType == "3") {
+                                printId = "quoteContract_AllS";
                             }
                             document.body.innerHTML=document.getElementById(printId).innerHTML;
                             window.print();
