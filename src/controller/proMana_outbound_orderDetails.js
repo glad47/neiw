@@ -22,7 +22,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-otOrderDetail)', function(data){
-        console.log(data.index);
         if (data.index === 0){
             tabRenderPCB();
             _public_val.orderType = 1;       //pcb
@@ -129,5 +128,21 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             }
         });
     }
+    // 监听搜索
+    form.on('submit(outbound_orderDetails_search)', function(data){
+        var field = data.field;
+        var reTab;
+        if (_public_val.orderType === 1) {   // PCB
+            reTab = 'proMana_outBoundOD_tb';
+        } else if (_public_val.orderType === 2) {    //  Stencil
+            reTab = 'proMana_outBoundODS';
+        }
+        table.reload(reTab, {
+            where: field
+        });
+    });
+    $(".outbound-orderDetails-search input").bind("input propertychange", function (even) {
+        $("*[lay-filter='outbound_orderDetails_search']").click();
+    })
     exports('proMana_outbound_orderDetails', {});
 });

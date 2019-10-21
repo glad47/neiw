@@ -1,5 +1,20 @@
 <title>成品管理-出货明细</title>
 <div class="layui-fluid">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto outbound-orderDetails-search">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">聚谷型号：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="outbound_orderDetails_search" style="margin-bottom: 3px;">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     <!--卡片－表格信息-->
     <div class="layui-tab layui-tab-brief" lay-filter="tab-otOrderDetail">
         <ul class="layui-tab-title">
