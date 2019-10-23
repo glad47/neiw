@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form','laydate','requestInterface'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate','requestInterface', 'tools_printLable'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -13,6 +13,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
         // ,laydate = layui.laydate
         ,setter = layui.setter
         ,requestInterface = layui.requestInterface
+        ,tools_printLable = layui.tools_printLable
         ,element = layui.element;
     var $ = layui.jquery;
 
@@ -89,7 +90,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
         var postData = new Array();
-        if(obj.event === 'submit'){     //通知出货
+        if (obj.event === 'submit') {     //通知出货
             // // var id = data.map(function(elem){return elem.id}).join("id:");
             // var id = data.map(function(elem){
             //     // return elem.id;
@@ -131,29 +132,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
 
             });
         } else if (obj.event = 'outerLable') {
-            var checkData = checkStatus.data;
-            if (checkData.length<1) {
-                layer.msg('请选择一条数据');
-                return false;
-            }
-            admin.popup({
-                title: '外标签导出EXCEL'
-                ,area: ['292px', '277px']
-                ,id: 'popOuterLable'
-                ,btn: ['打印', '取消']
-                ,yes: function () {
-                    document.body.innerHTML=document.getElementById("outerLableContainer").innerHTML;
-                    window.print();
-                    window.location.reload();
-                }
-                ,toolbar: true
-                ,page: true
-                ,success: function (layero, index) {
-                    view(this.id).render('productManagement/iframeWindow/outer_lable', checkData).done(function () {
-
-                    });
-                }
-            });
+            tools_printLable.PrintLable(data);
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
@@ -299,7 +278,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
             }
         });
     }
-    
+
     // 钢网工具头事件
     table.on('toolbar(iqcMana_outBoundS)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
@@ -339,23 +318,14 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                     }
                 })
             });
-        } else if (obj.event = 'outerLable') {
-            var checkData = checkStatus.data;
-            admin.popup({
-                title: '外标签导出EXCEL'
-                ,area: ['45%', '70%']
-                ,id: 'popOuterLable'
-                ,success: function (layero, index) {
-                    view(this.id).render('productManagement/iframeWindow/outer_lable', checkData).done(function () {
-                        
-                    });
-                }
-            });
+        } else if (obj.event == 'outerLable') {
+            layer.msg('12333')
+            tools_printLable.PrintLable(data);
         }
     });
-    
+
     // 钢网行事件
-    table.on('toolbar(iqcMana_outBoundS)', function (obj) {
+    table.on('tool(iqcMana_outBoundS)', function (obj) {
        var data = obj.data;
        if (obj.event == 'search') {
            admin.popup({

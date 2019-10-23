@@ -5,12 +5,13 @@
  */
 
 
-layui.define(['admin','table','index','element','form','laydate'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate', 'tools_printLable'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
         ,setter = layui.setter
+        ,tools_printLable = layui.tools_printLable
         ,element = layui.element;
     var $ = layui.jquery;
 
@@ -77,6 +78,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     table.on('toolbar(proMana_outBoundOD)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
+        if (obj.event == 'outLableDetail') {
+            tools_printLable.PrintLable(data);
+        }
     });
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(proMana_outBoundOD)', function (obj) {
@@ -93,7 +97,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         table.render({
             elem: '#proMana_outBoundODS'
             ,url: setter.baseUrl+'iqc/stencilorder/outboundOrderDetails'
-            ,toolbar: "#proMana_outBoundODS_to"
+            ,toolbar: "#proMana_outBoundOD_to"
             ,cellMinWidth: 80
             ,id: "proMana_outBoundODS"
             ,page: true
@@ -141,6 +145,14 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             where: field
         });
     });
+
+    table.on('toolbar(proMana_outBoundODS)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        if (obj.event == 'outLableDetail') {
+            tools_printLable.PrintLable(data);
+        }
+    })
     $(".outbound-orderDetails-search input").bind("input propertychange", function (even) {
         $("*[lay-filter='outbound_orderDetails_search']").click();
     })
