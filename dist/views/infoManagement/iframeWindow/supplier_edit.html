@@ -262,7 +262,7 @@
                     <script type="text/html" template>
                     {{# if(d.params.accessoryName != null){ }}
                     <div>
-                        <a href="{{layui.setter.baseUrl}}sys/oss/download/gerberFileDownload?filePathName={{d.params.accessoryPath}}&fileName={{d.params.accessoryName}}">{{d.params.accessoryName}}点击下载客户附件</a>
+                        <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{d.params.accessoryPath}}&fileName={{d.params.accessoryName}}&access_token={{layui.data('layuiAdmin').access_token}}">{{d.params.accessoryName}}点击下载客户附件</a>
                     </div>
                     <button class="layui-btn layui-btn-sm" id="supplierUpload" type="button" style="margin-top: 15px;">修改客户附件</button>
                     {{# }else{ }}
