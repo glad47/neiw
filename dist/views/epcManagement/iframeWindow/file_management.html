@@ -31,7 +31,7 @@
             <td>
                 {{# if (d.param.isInternal == '1'){ }}
                     <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>
-                {{# } else if(d.param.isInternal == '2')}}
+                {{# } else if(d.param.isInternal == '2'){ }}
                     <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}">下载</a>
                 {{# } }}
             </td>
@@ -40,7 +40,7 @@
         <tr>
             <td>正式资料:</td>
             <td>
-                <div class="cc uploadPercentage{{ d.params.id }}">
+                <div class="cc uploadPercentage{{ d.params.id }}">g
                     <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe63e;</i>
                     上传中....
                     <a>0%</a>
@@ -67,7 +67,7 @@
             <td>
                 {{# if (d.param.isInternal == '1'){ }}
                     <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.quoteGerberPath }}&fileName={{ d.params.quoteGerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>
-                {{# } else if(d.param.isInternal == '2')}}
+                {{# } else if(d.param.isInternal == '2'){ }}
                     <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.quoteGerberPath }}&fileName={{ d.params.quoteGerberName }}">下载</a>
                 {{# } }}
             </td>
@@ -105,7 +105,7 @@
             <td>
                 {{# if (d.param.isInternal == '1'){ }}
                     <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.productionGerberPath }}&fileName={{ d.params.productionGerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>
-                {{# } else if(d.param.isInternal == '2')}}
+                {{# } else if(d.param.isInternal == '2') { }}
                     <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.productionGerberPath }}&fileName={{ d.params.productionGerberName }}">下载</a>
                 {{# } }}
             </td>
