@@ -147,6 +147,25 @@ layui.define(['admin', 'index'],function (exports) {
             });
             console.log("orderType:===>"+orderType);
             return orderType;
+        },
+        // 获取字符串的宽度
+        getStrWidth: function () {
+            var str = arguments[0] ? arguments[0] : '';
+            var fontFamily = arguments[1] ? arguments[1] : ''; //Microsoft YaHei
+            var fontSize = arguments[2] ? arguments[2] : ''; //12px
+            var addDivId = arguments[3] ? arguments[3] : 'labelText';
+            var appendTo = arguments[4] || 'body';
+
+            $(appendTo).append("<div id='" + addDivId + "' style='color:black;line-height:1.2;white-space:nowrap;top:0px;left:0px;position:fixed;display:block;visibility:visible;'>");
+            var add = $('#' + addDivId);
+            add.css({
+                'font-size': fontSize,
+                'font-family': fontFamily
+            }).html(str);
+
+            var ret = {'width': add.width(), 'height': add.height()};
+            add.remove();
+            return ret;
         }
     }
 

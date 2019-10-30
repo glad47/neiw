@@ -2,9 +2,10 @@
  * 用于【订单出货】【出货明细】
  * 打印标签
  */
-layui.define('admin', function (exports) {
+layui.define(['admin', 'jsTools'], function (exports) {
    var $ = layui.jquery,
        admin = layui.admin;
+        jsTools = layui.jsTools;
    var obj = {
        PrintLable: function (data) {
            if (data.length<1) {
@@ -28,7 +29,23 @@ layui.define('admin', function (exports) {
                ,page: true
                ,success: function (layero, index) {
                    view(this.id).render('productManagement/iframeWindow/outer_lable', data).done(function () {
-
+                       setInputWidth( $("input[id='outLableQTY']").val());
+                       $("#outLableQTY").bind("input propertychange", function (even) {
+                           var _val = $("input[id='outLableQTY']").val();
+                           setInputWidth(_val)
+                       });
+                       function setInputWidth(Str) {
+                           var _width = jsTools.getStrWidth(Str).width;
+                           $("input[id='outLableQTY']").css("width",_width+'px');
+                       }
+                       // 来回切换PCS Panel
+                       $(".outerLaberQTYNnit").on("click", function () {
+                           if ($(this).text().indexOf("Panel") > 0) {
+                               $(this).html("&nbsp;PCS");
+                           } else {
+                               $(this).html("&nbsp;Panel");
+                           }
+                       })
                    });
                }
            });

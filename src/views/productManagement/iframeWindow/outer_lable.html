@@ -33,8 +33,9 @@
                 <ul>
                     <li>
                         <lable>QTY:</lable>
-                        <div class="layui-input-inline">
-                            <input type="text" class="layui-input" value="{{ d.params[0].quantityPcs || '' }}">
+                        <div class="layui-input-inline" style="display: inherit;">
+                            <input type="text" class="layui-input" value="{{ d.params[0].quantityPcs || '' }}" style="width: 100%" id="outLableQTY">
+                            <span style="margin-top: -2px;" class="outerLaberQTYNnit">&nbsp;PCS</span>
                         </div>
                     </li>
                     <li>
