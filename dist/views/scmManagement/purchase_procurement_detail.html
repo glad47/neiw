@@ -55,10 +55,14 @@
         {{# var pcbProfessionalTerm = JSON.parse(localStorage.getItem('pcbProfessionalTerm')) }}
 
         {{d.pcbType || ''}},{{d.outerLayerCopper || ''}}
-        {{# if(pcbProfessionalTerm.fieldTranslation.silkScreenTopColor[d.silkScreenTopColor] == 'none'){ }}
-            {{# pcbProfessionalTerm.fieldTranslation.silkScreenTopColor[d.silkScreenTopColor] = '' }}
+
+        {{# if(d.solderMaskTopColor != null && d.solderMaskTopColor != '' && d.solderMaskTopColor != 'none'){ }}
+            {{pcbProfessionalTerm.fieldTranslation.solderMaskTopColor[d.solderMaskTopColor]+'油' || ''}},
         {{# } }}
-        {{pcbProfessionalTerm.fieldTranslation.solderMaskTopColor[d.solderMaskTopColor]+'油' || ''}}{{pcbProfessionalTerm.fieldTranslation.silkScreenTopColor[d.silkScreenTopColor]+'字' || ''}},
+        {{# if(d.silkScreenTopColor != null && d.silkScreenTopColor != '' || && d.silkScreenTopColor != 'none'){ }}
+            {{pcbProfessionalTerm.fieldTranslation.silkScreenTopColor[d.silkScreenTopColor]+'字' || ''}},
+        {{# } }}
+
         {{pcbProfessionalTerm.fieldTranslation.surfaceFinish[d.surfaceFinish]}}{{d.thickness || ''}}
     </script>
     <!--利润-->
