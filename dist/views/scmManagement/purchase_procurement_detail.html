@@ -56,10 +56,10 @@
 
         {{d.pcbType || ''}},{{d.outerLayerCopper || ''}}
 
-        {{# if(d.solderMaskTopColor != null && d.solderMaskTopColor != '' && d.solderMaskTopColor != 'none'){ }}
+        {{# if(d.solderMaskTopColor != null || d.solderMaskTopColor != '' || d.solderMaskTopColor != 'none'){ }}
             {{pcbProfessionalTerm.fieldTranslation.solderMaskTopColor[d.solderMaskTopColor]+'油' || ''}},
         {{# } }}
-        {{# if(d.silkScreenTopColor != null && d.silkScreenTopColor != '' || && d.silkScreenTopColor != 'none'){ }}
+        {{# if(d.silkScreenTopColor != null || d.silkScreenTopColor != '' || d.silkScreenTopColor != 'none'){ }}
             {{pcbProfessionalTerm.fieldTranslation.silkScreenTopColor[d.silkScreenTopColor]+'字' || ''}},
         {{# } }}
 
