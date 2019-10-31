@@ -55,6 +55,9 @@
         {{# var pcbProfessionalTerm = JSON.parse(localStorage.getItem('pcbProfessionalTerm')) }}
 
         {{d.pcbType || ''}},{{d.outerLayerCopper || ''}}
+        {{# if(pcbProfessionalTerm.fieldTranslation.silkScreenTopColor[d.silkScreenTopColor] == 'none'){ }}
+            {{# pcbProfessionalTerm.fieldTranslation.silkScreenTopColor[d.silkScreenTopColor] = '' }}
+        {{# } }}
         {{pcbProfessionalTerm.fieldTranslation.solderMaskTopColor[d.solderMaskTopColor]+'油' || ''}}{{pcbProfessionalTerm.fieldTranslation.silkScreenTopColor[d.silkScreenTopColor]+'字' || ''}},
         {{pcbProfessionalTerm.fieldTranslation.surfaceFinish[d.surfaceFinish]}}{{d.thickness || ''}}
     </script>
@@ -64,7 +67,6 @@
     </script>
     <!--国家-->
     <script type="text/html" id="purchase_countries">
-        {{# d.countries = 101}}
         {{# var pattern = new RegExp("[0-9]+")}}
         {{# if(pattern.test(d.countries)) { }}
             {{# var requestInterface = layui.requestInterface }}
