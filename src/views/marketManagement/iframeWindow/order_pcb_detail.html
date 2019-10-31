@@ -9,6 +9,8 @@
             {{# d.params.orderType = '返单' }}
         {{# }else if(d.params.orderType === 3){ }}
             {{# d.params.orderType = '返单有改' }}
+        {{# } else { }}
+                {{d.params.orderType || ''}}
         {{# }}}
     <div class="printOrderPcb-btnGrop">
         <button class="layui-btn layui-btn-sm printBtn" style="float: right;">打印</button>
