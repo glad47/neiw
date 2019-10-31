@@ -524,7 +524,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         var $thisName = val.name;
         var $thisID = val.value;
         post_data.countrysId = $thisID;
-        pcb_container.countries = post_data.countrysId;     // 国家
+        pcb_container.countries = $thisName;     // 国家
         if (post_data.bordType === 2){
             quoteSMTStencilFuc();
         }

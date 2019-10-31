@@ -1,11 +1,11 @@
 /**
 
- @Name:    品质管理－－［来料检验］
+ @Name:    供应链管理－－［采购明细］
 
  */
 
 
-layui.define(['admin','table','index','element','form','laydate'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate', 'requestInterface'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -47,14 +47,14 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
                 ,{field: 'productNo',title: '内部编号', width: 130, fixed: 'left', templet:'#iqcMana_ia', sort: true}      // 1 ＝ 已指派  2= 已报价
-                ,{field: 'id',title: '客户编号', width: 134, sort: true}
+                ,{field: 'pcbName',title: '客户型号', width: 134, sort: true}
                 ,{field: 'gmtCreate', title: '下单日期', minWidth: 171, sort: true}
                 ,{field: 'currentProcess',title: '进度', width: 110, sort: true}
                 ,{field: 'supplierId', title: '工艺要求', width: 313, sort: true, templet: '#purchase_gyyy'}
-                ,{field: 'factoryMake', title: '尺寸(mm)', width: 117, sort: true, templet: '#purchase_CC'}
+                ,{field: 'factoryMake', title: '尺寸(mm)', width: 197, sort: true, templet: '#purchase_CC'}
                 ,{field: 'quantityPcs', title: '数量(PCS)', width: 134, sort: true}
                 ,{field: 'unitPrice', title: 'K单价(元)', width: 134, sort: true}
-                ,{field: 'totalFee', title: 'K金额(元)', width: 134, sort: true}
+                ,{field: 'subtotal', title: 'K金额(元)', width: 134, sort: true}
                 ,{field: 'supplierId', title: '供应商', width: 134, sort: true}
                 ,{field: 'supplierUnitPrice', title: 'G单价(元)', width: 134, sort: true}
                 ,{field: 'supplierTotalFee', title: 'G金额(元)', width: 134, sort: true}
@@ -62,7 +62,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'donePcsNumber', title: 'G支付情况', width: 134, sort: true}
                 ,{field: 'supplierProcurementRemark', title: '备注', width: 134, sort: true, edit: 'text'}
                 ,{field: 'shippingDeliveryDate', title: '出货日期', width: 134, sort: true}
-                ,{field: 'countries', title: '目的地', width: 134, sort: true}
+                ,{field: 'countries', title: '目的地', width: 134, sort: true, templet: '#purchase_countries'}
                 ,{field: 'shippingWeight', title: '重量(kg)', width: 134, sort: true}
                 ,{field: 'supplierTotalFee', title: '金额(元)', width: 134, sort: true}
                 ,{field: 'donePcsNumber', title: '支付情况', width: 134, sort: true}

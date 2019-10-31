@@ -55,14 +55,29 @@
         {{# var pcbProfessionalTerm = JSON.parse(localStorage.getItem('pcbProfessionalTerm')) }}
 
         {{d.pcbType || ''}},{{d.outerLayerCopper || ''}}
-        {{pcbProfessionalTerm.fieldTranslation.solderMaskTopColor[d.solderMaskTopColor]}}油{{pcbProfessionalTerm.fieldTranslation.silkScreenTopColor[d.silkScreenTopColor]}}字,
+        {{pcbProfessionalTerm.fieldTranslation.solderMaskTopColor[d.solderMaskTopColor]+'油' || ''}}{{pcbProfessionalTerm.fieldTranslation.silkScreenTopColor[d.silkScreenTopColor]+'字' || ''}},
         {{pcbProfessionalTerm.fieldTranslation.surfaceFinish[d.surfaceFinish]}}{{d.thickness || ''}}
     </script>
     <!--利润-->
     <script type="text/html" id="purchase_LR">
-        {{parseFloat(d.totalFee-d.supplierTotalFee).toFixed(4)}}
+        {{parseFloat(d.subtotal-d.supplierTotalFee).toFixed(4)}}
+    </script>
+    <!--国家-->
+    <script type="text/html" id="purchase_countries">
+        {{# d.countries = 101}}
+        {{# var pattern = new RegExp("[0-9]+")}}
+        {{# if(pattern.test(d.countries)) { }}
+            {{# var requestInterface = layui.requestInterface }}
+            {{# requestInterface.GetCountry()}}
+            {{# var countriesObj = JSON.parse(localStorage.getItem('allCountry')).find(function(obj){ return obj.id == d.countries})}}
+            {{countriesObj.name || '查询错误'}}
+        {{# } else { }}
+            {{d.countries || ''}}
+        {{# } }}
     </script>
 
+
+    <!--<================ Stencil ================>-->
     <!--工艺要求 Stencil-->
     <script type="text/html" id="purchase_gyyyS">
         {{d.stencilType || ''}},{{d.stencilSide || ''}}

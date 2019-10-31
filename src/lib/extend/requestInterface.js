@@ -83,6 +83,26 @@ layui.define(['admin', 'index'],function (exports) {
                 }
             });
             return result;
+        },
+
+        /**
+         * 获取所有国家信息 并存入localStorage
+         *  如果国家显示的为  可以用这个来转换成 国家 字符串
+         * @constructor
+         */
+        GetCountry: function () {
+            console.log("获取国家信息")
+            var _url = setter.imUrl+'quote/getCountry';
+            if (localStorage.getItem("allCountry") == null) {
+                admin.req({
+                    type: 'get',
+                    url: _url,
+                    async: false,
+                    success: function (res) {
+                        localStorage.setItem("allCountry", JSON.stringify(res.data));
+                    }
+                });
+            }
         }
     }
 
