@@ -38,15 +38,7 @@
                 <tr>
                     <td>订单类型:</td>
                     <td>
-                        {{# if(d.params.orderType == '1'){ }}
-                        新单
-                        {{# } else if(d.params.orderType == '2'){ }}
-                        返单
-                        {{# } else if(d.params.orderType == '2'){ }}
-                        返单有改
-                        {{# } else{ }}
                         {{d.params.orderType || ''}}
-                        {{# } }}
                     </td>
                     <td>交期:</td>
                     <td>{{ d.params.buildTime || ''}}</td>

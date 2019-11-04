@@ -65,7 +65,7 @@ layui.define(['admin','table','index','element','form','laydate', 'tools_printLa
                 ,{field: 'courierName',title: '快递公司', sort: true}
                 ,{field: 'courierNumber',title: '快递单号', sort: true}
                 ,{field: 'pcbName',title: '客户型号', width: 132, sort: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#proMana_outBoundOD_tbar',width: 230}
+                ,{fixed: 'right', title:'操作', toolbar: '#proMana_outBoundOD_tbar',width: 280}
             ]]
             ,done: function (res, curr, count) {
                 $("a[data='isOk']").each(function (i, n) {

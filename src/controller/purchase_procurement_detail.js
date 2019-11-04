@@ -59,13 +59,13 @@ layui.define(['admin','table','index','element','form','laydate', 'requestInterf
                 ,{field: 'supplierUnitPrice', title: 'G单价(元)', width: 134, sort: true}
                 ,{field: 'supplierTotalFee', title: 'G金额(元)', width: 134, sort: true}
                 ,{field: '', title: '利润(元)', width: 134, sort: true, templet: '#purchase_LR'}
-                ,{field: 'donePcsNumber', title: 'G支付情况', width: 134, sort: true}
+                ,{field: 'donePcsNumber', title: 'G支付情况', width: 134, sort: true, edit: 'text'}
                 ,{field: 'supplierProcurementRemark', title: '备注', width: 134, sort: true, edit: 'text'}
                 ,{field: 'shippingDeliveryDate', title: '出货日期', width: 134, sort: true}
                 ,{field: 'countries', title: '目的地', width: 134, sort: true, templet: '#purchase_countries'}
                 ,{field: 'shippingWeight', title: '重量(kg)', width: 134, sort: true}
                 ,{field: 'supplierTotalFee', title: '金额(元)', width: 134, sort: true}
-                ,{field: 'donePcsNumber', title: '支付情况', width: 134, sort: true}
+                ,{field: 'procurementPayMark', title: '支付情况', width: 134, sort: true, edit: 'text'}
                 ,{field: 'businessName', title: '业务员', width: 134, sort: true}
                 ,{field: 'courierName', title: '物流公司', width: 134, sort: true}
                 ,{field: 'shippingCourierNumber', title: '运单号', width: 134, sort: true}
@@ -98,6 +98,8 @@ layui.define(['admin','table','index','element','form','laydate', 'requestInterf
             postData = {isiId: obj.data.isiId, shippingProcurementRemark: obj.value};
         } else if (obj.field == 'supplierProcurementRemark') {
             postData = {sosId: obj.data.sosId, supplierProcurementRemark: obj.value};
+        } else if (obj.field == 'procurementPayMark') {
+            postData = {isiId: obj.data.isiId, procurementPayMark: obj.value};
         }
         admin.req({
             type: 'post',
@@ -146,7 +148,7 @@ layui.define(['admin','table','index','element','form','laydate', 'requestInterf
                 ,{field: 'countries', title: '目的地', width: 134, sort: true}
                 ,{field: 'shippingWeight', title: '重量(kg)', width: 134, sort: true}
                 ,{field: 'supplierTotalFee', title: '金额(元)', width: 134, sort: true}
-                ,{field: 'donePcsNumber', title: '支付情况', width: 134, sort: true}
+                ,{field: 'procurementPayMark', title: '支付情况', width: 134, sort: true}
                 ,{field: 'businessName', title: '业务员', width: 134, sort: true}
                 ,{field: 'courierName', title: '物流公司', width: 134, sort: true}
                 ,{field: 'shippingCourierNumber', title: '运单号', width: 134, sort: true}

@@ -56,10 +56,10 @@
 
         {{d.pcbType || ''}},{{d.outerLayerCopper || ''}}
 
-        {{# if(d.solderMaskTopColor != null && d.solderMaskTopColor != '' && d.solderMaskTopColor != 'none' && d.solderMaskTopColor != 'undefined'){ }}
-            {{pcbProfessionalTerm.fieldTranslation.solderMaskTopColor[d.solderMaskTopColor]+'油' || ''}},
+        {{# if(d.solderMaskTopColor != null && d.solderMaskTopColor != '' && d.solderMaskTopColor != 'none' && typeof(d.solderMaskTopColor) != 'undefined'){ }}
+            {{pcbProfessionalTerm.fieldTranslation.solderMaskTopColor[d.solderMaskTopColor]+'油' || ''}}
         {{# } }}
-        {{# if(d.silkScreenTopColor != null && d.silkScreenTopColor != '' && d.silkScreenTopColor != 'none' && d.silkScreenTopColor != 'undefined'){ }}
+        {{# if(d.silkScreenTopColor != null && d.silkScreenTopColor != '' && d.silkScreenTopColor != 'none' && typeof(d.silkScreenTopColor) != 'undefined'){ }}
             {{pcbProfessionalTerm.fieldTranslation.silkScreenTopColor[d.silkScreenTopColor]+'字' || ''}},
         {{# } }}
 
@@ -94,7 +94,7 @@
     </script>
     <!--利润 Stencil-->
     <script type="text/html" id="purchase_LRS">
-        {{parseFloat(d.totalStencilFee-d.supplierTotalFee).toFixed(4)}}
+        {{parseFloat(d.totalStencilFee-d.supplierTotalFee).toFixed(3)}}
     </script>
 </div>
 

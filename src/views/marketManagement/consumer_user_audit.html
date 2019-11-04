@@ -1,0 +1,11 @@
+<title>市场管理-跟单员客户列表</title>
+<div class="layui-fluid">
+    <table class="layui-table" id="tabConsumerUserAudit" lay-filter="tabConsumerUserAudit"></table>
+</div>
+
+<script>
+    layui.use('consumer_user_audit', layui.factory('consumer_user_audit')).use(['consumer_user_audit', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>
