@@ -5,13 +5,14 @@
  */
 
 
-layui.define(['admin','table','index','element','form','laydate', 'tools_printLable'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate', 'tools_printLable', 'proMana_global'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
         ,setter = layui.setter
         ,tools_printLable = layui.tools_printLable
+        ,proMana_global = layui.proMana_global
         ,element = layui.element;
     var $ = layui.jquery;
 
@@ -89,6 +90,8 @@ layui.define(['admin','table','index','element','form','laydate', 'tools_printLa
         } else if (obj.event == 'search') {
             layer.msg('查看订单协同');
         } else if (obj.event == 'chxx') {
+            data.table = 'proMana_outBoundOD_tb';
+            proMana_global.chxx(data);
         }
     });
 
