@@ -1,0 +1,58 @@
+<title>市场管理-绩效订单统计表</title>
+<div class="layui-fluid">
+    <div class="layui-form order-pd-list-search">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">查询类型</label>
+                <div class="layui-input-inline">
+                    <select name="orderField" lay-filter="order-pd-list-orderField">
+                        <option value=""></option>
+                        <option value="order_time">销售日期</option>
+                        <option value="pay_time">支付时间</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">最近查询</label>
+                <div class="layui-input-inline">
+                    <select name="monthMark" lay-filter="order-pd-list-monthMark">
+                        <option value=""></option>
+                        <option value="currMonthMark">本月</option>
+                        <option value="lastMonthMark">上月</option>
+                        <option value="threeMonteMark">近三月</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">范围查询</label>
+                <div class="layui-input-inline" style="width: 100px;">
+                    <input type="text" name="startOrderTime" id="pdlStartOrderTime" placeholder="开始时间" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 100px;">
+                    <input type="text" name="endOrderTime" id="pdlEndOrderTime" placeholder="结束时间" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline" style="display: ;">
+                <button class="layui-btn" lay-submit lay-filter="order-pd-list-search">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <table class="layui-table" id="tabOrderPdList" lay-filter="tabOrderPdList"></table>
+    <script type="text/html" id="oplPayLogId">
+        {{# if(d.payLogId != null){ }}
+            <a style="color: green">已支付</a>
+        {{# } else{ }}
+            <a style="color: orangered">未支付</a>
+        {{# } }}
+    </script>
+</div>
+
+<script>
+    layui.use('order_pd_List', layui.factory('order_pd_List')).use(['order_pd_List', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>
