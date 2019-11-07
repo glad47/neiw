@@ -31,7 +31,8 @@ layui.define(['admin', 'jsTools'], function (exports) {
                    view(this.id).render('productManagement/iframeWindow/outer_lable', data).done(function () {
                        setInputWidth( $("input[id='outLableQTY']").val());
                        $("#outLableQTY").bind("input propertychange", function (even) {
-                           var _val = $("input[id='outLableQTY']").val();
+                           var _val = $(this).val();
+                           $("#outLableQTY").attr("value", $(this).val())
                            setInputWidth(_val)
                        });
                        function setInputWidth(Str) {
