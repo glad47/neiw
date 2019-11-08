@@ -312,14 +312,8 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                 }
                 var orderSupplierList = new Array();
                 for (var i=0;i<data.length;i++){
-                    // if (supplierOrderIds != null) {
-                        // supplierOrderIds += ","+data[i].id.toString();
-                    // } else {
-                    //     supplierOrderIds = data[i].id.toString();   // 如果是数字 **.split 会报错
-                    // }
                     orderSupplierList.push({'id':data[i].id,'isInternal':data[i].isInternal,'onlineOid':data[i].onlineOid,'orderId':data[i].orderId,'surplusPcsNumber':data[i].surplusPcsNumber,'orderPcsNumber':data[i].quantity,'donePcsNumber':data[i].donePcsNumber,'currPcsNumber':data[i].currPcsNumber,'orderType':data[i].orderType});
                 }
-                // supplierOrderIds = jstools.ArrayClearRepeat(supplierOrderIds.split(",")).join(",");     // 字符串转数组去重再转字符串类型  jstools.ArrayCleaRepeat 数组去重扩展
                 if (!bool) {
                     bool = true;
                     $.ajax({
@@ -357,16 +351,23 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                 layer.confirm('直接提交['+ids+']?', function () {
                     if (!bool) {
                         bool = true;
-                        admin.req({
+                        var orderSupplierList = new Array();
+                        for (var i=0;i<data.length;i++){
+                            orderSupplierList.push({'id':data[i].id,'isInternal':data[i].isInternal,'onlineOid':data[i].onlineOid,'orderId':data[i].orderId,'surplusPcsNumber':data[i].surplusPcsNumber,'orderPcsNumber':data[i].quantity,'donePcsNumber':data[i].donePcsNumber,'currPcsNumber':data[i].currPcsNumber,'orderType':data[i].orderType});
+                        }
+                        $.ajax({
                             type: 'post',
-                            data: {ids},
-                            url: setter.baseUrl+'sqe/pcborder/batch/submit',
-                            success: function (data) {
-                                if (data.code == '0'){
-                                    layer.alert("提交成功！！");
+                            url: setter.baseUrl+'sqe/stencilorder/saveAllShipmentOrder',
+                            headers: {access_token:layui.data('layuiAdmin').access_token},
+                            data:  JSON.stringify(orderSupplierList),
+                            contentType: "application/json;charset=utf-8",
+                            success: function () {
+                                layer.alert('通知出货成功！',function () {
                                     table.reload('sqeManaPlan_tabStencil');
                                     layer.closeAll();
-                                }
+                                });
+                                bool = false;
+                            } ,error: function () {
                                 bool = false;
                             }
                         });
