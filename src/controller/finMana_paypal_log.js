@@ -74,6 +74,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                         form.on('submit(LAY-paypal-log-binding-order-submit)',function (data) {
                             var field = data.field;
                             field.id = d.id;
+                            field.payTime = d.paymentDate;
                             console.log(field);
                             admin.req({
                                 type: 'post'
