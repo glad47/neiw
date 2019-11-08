@@ -26,28 +26,37 @@ layui.define(['admin', 'table','element','form'], function(exports){
 
         ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,cols: [[
-             {field:'id', title: 'id', sort: true, minWidth: 80}
-            ,{field:'userName', title: '用户名'}
-            ,{field:'userSystemId', title: '客户ID', sort: true}
-            ,{field:'userType',title:'内外',sort:true, templet:'#userType', minWidth: 80}
-            ,{field:'userIp',title:'注册IP',sort:true}
+             {field:'id', title: 'id', sort: true, width: 130}
+            ,{field:'status', title: '状态', width: 130, templet:'#customerStatus'}
+            ,{field:'userSystemId', title: '客户ID', sort: true, width: 130}
+            ,{field:'userName', title: '用户名', width: 130}
             ,{field:'email', title: '邮箱', sort: true, minWidth: 196}
+            ,{field:'countryName', title: '收货国家', sort: true}
+            ,{field:'gmtCreate', title: '注册时间', sort: true}
+            ,{field:'gmtModified', title: '更新时间', sort: true}
+
+            ,{field:'userType',title:'内外',sort:true, templet:'#userType', width: 130, hide: true}
+            ,{field:'userIp',title:'注册IP',sort:true, hide: true}
             ,{field:'skypeId', title: 'Skype', sort: true, hide: true}
-            ,{field:'receiverTelephone', title: '收货电话',minWidth: 120, sort: true}
+            ,{field:'receiverTelephone', title: '收货电话',minWidth: 120, sort: true, hide: true}
             ,{field:'googleId', title: 'Google', sort: true, align: 'right', hide: true} //单元格内容水平居中
             ,{field:'facebookId', title: 'Facebook', sort: true, align: 'right', hide: true}
-            ,{field:'receiverCompany',title:'公司名',sort:true, align:'right'}
-            ,{field:'receiverAddress', title: '收货地址', sort: true, align: 'right'}
-            ,{field:'countryName', title: '收货国家', sort: true}
-            ,{field:'receiverCity', title: '收货城市', sort: true}
+            ,{field:'receiverCompany',title:'公司名',sort:true, align:'right', hide: true}
+            ,{field:'receiverAddress', title: '收货地址', sort: true, align: 'right', hide: true}
+            ,{field:'receiverCity', title: '收货城市', sort: true, hide: true}
             ,{field:'jobrole', title: '工作角色', sort: true, hide: true}
             ,{field:'contact', title: '联系人', sort: true, hide: true}
             ,{field:'businessType', title: '业务类型', sort: true, hide: true}
             ,{field:'applications', title: '应用', sort: true, hide: true}
-            ,{field:'gmtCreate', title: '注册时间', sort: true}
-            ,{field:'gmtModified', title: '更新时间', sort: true}
-            ,{width:200, align:'center',align:'center',fixed: 'right',toolbar:'#role-table-operate-barDemo',title:'操作'}
+            ,{width:250, align:'center',align:'center',fixed: 'right',toolbar:'#role-table-operate-barDemo',title:'操作'}
         ]]
+        ,done: function (res, curr, count) {
+            $(".layui-table tr div").each(function () { //  已经审核  移除 审核按钮
+               if ($(this).text().indexOf('已审核') > 0) {
+                   $(this).parents("tr").children("td:last").find("a[lay-event='customerInfosh']").remove();
+               }
+            });
+        }
         ,page: true
     });
 
@@ -172,6 +181,24 @@ layui.define(['admin', 'table','element','form'], function(exports){
                 },
                 success: function (layero, index) {
                     view(this.id).render('/infoManagement/iframeWindow/conversionCustomer', data).done(function () {
+                        form.render();
+                    });
+                }
+            })
+        } else if (obj.event === 'customerInfosh') {
+            admin.popup({
+                type: 1,
+                title: '审核',
+                btn: ['审核', '取消'],
+                area: ["396px","299px"],
+                id: "popupCustomerInfosh",
+                yes: function () {
+                    layer.confirm("确定通过审核？", function () {
+                        $("input[lay-filter='customersh-submit']").click();
+                    });
+                },
+                success: function () {
+                    view(this.id).render('/infoManagement/iframeWindow/customer_sh', data).done(function () {
                         form.render();
                     });
                 }

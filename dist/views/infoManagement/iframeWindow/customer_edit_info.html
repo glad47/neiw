@@ -271,7 +271,7 @@
                                     layui.each(d.data, function(index, item){
                                 }}
                                 <option></option>
-                                <option value="{{ item.userId || ''}},{{item.jobNumber}}" {{ businessId == item.userId ? 'selected' : ''}}>{{ item.username }}</option>
+                                <option value="{{ item.userId || ''}},{{item.jobNumber}}, {{item.username}}" {{ businessId == item.userId ? 'selected' : ''}}>{{ item.username }}</option>
                                 {{#  }); }}
                                 {{#  if(d.data.length === 0){ }}
                                 无数据
