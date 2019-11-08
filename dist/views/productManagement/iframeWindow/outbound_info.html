@@ -60,7 +60,11 @@
                     <select class="layui-select" name="courierName">
                         <option value="none">请选择快递公司</option>
                         <option value="DHL" {{ d.params.shippingInfo.courierName == 'DHL' ? 'selected' : '' }}>DHL</option>
+                        <option value="UPS" {{ d.params.shippingInfo.courierName == 'UPS' ? 'selected' : '' }}>UPS</option>
                         <option value="FedEx" {{ d.params.shippingInfo.courierName == 'FedEx' ? 'selected' : '' }}>FedEx</option>
+                        <option value="顺丰" {{ d.params.shippingInfo.courierName == '顺丰' ? 'selected' : '' }}>顺丰</option>
+                        <option value="安能" {{ d.params.shippingInfo.courierName == '安能' ? 'selected' : '' }}>安能</option>
+                        <option value="跨越" {{ d.params.shippingInfo.courierName == '跨越' ? 'selected' : '' }}>跨越</option>
                     </select>
                 </div>
             </div>
