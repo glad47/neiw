@@ -1,9 +1,10 @@
-layui.define(['admin', 'table','element','form'], function(exports){
+layui.define(['admin', 'table','element','form', 'edit_customer_info'], function(exports){
     var table = layui.table,
     $ = layui.jquery,
     element = layui.element,
     admin = layui.admin,
     form = layui.form,
+    edit_customer_info = layui.edit_customer_info,
     view = layui.view,
     setter = layui.setter;
     
@@ -17,8 +18,13 @@ layui.define(['admin', 'table','element','form'], function(exports){
             where: field
         });
     });
-    $(".customer-info-form-search input").bind("input propertychange", function (even) {
+    form.on('select(sel-customerInfo-status)', function (data) {
         $("*[lay-filter='LAY-app-contlist-search']").click();
+    });
+    $(".customer-info-form-search input").keypress(function (e) {
+        if (e.which == 13) {
+            $("*[lay-filter='LAY-app-contlist-search']").click();
+        }
     });
     table.render({
         elem: '#customer_listTab'
@@ -28,10 +34,10 @@ layui.define(['admin', 'table','element','form'], function(exports){
         ,cols: [[
              {field:'id', title: 'id', sort: true, width: 130}
             ,{field:'status', title: '状态', width: 130, templet:'#customerStatus'}
-            ,{field:'userSystemId', title: '客户ID', sort: true, width: 130}
+            ,{field:'userSystemId', title: '客户代码', sort: true, width: 130}
             ,{field:'userName', title: '用户名', width: 130}
+            ,{field:'countryName', title: '国家', sort: true}
             ,{field:'email', title: '邮箱', sort: true, minWidth: 196}
-            ,{field:'countryName', title: '收货国家', sort: true}
             ,{field:'gmtCreate', title: '注册时间', sort: true}
             ,{field:'gmtModified', title: '更新时间', sort: true}
 
@@ -65,99 +71,9 @@ layui.define(['admin', 'table','element','form'], function(exports){
         var data = obj.data;
         console.log(data);
         if (obj.event === 'edit') {
-            admin.popup({
-                title:'编辑客户',
-                area:['40%', '100%'],
-                id:'LAY-popup-customer-edit',
-                btn:['提交','取消'],
-                yes:function(index, layero){
-                    $("#layuiadmin-app-form-submit").click();
-                },
-                btn3: function() {
-                    $(".edit-cusInfo input").each(function (index) {
-                       $(this).removeAttr("lay-verify");
-                        // $("#layuiadmin-app-form-submit").click();
-                    });
-                },
-                end:function(){},
-                success:function(layero,index){
-                    view(this.id).render('/infoManagement/iframeWindow/customer_edit_info',data).done(function(){
-                        form.render(null,'customer-add-edit-form-list');
-                        var invalidMark;
-                        form.on('switch(optionUser)',function (data) {
-                            console.log(data.field);
-                            if (data.elem.checked == true){
-                                layer.msg('已启用');
-                                invalidMark =0;
-                            } else {
-                                layer.msg('停用');
-                                invalidMark =1;
-                            }
-                        });
+            data.reTab = "customer_listTab";
+            edit_customer_info.editInfo(data)
 
-                        var userType;
-                        form.on('switch(isneibuUser)',function (data) {
-                            if (data.elem.checked == true){
-                                layer.msg('内部用户');
-                                userType =1;
-                            } else {
-                                layer.msg('客户系统用户');
-                                userType =0;
-                            }
-                        });
-                        var deliveryReport = 0;
-                        form.on('switch(deliveryReport)',function (data) {
-                            if (data.elem.checked == true){
-                                layer.msg('需要出货报告');
-                                deliveryReport =1;
-                            } else {
-                                layer.msg('不需要出货报告');
-                                deliveryReport =0;
-                            }
-                        });
-                        var auditMark;
-                        form.on('switch(isAuditMark)',function(data){
-                            if (data.elem.checked == true) {
-                                layer.msg('需要审核');
-                                auditMark = 0;
-                            }else{
-                                layer.msg('不需审核');
-                                auditMark = 1;
-                            }
-                        });
-
-                        var productionVerification;
-                        form.on('switch(productionVerification)', function (data) {
-                            if (data.elem.checked == true) {
-                                layer.msg('需要确定生产资料');
-                                productionVerification = 1;
-                            }  else {
-                                layer.msg('不需要确定生产资料');
-                                productionVerification = 0;
-                            }
-                        });
-
-                        //监听提交
-                        form.on('submit(layuiadmin-app-form-submit)',function(data){
-                            var field = data.field;
-                            field.invalidMark = invalidMark;   
-                            field.userType = userType;
-                            field.auditMark = auditMark;
-                            field.deliveryReport = deliveryReport;
-                            field.productionVerification = productionVerification;
-                            admin.req({
-                                url:setter.baseUrl+'sys/consumer/user/update',
-                                type:'POST',
-                                data:field,
-                                success:function(data){
-                                    layui.table.reload('customer_listTab'); //重载表格
-                                    layer.close(index); //执行关闭 
-                                }
-                            });
-                        });
-                    });
-                }
-            });
         } else if (obj.event === 'del') {
             layer.confirm('确定删除此客户？', function(index){
                 admin.req({

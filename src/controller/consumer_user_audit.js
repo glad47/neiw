@@ -5,14 +5,15 @@
  */
 
 
-layui.define(['admin','table','index','element','form','laydate'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate', 'edit_customer_info'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
         // ,laydate = layui.laydate
         ,setter = layui.setter
-        ,element = layui.element;
+        ,element = layui.element
+        ,edit_customer_info = layui.edit_customer_info;
     var $ = layui.jquery;
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
@@ -33,16 +34,16 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,cols: [[
             {type:'checkbox',fixed: 'left'}
             ,{field: 'status',title: '状态', Width: 110, sort: true, templet: '#customerUserAuditStatus'}
-            ,{field: 'businessName',title: '业务员', width: 110, sort: true}      // 1 ＝ 待报价
+            ,{field: 'userSystemId',title: '客户代码', Width: 130, sort: true}
             ,{field: 'userName',title: '客户名称', Width: 150, sort: true}
+            ,{field: 'businessName',title: '业务员', width: 110, sort: true}      // 1 ＝ 待报价
+            ,{field: 'commission',title: '提成', Width: 110, sort: true, edit: 'text'}
             ,{field: 'country',title: '国家', minWidth: 219, sort: true}
             ,{field: 'siteUrl',title: '网站', Width: 110, sort: true}
-            ,{field: 'commission',title: '提成', Width: 110, sort: true, edit: 'text'}
-            ,{field: 'engineeringFee',title: '客户邮箱', Width: 110, sort: true}
+            ,{field: 'email',title: '客户邮箱', Width: 170, sort: true}
             ,{field: 'channel',title: '渠道', Width: 110, sort: true}
-            ,{field: 'toolingFee',title: '支付', Width: 110, sort: true}
             ,{field: 'orderNumNo',title: '订单编号', Width: 110, hide: true, sort: true}
-            // ,{fixed: 'right', title:'操作', toolbar: '#orderReviewB_pertSys_tabbar',width: 220, sort: true}
+            ,{fixed: 'right', title:'操作', toolbar: '#consumerUserAuditRTb',width: 150, sort: true}
         ]]
         ,done: function (res, curr, count) {
 
@@ -92,6 +93,31 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                layer.msg('修改成功！');
            }
        })
+    });
+
+    table.on('tool(tabConsumerUserAudit)',function(obj){
+        var data = obj.data;
+        if (obj.event == 'cuartb-edit') {
+            data.reTab = "tabConsumerUserAudit";
+            edit_customer_info.editInfo(data);
+        }
+    });
+    // 监听搜索
+    form.on('submit(consumer-user-audit-search)', function(data){
+        var field = data.field;
+        //执行重载
+        table.reload('tabConsumerUserAudit', {
+            where: field
+        });
+    });
+    // 业务员
+    form.on('select(sel-consumer-user-audit-businessName)', function (data) {
+        $("*[lay-filter='consumer-user-audit-search']").click();
+    });
+    $(".consumer-user-audit-form-search input").keypress(function (e) {
+        if (e.which == 13) {
+            $("*[lay-filter='consumer-user-audit-search']").click();
+        }
     });
     exports('consumer_user_audit', {});
 });

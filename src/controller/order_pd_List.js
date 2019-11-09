@@ -21,7 +21,8 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
         startOrderTime: null, // 开始时间
         endOrderTime: null,    // 结束时间
         orderField: null,    // 查询类型
-        monthMark: null     // 最近查询
+        monthMark: null,     // 最近查询
+        businessName: null  // 业务员
     }
 
     //日期
@@ -80,13 +81,14 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
         }
         ,cols: [[
             {type:'checkbox',fixed: 'left'}
+            ,{field: 'orderTime',title: '下单日期', width: 210, sort: true}
+            ,{field: 'pcbName',title: '型号', width: 210, sort: true}
             ,{field: 'businessName',title: '业务员', width: 160, sort: true}      // 1 ＝ 待报价
             ,{field: 'customerUserPaVO',title: '客户名称', Width: 110, sort: true, templet: '<a>{{ d.customerUserPaVO.userName || 0 }}</a>',}
             ,{field: 'customerUserPaVO',title: '国家', minWidth: 219, sort: true, templet: '<a>{{ d.customerUserPaVO.cname || 0 }}</a>'}
             ,{field: 'customerUserPaVO',title: '网站', minWidth: 219, sort: true, templet: '<a>{{ d.customerUserPaVO.siteUrl || 0 }}</a>'}
             ,{field: 'customerUserPaVO',title: '客户邮箱', minWidth: 219, sort: true, templet: '<a>{{ d.customerUserPaVO.email || 0 }}</a>'}
             ,{field: 'payLogId',title: '是否支付', minWidth: 219, sort: true, templet: '#oplPayLogId'}
-            ,{field: 'orderTime',title: '下单日期', width: 210, sort: true}
             ,{field: 'payTime',title: '支付日期', width: 210, sort: true}
             ,{field: 'totalFee',title: '订单金额', width: 180, sort: true}
             ,{field: 'commission',title: '提成', width: 150, sort: true, edit: 'text'}
@@ -118,6 +120,11 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
     // 类型
     form.on('select(order-pd-list-orderField)', function (data) {
         dateObj.orderField = data.value;
+        tabReloadOPL();
+    });
+    // 业务员
+    form.on('select(sel-order-pd-list-businessName)', function (data) {
+        dateObj.businessName = data.value;
         tabReloadOPL();
     });
 

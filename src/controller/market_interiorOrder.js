@@ -239,9 +239,11 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
     form.on('select(interior-order-payLogId)', function (data) {
         $("*[lay-filter='interior-order-search']").click();
     });
-    $(".interior-order-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='interior-order-search']").click();
-    })
+    $(".interior-order-search input").keypress(function (e) {
+        if (e.which == 13) {
+            $("*[lay-filter='interior-order-search']").click();
+        }
+    });
 
 
     //监听行工具事件＝＝＝＝》pcb订单
