@@ -193,7 +193,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
                 area: ["396px","299px"],
                 id: "popupCustomerInfosh",
                 yes: function () {
-                    layer.confirm("确定通过审核？", function () {
+                    layer.confirm("确定提交审核？", function () {
                         $("input[lay-filter='customersh-submit']").click();
                     });
                 },

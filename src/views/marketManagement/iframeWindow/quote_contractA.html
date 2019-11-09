@@ -386,11 +386,22 @@
                 <div class="contract-module-remark">
                     <div class="remark" style="width: 85%;">
                         <span style="position: absolute;">Remark:</span>
+                        {{# var remarkMap = new Map()}}
+                        {{# var $ = layui.jquery }}
                         {{# layui.each(d.params.data, function(index, item){  }}
-                        {{# if(item.remark != null){}}
-                        <a style="margin-left: 80px;color: #1E9FFF;">{{ item.pcbName || item.gerberName }}:</a> {{ item.remark}}<br>
+                        {{# if(!$.trim(item.remark) == false){ }}
+                        {{# if(remarkMap.has(item.pcbName)){ }}
+                        {{# remarkMap.set(item.pcbName, remarkMap.get(item.pcbName) + ',' + item.remark)}}
+                        {{# } else{ }}
+                        {{# remarkMap.set(item.pcbName, item.remark)}}
+                        {{# } }}
                         {{# }}}
                         {{#  }); }}
+
+                        {{# for(var z of remarkMap) { }}
+                        <a style="color: #1E9FFF;">{{z[0]}}:</a>
+                        <a>{{z[1]}}</a>
+                        {{# } }}
                     </div>
                 </div>
             </script>

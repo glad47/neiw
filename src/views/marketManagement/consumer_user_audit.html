@@ -1,6 +1,18 @@
 <title>市场管理-跟单员客户列表</title>
 <div class="layui-fluid">
+    <script type="text/html" id="consumerUserAuditTb">
+        <a class="layui-btn" lay-event="customerUserAuditsh">审核</a>
+    </script>
     <table class="layui-table" id="tabConsumerUserAudit" lay-filter="tabConsumerUserAudit"></table>
+    <script type="text/html" id="customerUserAuditStatus">
+        {{#  if(d.status === 0 || d.status == null){ }}
+        <a style="color: orangered">未审核</a>
+        {{#  } else if(d.status === 1) { }}
+        <a style="color: cornflowerblue">需要审核</a>
+        {{#  } else if(d.status === 2){ }}
+        <a style="color: green">已审核</a>
+        {{#  } }}
+    </script>
 </div>
 
 <script>

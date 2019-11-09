@@ -32,15 +32,15 @@
         form.render();
         form.on('submit(customersh-submit)',function(data) {
             var field = data.field;
-            field.status = 2;   // 0未审核  1需要审核 2已审核
+            field.status = 1;   // 0未审核  1需要审核 2已审核
             console.log(field);
             admin.req({
                 url:setter.baseUrl+'sys/consumer/user/submitAudit',
                 type:'POST',
                 data:field,
                 success:function(data) {
-                    layui.table.reload('customer_listTab'); //重载表格
-                    layer.closeAll(); //执行关闭
+                    layui.table.reload('customer_listTab');
+                    layer.closeAll();
                 }
             });
         });

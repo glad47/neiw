@@ -2,6 +2,7 @@
 <div class="layui-fluid" id="quoteContract_AllB">
     <div class="layui-row">
         <style media="all">
+            .remark>a:first-of-type {margin-left: 80px;}
             .contract-top-logo .lef-logo img{width: 190px;}
             @media print {
                 .contract-module-one{padding:50px 0 10px 0;}
@@ -335,12 +336,22 @@
                 <div class="contract-module-remark">
                     <div class="remark" style="width: 85%;">
                         <span style="position: absolute;">Remark:</span>
+                        {{# var remarkMap = new Map()}}
                         {{# var $ = layui.jquery }}
                         {{# layui.each(d.params.data, function(index, item){  }}
-                        {{# if(item.remark != null && item.remark.replace(/(^s*)|(s*$)/g, "").length == 0 && $.trim(item.remark)){ }}
-                        <a style="margin-left: 80px;color: #1E9FFF;">{{ item.pcbName || item.gerberName }}:</a> {{ item.remark}}<br>
-                        {{# }}}
+                            {{# if(!$.trim(item.remark) == false){ }}
+                                {{# if(remarkMap.has(item.pcbName)){ }}
+                                    {{# remarkMap.set(item.pcbName, remarkMap.get(item.pcbName) + ',' + item.remark)}}
+                                {{# } else{ }}
+                                    {{# remarkMap.set(item.pcbName, item.remark)}}
+                                {{# } }}
+                            {{# }}}
                         {{#  }); }}
+
+                        {{# for(var z of remarkMap) { }}
+                            <a style="color: #1E9FFF;">{{z[0]}}:</a>
+                            <a>{{z[1]}}</a>
+                        {{# } }}
                     </div>
                 </div>
             </script>

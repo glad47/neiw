@@ -19,7 +19,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     table.render({
         elem: '#tabConsumerUserAudit'
         ,url: setter.baseUrl+'/sys/pa/consumerUserList'
-        ,toolbar: true
+        ,toolbar: "#consumerUserAuditTb"
         ,cellMinWidth: 80
         ,id: "tabConsumerUserAudit"
         ,page: true
@@ -32,7 +32,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
         ,cols: [[
             {type:'checkbox',fixed: 'left'}
-            ,{field: 'status',title: '状态', Width: 110, sort: true}
+            ,{field: 'status',title: '状态', Width: 110, sort: true, templet: '#customerUserAuditStatus'}
             ,{field: 'businessName',title: '业务员', width: 110, sort: true}      // 1 ＝ 待报价
             ,{field: 'userName',title: '客户名称', Width: 150, sort: true}
             ,{field: 'country',title: '国家', minWidth: 219, sort: true}
@@ -48,16 +48,46 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
 
         }
     });
+    table.on('toolbar(tabConsumerUserAudit)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        if (data.length < 1) {
+            layer.msg('请选择一条数据！');
+            return false;
+        }
+        if (obj.event == 'customerUserAuditsh') {
+            var postData = [];
+            for (var i=0;i<data.length;i++) {
+                var obj = {};
+                obj.id = data[i].id;
+                obj.status = 2;
+                postData.push(obj)
+            }
+            layer.confirm("审核", {
+                btn: ['审核','取消']
+            }, function () {
+                admin.req({
+                    url:setter.baseUrl+'sys/pa/consumerUserUpdate',
+                    type:'POST',
+                    data: JSON.stringify(postData),
+                    contentType: "application/json;charset=utf-8",
+                    success: function () {
+                        layer.msg('审核成功');
+                        layui.table.reload('tabConsumerUserAudit');
+                        layer.closeAll();
+                    }
+                });
+            });
+        }
+    });
     // 监听修改提成点
     table.on('edit(tabConsumerUserAudit)', function(obj){
-        // console.log(obj.value); //得到修改后的值
-        // console.log(obj.field); //当前编辑的字段名
-        // console.log(obj.data); //所在行的所有相关数据
         layer.msg(obj.value)
        admin.req({
            type: 'post',
-           data: obj.data,
-           url: setter.baseUrl + '/sys/pa/consumerUserUpdate',
+           data: JSON.stringify([obj.data]),
+           contentType: "application/json;charset=utf-8",
+           url: setter.baseUrl + 'sys/pa/consumerUserUpdate',
            success: function (res) {
                layer.msg('修改成功！');
            }
