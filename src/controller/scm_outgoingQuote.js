@@ -580,6 +580,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
     element.on('tab(pcdorstencil_tab)', function (data) {
         var tabNum = data.index;
         defVal.orderType = data.index;
+        if (tabNum === 1) {
+            $(".outgoing-quote-search").attr("reload-table", "scm_Tabstencil_outgoing_quote");
+        } else if (tabNum === 2) {
+            $(".outgoing-quote-search").attr("reload-table", "");
+        } else {
+            $(".outgoing-quote-search").attr("reload-table", "scm_Tabpcb_outgoing_quote");
+        }
         form.on('submit(LAY-app-orderReview-search)', function (data) {
             var field = data.field;
             delete field.quiz;
@@ -620,25 +627,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             }
         });
     }
-
-    // 监听搜索 PCB
-    form.on('submit(Outgoing_quote_search)', function(data){
-        var field = data.field;
-        var reTab;
-        if (defVal.orderType === 0) {   // PCB
-            reTab = 'scm_Tabpcb_outgoing_quote';
-        } else if (defVal.orderType === 1) {    //  Stencil
-            reTab = 'scm_Tabstencil_outgoing_quote';
-        }
-        //执行重载
-        table.reload(reTab, {
-            where: field
-        });
-    });
-
-    $(".outgoing-quote-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='Outgoing_quote_search']").click();
-    });
 
     exports('scm_outgoingQuote', {})
 });

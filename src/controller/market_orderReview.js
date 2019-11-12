@@ -382,31 +382,18 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
     })
 
-    form.on('submit(LAY-app-orderReview-search)', function (data) {
-        var field = data.field;
-        var reTab;
-        delete field.quiz;
-        if (defVal.orderType === 0) {   // PCB
-            reTab = 'or_Tabpcb';
-        } else if (defVal.orderType === 1) {    //  Stencil
-            reTab = 'stencil_orderTab';
-        }
-        table.reload(reTab,{
-            where: field
-        });
-    });
-    //监听select搜索
-    form.on('select(order-review-search-sel)', function (data) {
-        $("*[lay-filter='LAY-app-orderReview-search']").click();
-    });
-    $(".order-review-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='LAY-app-orderReview-search']").click();
-    })
-
     // 根据tab选项是否为pcb或者stencil监听表单，动态渲染表格
     element.on('tab(pcdorstencil_tab)', function (data) {
         defVal.orderType = data.index;
         var tabNum = data.index;
+        if (tabNum === 1) {
+            $("#orderReview_form").attr("reload-table", "stencil_orderTab");
+        } else if (tabNum === 2) {
+            $("#orderReview_form").attr("reload-table", "");
+        }
+        else {
+            $("#orderReview_form").attr("reload-table", "or_Tabpcb");
+        }
         form.on('submit(LAY-app-orderReview-search)', function (data) {
             var field = data.field;
             delete field.quiz;

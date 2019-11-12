@@ -1,6 +1,6 @@
 <title>供应链管理-报价明细</title>
 <div class="layui-fluid">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto outgoing-quote-search" id="orderReview_form">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto quote-detail-search" data-type="search-form" reload-table="scmMana_tabPcb">
         <div class="layui-form-item quote-detail-search">
             <div class="layui-inline" id="orderReview_searll" style="display: none;">
                 <label class="layui-form-label">查询：</label>
@@ -107,8 +107,5 @@
 </div>
 
 <script>
-    layui.use('scmMana_quoteDetail', layui.factory('scmMana_quoteDetail')).use(['scmMana_quoteDetail', 'table', 'index','element','form'], function(){
-        var form = layui.form;
-        form.render();
-    });
+    layui.use('scmMana_quoteDetail', layui.factory('scmMana_quoteDetail'));
 </script>

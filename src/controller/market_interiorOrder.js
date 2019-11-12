@@ -32,11 +32,14 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
     element.on('tab(tab-internalQuote)', function (data) {
         defVal.orderType = data.index;
         if (defVal.orderType === 1) {
+            $(".interior-order-search").attr("reload-table", "inside_no_payment_Tabstencil");
             tabRenderStencil();
         } else if (defVal.orderType === 2) {
             console.log("SMT订单选项卡");
+            $(".interior-order-search").attr("reload-table", "");
         } else {
             tabRenderPCB();
+            $(".interior-order-search").attr("reload-table", "interior_order_Tabstencil");
         }
     });
 
@@ -215,36 +218,6 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                 break;
         };
     });
-    //监听搜索
-    form.on('submit(interior-order-search)', function(data){
-        var field = data.field;
-        var reTab;
-        if (defVal.orderType === 0) {   // PCB
-            reTab = 'interior_order_Tabpcb';
-        } else if (defVal.orderType === 1) {    //  Stencil
-            reTab = 'interior_order_Tabstencil';
-        }
-        //执行重载
-        table.reload(reTab, {
-            where: field
-        });
-    });
-    //监听select搜索
-    form.on('select(interior-order-search1)', function (data) {
-        $("*[lay-filter='interior-order-search']").click();
-    });
-    form.on('select(interior-order-search2)', function (data) {
-        $("*[lay-filter='interior-order-search']").click();
-    });
-    form.on('select(interior-order-payLogId)', function (data) {
-        $("*[lay-filter='interior-order-search']").click();
-    });
-    $(".interior-order-search input").keypress(function (e) {
-        if (e.which == 13) {
-            $("*[lay-filter='interior-order-search']").click();
-        }
-    });
-
 
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(interior_order_Tabpcb)', function(obj){

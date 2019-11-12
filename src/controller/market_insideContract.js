@@ -43,9 +43,11 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
         defVal.orderType = data.index;
         if (defVal.orderType === 1) {
             tabRenderStencil();
+            $(".inside-contract-search").attr("reload-table", "icontract_Tabstencil");
         } else if (defVal.orderType === 2) {
-            console.log("SMT订单选项卡");
+            $(".inside-contract-search").attr("reload-table", "");
         } else {
+            $(".inside-contract-search").attr("reload-table", "inside_cotract_Tabpcb");
             tabRenderPCB();
         }
     });
@@ -887,29 +889,6 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                 });
         }
     });
-
-    //监听搜索
-    form.on('submit(inside-contract-search)', function(data){
-        var field = data.field;
-        var reTab;
-        if (defVal.orderType === 0) {   // PCB
-            reTab = 'inside_cotract_Tabpcb';
-        } else if (defVal.orderType === 1) {    //  Stencil
-            reTab = 'icontract_Tabstencil';
-        }
-        //执行重载
-        table.reload(reTab, {
-            where: field
-        });
-    });
-    //监听select搜索
-    form.on('select(inside-contract-sel)', function (data) {
-        $("*[lay-filter='inside-contract-search']").click();
-    });
-
-    $(".inside-contract-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='inside-contract-search']").click();
-    })
 
 
     function compare(property){

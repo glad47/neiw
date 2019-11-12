@@ -30,10 +30,13 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
     element.on('tab(tab-internalQuote)', function (data) {
         defVal.orderType = data.index;
         if (defVal.orderType === 1) {
+            $(".internal-quote-search").attr("reload-table", "iquote_Tabstencil");
             tabRenderStencil();
         } else if (defVal.orderType === 2) {
             console.log("SMT订单选项卡");
+            $(".internal-quote-search").attr("reload-table", "");
         } else {
+            $(".internal-quote-search").attr("reload-table", "iquote_Tabpcb");
             tabRenderPCB();
         }
     });
@@ -402,27 +405,6 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
         }
     });
 
-    //监听搜索
-    form.on('submit(internal-quote-search)', function(data){
-        var field = data.field;
-        var reTab;
-        if (defVal.orderType === 0) {   // PCB
-            reTab = 'iquote_Tabpcb';
-        } else if (defVal.orderType === 1) {    //  Stencil
-            reTab = 'iquote_Tabstencil';
-        }
-        table.reload(reTab, {
-            where: field
-        });
-    });
-    //监听select搜索
-    form.on('select(internal-quote-search-sel)', function (data) {
-        $("*[lay-filter='internal-quote-search']").click();
-    });
-
-    $(".internal-quote-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='internal-quote-search']").click();
-    });
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ Stencil订单
     function tabRenderStencil() {

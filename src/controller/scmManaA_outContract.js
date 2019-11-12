@@ -25,12 +25,14 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-scmManagement)', function(data){
         defVal.orderType = data.index;
-        if (data.index === 0){
-            tabRenderPCB();
-        } else if (data.index === 1){
+        if (data.index === 1){
+            $(".outsourcing-contract-all-search").attr("reload-table", "scmManaOutSCA_tabStencil");
             tabRenderStencil();
         } else if (data.index === 2){
-
+            $(".outsourcing-contract-all-search").attr("reload-table", "");
+        } else {
+            $(".outsourcing-contract-all-search").attr("reload-table", "scmManaOutSCA_tabPcb");
+            tabRenderPCB();
         }
     });
 

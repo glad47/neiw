@@ -3,7 +3,7 @@
 <div class="layui-fluid">
     <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
-        	<div class="layui-form-item layui-form role-search-form" lay-filter="app-content-comment">
+        	<div class="layui-form-item layui-form role-search-form" data-type="search-form" reload-table="role_listTab"  lay-filter="app-content-comment">
 	            <div class="layui-inline">
 	                <label class="layui-form-label">角色名</label>
 	                <div class="layui-input-inline">
@@ -50,18 +50,6 @@
                 , authtree = layui.authtree;
 
             form.render(null, 'app-content-comment')
-            //监听搜索
-            form.on('submit(LAY-app-contlist-search)', function (data) {
-                var field = data.field;
-                console.log(field);
-                //执行重载
-                table.reload('role_listTab', {
-                    where: field
-                });
-            });
-            $(".role-search-form input").bind("input propertychange", function (even) {
-                $("*[lay-filter='LAY-app-contlist-search']").click();
-            })
 
             table.render({
                 elem: '#role_listTab'

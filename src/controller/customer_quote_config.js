@@ -9,19 +9,6 @@ layui.define(['admin', 'table','element','form'], function(exports){
 
     form.render(null,'app-content-comment');
 
-    //监听搜索
-    form.on('submit(customerQuoteConfig-search)', function(data){
-        var field = data.field;
-        console.log(field);
-        //执行重载
-        table.reload('customer_quote_config_listTab', {
-            where: field
-        });
-    });
-    $(".customerQuoteConfig-form-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='customerQuoteConfig-search']").click();
-    });
-
 
     //监听select下拉选框
     form.on('select',function(data){

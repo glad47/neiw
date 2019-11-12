@@ -7,18 +7,6 @@ layui.define(['admin', 'table','setter','form','jquery'], function(exports){
     ,form = layui.form;
 
     form.render(null,'app-content-comment');
-    //监听搜索
-  	form.on('submit(LAY-dept-search)', function(data){
-    	var field = data.field;
-    	console.log(field);
-    	//执行重载
-    	table.reload('dept_listTab', {
-      		where: field
-    	});
-  	});
-    $(".dept-form-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='LAY-dept-search']").click();
-    });
 
     table.render({
       elem: '#dept_listTab'

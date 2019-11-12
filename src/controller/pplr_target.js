@@ -16,8 +16,10 @@ layui.define(['admin', 'table','setter','form','jquery'], function(exports){
       		where: field
     	});
   	});
-    $(".pplrTargetSet-form-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='plrTargerSet-search']").click();
+    $(".pplrTargetSet-form-search input").keypress(function (e) {
+        if (e.which == 13) {
+            $("*[lay-filter='plrTargerSet-search']").click();
+        }
     });
     form.on('select(pplrTargetSet-dateType-sel)', function(data){
         $("*[lay-filter='plrTargerSet-search']").click();

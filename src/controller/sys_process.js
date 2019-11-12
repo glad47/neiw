@@ -7,17 +7,6 @@ layui.define(['admin', 'table','setter','form','jquery'], function(exports){
     ,form = layui.form;
 
     form.render(null,'app-content-comment');
-    //监听搜索
-  	form.on('submit(LAY-process-search)', function(data){
-    	var field = data.field;
-    	//执行重载
-    	table.reload('process_listTab', {
-      		where: field
-    	});
-  	});
-    $(".process-form-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='LAY-process-search']").click();
-    });
 
     table.render({
       elem: '#process_listTab'

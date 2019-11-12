@@ -144,21 +144,5 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
         }
     });
 
-    //监听搜索
-    form.on('submit(tool-mangement-search)', function(data){
-        var field = data.field;
-        //执行重载
-        table.reload('epcToolMana_tab', {
-            where: field
-        });
-    });
-    form.on('select(search-toolMana)', function(data){
-        $("*[lay-filter='tool-mangement-search']").click();
-    });
-
-    $(".tool-mana-form-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='tool-mangement-search']").click();
-    });
-
     exports('epc_toolMangement', {});
 });

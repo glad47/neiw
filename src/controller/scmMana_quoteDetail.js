@@ -1,6 +1,6 @@
 /**
 
- @Name:    供应商管理－－［报价协同］
+ @Name:    供应商管理－－［报价明细］
 
  */
 
@@ -25,9 +25,12 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
         defVal.orderType = data.index;
         if (data.index === 0){
             tabRenderPCB();
+            $(".quote-detail-search").attr("reload-table", "scmMana_tabPcb");
         } else if (data.index === 1){
             tabRenderStencil();
+            $(".quote-detail-search").attr("reload-table", "scmMana_tabStencil");
         } else if (data.index === 2){
+            $(".quote-detail-search").attr("reload-table", "");
         }
     });
 
@@ -508,21 +511,6 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
             });
         }
     });
-    //监听搜索
-    form.on('submit(quote_detail_serch)', function(data){
-        var field = data.field;
-        var reTab;
-        if (defVal.orderType === 0) {   // PCB
-            reTab = 'scmMana_tabPcb';
-        } else if (defVal.orderType === 1) {    //  Stencil
-            reTab = 'scmMana_tabStencil';
-        }
-        table.reload(reTab, {
-            where: field
-        });
-    });
-    $(".quote-detail-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='quote_detail_serch']").click();
-    })
+
     exports('scmMana_quoteDetail', {});
 });

@@ -9,15 +9,6 @@ layui.define(['admin', 'table','element','form'], function(exports){
 
     form.render(null,'app-content-comment');
 
-    form.on('submit(sys-dict-but-search)', function(data){
-        var field = data.field;
-        // console.log(field);
-        //执行重载
-        table.reload('sys_dict_listTab', {
-            where: field
-        });
-    });
-
     table.render({
         elem: '#sys_dict_listTab'
         ,url: setter.baseUrl+'sys/dict/list'
@@ -140,10 +131,6 @@ layui.define(['admin', 'table','element','form'], function(exports){
         var type = $(this).data('type');
         active[type] && active[type].call(this);
     })
-
-    $(".sys-dict-form-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='sys-dict-but-search']").click();
-    });
 
     exports('sys_dict', {});  
 

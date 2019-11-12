@@ -28,6 +28,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         defVal.orderType = data.index;
         $(window).resize();
         $('.layui-table-fixed-r').removeClass('layui-hide');
+        if (data.index === 1) {
+            $("#orderReview_form").attr("reload-table", "stencil_orderTab_ok_payment");
+        }  else if (data.index === 2) {
+            $("#orderReview_form").attr("reload-table", "");
+        } else {
+            $("#orderReview_form").attr("reload-table", "or_Tabpcb_ok_payment");
+        }
     });
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单-网上已支付
@@ -418,30 +425,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 }
             });
         }
-    })
-
-    form.on('submit(ok_payment_search)', function (data) {
-        var field = data.field;
-        var reTab;
-        delete field.quiz;
-        if (defVal.orderType === 0) {   // PCB
-            reTab = 'or_Tabpcb_ok_payment';
-        } else if (defVal.orderType === 1) {    //  Stencil
-            reTab = 'stencil_orderTab_ok_payment';
-        }
-        table.reload(reTab, {
-            where: field
-        });
-    });
-    //监听select搜索
-    form.on('select(ok-payment-search-sel)', function (data) {
-        $("*[lay-filter='ok_payment_search']").click();
-    });
-    form.on('select(ok-payment-payLogId)', function (data) {
-        $("*[lay-filter='ok_payment_search']").click();
-    });
-    $(".ok-payment-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='ok_payment_search']").click();
     })
 
     // 根据tab选项是否为pcb或者stencil监听表单，动态渲染表格

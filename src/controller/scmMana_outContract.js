@@ -25,12 +25,14 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
     element.on('tab(tab-scmManagement)', function(data){
         defVal.orderType = data.index;
-        if (data.index === 0){
-            tabRenderPCB();
-        } else if (data.index === 1){
+        if (data.index === 1){
             tabRenderStencil();
+            $(".outsourcing-contract-search").attr("reload-table", "scmManaOutSC_tabStencil");
         } else if (data.index === 2){
-
+            $(".outsourcing-contract-search").attr("reload-table", "");
+        } else {
+            tabRenderPCB();
+            $(".outsourcing-contract-search").attr("reload-table", "scmManaOutSC_tabPcb");
         }
     });
 
@@ -499,26 +501,6 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                 layer.close(index);
             });
         }
-    });
-    //监听搜索
-    form.on('submit(outsourcing_contract_search)', function(data){
-        var field = data.field;
-        var reTab;
-        if (defVal.orderType === 0) {   // PCB
-            reTab = 'scmManaOutSC_tabPcb';
-        } else if (defVal.orderType === 1) {    //  Stencil
-            reTab = 'scmManaOutSC_tabStencil';
-        }
-        table.reload(reTab, {
-            where: field
-        });
-    });
-    $(".outsourcing-contract-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='outsourcing_contract_search']").click();
-    });
-    layui.formSelects.on('status', function (id, vals, val, isAdd, isDisabled) {
-        formSelects.value('status', [val.value]);
-        $("*[lay-filter='outsourcing_contract_search']").click();
     });
 
     exports('scmMana_outContract', {});

@@ -30,11 +30,15 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
     element.on('tab(indicator_card_tab)', function (data) {
         defVal.orderType = data.index;
         if (defVal.orderType === 1) {
+            $(".indicator-card-search").attr("reload-table", "epc_Tabstencil_ok_payment_order");
             tabRenderStencil();
         } else if (defVal.orderType === 2) {
             console.log("SMT订单选项卡");
+            $(".indicator-card-search").attr("reload-table", "");
         } else {
             tabRenderPCB();
+            $(".indicator-card-search").attr("reload-table", "epc_Tabpcb_ok_payment_order");
+
         }
     });
     var _click_lineId;      //点击表格行===id
@@ -895,36 +899,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             }
         }
     }
-
-    // 监听搜索 PCB
-    form.on('submit(Indicator_card_search)', function(data){
-        var field = data.field;
-        var reTab;
-        if (defVal.orderType === 0) {   // PCB
-            reTab = 'epc_Tabpcb_ok_payment_order';
-        } else if (defVal.orderType === 1) {    //  Stencil
-            reTab = 'epc_Tabstencil_ok_payment_order';
-        }
-        //执行重载
-        table.reload(reTab, {
-            where: field
-        });
-    });
-
-    //监听select搜索
-    form.on('select(epcindicatorCard-sel-search)', function (data) {
-        $("*[lay-filter='Indicator_card_search']").click();
-    });
-
-    $(".indicator-card-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='Indicator_card_search']").click();
-    })
-
-      // 手机端，数据太多，这个页面单独写
-    $("#indicatorCard-operation").on('click', function () {
-        $(this).text($(this).text()=="隐藏操作"?"显示操作":"隐藏操作");
-        $(".layui-table-fixed-r").toggle('slow');
-    });
 
     exports('epc_indicatorCard', {})
 });

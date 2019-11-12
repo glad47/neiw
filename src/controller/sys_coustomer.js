@@ -9,23 +9,6 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
     setter = layui.setter;
     
     form.render(null,'app-content-comment');
-    //监听搜索
-    form.on('submit(LAY-app-contlist-search)', function(data){
-        var field = data.field;
-        console.log(field);
-        //执行重载
-        table.reload('customer_listTab', {
-            where: field
-        });
-    });
-    form.on('select(sel-customerInfo-status)', function (data) {
-        $("*[lay-filter='LAY-app-contlist-search']").click();
-    });
-    $(".customer-info-form-search input").keypress(function (e) {
-        if (e.which == 13) {
-            $("*[lay-filter='LAY-app-contlist-search']").click();
-        }
-    });
     table.render({
         elem: '#customer_listTab'
         ,url: setter.baseUrl+'sys/consumer/user/list'
