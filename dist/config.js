@@ -57,7 +57,7 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
   // ,webSocketUrl: 'ws://192.168.0.155:2200/ws'
   // ,imUrl:'https://192.168.0.155/'
 
-       ,baseUrl:'http://121.201.102.135/renren-fast/'
+       ,baseUrl:'http://121.201.102.135:8787/renren-fast/'
        ,baseUrl1:"https://www.pcbonline.com/"
        ,webSocketUrl: 'wss://www.pcbonline.com:8887/ws'
        ,imUrl:'https://www.pcbonline.com/'
