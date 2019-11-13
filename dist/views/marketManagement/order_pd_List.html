@@ -70,11 +70,10 @@
 </div>
 
 <script>
-    layui.use('order_pd_List', layui.factory('order_pd_List')).use(['order_pd_List', 'table', 'index','element','form'], function(){
-        var form = layui.form;
-        form.render();
-    });
-</script>
-<script>
-    layui.data.done = function(d){};
+    layui.data.done = function(d){
+        layui.use('order_pd_List', layui.factory('order_pd_List')).use(['order_pd_List', 'table', 'index','element','form'], function(){
+            var form = layui.form;
+            form.render();
+        });
+    };
 </script>

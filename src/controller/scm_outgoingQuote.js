@@ -396,7 +396,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             admin.popup({
                 title: '指定供应商'
                 ,area: ['912px', '545px']
-                ,btn:['提交', '跳过提交','取消']
+                ,btn:[/*'提交',*/ '跳过提交','取消']
                 ,yes:function(index, layero){
                     var checkStatus = table.checkStatus('scm_assign_supplier_table', data),checkdata = checkStatus.data;
                     var ids = checkdata.map(function(elem){return elem.id}).join(",");
@@ -423,7 +423,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                         url:setter.baseUrl+"scm/stencilorder/assignStencilOrderToSupplier",
                         type:"POST",
                         data:{
-                            orderId: data.id
+                            id: data.id
+                            ,orderId: data.id
                             ,supplierIds: ids_arr[0].toString()
                             ,isInternal:data.isInternal
                             ,onlineOid:data.onlineOid
