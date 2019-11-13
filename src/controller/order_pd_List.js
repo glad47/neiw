@@ -84,7 +84,8 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
             ,{field: 'orderTime',title: '下单日期', width: 210, sort: true}
             ,{field: 'pcbName',title: '型号', width: 210, sort: true}
             ,{field: 'businessName',title: '业务员', width: 160, sort: true}      // 1 ＝ 待报价
-            ,{field: 'customerUserPaVO',title: '客户名称', Width: 110, sort: true, templet: '<a>{{ d.customerUserPaVO.userName || 0 }}</a>',}
+            ,{field: 'customerUserPaVO',title: '客户名称', Width: 150, sort: true, templet: '<a>{{ d.customerUserPaVO.userName || 0 }}</a>',}
+            ,{field: 'customerUserPaVO',title: '客户系统id', Width: 150, sort: true, templet: '<a>{{ d.customerUserPaVO.userSystemId || 0 }}</a>',}
             ,{field: 'customerUserPaVO',title: '国家', minWidth: 219, sort: true, templet: "<a>{{ d.customerUserPaVO.cname || '' }}</a>"}
             ,{field: 'customerUserPaVO',title: '网站', minWidth: 219, sort: true, templet: '<a>{{ d.customerUserPaVO.siteUrl || 0 }}</a>'}
             ,{field: 'customerUserPaVO',title: '客户邮箱', minWidth: 219, sort: true, templet: '<a>{{ d.customerUserPaVO.email || 0 }}</a>'}
