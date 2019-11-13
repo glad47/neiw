@@ -34,7 +34,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
             $("select[name='monthMark']").val('');
             form.render();
             if (dateObj.endOrderTime != null && dateCompare()) {
-                tabReloadOPL();
+                // tabReloadOPL();
             }
         }
     });
@@ -46,7 +46,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
             $("select[name='monthMark']").val('');
             form.render();
             if (dateObj.startOrderTime != null && dateCompare()) {
-                tabReloadOPL();
+                // tabReloadOPL();
             }
         }
     });

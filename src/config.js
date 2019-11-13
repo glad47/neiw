@@ -86,6 +86,7 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
       'jsTools', // 小工具集
       'requestInterface', // 复用接口方法
       'formSelects', // formSelects 下拉增强组件
+      'tableSearch', // 表格刷新扩展
     ]
 
     //主题配置

@@ -53,9 +53,10 @@
 </div>
 
 <script>
-    layui.data.done = function(d){};
-    layui.use('consumer_user_audit', layui.factory('consumer_user_audit')).use(['consumer_user_audit', 'table', 'index','element','form'], function(){
-        var form = layui.form;
-        form.render();
-    });
+    layui.data.done = function(d){
+        layui.use('consumer_user_audit', layui.factory('consumer_user_audit')).use(['consumer_user_audit', 'table', 'index','element','form'], function(){
+            var form = layui.form;
+            form.render();
+        });
+    };
 </script>
