@@ -52,6 +52,16 @@
                     <input type="text" name="endOrderTime" id="pdlEndOrderTime" placeholder="结束时间" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">是否支付</label>
+                <div class="layui-input-inline">
+                    <select name="payLogId" lay-filter="order-pd-list-payLogId">
+                        <option value="0">请选择</option>
+                        <option value="">未支付</option>
+                        <option value="1">已支付</option>
+                    </select>
+                </div>
+            </div>
             <div class="layui-inline" style="display: ;">
                 <button class="layui-btn" lay-submit lay-filter="order-pd-list-search">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
