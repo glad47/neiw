@@ -4,7 +4,7 @@
  */
 
 
-layui.define(['admin','table','index','element','form','uploadCommon', 'filePathProcess','convertCurrency','requestInterface'], function (exports) {
+layui.define(['admin','table','index','element','form','uploadCommon', 'filePathProcess','convertCurrency','requestInterface', 'p_wlcg_edit'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -14,6 +14,7 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
         ,$ = layui.jquery
         ,uploadCommon = layui.uploadCommon
         ,filePathProcess = layui.filePathProcess
+        ,p_wlcg_edit = layui.p_wlcg_edit
         ,convertCurrency = layui.convertCurrency
         ,requestInterface = layui.requestInterface;
 
@@ -85,6 +86,7 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
                             return false;
                         }
                     }
+                    data.supplierInfo = requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+data[0].supplierId);
                     admin.popup({
                         title: '物料采购合同'
                         ,area: ['100%', '100%']
@@ -109,6 +111,7 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
                         }
                         ,success: function (layero, index) {
                             view(this.id).render('scmManagement/iframeWindow/outs_contract_mp',data).done(function () {
+                                console.log(data)
                             });
                         }
                     });
@@ -121,20 +124,8 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
         var data = obj.data;
         var _this_id = data.id;
         if (obj.event == 'edit'){
-            admin.popup({
-                title: '物料采购编辑'
-                ,area: ['733px','532px']
-                ,btn: ['保存', '取消']
-                ,yes: function (index, layero) {
-                    $("button[lay-filter='scm_add_material_purchasing_submit']").click();
-                    table.reload('scm_material_purchasing_tab');
-                }
-                ,success: function (layero, index) {
-                    view(this.id).render('scmManagement/iframeWindow/material_purchasing_edit_add', data).done(function () {
-
-                    });
-                }
-            });
+            var reTab = 'scm_material_purchasing_tab';
+            p_wlcg_edit.wlcgEdit(data, reTab);
         } else if (obj.event == 'del'){
             layer.confirm('确定删除？', {
                 btn: ['删除', '取消']
@@ -245,6 +236,8 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
                     });
                 }
             });
+        } else if (obj.event == 'pcedit') {
+            p_wlcg_edit.wlcgEdit(data, 'scm_purchase_contract_tab');
         }
     });
     //监听搜索

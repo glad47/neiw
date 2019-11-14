@@ -102,7 +102,7 @@
 
 <script>
     layui.data.done = function(d) {
-        var urlType,productNo,supplierId,id,isAdd,supplier;
+        var urlType,productNo,supplierId,id,isAdd,supplier, supplierName;
         console.log(d)
         if (d.params.productNo == null) {
             urlType = 'scm/procurement/save';
@@ -197,7 +197,7 @@
                         if (resList && resList.length>0) {
                             var $html = "";
                             for (var i=0;i<resList.length;i++) {
-                                $html += "<option value="+resList[i].companyName+">"+resList[i].companyName+"</option>";
+                                $html += "<option data-type='" + resList[i].supplierId +"' value="+resList[i].supplierId+">"+resList[i].companyName+"</option>";
                             }
                             // $("select[xm-select='manufacturers']").append($html);
                             $("select[xm-select='supplier']").append($html);
@@ -214,6 +214,13 @@
             }
             form.render();
             // 监听表单提交
+
+            // 监听选择供应商
+            layui.formSelects.on('supplier', function (id, vals, val, isAdd, isDisabled) {
+                supplierName = val.name;
+                supplierId = val.value;
+            });
+
             //监听提交
             form.on('submit(scm_add_material_purchasing_submit)', function(data){
                 console.log(urlType);
@@ -224,6 +231,8 @@
                 } else {
                     tipMsg = '物料添加成功';
                 }
+                data.field.supplierName = supplierName;
+                data.field.supplierId = supplierId;
                 admin.req({
                     type: 'post',
                     url: setter.baseUrl+urlType,
@@ -231,7 +240,6 @@
                     success: function (res) {
                         layer.msg(tipMsg);
                         layer.closeAll();
-                        table.reload('scm_material_purchasing_tb');
                     }
                 })
                 return false;

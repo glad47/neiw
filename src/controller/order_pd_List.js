@@ -89,7 +89,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
             ,{field: 'orderTime',title: '下单日期', width: 113, sort: true, templet: '<a>{{ d.orderTime.substring(0, 10) || 0 }}</a>'}
             ,{field: 'productNo',title: '内部型号', width: 114, sort: true}
             ,{field: 'totalFee',title: '订单金额', width: 180, sort: true, templet: '#oplTotalFee'}
-            ,{field: 'commission',title: '提成', width: 84, sort: true}
+            ,{field: 'commission',title: '提成', width: 84, sort: true, templet: '#oplCommission'}
             ,{field: 'payLogId',title: '是否支付', width: 105, sort: true, templet: '#oplPayLogId'}
             ,{field: 'payTime',title: '支付日期', width: 113, sort: true, templet: '#oplPayTime'}
             ,{field: 'customerUserPaVO',title: '渠道', width: 150, sort: true, templet: '<a>{{ d.customerUserPaVO.channel || 0 }}</a>'}

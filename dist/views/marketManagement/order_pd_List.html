@@ -101,6 +101,12 @@
         {{# } }}
         {{ d.totalFee }}
     </script>
+    <!--计算提成-->
+    <script type="text/html" id="oplCommission">
+        {{# if(d.commission != null){ }}
+            {{parseFloat(d.totalFee*d.commission).toFixed(3)}}
+        {{# } }}
+    </script>
 </div>
 
 <script>

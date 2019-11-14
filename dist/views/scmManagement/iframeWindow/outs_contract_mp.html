@@ -68,6 +68,7 @@
                         <th rowspan="2">规格</th>
                         <th rowspan="2">尺寸</th>
                         <th rowspan="2">数量</th>
+                        <th rowspan="2">单位</th>
                         <th rowspan="2">单价</th>
                         <th rowspan="2">总价</th>
                         <th rowspan="2">交期</th>
@@ -89,6 +90,8 @@
                     </td>
                     <!--数量-->
                     <td>{{ item.number || '' }}</td>
+                    <!--单位-->
+                    <td>{{ item.unit || '' }}</td>
                     <!--单价-->
                     <td>{{ item.unitPrice || '' }}</td>
                     <!--总价-->
@@ -109,9 +112,26 @@
                 <ul style="width: 50%;">
                     <script type="text/html" template>
                         <li>供方：{{ d.params[0].supplier || ''}} </li>
-                        <li>地址：{{ d.params[0].supplierInfo.address || ''}}</li>
-                        <li>电话：{{ d.params[0].supplierInfo.officePhone || ''}}</li>
-                        <li>传真：{{ d.params[0].supplierInfo.fax || ''}}</li>
+                        {{# if(d.params[0].supplierInfo != null){ }}
+
+                        {{# } }}
+                        <li>
+                            地址：
+                            {{# if(d.params[0].supplierInfo != null){ }}
+                                {{ d.params[0].supplierInfo.address || ''}}
+                            {{# } }}
+                        </li>
+                        <li>
+                            电话：
+                            {{# if(d.params[0].supplierInfo != null){ }}
+                                {{ d.params[0].supplierInfo.officePhone || ''}}
+                            {{# } }}
+                        </li>
+                        <li>传真：
+                            {{# if(d.params[0].supplierInfo != null){ }}
+                                {{ d.params[0].supplierInfo.fax || ''}}
+                            {{# } }}
+                        </li>
                         <li>代表签字：</li>
                     </script>
                 </ul>
