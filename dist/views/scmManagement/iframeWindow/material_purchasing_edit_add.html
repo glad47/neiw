@@ -62,6 +62,14 @@
                 </div>
             </div>
         </div>
+        <div class="layui-form-item" style="display: none;">
+            <div class="layui-inline">
+                <label class="layui-form-label">总价</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="totalPrice" value="{{d.params.totalPrice || ''}}" id="totalPrice" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+        </div>
         <div class="layui-form-item">
             <div class="layui-inline" style="width: 100%;display: inline-flex;">
                 <label class="layui-form-label">供应商</label>
@@ -228,6 +236,20 @@
                 })
                 return false;
             });
+
+            // 计算总价回传
+            $("input[name='number']").bind("input propertychange", function (even) {
+                quoteTotal();
+            });
+            $("input[name='unitPrice']").bind("input propertychange", function (even) {
+                quoteTotal();
+            });
+            function quoteTotal() {
+                var number = $("input[name='number']").val();
+                var unitPrice = $("input[name='unitPrice']").val();
+                var total = parseFloat(number*unitPrice);
+                $("input[name='totalPrice']").val(total);
+            }
         })
     }
 </script>

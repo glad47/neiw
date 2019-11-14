@@ -4,6 +4,9 @@
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">业务员</label>
+                <!--{{#-->
+                <!--if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:index:target") != -1){-->
+                <!--}}-->
                 <div class="layui-input-inline">
                     <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-done="layui.data.done(d);" lay-type="post">
                         <select name="businessName" lay-filter="sel-order-pd-list-businessName">
@@ -27,7 +30,7 @@
                     <select name="orderField" lay-filter="order-pd-list-orderField">
                         <option value=""></option>
                         <option value="order_time">销售日期</option>
-                        <option value="pay_time">支付时间</option>
+                        <option value="pay_time" selected>支付时间</option>
                     </select>
                 </div>
             </div>
@@ -36,7 +39,7 @@
                 <div class="layui-input-inline">
                     <select name="monthMark" lay-filter="order-pd-list-monthMark">
                         <option value=""></option>
-                        <option value="currMonthMark">本月</option>
+                        <option value="currMonthMark" selected>本月</option>
                         <option value="lastMonthMark">上月</option>
                         <option value="threeMonteMark">近三月</option>
                     </select>
@@ -62,6 +65,12 @@
                     </select>
                 </div>
             </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">内部型号</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" name="productNo">
+                </div>
+            </div>
             <div class="layui-inline" style="display: ;">
                 <button class="layui-btn" lay-submit lay-filter="order-pd-list-search">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
@@ -76,6 +85,21 @@
         {{# } else{ }}
             <a style="color: orangered">未支付</a>
         {{# } }}
+    </script>
+    <script type="text/html" id="oplPayTime">
+        {{# if(d.payTime != null){ }}
+            {{d.payTime.substring(0, 10)}}
+        {{# } }}
+    </script>
+    <script type="text/html" id="oplTotalFee">
+        {{# if(d.exchangeId == '1'){ }}
+            $
+        {{# } else if(d.exchangeId == '2'){ }}
+            ￥
+        {{# } else{ }}
+            €
+        {{# } }}
+        {{ d.totalFee }}
     </script>
 </div>
 
