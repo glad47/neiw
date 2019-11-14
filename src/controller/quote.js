@@ -499,7 +499,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     //监听==>构造时间的 select
     form.on("select(selBuildTime)", function (data) {   //构造时间天数
         var this_price = data.value;
-        var optionText = $("#selBuildTime").find("option[value="+data.value+"]").text();
+        var optionText = $("#selBuildTime").next(".layui-form-select").find(".layui-this[lay-value='"+ data.value +"']").text();
         pcbTo.shippingPrice = this_price;
         pcb_container.overworkFee = this_price;
         pcb_container.buildTime = optionText;
