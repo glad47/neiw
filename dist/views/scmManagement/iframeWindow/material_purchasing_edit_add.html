@@ -205,7 +205,7 @@
                             formSelects.render('supplier');
                         }
                         // formSelects.value('manufacturers', [supplierId]);
-                        formSelects.value('supplier', [supplier]);
+                        formSelects.value('supplier', [supplier ]);
                         console.log("dom:"+dom);
                         $(".xm-select-parent[fs_id='supplier']").children(".xm-form-select").addClass("xm-form-selected");
                         layer.msg("加载成功！");
@@ -217,7 +217,7 @@
 
             // 监听选择供应商
             layui.formSelects.on('supplier', function (id, vals, val, isAdd, isDisabled) {
-                supplierName = val.name;
+                supplier = val.name;
                 supplierId = val.value;
             });
 
@@ -231,7 +231,7 @@
                 } else {
                     tipMsg = '物料添加成功';
                 }
-                data.field.supplierName = supplierName;
+                data.field.supplier = supplier;
                 data.field.supplierId = supplierId;
                 admin.req({
                     type: 'post',
