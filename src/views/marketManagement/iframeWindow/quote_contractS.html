@@ -11,7 +11,7 @@
                 .contract-module-three-tab{padding-top: 260px;word-break: break-all;}
                 .contract-module-four-lef{float: left;width: 50%;}
                 .contract-module-four-rig{float: right;width: 45%;margin-right: 20px;margin-top: -20px;}
-                .contract-module-five{position: fixed;bottom: 16px;}
+                Feb 15, 2010Feb 15, 2010        .contract-module-five{position: fixed;bottom: 16px;}
                 .contract-module-five .bot-info-lef{float: left;width: 40%;}
                 .contract-module-five .bot-info-rig{float: right;width: 60%;}
                 .contract-module-five li,.contract-module-four li{line-height: 20px;}
@@ -114,7 +114,7 @@
                     <tr>
                         <td>
                             <label class="cmo-lable" style="width: 75px;padding-left: 15px;">Date:</label>
-                            <label class="cmo-lable" style="width: unset;padding-left: 30px;" id="topDate">Feb 15, 2010</label>
+                            <label class="cmo-lable" style="width: unset;padding-left: 30px;" id="topDate">{{new Date().toLocaleDateString() }}</label>
                         </td>
                         <td>
                             <label class="cmo-lable" style="width: 140px;text-align: left;">PAYMENT TERM:</label>
@@ -298,7 +298,7 @@
                 <div class="top-info">
                     <!--<a id="contractCusName">{{ sessionStorage.getItem("userName") }}</a>-->
                         <a id="contractCusName">{{ d.params.data[0].businessName || '' }}</a>
-                        <a id="contractBotDateS">February 07, 2018</a>
+                        <a id="contractBotDateS">{{new Date().toLocaleDateString() }}</a>
                 </div>
                 <div class="bot-intro">
                     <a>Authorized by</a>
