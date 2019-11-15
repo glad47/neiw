@@ -1,8 +1,19 @@
 <title>月度统计表</title>
-<script type="text/html" template>
-<div class="layui-fluid monthly-statistical">
-    <div class="monthly-statistical-header">
-        <h1>跟单员月度统计表</h1>
+<div class="layui-fluid monthly-statistical" id="monthlyStatistical">
+    <style>
+        .layui-table td, .layui-table th ,.monthly-statistical-header h1{color: black;}
+    </style>
+    <script type="text/html" template>
+    <div class="monthly-statistical-header" style="text-align: center;">
+        <h1>
+            {{# var bArray = [] }}
+            {{# layui.each(d.params, function(index, item){  }}
+                {{# if(bArray.indexOf(item.businessName) == -1){ }}
+                    {{item.businessName}}
+                    {{# bArray.push(item.businessName)}}
+                {{# } }}
+            {{#  }); }}
+            {{d.params.popMonthlyStatisticalType || ''}}统计表</h1>
     </div>
     <table class="layui-table">
         <thead>
@@ -14,24 +25,25 @@
             <th>支付日期</th>
             <th>渠道</th>
             <th>网站</th>
-            <th>新客户</th>
         </tr>
         </thead>
         <tbody>
-        <!--人民币-->
-        {{# var yuanArr = [{amount:'', commission: ''}] }}
-        <!--美元-->
-        {{# var dollarArr = [{amount:'', commission: ''}] }}
-        <!--欧元-->
-        {{# var euroArr = [{amount:'', commission: ''}] }}
+        {{# var yuanCom=0 }}
+        {{# var dollarCom=0 }}
+        {{# var euroCom=0 }}
 
         {{# layui.each(d.params, function(index, item){  }}
+
+            {{# if(item.commission == null) { }}
+                {{# item.commission = 1.5 }}
+            {{# } }}
+
             {{# if(item.exchangeId == '1'){ }}
-                {{# dollarArr.push({amount:item.totalFee, commission: item.commission})}}
+                {{# dollarCom = parseFloat(item.commission*item.totalFee).toFixed(3)}}
             {{# } else if(item.exchangeId == '2') { }}
-                {{# yuanArr.push({amount:item.totalFee, commission: item.commission})}}
+                {{# yuanCom = parseFloat(item.commission*item.totalFee).toFixed(3)}}
             {{# } else { }}
-                {{# euroArr.push({amount:item.totalFee, commission: item.commission})}}
+                {{# euroCom = parseFloat(item.commission*item.totalFee).toFixed(3)}}
             {{# } }}
         <tr>
             <!--下单日期-->
@@ -67,21 +79,26 @@
                 {{ item.customerUserPaVO.channel || '' }}
             </td>
             <!--新客户-->
-            <td>
-                {{ item.commission || '否' }}
-            </td>
+            <!--<td>-->
+                <!--{{ item.commission || '否' }}-->
+            <!--</td>-->
         </tr>
         {{#  }); }}
-        <tr style="text-align: right;">
-            <td colspan="8">
+        <tr>
+            <td colspan="6" style="text-align: left;">
+                <!--Get statistics-->
                 订单数：{{d.params.length}} 条&nbsp;&nbsp;&nbsp;&nbsp;
-                提成(￥)：&nbsp;&nbsp;&nbsp;&nbsp;
-                提成($)：&nbsp;&nbsp;&nbsp;&nbsp;
-                提成(€)：&nbsp;&nbsp;&nbsp;&nbsp;
-                小计:
+                提成(￥)：{{yuanCom}} &nbsp;&nbsp;&nbsp;&nbsp;
+                提成($)：{{dollarCom}} &nbsp;&nbsp;&nbsp;&nbsp;
+                提成(€)：{{euroCom}} &nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+            <td style="text-align: right;">
+                统计时间：{{d.params.popMSTime || ''}}
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                打印时间：{{new Date().toLocaleDateString() }}
             </td>
         </tr>
         </tbody>
     </table>
+    </script>
 </div>
-</script>

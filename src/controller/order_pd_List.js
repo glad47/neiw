@@ -25,10 +25,12 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
         businessName: null  // 业务员
     }
 
-    //日期
+    var popMonthlyStatisticalType = '销售额';
+    var statisticalTime = 'currMonthMark';    // 统计时间
     laydate.render({
-        elem: '#pdlStartOrderTime',
-        done: function (value, date, endDate) {
+        elem: '#pdlStartOrderTime'
+        ,isInitValue: false //是否允许填充初始值，默认为 true
+        ,done: function (value, date, endDate) {
             dateObj.startOrderTime = value;
             dateObj.monthMark = null;
             $("select[name='monthMark']").val('');
@@ -39,8 +41,9 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
         }
     });
     laydate.render({
-        elem: '#pdlEndOrderTime',
-        done: function (value, date, endDate) {
+        elem: '#pdlEndOrderTime'
+        ,isInitValue: false //是否允许填充初始值，默认为 true
+        ,done: function (value, date, endDate) {
             dateObj.endOrderTime = value;
             dateObj.monthMark = null;
             $("select[name='monthMark']").val('');
@@ -115,6 +118,8 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
            if (rowData.length < 1) {
                layer.msg('请选择数据再继续操作！');
            } else {
+               rowData.popMonthlyStatisticalType = getMSType();
+               rowData.popMSTime = getMSTime();
                admin.popup({
                    title: '月度统计表'
                    ,area: ['100%', '100%']
@@ -122,7 +127,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
                    ,id: 'popMonthlyStatistical'
                    ,btn: ['打印', '取消']
                    ,yes: function () {
-                       var printId = '';
+                       var printId = 'monthlyStatistical';
                        document.body.innerHTML=document.getElementById(printId).innerHTML;
                        window.print();
                        window.location.reload();
@@ -138,5 +143,33 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
        }
     });
 
+    function getMSType () {     // Get orderField Type
+        var typeText = $("select[name='orderField']").next('.layui-form-select').find('.layui-this').text();
+        if (typeText == '销售日期') {
+            popMonthlyStatisticalType = '销售额';
+        } else if (typeText == '支付时间') {
+            popMonthlyStatisticalType = '回款';
+        }
+        return popMonthlyStatisticalType;
+    }
+
+    // Listening to choose recent query
+    $("select[lay-filter='order-pd-list-monthMark']").closest('.layui-input-inline').on('click', function () {
+        $("input[name='startOrderTime']").val('');
+        $("input[name='endOrderTime']").val('');
+    });
+
+    function getMSTime () {     // Get statistical Time
+        var startOrderTime = $("input[name='startOrderTime']").val();
+        var endOrderTime = $("input[name='endOrderTime']").val();
+        var recentQuery = $("select[lay-filter='order-pd-list-monthMark']").next('.layui-form-select').find('.layui-this').text();
+        if (startOrderTime.length != 0 && endOrderTime.length != 0 && recentQuery.length == 0) {
+            return startOrderTime + '至' + endOrderTime
+        } else if (recentQuery.length != 0) {
+            return recentQuery;
+        } else if (startOrderTime .length === 0 && endOrderTime .length === 0 && recentQuery .length === 0) {
+            return '全部';
+        }
+    }
     exports('order_pd_List', {});
 });
