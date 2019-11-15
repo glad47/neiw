@@ -126,7 +126,7 @@
                     <tr>
                         <td>
                             <label class="cmo-lable" style="width: 75px;padding-left: 15px;">Date:</label>
-                            <label class="cmo-lable" style="width: unset;padding-left: 30px;" id="topDate">Feb 15, 2010</label>
+                            <label class="cmo-lable" style="width: unset;padding-left: 30px;" id="topDate">{{new Date().toLocaleDateString() }}</label>
                         </td>
                         <td>
                             <label class="cmo-lable" style="width: 140px;text-align: left;">PAYMENT TERM:</label>
@@ -387,7 +387,7 @@
                 <div class="top-info">
                         <!--<a id="contractCusName">{{ layui.data('userInfo').uname }}</a>-->
                         <a id="contractCusName">{{ d.params.data[0].businessName || '' }}</a>
-                        <a id="contractBotDate">February 07, 2018</a>
+                        <a id="contractBotDate">{{new Date().toLocaleDateString() }}</a>
                         <!--<a>{{ d.params.data[0].gmtModified || '' }} </a>-->
                 </div>
                 <div class="bot-intro">

@@ -1,0 +1,87 @@
+<title>月度统计表</title>
+<script type="text/html" template>
+<div class="layui-fluid monthly-statistical">
+    <div class="monthly-statistical-header">
+        <h1>跟单员月度统计表</h1>
+    </div>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>下单日期</th>
+            <th>内部型号</th>
+            <th>订单金额</th>
+            <th>提成</th>
+            <th>支付日期</th>
+            <th>渠道</th>
+            <th>网站</th>
+            <th>新客户</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--人民币-->
+        {{# var yuanArr = [{amount:'', commission: ''}] }}
+        <!--美元-->
+        {{# var dollarArr = [{amount:'', commission: ''}] }}
+        <!--欧元-->
+        {{# var euroArr = [{amount:'', commission: ''}] }}
+
+        {{# layui.each(d.params, function(index, item){  }}
+            {{# if(item.exchangeId == '1'){ }}
+                {{# dollarArr.push({amount:item.totalFee, commission: item.commission})}}
+            {{# } else if(item.exchangeId == '2') { }}
+                {{# yuanArr.push({amount:item.totalFee, commission: item.commission})}}
+            {{# } else { }}
+                {{# euroArr.push({amount:item.totalFee, commission: item.commission})}}
+            {{# } }}
+        <tr>
+            <!--下单日期-->
+            <td>
+                {{# if(item.orderTime != null){ }}
+                    {{ item.orderTime.substring(0, 10) || '' }}
+                {{# }}}
+            </td>
+            <!--内部型号-->
+            <td>
+                {{ item.productNo || '' }}
+            </td>
+            <!--订单金额-->
+            <td>
+                {{ item.totalFee || '' }}
+            </td>
+            <!--提成-->
+            <td>
+                {{ item.commission || '1' }}
+            </td>
+            <!--支付日期-->
+            <td>
+                {{# if(item.payTime != null){ }}
+                    {{ item.payTime.substring(0, 10) || '' }}
+                {{# }}}
+            </td>
+            <!--网站-->
+            <td>
+                {{ item.customerUserPaVO.siteUrl || '' }}
+            </td>
+            <!--渠道-->
+            <td>
+                {{ item.customerUserPaVO.channel || '' }}
+            </td>
+            <!--新客户-->
+            <td>
+                {{ item.commission || '否' }}
+            </td>
+        </tr>
+        {{#  }); }}
+        <tr style="text-align: right;">
+            <td colspan="8">
+                订单数：{{d.params.length}} 条&nbsp;&nbsp;&nbsp;&nbsp;
+                提成(￥)：&nbsp;&nbsp;&nbsp;&nbsp;
+                提成($)：&nbsp;&nbsp;&nbsp;&nbsp;
+                提成(€)：&nbsp;&nbsp;&nbsp;&nbsp;
+                小计:
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</script>

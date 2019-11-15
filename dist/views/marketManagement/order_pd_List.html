@@ -79,6 +79,9 @@
         </div>
     </div>
     <table class="layui-table" id="tabOrderPdList" lay-filter="tabOrderPdList"></table>
+    <script type="text/html" id="tabOrderPdListTb">
+        <button class="layui-btn" lay-event="MonthlyStatistical">月度统计表</button>
+    </script>
     <script type="text/html" id="oplPayLogId">
         {{# if(d.payLogId != null){ }}
             <a style="color: green">已支付</a>
@@ -89,6 +92,11 @@
     <script type="text/html" id="oplPayTime">
         {{# if(d.payTime != null){ }}
             {{d.payTime.substring(0, 10)}}
+        {{# } }}
+    </script>
+    <script type="text/html" id="oplOrderTime">
+        {{# if(d.orderTime != null){ }}
+        {{d.orderTime.substring(0, 10)}}
         {{# } }}
     </script>
     <script type="text/html" id="oplTotalFee">

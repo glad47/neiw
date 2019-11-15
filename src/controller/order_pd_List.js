@@ -86,7 +86,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
         ,cols: [[
             {type:'checkbox',fixed: 'left'}
             ,{field: 'businessName',title: '业务员', width: 160, sort: true}      // 1 ＝ 待报价
-            ,{field: 'orderTime',title: '下单日期', width: 113, sort: true, templet: '<a>{{ d.orderTime.substring(0, 10) || 0 }}</a>'}
+            ,{field: 'orderTime',title: '下单日期', width: 113, sort: true, templet: '#oplOrderTime'}
             ,{field: 'productNo',title: '内部型号', width: 114, sort: true}
             ,{field: 'totalFee',title: '订单金额', width: 180, sort: true, templet: '#oplTotalFee'}
             ,{field: 'commission',title: '提成', width: 84, sort: true, templet: '#oplCommission'}
@@ -106,6 +106,36 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
         ,done: function (res, curr, count) {
 
         }
+    });
+
+    table.on('toolbar(tabOrderPdList)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        var rowData = checkStatus.data;
+       if (obj.event == 'MonthlyStatistical') {
+           if (rowData.length < 1) {
+               layer.msg('请选择数据再继续操作！');
+           } else {
+               admin.popup({
+                   title: '月度统计表'
+                   ,area: ['100%', '100%']
+                   ,maxmin: true
+                   ,id: 'popMonthlyStatistical'
+                   ,btn: ['打印', '取消']
+                   ,yes: function () {
+                       var printId = '';
+                       document.body.innerHTML=document.getElementById(printId).innerHTML;
+                       window.print();
+                       window.location.reload();
+                   }
+                   ,success: function () {
+                       var viewName = '/marketManagement/iframeWindow/monthly_statistical';
+                       view(this.id).render(viewName, rowData).done(function () {
+                           console.log(rowData)
+                       });
+                   }
+               })
+           }
+       }
     });
 
     exports('order_pd_List', {});
