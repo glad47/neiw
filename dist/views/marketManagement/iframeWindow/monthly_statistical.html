@@ -58,6 +58,13 @@
             </td>
             <!--订单金额-->
             <td>
+                {{# if(item.exchangeId == '1'){ }}
+                    $
+                {{# } else if(item.exchangeId == '2'){ }}
+                    ￥
+                {{# } else{ }}
+                    €
+                {{# } }}
                 {{ item.totalFee || '' }}
             </td>
             <!--提成-->
