@@ -27,6 +27,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
 
     var popMonthlyStatisticalType = '销售额';
     var statisticalTime = 'currMonthMark';    // 统计时间
+    var tabDate;
     laydate.render({
         elem: '#pdlStartOrderTime'
         ,isInitValue: false //是否允许填充初始值，默认为 true
@@ -58,7 +59,6 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
         if (dateObj.startOrderTime != null && dateObj.endOrderTime) {
             var sTime = dateObj.startOrderTime;
             var eTime = dateObj.endOrderTime;
-            console.log(12112)
             if (eTime < sTime) {
                 layer.msg('结束时间不能小于开始时间, 请重新选择！！！');
                 return false;
@@ -74,7 +74,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
         ,toolbar: "#tabOrderPdListTb"
         ,cellMinWidth: 80
         ,id: "tabOrderPdList"
-        ,page: true
+        ,page: false
         ,parseData: function (res) {
             return {
                 "code": 0,
@@ -84,10 +84,11 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
         }
         ,where: {
             orderField: 'pay_time',
-            monthMark: 'currMonthMark'
+            monthMark: 'currMonthMark',
+            limit: 10000,
         }
         ,cols: [[
-            {type:'checkbox',fixed: 'left'}
+            // {type:'checkbox',fixed: 'left'}
             ,{field: 'businessName',title: '业务员', width: 160, sort: true}      // 1 ＝ 待报价
             ,{field: 'orderTime',title: '下单日期', width: 113, sort: true, templet: '#oplOrderTime'}
             ,{field: 'productNo',title: '内部型号', width: 114, sort: true}
@@ -107,16 +108,16 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
             // ,{fixed: 'right', title:'操作', toolbar: '#orderReviewB_pertSys_tabbar',width: 220, sort: true}
         ]]
         ,done: function (res, curr, count) {
-
+            tabDate = res.data;
         }
     });
 
     table.on('toolbar(tabOrderPdList)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
-        var rowData = checkStatus.data;
+        var rowData = tabDate;
        if (obj.event == 'MonthlyStatistical') {
            if (rowData.length < 1) {
-               layer.msg('请选择数据再继续操作！');
+               layer.msg('当前不存在数据，操作失败');
            } else {
                rowData.popMonthlyStatisticalType = getMSType();
                rowData.popMSTime = getMSTime();
