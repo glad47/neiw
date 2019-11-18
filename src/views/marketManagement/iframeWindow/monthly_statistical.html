@@ -22,28 +22,21 @@
             <th>内部型号</th>
             <th>订单金额</th>
             <th>提成</th>
+            <th>是否支付</th>
             <th>支付日期</th>
             <th>渠道</th>
             <th>网站</th>
         </tr>
         </thead>
         <tbody>
-        {{# var yuanCom=0 }}
-        {{# var dollarCom=0 }}
-        {{# var euroCom=0 }}
-
+        <!--总销售额-->
+        {{# var totalAll = 0 }}
+        <!--总提成-->
+        {{# var totalCommission = 0 }}
         {{# layui.each(d.params, function(index, item){  }}
 
             {{# if(item.commission == null) { }}
                 {{# item.commission = 0 }}
-            {{# } }}
-
-            {{# if(item.exchangeId == '1'){ }}
-                {{# dollarCom = parseFloat(item.commission*item.totalFee).toFixed(3)}}
-            {{# } else if(item.exchangeId == '2') { }}
-                {{# yuanCom = parseFloat(item.commission*item.totalFee).toFixed(3)}}
-            {{# } else { }}
-                {{# euroCom = parseFloat(item.commission*item.totalFee).toFixed(3)}}
             {{# } }}
         <tr>
             <!--下单日期-->
@@ -58,18 +51,31 @@
             </td>
             <!--订单金额-->
             <td>
-                {{# if(item.exchangeId == '1'){ }}
-                    $
-                {{# } else if(item.exchangeId == '2'){ }}
-                    ￥
-                {{# } else{ }}
-                    €
+                {{# if(item.totalFeeCNY == null){ }}
+                    {{# item.totalFeeCNY = 0}}
                 {{# } }}
-                {{ item.totalFee || '' }}
+                ￥{{ item.totalFeeCNY || '' }}
+                <!--汇总-->
+                {{# totalAll += parseFloat(item.totalFeeCNY) }}
             </td>
             <!--提成-->
             <td>
-                {{ item.commission || '1' }}
+                {{# if(item.commission == null || item.commission == ''){ }}
+                    {{# item.commission = 0  }}
+                {{# } }}
+                (提成点:{{ item.commission || 0 }})
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                {{parseFloat(item.commission*item.totalFeeCNY).toFixed(2)}}
+                <!--计算总提成-->
+                {{# totalCommission += parseFloat(item.totalFeeCNY*item.commission)}}
+            </td>
+            <!--是否支付-->
+            <td>
+                {{# if(item.payLogId != null){ }}
+                <a style="color: green">已支付</a>
+                {{# } else { }}
+                <a style="color: orangered">未支付</a>
+                {{# } }}
             </td>
             <!--支付日期-->
             <td>
@@ -92,12 +98,13 @@
         </tr>
         {{#  }); }}
         <tr>
-            <td colspan="6" style="text-align: left;">
+            <td colspan="7" style="text-align: left;">
                 <!--Get statistics-->
                 订单数：{{d.params.length}} 条&nbsp;&nbsp;&nbsp;&nbsp;
-                提成(￥)：{{yuanCom}} &nbsp;&nbsp;&nbsp;&nbsp;
-                提成($)：{{dollarCom}} &nbsp;&nbsp;&nbsp;&nbsp;
-                提成(€)：{{euroCom}} &nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>
+                销售额：{{totalAll.toFixed(2)}}
+                </strong>
+                提成(￥)：{{totalCommission.toFixed(2)}} &nbsp;&nbsp;&nbsp;&nbsp;
             </td>
             <td style="text-align: right;">
                 统计时间：{{d.params.popMSTime || ''}}

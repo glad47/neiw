@@ -60,7 +60,7 @@
                 <div class="layui-input-inline">
                     <select name="payLogId" lay-filter="order-pd-list-payLogId">
                         <option value="0">请选择</option>
-                        <option value="">未支付</option>
+                        <option value="2">未支付</option>
                         <option value="1">已支付</option>
                     </select>
                 </div>
@@ -85,7 +85,7 @@
     <script type="text/html" id="oplPayLogId">
         {{# if(d.payLogId != null){ }}
             <a style="color: green">已支付</a>
-        {{# } else{ }}
+        {{# } else { }}
             <a style="color: orangered">未支付</a>
         {{# } }}
     </script>
