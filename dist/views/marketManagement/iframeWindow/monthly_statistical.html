@@ -8,7 +8,7 @@
         <h1>
             {{# var bArray = [] }}
             {{# layui.each(d.params, function(index, item){  }}
-                {{# if(bArray.indexOf(item.businessName) == -1){ }}
+                {{# if(bArray.indexOf(item.businessName) == -1 && item.businessName != null){ }}
                     {{item.businessName}}
                     {{# bArray.push(item.businessName)}}
                 {{# } }}
