@@ -43,7 +43,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
         table.render({
             elem: '#iqcMana_outBound'
             ,url: setter.baseUrl+'iqc/pcborder/outboundOrder/list'
-            ,toolbar: "#ord_sqpManaPlan_tb"
+            ,toolbar: "#ord_proMana_ootb"
             ,cellMinWidth: 80
             ,id: "iqcMana_outBound"
             ,page: true
@@ -181,7 +181,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
         table.render({
             elem: '#iqcMana_outBoundS'
             ,url: setter.baseUrl+'iqc/stencilorder/outboundOrder/list'
-            ,toolbar: "#ord_sqpManaPlan_tb"
+            ,toolbar: "#ord_proMana_ootb"
             ,cellMinWidth: 80
             ,id: "iqcMana_outBoundS"
             ,page: true
