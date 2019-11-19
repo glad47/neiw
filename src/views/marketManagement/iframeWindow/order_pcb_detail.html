@@ -258,6 +258,7 @@
                     </td>
                     <td>控深锣:</td>
                     <td>
+                        {{# if(d.params.deepMillRouting == '1'){d.params.deepMillRouting = '是'}else{d.params.deepMillRouting = '否'} }}
                         {{ d.params.deepMillRouting || '否'}}
                     </td>
                 </tr>
