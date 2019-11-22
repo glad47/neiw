@@ -40,7 +40,7 @@
                 <label class="layui-form-label"><span class="span-required">*</span>国家:</label>
                 <div class="layui-input-block">
                     <script type="text/html" template lay-url="{{layui.setter.imUrl}}/quote/getCountry" lay-done="layui.data.done(d);" lay-type="post">
-                        <select name="receiverCountry" lay-verify="required">
+                        <select name="receiverCountry" lay-verify="required" lay-search="">
                             {{# 
                                 layui.each(d.data, function(index, item){   
                             }}
