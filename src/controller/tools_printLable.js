@@ -35,6 +35,9 @@ layui.define(['admin', 'jsTools'], function (exports) {
                            $("#outLableQTY").attr("value", $(this).val())
                            setInputWidth(_val)
                        });
+                       $("#outLablePN").bind("input propertychange", function (even) {
+                           $("#outLablePN").attr("value", $(this).val());
+                       });
                        function setInputWidth(Str) {
                            var _width = jsTools.getStrWidth(Str).width;
                            $("input[id='outLableQTY']").css("width",_width+'px');
