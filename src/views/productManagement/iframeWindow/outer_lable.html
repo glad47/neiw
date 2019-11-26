@@ -26,7 +26,9 @@
             <ul class="outer-lable-top-ul">
                 <li>
                     <lable>P/N:</lable>
-                    <span>{{ d.params[0].pcbName || '' }}</span>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" value="{{ d.params[0].pcbName || '' }}">
+                    </div>
                 </li>
             </ul>
             <div class="outer-lable-info">
