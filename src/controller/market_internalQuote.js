@@ -549,6 +549,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
                 ,btn:['立即提交', '取消']
                 ,yes: function () {
                     $(".submitStencilUpB").click();
+                    table.reload('iquote_Tabstencil');
                 }
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderStencil_updateB', data).done(function () {
