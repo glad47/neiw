@@ -734,6 +734,7 @@
                 } else if (type == "unitPrice") {
                     var bf = parseFloat(unitPrice*quantityPcs).toFixed(3);
                     $(".orderPCBupdateForm input[name='boardFee']").val(bf);
+                    set_qObj();
                 }
             }
 
