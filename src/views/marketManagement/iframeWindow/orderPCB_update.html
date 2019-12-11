@@ -659,19 +659,17 @@
             laydate.render({
                elem: '#oupBuildTime'
             });
-            $("#user_editInfo_form input").on("click", function () {
-                $this.name = $(this).attr("name");
-            });
-            $("#user_editInfo_form").bind('input propertychange', function () {
-                var cobj = get_qObj();
+            $("#user_editInfo_form").bind('input propertychange', function (e) {
                 var a = 0;
+                var $this = $(e.target).attr("name");
+                quoteBPU($this);
+                var cobj = get_qObj();
                 $.each(cobj, function (i, val) {
                     var _val = parseFloat(val);
                     a += _val;
                 });
                 q_params.pcbCost = a.toFixed(2);
                 $(".orderPCBupdateForm input[name='subtotal']").val(q_params.pcbCost);       // 小计
-                quoteBPU($this.name);
                 getPCBA();
                 set_qObj();
             });
@@ -734,7 +732,6 @@
                 } else if (type == "unitPrice") {
                     var bf = parseFloat(unitPrice*quantityPcs).toFixed(3);
                     $(".orderPCBupdateForm input[name='boardFee']").val(bf);
-                    set_qObj();
                 }
             }
 

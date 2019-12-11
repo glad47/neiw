@@ -1270,6 +1270,15 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     }
 
 
+    // Stencil 重量编辑
+    var triggerStencilWeight;
+    $("#stencilWeight").bind("input propertychange", function (even) {
+        stencil_data.stencilWeight = $(this).val();
+        clearTimeout(triggerStencilWeight);
+        triggerStencilWeight = setTimeout(function () {
+            getShippingCost();
+        }, 800);
+    });
 
     /**
      * 计算SMT-Stencil 单价
