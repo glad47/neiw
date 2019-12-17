@@ -361,18 +361,21 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
         }
         ,cols: [[
              {field: 'id', title: 'ID', hide: true, sort: true}
-            ,{field: 'productNo', title: 'Product No', align:'center', width: 134, sort: true}
-            ,{field: 'status', title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-scm-outgoingQuote-status', minWidth: 130, sort: true}
-            ,{field: '', title:'File', templet: '#stencil-file', align:'center', sort: true}
-            ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224, sort: true}
-            ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165, sort: true}
-            ,{field: 'totalStencilFee', title: 'TotalStencilFee($)', align:'center', width: 144, sort: true}
-            ,{field: 'stencilType', title: 'Stencil Type', align:'center', width: 124, sort: true}
-            ,{field: 'stencilSide', title: 'Stencil Side', align:'center', width: 124, sort: true}
-            ,{field: 'quantity', title: 'Quantity', align:'center', width: 114, sort: true}
-            ,{field: 'size', title: 'Size', align:'center', width: 80, sort: true}
+            ,{field: 'productNo', title: '聚谷编号', align:'center', sort: true}
+            ,{field: 'status', title: '状态', align:'center',  templet: '#Tabtb-stencil-scm-outgoingQuote-status', minWidth: 130, sort: true}
+            ,{field: '', title:'File', templet: '#stencil-file',  align:'center', minWidth: 130, sort: true}
+            ,{field: 'stencilType', title: '钢网类型', align:'center', sort: true, templet:'<div> {{ d.stencilType=="Farmework" ? "钢网" : "钢片" }} </div>'}
+            ,{field: 'stencilSide', title: '钢网面向', align:'center', sort: true, templet:'#Tabtb-stencil-scm-outgoingQuote-type'}
+            ,{field: 'thickness', title: '钢网厚度', align:'center', sort: true}
+            ,{field: '',title:'钢网尺寸',align:'center',templet:'<div>{{d.stencilSizeX}} * {{d.stencilSizeY}}</div>'}
+            ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224, sort: true, hide: true}
+            ,{field: 'gmtCreate', title: '创建时间', align:'center', sort: true}
+            
+            ,{field: 'totalStencilFee', title: 'TotalStencilFee($)', align:'center', width: 144, sort: true, hide: true}
+            ,{field: 'stencilSide', title: 'Stencil Side', align:'center', width: 124, sort: true ,hide: true}
+            ,{field: 'quantity', title: 'Quantity', align:'center', width: 114, sort: true,hide: true}
+            ,{field: 'size', title: 'Size', align:'center', width: 80, sort: true, hide: true}
             ,{field: 'quoteId', title: 'Quote ID', align:'center', width: 114, hide: true}
-            ,{field: 'thickness', title: 'Thickness', align:'center', width: 114, hide: true}
             ,{field: 'existingFiducials', title: 'Existing Fiducials', align:'center', width: 145, hide: true}
             ,{field: 'stencilSizeX', title: 'stencilSizeX', align:'center', width: 124, hide: true}
             ,{field: 'stencilSizeY', title: 'stencilSizeY', align:'center', width: 124, hide: true}
@@ -380,7 +383,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             ,{field: 'stencilAreaY', title: 'stencilSizeY', align:'center', width: 124, hide: true}
             ,{field: 'userId', title: 'User ID', align:'center', width: 100, hide: true, sort: true}
             ,{field: 'gmtModified', title: 'gmtModified', hide: true, width: 124}
-            ,{field: 'weight', title: 'Weight', align:'center', width: 85, sort: true}
+            ,{field: 'weight', title: 'Weight', align:'center', width: 85, sort: true ,hide: true}
             ,{field: 'gerberPath', title: 'gerberPath', hide: true, width: 124}
             ,{field: 'note', title: 'Note', align:'center', width: 80, hide: true}
             ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-stencil-scm-outgoingQuote-option', width: 260}
@@ -396,8 +399,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             admin.popup({
                 title: '指定供应商'
                 ,area: ['912px', '545px']
-                ,btn:[/*'提交',*/ '跳过提交','取消']
-                ,yes:function(index, layero){
+                ,btn:['跳过提交', /*'跳过提交',*/'取消']
+                ,btn4:function(index, layero){
                     var checkStatus = table.checkStatus('scm_assign_supplier_table', data),checkdata = checkStatus.data;
                     var ids = checkdata.map(function(elem){return elem.id}).join(",");
                     console.log("ids:"+ids);
@@ -440,7 +443,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                     });
 
                 },
-                btn2: function (index, layero) {
+                yes: function (index, layero) {
                     $("#assignSupplierTbData").click();     // 获取选中的表格数据
                     layer.confirm('确定跳过提交？', function () {
                         var supplierIds = openAssignSupplier_data.map(function(elem){return elem.id}).join(",");

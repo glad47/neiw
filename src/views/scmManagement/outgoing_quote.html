@@ -161,6 +161,15 @@
                         铝基板
                     {{# } }}
                 </script>
+                <script type="text/html" id="Tabtb-stencil-scm-outgoingQuote-type">
+                    {{# if (d.stencilSide == 'Top' || d.stencilSide == 'Bottom'){ }}
+                        单面
+                    {{# } else if(d.stencilSide == 'Top And Bottom (On Single Stencil)') { }}
+                        双面同张
+                    {{# } else{ }}
+                        双面两张
+                    {{# } }}
+                </script>
             </div>
 
 
