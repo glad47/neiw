@@ -41,7 +41,7 @@ layui.use(['admin', 'table', 'form', 'laydate'], function () {
         var field = data.field;
         console.log(field);
         admin.req({
-            url:setter.baseUrl+'sys/consumer/user/update',
+            url:setter.baseUrl+'/sys/consumer/user/conversionBusiness',
             type:'POST',
             data:field,
             success:function(data){

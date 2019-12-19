@@ -18,11 +18,12 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     var arr_layer_options = [{text: 0,value: 0},{text: 1,value: 1},{text: 2,value: 2},{text: 4,value: 4},{text: 6,value: 6},{text: 8,value: 8}];
     var arr_layer_optionst = [{text: 0,value: 0},{text: 1,value: 1},{text: 2,value: 2}];
     var arr_layer_optionss = [{text: 0,value: 0},{text: 4,value: 4},{text: 6,value: 6},{text: 8,value: 8}];
-    var arr_selkbsy_options = [{text: 'none', value: 'none'},{text: 'KB', value: 'KB'}, {text: 'SY', value: 'SY'}];
+    var arr_selkbsy_options = [{text: 'none', value: 'none'},{text: 'KB', value: 'KB'}, {text: 'SY', value: 'SY'}, {text: 'ventec', value: 'ventec'}];
     var arr_selkbsy_optionst = [{text: 'YG', value: 'YG'}];
     var arr_selkbsy_kb = [{text: 'KB6160', value: 'KB6160'}, {text: 'KB6150', value: 'KB6150'}, {text: 'KB6165', value: 'KB6165'}, {text: 'KB6167', value: 'KB6167'}];
     var arr_selkbsy_sy = [{text: 'SY1130', value: 'SY1130'}, {text: 'SY1141', value: 'SY1141'}, {text: 'SY1150', value: 'SY1150'}, {text: 'SY1170', value: 'SY1170'}, {text: 'SY1180', value: 'SY1180'}, {text: 'SY1000', value: 'SY1000'}, {text: 'SY1000-2', value: 'SY1000-2'}, {text: 'SY1600', value: 'SY1600'}];
     var arr_selkbsy_yg = [{text: 'YG0001', value: 'YG0001'}, {text: 'YG0002', value: 'YG0002'}, {text: 'YG0003', value: 'YG0003'}, {text: 'YG0004', value: 'YG0004'}];
+    var arr_selkbsy_ventec = [{text: 'VT-4B3', value: 'VT-4B3'}, {text: 'VT-45', value: 'VT-4B5'}, {text: 'VT-901', value: 'VT-901'}];
     // 切换订单类型需要 显示/隐藏 的html元素 [class]
     var ct_hide = ['totalForm','addQuote'];
     // var arr_surfinish = [{text: 'HASL with lead', value: 'HASL_with_lead'},{text: 'HASL lead free', value: 'HASL_lead_free'},{text: 'Immersion Gold', value: 'Immersion_Gold'},{text: 'Immersion tin', value: 'Immersion_tin'},{text: 'Immersion silver', value: 'Immersion_silver'},{text: 'OSP', value: 'OSP'}];
@@ -737,6 +738,12 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                 for (var i=0;i < arr_selkbsy_sy.length;i++){
                     var title = arr_selkbsy_sy[i].text;
                     var options_val = arr_selkbsy_sy[i].value;
+                    $("#selkbsy").append("<option value="+options_val+">"+title+"</option>");
+                }
+            } else if (material == 'ventec') {
+                for (var i=0;i < arr_selkbsy_ventec.length; i++) {
+                    var title = arr_selkbsy_ventec[i].text;
+                    var options_val = arr_selkbsy_ventec[i].value;
                     $("#selkbsy").append("<option value="+options_val+">"+title+"</option>");
                 }
             }
