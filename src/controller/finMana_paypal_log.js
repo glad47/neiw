@@ -46,7 +46,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'paymentFee', title: 'payPal 手续费', width: 144, sort: true}
             ,{field: 'totalNet', title: '总净额', width: 144, sort: true}
             ,{field: 'custom',title:'绑定信息',width:250, sort: true}
-            ,{title: '操作', width: 160, align:'center', fixed: 'right', toolbar: '#finManaPaypalLog_tbar'}
+            ,{title: '操作', width: 260, align:'center', fixed: 'right', toolbar: '#finManaPaypalLog_tbar'}
         ]]
         ,done: function (res, curr, count) {
 
@@ -134,6 +134,22 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                     });
                 }
             });
+        } else if (obj.event === 'paypal_memo') {
+            layer.msg('付款水单');
+            admin.popup({
+                title: '付款水单'
+                ,shadeClose: true
+                ,shade: false
+                ,maxmin: true
+                ,area: ['55%', '75%']
+                ,btn:['确定', '取消']
+                ,id: 'popupPayPalMemo'
+                ,success: function () {
+                    view(this.id).render('/finManagement/iframeWindow/paypal_memo', d).done(function () {
+
+                    });
+                }
+            })
         }
     });
 

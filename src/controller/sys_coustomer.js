@@ -74,7 +74,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                 type: 1,
                 title: '选择跟单员',
                 btn: ['转换', '取消'],
-                area: ["300px","233px"],
+                area: ["400px","400px"],
                 yes: function() {
                     $("*[lay-filter='conversionCustomer-submit']").click();
                 },
