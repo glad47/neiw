@@ -239,6 +239,7 @@
                     data: data.field,
                     success: function (res) {
                         layer.msg(tipMsg);
+                        layui.table.reload('scm_material_purchasing_tab');
                         layer.closeAll();
                     }
                 })

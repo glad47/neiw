@@ -135,7 +135,6 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 }
             });
         } else if (obj.event === 'paypal_memo') {
-            layer.msg('付款水单');
             admin.popup({
                 title: '付款水单'
                 ,shadeClose: true
