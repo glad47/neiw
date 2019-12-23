@@ -207,7 +207,7 @@ layui.define(['admin', 'index'],function (exports) {
             }
             return true;
         }
-        }
+    }
 
     exports('jsTools', obj)
 });

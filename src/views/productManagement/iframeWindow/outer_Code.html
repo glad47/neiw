@@ -68,12 +68,18 @@ layui.data.done = function(d){
             if(event.keyCode ==13){
                 var getBracketStr = jsTools.getBracketStr($(this).val())
                 var id = getBracketStr[1];  // 获取二维码的id
+                var id_arr = id.split(",");
+                var shippingId = id_arr[1];
+                console.log(id_arr)
+                if (typeof (shippingId) == undefined || shippingId == null) {
+                    shippingId = '';
+                }
                 if (id != null && id !='') {
                     _val = _val.replace(getBracketStr[0], "");
-                    var isRepeat = jsTools.checkArrayObjRepeat(codeDate, {productNo: _val, id: id, courierName: postData.courierName, courierNumber: postData.courierNumber});
+                    var isRepeat = jsTools.checkArrayObjRepeat(codeDate, {productNo: _val, orderId: id_arr[0], id: shippingId, courierName: postData.courierName, courierNumber: postData.courierNumber});
                     if (isRepeat !== false) {
                         layer.msg('型号' + _val+ '扫描成功！');
-                        codeDate.push({productNo: _val, id: id, courierName: postData.courierName, courierNumber: postData.courierNumber});
+                        codeDate.push({productNo: _val, orderId: id_arr[0], id: shippingId, courierName: postData.courierName, courierNumber: postData.courierNumber});
                         initProductNoTab();
                     } else {
                         layer.msg('型号' + _val+ '重复，扫描失败');
@@ -96,6 +102,7 @@ layui.data.done = function(d){
                 ,cols: [[ //表头
                     {type: 'numbers', title: '序号', align:'center'}
                     ,{field: 'id', title: 'ID', align:'center'}
+                    ,{field: 'orderId', title: 'Order ID', align:'center'}
                     ,{field: 'productNo', title: '聚谷型号', align:'center'}
                     ,{field: 'courierNumber', title: '快递单号', align:'center'}
                     ,{field: 'courierName', title: '快递公司', align:'center'}
