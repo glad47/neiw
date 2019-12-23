@@ -132,8 +132,23 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                 })
 
             });
-        } else if (obj.event = 'outerLable') {
+        } else if (obj.event === 'outerLable') {
             tools_printLable.PrintLable(data);
+        } else if (obj.event === 'outerCode') {
+            admin.popup({
+                title: '出货扫码',
+                id: 'popOuterCode',
+                area: ['90%', '90%'],
+                btn: ['保存', '取消'],
+                btn1: function () {
+                    $("#outerCodeSubmit").click();
+                },
+                success: function () {
+                    view(this.id).render('productManagement/iframeWindow/outer_Code', {orderType: 1, reTab: 'iqcMana_outBound'}).done(function () {
+                        form.render();
+                    });
+                }
+            });
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
@@ -267,6 +282,21 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
         } else if (obj.event == 'outerLable') {
             data.table = 'iqcMana_outBound';
             tools_printLable.PrintLable(data);
+        } else if (obj.event === 'outerCode') {
+            admin.popup({
+                title: '出货扫码',
+                id: 'popOuterCode',
+                area: ['90%', '90%'],
+                btn: ['保存', '取消'],
+                btn1: function () {
+                    $("#outerCodeSubmit").click();
+                },
+                success: function () {
+                    view(this.id).render('productManagement/iframeWindow/outer_Code', {orderType: 2, reTab: 'iqcMana_outBoundS'}).done(function () {
+                        form.render();
+                    });
+                }
+            });
         }
     });
 
