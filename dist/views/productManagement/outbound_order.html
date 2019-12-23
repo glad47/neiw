@@ -1,5 +1,26 @@
 <title>成品管理-订单出货</title>
 <div class="layui-fluid">
+    <div class="layui-form outbound-order-search" data-type="search-form" reload-table="iqcMana_outBound">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">聚谷型号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">客户型号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pcbName" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="outbound-order-search">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     <!--卡片－表格信息-->
     <div class="layui-tab layui-tab-brief" lay-filter="tab-planToger">
         <ul class="layui-tab-title">
