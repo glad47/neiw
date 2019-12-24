@@ -166,7 +166,16 @@
                         <a href="https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers={{d.courierNo}}&locale=zh_CN&cntry_code=ch-zh" class="layui-table-link" target="_blank">{{ d.courierNo }}</a>
                     {{# } else if(d.courierName == 'DHL') { }}
                         <a href="https://etracing.5idhl.com/TracingQuery.aspx?WaybillNO={{d.courierNo}}&source=1" class="layui-table-link" target="_blank">{{ d.courierNo }}</a>
+                    {{# } else if(d.courierName == 'UPS') { }}
+                        <a href="https://www.ups.com/track?loc=zh_CN&requester=ST/" class="layui-table-link" target="_blank">{{ d.courierNo }}</a>
+                    {{# } else if(d.courierName == '顺丰') { }}
+                        <a href="https://www.sf-express.com/cn/sc/dynamic_function/waybill/#search/bill-number/SF6026027405761/{{d.courierNo}}" class="layui-table-link" target="_blank">{{ d.courierNo }}</a>
+                    {{# } else if(d.courierName == '安能') { }}
+                        <a href="http://www.ane56.com/search/waybilltrack.jsp" class="layui-table-link" target="_blank">{{ d.courierNo }}</a>
+                    {{# } else if(d.courierName == '跨越') { }}
+                        <a href="https://newwebsite.ky-express.com/newwebsite/diyService/serviceOrderLoc" class="layui-table-link" target="_blank">{{ d.courierNo }}</a>
                     {{# } }}
+
 
                 </script>
             </div>
