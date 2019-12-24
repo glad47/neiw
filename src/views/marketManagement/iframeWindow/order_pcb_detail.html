@@ -76,7 +76,22 @@
                 </tr>
                 <tr>
                     <td>材料:</td>
-                    <td>{{ d.params.pcbType || ''}},TG:{{ d.params.tg }},{{ d.params.cti || ''}}</td>
+                    <td>
+                        {{ d.params.pcbType || ''}}
+
+                        {{# if(d.params.tg == '135') { }}
+                            ''
+                        {{# } else { }}
+                            ,TG:{{ d.params.tg }}
+                        {{# } }}
+
+                        {{# if(d.params.cti == '175≤CTI<250') { }}
+                            ''
+                        {{# } else { }}
+                            ,{{ d.params.cti }}
+                        {{# } }}
+
+                    </td>
                     <td>孔铜:</td>
                     <td>
                         {{# if(d.params.pthCopper != null && d.params.pthCopper == 'none'){ }}
