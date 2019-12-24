@@ -20,7 +20,6 @@ layui.define(function(exports){
     ,carousel = layui.carousel
     ,element = layui.element
     ,device = layui.device();
-
     //轮播切换
     $('.layadmin-carousel').each(function(){
       var othis = $(this);
@@ -40,31 +39,75 @@ layui.define(function(exports){
   });
 
   //数据概览
-  layui.use(['carousel', 'echarts','admin'], function(){
+  layui.use(['carousel', 'echarts','admin', 'formSelects', 'jsTools'], function(){
     var $ = layui.$
     ,carousel = layui.carousel
     ,echarts = layui.echarts
     ,admin = layui.admin
+    ,formSelects = layui.formSelects
+    ,jsTools = layui.jsTools
     ,set = layui.setter;
 
-    //发送请求
-    admin.req({
-      type:'get',
-      url:set.baseUrl+'allGraphs/monthlySales',
-      success: function (res) {
-          // console.log(res.data);
-          var result = lineChartCheckData(res.data);
-          // console.log(result);
-          var result3 =lineChartCheckData(res.userData);
-          // console.log(result3);
-          var result4 = barChartCheckData(res.data);
+    var currYears;
 
-          var result5 = barStackChartCheckData(res.data);
-          console.log(result5);
-          //填充数据
-          fillData(result,result5,result3,result4);
+
+      initCurrYears();
+      function initCurrYears() {
+          var myDate = new Date();
+          currYears = myDate.getFullYear();
+          admin.req({
+              type: 'get',
+              url: '../../start/json/pcbonline/date.js',
+              success: function (res) {
+                  var _arr = res.data;
+                  _arr.reverse();
+                  _arr = _arr.reduce(function (prev, cur) {
+                      var newArr;
+                      if (cur>=2018 && cur<=currYears) {
+                          newArr = prev.concat(cur)
+                      } else {
+                          newArr = prev
+                      }
+                      return newArr;
+                  }, []);
+                  console.log(_arr)
+                  var $html = '';
+                  for (var i=0;i<_arr.length;i++) {
+                      if (currYears == _arr[i]) {
+                          $html += "<option value=" +  _arr[i] + "\ selected>"+ _arr[i] + "</option>"
+                      } else {
+                          $html += "<option value=" +  _arr[i] + "\">"+ _arr[i] + "</option>"
+                      }
+
+                  }
+                  $("select[xm-select='currYears']").append($html);
+                  formSelects.render();
+                  getMonthlySales();
+              }
+          })
       }
-    });
+
+
+      function getMonthlySales () {
+          //发送请求
+          admin.req({
+              type:'get',
+              data: {"currYears": currYears},
+              url:set.baseUrl+'allGraphs/monthlySales',
+              success: function (res) {
+                  // console.log(res.data);
+                  var result = lineChartCheckData(res.data);
+                  // console.log(result);
+                  var result3 =lineChartCheckData(res.userData);
+                  // console.log(result3);
+                  var result4 = barChartCheckData(res.data);
+
+                  var result5 = barStackChartCheckData(res.data);
+                  //填充数据
+                  fillData(result,result5,result3,result4);
+              }
+          });
+      }
 
     function fillData(data1,data2,data3,data4){
       var currentYear = new Date().getFullYear();
@@ -278,6 +321,12 @@ layui.define(function(exports){
       layui.admin.on('hash(tab)', function(){
         layui.router().path.join('') || renderDataView(carouselIndex);
       });
+
+    // formSelect 监听==>选择 年份
+    layui.formSelects.on('currYears', function (id, vals, val, isAdd, isDisabled) {
+        currYears = val.value;
+        getMonthlySales();
+    });
 
     }
 
@@ -515,7 +564,6 @@ layui.define(function(exports){
       //     "transform-origin":"center center",
       //     "-webkit-transform-origin": "center center"
       // });
-
   });
   
   exports('console', {})

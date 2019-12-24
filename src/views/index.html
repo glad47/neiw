@@ -1,3 +1,4 @@
+<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
 <div class="layui-fluid index-fluid">
   <div class="layui-row layui-col-space15">
     <div class="layui-col-md12">
@@ -136,7 +137,12 @@
               <div class="layui-row layui-col-space15" style="padding: unset;width: 100%;">
                 <div class="layui-col-md12">
                   <div class="layui-card">
-                    <div class="layui-card-header">统计表图</div>
+                    <div class="layui-card-header tjbt-header">
+                      统计年份
+                      <select name="currYears" id="currYears" xm-select="currYears" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                        <option value=""></option>
+                      </select>
+                    </div>
                     {{#
                     if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:index:target") != -1){
                     }}
@@ -171,6 +177,8 @@ layui.data.done = function(d){
 </script>
 
 <style>
+  .tjbt-header {display: flex;}
+  .tjbt-header .xm-form-select {margin: 3px;}
   /*手机端样式调整*/
   .layadmin-backlog .layadmin-backlog-body {height: 68px;}
   @media screen and (max-width: 450px) {
