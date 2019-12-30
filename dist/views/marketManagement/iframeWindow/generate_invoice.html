@@ -1,0 +1,102 @@
+<div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+    <div class="layui-form outbound-order-search" data-type="search-form" reload-table="iqcMana_outBound">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">选择客户</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">订单型号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pcbName" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="outbound-order-search">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <table id="addGenerateInvoiceTab" lay-filter="addGenerateInvoiceTab"></table>
+    </script>
+    <script type="text/html" id="addGenerateInvoiceTab_tabbar">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGi">删除</a>
+    </script>
+    <script id="giPF" type="text/html">
+        {{# if(item.orderNo != null){ }}
+        <strong>P/O：</strong>{{ item.orderNo }}
+        {{# } }}
+
+        <br>
+
+        {{# if(item.pcbName != null){ }}
+        {{ item.pcbName }}
+        {{# } else if(item.gerberName != null){ }}
+        {{ item.gerberName }}
+        {{# } }}
+    </script>
+</div>
+<script>
+    layui.data.done = function(d){
+        layui.use(['table', 'index', 'form'], function () {
+            var $ = layui.jquery
+                ,table = layui.table
+                ,form = layui.form;
+
+            function initInvoiceTab() {
+                table.render({
+                   elem: '#addGenerateInvoiceTab'
+                    ,id: 'addGenerateInvoiceTab'
+                    ,data: d.params
+                    ,cols: [[
+                        {type: 'numbers', title: '序号', align:'center',edit: 'text'}
+                        ,{field: '', title: 'P/O&File Name', align: 'center',edit: 'text', templet: '#giPF'}
+                        ,{field: '', title: 'QTY', align: 'center',edit: 'text'}
+                        ,{field: '', title: 'Price', align: 'center',edit: 'text'}
+                        ,{field: '', title: 'Engineering Fee', align: 'center',edit: 'text'}
+                        ,{field: '', title: 'Test Fee', align: 'center',edit: 'text'}
+                        ,{field: '', title: 'Tooling Fee', align: 'center',edit: 'text'}
+                        ,{field: '', title: 'Overwork Fee', align: 'center',edit: 'text'}
+                        ,{field: '', title: 'Freight Fee', align: 'center',edit: 'text'}
+                        ,{field: '', title: 'PCBA Fee', align: 'center',edit: 'text'}
+                        ,{field: '', title: 'Amount( USD )', align: 'center',edit: 'text'}
+                        ,{fixed: 'right', title:'操作', toolbar: '#addGenerateInvoiceTab_tabbar',width: 80, align:'center'}
+                    ]]
+                });
+            }
+
+            table.on('tool(addGenerateInvoiceTab)', function (obj) {
+                var data = obj.data;
+                if (obj.event == 'delGi') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                    })
+                }
+            });
+
+            table.on('edit(addGenerateInvoiceTab)', function (obj) {
+                var value = obj.value
+                    ,data = obj.data //得到所在行所有键值
+                    ,field = obj.field; //得到字段
+            });
+
+            function saveField() {
+                admin.req({
+                    type: 'post',
+                    data: '',
+                    url: setter.baseUrl + '',
+                    success: function () {
+                        layer.msg('修改成功！');
+                    },
+                    error: function (e) {
+                        layer.msg(e);
+                    }
+                })
+            }
+        });
+    }
+</script>

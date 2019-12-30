@@ -17,7 +17,7 @@
                     {{ d.params.gerberName || '' }}
                 </div>
             </td>
-            <td style="width: 20%;">
+            <td style="width: 20%;min-width: 105px;">
                 <a class="btn-fileupload btn-fileupload{{ d.params.id }}">
                     <span class="fileupload-btn">
                         <i class="layui-icon layui-icon-add-1"></i>
@@ -339,6 +339,7 @@
     .fileupload-btn{position: relative;cursor: pointer;}
     .filewareFilePcb,.filewareFileS, .om_filewareFilePcb, .pfilewareFilePcb{position: absolute;opacity: 0;left: -3px;height: 21px;width: 102%;}
     a.btn-fileupload {background-color: rgb(255, 86, 4);color: #ffffff;padding: 5px;border-radius: 3px;font-size: 0.7em;}
+    .fileupload-btn {cursor: pointer;}
     .cc{float: left;font-size: 0.9em;background-color: #00FF00;width: 100%;display: none;white-space: nowrap;max-height: 21px;}
     .newFFile{color: green;}
     .file-mana tbody>tr>td:last-of-type{width: 10%;text-align: center;cursor: pointer;}
