@@ -325,6 +325,21 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                         });
                     }
                 });
+            case 'generateInvoice':
+                    admin.popup({
+                        title: '添加发票'
+                        ,area: ['95%', '95%']
+                        ,btn: ['保存', '取消']
+                        ,id: 'popGenerateInvoice'
+                        ,yes: function (index, ) {
+
+                        }
+                        ,success: function () {
+                            view(this.id).render('',checkStatus.data).done(function () {
+
+                            })
+                        }
+                    })
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单
