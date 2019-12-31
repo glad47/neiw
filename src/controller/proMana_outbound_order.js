@@ -133,8 +133,16 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
 
             });
         } else if (obj.event === 'outerLable') {
+            data.outerType = obj.event
             tools_printLable.PrintLable(data);
-        } else if (obj.event === 'outerCode') {
+        } else if (obj.event === 'n-outerLable') {
+            data.outerType = obj.event
+            tools_printLable.PrintLable(data);
+        } else if (obj.event === 'g-outerLable') {
+            data.outerType = obj.event
+            tools_printLable.PrintLable(data);
+        }
+        else if (obj.event === 'outerCode') {
             admin.popup({
                 title: '出货扫码',
                 id: 'popOuterCode',
@@ -281,8 +289,16 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
             });
         } else if (obj.event == 'outerLable') {
             data.table = 'iqcMana_outBound';
+            data.outerType = obj.event
             tools_printLable.PrintLable(data);
-        } else if (obj.event === 'outerCode') {
+        } else if (obj.event === 'n-outerLable') {
+            data.outerType = obj.event
+            tools_printLable.PrintLable(data);
+        } else if (obj.event === 'g-outerLable') {
+            data.outerType = obj.event
+            tools_printLable.PrintLable(data);
+        }
+        else if (obj.event === 'outerCode') {
             admin.popup({
                 title: '出货扫码',
                 id: 'popOuterCode',

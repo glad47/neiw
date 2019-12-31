@@ -325,21 +325,28 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                         });
                     }
                 });
+                break;
             case 'generateInvoice':
+                if (checkStatus.data.length === 0) {
+                    layer.msg('请选择一条数据!');
+                    return false;
+                } else {
                     admin.popup({
                         title: '添加发票'
-                        ,area: ['95%', '95%']
+                        ,area: ['100%', '100%']
                         ,btn: ['保存', '取消']
                         ,id: 'popGenerateInvoice'
                         ,yes: function (index, ) {
 
                         }
                         ,success: function () {
-                            view(this.id).render('',checkStatus.data).done(function () {
+                            view(this.id).render('/marketManagement/iframeWindow/generate_invoice',checkStatus.data).done(function () {
 
                             })
                         }
                     })
+                }
+                break;
         }
     });
     //监听行工具事件＝＝＝＝》pcb订单

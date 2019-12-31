@@ -1,17 +1,20 @@
+<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
 <div class="layui-fluid">
     <script type="text/html" template lay-done="layui.data.done(d);">
     <div class="layui-form outbound-order-search" data-type="search-form" reload-table="iqcMana_outBound">
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label">选择客户</label>
+                <label class="layui-form-label">内部编码</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                    <input type="text" name="productNo" id="inputGiProductNo" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">订单型号</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="pcbName" autocomplete="off" class="layui-input">
+                <label class="layui-form-label">客户型号</label>
+                <div class="layui-input-inline" style="width: 320px;">
+                    <select id="giPcbName" name="giPcbName" xm-select-height="34px" xm-select="giPcbName" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                        <option value="" id="0">选择客户</option>
+                    </select>
                 </div>
             </div>
             <div class="layui-inline">
@@ -27,26 +30,37 @@
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGi">删除</a>
     </script>
     <script id="giPF" type="text/html">
-        {{# if(item.orderNo != null){ }}
-        <strong>P/O：</strong>{{ item.orderNo }}
+        {{# if(d.orderNo != null){ }}
+        <strong>P/O：</strong>{{ d.orderNo }}
         {{# } }}
 
-        <br>
-
-        {{# if(item.pcbName != null){ }}
-        {{ item.pcbName }}
-        {{# } else if(item.gerberName != null){ }}
-        {{ item.gerberName }}
-        {{# } }}
+        <p>
+            {{# if(d.pcbName != null){ }}
+            {{ d.pcbName }}
+            {{# } else if(d.gerberName != null){ }}
+            {{ d.gerberName }}
+            {{# } }}
+        </p>
+    </script>
+    <script id="giPrice" type="text/html">
+        {{ parseFloat(d.boardFee/d.quantityPcs).toFixed(3) }}
     </script>
 </div>
 <script>
     layui.data.done = function(d){
-        layui.use(['table', 'index', 'form'], function () {
+        layui.use(['table', 'index', 'form', 'jsTools', 'formSelects'], function () {
             var $ = layui.jquery
                 ,table = layui.table
+                ,requestInterface = layui.requestInterface
+                ,jsTools = layui.jsTools
+                ,formSelects = layui.formSelects
                 ,form = layui.form;
 
+            formSelects.render('giPcbName');
+            initInvoiceTab();
+            document.getElementById("inputGiProductNo").addEventListener('keyup', function (event) {
+                jsTools.throttle(getFrom, null, 500, this.value, 2000)
+            });
             function initInvoiceTab() {
                 table.render({
                    elem: '#addGenerateInvoiceTab'
@@ -55,14 +69,14 @@
                     ,cols: [[
                         {type: 'numbers', title: '序号', align:'center',edit: 'text'}
                         ,{field: '', title: 'P/O&File Name', align: 'center',edit: 'text', templet: '#giPF'}
-                        ,{field: '', title: 'QTY', align: 'center',edit: 'text'}
-                        ,{field: '', title: 'Price', align: 'center',edit: 'text'}
-                        ,{field: '', title: 'Engineering Fee', align: 'center',edit: 'text'}
-                        ,{field: '', title: 'Test Fee', align: 'center',edit: 'text'}
-                        ,{field: '', title: 'Tooling Fee', align: 'center',edit: 'text'}
-                        ,{field: '', title: 'Overwork Fee', align: 'center',edit: 'text'}
-                        ,{field: '', title: 'Freight Fee', align: 'center',edit: 'text'}
-                        ,{field: '', title: 'PCBA Fee', align: 'center',edit: 'text'}
+                        ,{field: 'quantityPcs', title: 'QTY', align: 'center',edit: 'text'}
+                        ,{field: '', title: 'Price', align: 'center',edit: 'text', templet: 'giPrice'}
+                        ,{field: 'engineeringFee', title: 'Engineering Fee', align: 'center',edit: 'text'}
+                        ,{field: 'testCostFee', title: 'Test Fee', align: 'center',edit: 'text'}
+                        ,{field: 'toolingFee', title: 'Tooling Fee', align: 'center',edit: 'text'}
+                        ,{field: 'overworkFee', title: 'Overwork Fee', align: 'center',edit: 'text'}
+                        ,{field: '', title: 'Freight Fee', align: 'center',edit: 'text', templet: 'giFF'}
+                        ,{field: 'pcbaSubtotalFee', title: 'PCBA Fee', align: 'center',edit: 'text'}
                         ,{field: '', title: 'Amount( USD )', align: 'center',edit: 'text'}
                         ,{fixed: 'right', title:'操作', toolbar: '#addGenerateInvoiceTab_tabbar',width: 80, align:'center'}
                     ]]
@@ -74,6 +88,7 @@
                 if (obj.event == 'delGi') {
                     layer.confirm('真的删除行么', function (index) {
                         obj.del();
+                        layer.close(index);
                     })
                 }
             });
@@ -82,6 +97,7 @@
                 var value = obj.value
                     ,data = obj.data //得到所在行所有键值
                     ,field = obj.field; //得到字段
+                console.log(data)
             });
 
             function saveField() {
@@ -97,6 +113,47 @@
                     }
                 })
             }
+
+            function getFrom(e) {
+                // var thisFrom = arr.reduce((prev, cur) => {
+                //     if (cur.productNo) {
+                //         prev[0].productNo.push(cur.productNo);
+                //     }
+                //     if (cur.pcbName) {
+                //         prev[1].pcbName.push(cur.pcbName)
+                //     }
+                //     return prev;
+                // },[{productNo: []}, {pcbName: []}]);
+                admin.req({
+                    type: 'post',
+                    url: setter.baseUrl+'epc/pcborder/internalContract?access_token='+ layui.data('layuiAdmin').access_token + '&productNo=' + e,
+                    success: function (res) {
+                        var data = res.page.list;
+                        $("select[xm-select='giPcbName'] option").remove();
+                        var $html;
+                        for (let p of data) {
+                            $html += "<option value="+p.id+">"+p.pcbName+"</option>"
+                        }
+                        $("select[xm-select='giPcbName']").append($html);
+                        formSelects.render('giPcbName');
+                        $("dl[xid='giPcbName']").parents(".layui-input-inline").click();
+                        // $("dl[xid='giPcbName']").show();
+                    }
+                })
+            }
+
+            $("div").delegate(".xm-select-title", "click", function () {
+                console.log(111)
+                $(this).hide();
+                $("dl[xid='giPcbName']").hide();
+            });
+
+            layui.formSelects.on('giPcbName', function (id, vals, val, isAdd, isDisabled) {
+                var $thisName = val.name;
+                var _val = val.value;
+                layer.msg('formSelect _val' + _val);
+                // $("dl[xid='giPcbName']").css("display", "none");
+            });
         });
     }
 </script>

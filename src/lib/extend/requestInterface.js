@@ -103,6 +103,26 @@ layui.define(['admin', 'index'],function (exports) {
                     }
                 });
             }
+        },
+
+        /**
+         * 获取所有客户信息
+         * @returns {*}
+         */
+        getAllCustomer () {
+            var result = new Object();
+            admin.req({
+                type: 'post',
+                async: false,
+                url: setter.baseUrl + 'sys/consumer/user/all',
+                success: function (data) {
+                    result = data.data;
+                },
+                error: function () {
+                    layer.msg('查询失败，请稍后再试.')
+                }
+            });
+            return data;
         }
     }
 
