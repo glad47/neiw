@@ -96,13 +96,13 @@ layui.define(function(exports){
               url:set.baseUrl+'allGraphs/monthlySales',
               success: function (res) {
                   // console.log(res.data);
-                  var result = lineChartCheckData(res.data);
+                  var result = lineChartCheckData(res.data,currYears);
                   // console.log(result);
-                  var result3 =lineChartCheckData(res.userData);
+                  var result3 =lineChartCheckData(res.userData,currYears);
                   // console.log(result3);
                   var result4 = barChartCheckData(res.data);
-
-                  var result5 = barStackChartCheckData(res.data);
+                  // console.log(result4);
+                  var result5 = barStackChartCheckData(res.data,currYears);
                   //填充数据
                   fillData(result,result5,result3,result4);
               }
@@ -343,9 +343,10 @@ layui.define(function(exports){
       return result;
     }
   
-    function barStackChartCheckData(data){
+    function barStackChartCheckData(data,data2){
         var result = [];
-        var currentYear = new Date().getFullYear();
+        //var currentYear = new Date().getFullYear();
+        var currentYear = data2; 
         var mKey = [];
         var mKeyStr = [];
         var yueFen = [
@@ -413,7 +414,8 @@ layui.define(function(exports){
     //折线图数据拼接
     function lineChartCheckData(data,data2){
      var successData = {};
-     var currentYear = new Date().getFullYear();
+     //var currentYear = new Date().getFullYear();
+     var currentYear = data2;
      var mKey = [];
      var mKeyStr = [];
      var yueFen = [
@@ -456,7 +458,7 @@ layui.define(function(exports){
         map.set(currentYear+mKey[i], 0);
        }
       }
-      //console.log(map);
+      // console.log(map);
       var data = [];
       map.forEach(function (k, v) {
        data.push(k);
