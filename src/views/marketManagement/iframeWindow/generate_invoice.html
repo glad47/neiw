@@ -48,13 +48,17 @@
 </div>
 <script>
     layui.data.done = function(d){
-        layui.use(['table', 'index', 'form', 'jsTools', 'formSelects'], function () {
+        layui.use(['table', 'index', 'form', 'jsTools', 'formSelects', 'arrReduce', 'jsTools'], function () {
             var $ = layui.jquery
                 ,table = layui.table
                 ,requestInterface = layui.requestInterface
                 ,jsTools = layui.jsTools
                 ,formSelects = layui.formSelects
+                ,arrReduce = layui.arrReduce
+                ,jsTools = layui.jsTools
                 ,form = layui.form;
+
+            var searchData;
 
             formSelects.render('giPcbName');
             initInvoiceTab();
@@ -66,6 +70,8 @@
                    elem: '#addGenerateInvoiceTab'
                     ,id: 'addGenerateInvoiceTab'
                     ,data: d.params
+                    ,page: false
+                    ,limit: 10000
                     ,cols: [[
                         {type: 'numbers', title: '序号', align:'center',edit: 'text'}
                         ,{field: '', title: 'P/O&File Name', align: 'center',edit: 'text', templet: '#giPF'}
@@ -114,6 +120,10 @@
                 })
             }
 
+
+            /**
+             *  获取下拉列表
+             **/
             function getFrom(e) {
                 // var thisFrom = arr.reduce((prev, cur) => {
                 //     if (cur.productNo) {
@@ -124,36 +134,67 @@
                 //     }
                 //     return prev;
                 // },[{productNo: []}, {pcbName: []}]);
+                layer.msg("搜索结果加载中...");
                 admin.req({
                     type: 'post',
-                    url: setter.baseUrl+'epc/pcborder/internalContract?access_token='+ layui.data('layuiAdmin').access_token + '&productNo=' + e,
+                    url: setter.baseUrl+'epc/pcborder/internalContract?access_token='+ layui.data('layuiAdmin').access_token + '&productNo=' + e + '&uId=' + d.params[0].userId + '&limit=100000',
                     success: function (res) {
+                        layer.msg("加载成功！");
                         var data = res.page.list;
                         $("select[xm-select='giPcbName'] option").remove();
-                        var $html;
-                        for (let p of data) {
-                            $html += "<option value="+p.id+">"+p.pcbName+"</option>"
-                        }
-                        $("select[xm-select='giPcbName']").append($html);
-                        formSelects.render('giPcbName');
-                        $("dl[xid='giPcbName']").parents(".layui-input-inline").click();
+                        creatFormSelect(data);
+                        searchData = data;
                         // $("dl[xid='giPcbName']").show();
                     }
                 })
             }
 
-            $("div").delegate(".xm-select-title", "click", function () {
-                console.log(111)
-                $(this).hide();
-                $("dl[xid='giPcbName']").hide();
-            });
+            // $("div").delegate(".xm-select-title", "click", function () {
+            //     $(this).hide();
+            //     $("dl[xid='giPcbName']").hide();
+            // });
 
             layui.formSelects.on('giPcbName', function (id, vals, val, isAdd, isDisabled) {
                 var $thisName = val.name;
                 var _val = val.value;
-                layer.msg('formSelect _val' + _val);
-                // $("dl[xid='giPcbName']").css("display", "none");
+                layer.msg(_val)
+                var selectClickData = searchData.reduce((prev, cur) => {
+                    if (cur.id && cur.pcbName) {
+                        if (prev.id == _val && prev.pcbName == $thisName) {
+                            d.params.push(cur);
+                        }
+                    }
+                    return prev;
+                });
+                console.log(selectClickData)
+                initInvoiceTab();
             });
+
+
+            /**
+             * 初始化 下拉
+             * @param data
+             */
+            function creatFormSelect(data) {
+                var $html;
+                for (let p of data) {
+                    $html += "<option value="+p.id+">"+p.pcbName+"</option>"
+                }
+                $("select[xm-select='giPcbName']").append($html);
+                formSelects.render('giPcbName');
+                $("dl[xid='giPcbName']").parents(".layui-input-inline").click();
+            }
+
+            function addOrderInvoice() {
+                admin.req({
+                    type: 'ppost',
+                    data: d.params,
+                    url: setter.baseUrl + 'epc/orderinvoice/addOrderInvoice',
+                    success: function (res) {
+
+                    }
+                })
+            }
         });
     }
 </script>

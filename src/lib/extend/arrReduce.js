@@ -1,7 +1,7 @@
 /**
  * Array Reduce 常用操作封装
  */
-layui.define(['admin', 'index'], function () {
+layui.define(['admin', 'index'], function (exports) {
     var $ = layui.jquery;
     admin = layui.admin;
 

@@ -1374,75 +1374,81 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             $(".up-subbtn").click();
             $("*[lay-filter='quoteForm']").click();
             var quote_data = Object.assign(pcb_rigdetaily,pcb_container);
-            if (quote_data.areaSq > 15 && quote_data.pcbType === 'Aluminum' && quote_data.toolingFee === 0) {
-                layer.confirm('此板为铝基板,请确认是否需要开模具?', function () {
-                    if (pcb_container.userId == null || pcb_container.userId == ""){
-                        layer.msg("请先选择客户");
-                        return false;
-                    } else if (pcb_container.gerberName == null || pcb_container.gerberName == ""){
-                        layer.tips('请先上传Gerber资料再添加当前报价 !', '#addFile', {
-                            tips: [1, '#3595CC'],
-                            time: 2000
-                        });
-                        return false;
-                    } else {
-                        // if (importParams.importPCBInfo) {
-                        //     var orderTypeObj = {"A":null,"B":null};
-                        //     orderTypeObj.A = quote_data;
-                        //     orderTypeObj.B = importParams.importPCBInfo;
-                        //     quote_data.orderType = contrastOrder(orderTypeObj);    // 获取订单类型
-                        // } else {
-                        //     quote_data.orderType = 1;       // 新单
-                        // }
-                        // if (firstQuote_data == null) {  // 给第一次报价的对象赋值
-                        //     firstQuote_data = quote_data;
-                        // } else {    // 不为空的情况下，两个对象进行对比
-                        //     var orderTypeObj = {"A":null,"B":null};
-                        //     orderTypeObj.A = quote_data;
-                        //     orderTypeObj.B = firstQuote_data;
-                        //     quote_data.orderType = contrastOrder(orderTypeObj);    // 获取订单类型
-                        // }
-                        var progress = $("button[data-type='addCustomerFile']").attr("data");
-                        if (progress != '100%') {
-                            layer.msg('等待文件上传完毕，当前进度：' + progress);
-                            return false;
-                        } else if (progress == '100%') {
-                            if (tp.totalPric == tp.totalPriced && tp.isQuote == true) {
-                                layer.confirm("你已经添加了相同参数的报价，是否再次添加？", function () {
-                                    admin.req({
-                                        type: 'post',
-                                        data: quote_data,
-                                        url: setter.baseUrl+"epc/pcborder/save",
-                                        success: function (data) {
-                                            $("#orderPN").val(data.pn);
-                                            pcb_container.productNo = data.pn;
-                                            form.render(null,'checkCustomer');
-                                            if (data.code != "500") {
-                                                layer.alert("添加报价成功["+strOrder[quote_data.orderType]+"]");
-                                            }
-                                        }
-                                    });
-                                });
-                            } else {
-                                admin.req({
-                                    type: 'post',
-                                    data: quote_data,
-                                    url: setter.baseUrl+"epc/pcborder/save",
-                                    success: function (data) {
-                                        $("#orderPN").val(data.pn);
-                                        pcb_container.productNo = data.pn;
-                                        form.render(null,'checkCustomer');
-                                        if (data.code != "500"){
-                                            layer.alert("添加报价成功["+strOrder[quote_data.orderType]+"]");
-                                        }
-                                    }
-                                });
-                                tp.totalPric = tp.totalPriced;
-                                tp.isQuote = true;
-                            }
-                        }
-                    }
+            if (parseFloat(quote_data.areaSq) > 15 && quote_data.pcbType === 'Aluminum' && quote_data.toolingFee === 0) {
+                    layer.confirm('此板为铝基板,请确认是否需要开模具？', {
+                    btn: ['确定', '取消']
+                }, function () {
+                    return true;
+                }, function () {
+                    layer.closeAll();
+                    return false;
                 });
+            }
+            if (pcb_container.userId == null || pcb_container.userId == "") {
+                layer.msg("请先选择客户");
+                return false;
+            } else if (pcb_container.gerberName == null || pcb_container.gerberName == ""){
+                layer.tips('请先上传Gerber资料再添加当前报价 !', '#addFile', {
+                    tips: [1, '#3595CC'],
+                    time: 2000
+                });
+                return false;
+            } else {
+                // if (importParams.importPCBInfo) {
+                //     var orderTypeObj = {"A":null,"B":null};
+                //     orderTypeObj.A = quote_data;
+                //     orderTypeObj.B = importParams.importPCBInfo;
+                //     quote_data.orderType = contrastOrder(orderTypeObj);    // 获取订单类型
+                // } else {
+                //     quote_data.orderType = 1;       // 新单
+                // }
+                // if (firstQuote_data == null) {  // 给第一次报价的对象赋值
+                //     firstQuote_data = quote_data;
+                // } else {    // 不为空的情况下，两个对象进行对比
+                //     var orderTypeObj = {"A":null,"B":null};
+                //     orderTypeObj.A = quote_data;
+                //     orderTypeObj.B = firstQuote_data;
+                //     quote_data.orderType = contrastOrder(orderTypeObj);    // 获取订单类型
+                // }
+                var progress = $("button[data-type='addCustomerFile']").attr("data");
+                if (progress != '100%') {
+                    layer.msg('等待文件上传完毕，当前进度：' + progress);
+                    return false;
+                } else if (progress == '100%') {
+                    if (tp.totalPric == tp.totalPriced && tp.isQuote == true) {
+                        layer.confirm("你已经添加了相同参数的报价，是否再次添加？", function () {
+                            admin.req({
+                                type: 'post',
+                                data: quote_data,
+                                url: setter.baseUrl+"epc/pcborder/save",
+                                success: function (data) {
+                                    $("#orderPN").val(data.pn);
+                                    pcb_container.productNo = data.pn;
+                                    form.render(null,'checkCustomer');
+                                    if (data.code != "500") {
+                                        layer.alert("添加报价成功["+strOrder[quote_data.orderType]+"]");
+                                    }
+                                }
+                            });
+                        });
+                    } else {
+                        admin.req({
+                            type: 'post',
+                            data: quote_data,
+                            url: setter.baseUrl+"epc/pcborder/save",
+                            success: function (data) {
+                                $("#orderPN").val(data.pn);
+                                pcb_container.productNo = data.pn;
+                                form.render(null,'checkCustomer');
+                                if (data.code != "500"){
+                                    layer.alert("添加报价成功["+strOrder[quote_data.orderType]+"]");
+                                }
+                            }
+                        });
+                        tp.totalPric = tp.totalPriced;
+                        tp.isQuote = true;
+                    }
+                }
             }
         },
         // 查看报价详情

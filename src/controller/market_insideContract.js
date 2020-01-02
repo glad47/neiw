@@ -327,24 +327,40 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                 });
                 break;
             case 'generateInvoice':
+                var flag = true;
                 if (checkStatus.data.length === 0) {
                     layer.msg('请选择一条数据!');
                     return false;
                 } else {
-                    admin.popup({
-                        title: '添加发票'
-                        ,area: ['100%', '100%']
-                        ,btn: ['保存', '取消']
-                        ,id: 'popGenerateInvoice'
-                        ,yes: function (index, ) {
-
+                    checkStatus.data.reduce((prev, cur) => {
+                        if (cur.userId !== prev.userId) {
+                            layer.msg('请选择同一个客户再生成发票！');
+                            flag = false;
+                            return false;
                         }
-                        ,success: function () {
-                            view(this.id).render('/marketManagement/iframeWindow/generate_invoice',checkStatus.data).done(function () {
-
-                            })
+                        if (cur.businessId !== prev.businessId) {
+                            layer.msg('请选择同一个跟单员再生成发票！');
+                            flag = false;
+                            return false;
                         }
+                        return prev;
                     })
+                    if (flag) {
+                        admin.popup({
+                            title: '添加发票'
+                            ,area: ['100%', '100%']
+                            ,btn: ['保存', '取消']
+                            ,id: 'popGenerateInvoice'
+                            ,yes: function (index, ) {
+
+                            }
+                            ,success: function () {
+                                view(this.id).render('/marketManagement/iframeWindow/generate_invoice',checkStatus.data).done(function () {
+
+                                })
+                            }
+                        })
+                    }
                 }
                 break;
         }

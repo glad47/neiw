@@ -183,6 +183,7 @@ layui.define(['admin', 'index'],function (exports) {
         checkArrayObjRepeat(arr, d) {
             for (var i=0; i< arr.length; i++) {
                 delete arr[i].LAY_TABLE_INDEX
+                delete d[i].LAY_TABLE_INDEX
                 if (this.isObjectValueEqual(arr[i], d)) {
                     return false;
                 }
