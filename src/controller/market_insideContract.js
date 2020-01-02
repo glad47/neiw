@@ -352,7 +352,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                             ,btn: ['保存', '取消']
                             ,id: 'popGenerateInvoice'
                             ,yes: function (index, ) {
-
+                                $(".gi-submit").click();
                             }
                             ,success: function () {
                                 view(this.id).render('/marketManagement/iframeWindow/generate_invoice',checkStatus.data).done(function () {

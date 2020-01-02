@@ -23,6 +23,7 @@
                 </button>
             </div>
         </div>
+        <button class="gi-submit">POSTDATA</button>
     </div>
     <table id="addGenerateInvoiceTab" lay-filter="addGenerateInvoiceTab"></table>
     </script>
@@ -141,7 +142,6 @@
                     success: function (res) {
                         layer.msg("加载成功！");
                         var data = res.page.list;
-                        $("select[xm-select='giPcbName'] option").remove();
                         creatFormSelect(data);
                         searchData = data;
                         // $("dl[xid='giPcbName']").show();
@@ -160,13 +160,12 @@
                 layer.msg(_val)
                 var selectClickData = searchData.reduce((prev, cur) => {
                     if (cur.id && cur.pcbName) {
-                        if (prev.id == _val && prev.pcbName == $thisName) {
+                        if (cur.id == _val && cur.pcbName == $thisName) {
                             d.params.push(cur);
                         }
                     }
                     return prev;
-                });
-                console.log(selectClickData)
+                }, 0);
                 initInvoiceTab();
             });
 
@@ -177,6 +176,7 @@
              */
             function creatFormSelect(data) {
                 var $html;
+                $("select[xm-select='giPcbName'] option").remove();
                 for (let p of data) {
                     $html += "<option value="+p.id+">"+p.pcbName+"</option>"
                 }
@@ -186,15 +186,21 @@
             }
 
             function addOrderInvoice() {
-                admin.req({
-                    type: 'ppost',
-                    data: d.params,
-                    url: setter.baseUrl + 'epc/orderinvoice/addOrderInvoice',
-                    success: function (res) {
-
-                    }
-                })
+                console.log('发数据为： ');
+                console.log(d.params);
+                // admin.req({
+                //     type: 'ppost',
+                //     data: d.params,
+                //     url: setter.baseUrl + 'epc/orderinvoice/addOrderInvoice',
+                //     success: function (res) {
+                //
+                //     }
+                // })
             }
+
+            $(".gi-submit").on('click', function () {
+                addOrderInvoice();
+            });
         });
     }
 </script>
