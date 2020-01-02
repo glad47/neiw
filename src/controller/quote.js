@@ -1374,7 +1374,17 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             $(".up-subbtn").click();
             $("*[lay-filter='quoteForm']").click();
             var quote_data = Object.assign(pcb_rigdetaily,pcb_container);
-            if (pcb_container.userId == null || pcb_container.userId == ""){
+            if (parseFloat(quote_data.areaSq) > 15 && quote_data.pcbType === 'Aluminum' && quote_data.toolingFee === 0) {
+                    layer.confirm('此板为铝基板,请确认是否需要开模具？', {
+                    btn: ['确定', '取消']
+                }, function () {
+                    return true;
+                }, function () {
+                    layer.closeAll();
+                    return false;
+                });
+            }
+            if (pcb_container.userId == null || pcb_container.userId == "") {
                 layer.msg("请先选择客户");
                 return false;
             } else if (pcb_container.gerberName == null || pcb_container.gerberName == ""){
