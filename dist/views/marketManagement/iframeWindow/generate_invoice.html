@@ -23,7 +23,11 @@
                 </button>
             </div>
         </div>
-        <button class="gi-submit">POSTDATA</button>
+        <button style="display: none;" class="gi-submit">POSTDATA</button>
+    </div>
+    <div class="top-total">
+        <span>发票总额：</span>
+        <strong style="color: orangered;">0</strong>
     </div>
     <table id="addGenerateInvoiceTab" lay-filter="addGenerateInvoiceTab"></table>
     </script>
@@ -55,6 +59,7 @@
                 ,requestInterface = layui.requestInterface
                 ,jsTools = layui.jsTools
                 ,formSelects = layui.formSelects
+                ,setter = layui.setter
                 ,arrReduce = layui.arrReduce
                 ,jsTools = layui.jsTools
                 ,form = layui.form;
@@ -75,19 +80,26 @@
                     ,limit: 10000
                     ,cols: [[
                         {type: 'numbers', title: '序号', align:'center',edit: 'text'}
-                        ,{field: '', title: 'P/O&File Name', align: 'center',edit: 'text', templet: '#giPF'}
+                        ,{type: 'id', title: 'ID', align:'center',edit: 'text', hide: true}
+                        ,{field: 'pcbName', title: 'P/O&File Name', align: 'center',edit: 'text', minWidth: 260, templet: '#giPF'}
+                        ,{field: 'description', title: 'Description', align: 'center', minWidth: 200, edit: 'text'}
                         ,{field: 'quantityPcs', title: 'QTY', align: 'center',edit: 'text'}
-                        ,{field: '', title: 'Price', align: 'center',edit: 'text', templet: 'giPrice'}
-                        ,{field: 'engineeringFee', title: 'Engineering Fee', align: 'center',edit: 'text'}
-                        ,{field: 'testCostFee', title: 'Test Fee', align: 'center',edit: 'text'}
-                        ,{field: 'toolingFee', title: 'Tooling Fee', align: 'center',edit: 'text'}
-                        ,{field: 'overworkFee', title: 'Overwork Fee', align: 'center',edit: 'text'}
-                        ,{field: '', title: 'Freight Fee', align: 'center',edit: 'text', templet: 'giFF'}
-                        ,{field: 'pcbaSubtotalFee', title: 'PCBA Fee', align: 'center',edit: 'text'}
-                        ,{field: '', title: 'Amount( USD )', align: 'center',edit: 'text'}
+                        ,{field: 'unitPrice', title: '单价', align: 'center',edit: 'text'}
+                        ,{field: 'engineeringFee', title: '工程费', align: 'center',edit: 'number'}
+                        ,{field: 'testCostFee', title: '测试费', align: 'center',edit: 'text'}
+                        ,{field: 'toolingFee', title: '工具费', align: 'center',edit: 'text'}
+                        ,{field: 'overworkFee', title: '加急费', align: 'center',edit: 'text'}
+                        ,{field: 'postFee', title: '邮费', align: 'center',edit: 'text', templet: 'giFF'}
+                        ,{field: 'pcbaSubtotalFee', title: 'PCBA 费', align: 'center',edit: 'text'}
+                        ,{field: 'totalFee', title: 'Amount( USD )', align: 'center',edit: 'text'}
                         ,{fixed: 'right', title:'操作', toolbar: '#addGenerateInvoiceTab_tabbar',width: 80, align:'center'}
                     ]]
                 });
+                var totalAll = d.params.reduce((prev, cur) => {
+                    return prev += cur.totalFee
+                },0);
+                console.log('求发票总金额')
+                $(".top-total>strong").text(totalAll);
             }
 
             table.on('tool(addGenerateInvoiceTab)', function (obj) {
@@ -104,7 +116,31 @@
                 var value = obj.value
                     ,data = obj.data //得到所在行所有键值
                     ,field = obj.field; //得到字段
-                console.log(data)
+                // 重新计算总价
+                var engineeringFee = parseFloat(data.engineeringFee);
+                var testCostFee = parseFloat(data.testCostFee);
+                var toolingFee = parseFloat(data.toolingFee);
+                var overworkFee = parseFloat(data.overworkFee);
+                var postFee = parseFloat(data.postFee);
+                var pcbaSubtotalFee = parseFloat(data.pcbaSubtotalFee);
+
+                var boardFee = parseFloat(data.boardFee);   // 板费
+                var unitPrice = parseFloat(data.unitPrice); // 单价
+                var quantityPcs = parseFloat(data.quantityPcs); // PCS数量
+                var totalFee;   // 总价
+                boardFee = parseFloat(unitPrice*quantityPcs).toFixed(3)
+                totalFee = parseFloat(engineeringFee + testCostFee + toolingFee + overworkFee + postFee + pcbaSubtotalFee + parseFloat(boardFee));
+                var obj = d.params
+                for (let d of obj) {
+                    if (d.id === data.id) {
+                        d.unitPrice = unitPrice;
+                        d.boardFee = boardFee;
+                        d.totalFee = totalFee;
+                    }
+                }
+                d.params = obj;
+                initInvoiceTab()
+                console.log(obj)
             });
 
             function saveField() {
@@ -185,19 +221,80 @@
                 $("dl[xid='giPcbName']").parents(".layui-input-inline").click();
             }
 
+
+            /**
+             * 生成发票 & 更新发票
+             */
             function addOrderInvoice() {
-                console.log('发数据为： ');
-                console.log(d.params);
-                // admin.req({
-                //     type: 'ppost',
-                //     data: d.params,
-                //     url: setter.baseUrl + 'epc/orderinvoice/addOrderInvoice',
-                //     success: function (res) {
-                //
-                //     }
-                // })
+                var postData = disposeData();
+                postData.id = d.params.id;
+                var thisType = d.params.type;
+                var _url;
+                if (thisType == "1") {
+                    _url = setter.baseUrl + '/epc/orderinvoice/addOrderInvoice';
+                } else if (thisType == '2') {
+                    _url = setter.baseUrl + 'epc/orderinvoice/update';
+                }
+                admin.req({
+                    type: 'post',
+                    data: JSON.stringify(postData),
+                    contentType: "application/json;charset=utf-8",
+                    dataType: 'json',
+                    url: _url,
+                    success: function (res) {
+                        if (thisType == "1") {
+                            layer.msg('添加成功！');
+                            setTimeout(() => {layer.closeAll();}, 1500);
+                        } else if (thisType == '2') {
+                            layui.table.reload('invoiceList_Tabpcb');
+                            layer.msg('修改成功！');
+                        }
+                    }
+                })
             }
 
+            /**
+             * 发送的数据  进行处理
+             * @param data
+             */
+            function disposeData () {
+                var postData = {
+                    totalFee: 0,        // 发票总计
+                    businessId: d.params[0].businessId,     // 跟单员id
+                    consumerId: d.params[0].userId,     // 客户id
+                    businessName: d.params[0].businessName,   //跟单员名字
+                    invoiceDate: new Date().toLocaleDateString(),    // 发票票日期
+                    productNos: d.params.map(function(elem){return elem.productNo}).join(","),     // 聚谷型号串
+                    customInvoiceEntityList: [] // 自定义发票
+                }
+                postData.customInvoiceEntityList = d.params.reduce((prev, cur) => {
+                    var _ce = new Object();
+                    postData.totalFee +=  cur.totalFee; // 发票总计
+                    if (d.params.type == "1") {
+                        _ce.orderId = prev.id;   // 订单id
+                    } else {
+                        console.log(cur.id)
+                        _ce.id = cur.id;   // 订单id
+                    }
+                    _ce.pcbName = cur.pcbName;   // 客户po
+                    _ce.quantityPcs = parseFloat(cur.quantityPcs);  // 数量
+                    _ce.unitPrice = parseFloat(cur.unitPrice);  // 单价
+                    _ce.engineeringFee = parseFloat(cur.engineeringFee);    // 工程费
+                    _ce.testCostFee  = parseFloat(cur.testCostFee); // 测试费
+                    _ce.toolingFee = parseFloat(cur.toolingFee);    // 工具模具费
+                    _ce.overworkFee = parseFloat(cur.overworkFee);  // 加急费
+                    _ce.postFee = parseFloat(cur.postFee);   // 运费
+                    _ce.pcbaFee = parseFloat(cur.pcbaSubtotalFee);  // pcba费
+                    _ce.totalFee = parseFloat(cur.totalFee);   // 小计
+                    _ce.productNo = cur.productNo;  // 聚谷型号
+                    _ce.description = cur.description;  // 详情
+                    // _ce.gmtCreate = new Date().toLocaleDateString();
+
+                    prev.push(_ce);
+                    return prev;
+                }, []);
+                return postData;
+            }
             $(".gi-submit").on('click', function () {
                 addOrderInvoice();
             });

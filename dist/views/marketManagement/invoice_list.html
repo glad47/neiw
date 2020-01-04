@@ -1,18 +1,7 @@
-<title>内部合同</title>
+<title>发票列表</title>
 <div class="layui-fluid">
-    <div class="layui-form inside-contract-search" data-type="search-form" reload-table="inside_cotract_Tabpcb">
+    <div class="layui-form invoiceList_Tabpcb-search" data-type="search-form" reload-table="invoiceList_Tabpcb">
         <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">订单类型</label>
-                <div class="layui-input-inline">
-                    <select name="orderType" lay-filter="inside-contract-sel">
-                        <option value="">请选择</option>
-                        <option value="1">新单</option>
-                        <option value="2">返单</option>
-                        <option value="3">返单有改</option>
-                    </select>
-                </div>
-            </div>
             <div class="layui-inline">
                 <label class="layui-form-label">内部编码</label>
                 <div class="layui-input-inline">
@@ -20,15 +9,9 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">文件名</label>
+                <label class="layui-form-label">跟单员</label>
                 <div class="layui-input-inline">
                     <input type="text" name="gerberName" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">F/N</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="pcbName" class="layui-input" id="customer_orderTime">
                 </div>
             </div>
             <div class="layui-inline">
@@ -49,24 +32,11 @@
 
             <!--PCB订单-->
             <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="inside_cotract_Tabpcb" lay-filter="inside_cotract_Tabpcb"></table>
-                <script type="text/html" id="inside_cotract_Bar">
-                    <a class="layui-btn layui-btn-xs" lay-event="search-contract">查看报价</a>
-                    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="search-list">编辑</a>
-                    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">退回</a>
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="inside_contract_fileMana">资料</a>
-                </script>
-                <script type="text/html" id="inside_cotract_option">
-                    <button class="layui-btn" lay-event="submit">提交</button>
-                </script>
-                <script type="text/html" id="order_type">
-                    {{#  if(d.orderType =='1'){ }}
-                    <a style="color: green;">新单</a>
-                    {{#  } else if (d.orderType == '2'){ }}
-                    <a>返单</a>
-                    {{#  } else{ }}
-                    <a>返单有改</a>
-                    {{# } }}
+                <table class="layui-table" id="invoiceList_Tabpcb" lay-filter="invoiceList_Tabpcb"></table>
+                <script type="text/html" id="invoiceList_Bar">
+                    <a class="layui-btn layui-btn-xs" lay-event="il-search">查看</a>
+                    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="il-edit">编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="il-del">删除</a>
                 </script>
             </div>
 
@@ -93,7 +63,7 @@
 </div>
 
 <script>
-    layui.use('market_insideContract', layui.factory('market_insideContract')).use(['market_insideContract', 'table', 'index','element','form'], function(){
+    layui.use('market_invoiceList', layui.factory('market_invoiceList')).use(['market_invoiceList', 'table', 'index','element','form'], function(){
         var form = layui.form;
         form.render();
     });

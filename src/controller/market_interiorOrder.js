@@ -209,9 +209,43 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
                     layer.msg("请不要重复提交！！");
                 }
                 break;
-            case 'getCheckLength':
-                var data = checkStatus.data;
-                layer.msg('选中了：'+ data.length + ' 个');
+            case 'generateInvoice':
+                var flag = true;
+                if (checkStatus.data.length === 0) {
+                    layer.msg('请选择一条数据!');
+                    return false;
+                } else {
+                    checkStatus.data.reduce((prev, cur) => {
+                        if (cur.userId !== prev.userId) {
+                            layer.msg('请选择同一个客户再生成发票！');
+                            flag = false;
+                            return false;
+                        }
+                        if (cur.businessId !== prev.businessId) {
+                            layer.msg('请选择同一个跟单员再生成发票！');
+                            flag = false;
+                            return false;
+                        }
+                        return prev;
+                    })
+                    if (flag) {
+                        checkStatus.data.type = '1';
+                        admin.popup({
+                            title: '添加发票'
+                            ,area: ['100%', '100%']
+                            ,btn: ['保存', '取消']
+                            ,id: 'popGenerateInvoice'
+                            ,yes: function (index, ) {
+                                $(".gi-submit").click();
+                            }
+                            ,success: function () {
+                                view(this.id).render('/marketManagement/iframeWindow/generate_invoice',checkStatus.data).done(function () {
+
+                                })
+                            }
+                        })
+                    }
+                }
                 break;
             case 'isAll':
                 layer.msg(checkStatus.isAll ? '全选': '未全选');
