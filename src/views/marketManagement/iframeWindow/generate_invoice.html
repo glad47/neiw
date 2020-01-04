@@ -50,6 +50,30 @@
     <script id="giPrice" type="text/html">
         {{ parseFloat(d.boardFee/d.quantityPcs).toFixed(3) }}
     </script>
+    <script id="giDes" type="text/html">
+        P/N:{{ d.productNo }}<br>
+        {{ d.pcbType || '' }}<br>
+        {{ d.finishThickness }}
+        {{# if(d.panelSizeX != null){ }}
+        {{# var panelWay = d.panelWayX*d.panelWayY }}
+        {{ d.panelSizeX }} * {{ d.panelSizeY }}mm / {{ panelWay }}<br>
+        {{# }else if(d.dimensionsX != null){ }}
+        {{ d.dimensionsX}} * {{ d.dimensionsY}}mm /1<br>
+        {{# }else{ }}
+        都为空<br>
+        {{# } }}
+        <!--层数-->
+        Layer: {{ d.layerNum}}<br>
+        <!--完成表面-->
+        {{# if(d.surfaceFinish != null){ }}
+        {{ d.surfaceFinish}}<br>
+        {{# } }}
+        <!--组焊色-->
+        Solder Mask:{{ d.solderMaskTopColor}}<br>
+        {{# if(d.pcbaSubtotalFee != null && d.pcbaSubtotalFee != '0'){ }}
+        <strong style="color: orangered;">+ PCBA</strong>
+        {{# } }}
+    </script>
 </div>
 <script>
     layui.data.done = function(d){
@@ -82,7 +106,7 @@
                         {type: 'numbers', title: '序号', align:'center',edit: 'text'}
                         ,{type: 'id', title: 'ID', align:'center',edit: 'text', hide: true}
                         ,{field: 'pcbName', title: 'P/O&File Name', align: 'center',edit: 'text', minWidth: 260, templet: '#giPF'}
-                        ,{field: 'description', title: 'Description', align: 'center', minWidth: 200, edit: 'text'}
+                        ,{field: 'description', title: 'Description', align: 'center', minWidth: 200, edit: 'text', templet: '#giDes'}
                         ,{field: 'quantityPcs', title: 'QTY', align: 'center',edit: 'text'}
                         ,{field: 'unitPrice', title: '单价', align: 'center',edit: 'text'}
                         ,{field: 'engineeringFee', title: '工程费', align: 'center',edit: 'number'}
@@ -140,7 +164,6 @@
                 }
                 d.params = obj;
                 initInvoiceTab()
-                console.log(obj)
             });
 
             function saveField() {
@@ -174,7 +197,7 @@
                 layer.msg("搜索结果加载中...");
                 admin.req({
                     type: 'post',
-                    url: setter.baseUrl+'epc/pcborder/internalContract?access_token='+ layui.data('layuiAdmin').access_token + '&productNo=' + e + '&uId=' + d.params[0].userId + '&limit=100000',
+                    url: setter.baseUrl+'epc/pcborder/internalOkPay?access_token='+ layui.data('layuiAdmin').access_token + '&productNo=' + e + '&uId=' + d.params[0].userId + '&limit=100000',
                     success: function (res) {
                         layer.msg("加载成功！");
                         var data = res.page.list;
