@@ -23,41 +23,16 @@
     </div>
     <!--卡片－表格信息-->
     <div class="layui-tab layui-tab-brief" lay-filter="tab-internalQuote">
-        <ul class="layui-tab-title">
-            <li class="layui-this">PCB订单</li>
-            <li>钢网订单</li>
-            <li>SMT订单</li>
-        </ul>
-        <div class="layui-tab-content">
-
-            <!--PCB订单-->
-            <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="invoiceList_Tabpcb" lay-filter="invoiceList_Tabpcb"></table>
-                <script type="text/html" id="invoiceList_Bar">
-                    <a class="layui-btn layui-btn-xs" lay-event="il-search">查看</a>
-                    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="il-edit">编辑</a>
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="il-del">删除</a>
-                </script>
-            </div>
-
-            <!--钢网订单-->
-            <div class="layui-tab-item">
-                <table class="layui-table" id="icontract_Tabstencil" lay-filter="icontract_Tabstencil"></table>
-                <script type="text/html" id="inside_cotract_BarS">
-                    <a class="layui-btn layui-btn-xs" lay-event="search-contract">查看报价</a>
-                    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="search-list">编辑</a>
-                    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">退回</a>
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="inside_contract_fileMana">资料</a>
-                </script>
-                <script type="text/html" id="inside_cotract_optionS">
-                    <button class="layui-btn" lay-event="submit">提交</button>
-                </script>
-            </div>
-
-            <!--SMT订单-->
-            <div class="layui-tab-item">
-                <table class="layui-table" id="icontract_Tabsmt" lay-filter="icontract_Tabsmt"></table>
-            </div>
+        <div class="layui-tab-item layui-show">
+            <table class="layui-table" id="invoiceList_Tabpcb" lay-filter="invoiceList_Tabpcb"></table>
+            <script type="text/html" id="invoiceList_Bar">
+                <a class="layui-btn layui-btn-xs" lay-event="il-search">查看</a>
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="il-edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="il-del">删除</a>
+            </script>
+            <script type="text/html" id="invoiceList_TopBar">
+                <button class="layui-btn layui-btn-sm" lay-event="generateInvoice">添加发票</button>
+            </script>
         </div>
     </div>
 </div>

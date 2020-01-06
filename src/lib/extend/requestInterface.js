@@ -5,7 +5,8 @@
  */
 
 layui.define(['admin', 'index'],function (exports) {
-    var $ = layui.jquery;
+    var $ = layui.jquery
+        ,setter = layui.setter;
     admin = layui.admin;
     var obj = {
 
@@ -122,7 +123,7 @@ layui.define(['admin', 'index'],function (exports) {
                     layer.msg('查询失败，请稍后再试.')
                 }
             });
-            return data;
+            return result;
         }
     }
 

@@ -4,6 +4,14 @@
     <div class="layui-form outbound-order-search" data-type="search-form" reload-table="iqcMana_outBound">
         <div class="layui-form-item">
             <div class="layui-inline">
+                <label class="layui-form-label">客户</label>
+                <div class="layui-input-inline" style="width: 320px;">
+                    <select id="giCustomer" name="giCustomer" xm-select-height="34px" xm-select="giCustomer" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                        <option value="" id="">选择客户</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
                 <label class="layui-form-label">内部编码</label>
                 <div class="layui-input-inline">
                     <input type="text" name="productNo" id="inputGiProductNo" autocomplete="off" class="layui-input">
@@ -13,7 +21,7 @@
                 <label class="layui-form-label">客户型号</label>
                 <div class="layui-input-inline" style="width: 320px;">
                     <select id="giPcbName" name="giPcbName" xm-select-height="34px" xm-select="giPcbName" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
-                        <option value="" id="0">选择客户</option>
+                        <option value="" id="0">选择型号</option>
                     </select>
                 </div>
             </div>
@@ -77,7 +85,7 @@
 </div>
 <script>
     layui.data.done = function(d){
-        layui.use(['table', 'index', 'form', 'jsTools', 'formSelects', 'arrReduce', 'jsTools'], function () {
+        layui.use(['table', 'index', 'form', 'jsTools', 'formSelects', 'arrReduce', 'requestInterface'], function () {
             var $ = layui.jquery
                 ,table = layui.table
                 ,requestInterface = layui.requestInterface
@@ -86,14 +94,21 @@
                 ,setter = layui.setter
                 ,arrReduce = layui.arrReduce
                 ,jsTools = layui.jsTools
+                ,requestInterface = layui.requestInterface
                 ,form = layui.form;
 
+            var userId = '';
+            var businessId;
+            var businessName;
+            var productNo = '';
             var searchData;
 
             formSelects.render('giPcbName');
             initInvoiceTab();
+            initSelCustomer();
             document.getElementById("inputGiProductNo").addEventListener('keyup', function (event) {
-                jsTools.throttle(getFrom, null, 500, this.value, 2000)
+                jsTools.throttle(getFrom, null, 500, this.value, 2000);
+                productNo = this.value;
             });
             function initInvoiceTab() {
                 table.render({
@@ -164,7 +179,6 @@
                 }
                 d.params = obj;
                 initInvoiceTab()
-                console.log(obj)
             });
 
             function saveField() {
@@ -185,7 +199,7 @@
             /**
              *  获取下拉列表
              **/
-            function getFrom(e) {
+            function getFrom () {
                 // var thisFrom = arr.reduce((prev, cur) => {
                 //     if (cur.productNo) {
                 //         prev[0].productNo.push(cur.productNo);
@@ -198,10 +212,10 @@
                 layer.msg("搜索结果加载中...");
                 admin.req({
                     type: 'post',
-                    url: setter.baseUrl+'epc/pcborder/internalOkPay?access_token='+ layui.data('layuiAdmin').access_token + '&productNo=' + e + '&uId=' + d.params[0].userId + '&limit=100000',
+                    url: setter.baseUrl+'epc/orderinvoice/queryAllOrder?'+ 'productNo=' + productNo + '&userId=' + userId,
                     success: function (res) {
                         layer.msg("加载成功！");
-                        var data = res.page.list;
+                        var data = res.data;
                         creatFormSelect(data);
                         searchData = data;
                         // $("dl[xid='giPcbName']").show();
@@ -214,10 +228,18 @@
             //     $("dl[xid='giPcbName']").hide();
             // });
 
+            layui.formSelects.on('giCustomer', function (id, vals, val, isAdd, isDisabled) {
+                var _val = val.value;
+                userId = _val;
+                getFrom();
+            })
+
             layui.formSelects.on('giPcbName', function (id, vals, val, isAdd, isDisabled) {
                 var $thisName = val.name;
-                var _val = val.value;
-                layer.msg(_val)
+                var _arr = val.value.split(",");
+                var _val = _arr[0];
+                businessId = _arr[1];
+                businessName = _arr[2];
                 var selectClickData = searchData.reduce((prev, cur) => {
                     if (cur.id && cur.pcbName) {
                         if (cur.id == _val && cur.pcbName == $thisName) {
@@ -229,7 +251,6 @@
                 initInvoiceTab();
             });
 
-
             /**
              * 初始化 下拉
              * @param data
@@ -238,11 +259,29 @@
                 var $html;
                 $("select[xm-select='giPcbName'] option").remove();
                 for (let p of data) {
-                    $html += "<option value="+p.id+">"+p.pcbName+"</option>"
+                    // $html += "<option value="+p.id+">"+p.pcbName+"</option>"
+                    $html += "<option value="+ p.id +"," +p.businessId + "," + p.businessName +">" + p.pcbName + "</option>"
                 }
                 $("select[xm-select='giPcbName']").append($html);
                 formSelects.render('giPcbName');
                 $("dl[xid='giPcbName']").parents(".layui-input-inline").click();
+            }
+
+
+            /**
+             * 初始化下拉， 获取所有客户信息
+             */
+            function initSelCustomer() {
+                var _obj = requestInterface.getAllCustomer();
+                var $html;
+                for (let c of _obj) {
+                    $html += "<option value="+c.id+">"+c.userSystemId+"</option>"
+                }
+                $("select[xm-select='giCustomer']").append($html);
+                formSelects.render('giCustomer');
+                console.log('debugger');
+                // formSelects.value('giCustomer', []);
+                // $(".xm-select-parent[fs_id='"+dom+"']").children(".xm-form-select").addClass("xm-form-selected");
             }
 
 
@@ -270,9 +309,9 @@
                             layer.msg('添加成功！');
                             setTimeout(() => {layer.closeAll();}, 1500);
                         } else if (thisType == '2') {
-                            layui.table.reload('invoiceList_Tabpcb');
                             layer.msg('修改成功！');
                         }
+                        layui.table.reload('invoiceList_Tabpcb');
                     }
                 })
             }
@@ -284,9 +323,9 @@
             function disposeData () {
                 var postData = {
                     totalFee: 0,        // 发票总计
-                    businessId: d.params[0].businessId,     // 跟单员id
-                    consumerId: d.params[0].userId,     // 客户id
-                    businessName: d.params[0].businessName,   //跟单员名字
+                    businessId: businessId,     // 跟单员id
+                    consumerId: userId,     // 客户id
+                    businessName: businessName,   //跟单员名字
                     invoiceDate: new Date().toLocaleDateString(),    // 发票票日期
                     productNos: d.params.map(function(elem){return elem.productNo}).join(","),     // 聚谷型号串
                     customInvoiceEntityList: [] // 自定义发票

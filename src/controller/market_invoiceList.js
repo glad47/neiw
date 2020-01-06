@@ -15,7 +15,7 @@ layui.define(['table', 'form'], function(exports){
     table.render({
         elem: '#invoiceList_Tabpcb'
         ,url: setter.baseUrl+'epc/orderinvoice/list'
-        // ,toolbar: "#invoiceList_Tabpcb"
+        ,toolbar: "#invoiceList_TopBar"
         ,cellMinWidth: 80
         ,id: "invoiceList_Tabpcb"
         ,page: true
@@ -30,15 +30,34 @@ layui.define(['table', 'form'], function(exports){
             {type: 'checkbox', fixed: 'left'}
             ,{field:'productNos',fixed: 'left', title: '聚谷型号', align:'center', minWidth: 154, sort: true}
             ,{field: 'invoiceNo', title: '发票号', minWidth: 150}
-            ,{field: 'invoiceDate', title: '发票时间'}
             ,{field: 'businessName', title: '跟单员'}
             ,{field: 'totalFee', title: '发票金额'}
             ,{field: 'gmtCreate', title: '创建时间', minWidth: 130}
-            ,{field: 'id', width: 100, title: 'ID', sort: true}
             ,{field: 'businessId', title: '跟单员id', hide: true}
             ,{field: 'consumerId', title: '客户id', hide: true}
             ,{title: '操作', width: 190, align: 'center', fixed: 'right', toolbar: '#invoiceList_Bar'}
         ]]
+    });
+
+    table.on('toolbar(invoiceList_Tabpcb)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        if (obj.event === 'generateInvoice') {
+            checkStatus.data.type = '1';
+            admin.popup({
+                title: '添加发票'
+                ,area: ['100%', '100%']
+                ,btn: ['保存', '取消']
+                ,id: 'popGenerateInvoice'
+                ,yes: function (index, ) {
+                    $(".gi-submit").click();
+                }
+                ,success: function () {
+                    view(this.id).render('/marketManagement/iframeWindow/generate_invoice',checkStatus.data).done(function () {
+
+                    })
+                }
+            })
+        }
     });
 
     table.on('tool(invoiceList_Tabpcb)', function (obj) {
