@@ -115,7 +115,7 @@ layui.define(function(exports){
         //今年月销售额
         {
           title: {
-                text: currentYear+'年跟单员月销售额',
+                text: currYears+'年跟单员月销售额',
                 x: 'center',
                 itemGap: 10,
                 textStyle: {
@@ -147,7 +147,7 @@ layui.define(function(exports){
         //总的月销售额
         {
           title : {
-            text: currentYear+'年每月总销售额',
+            text: currYears+'年每月总销售额',
             x: 'center',
             itemGap: 12,
             textStyle: {
@@ -222,7 +222,7 @@ layui.define(function(exports){
         //跟单员款数
         {
           title: {
-            text: currentYear+'年跟单员月销售款数',
+            text: currYears+'年跟单员月销售款数',
             x: 'center',
             itemGap: 12,
             textStyle: {
@@ -264,7 +264,7 @@ layui.define(function(exports){
         //新增的用户量
         {
           title: {
-            text: currentYear+'年跟单员月客户数',
+            text: currYears+'年跟单员月客户数',
             x: 'center',
             itemGap: 12,
             textStyle: {
