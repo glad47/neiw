@@ -79,7 +79,15 @@ layui.define(['admin','table','index','element','form','laydate', 'tools_printLa
     table.on('toolbar(proMana_outBoundOD)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
-        if (obj.event == 'outLableDetail') {
+        if (obj.event == 'outerLable') {
+            data.table = 'iqcMana_outBound';
+            data.outerType = obj.event
+            tools_printLable.PrintLable(data);
+        } else if (obj.event === 'n-outerLable') {
+            data.outerType = obj.event
+            tools_printLable.PrintLable(data);
+        } else if (obj.event === 'g-outerLable') {
+            data.outerType = obj.event
             tools_printLable.PrintLable(data);
         }
     });
