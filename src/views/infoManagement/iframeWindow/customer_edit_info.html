@@ -39,7 +39,8 @@
             <div class="addcus-skype layui-col-md6">
                 <label class="layui-form-label"><span class="span-required">*</span>国家:</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}/quote/getCountry" lay-done="layui.data.done(d);" lay-type="post">
+<!--                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}/quote/getCountry" lay-done="layui.data.done(d);" lay-type="post">-->
+                    <script type="text/html" template lay-url="" lay-done="layui.data.done(d);" lay-type="post">
                         <select name="receiverCountry" lay-verify="required" lay-search="">
                             {{# 
                                 layui.each(d.data, function(index, item){   
@@ -152,6 +153,26 @@
                         {{ d.params.receiverAddress || '' }}
                     </textarea>
                 </script>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-merchandiser">
+                <label class="layui-form-label"><span class="span-required">*</span>收货地址：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/receiveradders/queryReceiverAddersByUid?userId={{d.params.id}}" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="ssdz" lay-verify="required" lay-filter="ssdz">
+                            <option value="addAddr">添加地址</option>
+                            {{#
+                            layui.each(d.data, function(index, item){
+                            }}
+                            <option value="{{ item.dictKey || ''}}" {{ d.params.deliveryType == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据
+                            {{#  } }}
+                        </select>
+                    </script>
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
@@ -373,12 +394,15 @@
 </style>
 
 <script>
+    var _id;
     layui.data.done = function(d){
         layui.use(['form'], function(){
-            var $ = layui.$ ;
-            form = layui.form
-            ,admin = layui.admin
+            var $ = layui.$
+                ,form = layui.form
+                ,admin = layui.admin
+                ,setter = layui.setter;
             form.render(null, 'customer-add-edit-form-list');
+            _id = d.params.id;
         });
     }
 </script>

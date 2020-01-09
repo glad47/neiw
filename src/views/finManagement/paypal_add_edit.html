@@ -52,25 +52,24 @@
                 </div> -->
             </div>
         </div>
-        <div class="layui-form-item">
-            <div class="addcus-cusCom layui-col-md6">
-                <label class="layui-form-label">付款人姓：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="firstName" value="{{ d.params.firstName || ''}}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            <div class="addcus-tel layui-col-md6">
-                <label class="layui-form-label">付款人名：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="lastName" value="{{ d.params.lastName || ''}}" autocomplete="off" class="layui-input">
-                    </script>
-                </div>
-            </div>
-            
-        </div>
+<!--        <div class="layui-form-item">-->
+<!--            <div class="addcus-cusCom layui-col-md6">-->
+<!--                <label class="layui-form-label">付款人姓：</label>-->
+<!--                <div class="layui-input-block">-->
+<!--                    <script type="text/html" template>-->
+<!--                        <input type="text" name="firstName" value="{{ d.params.firstName || ''}}" autocomplete="off" class="layui-input">-->
+<!--                    </script>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="addcus-tel layui-col-md6">-->
+<!--                <label class="layui-form-label">付款人名：</label>-->
+<!--                <div class="layui-input-block">-->
+<!--                    <script type="text/html" template>-->
+<!--                        <input type="text" name="lastName" value="{{ d.params.lastName || ''}}" autocomplete="off" class="layui-input">-->
+<!--                    </script>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="layui-form-item">
             <div class="addcus-skype layui-col-md6">
                 <label class="layui-form-label">币种：</label>
@@ -98,21 +97,21 @@
                 <label class="layui-form-label">手续费：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="paymentFee" value="{{ d.params.paymentFee || ''}}" autocomplete="off" class="layui-input">
+                        <input type="text" name="paymentFee" value="{{ d.params.paymentFee || 0}}" autocomplete="off" class="layui-input">
                     </script>
                 </div>
             </div>
         </div>
-        <div class="layui-form-item">
-            <script type="text/html" template>
-            <div class="layui-col-md12">
-                <label class="layui-form-label">绑定信息：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="custom" value="{{d.params.custom || ''}}" class="layui-input" autocomplete="off">  
-                </div>
-            </div>
-            </script>
-        </div>
+<!--        <div class="layui-form-item">-->
+<!--            <script type="text/html" template>-->
+<!--            <div class="layui-col-md12">-->
+<!--                <label class="layui-form-label">绑定信息：</label>-->
+<!--                <div class="layui-input-block">-->
+<!--                    <input type="text" name="custom" value="{{d.params.custom || ''}}" class="layui-input" autocomplete="off">  -->
+<!--                </div>-->
+<!--            </div>-->
+<!--            </script>-->
+<!--        </div>-->
 
 
         <div class="layui-form-item layui-col-md-offset2" style="display: none;">

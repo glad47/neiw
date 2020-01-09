@@ -302,6 +302,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             admin.popup({
                 title: '编辑：订单号［'+data.productNo+']'
                 ,area: ['45%', '70%']
+                ,yes: function () {
+                    $("button[lay-filter='LAY-stencilorder-update-submit']").click();
+                }
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderStencil_update', data).done(function () {
                         form.render()
