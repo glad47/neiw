@@ -7,6 +7,7 @@ layui.define(['admin'], function (exports) {
         admin = layui.admin;
    var obj = {
        addAddr: (data) => {
+           var popData = data.data;
            admin.popup({
                title: data.title + '地址'
                ,area: ['409px', '589px']

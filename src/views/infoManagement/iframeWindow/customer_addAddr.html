@@ -5,7 +5,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">公司名</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="receiverCompany" autocomplete="off" class="layui-input">
+                    <input type="text" name="receiverCompany" autocomplete="off" class="layui-input" value="{{ d.params.receiverCompany || '' }}">
                 </div>
             </div>
         </div>
@@ -13,7 +13,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">收货人</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="receiverName" autocomplete="off" class="layui-input">
+                    <input type="text" name="receiverName" autocomplete="off" class="layui-input" value="{{ d.params.receiverName || ''}}">
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">收货电话</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="receiverTelephone" autocomplete="off" class="layui-input">
+                    <input type="text" name="receiverTelephone" autocomplete="off" class="layui-input" value="{{ d.params.receiverTelephone || '' }}">
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">收货国家</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="receiverCountry" autocomplete="off" class="layui-input">
+                    <input type="text" name="receiverCountry" autocomplete="off" class="layui-input" value="{{ d.params.receiverCountry || ''}}">
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">收货城市</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="receiverCity" autocomplete="off" class="layui-input">
+                    <input type="text" name="receiverCity" autocomplete="off" class="layui-input" value="{{ d.params.receiverCity || ''}}">
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">邮箱编码</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="receiverPostcode" autocomplete="off" class="layui-input">
+                    <input type="text" name="receiverPostcode" autocomplete="off" class="layui-input" value="{{ d.params.receiverPostcode || '' }}">
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">详细地址</label>
                 <div class="layui-input-inline">
-                    <textarea type="text" name="receiverAddress" autocomplete="off" class="layui-input" style="height: 90px;"></textarea>
+                    <textarea value="{{ d.params.receiverAddress || '' }}" type="text" name="receiverAddress" autocomplete="off" class="layui-input" style="height: 90px;"></textarea>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">快递名</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="courierName" autocomplete="off" class="layui-input">
+                    <input type="text" name="courierName" autocomplete="off" class="layui-input" value="{{ d.params.courierName || ''}}">
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">快递账号</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="courierAccount" autocomplete="off" class="layui-input">
+                    <input type="text" name="courierAccount" autocomplete="off" class="layui-input" value="{{ d.params.courierAccount || ''}}">
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
             <div class="addcus-cusNum layui-col-md3">
                 <label class="layui-form-label">默认地址：</label>
                 <div class="layui-input-block">
-                    <input type="checkbox" name="isDefault" lay-skin="primary" title="">
+                    <input type="checkbox" name="isDefault" {{ d.params.isDefault == '1' ? 'checked' : '' }} lay-skin="primary" title="">
                 </div>
             </div>
         </div>

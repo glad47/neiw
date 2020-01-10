@@ -30,7 +30,7 @@
                 <label class="layui-form-label"><span class="span-required">*</span>电话：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="receiverTelephone" autocomplete="off" class="layui-input" value="{{ d.params.receiverTelephone || '' }}" lay-verify="required">
+                        <input type="text" name="mobilePhone" autocomplete="off" class="layui-input" value="{{ d.params.mobilePhone || '' }}" lay-verify="required">
                     </script>
                 </div>
             </div>
@@ -41,12 +41,12 @@
                 <div class="layui-input-block">
 <!--                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}/quote/getCountry" lay-done="layui.data.done(d);" lay-type="post">-->
                     <script type="text/html" template lay-url="" lay-done="layui.data.done(d);" lay-type="post">
-                        <select name="receiverCountry" lay-verify="required" lay-search="">
+                        <select name="country" lay-verify="required" lay-search="">
                             {{# 
                                 layui.each(d.data, function(index, item){   
                             }}
                             <option value=""></option>
-                            <option value="{{ item.id || ''}}" {{ d.params.receiverCountry == item.id ? 'selected' : ''}}>{{ item.name }}</option>
+                            <option value="{{ item.id || ''}}" {{ d.params.country == item.id ? 'selected' : ''}}>{{ item.name }}</option>
                             {{#  }); }}
                         </select>
                     </script>
@@ -56,7 +56,7 @@
                 <label class="layui-form-label"><span class="span-required">*</span>城市：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="receiverCity" autocomplete="off" class="layui-input" value="{{ d.params.receiverCity || '' }}" lay-verify="required">
+                        <input type="text" name="city" autocomplete="off" class="layui-input" value="{{ d.params.city || '' }}" lay-verify="required">
                     </script>
                 </div>
             </div>
@@ -132,7 +132,7 @@
                 <label class="layui-form-label"><span class="span-required">*</span>邮编：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="receiverPostcode" autocomplete="off" class="layui-input" value="{{ d.params.receiverPostcode || '' }}" lay-verify="required">
+                        <input type="text" name="postcode" autocomplete="off" class="layui-input" value="{{ d.params.postcode || '' }}" lay-verify="required">
                     </script>
                 </div>
             </div>
@@ -140,7 +140,7 @@
                 <label class="layui-form-label"><span class="span-required">*</span>联系人：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="receiverName" autocomplete="off" class="layui-input" value="{{ d.params.receiverName || '' }}" lay-verify="required">
+                        <input type="text" name="contact" autocomplete="off" class="layui-input" value="{{ d.params.contact || '' }}" lay-verify="required">
                     </script>
                 </div>
             </div>
@@ -149,8 +149,8 @@
             <label class="layui-form-label"><span class="span-required">*</span>地址：</label>
             <div class="layui-input-block">
                 <script type="text/html" template>
-                    <textarea name="receiverAddress" autocomplete="off" class="layui-textarea" lay-verify="required">
-                        {{ d.params.receiverAddress || '' }}
+                    <textarea name="address" autocomplete="off" class="layui-textarea" lay-verify="required">
+                        {{ d.params.address || '' }}
                     </textarea>
                 </script>
             </div>
@@ -159,13 +159,14 @@
             <div class="addcus-merchandiser">
                 <label class="layui-form-label"><span class="span-required">*</span>收货地址：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/receiveradders/queryReceiverAddersByUid?userId={{d.params.id}}" lay-done="layui.data.done(d);" lay-type="post">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/receiveradders/queryReceiverAddersByUid?userId={{d.params.id || ''}}" lay-done="layui.data.done(d);" lay-type="post">
+                        {{# localStorage.setItem('_defReceiverAddersEntityList', JSON.stringify(d.data))  }}
                         <select name="ssdz" lay-verify="required" lay-filter="ssdz">
                             <option value="addAddr">添加地址</option>
                             {{#
                             layui.each(d.data, function(index, item){
                             }}
-                            <option value="{{ item.dictKey || ''}}" {{ d.params.deliveryType == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
+                            <option value="{{ item.id || ''}}" {{ item.isDefault == 1 ? 'selected' : ''}}>收货人：{{ item.receiverName }}&nbsp;&nbsp;联系电话：{{ item.receiverTelephone }}</option>
                             {{#  }); }}
                             {{#  if(d.data.length === 0){ }}
                             无数据
@@ -206,7 +207,7 @@
                 <label class="layui-form-label"><span class="span-required">*</span>公司：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="text" name="receiverCompany" autocomplete="off" class="layui-input" value="{{ d.params.receiverCompany || '' }}" lay-verify="required">
+                        <input type="text" name="companName" autocomplete="off" class="layui-input" value="{{ d.params.companName || '' }}" lay-verify="required">
                     </script>
                 </div>
             </div>
@@ -403,6 +404,136 @@
                 ,setter = layui.setter;
             form.render(null, 'customer-add-edit-form-list');
             _id = d.params.id;
+
+            var invalidMark;
+            form.on('switch(optionUser)',function (data) {
+                console.log(data.field);
+                if (data.elem.checked == true){
+                    layer.msg('已启用');
+                    invalidMark =0;
+                } else {
+                    layer.msg('停用');
+                    invalidMark =1;
+                }
+            });
+
+            var userType;
+            form.on('switch(isneibuUser)',function (data) {
+                if (data.elem.checked == true){
+                    layer.msg('内部用户');
+                    userType =1;
+                } else {
+                    layer.msg('客户系统用户');
+                    userType =0;
+                }
+            });
+            var deliveryReport = 0;
+            form.on('switch(deliveryReport)',function (data) {
+                if (data.elem.checked == true){
+                    layer.msg('需要出货报告');
+                    deliveryReport =1;
+                } else {
+                    layer.msg('不需要出货报告');
+                    deliveryReport =0;
+                }
+            });
+            var auditMark;
+            form.on('switch(isAuditMark)',function(data){
+                if (data.elem.checked == true) {
+                    layer.msg('需要审核');
+                    auditMark = 0;
+                }else{
+                    layer.msg('不需审核');
+                    auditMark = 1;
+                }
+            });
+
+            var productionVerification;
+            form.on('switch(productionVerification)', function (data) {
+                if (data.elem.checked == true) {
+                    layer.msg('需要确定生产资料');
+                    productionVerification = 1;
+                }  else {
+                    layer.msg('不需要确定生产资料');
+                    productionVerification = 0;
+                }
+            });
+
+            //监听提交
+            form.on('submit(layuiadmin-app-form-submit)',function(data){
+                var field = data.field;
+                field.invalidMark = invalidMark;
+                field.userType = userType;
+                field.auditMark = auditMark;
+                field.deliveryReport = deliveryReport;
+                field.productionVerification = productionVerification;
+                var receiverAddersEntityList = localStorage.getItem("receiverAddersEntityList");
+                if (receiverAddersEntityList) {
+                    receiverAddersEntityList = JSON.parse(receiverAddersEntityList)
+                    receiverAddersEntityList.reduce((prev, cur) => {    // 删除id
+                        delete cur.id;
+                        if (cur.isDefault == 'on') {
+                            cur.isDefault = 1;
+                        }
+                        return prev;
+                    }, 0);
+                    field.receiverAddersEntityList = receiverAddersEntityList.concat(JSON.parse(localStorage.getItem("_defReceiverAddersEntityList")));
+                } else {
+                    field.receiverAddersEntityList = JSON.parse(localStorage.getItem("_defReceiverAddersEntityList"));
+                }
+                console.log(field);
+                admin.req({
+                    url:setter.baseUrl+'sys/consumer/user/update',
+                    type:'POST',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(field),
+                    success: function (data) {
+                        layui.table.reload('customer_listTab'); //重载表格
+                        layer.msg('修改成功！');
+                        setTimeout(() => {
+                            layer.closeAll(); //执行关闭
+                        }, 1000);
+                    }
+                });
+            });
+
+            // 监听添加地址
+            form.on('select(ssdz)', function (data) {
+                var _val = data.value;
+                var _title = '编辑';
+                if (_val === 'addAddr') {
+                    _title = '添加';
+                }
+                // 获取当前 对象
+                var _popData = JSON.parse(localStorage.getItem("_defReceiverAddersEntityList")).reduce((prev, cur) => {
+                   if (cur.id == _val) {
+                       prev = cur;
+                   }
+                   return prev;
+                }, {});
+                console.log(_popData);
+                customerAddAddr.addAddr({title: _title, data: _popData});
+                // 给 localStorage 数据设置一个默认地址
+                var _ls = localStorage.getItem("receiverAddersEntityList");
+                layer.msg(_val);
+                console.log(_val);
+                if (_ls) {
+                    _ls = JSON.parse(_ls);
+                    _ls.reduce((prev, cur) => {
+                        if (cur.id == _val) {
+                            console.log(cur)
+                            cur.isDefault = 1;   // 默认地址
+                        }
+                        return prev;
+                    },[]);
+                    localStorage.setItem("receiverAddersEntityList", JSON.stringify(_ls));
+                }
+            })
+
+            // 鼠标经过显示地址详细信息
+            $("div").delegate("dd", "onmouseover", () => {
+                console.log('经过');
+            });
         });
     }
 </script>

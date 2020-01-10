@@ -54,7 +54,6 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
         var data = obj.data;
         console.log(data);
         if (obj.event === 'edit') {
-            data.reTab = "customer_listTab";
             edit_customer_info.editInfo(data)
 
         } else if (obj.event === 'del') {

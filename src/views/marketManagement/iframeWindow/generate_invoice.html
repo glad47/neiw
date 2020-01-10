@@ -1,43 +1,43 @@
 <link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
 <div class="layui-fluid">
     <script type="text/html" template lay-done="layui.data.done(d);">
-    <div class="layui-form outbound-order-search" data-type="search-form" reload-table="iqcMana_outBound">
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">客户</label>
-                <div class="layui-input-inline" style="width: 320px;">
-                    <select id="giCustomer" name="giCustomer" xm-select-height="34px" xm-select="giCustomer" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
-                        <option value="" id="">选择客户</option>
-                    </select>
+        <div class="layui-form outbound-order-search" data-type="search-form" reload-table="iqcMana_outBound">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">客户</label>
+                    <div class="layui-input-inline" style="width: 320px;">
+                        <select id="giCustomer" name="giCustomer" xm-select-height="34px" xm-select="giCustomer" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                            <option value="" id="">选择客户</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">内部编码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="productNo" id="inputGiProductNo" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">客户型号</label>
+                    <div class="layui-input-inline" style="width: 320px;">
+                        <select id="giPcbName" name="giPcbName" xm-select-height="34px" xm-select="giPcbName" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                            <option value="" id="0">选择型号</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="outbound-order-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
                 </div>
             </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">内部编码</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="productNo" id="inputGiProductNo" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">客户型号</label>
-                <div class="layui-input-inline" style="width: 320px;">
-                    <select id="giPcbName" name="giPcbName" xm-select-height="34px" xm-select="giPcbName" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
-                        <option value="" id="0">选择型号</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="outbound-order-search">
-                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                </button>
-            </div>
+            <button style="display: none;" class="gi-submit">POSTDATA</button>
         </div>
-        <button style="display: none;" class="gi-submit">POSTDATA</button>
-    </div>
-    <div class="top-total">
-        <span>发票总额：</span>
-        <strong style="color: orangered;">0</strong>
-    </div>
-    <table id="addGenerateInvoiceTab" lay-filter="addGenerateInvoiceTab"></table>
+        <div class="top-total">
+            <span>发票总额：</span>
+            <strong style="color: orangered;">0</strong>
+        </div>
+        <table class="layui-table" id="addGenerateInvoiceTab" lay-filter="addGenerateInvoiceTab"></table>
     </script>
     <script type="text/html" id="addGenerateInvoiceTab_tabbar">
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGi">删除</a>
@@ -112,7 +112,7 @@
             });
             function initInvoiceTab() {
                 table.render({
-                   elem: '#addGenerateInvoiceTab'
+                    elem: '#addGenerateInvoiceTab'
                     ,id: 'addGenerateInvoiceTab'
                     ,data: d.params
                     ,page: false
@@ -143,9 +143,18 @@
 
             table.on('tool(addGenerateInvoiceTab)', function (obj) {
                 var data = obj.data;
+                var rowIndex = obj.tr[0].rowIndex;
+                console.log(data)
+                console.log(d.params)
                 if (obj.event == 'delGi') {
                     layer.confirm('真的删除行么', function (index) {
                         obj.del();
+                        d.params.splice(rowIndex, 1);
+                        quoteFee (data);
+                        // d.params = d.params.reduce((prev, cur) => {  // 删除所有 id == obj.data.ud
+                        //     cur.id != data.id && prev.push(cur);
+                        //     return prev;
+                        // }, []);
                         layer.close(index);
                     })
                 }
@@ -155,6 +164,15 @@
                 var value = obj.value
                     ,data = obj.data //得到所在行所有键值
                     ,field = obj.field; //得到字段
+                console.log(data)
+                quoteFee (data);
+            });
+
+
+            /**
+             * 计算费用
+             * */
+            function quoteFee (data) {
                 // 重新计算总价
                 var engineeringFee = parseFloat(data.engineeringFee);
                 var testCostFee = parseFloat(data.testCostFee);
@@ -167,6 +185,10 @@
                 var unitPrice = parseFloat(data.unitPrice); // 单价
                 var quantityPcs = parseFloat(data.quantityPcs); // PCS数量
                 var totalFee;   // 总价
+                // 为空数据处理
+                isNaN(unitPrice) === true?unitPrice=1:unitPrice;
+                isNaN(pcbaSubtotalFee) === true?pcbaSubtotalFee=0:pcbaSubtotalFee;
+                console.log("unitPrice: " + unitPrice);
                 boardFee = parseFloat(unitPrice*quantityPcs).toFixed(3)
                 totalFee = parseFloat(engineeringFee + testCostFee + toolingFee + overworkFee + postFee + pcbaSubtotalFee + parseFloat(boardFee));
                 var obj = d.params
@@ -179,20 +201,6 @@
                 }
                 d.params = obj;
                 initInvoiceTab()
-            });
-
-            function saveField() {
-                admin.req({
-                    type: 'post',
-                    data: '',
-                    url: setter.baseUrl + '',
-                    success: function () {
-                        layer.msg('修改成功！');
-                    },
-                    error: function (e) {
-                        layer.msg(e);
-                    }
-                })
             }
 
 
