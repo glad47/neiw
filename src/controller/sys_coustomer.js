@@ -110,12 +110,13 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
         customerInfo_add:function(){
             var that = this;
             admin.popup({
+                id: 'layer-customer-info-add-form',
                 type: 1,
                 title: '客户新增',
                 shadeClose: true,
                 shade: false,
                 maxmin: false, //开启最大化最小化按钮
-                area: ['40%', '100%'],
+                area: ['60%', '100%'],
                 content:'<div class="layui-row" id="customer_edit_info"></div>',
                 btn:['确定','取消'],
                 yes: function(index, layero) {
@@ -125,6 +126,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                     view('customer_edit_info').render('/infoManagement/iframeWindow/customer_edit_info')
                     .then(function (value) {
                         //视图文件请求完毕，视图内容渲染前的回调
+                        console.log(value);
                     }).done(function(){
                         form.render(null,'customer-add-edit-form-list');
                         //监听提交
@@ -182,28 +184,91 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                             }
                         });
 
-                        form.on('submit(layuiadmin-app-form-submit)',function(data){
-                            var field = data.field;
-                            field.invalidMark = invalidMark;
-                            field.userType = userType;
-                            field.auditMark = auditMark;
-                            field.deliveryReport = deliveryReport;
-                            field.productionVerification = productionVerification;
+                        //监听添加时间
+                        $('#add_address').click(function(){
+                            var tr = "<tr><td>"+
+                            "<input type='radio' name='isDefault' autocomplete='off'/>"+
+                            "</td><td>"+
+                            "<input type='text' autocomplete='off'/>"+
+                            "</td><td>"+
+                            "<input type='text' autocomplete='off'/>"+
+                            "</td><td>"+
+                            "<input type='text' autocomplete='off'/>"+
+                            "</td><td>"+
+                            "<input type='text' autocomplete='off'/>"+
+                            "</td><td>"+
+                            "<input type='text' autocomplete='off'/>"+
+                            "<input type='button' class='layui-btn layui-btn-xs' value='删除'></td></tr>";
+                            var div = "<div> <input type='text' autocomplete='off'/> <div/>"
+                            $('#table_address').append(tr);
+                            resetTableIndex();
+                            form.render();
+                            $(":button").click(function () {    
+                                $(this).parent().parent().remove();     
+                                var height1=$(document.body).height()+10;
+    	                        $(window.parent.document).find("#myiframe").attr("height",height1);  
+                                resetTableIndex();
+                                form.render();
+                            });
+                        });
+
+                        form.on('submit(customer-edit-info-form-submit)',function(data){
+                            var form_data = $('#customer-add-edit-form-list').serialize();
+                            var ff = getFormData($('#customer-add-edit-form-list'));
+                            var d = JSON.stringify(ff);
+                            console.log(d);
+                            console.log(ff);
+
+
+                            // var field = data.field;
+                            // field.invalidMark = invalidMark;
+                            // field.userType = userType;
+                            // field.auditMark = auditMark;
+                            // field.deliveryReport = deliveryReport;
+                            // field.productionVerification = productionVerification;
                             // console.log(field);
-                            admin.req({
-                                url: setter.baseUrl+'sys/consumer/user/save',
-                                type:'POST',
-                                //dataType:'json',
-                                //contentType:'application/json',
-                                data: field,
-                                success:function(data){
-                                    console.log(data);
-                                    layui.table.reload('customer_listTab'); //重载表格
-                                    layer.close(index); //执行关闭 
-                                }
-                            })
+                            // admin.req({
+                            //     url: setter.baseUrl+'sys/consumer/user/save',
+                            //     type:'POST',
+                            //     //dataType:'json',
+                            //     //contentType:'application/json',
+                            //     data: field,
+                            //     success:function(data){
+                            //         console.log(data);
+                            //         layui.table.reload('customer_listTab'); //重载表格
+                            //         layer.close(index); //执行关闭 
+                            //     }
+                            // })
 
                         });
+
+                        //动态加载行
+                        function resetTableIndex(){
+                            $('#table_address tbody tr').each(function(index){
+                                $(this).find("td").eq(0).find("input[type=radio]").attr("value",index);
+                                $(this).find("td").eq(1).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverName');
+    			                $(this).find("td").eq(2).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverTelephone');
+    			                $(this).find("td").eq(3).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverCompany');
+    			                $(this).find("td").eq(4).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverPostcode');
+    			                $(this).find("td").eq(5).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverAddress');
+                            });
+                        }
+
+                        function getFormData($form) {
+                            var unindexed_array = $form.serializeArray();
+                            console.log(unindexed_array);
+                            var indexed_array = {};
+                        
+                            $.map(unindexed_array, function (n, i) {
+                              indexed_array[n['name']] = n['value'];
+                              if(n['name'].indexOf('receiverAddersEntityList') === 0){
+                                  
+                                    console.log(n['name']);
+                              }
+                            });
+                        
+                            return indexed_array;
+                        }
 
                     });
 

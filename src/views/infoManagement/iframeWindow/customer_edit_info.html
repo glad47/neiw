@@ -39,8 +39,8 @@
             <div class="addcus-skype layui-col-md6">
                 <label class="layui-form-label"><span class="span-required">*</span>国家:</label>
                 <div class="layui-input-block">
-<!--                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}/quote/getCountry" lay-done="layui.data.done(d);" lay-type="post">-->
-                    <script type="text/html" template lay-url="" lay-done="layui.data.done(d);" lay-type="post">
+                   <script type="text/html" template lay-url="{{layui.setter.imUrl}}quote/getCountry" lay-done="layui.data.done(d);" lay-type="post">
+                    <!-- <script type="text/html" template lay-url="" lay-done="layui.data.done(d);" lay-type="post"> -->
                         <select name="receiverCountry" lay-verify="required" lay-search="">
                             {{# 
                                 layui.each(d.data, function(index, item){   
@@ -99,6 +99,75 @@
                 </div>
             </div>
         </div>
+        <!-- <div class="layui-form-item">
+            <div class="layui-col-md6">
+                <label class="layui-form-label"><span class="span-required">*</span>邮编：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="receiverPostcode" autocomplete="off" class="layui-input" value="{{ d.params.receiverPostcode || '' }}" lay-verify="required">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label"><span class="span-required">*</span>联系人：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="receiverName" autocomplete="off" class="layui-input" value="{{ d.params.receiverName || '' }}" lay-verify="required">
+                    </script>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div class="layui-form-item">
+            <label class="layui-form-label"><span class="span-required">*</span>地址：</label>
+            <div class="layui-input-block">
+                <script type="text/html" template>
+                    <textarea name="receiverAddress" autocomplete="off" class="layui-textarea" lay-verify="required">
+                        {{ d.params.receiverAddress || '' }}
+                    </textarea>
+                </script>
+            </div>
+        </div> -->
+        <div class="layui-form-item">
+            <div class="addcus-merchandiser">
+                <label class="layui-form-label"><span class="span-required">*</span>收货地址：</label>
+                <div class="layui-input-block">
+                    <table cellspacing="0" cellpadding="0" class="layui-table form-table" id="table_address">
+                        <thead>
+                        <tr>
+                            <th width="1%"></th>
+                            <th width="15%">收货人</th>
+                            <th width="20%">联系电话</th>
+                            <th width="20%">公司名</th>
+                            <th width="15%">邮编</th>
+                            <th width="40%">详细地址<a href="javascript:void(0)" id="add_address" class="layui-btn layui-btn-xs" style="margin-left: 120px;"><i>添加</i></a></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <tr>
+                                <td>
+                                <input type="radio" name="isDefault" autocomplete="off" value="0" lay-verify="required">
+                                <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div></div>
+                                </div>
+                                </td>
+                                <td><input type="text" autocomplete="off" name="receiverAddersEntityList[0].receiverName" lay-verify="required"></td><td><input type="text" autocomplete="off" name="receiverAddersEntityList[0].receiverTelephone"></td><td><input type="text" autocomplete="off" name="receiverAddersEntityList[0].receiverCompany"></td><td><input type="text" autocomplete="off" name="receiverAddersEntityList[0].receiverPostcode"></td><td><input type="text" autocomplete="off" name="receiverAddersEntityList[0].receiverAddress"><input type="button" class="layui-btn layui-btn-xs" value="删除"></td></tr> -->
+                        </tbody>
+                    </table>
+                    <!-- <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/receiveradders/queryReceiverAddersByUid?userId={{d.params.id}}" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="ssdz" lay-verify="required" lay-filter="ssdz">
+                            <option value="addAddr">添加地址</option>
+                            {{#
+                            layui.each(d.data, function(index, item){
+                            }}
+                            <option value="{{ item.dictKey || ''}}" {{ d.params.deliveryType == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据
+                            {{#  } }}
+                        </select>
+                    </script> -->
+                </div>
+            </div>
+        </div>
         <div class="layui-form-item">
             <div class="addcus-cusCom layui-col-md6">
                 <label class="layui-form-label">快递公司：</label>
@@ -123,54 +192,6 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input class="layui-input" type="text" value="{{ d.params.courierAccount || '' }}" name="courierAccount">
-                    </script>
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-col-md6">
-                <label class="layui-form-label"><span class="span-required">*</span>邮编：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="receiverPostcode" autocomplete="off" class="layui-input" value="{{ d.params.receiverPostcode || '' }}" lay-verify="required">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md6">
-                <label class="layui-form-label"><span class="span-required">*</span>联系人：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="receiverName" autocomplete="off" class="layui-input" value="{{ d.params.receiverName || '' }}" lay-verify="required">
-                    </script>
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="span-required">*</span>地址：</label>
-            <div class="layui-input-block">
-                <script type="text/html" template>
-                    <textarea name="receiverAddress" autocomplete="off" class="layui-textarea" lay-verify="required">
-                        {{ d.params.receiverAddress || '' }}
-                    </textarea>
-                </script>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="addcus-merchandiser">
-                <label class="layui-form-label"><span class="span-required">*</span>收货地址：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/receiveradders/queryReceiverAddersByUid?userId={{d.params.id}}" lay-done="layui.data.done(d);" lay-type="post">
-                        <select name="ssdz" lay-verify="required" lay-filter="ssdz">
-                            <option value="addAddr">添加地址</option>
-                            {{#
-                            layui.each(d.data, function(index, item){
-                            }}
-                            <option value="{{ item.dictKey || ''}}" {{ d.params.deliveryType == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
-                            {{#  }); }}
-                            {{#  if(d.data.length === 0){ }}
-                            无数据
-                            {{#  } }}
-                        </select>
                     </script>
                 </div>
             </div>
@@ -382,7 +403,7 @@
         <div class="layui-form-item">
           <label class="layui-form-label"></label>
           <div class="layui-input-inline">  
-            <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn" style="display: none;" id="layuiadmin-app-form-submit">
+            <input type="button" lay-submit lay-filter="customer-edit-info-form-submit" value="确认" class="layui-btn" style="display: none;" id="layuiadmin-app-form-submit">
           </div>
         </div>
     </form>
@@ -394,15 +415,15 @@
 </style>
 
 <script>
-    var _id;
-    layui.data.done = function(d){
-        layui.use(['form'], function(){
-            var $ = layui.$
-                ,form = layui.form
-                ,admin = layui.admin
-                ,setter = layui.setter;
-            form.render(null, 'customer-add-edit-form-list');
-            _id = d.params.id;
-        });
-    }
+    // var _id;
+    // layui.data.done = function(d){
+    //     layui.use(['form'], function(){
+    //         var $ = layui.$
+    //             ,form = layui.form
+    //             ,admin = layui.admin
+    //             ,setter = layui.setter;
+    //         form.render(null, 'customer-add-edit-form-list');
+    //         _id = d.params.id;
+    //     });
+    // }
 </script>
