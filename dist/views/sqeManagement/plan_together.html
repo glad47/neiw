@@ -1,0 +1,160 @@
+<title>供应商管理-计划协同</title>
+<div class="layui-fluid">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto plan-together-search">
+        <div class="layui-form-item quote-detail-search">
+            <div class="layui-inline" id="orderReview_searll" style="display: none;">
+                <label class="layui-form-label">查询：</label>
+                <div class="layui-input-inline">
+                    <select name="quiz" lay-filter="planTogether-search-select">
+                        <option value="">请选择</option>
+                        <option value="productNo">P/N</option>
+                        <option value="FileName">File Name</option>
+                        <option value="OrderId">Order ID</option>
+                        <option value="OrderTime">Order Time</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <input type="text" name="P/N" autocomplete="off" class="layui-input" placeholder="P/N">
+                </div>
+            </div>
+            <!--电脑端-->
+            <div class="layui-inline">
+                <label class="layui-form-label">聚谷型号：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                </div>
+
+                <label class="layui-form-label" style="width: 100px;">供应商厂编：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="factoryMake" autocomplete="off" class="layui-input">
+                </div>
+
+                <label class="layui-form-label" style="width: 85px;">供应商编号:</label>
+                <div class="layui-input-inline">
+                    <!--<input type="text" name="gmtCreate" class="layui-input">-->
+                    <input type="text" name="supplierNo" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="plan_together_search" style="margin-bottom: 3px;">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--卡片－表格信息-->
+    <div class="layui-tab layui-tab-brief" lay-filter="tab-planToger">
+        <ul class="layui-tab-title">
+            <li class="layui-this">PCB订单</li>
+            <li>钢网订单</li>
+            <li>SMT订单</li>
+        </ul>
+        <div class="layui-tab-content">
+            <!--PCB订单-->
+            <div class="layui-tab-item layui-show">
+                <table class="layui-table" id="sqeManaPlan_tabPcb" lay-filter="sqeManaPlan_tabPcb"></table>
+                <script type="text/html" id="ord_sqpManaPlan_tb">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="submit" style="display: none;">通知出货</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="submitX">直接出货</button>
+                    </div>
+                </script>
+                <script type="text/html" id="scmManaPlan_tabbar">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="search">查看明细</a>
+                </script>
+                <script type="text/html" id="planStatus">
+                    {{# if(d.status == '6') { }}
+                        {{# if(d.currPcsNumber != 0 && d.currPcsNumber != null) { }}
+                            <a data="ok">生产中</a>
+                        {{# } else{ }}
+                            <a>生产中</a>
+                        {{# } }}
+                    {{# } else if(d.status == '5') { }}
+                    交期已回复
+                    {{# } else if(d.status == '4') { }}
+                    待确认交期
+                    {{# } }}
+                </script>
+                <script type="text/html" id="sqeManaDt">
+                    {{# if(d.deliveryTime != null && d.deliveryTime != '') { }}
+                        {{ d.deliveryTime.substring(0, 10) }}
+                    {{# } else { }}
+                        交期未定
+                    {{# } }}
+                </script>
+            </div>
+            <!--钢网订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table" id="sqeManaPlan_tabStencil" lay-filter="sqeManaPlan_tabStencil"></table>
+                <script type="text/html" id="ord_sqpManaPlan_tbS">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="submit">通知出货</button>
+                    </div>
+                </script>
+                <script type="text/html" id="scmManaPlan_tabbarS">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="search">查看明细</a>
+                </script>
+                <script type="text/html" id="planStatusS">
+                    {{# if(d.status == '6') { }}
+                        {{# if(d.currPcsNumber != 0 && d.currPcsNumber != null){ }}
+                            <a data="ok">生产中</a>
+                        {{# } else { }}
+                            <a>生产中</a>
+                        {{# } }}
+                    {{# } else if(d.status == '5'){ }}
+                    交期已回复
+                    {{# } else if(d.status == '4'){ }}
+                    待确认交期
+                    {{# } }}
+                </script>
+                <script type="text/html" id="sqeManaDtS">
+                    {{# if(d.deliveryTime != null && d.deliveryTime != '') {}}
+                    {{ d.deliveryTime.substring(0, 10) }}
+                    {{# } else { }}
+                    交期未定
+                    {{# } }}
+                </script>
+            </div>
+            <!--SMT订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table"></table>
+            </div>
+            <!--当前工序-->
+            <script type="text/html" id="currentProcess">
+                <select class="layui-select" data="{{d.id}}" lay-search name="currentProcess" lay-filter="currentProcess-sel">
+                    <option value="">请选择</option>
+                    <option value="工程" {{ d.currentProcess == '工程' ? 'selected' : '' }}>工程</option>
+                    <option value="开料" {{ d.currentProcess == '开料' ? 'selected' : '' }}>开料</option>
+                    <option value="内层线路" {{ d.currentProcess == '内层线路' ? 'selected' : '' }}>内层线路</option>
+                    <option value="内层蚀刻" {{ d.currentProcess == '内层蚀刻' ? 'selected' : '' }}>内层蚀刻</option>
+                    <option value="内层压合" {{ d.currentProcess == '内层压合' ? 'selected' : '' }}>内层压合</option>
+                    <option value="钻孔" {{ d.currentProcess == '钻孔' ? 'selected' : '' }}>钻孔</option>
+                    <option value="电镀" {{ d.currentProcess == '电镀' ? 'selected' : '' }}>电镀</option>
+                    <option value="外层线路" {{ d.currentProcess == '外层线路' ? 'selected' : '' }}>外层线路</option>
+                    <option value="图形电镀" {{ d.currentProcess == '图形电镀' ? 'selected' : '' }}>图形电镀</option>
+                    <option value="外层蚀刻" {{ d.currentProcess == '外层蚀刻' ? 'selected' : '' }}>外层蚀刻</option>
+                    <option value="阻焊" {{ d.currentProcess == '阻焊' ? 'selected' : '' }}>阻焊</option>
+                    <option value="字符" {{ d.currentProcess == '字符' ? 'selected' : '' }}>字符</option>
+                    <option value="飞针" {{ d.currentProcess == '飞针' ? 'selected' : '' }}>飞针</option>
+                    <option value="表面处理" {{ d.currentProcess == '表面处理' ? 'selected' : '' }}>表面处理</option>
+                    <option value="成型" {{ d.currentProcess == '成型' ? 'selected' : '' }}>成型</option>
+                    <option value="FQC" {{ d.currentProcess == 'FQC' ? 'selected' : '' }}>FQC</option>
+                    <option value="仓库" {{ d.currentProcess == '仓库' ? 'selected' : '' }}>仓库</option>
+                    <option value="已出货" {{ d.currentProcess == '已出货' ? 'selected' : '' }}>已出货</option>
+                </select>
+            </script>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('sqeMana_plan_together', layui.factory('sqeMana_plan_together')).use(['sqeMana_plan_together','optimizeSelectOption', 'table', 'index','element','form', 'jquery'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>
+<style>
+    .layui-table-cell{height: 38px;}
+</style>

@@ -22,9 +22,6 @@ layui.define(['admin', 'table','setter','form','authtree','jquery'], function(ex
     table.render({
       elem: '#role_listTab'
       ,url: setter.baseUrl+'sys/role/list'
-      ,where: {
-    		access_token: layui.data('layuiAdmin').access_token
-  	    }
       //,width: admin.screen() > 1 ? 1500 : ''
       ,cols: [[
          {field:'roleId', minWidth:20, title: 'ID',align:'center'}

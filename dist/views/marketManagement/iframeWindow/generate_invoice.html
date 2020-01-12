@@ -1,0 +1,374 @@
+<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
+<div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+        <div class="layui-form outbound-order-search" data-type="search-form" reload-table="iqcMana_outBound">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">客户</label>
+                    <div class="layui-input-inline" style="width: 320px;">
+                        <select id="giCustomer" name="giCustomer" xm-select-height="34px" xm-select="giCustomer" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                            <option value="" id="">选择客户</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">内部编码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="productNo" id="inputGiProductNo" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">客户型号</label>
+                    <div class="layui-input-inline" style="width: 320px;">
+                        <select id="giPcbName" name="giPcbName" xm-select-height="34px" xm-select="giPcbName" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                            <option value="" id="0">选择型号</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="outbound-order-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+            <button style="display: none;" class="gi-submit">POSTDATA</button>
+        </div>
+        <div class="top-total">
+            <span>发票总额：</span>
+            <strong style="color: orangered;">0</strong>
+        </div>
+        <table class="layui-table" id="addGenerateInvoiceTab" lay-filter="addGenerateInvoiceTab"></table>
+    </script>
+    <script type="text/html" id="addGenerateInvoiceTab_tabbar">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGi">删除</a>
+    </script>
+    <script id="giPF" type="text/html">
+        {{# if(d.orderNo != null){ }}
+        <strong>P/O：</strong>{{ d.orderNo }}
+        {{# } }}
+
+        <p>
+            {{# if(d.pcbName != null){ }}
+            {{ d.pcbName }}
+            {{# } else if(d.gerberName != null){ }}
+            {{ d.gerberName }}
+            {{# } }}
+        </p>
+    </script>
+    <script id="giPrice" type="text/html">
+        {{ parseFloat(d.boardFee/d.quantityPcs).toFixed(3) }}
+    </script>
+    <script id="giDes" type="text/html">
+        P/N:{{ d.productNo }}<br>
+        {{ d.pcbType || '' }}<br>
+        {{ d.finishThickness }}
+        {{# if(d.panelSizeX != null){ }}
+        {{# var panelWay = d.panelWayX*d.panelWayY }}
+        {{ d.panelSizeX }} * {{ d.panelSizeY }}mm / {{ panelWay }}<br>
+        {{# }else if(d.dimensionsX != null){ }}
+        {{ d.dimensionsX}} * {{ d.dimensionsY}}mm /1<br>
+        {{# }else{ }}
+        都为空<br>
+        {{# } }}
+        <!--层数-->
+        Layer: {{ d.layerNum}}<br>
+        <!--完成表面-->
+        {{# if(d.surfaceFinish != null){ }}
+        {{ d.surfaceFinish}}<br>
+        {{# } }}
+        <!--组焊色-->
+        Solder Mask:{{ d.solderMaskTopColor}}<br>
+        {{# if(d.pcbaSubtotalFee != null && d.pcbaSubtotalFee != '0'){ }}
+        <strong style="color: orangered;">+ PCBA</strong>
+        {{# } }}
+    </script>
+</div>
+<script>
+    layui.data.done = function(d){
+        layui.use(['table', 'index', 'form', 'jsTools', 'formSelects', 'arrReduce', 'requestInterface'], function () {
+            var $ = layui.jquery
+                ,table = layui.table
+                ,requestInterface = layui.requestInterface
+                ,jsTools = layui.jsTools
+                ,formSelects = layui.formSelects
+                ,setter = layui.setter
+                ,arrReduce = layui.arrReduce
+                ,jsTools = layui.jsTools
+                ,requestInterface = layui.requestInterface
+                ,form = layui.form;
+
+            var userId = '';
+            var businessId;
+            var businessName;
+            var productNo = '';
+            var searchData;
+
+            formSelects.render('giPcbName');
+            initInvoiceTab();
+            initSelCustomer();
+            document.getElementById("inputGiProductNo").addEventListener('keyup', function (event) {
+                jsTools.throttle(getFrom, null, 500, this.value, 2000);
+                productNo = this.value;
+            });
+            function initInvoiceTab() {
+                table.render({
+                    elem: '#addGenerateInvoiceTab'
+                    ,id: 'addGenerateInvoiceTab'
+                    ,data: d.params
+                    ,page: false
+                    ,limit: 10000
+                    ,cols: [[
+                        {type: 'numbers', title: '序号', align:'center',edit: 'text'}
+                        ,{type: 'id', title: 'ID', align:'center',edit: 'text', hide: true}
+                        ,{field: 'pcbName', title: 'P/O&File Name', align: 'center',edit: 'text', minWidth: 260, templet: '#giPF'}
+                        ,{field: 'description', title: 'Description', align: 'center', minWidth: 200, edit: 'text', templet: '#giDes'}
+                        ,{field: 'quantityPcs', title: 'QTY', align: 'center',edit: 'text'}
+                        ,{field: 'unitPrice', title: '单价', align: 'center',edit: 'text'}
+                        ,{field: 'engineeringFee', title: '工程费', align: 'center',edit: 'number'}
+                        ,{field: 'testCostFee', title: '测试费', align: 'center',edit: 'text'}
+                        ,{field: 'toolingFee', title: '工具费', align: 'center',edit: 'text'}
+                        ,{field: 'overworkFee', title: '加急费', align: 'center',edit: 'text'}
+                        ,{field: 'postFee', title: '邮费', align: 'center',edit: 'text', templet: 'giFF'}
+                        ,{field: 'pcbaSubtotalFee', title: 'PCBA 费', align: 'center',edit: 'text'}
+                        ,{field: 'totalFee', title: 'Amount( USD )', align: 'center',edit: 'text'}
+                        ,{fixed: 'right', title:'操作', toolbar: '#addGenerateInvoiceTab_tabbar',width: 80, align:'center'}
+                    ]]
+                });
+                var totalAll = d.params.reduce((prev, cur) => {
+                    return prev += cur.totalFee
+                },0);
+                console.log('求发票总金额')
+                $(".top-total>strong").text(totalAll);
+            }
+
+            table.on('tool(addGenerateInvoiceTab)', function (obj) {
+                var data = obj.data;
+                var rowIndex = obj.tr[0].rowIndex;
+                console.log(data)
+                console.log(d.params)
+                if (obj.event == 'delGi') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        d.params.splice(rowIndex, 1);
+                        quoteFee (data);
+                        // d.params = d.params.reduce((prev, cur) => {  // 删除所有 id == obj.data.ud
+                        //     cur.id != data.id && prev.push(cur);
+                        //     return prev;
+                        // }, []);
+                        layer.close(index);
+                    })
+                }
+            });
+
+            table.on('edit(addGenerateInvoiceTab)', function (obj) {
+                var value = obj.value
+                    ,data = obj.data //得到所在行所有键值
+                    ,field = obj.field; //得到字段
+                console.log(data)
+                quoteFee (data);
+            });
+
+
+            /**
+             * 计算费用
+             * */
+            function quoteFee (data) {
+                // 重新计算总价
+                var engineeringFee = parseFloat(data.engineeringFee);
+                var testCostFee = parseFloat(data.testCostFee);
+                var toolingFee = parseFloat(data.toolingFee);
+                var overworkFee = parseFloat(data.overworkFee);
+                var postFee = parseFloat(data.postFee);
+                var pcbaSubtotalFee = parseFloat(data.pcbaSubtotalFee);
+
+                var boardFee = parseFloat(data.boardFee);   // 板费
+                var unitPrice = parseFloat(data.unitPrice); // 单价
+                var quantityPcs = parseFloat(data.quantityPcs); // PCS数量
+                var totalFee;   // 总价
+                // 为空数据处理
+                isNaN(unitPrice) === true?unitPrice=1:unitPrice;
+                isNaN(pcbaSubtotalFee) === true?pcbaSubtotalFee=0:pcbaSubtotalFee;
+                console.log("unitPrice: " + unitPrice);
+                boardFee = parseFloat(unitPrice*quantityPcs).toFixed(3)
+                totalFee = parseFloat(engineeringFee + testCostFee + toolingFee + overworkFee + postFee + pcbaSubtotalFee + parseFloat(boardFee));
+                var obj = d.params
+                for (let d of obj) {
+                    if (d.id === data.id) {
+                        d.unitPrice = unitPrice;
+                        d.boardFee = boardFee;
+                        d.totalFee = totalFee;
+                    }
+                }
+                d.params = obj;
+                initInvoiceTab()
+            }
+
+
+            /**
+             *  获取下拉列表
+             **/
+            function getFrom () {
+                // var thisFrom = arr.reduce((prev, cur) => {
+                //     if (cur.productNo) {
+                //         prev[0].productNo.push(cur.productNo);
+                //     }
+                //     if (cur.pcbName) {
+                //         prev[1].pcbName.push(cur.pcbName)
+                //     }
+                //     return prev;
+                // },[{productNo: []}, {pcbName: []}]);
+                layer.msg("搜索结果加载中...");
+                admin.req({
+                    type: 'post',
+                    url: setter.baseUrl+'epc/orderinvoice/queryAllOrder?'+ 'productNo=' + productNo + '&userId=' + userId,
+                    success: function (res) {
+                        layer.msg("加载成功！");
+                        var data = res.data;
+                        creatFormSelect(data);
+                        searchData = data;
+                        // $("dl[xid='giPcbName']").show();
+                    }
+                })
+            }
+
+            // $("div").delegate(".xm-select-title", "click", function () {
+            //     $(this).hide();
+            //     $("dl[xid='giPcbName']").hide();
+            // });
+
+            layui.formSelects.on('giCustomer', function (id, vals, val, isAdd, isDisabled) {
+                var _val = val.value;
+                userId = _val;
+                getFrom();
+            })
+
+            layui.formSelects.on('giPcbName', function (id, vals, val, isAdd, isDisabled) {
+                var $thisName = val.name;
+                var _arr = val.value.split(",");
+                var _val = _arr[0];
+                businessId = _arr[1];
+                businessName = _arr[2];
+                var selectClickData = searchData.reduce((prev, cur) => {
+                    if (cur.id && cur.pcbName) {
+                        if (cur.id == _val && cur.pcbName == $thisName) {
+                            d.params.push(cur);
+                        }
+                    }
+                    return prev;
+                }, 0);
+                initInvoiceTab();
+            });
+
+            /**
+             * 初始化 下拉
+             * @param data
+             */
+            function creatFormSelect(data) {
+                var $html;
+                $("select[xm-select='giPcbName'] option").remove();
+                for (let p of data) {
+                    // $html += "<option value="+p.id+">"+p.pcbName+"</option>"
+                    $html += "<option value="+ p.id +"," +p.businessId + "," + p.businessName +">" + p.pcbName + "</option>"
+                }
+                $("select[xm-select='giPcbName']").append($html);
+                formSelects.render('giPcbName');
+                $("dl[xid='giPcbName']").parents(".layui-input-inline").click();
+            }
+
+
+            /**
+             * 初始化下拉， 获取所有客户信息
+             */
+            function initSelCustomer() {
+                var _obj = requestInterface.getAllCustomer();
+                var $html;
+                for (let c of _obj) {
+                    $html += "<option value="+c.id+">"+c.userSystemId+"</option>"
+                }
+                $("select[xm-select='giCustomer']").append($html);
+                formSelects.render('giCustomer');
+                console.log('debugger');
+                // formSelects.value('giCustomer', []);
+                // $(".xm-select-parent[fs_id='"+dom+"']").children(".xm-form-select").addClass("xm-form-selected");
+            }
+
+
+            /**
+             * 生成发票 & 更新发票
+             */
+            function addOrderInvoice() {
+                var postData = disposeData();
+                postData.id = d.params.id;
+                var thisType = d.params.type;
+                var _url;
+                if (thisType == "1") {
+                    _url = setter.baseUrl + '/epc/orderinvoice/addOrderInvoice';
+                } else if (thisType == '2') {
+                    _url = setter.baseUrl + 'epc/orderinvoice/update';
+                }
+                admin.req({
+                    type: 'post',
+                    data: JSON.stringify(postData),
+                    contentType: "application/json;charset=utf-8",
+                    dataType: 'json',
+                    url: _url,
+                    success: function (res) {
+                        if (thisType == "1") {
+                            layer.msg('添加成功！');
+                            setTimeout(() => {layer.closeAll();}, 1500);
+                        } else if (thisType == '2') {
+                            layer.msg('修改成功！');
+                        }
+                        layui.table.reload('invoiceList_Tabpcb');
+                    }
+                })
+            }
+
+            /**
+             * 发送的数据  进行处理
+             * @param data
+             */
+            function disposeData () {
+                var postData = {
+                    totalFee: 0,        // 发票总计
+                    businessId: businessId,     // 跟单员id
+                    consumerId: userId,     // 客户id
+                    businessName: businessName,   //跟单员名字
+                    invoiceDate: new Date().toLocaleDateString(),    // 发票票日期
+                    productNos: d.params.map(function(elem){return elem.productNo}).join(","),     // 聚谷型号串
+                    customInvoiceEntityList: [] // 自定义发票
+                }
+                postData.customInvoiceEntityList = d.params.reduce((prev, cur) => {
+                    var _ce = new Object();
+                    postData.totalFee +=  cur.totalFee; // 发票总计
+                    if (d.params.type == "1") {
+                        _ce.orderId = prev.id;   // 订单id
+                    } else {
+                        console.log(cur.id)
+                        _ce.id = cur.id;   // 订单id
+                    }
+                    _ce.pcbName = cur.pcbName;   // 客户po
+                    _ce.quantityPcs = parseFloat(cur.quantityPcs);  // 数量
+                    _ce.unitPrice = parseFloat(cur.unitPrice);  // 单价
+                    _ce.engineeringFee = parseFloat(cur.engineeringFee);    // 工程费
+                    _ce.testCostFee  = parseFloat(cur.testCostFee); // 测试费
+                    _ce.toolingFee = parseFloat(cur.toolingFee);    // 工具模具费
+                    _ce.overworkFee = parseFloat(cur.overworkFee);  // 加急费
+                    _ce.postFee = parseFloat(cur.postFee);   // 运费
+                    _ce.pcbaFee = parseFloat(cur.pcbaSubtotalFee);  // pcba费
+                    _ce.totalFee = parseFloat(cur.totalFee);   // 小计
+                    _ce.productNo = cur.productNo;  // 聚谷型号
+                    _ce.description = cur.description;  // 详情
+                    // _ce.gmtCreate = new Date().toLocaleDateString();
+
+                    prev.push(_ce);
+                    return prev;
+                }, []);
+                return postData;
+            }
+            $(".gi-submit").on('click', function () {
+                addOrderInvoice();
+            });
+        });
+    }
+</script>

@@ -1,0 +1,283 @@
+<title>报价明细编辑(PCB)</title>
+<div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+        <form class="layui-form">
+            <table class="layui-table">
+                <tbody>
+                <tr>
+                    <td>报价单号</td>
+                    <td>{{ d.params.quoteOrderNo }}</td>
+                    <td>报价时间</td>
+                    <td>{{ d.params.gmtCreate || '' }}</td>
+                    <td><strong>内部报价</strong></td>
+                </tr>
+                <tr>
+                    <td>供应商编号</td>
+                    <td>{{ d.params.supplierNo }}</td>
+                    <td>数量(PCS)</td>
+                    <td id="qt_pcb_quantityPcs">{{ d.params.quantityPcs ||  0}}</td>
+                    <td>/</td>
+                </tr>
+                <tr>
+                    <td>供应商厂编</td>
+                    <td>
+                        <input class="layui-input" type="text" value="{{ d.params.factoryMake || '' }}" id="pcbfactoryMake">
+                    </td>
+                    <td>单价</td>
+                    <td>
+                        <input class="layui-input" type="text" value="{{ d.params.unitPrice || 0 }}" id="qt_pcb_unitPrice">
+                    </td>
+                    <td>
+                        {{ d.params.unitPriceCustomer || 0 }}
+                    </td>
+                </tr>
+                <tr>
+                    <!--<td>聚谷订单号</td>-->
+                    <!--<td>{{ d.params.orderId }}</td>-->
+                    <td>聚谷型号</td>
+                    <td>{{ d.params.productNo || '' }}</td>
+                    <td>工程费</td>
+                    <td>
+                        <input class="layui-input" type="text" value="{{ d.params.engineeringFee || '0' }}" id="qt_pcb_engineeringFee">
+                    </td>
+                    <td>
+                        <strong>{{ d.params.engineeringFeeCustomer || 0 }}</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>聚谷物料号</td>
+                    <td>{{ d.params.pcbName || '' }}</td>
+                    <td>加急费</td>
+                    <td>
+                        <input class="layui-input" type="text" value="{{ d.params.overworkFee || '0' }}" id="qt_pcb_overworkFee">
+                    </td>
+                    <td>
+                        <strong>{{ d.params.overworkFeeCustomer || 0 }}</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>层别</td>
+                    <td>
+                        {{ d.params.layerNum || '' }}
+                    </td>
+                    <td>
+                        <select class="layui-select" lay-filter="seltestPoint">
+                            <option value="1">飞针费</option>
+                            <option value="2">新开测试架</option>
+                            <option value="3">客供测试架</option>
+                        </select>
+                        <input type="text" style="display: none;" id="hiddenTestPoint">
+                    </td>
+                    <td>
+                        <input class="layui-input" type="number" value="{{ d.params.testCostFee || 0 }}" id="qt_pcb_testCostFee">
+                    </td>
+                    <td>
+                        <strong>{{ d.params.testCostFeeCustomer || 0 }}</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>出货尺寸</td>
+                    <td>
+                        {{# if(d.params.panelSizeX != null){ }}
+                        {{# var panelWay = d.params.panelWayX*d.params.panelWayY }}
+                        {{ d.params.panelSizeX }} * {{ d.params.panelSizeY }}mm / {{ panelWay }}
+                        {{# }else if(d.params.dimensionsX != null){ }}
+                        {{ d.params.dimensionsX}} * {{ d.params.dimensionsY}}mm /1
+                        {{# }else{ }}
+                        都为空
+                        {{# } }}
+                    </td>
+                    <td>模具费</td>
+                    <td>
+                        <input class="layui-input" type="number" value="{{ d.params.toolingFee || 0 }}" id="qt_pcb_toolingFee">
+                    </td>
+                    <td>
+                        <strong>{{ d.params.pcbaToolFeeCustomer || 0 }}</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>订单备注</td>
+                    <td>{{ d.params.remarkCustomer || '' }}</td>
+                    <td>合计</td>
+                    <td id="qt_pcb_totalFee" style="padding: 0 26px;">
+                        {{ d.params.totalFee || '0' }}
+                    </td>
+                    <td>
+                        <strong id="quoteDetail_sysTotal"></strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>报价备注</td>
+                    <td>
+                        <input class="layui-input" type="text" name="remark" value="{{ d.params.remark || '' }}" id="qRemark">
+                    </td>
+                    <td>交期</td>
+                    <td>
+                        {{# if(d.params.deliveryTime != null){ }}
+                            {{# d.params.deliveryTime = d.params.deliveryTime.substring(0,10)}}
+                        {{# }else{ }}
+                            {{# d.params.deliveryTime = '' }}
+                        {{# } }}
+                        <input class="layui-input" type="date" id="pcbDeliveryDate" value="{{ d.params.deliveryTime || '' }}">
+                    </td>
+                    <td title="客户交期">
+                        {{ d.params.buildTime || '' }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!--PCB-A-->
+            <h1>PCBA</h1>
+            <table class="layui-table qt-pcba-tab">
+                <tr>
+                    <td colspan="2"></td>
+                    <td>内部报价</td>
+                </tr>
+                <tr>
+                    <td>加工费</td>
+                    <td>
+                        <input class="layui-input" type="text" value="{{ d.params.pcbaProcessFee || '' }}" id="qt_pcbaProcessFee">
+                    </td>
+                    <td>
+                        {{ d.params.pcbaProcessFeeCustomer || 0 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>零件费</td>
+                    <td>
+                        <input class="layui-input" type="text" value="{{ d.params.pcbaPartsFee || 0 }}" id="qt_pcbaPartsFee">
+                    </td>
+                    <td>
+                        {{ d.params.pcbaPartsFeeCustomer || 0 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>测试费</td>
+                    <td>
+                        <input class="layui-input" type="text" value="{{ d.params.pcbaTestFee || '' }}" id="qt_pcbaTestFee">
+                    </td>
+                    <td>
+                        {{ d.params.pcbaTestFeeCustomer || 0 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>工具(钢网)费</td>
+                    <td>
+                        <input class="layui-input" type="text" value="{{ d.params.pcbaToolFee || 0 }}" id="qt_pcbaToolFee">
+                    </td>
+                    <td>
+                        {{ d.params.pcbaToolFeeCustomer || 0 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>小计：</td>
+                    <td id="qt_pcbaSubtotalFee">
+                        {{ d.params.pcbaSubtotalFee || 0 }}
+                    </td>
+                    <td>
+                        <strong id="quoteDetail_pcbaSubtotalFeeCustomer">
+                            {{ d.params.pcbaSubtotalFeeCustomer || 0 }}
+                        </strong>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+        <!--<div class="quotation-bot-btn">-->
+        <!--<button class="layui-btn" data-type="downloadFile">-->
+        <!--<a href="">下载资料</a>-->
+        <!--</button>-->
+        <!--<button class="layui-btn" data-type="lookPanel">查看拼板</button>-->
+        <!--<button class="layui-btn" data-type="lookStrack">查看压合</button>-->
+        <!--</div>-->
+    </script>
+</div>
+
+<style>
+    table tbody tr td:nth-of-type(1){width: 16%;}
+    table tbody tr td:nth-of-type(2){width: 18%;}
+    table tbody tr td:nth-of-type(3){width: 18%;}
+    table tbody tr td:nth-of-type(4){width: 24%;}
+    table tbody tr td:last-of-type{width: 24%;border-left: solid 2px #20222a;}
+    .quotation-bot-btn{text-align: center;margin-top: 20px;}
+</style>
+
+<script>
+    layui.data.done = function(d) {
+        var exchangeId = d.params.exchangeId;
+        if(d.params.subtotal == null || typeof(d.params.subtotal) == 'undefined' || isNaN(d.params.subtotal)) {
+            d.params.subtotal = 0;
+        }
+        if(d.params.pcbaSubtotalFeeCustomer == null || typeof(d.params.pcbaSubtotalFeeCustomer) == 'undefined' || isNaN(d.params.pcbaSubtotalFeeCustomer)) {
+            d.params.pcbaSubtotalFeeCustomer = 0;
+        }
+        var subtotal = d.params.subtotal;
+        var pcbaSubtotalFeeCustomer = d.params.pcbaSubtotalFeeCustomer;
+        var defSysMoney = parseFloat(subtotal+pcbaSubtotalFeeCustomer);
+
+        var pcbaSubtotalFeeCustomer = d.params.pcbaSubtotalFeeCustomer;
+
+        layui.use(['admin', 'table', 'form', 'laydate', 'jsTools'], function () {
+            var laydate = layui.laydate,
+                $ = layui.jquery,
+                jsTools = layui.jsTools,
+                layer = layui.layer;
+            var form = layui.form;
+            $("#hiddenTestPoint").val(1);   //测试方式给个默认值
+            form.render();
+            laydate.render({
+                elem: '#pcbDeliveryDate'
+                ,change: function (value, date, endDate) {
+                    $("#pcbDeliveryDate").val(value);
+                }
+            });
+            form.on('select(seltestPoint)', function(data){
+                console.log(data.value); //得到被选中的值
+                $("#hiddenTestPoint").val(data.value);
+            });
+            // input表单及时反应
+            $("#qt_pcb_quantityPcs,#qt_pcb_unitPrice,#qt_pcb_engineeringFee,#qt_pcb_testCostFee,#qt_pcb_toolingFee,#qt_pcb_overworkFee").bind("input propertychange", function () {
+                _quote_total();
+            });
+            function _quote_total() {
+                var quantityPcs = $("#qt_pcb_quantityPcs").text();              // PCS数
+                var unitPrice = $("#qt_pcb_unitPrice").val();                  // 单价
+                var engineeringFee = $("#qt_pcb_engineeringFee").val();       // 工程费
+                var overworkFee = $("#qt_pcb_overworkFee").val();            // 加急费
+                var testCostFee = $("#qt_pcb_testCostFee").val();            // 测试费
+                var toolingFee = $("#qt_pcb_toolingFee").val();             // 模具费
+                var totalFee = $("#qt_pcb_totalFee").text();               // 总价
+                var a = parseFloat(quantityPcs*unitPrice);
+                var b = parseFloat(quantityPcs*unitPrice)+parseFloat(engineeringFee) + parseFloat(testCostFee) + parseFloat(toolingFee)+ parseFloat(overworkFee);
+                totalFee = parseFloat(b).toFixed(2);
+                $("#qt_pcb_totalFee").text(totalFee);
+            }
+            var active = {};
+            $('.layui-btn').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+
+            // PCBA
+            $(".qt-pcba-tab input").bind("input propertychange", function () {
+                var total = 0;
+                $(".qt-pcba-tab input").each(function () {
+                    var _val = parseFloat($(this).val());
+                   if (typeof _val === "undefined" || _val == null || isNaN(_val)) {
+                        _val = 0;
+                   }
+                    total += _val;
+                });
+                $("#qt_pcbaSubtotalFee").text(total.toFixed(2));
+            });
+
+            // 系统报价的货币转换
+            var resSysMoney = jsTools.CurrenCyConversion(defSysMoney,exchangeId);
+            $("#quoteDetail_sysTotal").text(resSysMoney);
+            // PCBA 货币转换
+            var resSysMoneyPCBA = jsTools.CurrenCyConversion(pcbaSubtotalFeeCustomer, exchangeId);
+            $("#quoteDetail_pcbaSubtotalFeeCustomer").text(resSysMoneyPCBA);
+        });
+    };
+</script>

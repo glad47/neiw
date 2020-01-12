@@ -24,14 +24,6 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
 
 
     form.render(null, 'user_info_formlist')
-    //监听搜索
-    form.on('submit(LAY-user-info-search)', function (data) {
-        var field = data.field;
-        console.log(field);
-        table.reload('user_infoTab',{
-            where: field
-        });
-    });
 
     table.render({
         elem: '#user_infoTab'
@@ -40,9 +32,6 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         ,id:"user_infoTab"
         ,toolbar: true
         ,page: true
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
         ,cols: [[
              {field:'userId', title: '用户ID', sort: true,width: 90,align: 'center'}
             ,{field:'username', title: '用户名',width: 180,align: 'center'}
@@ -231,7 +220,22 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                 return '工号不能为空！！！';
             }
         },
-    })
+    });
+
+    // 搜索  部门下拉
+    admin.req({
+        type: 'get',
+        url:  layui.setter.baseUrl + 'sys/dept/list',
+        success: function (res) {
+            var $html = "";
+            var _data = res.data;
+            for (var i=0;i<_data.length;i++) {
+                $html += "<option value='"+_data[i].deptName+"'>"+_data[i].deptName+"</option>"
+            }
+            $("select[name='deptName']").append($html);
+            form.render();
+        }
+    });
 
 
     exports('sys_user', {})

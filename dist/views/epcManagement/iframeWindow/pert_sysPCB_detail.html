@@ -1,0 +1,252 @@
+<!--查看PCB订单信息-->
+<html lang="en">
+<div class="layui-fluid">
+    <!--<a class="layui-btn" lay-event="edit">查看合同</a>-->
+    <script type="text/html" template lay-done="layui.data.done(d);">
+        <!--<div class="printOrderPcb-btnGrop">-->
+            <!--<button class="layui-btn layui-btn-sm printBtn" style="float: right;">打印</button>-->
+        <!--</div>-->
+        <div class="order_review_search printorder_review_search" id="pcborderPrint">
+            <!--<style>-->
+                <!--@media print {-->
+                    <!--.printorder_review_search .layui-table[lay-skin=row] td, .layui-table[lay-skin=row] th{border: solid 1px black !important;}-->
+                <!--}-->
+            <!--</style>-->
+            <!--<div class="searchPcb-header" style="text-align: center;margin-bottom: 17px;">-->
+                <!--<h2>深圳聚谷科技有限公司-生产通知单</h2>-->
+            <!--</div>-->
+            <table class="layui-table"  lay-even="">
+                <colgroup>
+                    <col width="100">
+                    <col width="100">
+                    <col width="100">
+                    <col width="100">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td>创建时间:</td>
+                    <td>{{ d.params.gmtCreate || ''}}</td>
+                    <td>制造时间:</td>
+                    <td>{{ d.params.buildTime || ''}}</td>
+                </tr>
+                <tr>
+                    <td>聚谷型号:</td>
+                    <td id="orderPCBDetailPN">{{ d.params.productNo || ''}}</td>
+                    <td>Gerber文件:</td>
+                    <td>{{ d.params.gerberName || ''}}</td>
+                </tr>
+                <tr>
+                    <td>订单数:</td>
+                    <td>{{ d.params.quantityPcs || ''}}</td>
+                    <td>订单面积:</td>
+                    <td>{{ d.params.areaSq || ''}}</td>
+                </tr>
+                <tr>
+                    <td>层数:</td>
+                    <td>{{ d.params.layerNum || ''}}</td>
+                    <td>类型:</td>
+                    <td>{{ d.params.pcbType || ''}}</td>
+                </tr>
+                <tr>
+                    <td>成品板厚:</td>
+                    <td>{{ d.params.finishThickness || ''}}</td>
+                    <td>出货尺寸:</td>
+                    <td>
+                        {{# if(d.params.panelWayX == null){}}
+                        {{ d.params.dimensionsX || ''}} * {{ d.params.dimensionsY || ''}} mm/1
+                        {{# }else{ }}
+                        {{# var panelPcs = parseFloat(d.params.panelWayX*d.params.panelWayY) }}
+                        {{ d.params.panelSizeX || ''}} * {{ d.params.panelSizeY || ''}} mm/{{ panelPcs }}
+                        {{# } }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>材料:</td>
+                    <td>{{ d.params.pcbType || ''}},TG:{{ d.params.tg }},{{ d.params.cti || ''}}</td>
+                    <td>孔铜:</td>
+                    <td>{{ d.params.pthCopper }}</td>
+                </tr>
+                <tr>
+                    <td>BGA Szie:</td>
+                    <td>{{ d.params.bgaSize || ''}} </td>
+                    <td>最小孔:</td>
+                    <td>{{ d.params.minHoleSize }}</td>
+                </tr>
+                <tr>
+                    <td>内层铜厚:</td>
+                    <td>{{ d.params.innerLayerCopper || ''}}</td>
+                    <td>外层铜厚:</td>
+                    <td>{{ d.params.outerLayerCopper || ''}}</td>
+                </tr>
+                <tr>
+                    <td>阻焊颜色:</td>
+                    <td>
+                        {{# var solderMaskTopColor = d.params.solderMaskTopColor }}
+                        {{# if(d.params.solderMaskTopColor == 'green'){ }}
+                        {{# solderMaskTopColor = '绿色'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'black'){ }}
+                        {{# solderMaskTopColor = '黑色'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'white'){ }}
+                        {{# solderMaskTopColor = '白色'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'yellow'){ }}
+                        {{# solderMaskTopColor = '黄色'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'red'){ }}
+                        {{# solderMaskTopColor = '红色'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'blue'){ }}
+                        {{# solderMaskTopColor = '蓝色'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'matte_black'){ }}
+                        {{# solderMaskTopColor = '哑黑'}}
+                        {{# } else if(d.params.solderMaskTopColor == 'matte_green'){ }}
+                        {{# solderMaskTopColor = '哑绿'}}
+                        {{# } }}
+                        {{ solderMaskTopColor || ''}}
+                    </td>
+                    <td>字符颜色:</td>
+                    <td>
+                        {{# var silkScreenTopColor = d.params.silkScreenTopColor }}
+                        {{# if(d.params.silkScreenTopColor == 'green'){ }}
+                        {{# silkScreenTopColor = '绿色'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'black'){ }}
+                        {{# silkScreenTopColor = '黑色'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'white'){ }}
+                        {{# silkScreenTopColor = '白色'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'yellow'){ }}
+                        {{# silkScreenTopColor = '黄色'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'red'){ }}
+                        {{# silkScreenTopColor = '红色'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'blue'){ }}
+                        {{# silkScreenTopColor = '蓝色'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'matte_black'){ }}
+                        {{# silkScreenTopColor = '哑黑'}}
+                        {{# } else if(d.params.silkScreenTopColor == 'matte_green'){ }}
+                        {{# silkScreenTopColor = '哑绿'}}
+                        {{# } }}
+                        {{ silkScreenTopColor || ''}}
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>表面处理:</td>
+                    <td>
+                        {{# var surfaceFinish = d.params.surfaceFinish }}
+                        {{# if(d.params.surfaceFinish == 'HASL_with_lead'){ }}
+                        {{# surfaceFinish = '有铅喷锡'}}
+                        {{# } else if(d.params.surfaceFinish == 'HASL_lead_free'){ }}
+                        {{# surfaceFinish = '无铅喷锡'}}
+                        {{# } else if(d.params.surfaceFinish == 'Immersion_Gold'){ }}
+                        {{# surfaceFinish = '沉金'}}
+                        {{# } else if(d.params.surfaceFinish == 'Immersion_tin'){ }}
+                        {{# surfaceFinish = '沉锡'}}
+                        {{# } else if(d.params.surfaceFinish == 'Immersion_silver'){ }}
+                        {{# surfaceFinish = '沉银'}}
+                        {{# } else if(d.params.surfaceFinish == 'OSP'){ }}
+                        {{# surfaceFinish = 'OSP'}}
+                        {{# } }}
+                        {{ surfaceFinish || ''}}
+                    </td>
+                    <td>表面处理厚度:</td>
+                    <td>{{ d.params.thickness || ''}}</td>
+                </tr>
+                <tr>
+                    <td>测试方式:</td>
+                    <td>
+                        {{# var testWay }}
+                        {{# if(d.params.testPointType == '1'){testWay = '飞针'}else{testWay='测试架'} }}
+                        {{ testWay || '' }}
+                    </td>
+                    <td>无卤素:</td>
+                    {{# if(d.params.halogenFree == '1') {d.params.halogenFree = '是'}else{d.params.halogenFree = '否'} }}
+                    <td>{{ d.params.halogenFree || ''}}</td>
+                </tr>
+                <tr>
+                    <td>盲孔:</td>
+                    <td>
+                        {{# if(d.params.blindHoles == '1') {d.params.blindHoles = '是'}else{d.params.blindHoles = '否'} }}
+                        {{ d.params.blindHoles || ''}}
+                    </td>
+                    <td>金属包边:</td>
+                    {{# if(d.params.edgePlated == '1') {d.params.edgePlated = '是'}else{d.params.edgePlated = '否'} }}
+                    <td>{{ d.params.edgePlated || '否'}}</td>
+                </tr>
+                <tr>
+                    <td>半孔:</td>
+                    <td>
+                        {{# if(d.params.halfHoleLated == '1') {d.params.halfHoleLated = '是'}else{d.params.halfHoleLated = '否'} }}
+                        {{ d.params.halfHoleLated || '否'}}
+                    </td>
+                    <td>阻抗</td>
+                    <td>
+                        {{# if(d.params.contrlImpeance == '1') {d.params.contrlImpeance = '是'}else{d.params.contrlImpeance = '否'} }}
+                        {{ d.params.contrlImpeance || '否'}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>埋孔:</td>
+                    <td>
+                        {{# if(d.params.buriedHoles == '1') {d.params.buriedHoles = '是'}else{d.params.buriedHoles = '否'} }}
+                        {{ d.params.buriedHoles || '否'}}
+                    </td>
+                    <td>碳油:</td>
+                    <td>
+                        {{# if(d.params.carbon == '1') {d.params.carbon = '是'}else{d.params.carbon = '否'} }}
+                        {{ d.params.carbon || '否'}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>控深锣:</td>
+                    <td>
+                        {{ d.params.deepMillRouting || '否'}}
+                    </td>
+                    <td>斜边:</td>
+                    <td>
+                        {{ d.params.bevellingCamfer || '否'}}
+                    </td>
+                </tr>
+                <tr style="border: solid silver 1px;">
+                    <td>备注:</td>
+                    <td colspan="3">{{ d.params.remark || '' }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+    <!--{{# -->
+    <!--if( d.params.isExistIndicator != null && d.params.isExistIndicator === 2) { -->
+    <!--}}-->
+    <!--{{# layui.each(d.params.pop, function(index, item){  }}-->
+    <!--<tr>-->
+    <!--<td colspan="1">{{ item.processEntity.processEname}}:</td>-->
+    <!--<td colspan="3">{{ item.processInfo}}</td>-->
+    <!--</tr>-->
+    <!--{{#  }); }}-->
+    <!--{{# } }}-->
+</div>
+
+<style>
+    #tab-fee tr td:nth-of-type(1){width: 6%;}
+    #tab-fee tr td:nth-of-type(3){width: 6%;}
+    #tab-fee tr td:nth-of-type(5){width: 6%;}
+    #tab-fee tr td:nth-of-type(7){width: 6%;}
+</style>
+
+<script>
+    layui.data.done = function (d) {
+        layui.use(['admin', 'table','setter','form','jquery'],function(){
+            var $ = layui.jquery
+                ,table = layui.table
+                ,admin = layui.admin
+                ,setter = layui.setter
+                ,view = layui.view
+                ,form = layui.form;
+            $(".printOrderPcb-btnGrop>.printBtn").on("click", function () {
+                var printId = "pcborderPrint";
+                $(document).attr("title","工艺要求["+$("#orderPCBDetailPN").text()+"]");
+                document.body.innerHTML=document.getElementById(printId).innerHTML;
+                window.print();
+                window.location.reload();
+            });
+            form.render();
+
+        });
+    }
+</script>

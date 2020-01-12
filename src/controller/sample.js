@@ -115,47 +115,67 @@ layui.define(function(exports){
         },
         calculable : true,
         legend: {
-          data:['访问量','下载量','平均访问量']
+          data:['访问量','下载量','sb量']
         },
         
         xAxis : [
           {
             type : 'category',
+             boundaryGap : false,
             data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
           }
         ],
         yAxis : [
           {
             type : 'value',
-            name : '访问量',
+            //name : '访问量', 
             axisLabel : {
-              formatter: '{value} 万'
-            }
-          },
-          {
-            type : 'value',
-            name : '下载量',
-            axisLabel : {
-                formatter: '{value} 万'
+              formatter: '{value}'
             }
           }
+          // ,
+          // {
+          //   type : 'value',
+          //   name : 'sb量',
+          //   axisLabel : {
+          //       formatter: '{value}'
+          //   }
+          // }
+          // ,
+          // {
+          //   type : 'value',
+          //   name : '下载量',
+          //   axisLabel : {
+          //       formatter: '{value}'
+          //   }
+          // }
+          
         ],
+        // yAxis : [
+        //   {
+        //     type : 'value'
+        //   }
+        // ],
         series : [
           {
             name:'访问量',
             type:'line',
-            data:[900, 850, 950, 1000, 1100, 1050, 1000, 1150, 1250, 1370, 1250, 1100]
+            // stack: '总量',
+            data:[90, 85, 95, 100, 110, 105, 120, 110, 111, 123, 111, 123]
           },
           {
             name:'下载量',
             type:'line',
-            yAxisIndex: 1,
-            data:[850, 850, 800, 950, 1000, 950, 950, 1150, 1100, 1240, 1000, 950]
-          },
-          {
-            name:'平均访问量',
+            //yAxisIndex: 1,
+            // stack: '总量',
+            data:[85, 85, 80, 95, 100, 95, 95, 115, 110, 124, 100, 95]
+          }
+          ,
+          { 
+            name:'sb量',
             type:'line',
-            data:[870, 850, 850, 950, 1050, 1000, 980, 1150, 1000, 1300, 1150, 1000]
+            // stack: '总量',
+            data:[87, 85, 85, 95, 105, 100, 98, 115, 100, 130, 115, 100]
           }
         ]
       }

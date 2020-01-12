@@ -18,12 +18,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         alert("1");
     });
     form.render(null,'supplierInfo_from');
-    form.on('submit(LAY-app-supplier-search)',function (data) {
-        var field = data.field;
-        table.reload('supplier_infoTab',{
-            where:field
-        });
-    });
+
     table.render({
         elem: '#supplier_infoTab'
         ,url: setter.baseUrl+'sys/supplier/list'
@@ -31,9 +26,6 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         ,id:"supplier_infoTab"
         ,page: true
         ,toolbar: true
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
         ,cols: [[
              {field:'id', title: 'ID',hide: false}
             ,{field:'supplierId', title: '供应商编号', sort: true,width: 110}
@@ -43,8 +35,8 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             ,{field:'officePhone', title: '办公电话', sort: true,width: 120}
             ,{field:'phone', title: '手机', align: 'center', sort: true,width: 120} //单元格内容水平居中
             ,{field:'email', title: 'Email', sort: true,width:200} //单元格内容水平居中
-            ,{field:'paymentType', title: '付款方式', sort: true,templet:'#paymentType'}
-            ,{field:'taxe', title: '是否含税', sort: true,templet:'#taxe'}
+            ,{field:'paymentType', title: '付款方式', sort: true,templet:'#paymentType', minWidth: 104}
+            ,{field:'taxe', title: '是否含税', sort: true,templet:'#taxe', minWidth: 110}
             ,{field:'invoiceType', title: '发票类型', sort: true,templet:'#invoiceType'}
             ,{field:'strengths', title: '强项类型', sort: true,templet: '#strengths',width: 110}
             ,{field:'evaluateDdelivery', title: '交期', sort: true,templet: '#evaluateDdelivery'}
@@ -79,14 +71,15 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         if (obj.event === 'edit'){
             admin.popup({
                 title: '编辑供应商信息'
-                ,shadeClose: true
-                ,shade: false
-                ,maxmin: true
-                ,btn:['提交']['取消']
                 ,id: 'supplierAdd_form'
                 ,area: ['55%', '75%']
+                    ,btn:['提交','取消']
+                    ,yes:function(index, layero){
+                        $("#supplierEditSubmit").click();
+                    }
                 ,success: function (layero, index) {
                     view(this.id).render('/infoManagement/iframeWindow/supplier_edit', data).done(function () {
+                        console.log(data);
                         form.render(null, 'supplierAdd_form');
                         form.on('submit(LAY-supplier-add-submit)', function(data){
                             var field = data.field;
@@ -118,7 +111,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                 ,shadeClose: true
                 ,shade: false
                 ,maxmin: true
-                ,area: ['362px', '399px']
+                ,area: ['598px', '375px']
                 // ,id: 'sys_menu'
                 ,success: function(layero, index){
                     view(this.id).render('/infoManagement/iframeWindow/supplier_search', data).done(function(){
@@ -151,7 +144,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
          * 动态获取id，并且传到下一个view子页面（子页面根据此id，动态渲染操作页面）
          */
         //供应商信息页面
-        supplier_add:function(data){
+        supplier_add_but:function(data){
             var this_id = $(this).attr('id');
             admin.popup({
                 title: '添加供应商信息'
@@ -159,6 +152,10 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                 ,shade: false
                 ,maxmin: true
                 ,area: ['55%', '75%']
+                ,btn:['立即提交', '取消']
+                ,yes: function () {
+                    $("#supplierEditSubmit").click();
+                }
                 // ,id: 'sys_menu'
                 ,success: function(layero, index){
                     view(this.id).render('/infoManagement/iframeWindow/supplier_edit', data).done(function(){

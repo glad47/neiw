@@ -1,0 +1,84 @@
+
+  <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list"style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+      <label class="layui-form-label">跟单员</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template lay-url="{{layui.setter.baseUrl}}pplr/businesstarget/allBusiness" lay-done="layui.data.done(d);">
+           <select name="businessId" lay-filter="rsf_business" lay-verify="required">
+               <option></option>
+             {{# 
+                var businessId = d.params.businessId;
+                layui.each(d.data, function(index, item){   
+              }}
+             <option value="{{item.businessId}}" data-name="{{item.name}}" {{ businessId == item.businessId ? 'selected' : ''}}>{{item.name}}</option>
+             {{# }); }}
+           </select>
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">目标名称</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template >
+           <input type="text" name="name" value="{{ d.params.name || ''}}" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">时间类型</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template >
+          <select name="dateType">
+            <option value="" {{ d.params.dateType == '' ? 'selected' : '' }}></option>
+            <option value="1" {{ d.params.dateType == '1' ? 'selected' : '' }}>月目标</option>
+            <option value="2" {{ d.params.dateType == '2' ? 'selected' : '' }}>年目标</option>  
+          </select>
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">目标类型</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template >
+          <select name="type">
+            <option value="" {{ d.params.type == '' ? 'selected' : '' }}></option>
+            <option value="1" {{ d.params.type == '1' ? 'selected' : '' }}>款数目标</option>
+            <option value="2" {{ d.params.type == '2' ? 'selected' : '' }}>销售额目标</option>  
+          </select>
+        </script>
+      </div>
+    </div>
+     <div class="layui-form-item">
+      <label class="layui-form-label">目标指标</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template >
+           <input type="text" name="value" value="{{ d.params.value || ''}}" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+    </div>
+    <script type="text/html" template>
+      <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+    </script>
+    <div class="layui-form-item">
+      <label class="layui-form-label"></label>
+      <div class="layui-input-inline">
+        <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn" style="display: none;" id="layuiadmin-app-form-submit">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    layui.data.done = function(d){
+      layui.use(['admin', 'table','setter','form','jquery'],function(){
+        var $ = layui.jquery
+        ,table = layui.table
+        ,admin = layui.admin
+        ,setter = layui.setter
+        ,view = layui.view
+        ,form = layui.form;
+         
+        form.render();
+
+    });
+    }
+  </script>

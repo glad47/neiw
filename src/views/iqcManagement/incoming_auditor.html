@@ -1,0 +1,73 @@
+<title>品质管理-来料检验</title>
+<div class="layui-fluid">
+    <!--卡片－表格信息-->
+    <div class="layui-tab layui-tab-brief" lay-filter="tab-planToger">
+        <ul class="layui-tab-title">
+            <li class="layui-this">PCB订单</li>
+            <li>钢网订单</li>
+            <li>SMT订单</li>
+        </ul>
+        <div class="layui-tab-content">
+            <!--PCB订单-->
+            <div class="layui-tab-item layui-show">
+                <table class="layui-table" id="iqcIncom_auditor" lay-filter="iqcIncom_auditor"></table>
+                <script type="text/html" id="sqeMana_incoAuTb">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="plrk">批量入库</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="innerLable">内标签</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="outLable">外标签</button>
+                    </div>
+                </script>
+                <script type="text/html" id="iqcManaIncau_tabbar">
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="">包装</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="">工程</a>
+                </script>
+                <script type="text/html" id="iqcMana_ia">
+                    {{# if(d.status == '1') {}}
+                        待检验
+                    {{# } else if(d.status == '2'){ }}
+                        已报价
+                    {{# } else if(d.status == '3'){ }}
+                        生成外协合同
+                    {{# } else if(d.status == '4'){ }}
+                        回签
+                    {{# } else if(d.status == '5'){ }}
+                        供应商修改确认
+                    {{# } else if(d.status == '6'){ }}
+                        供应链确认
+                    {{# } else if(d.status == '7'){ }}
+                        出货通知
+                    {{# } }}
+                </script>
+            </div>
+            <!--钢网订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table" id="iqcIncom_auditorS" lay-filter="iqcIncom_auditorS"></table>
+                <script type="text/html" id="sqeMana_incoAuTbS">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="plrk">批量入库</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="innerLable">内标签</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="outLable">外标签</button>
+                    </div>
+                </script>
+                <script type="text/html" id="iqcManaIncau_tabbarS">
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="">包装</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="">工程</a>
+                </script>
+            </div>
+            <!--SMT订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('iqcMana_incoming_auditor', layui.factory('iqcMana_incoming_auditor')).use(['iqcMana_incoming_auditor', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>

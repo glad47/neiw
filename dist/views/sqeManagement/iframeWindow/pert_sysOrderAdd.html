@@ -1,0 +1,123 @@
+<title>评审订单添加</title>
+<div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+        <form class="layui-form" lay-filter="pert_form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">客户编号</label>
+                <div class="layui-input-inline">
+                    <select name="supplierNo" lay-verify="required"  lay-filter="i">
+                        {{#
+                        layui.each(d.params.cInfo, function(index, item){
+                        }}
+                        <option></option>
+                        <option value="{{ item.id || ''}}" {{ d.params.pcbInfo.customerNo == item.id ? 'selected' : ''}}>{{ item.userSystemId }}</option>
+                        {{#  }); }}
+                        {{#  if(d.params.cInfo.length === 0){ }}
+                        无数据
+                        {{#  } }}
+                    </select>
+                </div>
+                <label class="layui-form-label">单价</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" type="text" name="unitPrice" value="{{ d.params.pcbInfo.unitPrice || '' }}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">板费</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" type="text" name="boardFee" value="{{ d.params.pcbInfo.boardFee || '' }}">
+                </div>
+                <label class="layui-form-label">运费</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" type="text" name="postFee" value="{{ d.params.pcbInfo.postFee || '' }}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">测试费</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" type="text" name="testCostFee" value="{{ d.params.pcbInfo.testCostFee || '' }}">
+                </div>
+                <label class="layui-form-label">工程费</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" type="text" name="engineeringFee" value="{{ d.params.pcbInfo.engineeringFee || '' }}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">cnc磨具费</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" type="text" name="toolingFee" value="{{ d.params.pcbInfo.toolingFee || '' }}">
+                </div>
+                <label class="layui-form-label">加急费</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" type="text" name="overworkFee" value="{{ d.params.pcbInfo.overworkFee || '' }}">
+                </div>
+            </div>
+
+            <div style="display: none;">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">文件名</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" type="text" name="quoteGerberName" value="{{ d.params.quoteGerberName || '' }}">
+                    </div>
+                    <label class="layui-form-label">文件路径</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" type="text" name="quoteGerberPath" value="{{ d.params.quoteGerberPath || '' }}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">评审备注</label>
+                <div class="layui-input-inline" style="width: 75%;">
+                    <textarea class="layui-textarea" name="remark" id="">{{ d.params.pcbInfo.remark || '' }}</textarea>
+                </div>
+            </div>
+
+            <div class="layui-form-item" style="display: none;">
+                <button class="layui-btn layui-btn-primary" type="button" lay-submit lay-filter="pertSysOrderAddSubmit" id="pertSysOrderAddSubmit">提交</button>
+            </div>
+        </form>
+
+    </script>
+</div>
+
+<script>
+    layui.data.done = function (d) {
+        layui.use(['setter', 'upload', 'admin', 'index', 'element', 'jquery', 'form', 'filePathProcess'], function () {
+            var $ = layui.$,
+                table = layui.table,
+                form = layui.form,
+                admin = layui.admin,
+                view = layui.view
+            var upload = layui.upload;
+            var filepathprocess = layui.filePathProcess;
+            form.render(null, "pert_form");
+            //执行实例
+            var uploadInst = upload.render({
+                elem: '#pertUpload' //绑定元素
+                ,url: setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token
+                ,field: 'file'  //文件上传的字段名
+                ,accept: 'file'
+                ,exts: 'zip|rar|7z'
+                ,before: function (obj) {
+                    obj.preview(function (index, file, result) {
+                        $("input[name='productNo']").val(file.name);   // 回填到表单=>文件名
+                    });
+                }
+                ,done: function(res){
+                    //上传完毕回调
+                    $("input[name='quoteGerberPath']").val(filepathprocess.pathProcess(res.url));   // 回填到表单=>文件路径
+                }
+                ,error: function(){
+                    //请求异常回调
+                }
+            });
+
+            //  监听表单提交
+            form.on('submit(pertSysAddSubmit)', function (data) {
+                console.log(data.field);
+                return false;
+            });
+        });
+    }
+</script>

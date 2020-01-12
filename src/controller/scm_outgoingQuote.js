@@ -5,7 +5,7 @@
  */
 
 
-layui.define(['admin', 'table', 'index','element','form','laydate'], function(exports){
+layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], function(exports){
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -14,13 +14,17 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,setter = layui.setter
         ,element = layui.element;
         var $ = layui.jquery;
+        var jstools = layui.jsTools;
 
-    // layerdate.render({
-    //     elem: '#gmtCreate'
-    // })
     laydate.render({
         elem: '#gmtCreate'
     });
+
+    // 全局变量
+    var defVal = {
+        orderType: 0,   //订单类型
+    };
+
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB内部订单-工程已审核
     table.render({
@@ -37,24 +41,24 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 "count": res.page.totalCount
             }
         }
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
-            ,{field:'status',fixed: 'left', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-scm-outgoingQuote-status',width: 130}
-            ,{field: '', title:'File', toolbar: '#pcb-file', align:'center'}
-            ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254}
-            ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165}
-            ,{field:'productNo', title: 'ProductNo', align:'center', width: 114}
-            ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114}
-            ,{field:'layerNum', title: 'Layer', align:'center', width: 114}
-            ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134}
-            ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114}
-            ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110}
-            ,{field:'boardFee', title: 'BoardFee', align:'center', width: 114}
+            ,{field:'productNo',fixed: 'left', title: '聚谷编号', align:'center', minWidth: 114, sort: true}
+            ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-scm-outgoingQuote-status',minWidth: 130, sort: true}
+            ,{field: '', title:'下载', toolbar: '#pcb-file', align:'center', sort: true}
+            ,{field: 'difficultyLevel', title:'难易度', align:'center', templet: '#Tabtb-pcb-scm-outgoingQuote-difficultyLevel', sort: true}
+            ,{field:'id',title:'ID',align:'center',hide: true}
+            ,{field:'quoteGerberName', title: '正式资料', align:'center', minWidth: 254, hide: true}
+            ,{field:'gmtCreate', title: '创建时间', align:'center', minWidth: 165, sort: true}
+            ,{field:'pcbType', title: 'PCB Type', align:'center', width: 114,hide: true}
+            ,{field:'layerNum', title: 'Layer', align:'center', width: 114,hide: true}
+            ,{field:'finishThickness', title: 'Finish Thickness', align:'center', width: 134,hide: true}
+            ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114,hide: true}
+            ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110,hide: true}
+            ,{field:'boardFee', title: 'BoardFee', align:'center', width: 114,hide: true}
 
             ,{field:'userId', title: 'User ID',width: 80,hide: true}
+            ,{field:'engineeringRemark', title: '工程备注',width: 80,hide: true}
             ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
             ,{field:'orderType', title: 'Order Type', align:'center', width: 109,hide: true}
             ,{field:'dimensionsX', title: 'DimensionsX',templet: '#type', align:'center', width: 114,hide: true}
@@ -136,85 +140,204 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     //监听工具条
     table.on('tool(scm_Tabpcb_outgoing_quote)', function(obj){
         var data = obj.data;
-        if(obj.event === 'detail'){
+        var dIds_arr;
+        var openAssignSupplier_data = null;     // popup供应商表格选中的对象 data
+        var globalCid_list;
+        if(obj.event === 'assign'){
+            admin.popup({
+                title: '指定供应商'
+                ,area: ['912px', '545px']
+                ,btn:['跳过提交', /*'提交',*/'取消']    // 跳过提交先隐藏，功能已经写好了的
+                ,yes:function(index, layero){
+                    $("#assignSupplierTbData").click();     // 获取选中的表格数据
+                    layer.confirm('确定跳过提交？', function () {
+                        var supplierIds = openAssignSupplier_data.map(function(elem){return elem.id}).join(",");
+                        var supplierArr = supplierIds.split(",");    // 将ids逗号隔开的字符串转成数组形式
+                        for (var s=0;s<globalCid_list.length;s++) {     // 过滤掉选过的id，不重复指定供应商
+                            supplierArr = $.grep(supplierArr, function (value) {
+                                return value != globalCid_list[s];
+                            });
+                        }
+                        console.log(supplierArr);
+                        if (supplierArr.length<1) {
+                            layer.msg('请选择一条要跳过提交的数据！');
+                            return false;
+                        } else {
+                            supplierArr = jstools.ArrayClearRepeat(supplierArr);     // 字符串转数组去重[封装只接收数组]，再转回字符串提交给后台
+                            console.log("supplierArr:"+supplierArr);
+                            var postData = {'id':data.id, 'supplierIds': supplierArr.toString(),'isInternal':data.isInternal,'onlineOid':data.onlineOid};
+                            console.log(postData);
+                            admin.req({
+                                url: setter.baseUrl + 'scm/pcborder/skipSubmit',
+                                data: postData,
+                                success: function (res) {
+                                    layer.alert('成功跳过提交!', function () {
+                                        openAssignSupplier_data = null;     // 初始化
+                                        layer.closeAll();
+                                    });
+                                }
+                            });
+                        }
+                    });
+                },
+                btn4: function (index, layero) {    // 注释的隐藏按钮
+                    var checkStatus = table.checkStatus('scm_assign_supplier_table'),checkdata = checkStatus.data;
+                    var ids = checkdata.map(function(elem){return elem.id}).join(",");
+                    console.log("ids:"+ids);
+                    var ids_arr = [ids.split(',')];
+                    var same_result = new Array();
+                    var c = dIds_arr.toString();
+                    for (var i = 0; i < ids_arr[0].length; i++) {
+                        if (c.indexOf(ids_arr[0][i].toString()) > -1) {
+                            for (var j = 0; j < dIds_arr.length; j++) {
+                                if (ids_arr[0][i] == parseInt(dIds_arr[j])) {
+                                    same_result.push(parseInt(ids_arr[0][i]));
+                                    break;
+                                }
+                            }
+                        }
+                        for (var s=0;s<same_result.length;s++) {
+                            if (parseInt(ids_arr[0][i]) == same_result[s]) {
+                                ids_arr[0].splice(i,1);
+                            }
+                        }
+                    }
+                    admin.req({
+                        url:setter.baseUrl+"scm/pcborder/assignOrderToSupplier",
+                        type:"POST",
+                        data:{
+                            id: data.id
+                            ,supplierIds: ids_arr[0].toString()
+                            ,isInternal:data.isInternal
+                            ,onlineOid:data.onlineOid
+                        },
+                        success:function(data){
+                            if (data.code == 0 ) {
+                                layer.msg("指派成功！");
+                                layer.closeAll();
+                            } else {
+                                layer.msg(data.msg);
+                            }
+                        }
+                    });
+                }
+                ,end:function(){}
+                ,success: function (layero, index) {
+                    view(this.id).render('scmManagement/assign_supplier', data).done(function () {
+                        var cid_list;
+                        admin.req({
+                            type: 'post',
+                            url: setter.baseUrl+'scm/pcborder/assignedSupplierIds',
+                            data: {'oid':data.id},
+                            async: false,
+                            success: function (result) {
+                                cid_list = globalCid_list = result.data;
+                                dIds_arr = result.data;
+                            }
+                        });
+                        table.render({
+                            elem: '#scm_assign_supplier_table'
+                            ,url: setter.baseUrl+'scm/pcborder/allSupplier'
+                            ,toolbar: '#supplierTableToolbar'
+                            ,cellMinWidth: 80
+                            ,page:false
+                            ,id:"scm_assign_supplier_table"
+                            ,where: {
+                                access_token: layui.data('layuiAdmin').access_token
+                            }
+                            ,cols: [[
+                                {type:'checkbox'}
+                                ,{field:'id', title: 'ID',hide: true}
+                                ,{field:'supplierId', title: '供应商编号', hide: false, align:'center',width: 130}
+                                ,{field:'strengths', title: '类别', align:'center',width: 130, templet: '#scm_ogstrengths'}
+                                ,{field:'companyName', title:'公司名', align:'center', hide: false}
+                            ]],
+                            done: function (res, curr, count) {
+                                var tableId = this.id;
+                                // 原dom
+                                var tableElem = this.elem;
+                                // layui渲染出来的表格dom
+                                var tableViewElem = tableElem.next();
+                                //var data = this.url ? res:res.data;
+                                // 当前页面的数据
+                                var data = table.cache[tableId];
+
+                                // 遍历tbody的tr
+                                layui.each(tableViewElem.find('.layui-table-main').find('tr'), function (index, trElem) {
+                                    // 行节点
+                                    trElem = $(trElem);
+                                    // 行下标
+                                    var trIndex = trElem.data('index');
+                                    // 行数据
+                                    var trData = data[trIndex];
+                                    // 判断是否选中的逻辑这个根据自己的实际情况处理
+                                    for (var i=0;i<cid_list.length;i++){
+                                        if (trData.id == cid_list[i]){
+                                            // 如果存在禁用选项，则移除全选
+                                            $(".layui-table-header thead").find("input[name = 'layTableCheckbox'][lay-filter='layTableAllChoose']").remove();
+                                            $(".layui-table-header thead").find(".layui-form-checkbox").remove();
+                                            // 只加属性并不能在获得选中行中得到数据
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('checked', 'checked');
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('value', '');
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('disabled', 'disabled');
+                                            // console.log(tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').text());
+                                            // 把cache的LAY_CHECKED设置成true才能在获得表格选中的数据中得到当前选中的行
+                                            trData[table.config.checkName] = true;
+                                        }
+                                    }
+                                });
+                                // 最后渲染。参数看具体环境，如果有filter之类的尽量具体渲染到某一个form。
+                                form.render(null, tableViewElem.attr('lay-filter'));
+                            }
+                            
+                        });
+
+                        form.on('submit(assign_supplier_search)', function (data) {
+                            var field = data.field;
+                            table.reload('scm_assign_supplier_table',{
+                                where: field
+                            });
+                        });
+                        $(".assign-supplier-searchform input").bind("input propertychange", function (even) {
+                            $("*[lay-filter='assign_supplier_search']").click();
+                        })
+
+                        // PCB 供应商表格  工具栏事件
+                        table.on('toolbar(scm_assign_supplier_table)', function (obj) {
+                            var checkStatus = table.checkStatus(obj.config.id);
+                            switch (obj.event) {
+                                case 'getCheckData':
+                                    var data = checkStatus.data;
+                                    openAssignSupplier_data = data;
+                            }
+                        });
+                    })
+                }
+            });
+        } else if (obj.event == 'look') {
             admin.popup({
                 title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
-                ,area: ['45%', '70%']
+                ,area: ['100%', '100%']
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
 
                     })
                 }
-            })
-        } else if(obj.event === 'del'){
-            layer.confirm('真的删除订单号为［'+data.productNo+'］吗', function(index){
-
+            });
+        } else if (obj.event == 'submit') {
+            layer.confirm('确定提交？', function () {
                 admin.req({
                     type: 'post',
-                    url: setter.baseUrl+'/market/quote/audit/delete'
-                    ,data:{"ids":data.id}
-                    ,done: function (res) {
-                        layer.msg('删除成功')
-                        obj.del();
+                    data: {'orderId': data.id},
+                    url: setter.baseUrl + 'scm/pcborder/skipSubmit',    // 提交供应商信息
+                    success: function () {
+                        layer.alert('供应商信息提交成功！', function () {
+                            table.reload('scm_Tabpcb_outgoing_quote');
+                            layer.closeAll();
+                        });
                     }
-                    ,fail: function (res) {
-                        layer.msg('服务器异常，稍后再试！');
-                    }
-                })
-                layer.close(index);
+                });
             });
-        } else if(obj.event === 'edit'){
-            admin.popup({
-                title: '编辑PCB订单信息'
-                ,area: ['45%', '561px']
-                ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {
-                        form.render(null, '')
-                        form.on('submit(LAY-pcborder-update-submit)',function (data) {
-                            var field = data.field;
-                            console.log("提交的字段信息："+JSON.stringify(field));
-                            admin.req({
-                                type: 'post'
-                                ,url: setter.baseUrl+'/market/quote/audit/update'
-                                ,data: field
-                                ,done: function (res) {
-                                    layer.msg('订单信息修改成功');
-                                    layui.table.reload('scm_Tabpcb_outgoing_quote');
-                                }
-                                ,fail: function (res) {
-                                    layer.msg("订单信息修改失败，请稍后再试！");
-                                },
-                            });
-                            layer.close(index);
-                            return false;
-                        })
-                    })
-                }
-            })
-        } else if (obj.event === 'pcb-submit') {
-            layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
-                data.isLock = 3;
-                admin.req({
-                    type: 'post'
-                    ,url: setter.baseUrl+'/market/quote/okPaymentList/submit'
-                    ,data: {"id":data.id,"isLock":data.isLock}
-                    ,done: function () {
-                        layer.msg('订单［'+data.productNo+'］提交成功！');
-                        layui.table.reload('or_Tabpcb_no_payment');
-                    }
-                    ,fail: function () {
-                        layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
-                    }
-                })
-                layui.table.reload('scm_Tabpcb_outgoing_quote');
-                layer.close(index);
-            })
-        } else if (obj.event === 'pcb-sendback') {
-            layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
-                layer.msg('退回'+data.productNo);
-                layui.table.reload('or_Tabpcb_no_payment');
-                layer.close(index);
-            })
         }
     });
 
@@ -222,7 +345,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     table.render({
         elem: '#scm_Tabstencil_outgoing_quote'
         ,id: "scm_Tabstencil_outgoing_quote"
-        ,url: setter.baseUrl+'market/stencil/okPayment/list'
+        ,url: setter.baseUrl+'scm/stencilorder/list'
         ,page: true
         ,toolbar: true
         ,done: function () {
@@ -236,31 +359,31 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 "count": res.page.totalCount
             }
         }
-        ,where: {
-            access_token: layui.data('layuiAdmin').access_token
-        }
         ,cols: [[
-             {field: 'id', title: 'ID', hide: true}
-            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-scm-outgoingQuote-status'}
-            ,{field: '', title:'File', templet: '#stencil-file', align:'center'}
-            ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224}
-            ,{field: 'gmtCreate', title: 'gmtCreate', align:'center', width: 165}
-            ,{field: 'productNo', title: 'Product No', align:'center', width: 134}
-            ,{field: 'totalStencilFee', title: 'TotalStencilFee($)', align:'center', width: 144}
-            ,{field: 'stencilType', title: 'Stencil Type', align:'center', width: 124}
-            ,{field: 'stencilSide', title: 'Stencil Side', align:'center', width: 124}
-            ,{field: 'quantity', title: 'Quantity', align:'center', width: 114}
-            ,{field: 'size', title: 'Size', align:'center', width: 80}
+             {field: 'id', title: 'ID', hide: true, sort: true}
+            ,{field: 'productNo', title: '聚谷编号', align:'center', sort: true}
+            ,{field: 'status', title: '状态', align:'center',  templet: '#Tabtb-stencil-scm-outgoingQuote-status', minWidth: 130, sort: true}
+            ,{field: '', title:'File', templet: '#stencil-file',  align:'center', minWidth: 130, sort: true}
+            ,{field: 'stencilType', title: '钢网类型', align:'center', sort: true, templet:'<div> {{ d.stencilType=="Farmework" ? "钢网" : "钢片" }} </div>'}
+            ,{field: 'stencilSide', title: '钢网面向', align:'center', sort: true, templet:'#Tabtb-stencil-scm-outgoingQuote-type'}
+            ,{field: 'thickness', title: '钢网厚度', align:'center', sort: true}
+            ,{field: '',title:'钢网尺寸',align:'center',templet:'<div>{{d.stencilSizeX}} * {{d.stencilSizeY}}</div>'}
+            ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224, sort: true, hide: true}
+            ,{field: 'gmtCreate', title: '创建时间', align:'center', sort: true}
+            
+            ,{field: 'totalStencilFee', title: 'TotalStencilFee($)', align:'center', width: 144, sort: true, hide: true}
+            ,{field: 'stencilSide', title: 'Stencil Side', align:'center', width: 124, sort: true ,hide: true}
+            ,{field: 'quantity', title: 'Quantity', align:'center', width: 114, sort: true,hide: true}
+            ,{field: 'size', title: 'Size', align:'center', width: 80, sort: true, hide: true}
             ,{field: 'quoteId', title: 'Quote ID', align:'center', width: 114, hide: true}
-            ,{field: 'thickness', title: 'Thickness', align:'center', width: 114, hide: true}
             ,{field: 'existingFiducials', title: 'Existing Fiducials', align:'center', width: 145, hide: true}
             ,{field: 'stencilSizeX', title: 'stencilSizeX', align:'center', width: 124, hide: true}
             ,{field: 'stencilSizeY', title: 'stencilSizeY', align:'center', width: 124, hide: true}
             ,{field: 'stencilAreaX', title: 'stencilSizeY', align:'center', width: 124, hide: true}
             ,{field: 'stencilAreaY', title: 'stencilSizeY', align:'center', width: 124, hide: true}
-            ,{field: 'userId', title: 'User ID', align:'center', width: 100, hide: true}
+            ,{field: 'userId', title: 'User ID', align:'center', width: 100, hide: true, sort: true}
             ,{field: 'gmtModified', title: 'gmtModified', hide: true, width: 124}
-            ,{field: 'weight', title: 'Weight', align:'center', width: 85}
+            ,{field: 'weight', title: 'Weight', align:'center', width: 85, sort: true ,hide: true}
             ,{field: 'gerberPath', title: 'gerberPath', hide: true, width: 124}
             ,{field: 'note', title: 'Note', align:'center', width: 80, hide: true}
             ,{title: '操作', fixed: 'right', align:'center', toolbar: '#Tabtb-stencil-scm-outgoingQuote-option', width: 260}
@@ -269,7 +392,175 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     // 监听stencil表格工具条
     table.on('tool(scm_Tabstencil_outgoing_quote)',function (obj) {
         var data = obj.data;
-        if (obj.event === 'detail'){
+        var dIds_arr;
+        var openAssignSupplier_data = null;     // popup供应商表格选中的对象 data
+        var globalCid_list;
+        if (obj.event === 'assign'){
+            admin.popup({
+                title: '指定供应商'
+                ,area: ['912px', '545px']
+                ,btn:['跳过提交', /*'跳过提交',*/'取消']
+                ,btn4:function(index, layero){
+                    var checkStatus = table.checkStatus('scm_assign_supplier_table', data),checkdata = checkStatus.data;
+                    var ids = checkdata.map(function(elem){return elem.id}).join(",");
+                    console.log("ids:"+ids);
+                    var ids_arr = [ids.split(',')];
+                    var same_result = new Array();
+                    var c = dIds_arr.toString();
+                    for (var i = 0; i < ids_arr[0].length; i++) {
+                        if (c.indexOf(ids_arr[0][i].toString()) > -1) {
+                            for (var j = 0; j < dIds_arr.length; j++) {
+                                if (ids_arr[0][i] == parseInt(dIds_arr[j])) {
+                                    same_result.push(parseInt(ids_arr[0][i]));
+                                    break;
+                                }
+                            }
+                        }
+                        for (var s=0;s<same_result.length;s++) {
+                            if (parseInt(ids_arr[0][i]) == same_result[s]) {
+                                ids_arr[0].splice(i,1);
+                            }
+                        }
+                    }
+                    admin.req({
+                        url:setter.baseUrl+"scm/stencilorder/assignStencilOrderToSupplier",
+                        type:"POST",
+                        data:{
+                            id: data.id
+                            ,orderId: data.id
+                            ,supplierIds: ids_arr[0].toString()
+                            ,isInternal:data.isInternal
+                            ,onlineOid:data.onlineOid
+                        },
+                        success:function(data){
+                            if (data.code == 0 ) {
+                                layer.msg("指派成功！");
+                                layer.close(index);
+                            }else{
+                                layer.msg(data.msg);
+                            }
+                        }
+                    });
+
+                },
+                yes: function (index, layero) {
+                    $("#assignSupplierTbData").click();     // 获取选中的表格数据
+                    layer.confirm('确定跳过提交？', function () {
+                        var supplierIds = openAssignSupplier_data.map(function(elem){return elem.id}).join(",");
+                        var supplierArr = supplierIds.split(",");    // 将ids逗号隔开的字符串转成数组形式
+                        console.log(supplierArr);
+                        for (var s=0;s<globalCid_list.length;s++) {     // 过滤掉选过的id，不重复指定供应商
+                            supplierArr = $.grep(supplierArr, function (value) {
+                                return value != globalCid_list[s];
+                            });
+                        }
+                        if (supplierArr.length<1) {
+                            layer.msg('请选择一条要跳过提交的数据！');
+                            console.log("supplierArr:"+supplierArr);
+                            return false;
+                        } else {
+                            supplierArr = jstools.ArrayClearRepeat(supplierArr);     // 字符串转数组去重[封装只接收数组]，再转回字符串提交给后台
+                            console.log("supplierArr:"+supplierArr);
+                            var postData = {'id':data.id, 'supplierIds': supplierArr.toString(),'isInternal':data.isInternal,'onlineOid':data.onlineOid};
+                            console.log(postData);
+                            admin.req({
+                                url: setter.baseUrl + 'scm/stencilorder/skipStencilSubmit',
+                                data: postData,
+                                success: function (res) {
+                                    layer.alert('成功跳过提交!', function () {
+                                        openAssignSupplier_data = null;     // 初始化
+                                        layer.closeAll();
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+                ,end:function(){}
+                ,success: function (layero, index) {
+                    view(this.id).render('scmManagement/assign_supplier', data).done(function () {
+                        var cid_list;
+                        admin.req({
+                            type: 'post',
+                            url: setter.baseUrl+'scm/stencilorder/assignedStencilSupplierIds',
+                            data: {'oid':data.id},
+                            async: false,
+                            success: function (result) {
+                                cid_list = globalCid_list = result.data;
+                                dIds_arr = result.data;
+                            }
+                        });
+                        console.log(cid_list);
+                        table.render({
+                            elem: '#scm_assign_supplier_table'
+                            ,url: setter.baseUrl+'scm/pcborder/allSupplier'
+                            ,toolbar: '#supplierTableToolbar'
+                            ,cellMinWidth: 80
+                            ,page:false
+                            ,id:"scm_assign_supplier_table"
+                            ,where: {
+                                access_token: layui.data('layuiAdmin').access_token
+                            }
+                            ,cols: [[
+                                {type:'checkbox'}
+                                ,{field:'id', title: 'ID',hide: true}
+                                ,{field:'supplierId', title: '供应商编号', hide: false, align:'center',width: 130}
+                                ,{field:'strengths', title: '类别', align:'center',width: 130, templet: '#scm_ogstrengths'}
+                                ,{field:'companyName', title:'公司名', align:'center', hide: false}
+                            ]],
+                            done: function (res, curr, count) {
+                                var tableId = this.id;
+                                // 原dom
+                                var tableElem = this.elem;
+                                // layui渲染出来的表格dom
+                                var tableViewElem = tableElem.next();
+                                //var data = this.url ? res:res.data;
+                                // 当前页面的数据
+                                var data = table.cache[tableId];
+
+                                // 遍历tbody的tr
+                                layui.each(tableViewElem.find('.layui-table-main').find('tr'), function (index, trElem) {
+                                    // 行节点
+                                    trElem = $(trElem);
+                                    // 行下标
+                                    var trIndex = trElem.data('index');
+                                    // 行数据
+                                    var trData = data[trIndex];
+                                    // 判断是否选中的逻辑这个根据自己的实际情况处理
+                                    for (var i=0;i<cid_list.length;i++){
+                                        if (trData.id == cid_list[i]){
+                                            // 如果存在禁用选项，则移除全选
+                                            $(".layui-table-header thead").find("input[name = 'layTableCheckbox'][lay-filter='layTableAllChoose']").remove();
+                                            $(".layui-table-header thead").find(".layui-form-checkbox").remove();
+                                            // 只加属性并不能在获得选中行中得到数据
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('checked', 'checked');
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('value', '');
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('disabled', 'disabled');
+                                            console.log(tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').text());
+                                            // 把cache的LAY_CHECKED设置成true才能在获得表格选中的数据中得到当前选中的行
+                                            trData[table.config.checkName] = true;
+                                        }
+                                    }
+                                });
+                                // 最后渲染。参数看具体环境，如果有filter之类的尽量具体渲染到某一个form。
+                                form.render(null, tableViewElem.attr('lay-filter'));
+                            }
+
+                        });
+
+                        // Stencil 供应商表格  工具栏事件
+                        table.on('toolbar(scm_assign_supplier_table)', function (obj) {
+                            var checkStatus = table.checkStatus(obj.config.id);
+                            switch (obj.event) {
+                                case 'getCheckData':
+                                    var data = checkStatus.data;
+                                    openAssignSupplier_data = data;
+                            }
+                        });
+                    })
+                }
+            });
+        } else if (obj.event == 'look') {
             admin.popup({
                 title: '订单号［'+data.productNo+']---'+'订单时间［'+data.gmtCreate+'］'
                 ,area: ['45%', '70%']
@@ -278,74 +569,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     })
                 }
 
-            })
-        } else if (obj.event === 'edit') {
-            admin.popup({
-                title: '编辑：订单号［'+data.productNo+']'
-                ,area: ['45%', '70%']
-                ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/orderStencil_update', data).done(function () {
-                        form.render(null, '')
-                        form.on('submit(LAY-stencilorder-update-submit)',function (data) {
-                            var field = data.field;
-                            console.log("提交的字段信息："+JSON.stringify(field));
-                            admin.req({
-                                type: 'post'
-                                ,url: setter.baseUrl+'/market/stencil/audit/update'
-                                ,data: field
-                                ,done: function (res) {
-                                    layer.msg('订单信息修改成功');
-                                    layui.table.reload('scm_Tabstencil_outgoing_quote');
-                                }
-                                ,fail: function (res) {
-                                    layer.msg("订单信息修改失败，请稍后再试！");
-                                },
-                            });
-                            layer.close(index);
-                            return false;
-                        })
-                    })
-                }
-            })
-        } else if (obj.event === 'del') {
-            layer.confirm('真的删除订单号为［'+data.productNo+'］吗', function(index){
-               admin.popup({
-                   type: 'post'
-                   ,url: setter.baseUrl+'market/stencil/audit/delete'
-                   ,data: {"ids":data.id}
-                   ,done: function (res) {
-                       layer.msg('删除成功')
-                       obj.del();
-                   }
-                   ,fail: function (res) {
-                       layer.msg('服务器异常，稍后重试！');
-                   }
-               })
-                layer.close(index);
-            });
-        } else if (obj.event === 'stencil-submit') {
-            layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
-                data.isLock = 3;
-                admin.req({
-                    type: 'post'
-                    ,url: setter.baseUrl+'market/stencil/okPayment/submit'
-                    ,data: {"id":data.id,"isLock":data.isLock}
-                    ,done: function () {
-                        layer.msg('订单［'+data.productNo+'］提交成功！');
-                        console.log('提交的信息为'+JSON.stringify(data));
-                    }
-                    ,fail: function () {
-                        layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
-                    }
-                })
-                layui.table.reload('scm_Tabstencil_outgoing_quote');
-                layer.close(index);
-            })
-        } else if (obj.event === 'stencil-sendback') {
-            layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
-                layer.msg('退回'+data.productNo);
-                layui.table.reload('scm_Tabstencil_outgoing_quote');
-                layer.close(index);
             })
         }
     })
@@ -360,6 +583,14 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     // 根据tab选项是否为pcb或者stencil监听表单，动态渲染表格
     element.on('tab(pcdorstencil_tab)', function (data) {
         var tabNum = data.index;
+        defVal.orderType = data.index;
+        if (tabNum === 1) {
+            $(".outgoing-quote-search").attr("reload-table", "scm_Tabstencil_outgoing_quote");
+        } else if (tabNum === 2) {
+            $(".outgoing-quote-search").attr("reload-table", "");
+        } else {
+            $(".outgoing-quote-search").attr("reload-table", "scm_Tabpcb_outgoing_quote");
+        }
         form.on('submit(LAY-app-orderReview-search)', function (data) {
             var field = data.field;
             delete field.quiz;

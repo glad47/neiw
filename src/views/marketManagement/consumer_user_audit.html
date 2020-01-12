@@ -1,0 +1,62 @@
+<title>市场管理-跟单员客户列表</title>
+<div class="layui-fluid">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto consumer-user-audit-form-search" lay-filter="">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">客户代码</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="userSystemId" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">业务员</label>
+                <div class="layui-input-inline">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="businessName" lay-filter="sel-consumer-user-audit-businessName">
+                            {{#
+                            var businessName = d.params.businessName;
+                            layui.each(d.data, function(index, item){
+                            }}
+                            <option></option>
+                            <option value="{{ item.username || ''}}" {{ businessName == item.username ? 'selected' : ''}}>{{ item.username }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据
+                            {{#  } }}
+                        </select>
+                    </script>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="consumer-user-audit-search">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="consumerUserAuditTb">
+        <a class="layui-btn" lay-event="customerUserAuditsh">审核</a>
+    </script>
+    <table class="layui-table" id="tabConsumerUserAudit" lay-filter="tabConsumerUserAudit"></table>
+    <script type="text/html" id="consumerUserAuditRTb">
+        <a class="layui-btn layui-btn-xs" lay-event="cuartb-edit">编辑</a>
+    </script>
+    <script type="text/html" id="customerUserAuditStatus">
+        {{#  if(d.status === 0 || d.status == null){ }}
+        <a style="color: orangered">未审核</a>
+        {{#  } else if(d.status === 1) { }}
+        <a style="color: cornflowerblue">需要审核</a>
+        {{#  } else if(d.status === 2){ }}
+        <a style="color: green">已审核</a>
+        {{#  } }}
+    </script>
+</div>
+
+<script>
+    layui.data.done = function(d){
+        layui.use('consumer_user_audit', layui.factory('consumer_user_audit')).use(['consumer_user_audit', 'table', 'index','element','form'], function(){
+            var form = layui.form;
+            form.render();
+        });
+    };
+</script>

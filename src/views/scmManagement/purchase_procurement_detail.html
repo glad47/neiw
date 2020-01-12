@@ -1,0 +1,111 @@
+<title>供应链管理-采购明细</title>
+<div class="layui-fluid">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto purchase-procurement-detail_search">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">聚谷型号：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="purchase_procurement_detail_search" style="margin-bottom: 3px;">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--卡片－表格信息-->
+    <div class="layui-tab layui-tab-brief" lay-filter="tab-pruchprocurmentDetail">
+        <ul class="layui-tab-title">
+            <li class="layui-this">PCB订单</li>
+            <li>钢网订单</li>
+            <li>SMT订单</li>
+        </ul>
+        <div class="layui-tab-content">
+            <!--PCB订单-->
+            <div class="layui-tab-item layui-show">
+                <table class="layui-table" id="proMana_procuDetailPCB" lay-filter="proMana_procuDetailPCB"></table>
+            </div>
+            <!--钢网订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table" id="proMana_procuDetailS" lay-filter="proMana_procuDetailS"></table>
+            </div>
+            <!--SMT订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table"></table>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="purchase_CC">
+        {{# if(d.panelSizeX != null && d.panelSizeX != ''){ }}
+            {{ d.panelSizeX }}*{{ d.panelSizeY }}mm<br>
+        {{# } else { }}
+            {{ d.dimensionsX }}*{{ d.dimensionsY }}mm<br>
+        {{# }}}
+    </script>
+    <!--工艺要求 PCB-->
+    <!--jquery ajax同步请求json数据，对比PCB中文专业术语再给模板赋值 ==> 请求完缓存，避免一个表格100条数据请求100次 -->
+    <script type="text/html" id="purchase_gyyy">
+        {{# var $ = layui.jquery }}
+        {{# if(JSON.parse(localStorage.getItem('pcbProfessionalTerm')) == null){ }}
+            {{# $.ajaxSettings.async = false;$.getJSON("./json/pcbonline/pcbProfessionalTerm.js",function(data){ localStorage.setItem("pcbProfessionalTerm",JSON.stringify(data.data)) }) }}
+        {{# } }}
+
+        {{# var pcbProfessionalTerm = JSON.parse(localStorage.getItem('pcbProfessionalTerm')) }}
+
+        {{d.pcbType || ''}},{{d.outerLayerCopper || ''}}
+
+        {{# if(d.solderMaskTopColor != null && d.solderMaskTopColor != '' && d.solderMaskTopColor != 'none' && typeof(d.solderMaskTopColor) != 'undefined'){ }}
+            {{pcbProfessionalTerm.fieldTranslation.solderMaskTopColor[d.solderMaskTopColor]+'油' || ''}}
+        {{# } }}
+        {{# if(d.silkScreenTopColor != null && d.silkScreenTopColor != '' && d.silkScreenTopColor != 'none' && typeof(d.silkScreenTopColor) != 'undefined'){ }}
+            {{pcbProfessionalTerm.fieldTranslation.silkScreenTopColor[d.silkScreenTopColor]+'字' || ''}},
+        {{# } }}
+
+        {{pcbProfessionalTerm.fieldTranslation.surfaceFinish[d.surfaceFinish]}}{{d.thickness || ''}}
+    </script>
+    <!--利润-->
+    <script type="text/html" id="purchase_LR">
+        {{parseFloat(d.subtotal-d.supplierTotalFee).toFixed(4)}}
+    </script>
+    <!--国家-->
+    <script type="text/html" id="purchase_countries">
+        {{# var pattern = new RegExp("[0-9]+")}}
+        {{# if(pattern.test(d.countries)) { }}
+            {{# var requestInterface = layui.requestInterface }}
+            {{# requestInterface.GetCountry()}}
+            {{# var countriesObj = JSON.parse(localStorage.getItem('allCountry')).find(function(obj){ return obj.id == d.countries})}}
+            {{countriesObj.name || '查询错误'}}
+        {{# } else { }}
+            {{d.countries || ''}}
+        {{# } }}
+    </script>
+
+
+    <!--<================ Stencil ================>-->
+    <!--工艺要求 Stencil-->
+    <script type="text/html" id="purchase_gyyyS">
+        {{d.stencilType || ''}},{{d.stencilSide || ''}}
+    </script>
+    <!--尺寸 Stencil-->
+    <script type="text/html" id="purchase_CCS">
+        {{d.stencilSizeX || ''}}*{{d.stencilSizeY || ''}},{{d.stencilAreaX || ''}}*{{d.stencilAreaY || ''}}
+    </script>
+    <!--利润 Stencil-->
+    <script type="text/html" id="purchase_LRS">
+        {{parseFloat(d.totalStencilFee-d.supplierTotalFee).toFixed(3)}}
+    </script>
+</div>
+
+<script>
+    layui.use('purchase_procurement_detail', layui.factory('purchase_procurement_detail')).use(['purchase_procurement_detail', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>
+<script>
+    layui.data.done = function(d){
+        console.log(d)
+    };
+</script>

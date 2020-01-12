@@ -7,22 +7,10 @@ layui.define(['admin', 'table','setter','form','jquery'], function(exports){
     ,form = layui.form;
 
     form.render(null,'app-content-comment');
-    //监听搜索
-  	form.on('submit(LAY-app-contlist-search)', function(data){
-    	var field = data.field;
-    	console.log(field);
-    	//执行重载
-    	table.reload('process_template_listTab', {
-      		where: field
-    	});
-  	});
 
     table.render({
       elem: '#process_template_listTab'
       ,url: setter.baseUrl+'epc/processtemplate/list'
-      ,where: {
-    		access_token: layui.data('layuiAdmin').access_token
-  	    }
       ,parseData: function (res) {
             return{
                 "code": 0,

@@ -1,0 +1,70 @@
+<title>出货明细</title>
+<div class="layui-fluid">
+    <script type="text/html" template>
+        <div class="outboundDetail">
+            <div class="layui-col-md6">
+                <lable class="layui-form-label">合同号：</lable>
+                <a>{{ d.params.invoiceNo || '' }}</a>
+            </div>
+            <div class="layui-col-md6">
+                <lable class="layui-form-label">订单数：</lable>
+                <a>{{ d.params.quantityPcs || '' }}</a>
+            </div>
+
+            <div class="layui-col-md6">
+                <lable class="layui-form-label">聚谷型号：</lable>
+                <a>{{ d.params.productNo || '' }}</a>
+            </div>
+            <div class="layui-col-md6">
+                <lable class="layui-form-label">已交数：</lable>
+                <a>{{ d.params.finishPcsNumber || '' }}</a>
+            </div>
+
+            <div class="layui-col-md6">
+                <lable class="layui-form-label">未交数：</lable>
+                <a>{{ d.params.finishPcsNumber || '' }}</a>
+            </div>
+
+            <div class="layui-col-md6">
+                <lable class="layui-form-label">国家：</lable>
+                <a>Q6216512121</a>
+            </div>
+            <div class="layui-col-md6">
+                <lable class="layui-form-label">货代：</lable>
+                <a>Q6216512121</a>
+            </div>
+
+            <div class="layui-col-md6">
+                <lable class="layui-form-label">快递公司：</lable>
+                <a>{{ d.params.courierName || '' }}</a>
+            </div>
+            <div class="layui-col-md6">
+                <lable class="layui-form-label">快递单号：</lable>
+                <a>{{ d.params.courierNumber || '' }}</a>
+            </div>
+
+            <div class="layui-col-md6">
+                <lable class="layui-form-label">重量：</lable>
+                <a>Q6216512121</a>
+            </div>
+            <div class="layui-col-md6">
+                <lable class="layui-form-label">发货日期：</lable>
+                <a>Q6216512121</a>
+            </div>
+
+            <div class="layui-col-md6">
+                <lable class="layui-form-label">到货日期：</lable>
+                <a>Q6216512121</a>
+            </div>
+
+            <div class="layui-col-md12">
+                <lable class="layui-form-label">客户型号：</lable>
+                <a>Q6216512121</a>
+            </div>
+        </div>
+    </script>
+</div>
+
+<style>
+    .outboundDetail a{padding: 9px 15px;font-weight: 400;line-height: 20px;display: block;}
+</style>

@@ -1,0 +1,54 @@
+<div class="layui-fluid">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-input-inline" style="width: 100%;">
+                <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-done="layui.data.done(d);" lay-type="post">
+                    <select name="businessInfo" id="user_edit_dep" lay-verify="required" lay-search="">
+                        {{#
+                        var businessId = d.params.businessId;
+                        layui.each(d.data, function(index, item){
+                        }}
+                        <option></option>
+                        <option value="{{ item.userId || ''}},{{item.jobNumber}},{{item.username}}" {{ businessId == item.userId ? 'selected' : ''}}>{{ item.username }}</option>
+                        {{#  }); }}
+                        {{#  if(d.data.length === 0){ }}
+                        无数据
+                        {{#  } }}
+                    </select>
+                </script>
+            </div>
+            <script type="text/html" template="">
+                <input type="text" class="layui-input" value="{{d.params.id}}" style="display: none;" name="id">
+            </script>
+        </div>
+        <div class="layui-form-item" style="display: none;">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-inline">
+                <input type="button" lay-submit lay-filter="conversionCustomer-submit" value="确认" class="layui-btn" id="layuiadmin-app-form-submit">
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+layui.use(['admin', 'table', 'form', 'laydate'], function () {
+    var laydate = layui.laydate,
+        $ = layui.jquery,
+        layer = layui.layer;
+    var form = layui.form;
+    form.render();
+    form.on('submit(conversionCustomer-submit)',function(data){
+        var field = data.field;
+        console.log(field);
+        admin.req({
+            url:setter.baseUrl+'/sys/consumer/user/conversionBusiness',
+            type:'POST',
+            data:field,
+            success:function(data){
+                layui.table.reload('customer_listTab'); //重载表格
+                layer.closeAll(); //执行关闭
+            }
+        });
+    });
+});
+</script>

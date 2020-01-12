@@ -1,0 +1,262 @@
+<title>订单文件管理</title>
+<div class="layui-fluid stencil-edit-info">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+    <!-- <button class="layui-btn layui-btn-xs yszzFile">原始资料==>正式资料</button> -->
+    <table class="layui-table file-mana">
+        <tbody>
+
+        <tr>
+            <td style="width: 15%;">资料：</td>
+            <td>
+                <div class="cc om_uploadPercentage{{ d.params.id }}">
+                    <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe63e;</i>
+                    上传中....
+                    <a>0%</a>
+                </div>
+                <div class="omfile{{d.params.id}}">
+                    {{ d.params.gerberName || '' }}
+                </div>
+            </td>
+            <td style="width: 20%;">
+                <a class="btn-fileupload btn-fileupload{{ d.params.id }}">
+                    <span class="fileupload-btn">
+                        <i class="layui-icon layui-icon-add-1"></i>
+                        <span id="uploadFile_name">
+                            {{# if(d.params.gerberName == null || d.params.gerberName == ''){ }}
+                            添加资料
+                            {{# } else{ }}
+                            修改资料
+                            {{# } }}
+                        </span>
+                        <input type="file" class="om_filewareFilePcb filewareFile{{ d.params.id }}" name="file" multiple/>
+                    </span>
+                </a>
+            </td>
+            <td>
+                <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>
+            </td>
+        </tr>
+
+
+        </tbody>
+    </table>
+    <div style="display: none;">
+        <input type="text" name="dataId" value="{{ d.params.id}}">
+        <input type="text" name="gerberNames" value="{{ d.params.gerberName }}">
+        <input type="text" name="gerberPath" value="{{ d.params.gerberPath }}">
+    </div>
+    </script>
+</div>
+
+<script>
+    layui.data.done = function(d){
+        layui.use(['form', 'jquery', 'admin', 'index', 'element', 'uploadCommon'], function(){
+            var $ = layui.jquery
+                ,setter = layui.setter
+            var uploadCommon = layui.uploadCommon;
+            var $dataId = $("input[name='dataId']").val();  // 行id
+            var $dataGerberName = $("input[name='gerberNames']").val();    // 行gerber名字
+            var $dataGerberPath = $("input[name='gerberPath']").val();    // 行gerber路径
+
+            var $retab = 'epcToolMana_tab';     // 操作成功以后要刷新的表格id
+            var uploadUrl = setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token;  // 文件上传接口;
+            var saveUrl = setter.baseUrl+'epc/tool/update';
+            pcb_omgerberUpload();   // 原始资料修改
+            //pcb_gerberUpload();     // 正式资料上传&修改
+            //pcb_productionUpload(); // 生产资料
+            
+            function pcb_omgerberUpload() {
+                var fileInput = $(".om_filewareFilePcb");
+                var addVersionBtn=$('#addVersionBtn');
+                var cancelUploadBtn=$('#cancelUploadBtn');
+                var speedLab = $("#showSpeed");
+                var url = uploadUrl;        // 上传文件接口
+                var ss,ffile,changeFileTd_dom,removeProcess;
+                ss = ".om_uploadPercentage"+$dataId;
+                ffile = ".omfile"+$dataId;
+                changeFileTd_dom = ".omfile"+ $dataId;
+                removeProcess = ".om_uploadPercentage"+ $dataId;
+                var processBar = $(ss); //div
+                fileInput.change(function () {
+                    var indexFileInput = ".om_filewareFilePcb";
+                    indexFileInput = $(indexFileInput);
+                    var fileObj = indexFileInput.get(0).files[0]; // js获取文件对象
+                    var saveObj = {
+                        data: {'quoteGerberName':fileObj.name,'gerberPath':'','id':$dataId,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
+                        url: saveUrl,      // 将字段保存到数据库的接口
+                        retab: $retab,          // 表格对象，请求成功后重新渲染表格
+                        removeDom: removeProcess,       // 文件上传成功 ==> 要移除的dom对象
+                        ffile: changeFileTd_dom,   // 文件上传成功 ==>  显示新的文件名
+                        type: 0     // type 为0 则为原始资料 1 为正式资料
+                    };
+                    //获取文件上传实例
+                    var upload=uploadCommon.uploadcommon(url,processBar,speedLab,addVersionBtn,cancelUploadBtn, saveObj);
+                    if (fileObj) {
+                        $(".file-tips").text('Gerber Name：' + fileObj.name);
+                        $(ffile).css("display","none");
+                        $(ss).css("display","block");
+                        $(".upload-container").css("display","block");
+                        addVersionBtn.attr('disabled', false);
+                        var file = fileInput.get(0).files[0]
+                        if(file==null){
+                            alert("固件文件不能为空")
+                            return
+                        }
+                        // 创建提交数据
+                        var formData = new FormData();
+                        formData.append('file', fileInput.get(0).files[0]);
+                        // 上传文件
+                        upload.uploadFile(formData, function (e) {
+                            alert(1);
+                            console.log(e);
+                        });
+                    }
+                });
+            }
+            function pcb_gerberUpload(e) {
+                var fileInput = $(".filewareFilePcb");
+                var addVersionBtn=$('#addVersionBtn');
+                var cancelUploadBtn=$('#cancelUploadBtn');
+                var speedLab = $("#showSpeed");
+                var url = uploadUrl;        // 上传文件接口
+                var ss,defbtn,ffile,changeFileTd_dom,removeProcess;
+                ss = ".uploadPercentage"+$dataId;
+                ffile = ".ffile"+$dataId;
+                changeFileTd_dom = ".ffile"+ $dataId;
+                removeProcess = ".uploadPercentage"+ $dataId;
+                var processBar = $(ss); //div
+                fileInput.change(function () {
+                    var indexFileInput = ".filewareFilePcb";
+                    indexFileInput = $(indexFileInput);
+                    var fileObj = indexFileInput.get(0).files[0]; // js获取文件对象
+                    var saveObj = {
+                        data: {'quoteGerberName':fileObj.name,'id':$dataId,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
+                        url: saveUrl,      // 将字段保存到数据库的接口
+                        retab: $retab,          // 表格对象，请求成功后重新渲染表格
+                        removeDom: removeProcess,       // 文件上传成功 ==> 要移除的dom对象
+                        ffile: changeFileTd_dom,     // 文件上传成功 ==>  显示新的文件名
+                        type: 1     // type 为0 则为原始资料 1 为正式资料
+                    };
+                    //获取文件上传实例
+                    var upload=uploadCommon.uploadcommon(url,processBar,speedLab,addVersionBtn,cancelUploadBtn, saveObj);
+                    if (fileObj) {
+                        $(".file-tips").text('Gerber Name：' + fileObj.name);
+                        $(ffile).css("display","none");
+                        $(ss).css("display","block");
+                        $(".upload-container").css("display","block");
+                        addVersionBtn.attr('disabled', false);
+                        var file = fileInput.get(0).files[0]
+                        if(file==null){
+                            alert("固件文件不能为空")
+                            return
+                        }
+                        // 创建提交数据
+                        var formData = new FormData();
+                        formData.append('file', fileInput.get(0).files[0]);
+                        // 上传文件
+                        upload.uploadFile(formData, function (e) {
+
+                        });
+                    }
+                });
+            }
+            // 生产资料上传
+            function pcb_productionUpload (e) {
+                var fileInput = $(".pfilewareFilePcb");
+                var addVersionBtn=$('#addVersionBtn');
+                var cancelUploadBtn=$('#cancelUploadBtn');
+                var speedLab = $("#showSpeed");
+                var url = uploadUrl;        // 上传文件接口
+                var ss,defbtn,pfile,changeFileTd_dom,removeProcess;
+                ss = ".p_uploadPercentage"+$dataId;
+                pfile = ".pfile"+$dataId;
+                changeFileTd_dom = ".pfile"+ $dataId;
+                removeProcess = ".p_uploadPercentage"+ $dataId;
+                var processBar = $(ss); //div
+                fileInput.change(function () {
+                    var indexFileInput = ".pfilewareFilePcb";
+                    indexFileInput = $(indexFileInput);
+                    var fileObj = indexFileInput.get(0).files[0]; // js获取文件对象
+                    var saveObj = {
+                        data: {'quoteGerberName':fileObj.name,'id':$dataId,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
+                        url: saveUrl,      // 将字段保存到数据库的接口
+                        retab: $retab,          // 表格对象，请求成功后重新渲染表格
+                        removeDom: removeProcess,       // 文件上传成功 ==> 要移除的dom对象
+                        ffile: changeFileTd_dom,     // 文件上传成功 ==>  显示新的文件名
+                        type: 2     // type 为0 则为原始资料 1 为正式资料  2 为生产资料
+                    };
+                    //获取文件上传实例
+                    var upload=uploadCommon.uploadcommon(url,processBar,speedLab,addVersionBtn,cancelUploadBtn, saveObj);
+                    if (fileObj) {
+                        $(".file-tips").text('Gerber Name：' + fileObj.name);
+                        $(pfile).css("display","none");
+                        $(ss).css("display","block");
+                        $(".upload-container").css("display","block");
+                        addVersionBtn.attr('disabled', false);
+                        var file = fileInput.get(0).files[0]
+                        if(file==null){
+                            alert("固件文件不能为空");
+                            return;
+                        }
+                        // 创建提交数据
+                        var formData = new FormData();
+                        formData.append('file', fileInput.get(0).files[0]);
+                        // 上传文件
+                        upload.uploadFile(formData, function (e) {
+
+                        });
+                    }
+                });
+            }
+            // 原始资料转正式资料
+            $(".yszzFile").on('click', function () {
+                var postDataA = {};
+                var saveBackResult = layui.data('saveBackResult');
+                var isAddFile = layui.data('saveBackResult').isAddFile;     // 判断是否更改了源文件
+                var htmTx;
+                console.log(saveBackResult);
+                if (!isEmptyObject(saveBackResult) && isAddFile == true) {
+                    postDataA.quoteGerberName = layui.data('saveBackResult').gerberName;
+                    postDataA.quoteGerberPath = layui.data('saveBackResult').gerberPath;
+                    postDataA.id = $dataId;
+                } else {
+                    postDataA.quoteGerberName = $dataGerberName;
+                    postDataA.quoteGerberPath = $dataGerberPath;
+                    postDataA.id = $dataId;
+                }
+                htmTx = postDataA.quoteGerberName;
+                    layer.confirm('确定要把原始资料转为正式资料？', function () {
+                   admin.req({
+                       type: 'post',
+                       data: postDataA,
+                       url:  saveUrl,
+                       success: function (data) {
+                           layer.alert("原始资料已成功转为正式资料！");
+                           $(".ffile"+$dataId).text(htmTx);
+                           table.reload($retab);
+                       }
+                   });
+               });
+            });
+            // 判断json对象是否为空
+            function isEmptyObject(e) {
+                var t;
+                for (t in e)
+                    return !1;
+                return !0
+            }
+
+            });
+    };
+</script>
+
+<style>
+    /*上传文件*/
+    .fileupload-btn{position: relative;cursor: pointer;}
+    .filewareFilePcb,.filewareFileS, .om_filewareFilePcb, .pfilewareFilePcb{position: absolute;opacity: 0;left: -3px;height: 21px;width: 102%;}
+    a.btn-fileupload {background-color: rgb(255, 86, 4);color: #ffffff;padding: 5px;border-radius: 3px;font-size: 0.7em;}
+    .cc{float: left;font-size: 0.9em;background-color: #00FF00;width: 100%;display: none;white-space: nowrap;max-height: 21px;}
+    .newFFile{color: green;}
+    .file-mana tbody>tr>td:last-of-type{width: 10%;text-align: center;cursor: pointer;}
+    .file-mana tbody>tr>td:last-of-type a{color: #009588;}
+</style>

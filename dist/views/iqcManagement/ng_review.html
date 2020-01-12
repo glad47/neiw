@@ -1,0 +1,54 @@
+<title>品质管理-NG评审</title>
+<div class="layui-fluid">
+    <!--卡片－表格信息-->
+    <div class="layui-tab layui-tab-brief" lay-filter="tab-planToger-ng-review">
+        <ul class="layui-tab-title">
+            <li class="layui-this">PCB订单</li>
+            <li>钢网订单</li>
+            <li>SMT订单</li>
+        </ul>
+        <div class="layui-tab-content">
+            <!--PCB订单-->
+            <div class="layui-tab-item layui-show">
+                <table class="layui-table" id="iqcMana_ngReview" lay-filter="iqcMana_ngReview"></table>
+                <!-- <script type="text/html" id="ord_sqpManaPlan_tb">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="submit">通知出货</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="innerLable">内标签</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="outLable">外标签</button>
+                    </div>
+                </script> -->
+                <script type="text/html" id="iqcManaNgveiw_tabbar_ngReview">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">评审</a>
+                    <!-- <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="search">查看明细</a> -->
+                </script>
+            </div>
+            <!--钢网订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table" id="iqcMana_ngReviewS" lay-filter="iqcMana_ngReviewS"></table>
+                <!-- <script type="text/html" id="ord_sqpManaPlan_tbS">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="submit">通知出货</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="innerLable">内标签</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="outLable">外标签</button>
+                    </div>
+                </script> -->
+                <script type="text/html" id="iqcManaNgveiw_tabbar_ngReviewS">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">评审</a>
+                    <!-- <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="search">查看明细</a> -->
+                </script>
+            </div>
+            <!--SMT订单-->
+            <div class="layui-tab-item">
+                <table class="layui-table"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('iqcMana_ng_review', layui.factory('iqcMana_ng_review')).use(['iqcMana_ng_review', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>

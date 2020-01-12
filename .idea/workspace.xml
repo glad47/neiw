@@ -1,240 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="" />
-    <ignored path="$PROJECT_DIR$/.tmp/" />
-    <ignored path="$PROJECT_DIR$/temp/" />
-    <ignored path="$PROJECT_DIR$/tmp/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
+    <list default="true" id="f09f7912-676e-4256-8eb9-8e47cae964dd" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/market_insideContract.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/market_insideContract.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/views/marketManagement/inside_contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/views/marketManagement/inside_contract.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/market_insideContract.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/market_insideContract.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/epcManagement/iframeWindow/file_management.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/epcManagement/iframeWindow/file_management.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7008032">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="sys_menuAdd.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuAdd.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="156">
-                  <caret line="31" column="107" selection-start-line="31" selection-start-column="100" selection-end-line="31" selection-end-column="107" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="user_edit_info.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/user_edit_info.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="156">
-                  <caret line="112" column="81" selection-start-line="112" selection-start-column="81" selection-end-line="112" selection-end-column="81" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="sys_menu.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/sys_menu.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="116">
-                  <caret line="131" column="53" selection-start-line="131" selection-start-column="53" selection-end-line="131" selection-end-column="53" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="order_review.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/order_review.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="275">
-                  <caret line="87" column="54" selection-start-line="87" selection-start-column="54" selection-end-line="87" selection-end-column="54" />
-                  <folding>
-                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#button#0;n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="outgoing_quote.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/scmManagement/outgoing_quote.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="156">
-                  <caret line="87" column="83" selection-start-line="87" selection-start-column="83" selection-end-line="87" selection-end-column="83" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="reg.html" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/views/user/reg.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="163">
-                  <caret line="83" column="22" lean-forward="true" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="no_payment.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/no_payment.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="275">
-                  <caret line="87" column="29" lean-forward="true" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="54" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ok_payment.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/ok_payment.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="275">
-                  <caret line="86" column="54" selection-start-line="86" selection-start-column="54" selection-end-line="86" selection-end-column="54" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Indicator_card.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="78" column="54" lean-forward="true" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="54" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/config.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="277">
-                  <caret line="46" column="4" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/layout.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1360">
-                  <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="supplier_info.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/infoManagement/supplier_info.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1564">
-                  <caret line="92" column="20" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="market_orderOkPayment.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/controller/market_orderOkPayment.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="799">
-                  <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="market_orderReview.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/controller/market_orderReview.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="154">
-                  <caret line="235" column="39" lean-forward="true" selection-start-line="235" selection-start-column="39" selection-end-line="235" selection-end-column="39" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="order_review.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/views/marketManagement/order_review.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1972">
-                  <caret line="116" column="29" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
-                  <folding>
-                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#button#0;n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="TypeScript File" />
+        <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="HTML File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>renderJson</find>
-      <find>lay-verify=&quot;required&quot;</find>
-      <find>title</find>
-      <find>确定</find>
-      <find>锁定</find>
-      <find>确定退回订单</find>
-      <find>ok_payment</find>
-      <find>confirm</find>
-      <find>提交</find>
-      <find>已提交</find>
-      <find>lay-event=&quot;pcb-sendback&quot;</find>
-      <find>Tabtb-orpcb</find>
-      <find>orstencil</find>
-      <find>pcb-sendback</find>
-      <find>or_Tabpcb_no_payment</find>
-      <find>Tabtb</find>
-      <find>layui-this</find>
-      <find>pcbor_status</find>
-      <find>media</find>
-      <find>手机</find>
-      <find>ajax</find>
-      <find>token</find>
-      <find>失效</find>
-      <find>192.168.0.155:8080</find>
-      <find>setter.baseUrl</find>
-      <find>192.168</find>
-      <find>192.</find>
-      <find>192</find>
-      <find>192.1</find>
-      <find>192.168.0.155</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>useredit_role</replace>
-      <replace>&lt;span class=&quot;mandatory&quot;&gt;*&lt;/span&gt;</replace>
-      <replace>120</replace>
-      <replace>d.params.evaluateDdelivery</replace>
-      <replace>d.params.evaluateQuality</replace>
-      <replace>d.params.evaluateCompatibility</replace>
-      <replace>d.params.evaluateRate</replace>
-      <replace>menu_add</replace>
-      <replace>, align</replace>
-      <replace>layui-col-md4</replace>
-      <replace>{{ d.params.material || '' }}</replace>
-      <replace>d.params.material</replace>
-      <replace>d.params.cti</replace>
-      <replace>d.params.finishThickness</replace>
-      <replace>outerLayerCopper</replace>
-      <replace>pthCopper</replace>
-      <replace>solderMaskTopColor</replace>
-      <replace>viaProcess</replace>
-      <replace>solderMaskBotColor</replace>
-      <replace>LAY-pcborder-update-submit</replace>
-      <replace>order_pcb_search</replace>
-      <replace />
-    </replaceStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$/src/views/marketManagement/iframeWindow</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -243,193 +31,90 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuEdit.html" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuSearch.html" />
-        <option value="$PROJECT_DIR$/start/json/menu.js" />
-        <option value="$PROJECT_DIR$/start/selectMenu.js" />
-        <option value="$PROJECT_DIR$/start/index.html" />
-        <option value="$PROJECT_DIR$/src/lib/view.js" />
-        <option value="$PROJECT_DIR$/src/controller/console.js" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_edit.html" />
-        <option value="$PROJECT_DIR$/src/controller/info_management.js" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/marketMana/order_review.html" />
-        <option value="$PROJECT_DIR$/src/controller/mar.js" />
-        <option value="$PROJECT_DIR$/src/controller/sys_supplier.js" />
-        <option value="$PROJECT_DIR$/src/controller/sys_coustomer.js" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/renderEdit/a.js" />
-        <option value="$PROJECT_DIR$/src/controller/permissions.js" />
-        <option value="$PROJECT_DIR$/src/views/customerManagement/customer_info.html" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/user_info.html" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/supplier_info.html" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/role.html" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/customer_info.html" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/dept.html" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/sys_menu.html" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_search.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_review_search.html" />
-        <option value="$PROJECT_DIR$/src/controller/mobileterminal.js" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderOffer_update.html" />
-        <option value="$PROJECT_DIR$/src/controller/sys_user.js" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderStencil_update.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_stencil_detail.html" />
-        <option value="$PROJECT_DIR$/src/controller/user_edit_info.js" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/customer_edit_info.html" />
-        <option value="$PROJECT_DIR$/src/controller/market_orderReview.js" />
-        <option value="$PROJECT_DIR$/src/controller/market_orderNoPayment.js" />
-        <option value="$PROJECT_DIR$/src/controller/market_orderOkPayment.js" />
-        <option value="$PROJECT_DIR$/src/style/admin.css" />
-        <option value="$PROJECT_DIR$/src/controller/epc_indicatorCard.js" />
-        <option value="$PROJECT_DIR$/src/views/user/login.html" />
-        <option value="$PROJECT_DIR$/src/controller/sys_menu.js" />
-        <option value="$PROJECT_DIR$/src/views/user/reg.html" />
-        <option value="$PROJECT_DIR$/src/views/layout.html" />
-        <option value="$PROJECT_DIR$/src/sys_menu.js" />
-        <option value="$PROJECT_DIR$/src/config.js" />
-        <option value="$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuAdd.html" />
-        <option value="$PROJECT_DIR$/src/views/infoManagement/iframeWindow/user_edit_info.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/no_payment.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/ok_payment.html" />
-        <option value="$PROJECT_DIR$/src/views/marketManagement/order_review.html" />
-        <option value="$PROJECT_DIR$/src/views/scmManagement/outgoing_quote.html" />
-      </list>
-    </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/node_modules" />
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths>
-      <path value="$PROJECT_DIR$/package.json" />
-    </packageJsonPaths>
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="2" />
-    <option name="y" value="23" />
-    <option name="width" value="1858" />
-    <option name="height" value="1057" />
-  </component>
+  <component name="ProjectId" id="1Vh3m2NtBeITA8dsZwmVAyPTUNR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="epcManagement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="marketManagement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ERP-PCBOnline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ERP-PCBOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ChangesTree.GroupingKeys" value="directory" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SearchEverywhereHistoryKey" value="market_orderNoPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderNoPayment.js&#10;no_&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/no_payment.html&#10;market_orderOkPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderOkPayment.js&#10;ok_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/ok_payment.html&#10;permissions&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/permissions.js" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SearchEverywhereHistoryKey" value="quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;inside&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;layou&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/layout.html&#10;market_orderOkPayment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_orderOkPayment.js&#10;ok_payment&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/ok_payment.html&#10;inside-quote.css&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/style/inside-quote.css&#10;ins&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;layui&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/start/layui/layui.all.js&#10;outbound_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_outbound_order.js&#10;orderStencil_updateB&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderStencil_updateB.html&#10;market_internalQuote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_internalQuote.js&#10;internal_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/internal_quote.html&#10;quote.js&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/quote.js&#10;config&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/config.js&#10;epc_indicatorCard&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/epc_indicatorCard.js&#10;Indicator_card&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/epcManagement/Indicator_card.html&#10;file&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/lib/extend/filePathProcess.js&#10;order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderPCB_update.html&#10;outbound_info&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/productManagement/iframeWindow/outbound_info.html&#10;proMana_outbound_order&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_outbound_order.js&#10;order_pcb&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/order_pcb_detail.html&#10;contractA&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/quote_contractA.html&#10;inside_quo&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_quote.html&#10;inside_q&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/dist/views/marketManagement/inside_quote.html&#10;market_insideContract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/market_insideContract.js&#10;inside_contract&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/inside_contract.html&#10;orderPCB_update&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderPCB_update.html&#10;customer_info&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/infoManagement/iframeWindow/customer_edit_info.html&#10;sqeMana_plan_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sqeMana_plan_together.js&#10;plan_together&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/plan_together.html&#10;dict&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sys_dict.js&#10;proMa&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_mantissa_management.js&#10;mantissa_management&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/productManagement/mantissa_management.html&#10;proMana_mantissa_management&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/proMana_mantissa_management.js&#10;iqcMana_incoming_auditor&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/iqcMana_incoming_auditor.js&#10;incoming_auditor&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/iqcManagement/incoming_auditor.html&#10;order_together_edit&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/sqeManagement/iframeWindow/order_together_edit.html&#10;sqeMana_shipmen&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sqeMana_shipment_together.js&#10;sys_supplier&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/sys_supplier.js&#10;supplier_info&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/infoManagement/supplier_info.html&#10;scm_outgoingQuote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/scm_outgoingQuote.js&#10;outgoing_quote&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/scmManagement/outgoing_quote.html&#10;import_pcbInfoReOreder&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/views/marketManagement/iframeWindow/import_pcbInfoReOreder.html&#10;finMana_paypal_log&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/finMana_paypal_log.js&#10;paypal_log&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/dist/views/finManagement/paypal_log.html&#10;finMana_order_profits&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/finMana_order_profits.js&#10;order_profits&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/dist/views/finManagement/order_profits.html&#10;iqcMana_ng_review&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/iqcMana_ng_review.js&#10;ng_review&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/dist/views/iqcManagement/ng_review.html&#10;iqcMana_incoming_detail&#9;FILE&#9;file:///Users/mc/WebstormProjects/ERP-PCBOnline/src/controller/iqcMana_incoming_detail.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/views/infoManagement/customer_info.html" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/controller" />
+      <recent name="$PROJECT_DIR$/src/lib/extend" />
       <recent name="$PROJECT_DIR$/src/style" />
+      <recent name="$PROJECT_DIR$/src/style/res/template" />
+      <recent name="$PROJECT_DIR$/src/style/res" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/views" />
-      <recent name="$PROJECT_DIR$/src/style/res" />
-      <recent name="$PROJECT_DIR$/start/json" />
-      <recent name="$PROJECT_DIR$/src/views/infoManagement" />
+      <recent name="$PROJECT_DIR$/src/views/marketManagement/iframeWindow" />
+      <recent name="$PROJECT_DIR$/src/lib/extend" />
+      <recent name="$PROJECT_DIR$/src/views/sqeManagement/iframeWindow" />
+      <recent name="$PROJECT_DIR$/src/controller" />
+      <recent name="$PROJECT_DIR$/src/views/marketManagement" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="JavaScript Debug.login.html">
-    <configuration name="login.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:8089/ERP-PCBOnline/src/views/user/login.html" />
-    <configuration name="no_payment.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:8089/ERP-PCBOnline/src/views/marketManagement/no_payment.html" />
-    <configuration name="market_orderReview.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="market_orderReview.js" working-dir="$PROJECT_DIR$/src/controller" />
-    <configuration name="sys_supplier.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="sys_supplier.js" working-dir="$PROJECT_DIR$/src/controller" />
+  <component name="RunManager" selected="JavaScript Debug.orderStencil_updateB.html">
+    <configuration name="orderStencil_updateB.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8089/ERP-PCBOnline/src/views/marketManagement/iframeWindow/orderStencil_updateB.html">
+      <method v="2" />
+    </configuration>
+    <configuration name="quotation_together_pcb.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8089/ERP-PCBOnline/src/views/sqeManagement/iframeWindow/quotation_together_pcb.html">
+      <method v="2" />
+    </configuration>
+    <configuration name="filePathProcess.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="filePathProcess.js" working-dir="$PROJECT_DIR$/src/lib/extend">
+      <method v="2" />
+    </configuration>
+    <configuration name="quote.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="quote.js" working-dir="$PROJECT_DIR$/src/controller">
+      <method v="2" />
+    </configuration>
+    <configuration name="scmMana_outContract.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/controller/scmMana_outContract.js" working-dir="$PROJECT_DIR$/src/controller">
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Node.js.market_orderReview.js" />
-      <item itemvalue="JavaScript Debug.no_payment.html" />
-      <item itemvalue="Node.js.sys_supplier.js" />
-      <item itemvalue="JavaScript Debug.login.html" />
+      <item itemvalue="JavaScript Debug.quotation_together_pcb.html" />
+      <item itemvalue="JavaScript Debug.orderStencil_updateB.html" />
+      <item itemvalue="Node.js.quote.js" />
+      <item itemvalue="Node.js.scmMana_outContract.js" />
+      <item itemvalue="Node.js.filePathProcess.js" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.login.html" />
-        <item itemvalue="Node.js.market_orderReview.js" />
-        <item itemvalue="Node.js.sys_supplier.js" />
-        <item itemvalue="JavaScript Debug.no_payment.html" />
+        <item itemvalue="JavaScript Debug.orderStencil_updateB.html" />
+        <item itemvalue="Node.js.filePathProcess.js" />
+        <item itemvalue="JavaScript Debug.quotation_together_pcb.html" />
+        <item itemvalue="Node.js.scmMana_outContract.js" />
+        <item itemvalue="Node.js.quote.js" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -497,356 +182,578 @@
       <workItem from="1545185328546" duration="183000" />
       <workItem from="1545271665984" duration="437000" />
       <workItem from="1545448412601" duration="2341000" />
-      <workItem from="1545621481987" duration="2574000" />
+      <workItem from="1545621481987" duration="5175000" />
+      <workItem from="1545805665368" duration="559000" />
+      <workItem from="1546487727284" duration="20961000" />
+      <workItem from="1546524320889" duration="33000" />
+      <workItem from="1546564270477" duration="6067000" />
+      <workItem from="1546572193004" duration="369000" />
+      <workItem from="1546588466746" duration="998000" />
+      <workItem from="1546917817644" duration="177000" />
+      <workItem from="1547601354170" duration="1313000" />
+      <workItem from="1547879141731" duration="3995000" />
+      <workItem from="1548038859092" duration="9797000" />
+      <workItem from="1548118301881" duration="25288000" />
+      <workItem from="1548162996349" duration="7000" />
+      <workItem from="1548205454614" duration="31129000" />
+      <workItem from="1548291968580" duration="12017000" />
+      <workItem from="1548377710514" duration="25215000" />
+      <workItem from="1548465238587" duration="32143000" />
+      <workItem from="1548551406953" duration="16782000" />
+      <workItem from="1548591528888" duration="134000" />
+      <workItem from="1549933974166" duration="3960000" />
+      <workItem from="1549961140634" duration="610000" />
+      <workItem from="1550021493375" duration="17174000" />
+      <workItem from="1550106170525" duration="18525000" />
+      <workItem from="1550192381329" duration="18519000" />
+      <workItem from="1550278713349" duration="21327000" />
+      <workItem from="1550452032335" duration="21789000" />
+      <workItem from="1550538198870" duration="23222000" />
+      <workItem from="1550624994152" duration="19349000" />
+      <workItem from="1550720537106" duration="9749000" />
+      <workItem from="1550797720387" duration="4224000" />
+      <workItem from="1550815828298" duration="9114000" />
+      <workItem from="1551056721318" duration="15821000" />
+      <workItem from="1551143532627" duration="8098000" />
+      <workItem from="1551161247158" duration="14762000" />
+      <workItem from="1551229369467" duration="9311000" />
+      <workItem from="1551243963552" duration="18331000" />
+      <workItem from="1551316000019" duration="27870000" />
+      <workItem from="1551402802874" duration="19875000" />
+      <workItem from="1551661092991" duration="26808000" />
+      <workItem from="1551748378745" duration="9745000" />
+      <workItem from="1551834531569" duration="28618000" />
+      <workItem from="1551920642004" duration="25211000" />
+      <workItem from="1552007237165" duration="23059000" />
+      <workItem from="1552094114888" duration="12914000" />
+      <workItem from="1552266390084" duration="18002000" />
+      <workItem from="1552352275695" duration="25884000" />
+      <workItem from="1552439334406" duration="22378000" />
+      <workItem from="1552525762556" duration="24801000" />
+      <workItem from="1552612521695" duration="25467000" />
+      <workItem from="1552698514117" duration="9321000" />
+      <workItem from="1552726403633" duration="7891000" />
+      <workItem from="1552871010300" duration="26236000" />
+      <workItem from="1552957731993" duration="22092000" />
+      <workItem from="1553043761669" duration="20867000" />
+      <workItem from="1553130898137" duration="22962000" />
+      <workItem from="1553216715460" duration="21943000" />
+      <workItem from="1553475887951" duration="22441000" />
+      <workItem from="1553562106516" duration="29094000" />
+      <workItem from="1553649999960" duration="18067000" />
+      <workItem from="1553735287301" duration="22453000" />
+      <workItem from="1553821908976" duration="1638000" />
+      <workItem from="1553841970194" duration="13204000" />
+      <workItem from="1553907921236" duration="24156000" />
+      <workItem from="1554080796191" duration="9009000" />
+      <workItem from="1554167770484" duration="12038000" />
+      <workItem from="1554253471432" duration="34356000" />
+      <workItem from="1554299985373" duration="13000" />
+      <workItem from="1554340284726" duration="7488000" />
+      <workItem from="1554685475686" duration="8940000" />
+      <workItem from="1554772080307" duration="14806000" />
+      <workItem from="1554858672486" duration="19532000" />
+      <workItem from="1554945003458" duration="17779000" />
+      <workItem from="1555031515327" duration="36135000" />
+      <workItem from="1555290667027" duration="3364000" />
+      <workItem from="1555296606286" duration="14047000" />
+      <workItem from="1555378386328" duration="16839000" />
+      <workItem from="1555465072119" duration="54668000" />
+      <workItem from="1556157603712" duration="1620000" />
+      <workItem from="1556159905615" duration="17869000" />
+      <workItem from="1556192170794" duration="28951000" />
+      <workItem from="1556336534820" duration="8570000" />
+      <workItem from="1556416109453" duration="16132000" />
+      <workItem from="1556500132678" duration="22412000" />
+      <workItem from="1556585994107" duration="13864000" />
+      <workItem from="1557019263818" duration="363000" />
+      <workItem from="1557022065490" duration="5534000" />
+      <workItem from="1557106902274" duration="1974000" />
+      <workItem from="1557127527977" duration="3810000" />
+      <workItem from="1557283995354" duration="6952000" />
+      <workItem from="1557315965149" duration="83000" />
+      <workItem from="1557365732542" duration="8228000" />
+      <workItem from="1557456475419" duration="2849000" />
+      <workItem from="1557482422316" duration="1244000" />
+      <workItem from="1557484416534" duration="3199000" />
+      <workItem from="1557540576585" duration="5255000" />
+      <workItem from="1557556501685" duration="3168000" />
+      <workItem from="1557571904880" duration="1386000" />
+      <workItem from="1557833035114" duration="931000" />
+      <workItem from="1557890057131" duration="2588000" />
+      <workItem from="1557920498228" duration="691000" />
+      <workItem from="1557968669051" duration="290000" />
+      <workItem from="1557981425631" duration="2072000" />
+      <workItem from="1558055329650" duration="3178000" />
+      <workItem from="1558319601220" duration="13445000" />
+      <workItem from="1558352208687" duration="1758000" />
+      <workItem from="1558405702102" duration="82364000" />
+      <workItem from="1558920757788" duration="36147000" />
+      <workItem from="1559179205110" duration="22253000" />
+      <workItem from="1559525543133" duration="14797000" />
+      <workItem from="1559610506604" duration="42395000" />
+      <workItem from="1559823554455" duration="483000" />
+      <workItem from="1560128785705" duration="12873000" />
+      <workItem from="1560215190540" duration="10303000" />
+      <workItem from="1560314484780" duration="24499000" />
+      <workItem from="1560502707150" duration="4802000" />
+      <workItem from="1560825531199" duration="27885000" />
+      <workItem from="1560997432550" duration="3845000" />
+      <workItem from="1561012816110" duration="8119000" />
+      <workItem from="1561079916908" duration="1914000" />
+      <workItem from="1561102078226" duration="7698000" />
+      <workItem from="1561444337785" duration="8786000" />
+      <workItem from="1561516886732" duration="4157000" />
+      <workItem from="1561534984806" duration="593000" />
+      <workItem from="1561537137258" duration="5463000" />
+      <workItem from="1561598574494" duration="7106000" />
+      <workItem from="1561626314377" duration="1747000" />
+      <workItem from="1561690497001" duration="7536000" />
+      <workItem from="1561723723458" duration="1864000" />
+      <workItem from="1561945537739" duration="1591000" />
+      <workItem from="1561968442244" duration="451000" />
+      <workItem from="1561977731071" duration="1647000" />
+      <workItem from="1562029647135" duration="290000" />
+      <workItem from="1562033916168" duration="13644000" />
+      <workItem from="1562117104823" duration="3536000" />
+      <workItem from="1562316697548" duration="424000" />
+      <workItem from="1562321069428" duration="5297000" />
+      <workItem from="1562382827830" duration="4264000" />
+      <workItem from="1562402896046" duration="3329000" />
+      <workItem from="1562548633692" duration="23000" />
+      <workItem from="1562665667998" duration="2529000" />
+      <workItem from="1562673328426" duration="37000" />
+      <workItem from="1562673377567" duration="3265000" />
+      <workItem from="1562730118776" duration="9259000" />
+      <workItem from="1562750878225" duration="30000" />
+      <workItem from="1562752751941" duration="2209000" />
+      <workItem from="1562755783323" duration="26000" />
+      <workItem from="1562755829402" duration="4000" />
+      <workItem from="1562813210539" duration="1681000" />
+      <workItem from="1562843539592" duration="1129000" />
+      <workItem from="1563177684231" duration="401000" />
+      <workItem from="1563245052485" duration="11061000" />
+      <workItem from="1563272514536" duration="621000" />
+      <workItem from="1563338221049" duration="4336000" />
+      <workItem from="1563359288873" duration="148000" />
+      <workItem from="1563363227313" duration="2028000" />
+      <workItem from="1563422748573" duration="1184000" />
+      <workItem from="1563433648392" duration="2914000" />
+      <workItem from="1563440003961" duration="1090000" />
+      <workItem from="1563446912043" duration="749000" />
+      <workItem from="1563519032006" duration="2524000" />
+      <workItem from="1563530527506" duration="17251000" />
+      <workItem from="1563610317915" duration="1152000" />
+      <workItem from="1563614769851" duration="1789000" />
+      <workItem from="1563778604754" duration="1741000" />
+      <workItem from="1563870882402" duration="15637000" />
+      <workItem from="1563953279613" duration="702000" />
+      <workItem from="1563965140597" duration="4587000" />
+      <workItem from="1564027165403" duration="1413000" />
+      <workItem from="1564479129022" duration="2112000" />
+      <workItem from="1564796280011" duration="19000" />
+      <workItem from="1564796414105" duration="9318000" />
+      <workItem from="1564823748595" duration="6326000" />
+      <workItem from="1564967319576" duration="2229000" />
+      <workItem from="1564993210351" duration="241000" />
+      <workItem from="1565058234294" duration="57000" />
+      <workItem from="1565144828908" duration="1939000" />
+      <workItem from="1565248544759" duration="3104000" />
+      <workItem from="1565254505358" duration="2096000" />
+      <workItem from="1565592974103" duration="3937000" />
+      <workItem from="1565695533529" duration="7967000" />
+      <workItem from="1565861012685" duration="5250000" />
+      <workItem from="1566033728409" duration="842000" />
+      <workItem from="1566179838078" duration="265000" />
+      <workItem from="1566210410198" duration="2039000" />
+      <workItem from="1566353735443" duration="5014000" />
+      <workItem from="1566558078014" duration="3057000" />
+      <workItem from="1566781646488" duration="7705000" />
+      <workItem from="1566892720794" duration="651000" />
+      <workItem from="1566955641318" duration="72000" />
+      <workItem from="1566961877702" duration="578000" />
+      <workItem from="1566989590633" duration="6960000" />
+      <workItem from="1567146261855" duration="1318000" />
+      <workItem from="1567220761974" duration="167000" />
+      <workItem from="1567393778898" duration="1081000" />
+      <workItem from="1567409218972" duration="9650000" />
+      <workItem from="1567474940746" duration="609000" />
+      <workItem from="1567481112406" duration="1983000" />
+      <workItem from="1567483430990" duration="1986000" />
+      <workItem from="1567678265492" duration="1260000" />
+      <workItem from="1567680193833" duration="222000" />
+      <workItem from="1567680833039" duration="91000" />
+      <workItem from="1567681309996" duration="2574000" />
+      <workItem from="1567757576889" duration="3425000" />
+      <workItem from="1567762816672" duration="1115000" />
+      <workItem from="1567991546228" duration="450000" />
+      <workItem from="1567996980134" duration="3995000" />
+      <workItem from="1568029002626" duration="341000" />
+      <workItem from="1568078601909" duration="131000" />
+      <workItem from="1568167553013" duration="1112000" />
+      <workItem from="1568269129036" duration="1970000" />
+      <workItem from="1568596557815" duration="303000" />
+      <workItem from="1568615024877" duration="1519000" />
+      <workItem from="1568705779600" duration="15149000" />
+      <workItem from="1568951322170" duration="4148000" />
+      <workItem from="1568977268003" duration="908000" />
+      <workItem from="1569201658840" duration="1075000" />
+      <workItem from="1569310220843" duration="2394000" />
+      <workItem from="1569392401455" duration="522000" />
+      <workItem from="1569393106709" duration="776000" />
+      <workItem from="1569488216089" duration="264000" />
+      <workItem from="1569570429821" duration="2844000" />
+      <workItem from="1569658626116" duration="1365000" />
+      <workItem from="1569738753148" duration="366000" />
+      <workItem from="1570780470335" duration="16938000" />
+      <workItem from="1571035572412" duration="7791000" />
+      <workItem from="1577691661008" duration="3613000" />
     </task>
-    <task id="LOCAL-00006" summary="显示菜单">
-      <created>1537949147699</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
+    <task id="LOCAL-00339" summary="1、确认生产资料字段&#10;2、pcb订单编辑表单提交代码统一到弹出页">
+      <created>1564653565702</created>
+      <option name="number" value="00339" />
+      <option name="presentableId" value="LOCAL-00339" />
       <option name="project" value="LOCAL" />
-      <updated>1537949147699</updated>
+      <updated>1564653565703</updated>
     </task>
-    <task id="LOCAL-00007" summary="permission.js 获取权限标示，每个页面加载自动加载这个js&#10;layuiout.htm请求类两次同名接口">
-      <created>1537961264479</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
+    <task id="LOCAL-00340" summary="gulp">
+      <created>1564831096594</created>
+      <option name="number" value="00340" />
+      <option name="presentableId" value="LOCAL-00340" />
       <option name="project" value="LOCAL" />
-      <updated>1537961264479</updated>
+      <updated>1564831096595</updated>
     </task>
-    <task id="LOCAL-00008" summary="显示菜单">
-      <created>1538048027073</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
+    <task id="LOCAL-00341" summary="pcb订单编辑显示材料、手动更改材料。报价页材料默认为none；生产通知单 显示材料信息">
+      <created>1565145871944</created>
+      <option name="number" value="00341" />
+      <option name="presentableId" value="LOCAL-00341" />
       <option name="project" value="LOCAL" />
-      <updated>1538048027073</updated>
+      <updated>1565145871945</updated>
     </task>
-    <task id="LOCAL-00009" summary="菜单和编辑菜单本地json（离线测试用）">
-      <created>1538048384054</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
+    <task id="LOCAL-00342" summary="1">
+      <created>1565146112351</created>
+      <option name="number" value="00342" />
+      <option name="presentableId" value="LOCAL-00342" />
       <option name="project" value="LOCAL" />
-      <updated>1538048384054</updated>
+      <updated>1565146112351</updated>
     </task>
-    <task id="LOCAL-00010" summary="1、菜单显示类型（数字转换为字符串）&#10;2、编辑菜单，判断点击菜单的类型自动选择tab标签">
-      <created>1538106518078</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
+    <task id="LOCAL-00343" summary="1">
+      <created>1565146508266</created>
+      <option name="number" value="00343" />
+      <option name="presentableId" value="LOCAL-00343" />
       <option name="project" value="LOCAL" />
-      <updated>1538106518078</updated>
+      <updated>1565146508267</updated>
     </task>
-    <task id="LOCAL-00011" summary="菜单：目录－菜单－按钮添加">
-      <created>1538139596896</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
+    <task id="LOCAL-00344" summary="登录验证码错误bug解决，回车登录。封装获取url参数方法">
+      <created>1565251503291</created>
+      <option name="number" value="00344" />
+      <option name="presentableId" value="LOCAL-00344" />
       <option name="project" value="LOCAL" />
-      <updated>1538139596896</updated>
+      <updated>1565251503292</updated>
     </task>
-    <task id="LOCAL-00012" summary="解决添加菜单需要点击下拉才能成功添加的bug">
-      <created>1538707112486</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
+    <task id="LOCAL-00345" summary="采购合同供应商编号不显示bug解决">
+      <created>1565256542509</created>
+      <option name="number" value="00345" />
+      <option name="presentableId" value="LOCAL-00345" />
       <option name="project" value="LOCAL" />
-      <updated>1538707112486</updated>
+      <updated>1565256542509</updated>
     </task>
-    <task id="LOCAL-00013" summary="菜单添加无bug版">
-      <created>1538734797891</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
+    <task id="LOCAL-00346" summary="1">
+      <created>1565595683615</created>
+      <option name="number" value="00346" />
+      <option name="presentableId" value="LOCAL-00346" />
       <option name="project" value="LOCAL" />
-      <updated>1538734797891</updated>
+      <updated>1565595683616</updated>
     </task>
-    <task id="LOCAL-00014" summary="菜单修改完成">
-      <created>1538740830967</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
+    <task id="LOCAL-00347" summary="1">
+      <created>1565605814602</created>
+      <option name="number" value="00347" />
+      <option name="presentableId" value="LOCAL-00347" />
       <option name="project" value="LOCAL" />
-      <updated>1538740830967</updated>
+      <updated>1565605814602</updated>
     </task>
-    <task id="LOCAL-00015" summary="添加按钮判断。表单类型判断(undefinded清除表单内容)">
-      <created>1538795301363</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
+    <task id="LOCAL-00348" summary="责任书条款添加">
+      <created>1565607686652</created>
+      <option name="number" value="00348" />
+      <option name="presentableId" value="LOCAL-00348" />
       <option name="project" value="LOCAL" />
-      <updated>1538795301363</updated>
+      <updated>1565607686652</updated>
     </task>
-    <task id="LOCAL-00016" summary="1、显示用户名&#10;2、顶部导航修改&#10;3、图标修改（登录页面－左侧导航小图标－网页ico图标）">
-      <created>1538815920027</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
+    <task id="LOCAL-00349" summary="内部报价，重复订单型号不变">
+      <created>1565695928752</created>
+      <option name="number" value="00349" />
+      <option name="presentableId" value="LOCAL-00349" />
       <option name="project" value="LOCAL" />
-      <updated>1538815920027</updated>
+      <updated>1565695928753</updated>
     </task>
-    <task id="LOCAL-00017" summary="删除菜单">
-      <created>1538820346051</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
+    <task id="LOCAL-00350" summary="+1">
+      <created>1565696346618</created>
+      <option name="number" value="00350" />
+      <option name="presentableId" value="LOCAL-00350" />
       <option name="project" value="LOCAL" />
-      <updated>1538820346051</updated>
+      <updated>1565696346619</updated>
     </task>
-    <task id="LOCAL-00018" summary="小bug">
-      <created>1538822972330</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
+    <task id="LOCAL-00351" summary="++1">
+      <created>1565696767558</created>
+      <option name="number" value="00351" />
+      <option name="presentableId" value="LOCAL-00351" />
       <option name="project" value="LOCAL" />
-      <updated>1538822972331</updated>
+      <updated>1565696767558</updated>
     </task>
-    <task id="LOCAL-00019" summary="1">
-      <created>1538823379987</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
+    <task id="LOCAL-00352" summary="+++1">
+      <created>1565697626480</created>
+      <option name="number" value="00352" />
+      <option name="presentableId" value="LOCAL-00352" />
       <option name="project" value="LOCAL" />
-      <updated>1538823379987</updated>
+      <updated>1565697626480</updated>
     </task>
-    <task id="LOCAL-00020" summary="供应商信息管理（未完成）">
-      <created>1538910691170</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
+    <task id="LOCAL-00353" summary="报价页二次报价订单类型判断">
+      <created>1565748938789</created>
+      <option name="number" value="00353" />
+      <option name="presentableId" value="LOCAL-00353" />
       <option name="project" value="LOCAL" />
-      <updated>1538910691170</updated>
+      <updated>1565748938789</updated>
     </task>
-    <task id="LOCAL-00021" summary="供应商信息添加，编辑存在bug未完成">
-      <created>1539000102066</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
+    <task id="LOCAL-00354" summary="供应商+ 物料">
+      <created>1565774242507</created>
+      <option name="number" value="00354" />
+      <option name="presentableId" value="LOCAL-00354" />
       <option name="project" value="LOCAL" />
-      <updated>1539000102066</updated>
+      <updated>1565774242645</updated>
     </task>
-    <task id="LOCAL-00022" summary="供应商信息编辑、删除&#10;layui版本升级2.4.3">
-      <created>1539068481488</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
+    <task id="LOCAL-00355" summary="供应商+ 物料">
+      <created>1565774369984</created>
+      <option name="number" value="00355" />
+      <option name="presentableId" value="LOCAL-00355" />
       <option name="project" value="LOCAL" />
-      <updated>1539068481488</updated>
+      <updated>1565774369985</updated>
     </task>
-    <task id="LOCAL-00023" summary="用户信息的显示">
-      <created>1539085103629</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
+    <task id="LOCAL-00356" summary="内部订单 查看 测试架">
+      <created>1565861539431</created>
+      <option name="number" value="00356" />
+      <option name="presentableId" value="LOCAL-00356" />
       <option name="project" value="LOCAL" />
-      <updated>1539085103629</updated>
+      <updated>1565861539431</updated>
     </task>
-    <task id="LOCAL-00024" summary="1、用户信息对增删改查&#10;2、用户按钮权限标识判断&#10;3、解决重载表格对bug">
-      <created>1539167966841</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
+    <task id="LOCAL-00357" summary="内部报价 废弃数据对比(订单类型)，paypal订单搜索">
+      <created>1565869956719</created>
+      <option name="number" value="00357" />
+      <option name="presentableId" value="LOCAL-00357" />
       <option name="project" value="LOCAL" />
-      <updated>1539167966841</updated>
+      <updated>1565869956719</updated>
     </task>
-    <task id="LOCAL-00025" summary="11">
-      <created>1539242302297</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
+    <task id="LOCAL-00358" summary="订单类型可修改">
+      <created>1566210819039</created>
+      <option name="number" value="00358" />
+      <option name="presentableId" value="LOCAL-00358" />
       <option name="project" value="LOCAL" />
-      <updated>1539242302297</updated>
+      <updated>1566210819040</updated>
     </task>
-    <task id="LOCAL-00026" summary="多个复选框提交">
-      <created>1539247231267</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
+    <task id="LOCAL-00359" summary="修改文档31">
+      <created>1566357045203</created>
+      <option name="number" value="00359" />
+      <option name="presentableId" value="LOCAL-00359" />
       <option name="project" value="LOCAL" />
-      <updated>1539247231267</updated>
+      <updated>1566357045204</updated>
     </task>
-    <task id="LOCAL-00027" summary="解决无法点击新增按钮bug">
-      <created>1539255565381</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
+    <task id="LOCAL-00360" summary="导入订单无法计算面积bug解决">
+      <created>1566387274033</created>
+      <option name="number" value="00360" />
+      <option name="presentableId" value="LOCAL-00360" />
       <option name="project" value="LOCAL" />
-      <updated>1539255565381</updated>
+      <updated>1566387274033</updated>
     </task>
-    <task id="LOCAL-00028" summary="清除表格前面checkbox">
-      <created>1539256090235</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
+    <task id="LOCAL-00361" summary="平米  触发单价计算">
+      <created>1566559002316</created>
+      <option name="number" value="00361" />
+      <option name="presentableId" value="LOCAL-00361" />
       <option name="project" value="LOCAL" />
-      <updated>1539256090235</updated>
+      <updated>1566559002318</updated>
     </task>
-    <task id="LOCAL-00029" summary="1">
-      <created>1539306704961</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
+    <task id="LOCAL-00362" summary="报价  内部型号问题">
+      <created>1566560759777</created>
+      <option name="number" value="00362" />
+      <option name="presentableId" value="LOCAL-00362" />
       <option name="project" value="LOCAL" />
-      <updated>1539306704961</updated>
+      <updated>1566560759777</updated>
     </task>
-    <task id="LOCAL-00030" summary="1、用户编辑部门默认选择&#10;2、显示用户部门">
-      <created>1539313820059</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
+    <task id="LOCAL-00363" summary="+1">
+      <created>1566561745375</created>
+      <option name="number" value="00363" />
+      <option name="presentableId" value="LOCAL-00363" />
       <option name="project" value="LOCAL" />
-      <updated>1539313820059</updated>
+      <updated>1566561745375</updated>
     </task>
-    <task id="LOCAL-00031" summary="1、解决用户编辑角色选定bug&#10;2、用户信息的搜索">
-      <created>1539331709060</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
+    <task id="LOCAL-00364" summary="++1">
+      <created>1566562203330</created>
+      <option name="number" value="00364" />
+      <option name="presentableId" value="LOCAL-00364" />
       <option name="project" value="LOCAL" />
-      <updated>1539331709061</updated>
+      <updated>1566562203330</updated>
     </task>
-    <task id="LOCAL-00032" summary="解决用户状态无法提交问题">
-      <created>1539333494865</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
+    <task id="LOCAL-00365" summary="修改文档32">
+      <created>1566799872529</created>
+      <option name="number" value="00365" />
+      <option name="presentableId" value="LOCAL-00365" />
       <option name="project" value="LOCAL" />
-      <updated>1539333494865</updated>
+      <updated>1566799872530</updated>
     </task>
-    <task id="LOCAL-00033" summary="1、权限permissions搭建&#10;2、js里面$(&quot;.btn&quot;).on('click',funcition)方法改为delegate()方法［之前未来都能调用］">
-      <created>1539342888275</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
+    <task id="LOCAL-00366" summary="1">
+      <created>1566888408443</created>
+      <option name="number" value="00366" />
+      <option name="presentableId" value="LOCAL-00366" />
       <option name="project" value="LOCAL" />
-      <updated>1539342888275</updated>
+      <updated>1566888408443</updated>
     </task>
-    <task id="LOCAL-00034" summary="salt表单添加">
-      <created>1539400873836</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
+    <task id="LOCAL-00367" summary="1">
+      <created>1566892876913</created>
+      <option name="number" value="00367" />
+      <option name="presentableId" value="LOCAL-00367" />
       <option name="project" value="LOCAL" />
-      <updated>1539400873836</updated>
+      <updated>1566892876913</updated>
     </task>
-    <task id="LOCAL-00035" summary="2">
-      <created>1539400944182</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
+    <task id="LOCAL-00368" summary="1">
+      <created>1566893162929</created>
+      <option name="number" value="00368" />
+      <option name="presentableId" value="LOCAL-00368" />
       <option name="project" value="LOCAL" />
-      <updated>1539400944182</updated>
+      <updated>1566893162929</updated>
     </task>
-    <task id="LOCAL-00036" summary="添加权限">
-      <created>1539403079286</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
+    <task id="LOCAL-00369" summary="工具管理展开供应商列表bug解决">
+      <created>1566962399310</created>
+      <option name="number" value="00369" />
+      <option name="presentableId" value="LOCAL-00369" />
       <option name="project" value="LOCAL" />
-      <updated>1539403079286</updated>
+      <updated>1566962399310</updated>
     </task>
-    <task id="LOCAL-00037" summary="1">
-      <created>1539428278262</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
+    <task id="LOCAL-00370" summary="内部钢网报价，选择币种单价不变的bug解决">
+      <created>1567045375199</created>
+      <option name="number" value="00370" />
+      <option name="presentableId" value="LOCAL-00370" />
       <option name="project" value="LOCAL" />
-      <updated>1539428278262</updated>
+      <updated>1567045375199</updated>
     </task>
-    <task id="LOCAL-00038" summary="编辑去除密码验证">
-      <created>1539569052269</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
+    <task id="LOCAL-00371" summary="外发报价跳过提交隐藏">
+      <created>1567394759164</created>
+      <option name="number" value="00371" />
+      <option name="presentableId" value="LOCAL-00371" />
       <option name="project" value="LOCAL" />
-      <updated>1539569052269</updated>
+      <updated>1567394759166</updated>
     </task>
-    <task id="LOCAL-00039" summary="1、菜单无法点击bug修改&#10;2、新增手机端表格收缩功能">
-      <created>1539654713354</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
+    <task id="LOCAL-00372" summary="外发报价直接出货">
+      <created>1567482762720</created>
+      <option name="number" value="00372" />
+      <option name="presentableId" value="LOCAL-00372" />
       <option name="project" value="LOCAL" />
-      <updated>1539654713354</updated>
+      <updated>1567482762720</updated>
     </task>
-    <task id="LOCAL-00040" summary="菜单下拉回显">
-      <created>1540260097148</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
+    <task id="LOCAL-00373" summary="网上待支付  修改问题">
+      <created>1567483221276</created>
+      <option name="number" value="00373" />
+      <option name="presentableId" value="LOCAL-00373" />
       <option name="project" value="LOCAL" />
-      <updated>1540260097149</updated>
+      <updated>1567483221276</updated>
     </task>
-    <task id="LOCAL-00041" summary="菜单显示bug">
-      <created>1540294584057</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
+    <task id="LOCAL-00374" summary="切换跟单员">
+      <created>1567760906683</created>
+      <option name="number" value="00374" />
+      <option name="presentableId" value="LOCAL-00374" />
       <option name="project" value="LOCAL" />
-      <updated>1540294584057</updated>
+      <updated>1567760906684</updated>
     </task>
-    <task id="LOCAL-00042" summary="菜单显示bug解决">
-      <created>1540345809102</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
+    <task id="LOCAL-00375" summary="更改内容 33">
+      <created>1568029222785</created>
+      <option name="number" value="00375" />
+      <option name="presentableId" value="LOCAL-00375" />
       <option name="project" value="LOCAL" />
-      <updated>1540345809102</updated>
+      <updated>1568029222786</updated>
     </task>
-    <task id="LOCAL-00043" summary="增删菜单动态刷新左侧菜单栏">
-      <created>1540348378497</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
+    <task id="LOCAL-00376" summary="外发报价隐藏提交按钮">
+      <created>1568168032319</created>
+      <option name="number" value="00376" />
+      <option name="presentableId" value="LOCAL-00376" />
       <option name="project" value="LOCAL" />
-      <updated>1540348378497</updated>
+      <updated>1568168032320</updated>
     </task>
-    <task id="LOCAL-00044" summary="PCB订单显示（编辑，查看）">
-      <created>1540385089561</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
+    <task id="LOCAL-00377" summary="部门下拉不显示bug解决">
+      <created>1568709616350</created>
+      <option name="number" value="00377" />
+      <option name="presentableId" value="LOCAL-00377" />
       <option name="project" value="LOCAL" />
-      <updated>1540385089561</updated>
+      <updated>1568709616351</updated>
     </task>
-    <task id="LOCAL-00045" summary="钢网订单显示修改">
-      <created>1540472017511</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
+    <task id="LOCAL-00378" summary="内部报价平米无法输入问题解决">
+      <created>1568716060601</created>
+      <option name="number" value="00378" />
+      <option name="presentableId" value="LOCAL-00378" />
       <option name="project" value="LOCAL" />
-      <updated>1540472017511</updated>
+      <updated>1568716060601</updated>
     </task>
-    <task id="LOCAL-00046" summary="订单评审文件下载">
-      <created>1540560434891</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
+    <task id="LOCAL-00379" summary="所有表格排序">
+      <created>1568719082872</created>
+      <option name="number" value="00379" />
+      <option name="presentableId" value="LOCAL-00379" />
       <option name="project" value="LOCAL" />
-      <updated>1540560434891</updated>
+      <updated>1568719082872</updated>
     </task>
-    <task id="LOCAL-00047" summary="订单提交">
-      <created>1540638609974</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
+    <task id="LOCAL-00380" summary="表格操作栏收缩无法点击bug解决">
+      <created>1568954746644</created>
+      <option name="number" value="00380" />
+      <option name="presentableId" value="LOCAL-00380" />
       <option name="project" value="LOCAL" />
-      <updated>1540638609974</updated>
+      <updated>1568954746644</updated>
     </task>
-    <task id="LOCAL-00048" summary="PCB Stencil订单提交100%">
-      <created>1540639652229</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
+    <task id="LOCAL-00381" summary="gulp-t">
+      <created>1568977729845</created>
+      <option name="number" value="00381" />
+      <option name="presentableId" value="LOCAL-00381" />
       <option name="project" value="LOCAL" />
-      <updated>1540639652229</updated>
+      <updated>1568977729845</updated>
     </task>
-    <task id="LOCAL-00049" summary="PCB Stencil按钮权限添加">
-      <created>1541150254524</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
+    <task id="LOCAL-00382" summary="导出Excel不显示当前工序">
+      <created>1569202095041</created>
+      <option name="number" value="00382" />
+      <option name="presentableId" value="LOCAL-00382" />
       <option name="project" value="LOCAL" />
-      <updated>1541150254524</updated>
+      <updated>1569202095042</updated>
     </task>
-    <task id="LOCAL-00050" summary="钢网订单排序">
-      <created>1541153875620</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
+    <task id="LOCAL-00383" summary="PCB订单编辑添加参数">
+      <created>1569375535922</created>
+      <option name="number" value="00383" />
+      <option name="presentableId" value="LOCAL-00383" />
       <option name="project" value="LOCAL" />
-      <updated>1541153875623</updated>
+      <updated>1569375535922</updated>
     </task>
-    <task id="LOCAL-00051" summary="菜单样式修改">
-      <created>1541504110201</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
+    <task id="LOCAL-00384" summary="1">
+      <created>1569392751002</created>
+      <option name="number" value="00384" />
+      <option name="presentableId" value="LOCAL-00384" />
       <option name="project" value="LOCAL" />
-      <updated>1541504110201</updated>
+      <updated>1569392751003</updated>
     </task>
-    <task id="LOCAL-00052" summary="PCB/Stencil订单锁定">
-      <created>1541559038283</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
+    <task id="LOCAL-00385" summary="+1">
+      <created>1569393742334</created>
+      <option name="number" value="00385" />
+      <option name="presentableId" value="LOCAL-00385" />
       <option name="project" value="LOCAL" />
-      <updated>1541559038285</updated>
+      <updated>1569393742334</updated>
     </task>
-    <task id="LOCAL-00053" summary="layui-this打开选中多个菜单bug">
-      <created>1541589811145</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
+    <task id="LOCAL-00386" summary="编写指示卡钢网修改刷新，报价页隐藏计算运费，日期格式不重置默认值">
+      <created>1570791175822</created>
+      <option name="number" value="00386" />
+      <option name="presentableId" value="LOCAL-00386" />
       <option name="project" value="LOCAL" />
-      <updated>1541589811145</updated>
+      <updated>1570791175823</updated>
     </task>
-    <task id="LOCAL-00054" summary="接口全局设置">
-      <created>1545624109912</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
+    <task id="LOCAL-00387" summary="报价页上传文件进度条。upload.js 上传组件更新到2.5.5(进度条)">
+      <created>1570853428796</created>
+      <option name="number" value="00387" />
+      <option name="presentableId" value="LOCAL-00387" />
       <option name="project" value="LOCAL" />
-      <updated>1545624109913</updated>
+      <updated>1570853428797</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <option name="localTasksCounter" value="388" />
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="561761000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -856,47 +763,6 @@
       <are-packages-shown value="true" />
       <is-autoscroll-to-source value="true" />
     </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="2" y="23" width="1858" height="1057" extended-state="0" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18671748" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32935324" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5059653" side_tool="true" weight="0.16770834" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.41979167" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4940347" weight="0.16770834" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.340625" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49836424" weight="0.18541667" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-    </layout>
-    <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22643496" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32935324" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.497006" weight="0.16770834" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996395" weight="0.340625" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49836424" weight="0.18541667" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.502994" side_tool="true" weight="0.16979167" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -917,401 +783,57 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、用户编辑部门默认选择&#10;2、显示用户部门" />
-    <MESSAGE value="1、解决用户编辑角色选定bug&#10;2、用户信息的搜索" />
-    <MESSAGE value="解决用户状态无法提交问题" />
-    <MESSAGE value="1、权限permissions搭建&#10;2、js里面$(&quot;.btn&quot;).on('click',funcition)方法改为delegate()方法［之前未来都能调用］" />
-    <MESSAGE value="salt表单添加" />
-    <MESSAGE value="2" />
-    <MESSAGE value="添加权限" />
-    <MESSAGE value="编辑去除密码验证" />
-    <MESSAGE value="1、菜单无法点击bug修改&#10;2、新增手机端表格收缩功能" />
-    <MESSAGE value="菜单下拉回显" />
-    <MESSAGE value="菜单显示bug" />
-    <MESSAGE value="菜单显示bug解决" />
-    <MESSAGE value="增删菜单动态刷新左侧菜单栏" />
-    <MESSAGE value="PCB订单显示（编辑，查看）" />
-    <MESSAGE value="钢网订单显示修改" />
+    <MESSAGE value="导入订单无法计算面积bug解决" />
+    <MESSAGE value="平米  触发单价计算" />
+    <MESSAGE value="报价  内部型号问题" />
+    <MESSAGE value="++1" />
+    <MESSAGE value="修改文档32" />
+    <MESSAGE value="工具管理展开供应商列表bug解决" />
+    <MESSAGE value="内部钢网报价，选择币种单价不变的bug解决" />
+    <MESSAGE value="外发报价跳过提交隐藏" />
+    <MESSAGE value="外发报价直接出货" />
+    <MESSAGE value="网上待支付  修改问题" />
+    <MESSAGE value="切换跟单员" />
+    <MESSAGE value="更改内容 33" />
+    <MESSAGE value="外发报价隐藏提交按钮" />
+    <MESSAGE value="部门下拉不显示bug解决" />
+    <MESSAGE value="内部报价平米无法输入问题解决" />
+    <MESSAGE value="所有表格排序" />
+    <MESSAGE value="表格操作栏收缩无法点击bug解决" />
+    <MESSAGE value="gulp-t" />
+    <MESSAGE value="无法打印当前工序" />
+    <MESSAGE value="导出Excel不显示当前工序" />
+    <MESSAGE value="PCB订单编辑添加参数" />
     <MESSAGE value="1" />
-    <MESSAGE value="订单评审文件下载" />
-    <MESSAGE value="订单提交" />
-    <MESSAGE value="PCB Stencil订单提交100%" />
-    <MESSAGE value="PCB Stencil按钮权限添加" />
-    <MESSAGE value="钢网订单排序" />
-    <MESSAGE value="菜单样式修改" />
-    <MESSAGE value="PCB/Stencil订单锁定" />
-    <MESSAGE value="layui-this打开选中多个菜单bug" />
-    <MESSAGE value="接口全局设置" />
-    <option name="LAST_COMMIT_MESSAGE" value="接口全局设置" />
+    <MESSAGE value="+1" />
+    <MESSAGE value="编写指示卡钢网修改刷新，报价页隐藏计算运费，日期格式不重置默认值" />
+    <MESSAGE value="报价页上传文件进度条。upload.js 上传组件更新到2.5.5(进度条)" />
+    <option name="LAST_COMMIT_MESSAGE" value="报价页上传文件进度条。upload.js 上传组件更新到2.5.5(进度条)" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="2" />
-    </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/views/user/administrators/role.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="12" lean-forward="true" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/sys_role.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2128" />
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/common.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="120" column="18" selection-start-line="120" selection-start-column="18" selection-end-line="120" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4828">
-          <caret line="284" column="12" selection-start-line="284" selection-start-column="12" selection-end-line="284" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/renderEdit/a.js" />
-    <entry file="file://$PROJECT_DIR$/src/views/customerManagement/customer_info.html" />
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/role.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3519">
-          <caret line="207" column="7" selection-start-line="207" selection-start-column="7" selection-end-line="207" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/dept.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="54" column="100" lean-forward="true" selection-start-line="54" selection-start-column="100" selection-end-line="54" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/customer_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="80" column="11" selection-start-line="80" selection-start-column="11" selection-end-line="80" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="182" column="7" lean-forward="true" selection-start-line="182" selection-start-column="7" selection-end-line="182" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="119" column="6" lean-forward="true" selection-start-line="119" selection-start-column="6" selection-end-line="119" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/mobileterminal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4">
-          <caret line="21" column="11" lean-forward="true" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderStencil_update.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2312">
-          <caret line="136" column="95" lean-forward="true" selection-start-line="136" selection-start-column="65" selection-end-line="136" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="56" lean-forward="true" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/sys_coustomer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="31" column="58" lean-forward="true" selection-start-line="31" selection-start-column="58" selection-end-line="31" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_pcb_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="69" column="41" lean-forward="true" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/orderPCB_update.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12665">
-          <caret line="745" selection-start-line="745" selection-end-line="745" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/iframeWindow/order_stencil_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/permissions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" selection-end-line="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/user_edit_role.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/user_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/sys_user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/user_edit_info.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="35" column="62" selection-start-line="35" selection-start-column="62" selection-end-line="35" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/supplier_edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2409">
-          <caret line="143" column="67" selection-start-line="143" selection-start-column="67" selection-end-line="143" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/customer_edit_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="100" column="19" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/sys_menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="52" lean-forward="true" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/market_orderNoPayment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="120" column="91" selection-start-line="120" selection-start-column="91" selection-end-line="120" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/market_orderOkPayment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/style/admin.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="162" column="6" selection-start-line="162" selection-start-column="1" selection-end-line="162" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/style/login.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="9345" column="13" selection-start-line="9345" selection-start-column="13" selection-end-line="9345" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/supplier_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1564">
-          <caret line="92" column="20" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/sys_supplier.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="127" column="15" lean-forward="true" selection-start-line="127" selection-start-column="15" selection-end-line="127" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1479">
-          <caret line="87" column="30" selection-start-line="87" selection-start-column="30" selection-end-line="87" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/market_orderReview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="235" column="39" lean-forward="true" selection-start-line="235" selection-start-column="39" selection-end-line="235" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/epc_indicatorCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="255" column="18" selection-start-line="255" selection-start-column="18" selection-end-line="255" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/sys_menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="155" column="39" lean-forward="true" selection-start-line="155" selection-start-column="39" selection-end-line="155" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/user/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="65" column="35" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="46" column="4" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sys_menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="131" column="53" selection-start-line="131" selection-start-column="53" selection-end-line="131" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/epcManagement/Indicator_card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="78" column="54" lean-forward="true" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/sys_menuAdd.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="31" column="107" selection-start-line="31" selection-start-column="100" selection-end-line="31" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/infoManagement/iframeWindow/user_edit_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="112" column="81" selection-start-line="112" selection-start-column="81" selection-end-line="112" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/ok_payment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="86" column="54" selection-start-line="86" selection-start-column="54" selection-end-line="86" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/no_payment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="87" column="29" lean-forward="true" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/marketManagement/order_review.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="87" column="54" selection-start-line="87" selection-start-column="54" selection-end-line="87" selection-end-column="54" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/scmManagement/outgoing_quote.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="87" column="83" selection-start-line="87" selection-start-column="83" selection-end-line="87" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/user/reg.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="83" column="22" lean-forward="true" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="581" y="142" key="CommitChangelistDialog2" timestamp="1577697636570">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="581" y="142" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1577697636570" />
+    <state x="765" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1577693131853">
+      <screen x="0" y="23" width="1920" height="988" />
+    </state>
+    <state x="765" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.988@0.23.1920.988" timestamp="1577693131853" />
+    <state x="569" y="127" width="782" height="825" key="find.popup" timestamp="1577697325460">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="569" y="127" width="782" height="825" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1577697325460" />
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1577697330203">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1577697330203" />
   </component>
 </project>

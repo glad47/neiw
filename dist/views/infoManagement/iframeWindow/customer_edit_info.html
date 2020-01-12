@@ -1,0 +1,539 @@
+<title>Add Customer Info</title>
+<div class="layui-fluid">
+    <form class="layui-form edit-cusInfo" lay-filter="customer-add-edit-form-list" id="customer-add-edit-form-list">
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md6">
+                <label class="layui-form-label"><span class="span-required">*</span>客户名称：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="userName" autocomplete="off" class="layui-input" value="{{ d.params.userName || ''}}" lay-verify="required">
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md6">
+                <label class="layui-form-label">密码：</label>
+                <div class="layui-input-block">
+                    <input type="password" name="password" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-cusCom layui-col-md6">
+                <label class="layui-form-label"><span class="span-required">*</span>邮箱：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="email" autocomplete="off" class="layui-input" value="{{ d.params.email || ''}}" lay-verify="required">
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label"><span class="span-required">*</span>电话：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="mobilePhone" autocomplete="off" class="layui-input" value="{{ d.params.mobilePhone || '' }}" lay-verify="required">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-skype layui-col-md6">
+                <label class="layui-form-label"><span class="span-required">*</span>国家:</label>
+                <div class="layui-input-block">
+<!--                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}/quote/getCountry" lay-done="layui.data.done(d);" lay-type="post">-->
+                    <script type="text/html" template lay-url="" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="country" lay-verify="required" lay-search="">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option value=""></option>
+                            <option value="{{ item.id || ''}}" {{ d.params.country == item.id ? 'selected' : ''}}>{{ item.name }}</option>
+                            {{#  }); }}
+                        </select>
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-email layui-col-md6">
+                <label class="layui-form-label"><span class="span-required">*</span>城市：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="city" autocomplete="off" class="layui-input" value="{{ d.params.city || '' }}" lay-verify="required">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-cusCom layui-col-md6">
+                <label class="layui-form-label"><span class="span-required">*</span>付款方式：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'付款方式'}" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="paymentType" lay-verify="required">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option value=""></option>
+                            <option value="{{ item.dictKey || ''}}" {{ d.params.paymentType == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label"><span class="span-required">*</span>发货方式：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'发货方式'}" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="deliveryType" lay-verify="required">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option value=""></option>
+                            <option value="{{ item.dictKey || ''}}" {{ d.params.deliveryType == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-cusCom layui-col-md6">
+                <label class="layui-form-label">快递公司：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'快递公司'}" lay-done="layui.data.done(d);" lay-type="post">
+                        <select name="courierName">
+                            {{# 
+                                layui.each(d.data, function(index, item){   
+                            }}
+                            <option value=""></option>
+                            <option value="{{ item.dictKey || ''}}" {{ d.params.courierName == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据 
+                            {{#  } }}
+                        </select>    
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label">快递账号：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input class="layui-input" type="text" value="{{ d.params.courierAccount || '' }}" name="courierAccount">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-col-md6">
+                <label class="layui-form-label"><span class="span-required">*</span>邮编：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="postcode" autocomplete="off" class="layui-input" value="{{ d.params.postcode || '' }}" lay-verify="required">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label"><span class="span-required">*</span>联系人：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="contact" autocomplete="off" class="layui-input" value="{{ d.params.contact || '' }}" lay-verify="required">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="span-required">*</span>地址：</label>
+            <div class="layui-input-block">
+                <script type="text/html" template>
+                    <textarea name="address" autocomplete="off" class="layui-textarea" lay-verify="required">
+                        {{ d.params.address || '' }}
+                    </textarea>
+                </script>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-merchandiser">
+                <label class="layui-form-label"><span class="span-required">*</span>收货地址：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/receiveradders/queryReceiverAddersByUid?userId={{d.params.id || ''}}" lay-done="layui.data.done(d);" lay-type="post">
+                        {{# localStorage.setItem('_defReceiverAddersEntityList', JSON.stringify(d.data))  }}
+                        <select name="ssdz" lay-verify="required" lay-filter="ssdz">
+                            <option value="addAddr">添加地址</option>
+                            {{#
+                            layui.each(d.data, function(index, item){
+                            }}
+                            <option value="{{ item.id || ''}}" {{ item.isDefault == 1 ? 'selected' : ''}}>收货人：{{ item.receiverName }}&nbsp;&nbsp;联系电话：{{ item.receiverTelephone }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据
+                            {{#  } }}
+                        </select>
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-tel layui-col-md6">
+                <label class="layui-form-label">Skype：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="skypeId" autocomplete="off" class="layui-input" value="{{ d.params.skypeId || '' }}">    
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-skype layui-col-md6">
+                <label class="layui-form-label">Google：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="googleId" autocomplete="off" class="layui-input" value="{{ d.params.googleId || '' }}">    
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-email layui-col-md6">
+                <label class="layui-form-label">Facebook：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="facebookId" autocomplete="off" class="layui-input" value="{{ d.params.facebookId || '' }}">    
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-email layui-col-md6">
+                <label class="layui-form-label"><span class="span-required">*</span>公司：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="companName" autocomplete="off" class="layui-input" value="{{ d.params.companName || '' }}" lay-verify="required">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-cusCom layui-col-md6">
+                <label class="layui-form-label">业务类型：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                      <select name="businessType">
+                        <option value="">请选择类型</option>
+                        <option value="Manufacturer" {{ d.params.businessType === 'Manufacturer' ? 'selected' : '' }}>Manufacturer</option>
+                        <option value="TradingCompany" {{ d.params.businessType === 'TradingCompany' ? 'selected' : '' }}>TradingCompany</option>
+                        <option value="SolutionProvider" {{ d.params.businessType === 'SolutionProvider' ? 'selected' : '' }}>SolutionProvider</option>
+                        <option value="ResearchInstitute" {{ d.params.businessType === 'Research Institute' ? 'selected' : '' }}>ResearchInstitute</option>
+                        <option value="University" {{ d.params.businessType === 'University' ? 'selected' : '' }}>University</option>
+                        <option value="Other" {{ d.params.businessType === 'Other' ? 'selected' : '' }}>Other</option>
+                      </select>
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label">职业角色：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                      <select name="jobrole">
+                        <option value="">请选择角色</option>
+                        <option value="AdminClerkExpeditor" {{ d.params.jobrole === 'AdminClerkExpeditor' ? 'selected' : '' }}>AdminClerkExpeditor</option>
+                        <option value="Buyer Purchasing" {{ d.params.jobrole === 'BuyerPurchasing' ? 'selected' : '' }}>BuyerPurchasing</option>
+                        <option value="DesignEngineer-MechanicalElectricalFocus" {{ d.params.jobrole === 'DesignEngineer-MechanicalElectricalFocus' ? 'selected' : '' }}>DesignEngineer-MechanicalElectricalFocus</option>
+                        <option value="DesignEngineer-PCBComponentsFocus" {{ d.params.jobrole === 'DesignEngineer-PCBComponentsFocus' ? 'selected' : '' }}>DesignEngineer-PCBComponentsFocus</option>
+                        <option value="DesignEngineer-PCBElectricalFocus" {{ d.params.jobrole === 'DesignEngineer-PCBElectricalFocus' ? 'selected' : '' }}>DesignEngineer-PCBElectricalFocus</option>
+                        <option value="Engineer-MaintenanceRepair" {{ d.params.jobrole === 'Engineer-MaintenanceRepair' ? 'selected' : '' }}>Engineer-MaintenanceRepair</option>
+                        <option value="Engineer-Production" {{ d.params.jobrole === 'ngineer-Production' ? 'selected' : '' }}>Engineer-Production</option>
+                        <option value="Engineer-ResearchDevelopment" {{ d.params.jobrole === 'Engineer-ResearchDevelopment' ? 'selected' : '' }}>Engineer-ResearchDevelopment</option>
+                        <option value="EngineerTest" {{ d.params.jobrole === 'EngineerTest' ? 'selected' : '' }}>EngineerTest</option>
+                        <option value="HomePersonalHobbyistMaker" {{ d.params.jobrole === 'HomePersonalHobbyistMaker' ? 'selected' : '' }}>HomePersonalHobbyistMaker</option>
+                        <option value="ProfessorAcademicResearcher" {{ d.params.jobrole === 'ProfessorAcademicResearcher' ? 'selected' : '' }}>ProfessorAcademicResearcher</option>
+                        <option value="Student" {{ d.params.jobrole === 'Student' ? 'selected' : '' }}>Student</option>    
+                        <option value="Technician" {{ d.params.jobrole === 'Technician' ? 'selected' : '' }}>Technician</option>
+                        <option value="Other" {{ d.params.jobrole === 'Other' ? 'selected' : '' }}>Other</option>
+                      </select>
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="layui-form-item">
+                <div class="addcus-merchandiser layui-col-md6">
+                    <label class="layui-form-label">应用：</label>
+                    <div class="layui-input-block">
+                        <script type="text/html" template>
+                          <select name="applications">
+                            <option value="">请选择应用</option>
+                            <option value="Audio" {{ d.params.applications === 'Audio' ? 'selected' : ''}}>Audio</option>
+                            <option value="AvionicsDefense" {{ d.params.applications === 'AvionicsDefense' ? 'selected' : ''}}>AvionicsDefense</option>
+                            <option value="AutoTransportation" {{ d.params.applications === 'AutoTransportation' ? 'selected' : ''}}>AutoTransportation</option>
+                            <option value="Broadcast" {{ d.params.applications === 'Broadcast' ? 'selected' : ''}}>Broadcast</option>
+                            <option value="Communications" {{ d.params.applications === 'Communications' ? 'selected' : ''}}>Communications</option>
+                            <option value="Consumer Electronics" {{ d.params.applications === 'Consumer Electronics' ? 'selected' : ''}}>Consumer Electronics</option>
+                            <option value="Computing" {{ d.params.applications === 'Computing' ? 'selected' : ''}}>Computing</option>
+                            <option value="Energy Harvesting" {{ d.params.applications === 'Energy Harvesting' ? 'selected' : ''}}>Energy Harvesting</option>
+                            <option value="Industrial" {{ d.params.applications === 'Industrial' ? 'selected' : ''}}>Industrial</option>
+                            <option value="Instrumentation" {{ d.params.applications === 'Instrumentation' ? 'selected' : ''}}>Instrumentation</option>
+                            <option value="Lighting" {{ d.params.applications === 'Lighting' ? 'selected' : ''}}>Lighting</option>
+                            <option value="Medical" {{ d.params.applications === 'Medical' ? 'selected' : ''}}>Medical</option>
+                            <option value="MotorControl" {{ d.params.applications === 'MotorControl' ? 'selected' : ''}}>MotorControl</option>
+                            <option value="Power Management" {{ d.params.applications === 'PowerManagement' ? 'selected' : ''}}>PowerManagement</option>
+                            <option value="Robotics" {{ d.params.applications === 'Robotics' ? 'selected' : ''}}>Robotics</option>
+                            <option value="Security" {{ d.params.applications === 'Security' ? 'selected' : ''}}>Security</option>
+                            <option value="Other" {{ d.params.applications === 'Other' ? 'selected' : ''}}>Other</option>
+                          </select>
+                        </script>
+                    </div>
+                </div>
+                <div class="addcus-merchandiser layui-col-md6">
+                    <label class="layui-form-label"><span class="span-required">*</span>跟单员：</label>
+                    <div class="layui-input-block">
+                        <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-done="layui.data.done(d);" lay-type="post">
+                            <select name="businessInfo" id="user_edit_dep" lay-verify="required">
+                                {{#
+                                    var businessId = d.params.businessId;
+                                    layui.each(d.data, function(index, item){
+                                }}
+                                <option></option>
+                                <option value="{{ item.userId || ''}},{{item.jobNumber}},{{item.username}}" {{ businessId == item.userId ? 'selected' : ''}}>{{ item.username }}</option>
+                                {{#  }); }}
+                                {{#  if(d.data.length === 0){ }}
+                                无数据
+                                {{#  } }}
+                            </select>
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-col-md12">
+                    <label class="layui-form-label" style="width: 126px;">需要确认生产资料：</label>
+                    <div class="layui-input-block">
+                        <script type="text/html" template>
+                            <input type="checkbox" name="productionVerification" lay-skin="switch" lay-text="是|否" {{ d.params.productionVerification == '0' ? 'checked' : '' }} lay-filter="productionVerification">
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-col-md12">
+                    <label class="layui-form-label">客户标准：</label>
+                    <div class="layui-input-block">
+                        <script type="text/html" template>
+                            <textarea name="customerStandards" autocomplete="off" class="layui-textarea">
+                                {{ d.params.customerStandards || '' }}
+                            </textarea>
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-col-md12">
+                    <label class="layui-form-label">包装要求：</label>
+                    <div class="layui-input-block">
+                        <script type="text/html" template>
+                            <textarea name="packageRequirements" autocomplete="off" class="layui-textarea">
+                                {{ d.params.packageRequirements || '' }}
+                            </textarea>
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <script type="text/html" template>
+          <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+          <input type="hidden" name="aid" value="{{d.params.aid || ''}}">
+        </script>
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md3">
+                <label class="layui-form-label">操作：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-done="layui.data.done(d);">
+                        <input type="checkbox" name="invalidMark" lay-skin="switch" lay-text="启用|停用"lay-filter="optionUser" {{ d.params.invalidMark === undefined || d.params.invalidMark === 1 ? '' : 'checked' }}>
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-cusNum layui-col-md3">
+                <label class="layui-form-label">内部用户：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-done="layui.data.done(d);">
+                        <input type="checkbox" name="userType" lay-skin="switch" lay-text="是|否" {{ d.params.userType === undefined || d.params.userType === 0 ? '' : 'checked' }} lay-filter="isneibuUser">
+                    </script>
+                </div>
+            </div>
+
+            <div class="addcus-cusNum layui-col-md3">
+                <label class="layui-form-label">需要审核：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-done="layui.data.done(d);">
+                        <input type="checkbox" name="auditMark" lay-skin="switch" lay-text="是|否" {{ d.params.auditMark === undefined || d.params.auditMark === 1 ? '' : 'checked' }} lay-filter="isAuditMark">
+                    </script>
+                </div>
+            </div>
+
+            <div class="layui-col-md3">
+                <label class="layui-form-label">出货报告：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="checkbox" name="deliveryReport" lay-skin="switch" lay-text="是|否" {{ d.params.deliveryReport === undefined || d.params.deliveryReport == '0' ? '' : 'checked' }} lay-filter="deliveryReport">
+                    </script>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label"></label>
+          <div class="layui-input-inline">  
+            <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn" style="display: none;" id="layuiadmin-app-form-submit">
+          </div>
+        </div>
+    </form>
+</div>
+<style>
+   /*.edit-cusInfo .layui-input-block {margin-top: 10px;}*/
+   .layui-layout-body {overflow: scroll;} /**防止隐藏**/
+    .span-required{color: red;}
+</style>
+
+<script>
+    var _id;
+    layui.data.done = function(d){
+        layui.use(['form'], function(){
+            var $ = layui.$
+                ,form = layui.form
+                ,admin = layui.admin
+                ,setter = layui.setter;
+            form.render(null, 'customer-add-edit-form-list');
+            _id = d.params.id;
+
+            var invalidMark;
+            form.on('switch(optionUser)',function (data) {
+                console.log(data.field);
+                if (data.elem.checked == true){
+                    layer.msg('已启用');
+                    invalidMark =0;
+                } else {
+                    layer.msg('停用');
+                    invalidMark =1;
+                }
+            });
+
+            var userType;
+            form.on('switch(isneibuUser)',function (data) {
+                if (data.elem.checked == true){
+                    layer.msg('内部用户');
+                    userType =1;
+                } else {
+                    layer.msg('客户系统用户');
+                    userType =0;
+                }
+            });
+            var deliveryReport = 0;
+            form.on('switch(deliveryReport)',function (data) {
+                if (data.elem.checked == true){
+                    layer.msg('需要出货报告');
+                    deliveryReport =1;
+                } else {
+                    layer.msg('不需要出货报告');
+                    deliveryReport =0;
+                }
+            });
+            var auditMark;
+            form.on('switch(isAuditMark)',function(data){
+                if (data.elem.checked == true) {
+                    layer.msg('需要审核');
+                    auditMark = 0;
+                }else{
+                    layer.msg('不需审核');
+                    auditMark = 1;
+                }
+            });
+
+            var productionVerification;
+            form.on('switch(productionVerification)', function (data) {
+                if (data.elem.checked == true) {
+                    layer.msg('需要确定生产资料');
+                    productionVerification = 1;
+                }  else {
+                    layer.msg('不需要确定生产资料');
+                    productionVerification = 0;
+                }
+            });
+
+            //监听提交
+            form.on('submit(layuiadmin-app-form-submit)',function(data){
+                var field = data.field;
+                field.invalidMark = invalidMark;
+                field.userType = userType;
+                field.auditMark = auditMark;
+                field.deliveryReport = deliveryReport;
+                field.productionVerification = productionVerification;
+                var receiverAddersEntityList = localStorage.getItem("receiverAddersEntityList");
+                if (receiverAddersEntityList) {
+                    receiverAddersEntityList = JSON.parse(receiverAddersEntityList)
+                    receiverAddersEntityList.reduce((prev, cur) => {    // 删除id
+                        delete cur.id;
+                        if (cur.isDefault == 'on') {
+                            cur.isDefault = 1;
+                        }
+                        return prev;
+                    }, 0);
+                    field.receiverAddersEntityList = receiverAddersEntityList.concat(JSON.parse(localStorage.getItem("_defReceiverAddersEntityList")));
+                } else {
+                    field.receiverAddersEntityList = JSON.parse(localStorage.getItem("_defReceiverAddersEntityList"));
+                }
+                console.log(field);
+                admin.req({
+                    url:setter.baseUrl+'sys/consumer/user/update',
+                    type:'POST',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(field),
+                    success: function (data) {
+                        layui.table.reload('customer_listTab'); //重载表格
+                        layer.msg('修改成功！');
+                        setTimeout(() => {
+                            layer.closeAll(); //执行关闭
+                        }, 1000);
+                    }
+                });
+            });
+
+            // 监听添加地址
+            form.on('select(ssdz)', function (data) {
+                var _val = data.value;
+                var _title = '编辑';
+                if (_val === 'addAddr') {
+                    _title = '添加';
+                }
+                // 获取当前 对象
+                var _popData = JSON.parse(localStorage.getItem("_defReceiverAddersEntityList")).reduce((prev, cur) => {
+                   if (cur.id == _val) {
+                       prev = cur;
+                   }
+                   return prev;
+                }, {});
+                console.log(_popData);
+                customerAddAddr.addAddr({title: _title, data: _popData});
+                // 给 localStorage 数据设置一个默认地址
+                var _ls = localStorage.getItem("receiverAddersEntityList");
+                layer.msg(_val);
+                console.log(_val);
+                if (_ls) {
+                    _ls = JSON.parse(_ls);
+                    _ls.reduce((prev, cur) => {
+                        if (cur.id == _val) {
+                            console.log(cur)
+                            cur.isDefault = 1;   // 默认地址
+                        }
+                        return prev;
+                    },[]);
+                    localStorage.setItem("receiverAddersEntityList", JSON.stringify(_ls));
+                }
+            })
+
+            // 鼠标经过显示地址详细信息
+            $("div").delegate("dd", "onmouseover", () => {
+                console.log('经过');
+            });
+        });
+    }
+</script>

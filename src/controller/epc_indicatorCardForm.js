@@ -21,9 +21,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     table.render({
       elem: '#indicator_listTab'
       ,url: setter.baseUrl+'epc/process/list'
-      ,where: {
-        access_token: layui.data('layuiAdmin').access_token
-        }
       ,parseData: function (res) {
           return{
               "code": 0,
