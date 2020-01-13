@@ -62,7 +62,6 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
        // ,webSocketUrl: 'wss://www.pcbonline.com:8887/ws'
        // ,imUrl:'https://www.pcbonline.com/'
 
-
       //独立页面路由，可随意添加（无需写参数）
     ,indPage: [
       '/user/login' //登入页
