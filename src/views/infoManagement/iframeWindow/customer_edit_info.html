@@ -40,7 +40,6 @@
                 <label class="layui-form-label"><span class="span-required">*</span>国家:</label>
                 <div class="layui-input-block">
                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}quote/getCountry" lay-done="layui.data.done(d);" lay-type="post">
-                    <!-- <script type="text/html" template lay-url="" lay-done="layui.data.done(d);" lay-type="post"> -->
                         <select name="countryInfo" lay-verify="required" lay-search="" lay-filter="lf-country">
                             {{# 
                                 layui.each(d.data, function(index, item){   
@@ -65,7 +64,7 @@
             <div class="addcus-cusCom layui-col-md6">
                 <label class="layui-form-label"><span class="span-required">*</span>付款方式：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'付款方式'}" lay-done="layui.data.done(d);" lay-type="post">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'付款方式'}" lay-type="post">
                         <select name="paymentType" lay-verify="required">
                             {{# 
                                 layui.each(d.data, function(index, item){   
@@ -83,7 +82,7 @@
             <div class="addcus-merchandiser layui-col-md6">
                 <label class="layui-form-label"><span class="span-required">*</span>发货方式：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'发货方式'}" lay-done="layui.data.done(d);" lay-type="post">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'发货方式'}" lay-type="post">
                         <select name="deliveryType" lay-verify="required">
                             {{# 
                                 layui.each(d.data, function(index, item){   
@@ -168,7 +167,7 @@
             <div class="addcus-cusCom layui-col-md6">
                 <label class="layui-form-label">快递公司：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'快递公司'}" lay-done="layui.data.done(d);" lay-type="post">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'快递公司'}" lay-type="post">
                         <select name="courierName">
                             {{# 
                                 layui.each(d.data, function(index, item){   
@@ -302,7 +301,7 @@
                 <div class="addcus-merchandiser layui-col-md6">
                     <label class="layui-form-label"><span class="span-required">*</span>跟单员：</label>
                     <div class="layui-input-block">
-                        <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-done="layui.data.done(d);" lay-type="post">
+                        <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-type="post">
                             <select name="businessInfo" id="user_edit_dep" lay-verify="required">
                                 {{#
                                     var businessId = d.params.businessId;
@@ -362,7 +361,7 @@
             <div class="addcus-cusNum layui-col-md3">
                 <label class="layui-form-label">操作：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-done="layui.data.done(d);">
+                    <script type="text/html" template>
                         <input type="checkbox" name="invalidMark" lay-skin="switch" lay-text="启用|停用"lay-filter="optionUser" {{ d.params.invalidMark === undefined || d.params.invalidMark === 1 ? '' : 'checked' }}>
                     </script>
                 </div>
@@ -370,7 +369,7 @@
             <div class="addcus-cusNum layui-col-md3">
                 <label class="layui-form-label">内部用户：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-done="layui.data.done(d);">
+                    <script type="text/html" template>
                         <input type="checkbox" name="userType" lay-skin="switch" lay-text="是|否" {{ d.params.userType === undefined || d.params.userType === 0 ? '' : 'checked' }} lay-filter="isneibuUser">
                     </script>
                 </div>
@@ -379,7 +378,7 @@
             <div class="addcus-cusNum layui-col-md3">
                 <label class="layui-form-label">需要审核：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-done="layui.data.done(d);">
+                    <script type="text/html" template>
                         <input type="checkbox" name="auditMark" lay-skin="switch" lay-text="是|否" {{ d.params.auditMark === undefined || d.params.auditMark === 1 ? '' : 'checked' }} lay-filter="isAuditMark">
                     </script>
                 </div>
