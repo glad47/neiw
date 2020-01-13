@@ -5,7 +5,7 @@
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">客户</label>
-                    <div class="layui-input-inline" style="width: 320px;">
+                    <div class="layui-input-inline">
                         <select id="giCustomer" name="giCustomer" xm-select-height="34px" xm-select="giCustomer" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
                             <option value="" id="">选择客户</option>
                         </select>
@@ -30,6 +30,15 @@
                         <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                     </button>
                 </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">发票地址</label>
+                <div class="layui-input-inline">
+                    <select id="giShdz" name="giShdz" xm-select-height="34px" xm-select="giShdz" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                        <option value="">地址</option>
+                    </select>
+                </div>
+                <span class="gi-show-addr" style="font-weight: 400;line-height: 38px;"></span>
             </div>
             <button style="display: none;" class="gi-submit">POSTDATA</button>
         </div>
@@ -102,14 +111,24 @@
             var businessName;
             var productNo = '';
             var searchData;
+            var invoiceAddrArr;
+            var receiveAddersId;
 
-            formSelects.render('giPcbName');
-            initInvoiceTab();
-            initSelCustomer();
-            document.getElementById("inputGiProductNo").addEventListener('keyup', function (event) {
-                jsTools.throttle(getFrom, null, 500, this.value, 2000);
-                productNo = this.value;
-            });
+            mounted();
+
+            function mounted() {
+                formSelects.render();
+                initInvoiceTab();
+                initSelCustomer();
+                document.getElementById("inputGiProductNo").addEventListener('keyup', function (event) {
+                    jsTools.throttle(getFrom, null, 500, this.value, 2000);
+                    productNo = this.value;
+                });
+                if (d.params.type == "2") {
+                    getAddrList(d.params.consumerId);
+                }
+            }
+
             function initInvoiceTab() {
                 table.render({
                     elem: '#addGenerateInvoiceTab'
@@ -236,12 +255,84 @@
             //     $("dl[xid='giPcbName']").hide();
             // });
 
+            /**
+             * 监听选择客户
+             * */
             layui.formSelects.on('giCustomer', function (id, vals, val, isAdd, isDisabled) {
                 var _val = val.value;
                 userId = _val;
+                getAddrList(_val);
                 getFrom();
-            })
+            });
 
+            /**
+             * 获取地址信息
+             */
+            function getAddrList (userId) {
+                var checked;
+                admin.req({
+                    type: 'post',
+                    async: false,
+                    url: setter.baseUrl + 'sys/receiveradders/queryReceiverAddersByUid?userId=' + userId,
+                    success: function (res) {
+                        invoiceAddrArr = res.data;
+                        var $html;
+                        for (let dz of res.data) {
+                            $html += "<option value="+ dz.id +">" + "联系人：" + dz.receiverName + "</option>"
+                            if (dz.isDefault === 1 && d.params.receiveAddersId != null) {
+                                checked = dz.id;
+                            } else {
+                                checked = d.params.receiveAddersId;
+                            }
+                            receiveAddersId = checked
+                        }
+                        $("select[xm-select='giShdz']").append($html);
+                        formSelects.render('giShdz');
+                        formSelects.value('giShdz', [checked]);
+                        initShowAddr(checked);
+                    }
+                })
+            }
+
+            /**
+             * 监听选择发票地址
+             */
+            layui.formSelects.on('giShdz', function (id, vals, val, isAdd, isDisabled) {
+                receiveAddersId = val.value;
+                initShowAddr(val.value);
+            });
+
+            function initShowAddr (_val) {
+                var thisParamObj = invoiceAddrArr.reduce((prev, cur) => {
+                    if (cur.id == _val) {
+                        prev.push(cur)
+                    }
+                    return prev;
+                },[]);
+                if (thisParamObj.length > 0) {
+                    $(".gi-show-addr").text(
+                        thisParamObj[0].receiverCompany + ", "
+                        + thisParamObj[0].receiverName + ", "
+                        + thisParamObj[0].receiverAddress + ", "
+                        + thisParamObj[0].receiverCity + ", "
+                        + thisParamObj[0].receiverCountryName + ", "
+                        + thisParamObj[0].receiverEmail + ", "
+                        + thisParamObj[0].receiverTelephone
+                    )
+                    // $(".gi-show-addr").html("<ul>\n" +
+                    //     "                        <li>" + thisParamObj[0].receiverCompany + ", " + thisParamObj[0].receiverName +"</li>\n" +
+                    //     "                        <li>" + thisParamObj[0].receiverAddress + "</li>\n" +
+                    //     "                        <li>" + thisParamObj[0].receiverCity + "</li>\n" +
+                    //     "                        <li>" + thisParamObj[0].receiverCountryName + "</li>\n" +
+                    //     "                        <li>" + thisParamObj[0].receiverEmail + "&nbsp;&nbsp;" + thisParamObj[0].receiverTelephone + "</li>\n" +
+                    //     "                    </ul>")
+                }
+            }
+
+
+            /**
+             * 监听选择客户型号
+             */
             layui.formSelects.on('giPcbName', function (id, vals, val, isAdd, isDisabled) {
                 var $thisName = val.name;
                 var _arr = val.value.split(",");
@@ -299,6 +390,7 @@
             function addOrderInvoice() {
                 var postData = disposeData();
                 postData.id = d.params.id;
+                postData.receiveAddersId = receiveAddersId; // 发票地址
                 var thisType = d.params.type;
                 var _url;
                 if (thisType == "1") {
@@ -319,7 +411,7 @@
                         } else if (thisType == '2') {
                             layer.msg('修改成功！');
                         }
-                        layui.table.reload('invoiceList_Tabpcb');
+                        table.reload('invoiceList_Tabpcb');
                     }
                 })
             }
@@ -341,8 +433,9 @@
                 postData.customInvoiceEntityList = d.params.reduce((prev, cur) => {
                     var _ce = new Object();
                     postData.totalFee +=  cur.totalFee; // 发票总计
-                    if (d.params.type == "1") {
-                        _ce.orderId = prev.id;   // 订单id
+                    var thisType = d.params.type;
+                    if (thisType == "1") {
+                        _ce.orderId = cur.id;   // 订单id
                     } else {
                         _ce.id = cur.id;   // 订单id
                     }

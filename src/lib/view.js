@@ -343,7 +343,7 @@ layui.define(['laytpl', 'layer'], function(exports){
     this.done = callback;
     return this;
   };
-  
+
   //对外接口
   exports('view', view);
 });

@@ -65,9 +65,11 @@ layui.define(['table', 'form'], function(exports){
         if (obj.event === 'il-edit') {
             var getInvoiceData = getInvoice(data.id);
             getInvoiceData.type = '2';
+            getInvoiceData.consumerId = data.consumerId;
+            getInvoiceData.receiveAddersId = data.receiveAddersId;
             getInvoiceData.id = data.id;
             admin.popup({
-                title: '查看发票'
+                title: '编辑发票'
                 ,area: ['100%', '100%']
                 ,btn: ['更新', '取消']
                 ,id: 'popGenerateInvoiceUpdate'
@@ -75,9 +77,7 @@ layui.define(['table', 'form'], function(exports){
                     $(".gi-submit").click();
                 }
                 ,success: function () {
-                    view(this.id).render('/marketManagement/iframeWindow/generate_invoice',getInvoiceData).done(function () {
-
-                    })
+                    view(this.id).render('/marketManagement/iframeWindow/generate_invoice',getInvoiceData).done(function () {})
                 }
             })
 

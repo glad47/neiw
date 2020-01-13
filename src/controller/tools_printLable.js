@@ -21,6 +21,12 @@ layui.define(['admin', 'jsTools'], function (exports) {
                ,id: 'popOuterLable'
                ,btn: ['打印', '取消']
                ,yes: function () {
+                   // var printBox = document.getElementById("outerLableContainer");
+                   // var newWin = window.open(window.document.URL);
+                   // var newContent = printBox.innerHTML;
+                   // newWin.document.body.innerHTML = document.getElementById("outerLableContainer").innerHTML;
+                   // newWin.print();
+                   // newWin.close();
                    document.body.innerHTML=document.getElementById("outerLableContainer").innerHTML;
                    window.print();
                    window.location.reload();
