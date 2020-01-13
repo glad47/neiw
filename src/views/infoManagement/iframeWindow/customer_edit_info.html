@@ -41,12 +41,12 @@
                 <div class="layui-input-block">
                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}quote/getCountry" lay-done="layui.data.done(d);" lay-type="post">
                     <!-- <script type="text/html" template lay-url="" lay-done="layui.data.done(d);" lay-type="post"> -->
-                        <select name="receiverCountry" lay-verify="required" lay-search="">
+                        <select name="countryInfo" lay-verify="required" lay-search="" lay-filter="lf-country">
                             {{# 
                                 layui.each(d.data, function(index, item){   
                             }}
                             <option value=""></option>
-                            <option value="{{ item.id || ''}}" {{ d.params.country == item.id ? 'selected' : ''}}>{{ item.name }}</option>
+                            <option value="{{ item.id+'_'+item.name || ''}}" {{ d.params.country == item.name ? 'selected' : ''}}>{{ item.name }}</option>
                             {{#  }); }}
                         </select>
                     </script>
@@ -131,6 +131,9 @@
             <div class="addcus-merchandiser">
                 <label class="layui-form-label"><span class="span-required">*</span>收货地址：</label>
                 <div class="layui-input-block">
+                    <a href="javascript:void(0)" id="add_address" class="layui-btn layui-btn"><i>添加</i></a>
+                </div>
+                <div class="layui-input-block">
                     <table cellspacing="0" cellpadding="0" class="layui-table form-table" id="table_address">
                         <thead>
                         <tr>
@@ -139,18 +142,10 @@
                             <th width="20%">联系电话</th>
                             <th width="20%">公司名</th>
                             <th width="15%">邮编</th>
-                            <th width="40%">详细地址<a href="javascript:void(0)" id="add_address" class="layui-btn layui-btn-xs" style="margin-left: 120px;"><i>添加</i></a></th>
+                            <th width="40%">详细地址</th>
                         </tr>
                         </thead>
-                        <tbody>
-                            <!-- <tr>
-                                <td>
-                                <input type="radio" name="isDefault" autocomplete="off" value="0" lay-verify="required">
-                                <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div></div>
-                                </div>
-                                </td>
-                                <td><input type="text" autocomplete="off" name="receiverAddersEntityList[0].receiverName" lay-verify="required"></td><td><input type="text" autocomplete="off" name="receiverAddersEntityList[0].receiverTelephone"></td><td><input type="text" autocomplete="off" name="receiverAddersEntityList[0].receiverCompany"></td><td><input type="text" autocomplete="off" name="receiverAddersEntityList[0].receiverPostcode"></td><td><input type="text" autocomplete="off" name="receiverAddersEntityList[0].receiverAddress"><input type="button" class="layui-btn layui-btn-xs" value="删除"></td></tr> -->
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                     <!-- <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/receiveradders/queryReceiverAddersByUid?userId={{d.params.id}}" lay-done="layui.data.done(d);" lay-type="post">
                         <select name="ssdz" lay-verify="required" lay-filter="ssdz">
@@ -415,17 +410,11 @@
 </style>
 
 <script>
-    // var _id;
-    // layui.data.done = function(d){
-    //     layui.use(['form'], function(){
-    //         var $ = layui.$
-    //             ,form = layui.form
-    //             ,admin = layui.admin
-    //             ,setter = layui.setter;
-    //         form.render(null, 'customer-add-edit-form-list');
-    //         _id = d.params.id;
-    //     });
-    // }
+    layui.use(['form','admin','setter'], function(){
+        var $ = layui.$,form = layui.form,admin = layui.admin,setter = layui.setter;
+  
+
+    });
     // var _id;
     // layui.data.done = function(d){
     //     layui.use(['form'], function(){

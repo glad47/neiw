@@ -19,7 +19,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
             ,{field:'status', title: '状态', width: 130, templet:'#customerStatus'}
             ,{field:'userSystemId', title: '客户代码', sort: true, width: 130}
             ,{field:'userName', title: '用户名', width: 130}
-            ,{field:'countryName', title: '国家', sort: true}
+            ,{field:'country', title: '国家', sort: true}
             ,{field:'email', title: '邮箱', sort: true, minWidth: 196}
             ,{field:'gmtCreate', title: '注册时间', sort: true}
             ,{field:'gmtModified', title: '更新时间', sort: true}
@@ -54,7 +54,247 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
         var data = obj.data;
         console.log(data);
         if (obj.event === 'edit') {
-            edit_customer_info.editInfo(data)
+            //edit_customer_info.editInfo(data)
+            admin.req({
+                type: 'post',
+                data: {'userId': data.id},
+                url: setter.baseUrl+'sys/receiveradders/queryReceiverAddersByUid/',
+                success:function(ret){
+                    // console.log(ret);
+                    data.receiverAddersEntityList = ret.data;
+                    admin.popup({
+                        title:'编辑客户',
+                        area:['60%', '100%'],
+                        id:'LAY-popup-customer-edit',
+                        btn:['提交','取消'],
+                        yes:function(index, layero){
+                            $("#layuiadmin-app-form-submit").click();
+                        },
+                        end:function(){},
+                        success:function(layero,index){
+                            view(this.id).render('/infoManagement/iframeWindow/customer_edit_info',data)
+                            .then(function(value){
+                                //视图文件请求完毕，视图内容渲染前的回调
+                            }).done(function(){
+                                form.render(null,'customer-add-edit-form-list');
+                                //监听提交
+                                var productionVerification;
+                                form.on('switch(productionVerification)', function (data) {
+                                    if (data.elem.checked == true) {
+                                        layer.msg('需要确定生产资料');
+                                        productionVerification = 0;
+                                    }  else {
+                                        layer.msg('不需要确定生产资料');
+                                        productionVerification = 1;
+                                    }
+                                });
+                                var invalidMark;
+                                form.on('switch(optionUser)',function (data) {
+                                    if (data.elem.checked == true){
+                                        layer.msg('已启用');
+                                        invalidMark =0;
+                                    } else {
+                                        layer.msg('停用');
+                                        invalidMark =1;
+                                    }
+                                });
+                                var userType;
+                                form.on('switch(isneibuUser)',function (data) {
+                                    if (data.elem.checked == true){
+                                        layer.msg('内部用户');
+                                        userType =1;
+                                    } else {
+                                        layer.msg('客户系统用户');
+                                        userType =0;
+                                    }
+                                });
+                                var auditMark;
+                                form.on('switch(isAuditMark)',function(data){
+                                    if (data.elem.checked == true) {
+                                        layer.msg('需要审核');
+                                        auditMark = 0;
+                                    }else{
+                                        layer.msg('不需审核');
+                                        auditMark = 1;
+                                    }
+                                });
+                                var deliveryReport = 0;
+                                form.on('switch(deliveryReport)',function (data) {
+                                    if (data.elem.checked == true){
+                                        layer.msg('需要出货报告');
+                                        deliveryReport =1;
+                                    } else {
+                                        layer.msg('不需要出货报告');
+                                        deliveryReport =0;
+                                    }
+                                });
+
+                                var addlist = data.receiverAddersEntityList;
+                                // console.log(addlist);
+                                if(addlist.length != 0){
+                                    var tr = '',radiodiv = '';
+                                    addlist.forEach(function(e,i){
+                                        // console.log(e);
+                                        if(e.isDefault != 0){
+                                            radiodiv = "<input type='radio' name='isDefault' autocomplete='off' checked/>"
+                                        }else{
+                                            radiodiv = "<input type='radio' name='isDefault' autocomplete='off' />"
+                                        }
+                                        tr += "<tr><td>"+
+                                        radiodiv+
+                                        "<input type='hidden' autocomplete='off' value='"+(e.id == null ? "" : e.id)+"'/>"+
+                                        "</td><td>"+
+                                        "<input type='text' autocomplete='off' value='"+(e.receiverName == null ? "" : e.receiverName)+"'/>"+
+                                        "</td><td>"+
+                                        "<input type='text' autocomplete='off' value='"+(e.receiverTelephone == null ? "" : e.receiverTelephone)+"' />"+
+                                        "</td><td>"+
+                                        "<input type='text' autocomplete='off' value='"+(e.receiverCompany == null ? "" : e.receiverCompany)+"'/>"+
+                                        "</td><td>"+
+                                        "<input type='text' autocomplete='off' value='"+(e.receiverPostcode == null ? "" : e.receiverPostcode)+"'/>"+
+                                        "</td><td>"+
+                                        "<input type='text' autocomplete='off' value='"+(e.receiverAddress == null ? "" : e.receiverAddress)+"' />"+
+                                        "<input type='button' class='layui-btn layui-btn-xs' value='删除' addid='"+e.id+"'></td></tr>";
+                                    });
+                                    $('#table_address').append(tr);
+                                    resetTableIndex();
+                                    form.render();
+                                }else{
+                                    resetTableIndex();
+                                    form.render();
+                                }
+                               
+                               
+                                var add_del_array = [];
+
+                                //监听添加时间
+                                $('#add_address').click(function(){
+                                    var tr = "<tr><td>"+
+                                    "<input type='radio' name='isDefault' autocomplete='off'/>"+
+                                    "<input type='hidden' autocomplete='off'/>"+
+                                    "</td><td>"+
+                                    "<input type='text' autocomplete='off'/>"+
+                                    "</td><td>"+
+                                    "<input type='text' autocomplete='off'/>"+
+                                    "</td><td>"+
+                                    "<input type='text' autocomplete='off'/>"+
+                                    "</td><td>"+
+                                    "<input type='text' autocomplete='off'/>"+
+                                    "</td><td>"+
+                                    "<input type='text' autocomplete='off'/>"+
+                                    "<input type='button' class='layui-btn layui-btn-xs' value='删除'></td></tr>";
+                                    $('#table_address').append(tr);
+                                    resetTableIndex();
+                                    form.render();
+                                    $(":button").click(function () {    
+                                        $(this).parent().parent().remove();     
+                                        var addid = $(this).attr("addid");
+                                        if(addid != undefined && addid != ""){
+                                            add_del_array.push(addid);
+                                        }
+                                        resetTableIndex();
+                                        form.render();
+                                    });
+                                });
+            
+                                $(":button").click(function () {    
+                                    $(this).parent().parent().remove();     
+                                    var addid = $(this).attr("addid");
+                                    if(addid != undefined && addid != ""){
+                                        add_del_array.push(addid);
+                                    }
+                                    //var height1=$(document.body).height()+10;
+                                    //$(window.parent.document).find("#myiframe").attr("height",height1);  
+                                    resetTableIndex();
+                                    form.render();
+                                });
+
+                                function getFormData($form) {
+                                    var unindexed_array = $form.serializeArray();
+                                    var indexed_array = {};
+                                    var add_array = [],add_obj = {}, receiverAddersEntityList = [];
+                                    $.map(unindexed_array, function (n, i) {
+                                        if(n['name'].indexOf('receiverAddersEntityList') === 0){
+                                                return add_array.push(n['value']);
+                                        }else{
+                                            indexed_array[n['name']] = n['value'];
+                                        }
+                                    });
+                                    add_array.forEach(function(e,i){
+                                        if(((i+1)%6) == 0){
+                                            // console.log(e);
+                                            // console.log(i);
+                                            add_obj.id = add_array[i-5];
+                                            add_obj.receiverName = add_array[i-4];
+                                            add_obj.receiverTelephone = add_array[i-3];
+                                            add_obj.receiverCompany = add_array[i-2];
+                                            add_obj.receiverPostcode = add_array[i-1];
+                                            add_obj.receiverAddress = add_array[i];
+                                            add_obj.isDefault = 0;
+                                            receiverAddersEntityList.push(add_obj);
+                                            add_obj = {};
+                                        }
+                                    });
+                                    //console.log(unindexed_array);
+                                    var isDefault = indexed_array.isDefault;
+                                    if(isDefault != undefined && isDefault != null){
+                                        //console.log(isDefault)
+                                        receiverAddersEntityList[isDefault].isDefault = 1;
+                                    }
+                                    //console.log(receiverAddersEntityList);
+                                    //var receiverAddersEntityList = handleAddersData(add);
+                                    //console.log(receiverAddersEntityList);
+                                    indexed_array.receiverAddersEntityList = receiverAddersEntityList;
+                                    return indexed_array;
+                                }
+
+                                //动态加载行
+                                function resetTableIndex(){
+                                    $('#table_address tbody tr').each(function(index){
+                                        $(this).find("td").eq(0).find("input[type=radio]").attr("value",index);
+                                        $(this).find("td").eq(0).find("input[type='hidden']").attr("name",'receiverAddersEntityList['+index+'].id');
+                                        $(this).find("td").eq(1).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverName');
+                                        $(this).find("td").eq(2).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverTelephone');
+                                        $(this).find("td").eq(3).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverCompany');
+                                        $(this).find("td").eq(4).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverPostcode');
+                                        $(this).find("td").eq(5).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverAddress');
+                                    });
+                                }
+
+                                form.on('submit(customer-edit-info-form-submit)',function(formdata){
+                                    var field = getFormData($('#customer-add-edit-form-list'));
+                                    field.invalidMark = invalidMark;
+                                    field.userType = userType;
+                                    field.auditMark = auditMark;
+                                    field.deliveryReport = deliveryReport;
+                                    field.productionVerification = productionVerification;
+                                    field.id = data.id;
+                                    field.addDelIdList = add_del_array;
+                                    console.log(field);
+                                    admin.req({
+                                        url: setter.baseUrl+'sys/consumer/user/update',
+                                        type:'POST',
+                                        dataType:'json',
+                                        contentType:'application/json',
+                                        data: JSON.stringify(field),
+                                        success:function(data){
+                                            console.log(data);
+                                            if(data.code == 200){
+                                                layui.table.reload('customer_listTab'); //重载表格
+                                                layer.close(index); //执行关闭 
+                                            }
+                                            
+                                        }
+                                    })
+                    
+                                });
+
+                            });
+                            
+                        }
+                    });
+                }
+            });
+            
 
         } else if (obj.event === 'del') {
             layer.confirm('确定删除此客户？', function(index){
@@ -125,19 +365,19 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                     view('customer_edit_info').render('/infoManagement/iframeWindow/customer_edit_info')
                     .then(function (value) {
                         //视图文件请求完毕，视图内容渲染前的回调
-                        console.log(value);
+                        // console.log(value);
                     }).done(function(){
-                        form.render(null,'customer-add-edit-form-list');
+                        form.render(null, 'customer-add-edit-form-list');
                         //监听提交
                         var productionVerification;
                         form.on('switch(productionVerification)', function (data) {
-                           if (data.elem.checked == true) {
-                               layer.msg('需要确定生产资料');
-                               productionVerification = 0;
-                           }  else {
-                               layer.msg('不需要确定生产资料');
-                               productionVerification = 1;
-                           }
+                            if (data.elem.checked == true) {
+                                layer.msg('需要确定生产资料');
+                                productionVerification = 0;
+                            }  else {
+                                layer.msg('不需要确定生产资料');
+                                productionVerification = 1;
+                            }
                         });
                         var invalidMark;
                         form.on('switch(optionUser)',function (data) {
@@ -149,7 +389,6 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                 invalidMark =1;
                             }
                         });
-
                         var userType;
                         form.on('switch(isneibuUser)',function (data) {
                             if (data.elem.checked == true){
@@ -160,7 +399,6 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                 userType =0;
                             }
                         });
-
                         var auditMark;
                         form.on('switch(isAuditMark)',function(data){
                             if (data.elem.checked == true) {
@@ -171,7 +409,6 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                 auditMark = 1;
                             }
                         });
-
                         var deliveryReport = 0;
                         form.on('switch(deliveryReport)',function (data) {
                             if (data.elem.checked == true){
@@ -182,7 +419,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                 deliveryReport =0;
                             }
                         });
-
+            
                         //监听添加时间
                         $('#add_address').click(function(){
                             var tr = "<tr><td>"+
@@ -198,77 +435,98 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                             "</td><td>"+
                             "<input type='text' autocomplete='off'/>"+
                             "<input type='button' class='layui-btn layui-btn-xs' value='删除'></td></tr>";
-                            var div = "<div> <input type='text' autocomplete='off'/> <div/>"
                             $('#table_address').append(tr);
                             resetTableIndex();
                             form.render();
                             $(":button").click(function () {    
                                 $(this).parent().parent().remove();     
                                 var height1=$(document.body).height()+10;
-    	                        $(window.parent.document).find("#myiframe").attr("height",height1);  
+                                $(window.parent.document).find("#myiframe").attr("height",height1);  
                                 resetTableIndex();
                                 form.render();
                             });
                         });
-
+            
                         form.on('submit(customer-edit-info-form-submit)',function(data){
-                            var form_data = $('#customer-add-edit-form-list').serialize();
-                            var ff = getFormData($('#customer-add-edit-form-list'));
-                            var d = JSON.stringify(ff);
-                            console.log(d);
-                            console.log(ff);
-
-
+            
+                            var field = getFormData($('#customer-add-edit-form-list'));
+                            // var d = JSON.stringify(ff);
+                            // console.log(d);
+                            // console.log(ff);
                             // var field = data.field;
-                            // field.invalidMark = invalidMark;
-                            // field.userType = userType;
-                            // field.auditMark = auditMark;
-                            // field.deliveryReport = deliveryReport;
-                            // field.productionVerification = productionVerification;
-                            // console.log(field);
-                            // admin.req({
-                            //     url: setter.baseUrl+'sys/consumer/user/save',
-                            //     type:'POST',
-                            //     //dataType:'json',
-                            //     //contentType:'application/json',
-                            //     data: field,
-                            //     success:function(data){
-                            //         console.log(data);
-                            //         layui.table.reload('customer_listTab'); //重载表格
-                            //         layer.close(index); //执行关闭 
-                            //     }
-                            // })
-
+                            field.invalidMark = invalidMark;
+                            field.userType = userType;
+                            field.auditMark = auditMark;
+                            field.deliveryReport = deliveryReport;
+                            field.productionVerification = productionVerification;
+                            // field.country = country;
+                            console.log(field);
+                            admin.req({
+                                url: setter.baseUrl+'sys/consumer/user/save',
+                                type:'POST',
+                                dataType:'json',
+                                contentType:'application/json',
+                                data: JSON.stringify(field),
+                                success:function(data){
+                                    console.log(data);
+                                    layui.table.reload('customer_listTab'); //重载表格
+                                    layer.close(index); //执行关闭 
+                                }
+                            })
+            
                         });
-
+            
                         //动态加载行
                         function resetTableIndex(){
                             $('#table_address tbody tr').each(function(index){
                                 $(this).find("td").eq(0).find("input[type=radio]").attr("value",index);
                                 $(this).find("td").eq(1).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverName');
-    			                $(this).find("td").eq(2).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverTelephone');
-    			                $(this).find("td").eq(3).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverCompany');
-    			                $(this).find("td").eq(4).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverPostcode');
-    			                $(this).find("td").eq(5).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverAddress');
+                                $(this).find("td").eq(2).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverTelephone');
+                                $(this).find("td").eq(3).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverCompany');
+                                $(this).find("td").eq(4).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverPostcode');
+                                $(this).find("td").eq(5).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverAddress');
                             });
                         }
-
+            
                         function getFormData($form) {
                             var unindexed_array = $form.serializeArray();
-                            console.log(unindexed_array);
                             var indexed_array = {};
-                        
+                            var add_array = [],add_obj = {}, receiverAddersEntityList = [];
                             $.map(unindexed_array, function (n, i) {
-                              indexed_array[n['name']] = n['value'];
-                              if(n['name'].indexOf('receiverAddersEntityList') === 0){
-                                  
-                                    console.log(n['name']);
-                              }
+                                if(n['name'].indexOf('receiverAddersEntityList') === 0){
+                                        return add_array.push(n['value']);
+                                }else{
+                                    indexed_array[n['name']] = n['value'];
+                                }
                             });
-                        
+                            add_array.forEach(function(e,i){
+                                if(((i+1)%5) == 0){
+                                    console.log(i);                                    
+                                    console.log(e);
+                                    add_obj.receiverName = add_array[i-4];
+                                    add_obj.receiverTelephone = add_array[i-3];
+                                    add_obj.receiverCompany = add_array[i-2];
+                                    add_obj.receiverPostcode = add_array[i-1];
+                                    add_obj.receiverAddress = add_array[i];
+                                    add_obj.isDefault = 0;
+                                    receiverAddersEntityList.push(add_obj);
+                                    add_obj = {};
+                                }
+                            });
+                            console.log(unindexed_array);
+                            var isDefault = indexed_array.isDefault;
+                            if(isDefault != undefined && isDefault != null){
+                                console.log(isDefault)
+                                receiverAddersEntityList[isDefault].isDefault = 1;
+                            }
+                            console.log(receiverAddersEntityList);
+                            //var receiverAddersEntityList = handleAddersData(add);
+                            //console.log(receiverAddersEntityList);
+                            indexed_array.receiverAddersEntityList = receiverAddersEntityList;
                             return indexed_array;
                         }
 
+                       
                     });
 
 
