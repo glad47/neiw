@@ -153,7 +153,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                         "<input type='text' autocomplete='off' value='"+(e.receiverPostcode == null ? "" : e.receiverPostcode)+"'/>"+
                                         "</td><td>"+
                                         "<input type='text' autocomplete='off' value='"+(e.receiverAddress == null ? "" : e.receiverAddress)+"' />"+
-                                        "<input type='button' class='layui-btn layui-btn-xs' value='删除' addid='"+e.id+"'></td></tr>";
+                                        "</td><td><input type='button' class='layui-btn layui-btn-xs layui-btn-danger' value='删除' addid='"+e.id+"'></td></tr>";
                                     });
                                     $('#table_address').append(tr);
                                     resetTableIndex();
@@ -278,11 +278,8 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                         data: JSON.stringify(field),
                                         success:function(data){
                                             console.log(data);
-                                            if(data.code == 200){
-                                                layui.table.reload('customer_listTab'); //重载表格
-                                                layer.close(index); //执行关闭 
-                                            }
-                                            
+                                            layui.table.reload('customer_listTab'); //重载表格
+                                            layer.close(index); //执行关闭
                                         }
                                     })
                     
