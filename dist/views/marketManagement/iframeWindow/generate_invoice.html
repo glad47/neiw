@@ -277,16 +277,22 @@
                     success: function (res) {
                         invoiceAddrArr = res.data;
                         var $html;
-                        for (let dz of res.data) {
-                            $html += "<option value="+ dz.id +">" + "联系人：" + dz.receiverName + "</option>"
-                            if (dz.isDefault === 1 && d.params.receiveAddersId != null) {
-                                checked = dz.id;
-                            } else {
-                                checked = d.params.receiveAddersId;
+                        console.log(res.data.length)
+                        if (res.data.length > 0) {
+                            for (let dz of res.data) {
+                                $html += "<option value="+ dz.id +">" + "联系人：" + dz.receiverName + "</option>"
+                                if (dz.isDefault === 1 && d.params.receiveAddersId != null) {
+                                    checked = dz.id;
+                                } else {
+                                    checked = d.params.receiveAddersId;
+                                }
+                                receiveAddersId = checked;
+                                $("select[xm-select='giShdz']").html($html);
                             }
-                            receiveAddersId = checked
+                        } else {
+                            $(".gi-show-addr").text('当前不存在收货地址信息，请返回客户管理添加收货地址！');
+                            $("select[xm-select='giShdz'] option").remove();
                         }
-                        $("select[xm-select='giShdz']").append($html);
                         formSelects.render('giShdz');
                         formSelects.value('giShdz', [checked]);
                         initShowAddr(checked);
@@ -326,6 +332,8 @@
                     //     "                        <li>" + thisParamObj[0].receiverCountryName + "</li>\n" +
                     //     "                        <li>" + thisParamObj[0].receiverEmail + "&nbsp;&nbsp;" + thisParamObj[0].receiverTelephone + "</li>\n" +
                     //     "                    </ul>")
+                } else {
+                    $(".gi-show-addr").text('请选择发票地址');
                 }
             }
 
