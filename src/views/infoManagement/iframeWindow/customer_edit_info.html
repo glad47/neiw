@@ -133,16 +133,17 @@
                 <div class="layui-input-block">
                     <a href="javascript:void(0)" id="add_address" class="layui-btn layui-btn"><i>添加</i></a>
                 </div>
-                <div class="layui-input-block">
+                <div class="layui-input-block" style="margin-left: unset;">
                     <table cellspacing="0" cellpadding="0" class="layui-table form-table" id="table_address">
                         <thead>
                         <tr>
-                            <th width="1%"></th>
+                            <th width="1%">默认</th>
                             <th width="15%">收货人</th>
                             <th width="20%">联系电话</th>
                             <th width="20%">公司名</th>
                             <th width="15%">邮编</th>
-                            <th width="40%">详细地址</th>
+                            <th width="35%">详细地址</th>
+                            <th width="5%">操作</th>
                         </tr>
                         </thead>
                         <tbody></tbody>
@@ -557,3 +558,17 @@
     //     });
     // }
 </script>
+<style>
+    table#table_address input[type='text'] {
+        border: none;
+        height: 35px;
+        background: unset;
+        box-sizing: border-box;
+    }
+    table#table_address tr td, table#table_address th, table#table_address input {
+        text-align: center;
+    }
+    table#table_address input:focus {
+        border-bottom: #009688 1px solid;
+    }
+</style>

@@ -190,7 +190,7 @@
                 isNaN(pcbaSubtotalFee) === true?pcbaSubtotalFee=0:pcbaSubtotalFee;
                 console.log("unitPrice: " + unitPrice);
                 boardFee = parseFloat(unitPrice*quantityPcs).toFixed(3)
-                totalFee = parseFloat(engineeringFee + testCostFee + toolingFee + overworkFee + postFee + pcbaSubtotalFee + parseFloat(boardFee));
+                totalFee = parseFloat(engineeringFee + testCostFee + toolingFee + overworkFee + postFee + pcbaSubtotalFee + parseFloat(boardFee)).toFixed(2);
                 var obj = d.params
                 for (let d of obj) {
                     if (d.id === data.id) {
@@ -344,7 +344,6 @@
                     if (d.params.type == "1") {
                         _ce.orderId = prev.id;   // 订单id
                     } else {
-                        console.log(cur.id)
                         _ce.id = cur.id;   // 订单id
                     }
                     _ce.pcbName = cur.pcbName;   // 客户po

@@ -88,6 +88,7 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
       'formSelects', // formSelects 下拉增强组件
       'tableSearch', // 表格刷新扩展
       'arrReduce', // 表格刷新扩展
+      'pbLocalStorage', // localStorage 时间设置
     ]
 
     //主题配置
