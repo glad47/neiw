@@ -153,7 +153,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                         "<input type='text' autocomplete='off' value='"+(e.receiverPostcode == null ? "" : e.receiverPostcode)+"'/>"+
                                         "</td><td>"+
                                         "<input type='text' autocomplete='off' value='"+(e.receiverAddress == null ? "" : e.receiverAddress)+"' />"+
-                                        "</td><td><input type='button' class='layui-btn layui-btn-xs layui-btn-danger' value='删除' addid='"+e.id+"'></td></tr>";
+                                        "<input type='button' class='layui-btn layui-btn-xs' value='删除' addid='"+e.id+"'></td></tr>";
                                     });
                                     $('#table_address').append(tr);
                                     resetTableIndex();
@@ -181,7 +181,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                     "<input type='text' autocomplete='off'/>"+
                                     "</td><td>"+
                                     "<input type='text' autocomplete='off'/>"+
-                                    "</td><td><input type='button' class='layui-btn layui-btn-xs layui-btn-danger' value='删除'></td></tr>";
+                                    "<input type='button' class='layui-btn layui-btn-xs' value='删除'></td></tr>";
                                     $('#table_address').append(tr);
                                     resetTableIndex();
                                     form.render();
@@ -278,8 +278,11 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                         data: JSON.stringify(field),
                                         success:function(data){
                                             console.log(data);
-                                            layui.table.reload('customer_listTab'); //重载表格
-                                            layer.close(index); //执行关闭
+                                            if(data.code == 200){
+                                                layui.table.reload('customer_listTab'); //重载表格
+                                                layer.close(index); //执行关闭 
+                                            }
+                                            
                                         }
                                     })
                     
@@ -431,7 +434,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                             "<input type='text' autocomplete='off'/>"+
                             "</td><td>"+
                             "<input type='text' autocomplete='off'/>"+
-                            "</td><td><input type='button' class='layui-btn layui-btn-xs layui-btn-danger' value='删除'></td></tr>";
+                            "<input type='button' class='layui-btn layui-btn-xs' value='删除'></td></tr>";
                             $('#table_address').append(tr);
                             resetTableIndex();
                             form.render();

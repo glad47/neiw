@@ -92,20 +92,11 @@
 
 <script>
     layui.data.done = function(d){
-                layui.use('sys_coustomer', layui.factory('sys_coustomer')).use(['admin', 'table','element','form'],function(){
-            var table = layui.table,
-            $ = layui.jquery,
-            element = layui.element,
-            admin = layui.admin,
-            form = layui.form,
-            view = layui.view,
-            setter = layui.setter;
-             
-            form.render();
+    layui.use('sys_coustomer', layui.factory('sys_coustomer')).use(['admin', 'table','element','form'],function(){
+        var table = layui.table,$ = layui.jquery,element = layui.element,admin = layui.admin,form = layui.form,view = layui.view,setter = layui.setter;             
+        form.render();
+    });
+    layui.use('mobileterminal',layui.factory('mobileterminal')).use(['mobileterminal'],function () {
 
-        });
-        layui.use('mobileterminal',layui.factory('mobileterminal')).use(['mobileterminal'],function () {
-
-        });
-}
+    });}
 </script>
