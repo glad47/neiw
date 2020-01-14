@@ -68,25 +68,25 @@
         {{ parseFloat(d.boardFee/d.quantityPcs).toFixed(3) }}
     </script>
     <script id="giDes" type="text/html">
-        P/N:{{ d.productNo }}<br>
-        {{ d.pcbType || '' }}<br>
+        P/N:{{ d.productNo }},
+        {{ d.pcbType || '' }},
         {{ d.finishThickness }}
         {{# if(d.panelSizeX != null){ }}
         {{# var panelWay = d.panelWayX*d.panelWayY }}
-        {{ d.panelSizeX }} * {{ d.panelSizeY }}mm / {{ panelWay }}<br>
+        {{ d.panelSizeX }} * {{ d.panelSizeY }}mm / {{ panelWay }},
         {{# }else if(d.dimensionsX != null){ }}
-        {{ d.dimensionsX}} * {{ d.dimensionsY}}mm /1<br>
+        {{ d.dimensionsX}} * {{ d.dimensionsY}}mm /1,
         {{# }else{ }}
-        都为空<br>
+        都为空,
         {{# } }}
         <!--层数-->
-        Layer: {{ d.layerNum}}<br>
+        Layer: {{ d.layerNum}},
         <!--完成表面-->
         {{# if(d.surfaceFinish != null){ }}
-        {{ d.surfaceFinish}}<br>
+        {{ d.surfaceFinish}},
         {{# } }}
         <!--组焊色-->
-        Solder Mask:{{ d.solderMaskTopColor}}<br>
+        Solder Mask:{{ d.solderMaskTopColor}},
         {{# if(d.pcbaSubtotalFee != null && d.pcbaSubtotalFee != '0'){ }}
         <strong style="color: orangered;">+ PCBA</strong>
         {{# } }}
@@ -154,7 +154,7 @@
                     ]]
                 });
                 var totalAll = d.params.reduce((prev, cur) => {
-                    return prev += cur.totalFee
+                    return prev += parseFloat(cur.totalFee)
                 },0);
                 console.log('求发票总金额')
                 $(".top-total>strong").text(totalAll);

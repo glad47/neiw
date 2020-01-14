@@ -44,59 +44,62 @@
             </div>
         </div>
     </div>
-    <div class="layui-card" lay-filter="addInfo">
-        <div class="layui-card-body">
-            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-                <script type="text/html" template lay-done="layui.data.done(d);">
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:consumer_user:save") != -1){ }}
-                        <button class="layui-btn" id="customerInfo_add" data-type="customerInfo_add">新增</button>
-                    {{# } }}
-                </script>   
-                <!-- <button class="layui-btn" data-type="getCheckLength">修改</button> -->
-                <!-- <button class="layui-btn" data-type="isAll">查看</button> -->
-                <!-- <button class="layui-btn" data-type="isAll">设置</button> -->
-            </div>
-            <table class="layui-hide" id="customer_listTab" lay-filter="customer_listTab"></table>
-            <script type="text/html" id="role-table-operate-barDemo">
-                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:consumer_user:update") != -1){ }}
-                    <a class="layui-btn layui-btn-xs" lay-event="customerInfosh">审核</a>
-                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-                {{# } }}
-                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:consumer_user:delete") != -1){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                 {{# } }}
-                    <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="conversionCustomer">转客户</a>
-            </script>
-             <script type="text/html" id="userType">
-                {{#  if(d.userType ===0){ }}
-                    <span style="color: orangered;">否</span>
-                {{#  } else { }}
-                    <span>是</span>
-                {{#  } }}
-            </script>
-            <script type="text/html" id="customerStatus">
-                {{#  if(d.status === 0 || d.status == null){ }}
-                    <a style="color: orangered">未审核</a>
-                {{#  } else if(d.status === 1) { }}
-                    <a style="color: cornflowerblue">需要审核</a>
-                {{#  } else if(d.status === 2){ }}
-                    <a style="color: green">已审核</a>
-                {{#  } }}
-            </script>
+    <script type="text/html" id="customerToolbar">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
         </div>
+    </script>
+    <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
+        <!-- <button class="layui-btn" data-type="getCheckLength">修改</button> -->
+        <!-- <button class="layui-btn" data-type="isAll">查看</button> -->
+        <!-- <button class="layui-btn" data-type="isAll">设置</button> -->
     </div>
+    <table class="layui-hide" id="customer_listTab" lay-filter="customer_listTab"></table>
+    <script type="text/html" id="role-table-operate-barDemo">
+        {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:consumer_user:update") != -1){ }}
+            <a class="layui-btn layui-btn-xs" lay-event="customerInfosh">审核</a>
+            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        {{# } }}
+        {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:consumer_user:delete") != -1){ }}
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+         {{# } }}
+            <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="conversionCustomer">转客户</a>
+    </script>
+     <script type="text/html" id="userType">
+        {{#  if(d.userType ===0){ }}
+            <span style="color: orangered;">否</span>
+        {{#  } else { }}
+            <span>是</span>
+        {{#  } }}
+    </script>
+    <script type="text/html" id="customerStatus">
+        {{#  if(d.status === 0 || d.status == null){ }}
+            <a style="color: orangered">未审核</a>
+        {{#  } else if(d.status === 1) { }}
+            <a style="color: cornflowerblue">需要审核</a>
+        {{#  } else if(d.status === 2){ }}
+            <a style="color: green">已审核</a>
+        {{#  } }}
+    </script>
 
 </div>
 
 
 
 <script>
-    layui.data.done = function(d){
-    layui.use('sys_coustomer', layui.factory('sys_coustomer')).use(['admin', 'table','element','form'],function(){
-        var table = layui.table,$ = layui.jquery,element = layui.element,admin = layui.admin,form = layui.form,view = layui.view,setter = layui.setter;             
+    layui.use('sys_coustomer', layui.factory('sys_coustomer')).use(['sys_coustomer', 'admin', 'table','element','form'],function(){
+        var table = layui.table,
+            $ = layui.jquery,
+            element = layui.element,
+            admin = layui.admin,
+            form = layui.form,
+            view = layui.view,
+            setter = layui.setter;
+
         form.render();
+
     });
     layui.use('mobileterminal',layui.factory('mobileterminal')).use(['mobileterminal'],function () {
 
-    });}
+    });
 </script>

@@ -134,17 +134,17 @@
                 <div class="layui-input-block">
                     <a href="javascript:void(0)" id="add_address" class="layui-btn layui-btn"><i>添加</i></a>
                 </div>
-                <div class="layui-input-block" style="margin-left: unset;">
+                <div class="layui-input-block" style="margin-left: unset;width: 100%;overflow: scroll;">
                     <table cellspacing="0" cellpadding="0" class="layui-table form-table" id="table_address">
                         <thead>
                         <tr>
-                            <th width="1%">默认</th>
-                            <th width="15%">收货人</th>
-                            <th width="20%">联系电话</th>
-                            <th width="20%">公司名</th>
-                            <th width="15%">邮编</th>
-                            <th width="35%">详细地址</th>
-                            <th width="5%">操作</th>
+                            <th>默认</th>
+                            <th>收货人</th>
+                            <th>联系电话</th>
+                            <th>公司名</th>
+                            <th>邮编</th>
+                            <th>详细地址</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody></tbody>
@@ -413,11 +413,19 @@
 </style>
 
 <script>
-    layui.use(['form','admin','setter'], function(){
-        var $ = layui.$,form = layui.form,admin = layui.admin,setter = layui.setter;
-  
+    layui.data.done = function(d){
+        layui.use(['form','admin','setter'], function() {
+            var $ = layui.$
+                ,form = layui.form;
 
-    });
+            form.render();
+        })
+    }
+    // layui.use(['form','admin','setter'], function(){
+    //     var $ = layui.$,form = layui.form,admin = layui.admin,setter = layui.setter;
+    //
+    //
+    // });
     // var _id;
     // layui.data.done = function(d){
     //     layui.use(['form'], function(){
