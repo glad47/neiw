@@ -98,6 +98,7 @@
         initParams();
         // 默认数据处理 (不使用模板，edit 会出现内容不一致的情况)
         function initParams () {
+            console.log(d.params)
             d.params = d.params.reduce((prev, cur) => {
                 var _size;
                 if (cur.panelSizeX != null) {
@@ -114,7 +115,7 @@
                 cur.solderMaskTopColor = (cur.solderMaskTopColor != 'undefined')?'为空':cur.solderMaskTopColor;
                 cur.surfaceFinish = (cur.surfaceFinish != 'undefined')?'为空':cur.surfaceFinish;
                 cur.layerNum = (cur.layerNum != 'undefined')?'为空':cur.layerNum;
-                cur.description = (cur.description == null)? 'P/N:' + cur.productNo + ','
+                cur.description = (cur.description == null || cur.description == '')? 'P/N:' + cur.productNo + ','
                                 + cur.pcbType + ','
                                 + cur.finishThickness + ','
                                 + _size + ', Layer:'
@@ -386,6 +387,7 @@
                     }
                     return prev;
                 }, 0);
+                initParams();
                 initInvoiceTab();
             });
 
