@@ -338,11 +338,11 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                         "</td><td><input type='button' class='layui-btn layui-btn-xs layui-btn-danger' value='删除' addid='"+e.id+"'></td></tr>";
                                     });
                                     $('#table_address').append(tr);
-                                    // resetTableIndex();
-                                    // form.render();
+                                    resetTableIndex();
+                                    form.render();
                                 }else{
-                                    // resetTableIndex();
-                                    // form.render();
+                                    resetTableIndex();
+                                    form.render();
                                 }
                                
                                
@@ -403,8 +403,8 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                     });
                                     add_array.forEach(function(e,i){
                                         if(((i+1)%6) == 0){
-                                            // console.log(e);
-                                            // console.log(i);
+                                            console.log(e);
+                                            console.log(i);
                                             add_obj.id = add_array[i-5];
                                             add_obj.receiverName = add_array[i-4];
                                             add_obj.receiverTelephone = add_array[i-3];
@@ -416,10 +416,10 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                             add_obj = {};
                                         }
                                     });
-                                    //console.log(unindexed_array);
+                                    console.log(unindexed_array);
                                     var isDefault = indexed_array.isDefault;
                                     if(isDefault != undefined && isDefault != null){
-                                        //console.log(isDefault)
+                                        console.log(isDefault)
                                         receiverAddersEntityList[isDefault].isDefault = 1;
                                     }
                                     //console.log(receiverAddersEntityList);
