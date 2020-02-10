@@ -257,7 +257,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 });
             }
         } else if(obj.event === 'back'){
-            layer.confirm('真的退回合同号为［'+data.productNo+'］吗', function(index){
+            layer.prompt({title:'真的退回合同号为［'+data.productNo+'］吗',formType:2}, function(text,index){
                 var bool = false;
                 if (!bool) {
                     bool = true;
@@ -266,7 +266,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     admin.req({
                         type: 'post',
                         url: setter.baseUrl+'epc/pcborder/backByIo'    // 需要修改成退回的接口
-                        ,data:{id:data.id,isInternal:isInternal,onlineOid:data.onlineOid,'bid':data.businessId,'sales':data.totalFee,'onlineSales':data.subtotal,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.status}
+                        ,data:{id:data.id,isInternal:isInternal,onlineOid:data.onlineOid,'bid':data.businessId,'sales':data.totalFee,'onlineSales':data.subtotal,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.status,'backReason':text}
                         ,done: function (res) {
                             layer.msg('成功退回');
                             table.reload('epc_Tabpcb_ok_payment_order');
@@ -659,14 +659,14 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 });
             }
         } else if(obj.event === 'back'){
-            layer.confirm('真的退回钢网订单号为［'+data.invoiceNo+'］吗', function(index){
+            layer.prompt({title:'真的退回钢网订单号为［'+data.invoiceNo+'］吗',formType:2}, function(text,index){
                 var bool = false;
                 if (!bool) {
                     bool = true;
                     admin.req({
                         type: 'post',
                         url: setter.baseUrl+'epc/stencilorder/backByAo'       // 需要修改成退回的接口
-                        ,data:{id:data.id,isInternal:data.isInternal,onlineOid:data.onlineOid,'bid':data.businessId,'sales':data.totalStencilFee,'onlineSales':data.totalStencilFee,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.status}
+                        ,data:{id:data.id,isInternal:data.isInternal,onlineOid:data.onlineOid,'bid':data.businessId,'sales':data.totalStencilFee,'onlineSales':data.totalStencilFee,'orderTime':data.orderTime,'exchangeId':data.exchangeId,'firstStatus':data.status,'backReason':text}
                         ,done: function (res) {
                             layer.msg('成功退回')
                             table.reload('epc_Tabstencil_ok_payment_order');
