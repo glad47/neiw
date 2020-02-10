@@ -22,8 +22,10 @@ layui.define(['admin','table','index','element','form','laydate', 'requestInterf
         console.log(data.index);
         if (data.index === 0){
             tabRenderPCB();
+            $("div.purchase-procurement-detail_search").attr("reload-table", "proMana_procuDetailPCB");
         } else if (data.index === 1){
             tabRenderStencil();
+            $("div.purchase-procurement-detail_search").attr("reload-table", "proMana_procuDetailS");
         } else if (data.index === 2){
         }
     });

@@ -109,19 +109,43 @@
                     _size = '尺寸为空';
                 }
                 // pcbName
-                cur.pcbName = (cur.pcbName.indexOf('P/O') === -1)?'P/O：' + cur.orderNo + ', ' + cur.pcbName:cur.pcbName;
+                if (cur.orderNo != 'undefined') {
+                    cur.pcbName = (cur.pcbName.indexOf('P/O') === -1)?'P/O：' + cur.orderNo + 1 + ', ' + cur.pcbName:cur.pcbName;
+                } else {
+                    cur.pcbName = (cur.pcbName.indexOf('P/O') === -1)?cur.pcbName:cur.pcbName;
+                }
                 // cur.pcbName = 'P/O：' + cur.orderNo + ', ' + cur.pcbName;
                 // 描述
                 cur.solderMaskTopColor = (cur.solderMaskTopColor != 'undefined')?'为空':cur.solderMaskTopColor;
                 cur.surfaceFinish = (cur.surfaceFinish != 'undefined')?'为空':cur.surfaceFinish;
                 cur.layerNum = (cur.layerNum != 'undefined')?'为空':cur.layerNum;
-                cur.description = (cur.description == null || cur.description == '')? 'P/N:' + cur.productNo + ','
-                                + cur.pcbType + ','
-                                + cur.finishThickness + ','
-                                + _size + ', Layer:'
-                                + cur.layerNum + ','
-                                + cur.surfaceFinish + ', Solder Mask:'
-                                + cur.solderMaskTopColor : cur.description;
+                // cur.description = (cur.description == null || cur.description == '')? 'P/N:' + cur.productNo + ','
+                //                 + cur.pcbType + ','
+                //                 + cur.finishThickness + ','
+                //                 + _size + ', Layer:'
+                //                 + cur.layerNum + ','
+                //                 + cur.surfaceFinish + ', Solder Mask:'
+                //                 + cur.solderMaskTopColor : cur.description;
+                let descrip = '';
+                if (cur.description == null || cur.description == '') {
+                    descrip += 'P/N:' + cur.productNo;
+                    if (cur.pcbType) {
+                        descrip += ',' +cur.pcbType;
+                    }
+                    if (cur.finishThickness) {
+                        descrip += ',' +cur.finishThickness;
+                    }
+                    if (cur.layerNum) {
+                        descrip += ',Layer:' +cur.layerNum;
+                    }
+                    if (cur.surfaceFinish) {
+                        descrip += ',' +cur.surfaceFinish;
+                    }
+                    if (cur.solderMaskTopColor) {
+                        descrip += ', Solder Mask:' +cur.solderMaskTopColor;
+                    }
+                    cur.description = descrip;
+                }
                 prev.push(cur);
                 return prev;
             }, []);
