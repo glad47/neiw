@@ -211,6 +211,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     ,fail: function () {
                         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
                     }
+                });
+                //发送邮件
+                $.ajax({
+                    type: 'post',
+                    data:{'userId':data.userId,'productNo':data.productNo},
+                    url:setter.imUrl+'sendAuditResultEmail',
+                    success:function(){}
                 })
                 table.reload('or_Tabpcb');
                 layer.close(index);
@@ -377,6 +384,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                     ,fail: function () {
                         layer.msg('订单［'+data.productNo+'］提交失败，请重试！！！');
                     }
+                });
+                //发送邮件
+                $.ajax({
+                    type: 'post',
+                    data:{'userId':data.userId,'productNo':data.productNo},
+                    url:setter.imUrl+'sendAuditResultEmail',
+                    success:function(){}
                 })
                 layui.table.reload('stencil_orderTab');
                 layer.close(index);
