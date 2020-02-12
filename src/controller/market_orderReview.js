@@ -215,7 +215,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 //发送邮件
                 $.ajax({
                     type: 'post',
-                    data:{'userId':data.userId,'productNo':data.productNo},
+                    data:{'userId':data.userId,'productNo':data.gerberName},
                     url:setter.imUrl+'sendAuditResultEmail',
                     success:function(){}
                 })
@@ -388,7 +388,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 //发送邮件
                 $.ajax({
                     type: 'post',
-                    data:{'userId':data.userId,'productNo':data.productNo},
+                    data:{'userId':data.userId,'productNo':data.gerberName},
                     url:setter.imUrl+'sendAuditResultEmail',
                     success:function(){}
                 })
