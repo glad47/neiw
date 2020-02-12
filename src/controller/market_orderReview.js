@@ -41,6 +41,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             {type:'checkbox', fixed: 'left'}
             ,{field:'id', title: 'ID',hide: true,fixed: 'left', sort: true}
             ,{field:'productNo',fixed: 'left', title: '内部型号', align:'center', width: 114, sort: true}
+            ,{field:'businessName', title: '跟单员', align:'center', width: 124, sort: true}
             ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-orderReview-status',width: 110, sort: true}
             ,{field: '', title:'File', toolbar: '#pcb-file', align:'center', sort: true}
             ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254, sort: true}
@@ -283,6 +284,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         ,cols: [[
             {field: 'id', title: 'ID', hide: true,fixed: 'left', sort: true}
             ,{field: 'productNo', title: 'Product No', align:'center', width: 134,fixed: 'left', sort: true}
+            ,{field:'businessName', title: '跟单员', align:'center', width: 124, sort: true}
             ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-orderReview-status', sort: true}
             ,{field: '', title:'File', templet: '#stencil-file', align:'center', sort: true}
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224, sort: true}
