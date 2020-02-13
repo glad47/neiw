@@ -1,2 +1,0 @@
-/** layuiAdmin.pro-v1.0.0 LPPL License By http://www.layui.com/admin/ */
- ;"use strict";layui.define("form","index",function(i){var e=layui.$;console.log("进入手机端"),e(".layui-form").each(function(){console.log("移除"),e(this).children("i[class='layui-icon-search']").parents("button").hidden()}),i("mobile_adapter",{})});

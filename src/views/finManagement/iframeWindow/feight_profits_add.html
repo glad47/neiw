@@ -1,0 +1,120 @@
+<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
+<script type="text/html" template lay-done="layui.data.done(d);">
+<form class="layui-from feight-profits-add-form" style="width: 100%;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择发票：</label>
+        <div class="layui-input-inline">
+            <select name="invoiceList" id="" xm-select="invoiceList" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                <option value="1">1</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label" label-for="expressNo">运单号</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="expressNo" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label" label-for="payFreightFee">支付运费</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="payFreightFee">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item" style="display: none;">
+        <button type="button" id="submitFpSave">提交按钮</button>
+    </div>
+</form>
+</script>
+
+<style>
+    .feight-profits-add-form .layui-form-item .layui-input-inline {width: 260px;}
+</style>
+<script>
+    layui.data.done = function (d) {
+        layui.use(['form', 'jquery', 'admin', 'formSelects'], function () {
+            var $ = layui.jquery
+                ,laydate = layui.laydate
+                ,formSelects = layui.formSelects
+                ,setter = layui.setter;
+            formSelects.render();
+
+            let addData = {
+                invoiceId: null,
+                expressNo: null,
+                payFreightFee: null
+            }
+
+            $("div").delegate(".xm-select-title","click", function () {
+                var $this = $(this).parents(".xm-select-parent").attr("fs_id");
+                if ($this == "invoiceList") {
+                    layer.msg('发票列表加载中...');
+                    getInvoiceList();
+                }
+            })
+
+            // 监听选择发票
+            layui.formSelects.on('invoiceList', function (id, vals, val, isAdd, isDisabled) {
+                addData.invoiceId = parseInt(val.value);
+                $("input[name='expressNo']").val(val.name);
+                addData.expressNo = val.name;
+                form.render();
+            });
+
+            function getInvoiceList() {
+                admin.req({
+                    type: 'post',
+                    url: setter.baseUrl + 'epc/orderinvoice/allOrderInvoice',
+                    success: function (res) {
+                        $("select[xm-select='invoiceList']").find("option").remove();
+                        var invoiceList = res.data;
+                        if (invoiceList != null && invoiceList.length > 0) {
+                            var $html = "";
+                            invoiceList.reduce((prev, cur) => {
+                                $html += "<option value="+ cur.id +">"+ cur.invoiceNo +"</option>"
+                                return prev;
+                            },[]);
+                        }
+                        $("select[xm-select='invoiceList']").append($html);
+                        formSelects.render('invoiceList');
+                        $(".xm-select-parent[fs_id='invoiceList']").children(".xm-form-select").addClass("xm-form-selected");
+                    }
+                })
+            }
+
+            function serAddData() {
+                addData.payFreightFee = $("input[name='payFreightFee']").val(); // 支付运费
+            }
+
+            $("#submitFpSave").on('click', function () {
+                serAddData();
+                for (i in addData) {
+                    if (i === 'invoiceId' && addData[i] == null) {
+                        layer.msg('请选择发票！！！');
+                        return false;
+                    }
+                    if (addData[i] === null || addData[i] === "") { // 验证提示
+                        var dom = "label[label-for="+i+"]"
+                        layer.msg($(dom).text() + '不能为空');
+                        return false;
+                    }
+                }
+                admin.req({
+                    type: 'post',
+                    url: setter.baseUrl + 'fms/freightprofit/save',
+                    data: addData,
+                    success: function () {
+                        table.reload('finManaFeightProfits_tabPcb');
+                        layer.closeAll();
+                        layer.msg('添加成功');
+                    }
+                })
+            })
+
+        })
+    }
+</script>
