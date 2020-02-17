@@ -293,7 +293,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field: 'stencilType', title: 'Stencil Type', align:'center', width: 124, sort: true}
             ,{field: 'stencilSide', title: 'Stencil Side', align:'center', width: 124, sort: true}
             ,{field: 'quantity', title: 'Quantity', align:'center', width: 114, sort: true}
-            ,{field: 'size', title: 'Size', align:'center', width: 80, sort: true}fre
+            ,{field: 'size', title: 'Size', align:'center', width: 80, sort: true}
             ,{field: 'quoteId', title: 'Quote ID', align:'center', width: 114, hide: true}
             ,{field: 'isLock', title: 'Is Lock', align:'center', width: 114, hide: true}
             ,{field: 'thickness', title: 'Thickness', align:'center', width: 114, hide: true}
