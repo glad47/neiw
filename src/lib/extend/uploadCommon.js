@@ -79,7 +79,12 @@ layui.define(function (exports) {
                         return
                     }
                     var response=JSON.parse(evt.currentTarget.response)
-                    var rpUrl = response.url;
+                    var rpUrl;
+                    if (url.indexOf('quote/upload') > 0) {
+                        rpUrl = response.data
+                    } else {
+                        rpUrl = response.url
+                    }
                     // 处理路径为 ==>> /user/xxx/xxx/xxx.zip
                     var r = /\[(.+?)\]/g;
                     var filePatha = rpUrl.match(r);

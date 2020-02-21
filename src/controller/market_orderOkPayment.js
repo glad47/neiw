@@ -59,7 +59,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-okPayment-status',width: 110, sort: true}
             ,{field:'payLogId', title: '支付情况', align:'center',templet: '#okPaymentPayLog', width: 117, sort: true}
             ,{field:'orderType', title: '订单类型', align:'center', width: 109, templet: '#orderOkPaymentOrdertype', sort: true}
-            ,{field: '', title:'文件', toolbar: '#pcb-file', align:'center', sort: true}
+            ,{field: '', title:'文件', templet: '#pcb-file', align:'center', sort: true}
             ,{field:'gerberName', title: '文件名', align:'center', width: 254, sort: true}
             ,{field:'courierName', title: '快递公司', align:'center', width: 154, sort: true}
             ,{field:'courierNo', title: '快递单号', align:'center', width: 154, templet:'#marker_orderOkPayment_courierNo', sort: true}
@@ -383,7 +383,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             }else{
                 layer.msg("请不要重复提交！！");
             }
-            
+
         } else if (obj.event === 'stencil-sendback') {
             layer.confirm('确定退回订单［'+data.productNo+'］?',function (index) {
                 layer.msg('退回'+data.productNo);

@@ -33,7 +33,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             $(".indicator-card-search").attr("reload-table", "epc_Tabstencil_ok_payment_order");
             tabRenderStencil();
         } else if (defVal.orderType === 2) {
-            console.log("SMT订单选项卡");
             $(".indicator-card-search").attr("reload-table", "");
         } else {
             tabRenderPCB();
@@ -79,9 +78,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'quantityPcs', title: 'Quantity Pcs', align:'center', width: 114, sort: true}
                 ,{field:'areaSq', title: 'Area Sq', align:'center', width: 110, sort: true}
 
+                ,{field:'isInternal', title: '内部/网上订单',width: 126,hide: true, templet:'#Tabtb-pcb-epc-indicatorCard-isInternal'}
                 ,{field:'gmtCreate', title: 'Create Time', align:'center', width: 165,hide: true}
                 ,{field:'businessName', title: '跟单员',width: 80,hide: true}
-                ,{field:'isInternal', title: '内部/网上订单',width: 126,hide: true, templet:'#Tabtb-pcb-epc-indicatorCard-isInternal'}
                 ,{field:'userId', title: 'User ID',width: 80,hide: true}
                 ,{field:'engineeringRemark', title: '工程备注',width: 80,hide: true}
                 ,{field:'orderId', title: 'Order ID', align:'center',width: 96,hide: true}
@@ -209,21 +208,17 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
     //监听行单击事件（单击事件为：rowDouble）
     table.on('row(epc_Tabpcb_ok_payment_order)', function(obj){
         var data = obj.data;
-        console.log(obj.index);
         _click_lineId = data.id;
-        console.log("行id为："+_click_lineId);
     });
     //监听行单击事件（单击事件为：rowDouble）
     table.on('row(epc_Tabstencil_ok_payment_order)', function(obj){
         var data = obj.data;
         _click_lineId = data.id;
-        console.log("行id为："+_click_lineId);
     });
 
     //监听工具条
     table.on('tool(epc_Tabpcb_ok_payment_order)', function(obj){
         var data = obj.data;
-        console.log(data);
         if(obj.event === 'detail'){
             if (data.isExistIndicator === 2) {
                 admin.req({
@@ -241,7 +236,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                             }
                         })
                     },
-                    fail: function (res) { 
+                    fail: function (res) {
                         layer.msg('服务器异常，稍后再试！');
                     }
                 });
@@ -298,7 +293,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                         form.render(null, '')
                         form.on('submit(LAY-pcborder-update-submit)',function (data) {
                             var field = data.field;
-                            console.log(field);
                             //获取table里的数据，监听行编辑事件。
                             table.on('edit(indicator_listTab)',function(obj){
                                 // var value = obj.value //得到修改后的值
@@ -308,14 +302,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                                 data.pcbOrderId = field.id; //设置订单id
                                 data.provessId = obj.data.id; //设置工序id
                                 requestData.unshift(data);
-                                console.log(requestData);
                             });
                             requestData = uniqueObjArray(requestData,"id");
-                            // console.log(requestData);
                             field.processEntityList = requestData;
-                            // console.log(field);
                             var token = layui.data('layuiAdmin').access_token;
-                            // console.log(token);
                             if (requestData.length != 0) {
                                 $.ajax({
                                     type: 'post'
@@ -381,7 +371,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 });
             } else {
                 var $dataIndex = $(this).parents("tr").attr("data-index");      // 获取行下标
-                console.log("$dataIndex:"+$dataIndex);
                 layer.alert('请先上传正式资料！！！', function (layero, index) {
                     layer.closeAll();
                     $(".layui-table-click[data-index="+$dataIndex+"]").find("*[lay-event='fileMana']").click();
@@ -391,7 +380,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             data.orderType = "pcbOrder";        // 根据orderType  发送不同的接口
             data.retab = "epc_Tabpcb_ok_payment_order";
             data = filePathProcess.isInternal(data);
-            console.log(data);
             admin.popup({
                 title: 'PCB订单资料管理'
                 ,area: ['870px', '303px']
@@ -600,7 +588,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             var processBar = $(ss); //div
             //获取文件上传实例
             var upload=uploadCommon.uploadcommon(url,processBar,speedLab,addVersionBtn,cancelUploadBtn, saveObj);
-            console.log(fileObj);
             if (fileObj) {
                 $(".file-tips").text('Gerber Name：' + fileObj.name);
                 $(defbtn).css("display","none");
@@ -618,7 +605,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 // 上传文件
                 upload.uploadFile(formData, function (e) {
                     alert(1);
-                    console.log(e);
                 });
             }
         });
@@ -681,7 +667,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 }else{
                     layer.msg("请不要重复提交！！");
                 }
-                
+
             });
         } else if(obj.event === 'epc-write-indicator'){
             admin.popup({
@@ -699,7 +685,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                         form.render(null, '')
                         form.on('submit(LAY-pcborder-update-submit)',function (data) {
                             var field = data.field;
-                            console.log(field);
                             //获取table里的数据，监听行编辑事件。
                             table.on('edit(indicator_listTab)',function(obj){
                                 // var value = obj.value //得到修改后的值
@@ -709,14 +694,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                                 data.pcbOrderId = field.id; //设置订单id
                                 data.provessId = obj.data.id; //设置工序id
                                 requestData.unshift(data);
-                                console.log(requestData);
                             });
                             requestData = uniqueObjArray(requestData,"id");
-                            // console.log(requestData);
                             field.processEntityList = requestData;
-                            // console.log(field);
                             var token = layui.data('layuiAdmin').access_token;
-                            // console.log(token);
                             if (requestData.length != 0) {
                                 $.ajax({
                                     type: 'post'
@@ -757,7 +738,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                     }
                     ,success: function (layero, index) {
                         view(this.id).render('epcManagement/iframeWindow/audit_orders', data).done(function () {
-                            console.log(data);
                             form.render();
                             form.on('submit(epc_auditOrders)', function (data) {
                                 var field = data.field;
@@ -782,7 +762,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 });
             } else {
                 var $dataIndex = $(this).parents("tr").attr("data-index");      // 获取行下标
-                console.log("$dataIndex:"+$dataIndex);
                 layer.alert('请先上传正式资料！！！', function (layero, index) {
                     layer.closeAll();
                     $(".layui-table-click[data-index="+$dataIndex+"]").find("*[lay-event='fileMana']").click();
@@ -799,7 +778,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             data.retab = "epc_Tabstencil_ok_payment_order";
             // 测试代码
             data = filePathProcess.isInternal(data);
-            console.log(data);
             admin.popup({
                 title: 'PCB订单资料管理'
                 ,area: ['45%', '40%']
@@ -837,7 +815,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
         var data = checkStatus.data;
         switch(obj.event){
             case 'fileyzz':
-                console.log('选择了'+data.length+'条数据！');
                 if (data.length==1) {
                     var lineId = data[0].id;   // 行id
                     var gerberName = data[0].gerberName;   // 原始资料
