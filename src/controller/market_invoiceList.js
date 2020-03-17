@@ -116,7 +116,7 @@ layui.define(['table', 'form'], function(exports){
                     popupData.deliveryType = data.user.deliveryType;
                     popupData.contact = data.user.contact;
                     admin.popup({
-                        title: '内部合同'
+                        title: '发票合同'
                         ,area: ['100%', '100%']
                         ,btn: ['打印','关闭']
                         ,maxmin: true

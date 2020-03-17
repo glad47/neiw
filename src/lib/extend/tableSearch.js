@@ -54,7 +54,6 @@ layui.define(['admin', 'index', 'form'],function (exports) {
           });
         },
         tabReload: function (reTab, field) {
-            console.log(field)
             table.reload(reTab, {
                 where: field
             });

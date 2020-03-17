@@ -2,7 +2,7 @@
 
 <div class="layui-fluid">
     <input type="text" autocomplete="off" class="layui-input" placeholder="查询订单评审信息" style="display: none">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto indicator-card-search" id="orderReview_form" data-type="search-form" reload-table="epc_Tabpcb_ok_payment_order">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto indicator-card-search" id="indicatorCard_form" data-type="search-form" reload-table="epc_Tabpcb_ok_payment_order">
         <div class="layui-form-item">
             <div class="layui-inline" id="orderReview_searll" style="display: none;">
                 <label class="layui-form-label">查询：</label>
@@ -84,19 +84,19 @@
                         <!--<i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" id="pcbfile-i" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>-->
                     <!--</a>-->
                 <!--</script>-->
-                <script type="text/html" id="stencil-file">
-                    {{# var arr = d.gerberPath.slice(6,-1) }}
-                    {{# d.gerberPath = arr }}
-                    {{# if (d.param.isInternal == '1'){ }}
-                        <a href="{{layui.setter.baseUrl}}/sys/oss/download/geber?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">
-                            <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
-                        </a>
-                    {{# } else if(d.param.isInternal == '2') { }}
-                        <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}">
-                            <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
-                        </a>
-                    {{# } }}
-                </script>
+<!--                <script type="text/html" id="stencil-file">-->
+<!--                    {{# var arr = d.gerberPath.slice(6,-1) }}-->
+<!--                    {{# d.gerberPath = arr }}-->
+<!--                    {{# if (d.param.isInternal == '1'){ }}-->
+<!--                        <a href="{{layui.setter.baseUrl}}/sys/oss/download/geber?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">-->
+<!--                            <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>-->
+<!--                        </a>-->
+<!--                    {{# } else if(d.param.isInternal == '2') { }}-->
+<!--                        <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}">-->
+<!--                            <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>-->
+<!--                        </a>-->
+<!--                    {{# } }}-->
+<!--                </script>-->
                 <script type="text/html" id="panelWay">
                     {{ d.panelWayX || ''}}
                     {{ if(d.panelWayY != null || d.panelWayY != ""){ }}

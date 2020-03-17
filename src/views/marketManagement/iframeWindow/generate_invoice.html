@@ -94,6 +94,62 @@
 </div>
 <script>
     layui.data.done = function(d){
+        var thisType = d.params.type;
+        initParams();
+        // 默认数据处理 (不使用模板，edit 会出现内容不一致的情况)
+        function initParams () {
+            console.log(d.params)
+            d.params = d.params.reduce((prev, cur) => {
+                var _size;
+                if (cur.panelSizeX != null) {
+                    _size = cur.panelSizeX + '*' + cur.panelSizeY + 'mm / ' + parseFloat(cur.panelWayX)*parseFloat(cur.panelWayY);
+                } else if (cur.dimensionsX != null){
+                    _size = cur.dimensionsX + '*' + cur.dimensionsY + 'mm / 1'
+                } else {
+                    _size = '尺寸为空';
+                }
+                // pcbName
+                if (cur.orderNo != 'undefined') {
+                    cur.pcbName = (cur.pcbName.indexOf('P/O') === -1)?'P/O：' + cur.orderNo + 1 + ', ' + cur.pcbName:cur.pcbName;
+                } else {
+                    cur.pcbName = (cur.pcbName.indexOf('P/O') === -1)?cur.pcbName:cur.pcbName;
+                }
+                // cur.pcbName = 'P/O：' + cur.orderNo + ', ' + cur.pcbName;
+                // 描述
+                cur.solderMaskTopColor = (cur.solderMaskTopColor != 'undefined')?'为空':cur.solderMaskTopColor;
+                cur.surfaceFinish = (cur.surfaceFinish != 'undefined')?'为空':cur.surfaceFinish;
+                cur.layerNum = (cur.layerNum != 'undefined')?'为空':cur.layerNum;
+                // cur.description = (cur.description == null || cur.description == '')? 'P/N:' + cur.productNo + ','
+                //                 + cur.pcbType + ','
+                //                 + cur.finishThickness + ','
+                //                 + _size + ', Layer:'
+                //                 + cur.layerNum + ','
+                //                 + cur.surfaceFinish + ', Solder Mask:'
+                //                 + cur.solderMaskTopColor : cur.description;
+                let descrip = '';
+                if (cur.description == null || cur.description == '') {
+                    descrip += 'P/N:' + cur.productNo;
+                    if (cur.pcbType) {
+                        descrip += ',' +cur.pcbType;
+                    }
+                    if (cur.finishThickness) {
+                        descrip += ',' +cur.finishThickness;
+                    }
+                    if (cur.layerNum) {
+                        descrip += ',Layer:' +cur.layerNum;
+                    }
+                    if (cur.surfaceFinish) {
+                        descrip += ',' +cur.surfaceFinish;
+                    }
+                    if (cur.solderMaskTopColor) {
+                        descrip += ', Solder Mask:' +cur.solderMaskTopColor;
+                    }
+                    cur.description = descrip;
+                }
+                prev.push(cur);
+                return prev;
+            }, []);
+        }
         layui.use(['table', 'index', 'form', 'jsTools', 'formSelects', 'arrReduce', 'requestInterface'], function () {
             var $ = layui.jquery
                 ,table = layui.table
@@ -139,8 +195,8 @@
                     ,cols: [[
                         {type: 'numbers', title: '序号', align:'center',edit: 'text'}
                         ,{type: 'id', title: 'ID', align:'center',edit: 'text', hide: true}
-                        ,{field: 'pcbName', title: 'P/O&File Name', align: 'center',edit: 'text', minWidth: 260, templet: '#giPF'}
-                        ,{field: 'description', title: 'Description', align: 'center', minWidth: 200, edit: 'text', templet: '#giDes'}
+                        ,{field: 'pcbName', title: 'P/O&File Name', align: 'center',edit: 'text', minWidth: 260}
+                        ,{field: 'description', title: 'Description', align: 'center', minWidth: 200, edit: 'text'}
                         ,{field: 'quantityPcs', title: 'QTY', align: 'center',edit: 'text'}
                         ,{field: 'unitPrice', title: '单价', align: 'center',edit: 'text'}
                         ,{field: 'engineeringFee', title: '工程费', align: 'center',edit: 'number'}
@@ -355,6 +411,7 @@
                     }
                     return prev;
                 }, 0);
+                initParams();
                 initInvoiceTab();
             });
 
@@ -399,13 +456,13 @@
                 var postData = disposeData();
                 postData.id = d.params.id;
                 postData.receiveAddersId = receiveAddersId; // 发票地址
-                var thisType = d.params.type;
                 var _url;
                 if (thisType == "1") {
                     _url = setter.baseUrl + '/epc/orderinvoice/addOrderInvoice';
                 } else if (thisType == '2') {
                     _url = setter.baseUrl + 'epc/orderinvoice/update';
                 }
+                console.log('请求啊啊啊啊')
                 admin.req({
                     type: 'post',
                     data: JSON.stringify(postData),
@@ -440,8 +497,7 @@
                 }
                 postData.customInvoiceEntityList = d.params.reduce((prev, cur) => {
                     var _ce = new Object();
-                    postData.totalFee +=  cur.totalFee; // 发票总计
-                    var thisType = d.params.type;
+                    postData.totalFee +=  parseFloat(cur.totalFee); // 发票总计
                     if (thisType == "1") {
                         _ce.orderId = cur.id;   // 订单id
                     } else {
