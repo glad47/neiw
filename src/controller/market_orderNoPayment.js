@@ -38,6 +38,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             return{
                 "code": 0,
                 "data": res.page.list,
+                "count": res.page.totalCount
             }
         }
         ,cols: [[

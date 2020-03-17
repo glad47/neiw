@@ -13,7 +13,7 @@
                 {{d.params.orderType || ''}}
         {{# }}}
     <div class="printOrderPcb-btnGrop">
-        <button class="layui-btn layui-btn-sm printBtn" style="float: right;">打印</button>
+        <button class="layui-btn layui-btn-sm printBtn" style="float: right;" id="printOrderPcbBut">打印</button>
     </div>
     <div class="order_review_search printorder_review_search" id="pcborderPrint">
         <style>
@@ -357,12 +357,16 @@
                 ,view = layui.view
                 ,requestInterface = layui.requestInterface
                 ,form = layui.form;
-            $(".printOrderPcb-btnGrop>.printBtn").on("click", function () {
+            $("#printOrderPcbBut").on("click", function () {
                 var printId = "pcborderPrint";
                 $(document).attr("title","工艺要求["+$("#orderPCBDetailPN").text()+"]");
                 document.body.innerHTML=document.getElementById(printId).innerHTML;
                 window.print();
-                window.location.reload();
+                //window.location.reload();
+                // parent.location.reload();
+                // parent.layui.table.reload('epc_Tabpcb_ok_payment_order');
+                parent.layer.closeAll();
+
             });
             customerInfo = requestInterface.GetCustomerInfo(url);
             if (customerInfo.customerStandards != null) {

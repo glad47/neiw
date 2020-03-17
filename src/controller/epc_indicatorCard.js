@@ -236,7 +236,6 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                             ,area: ['100%', '100%']
                             ,success: function (layero, index) {
                                 view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
-
                                 })
                             }
                         })
@@ -638,7 +637,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                             ,area: ['100%', '100%']
                             ,success: function (layero, index) {
                                 view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
-
+                                   
                                 })
                             }
                         })

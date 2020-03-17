@@ -64,8 +64,8 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
                 ,{field: 'unitPrice', title: '单价', width: 96, sort: true}
                 ,{field: 'engineeringFee', title: '工程费', width: 96, sort: true}
-                ,{field: 'testCostFee', title: '飞针费', width: 96, sort: true}
-                ,{field: 'testCostFee', title: '测试架费', width: 96, sort: true}
+                ,{field: '', title: '飞针费', width: 96, sort: true, templet:'<div>{{ d.testPointType == 1 ? d.testCostFee : "" }}</div>'}
+                ,{field: '', title: '测试架费', width: 96, sort: true ,templet:'<div>{{ d.testPointType != 1 ? d.testCostFee : "" }}</div>'}
                 ,{field: 'toolingFee', title: '模具', width: 96, sort: true}
                 ,{field: 'totalFee', title: '合计', width: 96, sort: true}
                 ,{field: 'remark', title: '订单备注', width: 168, sort: true}
