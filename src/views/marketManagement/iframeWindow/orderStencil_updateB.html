@@ -142,7 +142,20 @@
                 </div>
             </div>
         </div>
-
+        <script type="text/html" template lay-done="layui.data.done(d);">
+        {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:paylog:update") != -1){ }}
+        <hr class="layui-bg-black">
+        <h3 style="text-align: center;padding-bottom: 15px;">其他</h3>
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">支付id：</label>
+                <div class="layui-input-block">
+                     <input type="text" name="payLogId" value="{{ d.params.payLogId || '' }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        {{# } }}
+        </script>
         <div class="layui-form-item layui-col-md-offset3" style="display:none;">
             <div class="layui-input-block">
                 <button class="layui-btn submitStencilUpB" type="button" lay-submit lay-filter="LAY-stencilorder-update-submit">立即提交</button>
