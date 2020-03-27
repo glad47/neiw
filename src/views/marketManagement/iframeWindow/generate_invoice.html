@@ -11,14 +11,14 @@
                         </select>
                     </div>
                 </div>
-                <div class="layui-inline">
+                <!-- <div class="layui-inline">
                     <label class="layui-form-label">内部编码</label>
                     <div class="layui-input-inline">
                         <input type="text" name="productNo" id="inputGiProductNo" autocomplete="off" class="layui-input">
                     </div>
-                </div>
+                </div> -->
                 <div class="layui-inline">
-                    <label class="layui-form-label">客户型号</label>
+                    <label class="layui-form-label">内部型号</label>
                     <div class="layui-input-inline" style="width: 320px;">
                         <select id="giPcbName" name="giPcbName" xm-select-height="34px" xm-select="giPcbName" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
                             <option value="" id="0">选择型号</option>
@@ -110,15 +110,15 @@
                 }
                 // pcbName
                 if (cur.orderNo != 'undefined') {
-                    cur.pcbName = (cur.pcbName.indexOf('P/O') === -1)?'P/O：' + cur.orderNo + 1 + ', ' + cur.pcbName:cur.pcbName;
+                    cur.pcbName = (cur.pcbName.indexOf('P/O') === -1)?'P/O：' + cur.productNo  + ', ' + cur.pcbName:cur.pcbName;
                 } else {
                     cur.pcbName = (cur.pcbName.indexOf('P/O') === -1)?cur.pcbName:cur.pcbName;
                 }
                 // cur.pcbName = 'P/O：' + cur.orderNo + ', ' + cur.pcbName;
                 // 描述
-                cur.solderMaskTopColor = (cur.solderMaskTopColor != 'undefined')?'为空':cur.solderMaskTopColor;
-                cur.surfaceFinish = (cur.surfaceFinish != 'undefined')?'为空':cur.surfaceFinish;
-                cur.layerNum = (cur.layerNum != 'undefined')?'为空':cur.layerNum;
+                cur.solderMaskTopColor = (cur.solderMaskTopColor == 'undefined')?'为空':cur.solderMaskTopColor;
+                cur.surfaceFinish = (cur.surfaceFinish == 'undefined')?'为空':cur.surfaceFinish;
+                cur.layerNum = (cur.layerNum == 'undefined')?'为空':cur.layerNum;
                 // cur.description = (cur.description == null || cur.description == '')? 'P/N:' + cur.productNo + ','
                 //                 + cur.pcbType + ','
                 //                 + cur.finishThickness + ','
@@ -176,10 +176,10 @@
                 formSelects.render();
                 initInvoiceTab();
                 initSelCustomer();
-                document.getElementById("inputGiProductNo").addEventListener('keyup', function (event) {
-                    jsTools.throttle(getFrom, null, 500, this.value, 2000);
-                    productNo = this.value;
-                });
+                // document.getElementById("inputGiProductNo").addEventListener('keyup', function (event) {
+                //     jsTools.throttle(getFrom, null, 500, this.value, 2000);
+                //     productNo = this.value;
+                // });
                 if (d.params.type == "2") {
                     getAddrList(d.params.consumerId);
                 }
@@ -401,11 +401,13 @@
                 var $thisName = val.name;
                 var _arr = val.value.split(",");
                 var _val = _arr[0];
+                // console.log($thisName , _arr, _val)
                 businessId = _arr[1];
                 businessName = _arr[2];
                 var selectClickData = searchData.reduce((prev, cur) => {
+                    // console.log(cur)
                     if (cur.id && cur.pcbName) {
-                        if (cur.id == _val && cur.pcbName == $thisName) {
+                        if (cur.id == _val && cur.productNo+'_'+cur.id == $thisName) {
                             d.params.push(cur);
                         }
                     }
@@ -424,7 +426,7 @@
                 $("select[xm-select='giPcbName'] option").remove();
                 for (let p of data) {
                     // $html += "<option value="+p.id+">"+p.pcbName+"</option>"
-                    $html += "<option value="+ p.id +"," +p.businessId + "," + p.businessName +">" + p.pcbName + "</option>"
+                    $html += "<option value="+ p.id +"," +p.businessId + "," + p.businessName +">" + p.productNo+"_"+p.id + "</option>"
                 }
                 $("select[xm-select='giPcbName']").append($html);
                 formSelects.render('giPcbName');
