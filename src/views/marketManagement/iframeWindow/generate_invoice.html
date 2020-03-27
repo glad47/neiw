@@ -109,8 +109,8 @@
                     _size = '尺寸为空';
                 }
                 // pcbName
-                if (cur.orderNo != 'undefined') {
-                    cur.pcbName = (cur.pcbName.indexOf('P/O') === -1)?'P/O：' + cur.productNo  + ', ' + cur.pcbName:cur.pcbName;
+                if (cur.orderNo != 'undefined' && cur.orderNo != '' && cur.orderNo != null) {
+                    cur.pcbName = (cur.pcbName.indexOf('P/O') === -1)?'P/O：' + cur.orderNo  + ', ' + cur.pcbName:cur.pcbName;
                 } else {
                     cur.pcbName = (cur.pcbName.indexOf('P/O') === -1)?cur.pcbName:cur.pcbName;
                 }
