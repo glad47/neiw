@@ -37,7 +37,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
             ,{field:'contact', title: '联系人', sort: true, hide: true}
             ,{field:'businessType', title: '业务类型', sort: true, hide: true}
             ,{field:'applications', title: '应用', sort: true, hide: true}
-            ,{width:250, align:'center',align:'center',fixed: 'right',toolbar:'#role-table-operate-barDemo',title:'操作'}
+            ,{fixed: 'right',align:'center',toolbar:'#role-table-operate-barDemo',title:'操作',width:250}
         ]]
         ,done: function (res, curr, count) {
             $(".layui-table tr div").each(function () { //  已经审核  移除 审核按钮
