@@ -46,7 +46,7 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
             ,{field: 'storageTime',title: '存放时间', width: 177, sort: true}
             ,{field: 'remark',title: '备注', width: 130, sort: true}
             ,{field: 'id',title: 'ID', hide: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#epcToolMana_tabbar',width: 230}
+            ,{fixed: 'right', title:'操作', toolbar: '#epcToolMana_tabbar',width: 240}
         ]]
         ,done: function (res, curr, count) {
 
