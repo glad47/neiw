@@ -278,10 +278,8 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                         data: JSON.stringify(field),
                                         success:function(data){
                                             console.log(data);
-                                            if(data.code == 200){
-                                                layui.table.reload('customer_listTab'); //重载表格
-                                                layer.close(index); //执行关闭 
-                                            }
+                                            layui.table.reload('customer_listTab'); //重载表格
+                                            layer.close(index); //执行关闭 
                                             
                                         }
                                     })
