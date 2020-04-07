@@ -273,14 +273,18 @@
                 <div class="layui-tab-item">
                     <div class="layui-form-item layui-form-text">
                         <script type="text/html" template>
-                            <textarea placeholder="请输入备注信息" value="{{ d.params.remark || ''}}" class="layui-textarea" name="remark"></textarea>
+                            <textarea placeholder="请输入备注信息" value="{{ d.params.remark || ''}}" class="layui-textarea" name="remark">
+                                {{ d.params.remark || ''}} 
+                            </textarea>
                         </script>
                     </div>
                 </div>
                 <div class="layui-tab-item">
                     <div class="layui-form-item layui-form-text">
                         <script type="text/html" template>
-                            <textarea placeholder="请输入地址信息" value="{{ d.params.address || ''}}" class="layui-textarea" name="address"></textarea>
+                            <textarea placeholder="请输入地址信息" value="{{ d.params.address || ''}}" class="layui-textarea" name="address">
+                                {{ d.params.address || '' }}
+                            </textarea>
                         </script>
                     </div>
                 </div>
