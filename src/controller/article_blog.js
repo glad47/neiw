@@ -101,6 +101,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                         //监听提交
                         form.on('submit(layuiadmin-app-form-submit)', function (data) {
                             var field = data.field;
+                            console.log(field);
                             var c = layedit.getContent(edit);
                             field.articleContent = c;
                             if (field.articleKing == 'on') {
@@ -118,6 +119,15 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                                     layer.close(index); //执行关闭
                                 }
                             });
+                            var fn = field.articleName.trim().replace(/\s+/g,"_")+'_'+field.id+'.html';
+                            console.log(fn);
+                            admin.req({
+                                url: setter.imUrl + 'blog/updateStaticPage?fileName=' +fn,
+                                type: 'GET',
+                                success:function(data){
+                                    console.log(data)
+                                }
+                            })
                         });
                     });
                 }
