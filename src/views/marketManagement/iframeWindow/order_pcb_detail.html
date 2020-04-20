@@ -362,10 +362,10 @@
                 $(document).attr("title","工艺要求["+$("#orderPCBDetailPN").text()+"]");
                 document.body.innerHTML=document.getElementById(printId).innerHTML;
                 window.print();
-                //window.location.reload();
+                window.location.reload();
                 // parent.location.reload();
                 // parent.layui.table.reload('epc_Tabpcb_ok_payment_order');
-                parent.layer.closeAll();
+                // parent.layer.closeAll();
 
             });
             customerInfo = requestInterface.GetCustomerInfo(url);
