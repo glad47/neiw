@@ -1,6 +1,6 @@
 <title>市场管理-绩效订单统计表</title>
 <div class="layui-fluid">
-    <div class="layui-form order-pd-list-search" data-type="search-form" reload-table="tabOrderPdList">
+    <div class="layui-form order-pd-list-search" data-type="search-form" reload-table="tab-order-pd-list">
         <div class="layui-form-item">
             <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-done="layui.data.done(d);" lay-type="post">
             {{#
@@ -15,7 +15,7 @@
                         layui.each(d.data, function(index, item){
                         }}
                         <option></option>
-                        <option value="{{ item.username || ''}}" {{ businessName == item.username ? 'selected' : ''}}>{{ item.username }}</option>
+                        <option value="{{ item.username || ''}}" >{{ item.username }}</option>
                         {{#  }); }}
                         {{#  if(d.data.length === 0){ }}
                         无数据
@@ -72,14 +72,14 @@
                     <input type="text" class="layui-input" name="productNo">
                 </div>
             </div>
-            <div class="layui-inline" style="display: ;">
+            <div class="layui-inline" style="display: none;">
                 <button class="layui-btn" lay-submit lay-filter="order-pd-list-search">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                 </button>
             </div>
         </div>
     </div>
-    <table class="layui-table" id="tabOrderPdList" lay-filter="tabOrderPdList"></table>
+    <table class="layui-table" id="tab-order-pd-list" lay-filter="tab-order-pd-list"></table>
     <script type="text/html" id="tabOrderPdListTb">
         <button class="layui-btn" lay-event="MonthlyStatistical">导出报表</button>
     </script>
@@ -114,6 +114,11 @@
     <script type="text/html" id="oplCommission">
         {{# if(d.commission != null){ }}
             {{parseFloat(d.totalFee*d.commission).toFixed(3)}}
+        {{# } }}
+    </script>
+    <script type="text/html" id="newCustomer">
+        {{# if(d.customerUserPaVO.firstPayTime != null){ }}
+            {{ d.customerUserPaVO.firstPayTime }}
         {{# } }}
     </script>
 </div>

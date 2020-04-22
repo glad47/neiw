@@ -69,11 +69,11 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
     }
 
     table.render({
-        elem: '#tabOrderPdList'
+        elem: '#tab-order-pd-list'
         ,url: setter.baseUrl+'/sys/pa/orderPaList'
         ,toolbar: "#tabOrderPdListTb"
         ,cellMinWidth: 80
-        ,id: "tabOrderPdList"
+        ,id: "tab-order-pd-list"
         ,page: false
         ,parseData: function (res) {
             return {
@@ -88,8 +88,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
             limit: 10000,
         }
         ,cols: [[
-            // {type:'checkbox',fixed: 'left'}
-            ,{field: 'businessName',title: '业务员', width: 160, sort: true}      // 1 ＝ 待报价
+            {field: 'businessName',title: '业务员', width: 120, sort: true}      // 1 ＝ 待报价
             ,{field: 'orderTime',title: '下单日期', width: 113, sort: true, templet: '#oplOrderTime'}
             ,{field: 'productNo',title: '内部型号', width: 114, sort: true}
             ,{field: 'totalFee',title: '订单金额', width: 180, sort: true, templet: '#oplTotalFee'}
@@ -98,7 +97,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
             ,{field: 'payTime',title: '支付日期', width: 113, sort: true, templet: '#oplPayTime'}
             ,{field: 'customerUserPaVO',title: '渠道', width: 150, sort: true, templet: '<a>{{ d.customerUserPaVO.channel || 0 }}</a>'}
             ,{field: 'customerUserPaVO',title: '网站', width: 219, sort: true, templet: '<a>{{ d.customerUserPaVO.siteUrl || 0 }}</a>'}
-            ,{field: 'payLogId',title: '新客户', width: 100, sort: true}
+            ,{field: 'payLogId',title: '新客户', width: 100, sort: true, templet: '#newCustomer'}
             ,{field: 'customerUserPaVO',title: '客户名称', width: 150, sort: true, templet: '<a>{{ d.customerUserPaVO.userName || 0 }}</a>',}
             ,{field: 'customerUserPaVO',title: '客户系统id', width: 150, sort: true, templet: '<a>{{ d.customerUserPaVO.userSystemId || 0 }}</a>', hide: true}
             ,{field: 'customerUserPaVO',title: '国家', width: 170, sort: true, templet: "<a>{{ d.customerUserPaVO.country || '' }}</a>"}
