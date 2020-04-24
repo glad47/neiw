@@ -76,7 +76,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
         if (obj.event === 'edit') {
             admin.popup({
                 title: '修改Blog',
-                area: ['750px', '750px'],
+                area: ['100%', '100%'],
                 btn: ['提交', '取消'],
                 yes: function (index, layero) {
                     $('#layuiadmin-app-form-submit').click();
@@ -97,13 +97,20 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                                 url:setter.imUrl+'file/fileupload'
                             }
                         });
+                        var internalChain = layedit.build('blogInternalChain',{
+                            uploadImage:{
+                                url:setter.imUrl+'file/fileupload'
+                            }
+                        });
                         // layedit.setContent(edit,data.articleContent);
                         //监听提交
                         form.on('submit(layuiadmin-app-form-submit)', function (data) {
                             var field = data.field;
                             console.log(field);
                             var c = layedit.getContent(edit);
+                            var d = layedit.getContent(internalChain);
                             field.articleContent = c;
+                            field.articleInternalChain = d;
                             if (field.articleKing == 'on') {
                                 field.articleKing = 1;
                             } else {
@@ -159,7 +166,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                 clickTr = {};
                 admin.popup({
                     title: '添加Blog',
-                    area: ['750px', '750px'],
+                    area: ['100%', '100%'],
                     btn: ['提交', '取消'],
                     yes: function (index, layero) {
                         $('#layuiadmin-app-form-submit').click();
@@ -180,6 +187,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                                     url:setter.imUrl+'file/fileupload'
                                 }
                             });
+                            var ss = layedit.build('blogInternalChain',{
+                                height:'150px'
+                            });
                             //监听提交
                             form.on('submit(layuiadmin-app-form-submit)', function (data) {
                                 var field = data.field;
@@ -187,6 +197,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                                 var c = layedit.getContent(i);
                                 console.log(c);
                                 field.articleContent = c;
+                                var b = layedit.getContent(ss);
+                                field.blogInternalChain = b;
                                 admin.req({
                                     url: setter.baseUrl + 'article/save',
                                     type: 'POST',
