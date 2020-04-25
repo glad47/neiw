@@ -111,7 +111,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
         }
     });
 
-    table.on('toolbar(tabOrderPdList)', function (obj) {
+    table.on('toolbar(tab-order-pd-list)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var rowData = tabDate;
        if (obj.event == 'MonthlyStatistical') {
