@@ -124,7 +124,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">角色：</label>
             <div class="layui-input-block">
-                <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/role/list" lay-done="layui.data.done(d);">
+                <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/role/list?limit=100" lay-done="layui.data.done(d);" lay-data="">
                     {{#
                     var plist = d.params.roleIdList;
                     layui.each(d.data, function(index, item){
