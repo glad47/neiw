@@ -104,6 +104,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
             ,{field: 'customerUserPaVO',title: '客户邮箱', width: 219, sort: true, templet: '<a>{{ d.customerUserPaVO.email || 0 }}</a>'}
             // ,{field: 'toolingFee',title: '支付', width: 110, sort: true}
             ,{field: 'orderNumNo',title: '订单编号', width: 110, hide: true, sort: true}
+            ,{filter: 'payLogId', title: '支付id', width: 100, hide: true, sort: true}
             // ,{fixed: 'right', title:'操作', toolbar: '#orderReviewB_pertSys_tabbar',width: 220, sort: true}
         ]]
         ,done: function (res, curr, count) {
