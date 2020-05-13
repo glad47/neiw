@@ -96,12 +96,12 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
             ,{field: 'payLogId',title: '是否支付', width: 105, sort: true, templet: '#oplPayLogId'}
             ,{field: 'payTime',title: '支付日期', width: 113, sort: true, templet: '#oplPayTime'}
             ,{field: 'customerUserPaVO',title: '渠道', width: 150, sort: true, templet: '<a>{{ d.customerUserPaVO.channel || 0 }}</a>'}
-            ,{field: 'customerUserPaVO',title: '网站', width: 219, sort: true, templet: '<a>{{ d.customerUserPaVO.siteUrl || 0 }}</a>'}
+            ,{field: 'customerUserPaVO',title: '网站', width: 219, templet: '<a>{{ d.customerUserPaVO.siteUrl || 0 }}</a>'}
             ,{field: 'payLogId',title: '新客户', width: 100, sort: true, templet: '#newCustomer'}
-            ,{field: 'customerUserPaVO',title: '客户名称', width: 150, sort: true, templet: '<a>{{ d.customerUserPaVO.userName || 0 }}</a>',}
+            ,{field: 'customerUserPaVO',title: '客户名称', width: 150, templet: '<a>{{ d.customerUserPaVO.userName || 0 }}</a>',}
             ,{field: 'customerUserPaVO',title: '客户系统id', width: 150, sort: true, templet: '<a>{{ d.customerUserPaVO.userSystemId || 0 }}</a>', hide: true}
-            ,{field: 'customerUserPaVO',title: '国家', width: 170, sort: true, templet: "<a>{{ d.customerUserPaVO.country || '' }}</a>"}
-            ,{field: 'customerUserPaVO',title: '客户邮箱', width: 219, sort: true, templet: '<a>{{ d.customerUserPaVO.email || 0 }}</a>'}
+            ,{field: 'customerUserPaVO',title: '国家', width: 170, templet: "<a>{{ d.customerUserPaVO.country || '' }}</a>"}
+            ,{field: 'customerUserPaVO',title: '客户邮箱', width: 219, templet: '<a>{{ d.customerUserPaVO.email || 0 }}</a>'}
             // ,{field: 'toolingFee',title: '支付', width: 110, sort: true}
             ,{field: 'orderNumNo',title: '订单编号', width: 110, hide: true, sort: true}
             ,{field: 'payLogId', title: '支付id', width: 100, sort: true}
