@@ -129,6 +129,17 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                     }
                                 });
 
+                                var isSourceCompany = 0;
+                                form.on('switch(isSourceCompany)',function(data){
+                                    if (data.elem.checked == true) {
+                                        layer.msg('来自公司');
+                                        isSourceCompany = 1;
+                                    }else{
+                                        layer.msg('不来自公司');
+                                        isSourceCompany = 0;
+                                    }
+                                }); 
+
                                 var addlist = data.receiverAddersEntityList;
                                 // console.log(addlist);
                                 if(addlist.length != 0){
@@ -269,6 +280,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                     field.productionVerification = productionVerification;
                                     field.id = data.id;
                                     field.addDelIdList = add_del_array;
+                                    field.isSourceCompany = isSourceCompany;
                                     console.log(field);
                                     admin.req({
                                         url: setter.baseUrl+'sys/consumer/user/update',
@@ -417,6 +429,17 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                 deliveryReport =0;
                             }
                         });
+
+                        var isSourceCompany = 0;
+                        form.on('switch(isSourceCompany)',function(data){
+                            if (data.elem.checked == true) {
+                                layer.msg('来自公司'); 
+                                isSourceCompany = 1;
+                            }else{
+                                layer.msg('不来自公司');   
+                                isSourceCompany = 0;
+                            }
+                        }); 
             
                         //监听添加时间
                         $('#add_address').click(function(){
@@ -457,6 +480,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                             field.auditMark = auditMark;
                             field.deliveryReport = deliveryReport;
                             field.productionVerification = productionVerification;
+                            field.isSourceCompany = isSourceCompany;
                             // field.country = country;
                             console.log(field);
                             admin.req({

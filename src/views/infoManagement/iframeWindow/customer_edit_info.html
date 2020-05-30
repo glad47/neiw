@@ -322,11 +322,19 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <div class="layui-col-md12">
+                <div class="layui-col-md6">
                     <label class="layui-form-label" style="width: 126px;">需要确认生产资料：</label>
                     <div class="layui-input-block">
                         <script type="text/html" template>
                             <input type="checkbox" name="productionVerification" lay-skin="switch" lay-text="是|否" {{ d.params.productionVerification == '0' ? 'checked' : '' }} lay-filter="productionVerification">
+                        </script>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <label class="layui-form-label">来自公司：</label>
+                    <div class="layui-input-block">
+                        <script type="text/html" template>
+                            <input type="checkbox" name="isSourceCompany" lay-skin="switch" lay-text="是|否" {{ d.params.isSourceCompany === undefined || d.params.isSourceCompany == '0' ? '' : 'checked' }} lay-filter="isSourceCompany">
                         </script>
                     </div>
                 </div>
@@ -395,7 +403,6 @@
                     </script>
                 </div>
             </div>
-            
         </div>
 
         <div class="layui-form-item">
