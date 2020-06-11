@@ -22,11 +22,9 @@
             <th>内部型号</th>
             <th>原金额</th>
             <th>订单金额</th>
-            <th>提成</th>
             <th>是否支付</th>
             <th>支付日期</th>
-            <th>渠道</th>
-            <th>网站</th>
+            <th>订单类型</th>
         </tr>
         </thead>
         <tbody>
@@ -63,16 +61,90 @@
                 <!--汇总-->
                 {{# totalAll += parseFloat(item.totalFeeCNY) }}
             </td>
-            <!--提成-->
+            <!--是否支付-->
             <td>
-                {{# if(item.commission == null || item.commission == ''){ }}
-                    {{# item.commission = 0  }}
+                {{# if(item.payLogId != null){ }}
+                <a style="color: green">已支付</a>
+                {{# } else { }}
+                <a style="color: orangered">未支付</a>
                 {{# } }}
-                (提成点:{{ item.commission || 0 }})
+            </td>
+            <!--支付日期-->
+            <td>
+                {{# if(item.payTime != null){ }}
+                    {{ item.payTime.substring(0, 10) || '' }}
+                {{# }}}
+            </td>
+            <td>
+                {{# if(item.customerUserPaVO.isSourceCompany == '0'){ }}
+                个人订单
+               {{# } else if(item.customerUserPaVO.isSourceCompany == '1'){ }}
+                公司订单
+                {{# }}}
+            </td>
+        </tr>
+        {{#  }); }}
+        <tr>
+            <td colspan="7" style="text-align: left;">
+                <!--Get statistics-->
+                订单数：{{d.params.length}} 条&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>
+                销售额：{{totalAll.toFixed(2)}}
+                </strong>
+                总提成(￥)：{{totalCommission.toFixed(2)}} 
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                {{parseFloat(item.commission*item.totalFeeCNY).toFixed(2)}}
-                <!--计算总提成-->
-                {{# totalCommission += parseFloat(item.totalFeeCNY*item.commission)}}
+                统计时间：{{d.params.popMSTime || ''}}
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                打印时间：{{new Date().toLocaleDateString() }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>下单日期</th>
+            <th>内部型号</th>
+            <th>原金额</th>
+            <th>订单金额</th>
+            <th>是否支付</th>
+            <th>支付日期</th>
+            <th>订单类型</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--总销售额-->
+        {{# var totalAll = 0 }}
+        <!--总提成-->
+        {{# var totalCommission = 0 }}
+        {{# layui.each(d.params, function(index, item){  }}
+
+            {{# if(item.commission == null) { }}
+                {{# item.commission = 0 }}
+            {{# } }}
+        <tr>
+            <!--下单日期-->
+            <td>
+                {{# if(item.orderTime != null){ }}
+                    {{ item.orderTime.substring(0, 10) || '' }}
+                {{# }}}
+            </td>
+            <!--内部型号-->
+            <td>
+                {{ item.productNo || '' }}
+            </td>
+            <!--原金额-->
+            <td>
+                {{item.totalFee}}
+            </td>
+            <!--订单金额-->
+            <td>
+                {{# if(item.totalFeeCNY == null){ }}
+                    {{# item.totalFeeCNY = 0}}
+                {{# } }}
+                ￥{{ item.totalFeeCNY || '' }}
+                <!--汇总-->
+                {{# totalAll += parseFloat(item.totalFeeCNY) }}
             </td>
             <!--是否支付-->
             <td>
@@ -88,18 +160,13 @@
                     {{ item.payTime.substring(0, 10) || '' }}
                 {{# }}}
             </td>
-            <!--网站-->
             <td>
-                {{ item.customerUserPaVO.siteUrl || '' }}
+                {{# if(item.customerUserPaVO.isSourceCompany == '0'){ }}
+                个人订单
+               {{# } else if(item.customerUserPaVO.isSourceCompany == '1'){ }}
+                公司订单
+                {{# }}}
             </td>
-            <!--渠道-->
-            <td>
-                {{ item.customerUserPaVO.channel || '' }}
-            </td>
-            <!--新客户-->
-            <!--<td>-->
-                <!--{{ item.commission || '否' }}-->
-            <!--</td>-->
         </tr>
         {{#  }); }}
         <tr>
@@ -109,9 +176,8 @@
                 <strong>
                 销售额：{{totalAll.toFixed(2)}}
                 </strong>
-                提成(￥)：{{totalCommission.toFixed(2)}} &nbsp;&nbsp;&nbsp;&nbsp;
-            </td>
-            <td style="text-align: right;">
+                总提成(￥)：{{totalCommission.toFixed(2)}} 
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 统计时间：{{d.params.popMSTime || ''}}
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 打印时间：{{new Date().toLocaleDateString() }}
@@ -119,5 +185,10 @@
         </tr>
         </tbody>
     </table>
+    <td colspan="7" style="text-align: left;">
+        业务员：_____________
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        审核人：_____________
+    </td>
     </script>
 </div>

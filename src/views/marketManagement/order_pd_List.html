@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">最近查询</label>
+                <label class="layui-form-label">查询时间</label>
                 <div class="layui-input-inline">
                     <select name="monthMark" lay-filter="order-pd-list-monthMark">
                         <option value=""></option>
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">是否支付</label>
+                <label class="layui-form-label">支付</label>
                 <div class="layui-input-inline">
                     <select name="payLogId" lay-filter="order-pd-list-payLogId">
                         <option value="0">请选择</option>
@@ -73,12 +73,12 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">来自公司</label>
+                <label class="layui-form-label">订单类型</label>
                 <div class="layui-input-inline">
                     <select name="isSourceCompany" lay-filter="order-pd-list-isSourceCompany">
                         <option value="3">请选择</option>
-                        <option value="1">来自公司</option>
-                        <option value="0">不来自公司</option>
+                        <option value="1">公司订单</option>
+                        <option value="0">个人订单</option>
                     </select>
                 </div>
             </div>
@@ -109,6 +109,13 @@
         {{# if(d.orderTime != null){ }}
         {{d.orderTime.substring(0, 10)}}
         {{# } }}
+    </script>
+    <script type="text/html" id="oplisSourceCompany">
+        {{# if(d.customerUserPaVO.isSourceCompany == '0'){ }}
+        个人订单
+       {{# } else if(d.customerUserPaVO.isSourceCompany == '1'){ }}
+        公司订单
+       {{# } }}
     </script>
     <script type="text/html" id="oplTotalFee">
         {{# if(d.exchangeId == '1'){ }}

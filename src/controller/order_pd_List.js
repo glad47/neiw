@@ -89,23 +89,14 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
         }
         ,cols: [[
             {field: 'businessName',title: '业务员', width: 120, sort: true}      // 1 ＝ 待报价
-            ,{field: 'orderTime',title: '下单日期', width: 113, sort: true, templet: '#oplOrderTime'}
-            ,{field: 'productNo',title: '内部型号', width: 114, sort: true}
+            ,{field: 'orderTime',title: '下单日期', width: 120, sort: true, templet: '#oplOrderTime'}
+            ,{field: 'productNo',title: '内部型号', width: 120, sort: true}
             ,{field: 'totalFee',title: '订单金额', width: 180, sort: true, templet: '#oplTotalFee'}
-            ,{field: 'commission',title: '提成', width: 84, sort: true, templet: '#oplCommission'}
-            ,{field: 'payLogId',title: '是否支付', width: 105, sort: true, templet: '#oplPayLogId'}
-            ,{field: 'payTime',title: '支付日期', width: 113, sort: true, templet: '#oplPayTime'}
-            ,{field: 'customerUserPaVO',title: '渠道', width: 150, sort: true, templet: '<a>{{ d.customerUserPaVO.channel || 0 }}</a>'}
-            ,{field: 'customerUserPaVO',title: '网站', width: 219, templet: '<a>{{ d.customerUserPaVO.siteUrl || 0 }}</a>'}
-            ,{field: 'payLogId',title: '新客户', width: 100, sort: true, templet: '#newCustomer'}
-            ,{field: 'customerUserPaVO',title: '客户名称', width: 150, templet: '<a>{{ d.customerUserPaVO.userName || 0 }}</a>',}
-            ,{field: 'customerUserPaVO',title: '客户系统id', width: 150, sort: true, templet: '<a>{{ d.customerUserPaVO.userSystemId || 0 }}</a>', hide: true}
-            ,{field: 'customerUserPaVO',title: '国家', width: 170, templet: "<a>{{ d.customerUserPaVO.country || '' }}</a>"}
-            ,{field: 'customerUserPaVO',title: '客户邮箱', width: 219, templet: '<a>{{ d.customerUserPaVO.email || 0 }}</a>'}
-            // ,{field: 'toolingFee',title: '支付', width: 110, sort: true}
-            ,{field: 'orderNumNo',title: '订单编号', width: 110, hide: true, sort: true}
-            ,{field: 'payLogId', title: '支付id', width: 100, sort: true}
-            // ,{fixed: 'right', title:'操作', toolbar: '#orderReviewB_pertSys_tabbar',width: 220, sort: true}
+            ,{field: 'payLogId',title: '是否支付', width: 120, sort: true, templet: '#oplPayLogId'}
+            ,{field: 'payTime',title: '支付日期', width: 120, sort: true, templet: '#oplPayTime'}
+            ,{field: 'payLogId', title: '支付id', width: 120, sort: true}
+            ,{field: 'isSourceCompany', title: '订单类型', width: 120, sort: true,templet: '#oplisSourceCompany'}
+            ,{field: 'orderNumNo',title: '订单编号', width: 120, sort: true}
         ]]
         ,done: function (res, curr, count) {
             tabDate = res.data;
