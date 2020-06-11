@@ -117,6 +117,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
                var gs = rowData.filter(item => item.customerUserPaVO.isSourceCompany == 0);
                rowData.gr = gr;
                rowData.gs = gs;
+               console.log('ffff',rowData);
                admin.popup({
                    title: '月度统计表'
                    ,area: ['100%', '100%']
