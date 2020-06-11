@@ -7,7 +7,7 @@
     <div class="monthly-statistical-header" style="text-align: center;">
         <h1>
             {{# var bArray = [] }}
-            {{# layui.each(d.params, function(index, item){  }}
+            {{# layui.each(d.params.gr, function(index, item){  }}
                 {{# if(bArray.indexOf(item.businessName) == -1 && item.businessName != null){ }}
                     {{item.businessName}}
                     {{# bArray.push(item.businessName)}}
@@ -117,7 +117,7 @@
         {{# var totalAll = 0 }}
         <!--总提成-->
         {{# var totalCommission = 0 }}
-        {{# layui.each(d.params, function(index, item){  }}
+        {{# layui.each(d.params.gs, function(index, item){  }}
 
             {{# if(item.commission == null) { }}
                 {{# item.commission = 0 }}

@@ -106,12 +106,17 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
     table.on('toolbar(tab-order-pd-list)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var rowData = tabDate;
+        console.log(rowData);
        if (obj.event == 'MonthlyStatistical') {
            if (rowData.length < 1) {
                layer.msg('当前不存在数据，操作失败');
            } else {
                rowData.popMonthlyStatisticalType = getMSType();
                rowData.popMSTime = getMSTime();
+               var gr =  rowData.filter(item => item.customerUserPaVO.isSourceCompany == 1);
+               var gs = rowData.filter(item => item.customerUserPaVO.isSourceCompany == 0);
+               rowData.gr = gr;
+               rowData.gs = gs;
                admin.popup({
                    title: '月度统计表'
                    ,area: ['100%', '100%']
