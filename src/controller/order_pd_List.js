@@ -113,8 +113,12 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
            } else {
                rowData.popMonthlyStatisticalType = getMSType();
                rowData.popMSTime = getMSTime();
-               var gr =  rowData.filter(item => item.customerUserPaVO.isSourceCompany == 1);
-               var gs = rowData.filter(item => item.customerUserPaVO.isSourceCompany == 0);
+               var gr =  rowData.filter(function(item){
+                   return item.customerUserPaVO.isSourceCompany === 1;
+               });
+               var gs = rowData.filter(function(item){
+                   return item.customerUserPaVO.isSourceCompany === 0;
+               });
                rowData.gr = gr;
                rowData.gs = gs;
                console.log('ffff',rowData);
