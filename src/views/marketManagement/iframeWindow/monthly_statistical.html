@@ -7,7 +7,7 @@
     <div class="monthly-statistical-header" style="text-align: center;">
         <h1>
             {{# var bArray = [] }}
-            {{# layui.each(d.params.gr, function(index, item){  }}
+            {{# layui.each(d.params, function(index, item){  }}
                 {{# if(bArray.indexOf(item.businessName) == -1 && item.businessName != null){ }}
                     {{item.businessName}}
                     {{# bArray.push(item.businessName)}}
@@ -32,7 +32,7 @@
         {{# var totalAll = 0 }}
         <!--总提成-->
         {{# var totalCommission = 0 }}
-        {{# layui.each(d.params, function(index, item){  }}
+        {{# layui.each(d.params.gr, function(index, item){  }}
 
             {{# if(item.commission == null) { }}
                 {{# item.commission = 0 }}
@@ -87,7 +87,7 @@
         <tr>
             <td colspan="7" style="text-align: left;">
                 <!--Get statistics-->
-                订单数：{{d.params.length}} 条&nbsp;&nbsp;&nbsp;&nbsp;
+                订单数：{{d.params.gr.length}} 条&nbsp;&nbsp;&nbsp;&nbsp;
                 <strong>
                 销售额：{{totalAll.toFixed(2)}}
                 </strong>
@@ -172,7 +172,7 @@
         <tr>
             <td colspan="7" style="text-align: left;">
                 <!--Get statistics-->
-                订单数：{{d.params.length}} 条&nbsp;&nbsp;&nbsp;&nbsp;
+                订单数：{{d.params.gs.length}} 条&nbsp;&nbsp;&nbsp;&nbsp;
                 <strong>
                 销售额：{{totalAll.toFixed(2)}}
                 </strong>
