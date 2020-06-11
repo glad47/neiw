@@ -91,7 +91,15 @@
                 <strong>
                 销售额：{{totalAll.toFixed(2)}}
                 </strong>
-                总提成(￥)：{{totalCommission.toFixed(2)}} 
+                {{# if(49999> totalAll && totalAll >= 1000){  }}
+                总提成(￥)：{{ (totalAll * 0.02).toFixed(2) }} 
+                {{# }else if(99999 > totalAll && totalAll >= 50000 ){ }}
+                总提成(￥)：{{(totalAll * 0.025).toFixed(2)}} 
+                {{# }else if(500000 > totalAll && totalAll >=100000){  }}
+                总提成(￥)：{{(totalAll * 0.03).toFixed(2)}}  
+                {{# }else{ }}
+                总提成(￥)：0
+                {{# } }}
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 统计时间：{{d.params.popMSTime || ''}}
                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -176,7 +184,7 @@
                 <strong>
                 销售额：{{totalAll.toFixed(2)}}
                 </strong>
-                总提成(￥)：{{totalCommission.toFixed(2)}} 
+                总提成(￥)：{{(totalAll * 0.01).toFixed(2)}} 
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 统计时间：{{d.params.popMSTime || ''}}
                 &nbsp;&nbsp;&nbsp;&nbsp;

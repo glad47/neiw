@@ -106,7 +106,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
     table.on('toolbar(tab-order-pd-list)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var rowData = tabDate;
-        console.log(rowData);
+        // console.log(rowData);
        if (obj.event == 'MonthlyStatistical') {
            if (rowData.length < 1) {
                layer.msg('当前不存在数据，操作失败');
@@ -115,8 +115,8 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
                rowData.popMSTime = getMSTime();
                var gr =  rowData.filter(item => item.customerUserPaVO.isSourceCompany == 0);
                var gs = rowData.filter(item => item.customerUserPaVO.isSourceCompany == 1);
-               console.log('gr',gr);
-               console.log('gs',gs);
+            //    console.log('gr',gr);
+            //    console.log('gs',gs);
                rowData.gr = gr;
                rowData.gs = gs;
                admin.popup({
