@@ -88,22 +88,27 @@
             <td colspan="7" style="text-align: left;">
                 <!--Get statistics-->
                 订单数：{{d.params.gr.length}} 条&nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- 定义个人订单数变量 -->
+                {{# var totalGrDds = d.params.gr.length }}  
                 <strong>
-                销售额：{{totalAll.toFixed(2)}}
+                个人订单销售额：￥{{totalAll.toFixed(0)}}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </strong>
+                <!-- 定义个人订单销售额变量 -->
+                {{# var totalGr = totalAll.toFixed(0) }} 
                 {{# if(49999> totalAll && totalAll >= 1000){  }}
-                总提成(￥)：{{ (totalAll * 0.02).toFixed(2) }} 
+                提成：￥{{ (totalAll * 0.02).toFixed(0) }} 
+                <!-- 定义个人提成变量 -->
+                {{# var totalGrTc = (totalAll * 0.02).toFixed(0) }} 
                 {{# }else if(99999 > totalAll && totalAll >= 50000 ){ }}
-                总提成(￥)：{{(totalAll * 0.025).toFixed(2)}} 
+                提成：￥{{(totalAll * 0.025).toFixed(0)}} 
+                {{# var totalGrTc = (totalAll * 0.025).toFixed(0) }} 
                 {{# }else if(500000 > totalAll && totalAll >=100000){  }}
-                总提成(￥)：{{(totalAll * 0.03).toFixed(2)}}  
+                提成：￥{{(totalAll * 0.03).toFixed(0)}}  
+                {{# var totalGrTc = (totalAll * 0.03).toFixed(0) }} 
                 {{# }else{ }}
-                总提成(￥)：0
+                提成：0
                 {{# } }}
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                统计时间：{{d.params.popMSTime || ''}}
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                打印时间：{{new Date().toLocaleDateString() }}
             </td>
         </tr>
         </tbody>
@@ -181,22 +186,47 @@
             <td colspan="7" style="text-align: left;">
                 <!--Get statistics-->
                 订单数：{{d.params.gs.length}} 条&nbsp;&nbsp;&nbsp;&nbsp;
+                                <!-- 定义公司订单数变量 -->
+                                {{# var totalGsDds = d.params.gs.length }}  
                 <strong>
-                销售额：{{totalAll.toFixed(2)}}
+                公司订单销售额：￥{{totalAll.toFixed(0)}}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </strong>
-                总提成(￥)：{{(totalAll * 0.01).toFixed(2)}} 
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                统计时间：{{d.params.popMSTime || ''}}
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                打印时间：{{new Date().toLocaleDateString() }}
+                <!-- 定义公司销售额变量 -->
+                {{# var totalGs =  totalAll.toFixed(0) }}
+                提成：￥{{(totalAll * 0.01).toFixed(0)}}
+                <!-- 定义公司提成变量 -->
+                {{# var totalGsTc = (totalAll * 0.01).toFixed(2) }}   
             </td>
         </tr>
         </tbody>
     </table>
+    <table>
+     <tr>
+       <td colspan="7" style="text-align: left;">
+        <strong>
+        订单总数：{{ Number.parseInt(totalGrDds)+Number.parseInt(totalGsDds) }} 条
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        订单总销售额：￥{{ Number.parseInt(totalGr)+Number.parseInt(totalGs) }}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        订单总提成：￥{{ Number.parseInt(totalGrTc)+Number.parseInt(totalGsTc) }}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </strong>
+     </td>
+     </tr>
+     </table>
+    <table>
+    <tr>
     <td colspan="7" style="text-align: left;">
-        业务员：_____________
+        统计时间：{{d.params.popMSTime || ''}}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        打印时间：{{new Date().toLocaleDateString() }} 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        业务员：________________
         &nbsp;&nbsp;&nbsp;&nbsp;
-        审核人：_____________
-    </td>
+        审核人：________________
+      </td>
+     </tr>
+     </table>
     </script>
 </div>

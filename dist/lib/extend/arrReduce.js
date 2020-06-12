@@ -1,2 +1,0 @@
-/** layuiAdmin.pro-v1.0.0 LPPL License By http://www.layui.com/admin/ */
- ;"use strict";layui.define(["admin","index"],function(n){layui.jquery;admin=layui.admin;var u={sum:function(n){n.reduce(function(n,u){return n+u},0)},max:function(n){n.reduce(function(n,u){return Math.max(n,u)})},repetition:function(n){n.reduce(function(n,u){return n.indexOf(u)===-1&&n.push(u),n},[])}};n("arrReduce",u)});
