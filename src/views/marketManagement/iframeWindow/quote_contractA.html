@@ -345,14 +345,15 @@
                             </td>
                             {{#  }); }}
                         </tr>
-                        {{# layui.each(d.params.data, function(index, item){  }}
-                        {{# if(item.pcbaSubtotalFee != null && item.pcbaSubtotalFee != '0'){ }}
+                       
+                        {{# if(d.params.isExistPcbA){ }}
                         <tr>
                             <td><strong style="color: orangered;">+ PCBA</strong></td>
+                            {{# layui.each(d.params.data, function(index, item){  }}
                             <td>{{ item.pcbaSubtotalFee }}</td>
+                            {{#  }); }}
                         </tr>
                         {{# } }}
-                        {{#  }); }}
                         <tr>
                             <td>Total Price(
                                 {{# if(d.params.data[0].exchangeId == '1') { }}

@@ -186,6 +186,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
                 var contractType = 2;
                 var contractTotal = 0;
                 var qidsPost;
+                var isExistPcbA;
                 $.each(tabdata.data, function (idx, obj) {
                     contractTotal = parseFloat(contractTotal+obj.totalFee);
                     tabdata.total = contractTotal;
@@ -193,6 +194,11 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
                         qidsPost = obj.id;
                     } else {
                         qidsPost += ","+obj.id;
+                    }
+                    if(obj.pcbaSubtotalFee != null && obj.pcbaSubtotalFee != 0){
+                        isExistPcbA = true;
+                    }else{
+                        isExistPcbA = false;
                     }
                     if (productNo == null || productNo == "") {
                         productNo = obj.productNo;
@@ -212,6 +218,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
                         return false;
                     }
                 });
+                tabdata.isExistPcbA = isExistPcbA; 
                 if (defVal.canOpenView == true) {
                     // 获取地址，公司名
                     admin.req({
