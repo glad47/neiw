@@ -58,9 +58,9 @@ layui.define(['admin','table','index','element','form','laydate', 'tools_printLa
                 {type:'checkbox',fixed: 'left'}
                 ,{field: 'productNo',title: '聚谷型号', minWidth: 141,fixed: 'left', sort: true}
                 ,{field: 'status',title: '状态', width: 110, templet: '#proManaquo_status', sort: true}      // 1 ＝ 待报价
-                ,{field: 'gmtModified',title: '出货时间', width: 110, templet:'<a>{{d.gmtModified.substring(0,11)}}</a>', sort: true}
+                ,{field: 'gmtModified',title: '修改时间', width: 110, templet:'<a>{{d.gmtModified.substring(0,11)}}</a>', sort: true}
                 ,{field: 'invoiceNo',title: '合同号', minWidth: 165, sort: true}
-                ,{field: 'deliveryDate',title: '交期', templet: '#outboundDDatePCB', sort: true}
+                ,{field: 'deliveryDate',title: '出货时间', templet: '#outboundDDatePCB', sort: true}
                 ,{field: 'quantityPcs',title: '订单PCS数', sort: true}
                 ,{field: 'finishPcsNumber',title: '已交PCS数', templet: '<div>{{ d.finishPcsNumber || 0 }}</div>', sort: true}
                 ,{field: 'courierName',title: '快递公司', sort: true}
