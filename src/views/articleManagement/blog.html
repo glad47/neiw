@@ -1,53 +1,34 @@
 <title>Blog管理</title>
 
 <div class="layui-fluid">
-    <input type="text" autocomplete="off" class="layui-input" placeholder="查询订单评审信息" style="display: none">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto" id="orderReview_form">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto" id="article_blog_form" lay-filter="article_blog_formlist"  data-type="search-form" reload-table="article_Table_blog">
         <div class="layui-form-item">
-            <div class="layui-inline" id="orderReview_searll" style="display: none;">
-                <label class="layui-form-label">查询：</label>
+            <div class="layui-inline">
+                <label class="layui-form-label">url：</label>
                 <div class="layui-input-inline">
-                    <select name="quiz" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
-                        <option value="">请选择</option>
-                        <option value="P/N">P/N</option>
-                        <option value="FileName">File Name</option>
-                        <option value="OrderId">Order ID</option>
-                        <option value="OrderTime">Order Time</option>
-                    </select>
-                </div>
-                <div class="layui-input-inline">
-                    <input type="text" name="P/N" id="orderReview_sinp" autocomplete="off" class="layui-input" placeholder="P/N">
+                    <input type="text" name="articleName" class="layui-input"/>
                 </div>
             </div>
-            <!--电脑端-->
-            <div class="layui-inline" id="orderReview_pcsear">
-                 <label class="layui-form-label">发布时间:</label>
-                <div class="layui-input-inline">
-                    <!--<input type="text" name="gmtCreate" class="layui-input">-->
-                    <input type="text" name="articleTime" id="gmtCreate" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                </div>
 
-                <label class="layui-form-label">状态：</label>
+            <div class="layui-inline">
+                <label class="layui-form-label">文章分类：</label>
                 <div class="layui-input-inline">
-                    <select name="articleStatus" id="orderReview_statusSel">
-                        <option value="">请选择状态</option>
-                        <option value="1">待审核</option>
-                        <option value="2">已审核</option>
-                    </select>
-                </div>
-
-                <label class="layui-form-label">类型：</label>
-                <div class="layui-input-inline">
-                    <select name="articleType" id="orderReview_statusSel">
-                        <option value="">请选择类型</option>
-                        <option value="1">博客</option>
-                        <option value="2">反馈</option>
+                    <select name="articleClassify" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
+                        <option value="">请选择</option>
+                        <option value="PCB prototype ">PCB prototype</option>
+                        <option value="SMT">SMT</option>
+                        <option value="Assembly">Assembly</option>
+                        <option value="PCB Technology">PCB Technology</option>
+                        <option value="PCB Flow">PCB Flow</option>
+                        <option value="PCB News">PCB News</option>
+                        <option value="SMT Technology">SMT Technology</option>
+                        <option value="SMT Flow">SMT Flow</option>
                     </select>
                 </div>
             </div>
 
             <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-orderReview-search" style="margin-bottom: 3px;">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit style="margin-bottom: 3px;" lay-filter="article_blog_form_search">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                 </button>
             </div>

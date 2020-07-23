@@ -13,20 +13,24 @@ layui.define(['admin', 'index', 'form'],function (exports) {
     var formSelectsArr = [];    // 监听 select 对象数组
     var formSubmitFilter;       // 表单搜索按钮 lay-filter
     var reloadTab;              // 当前要重载的表格
+    var lock = false;
     $(document).on('click', function (e) {
-        formSelectsArr.splice(0, formSelectsArr.length);    // 清空数组
+        // formSelectsArr.splice(0, formSelectsArr.length);    // 清空数组
         $form = $(e.target).closest(".layui-form"); // 点击的Form
         var _d_type = $form.attr("data-type");
         if (_d_type == 'search-form') {
             reloadTab = $form.attr("reload-table");
             formSubmitFilter = $form.find(".layui-btn[lay-submit]").attr("lay-filter");
-            $form.find("select").each(function (obj) {  // 获取所有下拉，赋值到数组
-                formSelectsArr.push($(this).attr('lay-filter'));    // 获取要监听 select 的 lay-filter
-            });
+            obj.formOnSubmit();
         }
-        obj.initInputKeypress(); // 初始化输入框键盘事件
-        obj.formOnSelect();
-        obj.formOnSubmit();
+    });
+    $(document).on('keypress',function(e){
+        if(e.which == 13){
+            reloadTab = $form.attr("reload-table"); 
+            formSubmitFilter = $form.find(".layui-btn[lay-submit]").attr("lay-filter");
+            //obj.formOnSubmit();
+            $("button[lay-filter='"+ formSubmitFilter + "']").click();
+        }
     });
 
     var obj = {
@@ -43,13 +47,18 @@ layui.define(['admin', 'index', 'form'],function (exports) {
         formOnSubmit: function () {     // 监听 表单提交
           form.on('submit('+ formSubmitFilter +')', function (data) {
              var field = data.field;
-              obj.tabReload(reloadTab, field);
+            //   obj.tabReload(reloadTab, field);
+              table.reload(reloadTab,{
+                  where: field
+              })
           });
         },
         initInputKeypress: function () {
           $form.find("input").keypress(function (e) {
+              //console.log(e.which);
              if (e.which == 13) {
-                 $("button[lay-filter='"+ formSubmitFilter + "']").click();
+                 console.log("aaaa");
+                //  $("button[lay-filter='"+ formSubmitFilter + "']").click();
              }
           });
         },

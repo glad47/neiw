@@ -19,9 +19,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
     // layerdate.render({
     //     elem: '#gmtCreate'
     // })
-    laydate.render({
-        elem: '#gmtCreate'
-    });
+    // laydate.render({
+    //     elem: '#gmtCreate'
+    // });
+    
+    form.render(null, 'article_blog_formlist');
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 文章博客管理
     table.render({
