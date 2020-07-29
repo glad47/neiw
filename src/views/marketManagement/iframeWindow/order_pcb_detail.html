@@ -223,15 +223,15 @@
                     <td>表面处理:</td>
                     <td>
                         {{# var surfaceFinish = d.params.surfaceFinish }}
-                        {{# if(d.params.surfaceFinish == 'HASL_with_lead'){ }}
+                        {{# if(d.params.surfaceFinish == 'HASL_with_lead' || d.params.surfaceFinish == 'HASL with lead'){ }}
                         {{# surfaceFinish = '有铅喷锡'}}
-                        {{# } else if(d.params.surfaceFinish == 'HASL_lead_free'){ }}
+                        {{# } else if(d.params.surfaceFinish == 'HASL_lead_free' || d.params.surfaceFinish == 'HASL lead free'){ }}
                         {{# surfaceFinish = '无铅喷锡'}}
-                        {{# } else if(d.params.surfaceFinish == 'Immersion_Gold'){ }}
+                        {{# } else if(d.params.surfaceFinish == 'Immersion_Gold' || d.params.surfaceFinish == 'Immersion Gold'){ }}
                         {{# surfaceFinish = '沉金'}}
-                        {{# } else if(d.params.surfaceFinish == 'Immersion_tin'){ }}
+                        {{# } else if(d.params.surfaceFinish == 'Immersion_tin' || d.params.surfaceFinish == 'Immersion tin'){ }}
                         {{# surfaceFinish = '沉锡'}}
-                        {{# } else if(d.params.surfaceFinish == 'Immersion_silver'){ }}
+                        {{# } else if(d.params.surfaceFinish == 'Immersion_silver' || d.params.surfaceFinish == 'Immersion silver'){ }}
                         {{# surfaceFinish = '沉银'}}
                         {{# } else if(d.params.surfaceFinish == 'OSP'){ }}
                         {{# surfaceFinish = 'OSP'}}
