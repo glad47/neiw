@@ -128,10 +128,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                                     layer.close(index); //执行关闭
                                 }
                             });
-                            var fn = field.articleName.trim().replace(/\s+/g,"_")+'_'+field.id+'.html';
-                            console.log(fn);
+                            // var fn = field.articleName.trim().replace(/\s+/g,"_")+'_'+field.id+'.html';
+                            // console.log(fn);
                             admin.req({
-                                url: setter.imUrl + 'blog/updateStaticPage?fileName=' +fn,
+                                url: setter.imUrl + 'blog/updateStaticPage?fileName=' +field.articleName,
                                 type: 'GET',
                                 success:function(data){
                                     console.log(data)
