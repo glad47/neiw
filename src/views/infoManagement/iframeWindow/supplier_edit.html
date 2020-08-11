@@ -94,8 +94,16 @@
         </div>
 
         <div class="layui-form-item">
-            
-            <div class="addcus-cusNum layui-col-md4">
+            <div class="addcus-supplierNickname layui-col-md6">
+                <label class="layui-form-label">昵称：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="supplierNickname" value="{{ d.params.supplierNickname || ''}}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+
+            <div class="addcus-cusNum layui-col-md6">
                 <label class="layui-form-label">付款方式：</label>
                 <div class="layui-input-block">
                     <!-- <select name="paymentType">
@@ -120,7 +128,10 @@
                     </script>
                 </div>
             </div>
-            <div class="addcus-cusPWd layui-col-md4">
+        </div>
+
+        <div class="layui-form-item">
+            <div class="addcus-cusPWd layui-col-md6">
                 <label class="layui-form-label">是否含税：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
@@ -132,7 +143,7 @@
                     </script>
                 </div>
             </div>
-            <div class="addcus-cusPWd layui-col-md4">
+            <div class="addcus-cusPWd layui-col-md6">
                 <label class="layui-form-label">发票类型：</label>
                 <div class="layui-input-block">
                     <!-- <select name="invoiceType">
