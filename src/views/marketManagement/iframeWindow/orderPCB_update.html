@@ -192,6 +192,20 @@
                     <input type="text" name="productCode" value="{{ d.params.productCode || '' }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">生产类别：</label>
+                <div class="layui-input-block">
+                    <select name="productionType">
+                        <option value="PCB"  {{ d.params.productionType == 'PCB' ? 'selected' : '' }}>PCB</option>
+                        <option value="COM" {{ d.params.productionType == 'COM' ? 'selected' : '' }}>COM</option>
+                        <option value="SMT" {{ d.params.productionType == 'SMT' ? 'selected' : '' }}>SMT</option>
+                        <option value="PCBC" {{ d.params.productionType == 'PCBC' ? 'selected' : '' }}>PCBC</option>
+                        <option value="PCBT" {{ d.params.productionType == 'PCBT' ? 'selected' : '' }}>PCBT</option>
+                        <option value="CSMT" {{ d.params.productionType == 'CSMT' ? 'selected' : '' }}>CSMT</option>
+                        <option value="PCBA" {{ d.params.productionType == 'PCBA' ? 'selected' : '' }}>PCBA</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
         <div class="layui-form-item">

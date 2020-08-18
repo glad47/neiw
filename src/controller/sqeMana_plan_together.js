@@ -23,7 +23,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
         cols = [[
             {type:'checkbox', fixed: 'left'}
             ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left', sort: true}
-            ,{field: 'status',title: '状态',templet: '#planStatus', width: 110, sort: true}      // 1 ＝ 待报价
+            ,{field: 'productionType',title: '生产类别', width: 110, sort: true}      // 1 ＝ 待报价
             // ,{field: 'supplierNo', title: '供应商编号', width: 117, sort: true}
             // ,{field: 'supplierNickname', title: '供应商昵称', width: 117, sort: true}
             ,{field: 'currentProcess',title: '当前工序', width: 160,templet: '#currentProcess', sort: true}
@@ -43,7 +43,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
         scols = [[
             {type:'checkbox',fixed: 'left'}
             ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left', sort: true}
-            ,{field: 'status',title: '状态',templet: '#planStatusS', width: 110, sort: true}      // 1 ＝ 待报价
+            ,{field: 'productionType',title: '生产类别', width: 110, sort: true}      // 1 ＝ 待报价
             // ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
             // ,{field: 'supplierNickname', title: '供应商昵称', width: 117, sort: true}
             ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDtS', sort: true}
@@ -63,9 +63,10 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
         cols = [[
             {type:'checkbox', fixed: 'left'}
             ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left', sort: true}
-            ,{field: 'status',title: '状态',templet: '#planStatus', width: 110, sort: true}      // 1 ＝ 待报价
+            ,{field: 'productionType',title: '生产类别', width: 110, sort: true}     // 1 ＝ 待报价
             ,{field: 'supplierNo', title: '供应商编号', width: 117, sort: true}
-            ,{field: 'supplierNickname', title: '供应商昵称', width: 117, sort: true}
+            ,{field: 'areaSq', title: '面积', width: 117, sort: true} 
+            ,{field: 'supplierNickname', title: '供应商简称', width: 117, sort: true}
             ,{field: 'currentProcess',title: '当前工序', width: 160,templet: '#currentProcess', sort: true}
             ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt', sort: true}
             ,{field: 'gmtModified',title: '更新时间', width: 177, sort: true}
@@ -83,9 +84,9 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
         scols = [[
             {type:'checkbox',fixed: 'left'}
             ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left', sort: true}
-            ,{field: 'status',title: '状态',templet: '#planStatusS', width: 110, sort: true}      // 1 ＝ 待报价
+            ,{field: 'productionType',title: '生产类别', width: 110, sort: true}     // 1 ＝ 待报价
             ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
-            ,{field: 'supplierNickname', title: '供应商昵称', width: 117, sort: true}
+            ,{field: 'supplierNickname', title: '供应商简称', width: 117, sort: true}
             ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDtS', sort: true}
             ,{field: 'gmtModified',title: '更新时间', width: 177, sort: true}
             ,{field: 'quantity', title: '订单数量(PCS)', width: 134, sort: true}
