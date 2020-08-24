@@ -123,7 +123,7 @@
                     </a>
                     {{# } }}
                 </script>
-                <script type="text/html" id="stencil-status">
+                <script type="text/html" id="stencil_status">
                     {{# if(d.status === 1){ }}
                     <a style="color: #1E9FFF">
                         <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
@@ -167,12 +167,7 @@
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:submit") != -1){ }}
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stencil-submit">提交</a>
                     {{#  } }}
-                    <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>-->
-                    {{# if(d.status === 2){ }}
-                    <a class="layui-btn layui-btn-xs" lay-event="edit" style="pointer-events: none;cursor: not-allowed;background-color: silver;">修改</a>
-                    {{# } else { }}
                     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-                    {{# } }}
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_audit:delete") != -1){ }}
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                     {{#  } }}

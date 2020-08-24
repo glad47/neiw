@@ -260,10 +260,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
         }
         ,cols: [[
              {type:'checkbox', fixed: 'left'}
-            ,{field: 'productNo', title: 'Product No', align:'center', width: 134, sort: true, fixed: 'left'}
-            ,{field: 'id', title: 'ID', hide: true, sort: true}
-            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#stencil-status', sort: true}
-            ,{field: '', title:'File', templet: '#stencil-file', align:'center', sort: true}
+            ,{field: 'productNo', title: '内部型号', align:'center', width: 134, sort: true, fixed: 'left'}
+            ,{field: 'status' , title: '状态', align:'center', width: 100, templet: '#stencil_status', sort: true}
+            ,{field: '', title:'文件', templet: '#stencil-file', align:'center', sort: true}
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224, sort: true}
             ,{field: 'totalStencilFee', title: 'TotalStencilFee($)', align:'center', width: 144, sort: true}
             ,{field: 'stencilType', title: 'Stencil Type', align:'center', width: 124, sort: true}
@@ -452,11 +451,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
         }
         ,cols: [[
             {type:'checkbox', fixed: 'left'}
-            ,{field: 'id', title: 'ID', hide: true, sort: true}
-            ,{field: 'quoteId', title: 'ID', hide: true, sort: true}
-            ,{field: 'productNo', title: 'Product No', align:'center', width: 134, sort: true}
-            ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-smt-market-orderReview-status', sort: true}
-            ,{field: '', title:'File', templet: '#stencil-file', align:'center', sort: true}
+            ,{field: 'productNo', title: '内部型号', align:'center', width: 134, sort: true}
+            ,{field: 'status', title: '状态', align:'center', width: 100, templet: '#stencil_status', sort: true}
+            ,{field: '', title:'文件', templet: '#stencil-file', align:'center', sort: true, width: 50}
             ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224, sort: true}
             ,{field: 'smtPartNum', title: 'SMT PartNum', align:'center', width: 124, sort: true}
             ,{field: 'throughHolePartNum', title: 'Through Hole PartNum', align:'center', width: 224, sort: true}
