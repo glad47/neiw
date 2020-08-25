@@ -25,15 +25,20 @@
     <div class="layui-tab">
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="finManaFeightProfits_tabPcb" lay-filter="finManaFeightProfits_tabPcb"></table>
-                <script type="text/html" id="finManaFeightProfits_toolbar">
+                <table class="layui-table" id="fsm_feight_profits_tabPcb" lay-filter="fsm_feight_profits_tabPcb"></table>
+                <script type="text/html" id="fsm_feight_tabbar">
                     <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-sm" data-type="feightProfitsAdd" lay-event="feightProfitsAdd">新增</button>
+                        <a class="layui-btn layui-btn-sm" lay-event="feight_profits_edit">编辑</a>
                     </div>
                 </script>
             </div>
         </div>
     </div>
+    <script type="text/html" id="feight-profits-ffff">
+        {{# if(d.totalPostFee != null && d.postalFee != null){ }}
+        {{ (d.totalPostFee - d.postalFee) }}
+        {{# } }}
+    </script>
 </div>
 
 <script>
