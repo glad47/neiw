@@ -15,7 +15,7 @@ layui.define(['admin','table','index','form'], function (exports) {
     table.render({
         elem: '#fsm_feight_profits_tabPcb'
         ,url: setter.baseUrl+'fms/freightprofit/list'
-        // ,toolbar: "#finManaFeightProfits_toolbar"
+        ,toolbar: "true"
         ,cellMinWidth: 80
         ,id: "fsm_feight_profits_tabPcb"
         ,page: true
@@ -88,5 +88,11 @@ layui.define(['admin','table','index','form'], function (exports) {
         }
     });
 
+    form.on('submit(LAY-feight-profits-search)',function(data){
+        var field = data.field;
+        table.reload('fsm_feight_profits_tabPcb',{
+            where: field
+        });
+    });
     exports('finMana_feight_profits', {});
 });
