@@ -16,6 +16,9 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
     var $ = layui.jquery;
     var convertCurrency = layui.convertCurrency;
     var requestInterface = layui.requestInterface;
+
+    form.render(null,'scm-outgoing-contract-formlist');
+
     var defVal = {
         orderType: 0,   //订单类型
     }
@@ -23,18 +26,33 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
 
     var pcbtabObj;  // PCB表格数据对象
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
-    element.on('tab(tab-scmManagement)', function(data){
+    element.on('tab(scm-outsourcing-contract-tabs-brief)', function(data){
         defVal.orderType = data.index;
-        if (data.index === 1){
-            tabRenderStencil();
-            $(".outsourcing-contract-search").attr("reload-table", "scmManaOutSC_tabStencil");
-        } else if (data.index === 2){
-            $(".outsourcing-contract-search").attr("reload-table", "");
-        } else {
+        var tabNum = data.index;
+        if (tabNum === 0) {
             tabRenderPCB();
-            $(".outsourcing-contract-search").attr("reload-table", "scmManaOutSC_tabPcb");
+        } else if (tabNum === 1) {
+            tabRenderStencil();
+        } else if (tabNum === 2) {
+            // tabRenderAssembly();
         }
     });
+
+    form.on('submit(LAY-scm-outsourcing-contract-search)', function (data) {
+        var field = data.field;
+        var reTab, tabNum = defVal.orderType;;
+        if (tabNum === 0) {   // PCB
+            reTab = 'scmManaOutSC_tabPcb';
+        } else if (tabNum === 1) {    //  Stencil
+            reTab = 'scmManaOutSC_tabStencil';
+        } else if(tabNum === 2){
+            // reTab = 'smt_orderTab_no_payment'; //assembly
+        }
+        table.reload(reTab,{
+            where: field
+        });
+    })
+
 
     //▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ PCB订单
     function tabRenderPCB() {

@@ -14,20 +14,23 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         ,setter = layui.setter
         ,element = layui.element;
     var $ = layui.jquery;
+
+    form.render(null,'fin-order-profits-formlist');
+
     // 全局变量
     var defVal = {
         orderType: 0,   //订单类型
     };
     tabRenderPCB();
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
-    element.on('tab(tab-profitsToger)', function(data){
+    element.on('tab(fin-order-profits-tabs-brief)', function(data){
          defVal.orderType = data.index;
-        if (defVal.orderType === 1){
-             tabRenderStencil();
-        } else if (defVal.orderType === 2){
-            console.log("贴片订单选项卡");
-        } else {
+        if (defVal.orderType === 0){
             tabRenderPCB();
+        } else if (defVal.orderType === 1){
+            tabRenderStencil();
+        } else if(defVal.orderType === 2){
+            console.log("贴片订单选项卡");
         }
     });
 
@@ -188,7 +191,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
     //     }
     // });
     //监听搜索
-    form.on('submit(order-profits-mangement-search)', function(data){
+    form.on('submit(LAY-fin-order-profits-search)', function(data){
         var field = data.field;
         //执行重载
         var reTab;
@@ -203,9 +206,9 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         });
     });
     
-    $(".order-profits-form-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='order-profits-mangement-search']").click();
-    });
+    // $(".order-profits-form-search input").bind("input propertychange", function (even) {
+    //     $("*[lay-filter='order-profits-mangement-search']").click();
+    // });
 
     exports('finMana_order_profits', {});
 });

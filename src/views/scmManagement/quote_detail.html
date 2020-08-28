@@ -1,109 +1,101 @@
 <title>供应链管理-报价明细</title>
 <div class="layui-fluid">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto quote-detail-search" data-type="search-form" reload-table="scmMana_tabPcb">
-        <div class="layui-form-item quote-detail-search">
-            <div class="layui-inline" id="orderReview_searll" style="display: none;">
-                <label class="layui-form-label">查询：</label>
-                <div class="layui-input-inline">
-                    <select name="quiz" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
-                        <option value="">请选择</option>
-                        <option value="productNo">P/N</option>
-                        <option value="FileName">File Name</option>
-                        <option value="OrderId">Order ID</option>
-                        <option value="OrderTime">Order Time</option>
-                    </select>
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="scm-quote-detail-formlist">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">内部型号:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
-                <div class="layui-input-inline">
-                    <input type="text" name="P/N" autocomplete="off" class="layui-input" placeholder="P/N">
+                <div class="layui-inline">
+                    <label class="layui-form-label">供应商厂编:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="factoryMake" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
-            </div>
-            <!--电脑端-->
-            <div class="layui-inline" id="orderReview_pcsear">
-                <label class="layui-form-label">内部型号：</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                <div class="layui-inline">
+                    <label class="layui-form-label">供应商编号:</label>
+                    <div class="layui-input-block">
+                        <!--<input type="text" name="gmtCreate" class="layui-input">-->
+                        <input type="text" name="supplierNo" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
-
-                <label class="layui-form-label" style="width: 110px;">供应商厂编：</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="factoryMake" autocomplete="off" class="layui-input">
-                </div>
-
-                <label class="layui-form-label" style="width: 85px;">供应商编号:</label>
-                <div class="layui-input-inline">
-                    <!--<input type="text" name="gmtCreate" class="layui-input">-->
-                    <input type="text" name="supplierNo" autocomplete="off" class="layui-input">
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-scm-quote-detail-serch" style="margin-bottom: 3px;">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
                 </div>
             </div>
-            <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="quote_detail_serch" style="margin-bottom: 3px;">
-                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                </button>
+        </div>
+        <div class="layui-card-body">
+            <!--卡片－表格信息-->
+            <div class="layui-tab layui-tab-brief" lay-filter="scm-quote-detail-tabs-brief">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">PCB订单</li>
+                    <li>钢网订单</li>
+                    <li>SMT订单</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <!--PCB订单-->
+                    <div class="layui-tab-item layui-show">
+                        <table class="layui-table" id="scmMana_tabPcb" lay-filter="scmMana_tabPcb"></table>
+                        <!--<button class="layui-btn layui-btn-sm" lay-event="evScmSubmit">生成合同</button>-->
+                        <script type="text/html" id="scmMana_toolbar">
+                            <div class="layui-btn-container">
+                                <button class="layui-btn layui-btn-sm" lay-event="directlySubmit">直接提交</button>
+                            </div>
+                        </script>
+                        <script type="text/html" id="scmMana_tabbar">
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="eevScmedit">编辑</a>
+                            <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="rollback">退回</a>
+                            <a class="layui-btn layui-btn-xs" lay-event="eevScmdel">删除</a>
+                        </script>
+                        <script type="text/html" id="scmManaquo_status">
+                            {{# if(d.status == '1') { }}
+                                <a data="{{d.existContractMark}}">已指派</a>
+                            {{# } else if(d.status == '2' && d.supplierContractNo != null){ }}
+                                <a data="{{d.existContractMark}}">合同被退回</a>
+                            {{# } else if(d.status == '2' && d.supplierContractNo == null){ }}
+                                <a data="{{d.existContractMark}}">已报价</a>
+                            {{# }  }}
+                        </script>
+                    </div>
+                    <!--钢网订单-->
+                    <div class="layui-tab-item">
+                        <table class="layui-table" id="scmMana_tabStencil" lay-filter="scmMana_tabStencil"></table>
+                        <script type="text/html" id="scmManaStencil_toolbar">
+                            <div class="layui-btn-container">
+                                <!-- <button class="layui-btn layui-btn-sm" lay-event="evScmSubmit">生成合同</button> -->
+                                <button class="layui-btn layui-btn-sm" lay-event="directlySubmit">直接提交</button>
+                            </div>
+                        </script>
+                        <script type="text/html" id="scmManaStencil_tabbar">
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="eevScmedit">编辑</a>
+                            <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="rollback">退回</a>
+                            <a class="layui-btn layui-btn-xs" lay-event="eevScmdel">删除</a>
+                        </script>
+                        <script type="text/html" id="scmManaquoStencil_status">
+                            {{# if(d.status == '1') { }}
+                                <a data="{{d.existContractMark}}">已指派</a>
+                            {{# } else if(d.status == '2' && d.supplierContractNo != null){ }}
+                                <a data="{{d.existContractMark}}">合同被退回</a>
+                            {{# } else if(d.status == '2' && d.supplierContractNo == null){ }}
+                                <a data="{{d.existContractMark}}">已报价</a>
+                            {{# }  }}
+                        </script>
+                    </div>
+                    <!--SMT订单-->
+                    <div class="layui-tab-item">
+                        <table class="layui-table"></table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!--卡片－表格信息-->
-    <div class="layui-tab layui-tab-brief" lay-filter="tab-scmManagement">
-        <ul class="layui-tab-title">
-            <li class="layui-this">PCB订单</li>
-            <li>钢网订单</li>
-            <li>SMT订单</li>
-        </ul>
-        <div class="layui-tab-content">
-            <!--PCB订单-->
-            <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="scmMana_tabPcb" lay-filter="scmMana_tabPcb"></table>
-                <!--<button class="layui-btn layui-btn-sm" lay-event="evScmSubmit">生成合同</button>-->
-                <script type="text/html" id="scmMana_toolbar">
-                    <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-sm" lay-event="directlySubmit">直接提交</button>
-                    </div>
-                </script>
-                <script type="text/html" id="scmMana_tabbar">
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="eevScmedit">编辑</a>
-                    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="rollback">退回</a>
-                    <a class="layui-btn layui-btn-xs" lay-event="eevScmdel">删除</a>
-                </script>
-                <script type="text/html" id="scmManaquo_status">
-                    {{# if(d.status == '1') { }}
-                        <a data="{{d.existContractMark}}">已指派</a>
-                    {{# } else if(d.status == '2' && d.supplierContractNo != null){ }}
-                        <a data="{{d.existContractMark}}">合同被退回</a>
-                    {{# } else if(d.status == '2' && d.supplierContractNo == null){ }}
-                        <a data="{{d.existContractMark}}">已报价</a>
-                    {{# }  }}
-                </script>
-            </div>
-            <!--钢网订单-->
-            <div class="layui-tab-item">
-                <table class="layui-table" id="scmMana_tabStencil" lay-filter="scmMana_tabStencil"></table>
-                <script type="text/html" id="scmManaStencil_toolbar">
-                    <div class="layui-btn-container">
-                        <!-- <button class="layui-btn layui-btn-sm" lay-event="evScmSubmit">生成合同</button> -->
-                        <button class="layui-btn layui-btn-sm" lay-event="directlySubmit">直接提交</button>
-                    </div>
-                </script>
-                <script type="text/html" id="scmManaStencil_tabbar">
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="eevScmedit">编辑</a>
-                    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="rollback">退回</a>
-                    <a class="layui-btn layui-btn-xs" lay-event="eevScmdel">删除</a>
-                </script>
-                <script type="text/html" id="scmManaquoStencil_status">
-                    {{# if(d.status == '1') { }}
-                        <a data="{{d.existContractMark}}">已指派</a>
-                    {{# } else if(d.status == '2' && d.supplierContractNo != null){ }}
-                        <a data="{{d.existContractMark}}">合同被退回</a>
-                    {{# } else if(d.status == '2' && d.supplierContractNo == null){ }}
-                        <a data="{{d.existContractMark}}">已报价</a>
-                    {{# }  }}
-                </script>
-            </div>
-            <!--SMT订单-->
-            <div class="layui-tab-item">
-                <table class="layui-table"></table>
-            </div>
-        </div>
-    </div>
+    
+    
 </div>
 
 <script>

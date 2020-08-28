@@ -15,24 +15,42 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
     var $ = layui.jquery;
     var convertCurrency = layui.convertCurrency;
     var requestInterface = layui.requestInterface;
+
+    form.render(null,'scm-quote-detail-formlist');
+
     var defVal = {
         orderType: 0,   //订单类型
     }
     tabRenderPCB();
 
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
-    element.on('tab(tab-scmManagement)', function(data){
+    element.on('tab(scm-quote-detail-tabs-brief)', function(data){
         defVal.orderType = data.index;
-        if (data.index === 0){
+        var tabNum = data.index;
+        if (tabNum === 0) {
             tabRenderPCB();
-            $(".quote-detail-search").attr("reload-table", "scmMana_tabPcb");
-        } else if (data.index === 1){
+        } else if (tabNum === 1) {
             tabRenderStencil();
-            $(".quote-detail-search").attr("reload-table", "scmMana_tabStencil");
-        } else if (data.index === 2){
-            $(".quote-detail-search").attr("reload-table", "");
+        } else if (tabNum === 2) {
+            // tabRenderAssembly();
         }
     });
+
+    form.on('submit(LAY-scm-quote-detail-serch)', function (data) {
+        var field = data.field;
+        var reTab, tabNum = defVal.orderType;;
+        if (tabNum === 0) {   // PCB
+            reTab = 'scmMana_tabPcb';
+        } else if (tabNum === 1) {    //  Stencil
+            reTab = 'scmMana_tabStencil';
+        } else if(tabNum === 2){
+            // reTab = 'smt_orderTab_no_payment'; //assembly
+        }
+        table.reload(reTab,{
+            where: field
+        });
+    });
+    
 
     //▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ PCB订单
     function tabRenderPCB() {

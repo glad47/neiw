@@ -18,6 +18,8 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
     var bunames = ['ada','alisa','tracy','tina','richard','donna','amber','zero'];
     var uname = layui.data('userInfo').uname;
 
+    form.render(null,'sqe-plan-together-formlist');
+
     var cols,scols;
     if(bunames.indexOf(uname) != -1){
         cols = [[
@@ -504,7 +506,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
        }
     });
     //监听搜索
-    form.on('submit(plan_together_search)', function(data){
+    form.on('submit(LAY-sqe-plan-together-search)', function(data){
         var field = data.field;
         var reTab;
         if (_public_val.orderType === 1) {   // PCB
@@ -516,9 +518,10 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
             where: field
         });
     });
-    $(".plan-together-search input").bind("input propertychange", function (even) {
-        $("*[lay-filter='plan_together_search']").click();
-    })
+
+    // $(".plan-together-search input").bind("input propertychange", function (even) {
+    //     $("*[lay-filter='plan_together_search']").click();
+    // })
     
     exports('sqeMana_plan_together', {});
 });

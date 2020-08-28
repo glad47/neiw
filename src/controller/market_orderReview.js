@@ -43,7 +43,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
     form.on('submit(LAY-app-orderReview-search)', function (data) {
         var field = data.field;
         var tabNum = defVal.orderType;
-        console.log(tabNum);
+        // console.log(tabNum);
         if (tabNum === 0) {
             layer.msg('PCBOrders');
             table.reload('or_Tabpcb',{
@@ -616,9 +616,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         }
     })
 
-     // 手机端，数据太多，这个页面单独写
+    //显示隐藏操作栏
     $("#orderReview-operation").on('click', function () {
-        $(this).text($(this).text()=="隐藏操作"?"显示操作":"隐藏操作");
+        $(this).text($(this).text()=="隐藏操作栏"?"显示操作栏":"隐藏操作栏");
         $(".layui-table-fixed-r").toggle('slow');
     });
 

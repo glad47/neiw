@@ -12,6 +12,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
         var uploadCommon = layui.uploadCommon;
         var filePathProcess = layui.filePathProcess;
 
+    form.render(null,'indicator-card-formlist');
+
     var requestData = [];
     // pcb表格对象
     var tabPCBObj;
@@ -29,20 +31,34 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
     // 监听tab选项卡
     element.on('tab(indicator_card_tab)', function (data) {
         defVal.orderType = data.index;
-        if (defVal.orderType === 1) {
-            $(".indicator-card-search").attr("reload-table", "epc_Tabstencil_ok_payment_order");
-            tabRenderStencil();
-        } else if (defVal.orderType === 2) {
-            $(".indicator-card-search").attr("reload-table", "");
-        } else {
+        if (defVal.orderType === 0) {
             tabRenderPCB();
-            $(".indicator-card-search").attr("reload-table", "epc_Tabpcb_ok_payment_order");
-
+        } else if (defVal.orderType === 1) {
+            tabRenderStencil();
+        } else if(defVal.orderType === 2){
+            // tabRenderAssembly();           
         }
     });
+
+
     var _click_lineId;      //点击表格行===id
     laydate.render({
         elem: '#gmtCreate'
+    });
+
+    form.on('submit(LAY-app-Indicator-card-search)', function (data) {
+        var field = data.field;
+        var reTab,tabNum = defVal.orderType;
+        if (tabNum === 0) {   // PCB
+            reTab = 'epc_Tabpcb_ok_payment_order';
+        } else if (tabNum === 1) {    //  Stencil
+            reTab = 'epc_Tabstencil_ok_payment_order';
+        } else if(tabNum === 2){
+            // reTab = 'smt_orderTab_ok_payment'; //assembly
+        }
+        table.reload(reTab,{
+            where: field
+        });
     });
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 内部PCB订单-编写指示卡
@@ -876,5 +892,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
         }
     }
 
+   
+    //显示隐藏操作栏
+    $("#indicatorCard-operation").on('click', function () {
+        $(this).text($(this).text()=="隐藏操作栏"?"显示操作栏":"隐藏操作栏");
+        $(".layui-table-fixed-r").toggle('slow');
+    });
     exports('epc_indicatorCard', {})
 });

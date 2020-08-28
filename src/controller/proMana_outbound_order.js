@@ -18,6 +18,8 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
         ,element = layui.element;
     var $ = layui.jquery;
 
+    form.render(null,'pm-outbound-order-formlist');
+
     tabRenderPCB();
     // 全局变量
     var _public_val = {
@@ -25,7 +27,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
     };
 
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
-    element.on('tab(tab-planToger)', function(data){
+    element.on('tab(pm-outbound-order-tabs-brief)', function(data){
         console.log(data.index);
         if (data.index === 0){
             tabRenderPCB();
@@ -37,6 +39,22 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
             _public_val.orderType = 3;      //贴片
         }
     });
+
+    
+    form.on('submit(LAY-outbound-order-search)', function (data) {
+        var field = data.field;
+        var reTab, tabNum = _public_val.orderType;;
+        if (tabNum === 1) {   // PCB
+            reTab = 'iqcMana_outBound';
+        } else if (tabNum === 2) {    //  Stencil
+            reTab = 'iqcMana_outBoundS';
+        } else if(tabNum === 3){
+            // reTab = 'smt_orderTab_no_payment'; //assembly
+        }
+        table.reload(reTab,{
+            where: field
+        });
+    })
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     function tabRenderPCB() {
@@ -406,5 +424,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
            console.log(customerInfo);
        }
     });
+
+
     exports('proMana_outbound_order', {});
 });
