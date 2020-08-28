@@ -100,7 +100,7 @@ layui.define(['laytpl', 'layer'], function(exports){
         
         //登录状态失效，清除本地 access_token，并强制跳转到登入页
         else if(res[response.statusName] == statusCode.logout){
-            layer.msg("账户在其他地方登陆，如非本人操作请及时修改密码；");
+            layer.msg("token失效，请重新登录！！");
           view.exit();
         }
         

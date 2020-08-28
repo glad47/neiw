@@ -126,13 +126,13 @@
         }
 
         // 回车 登录
-        $(".layui-form").keyup(function (e) {
-            // 兼容FF和IE和Opera
-            var theEvent = e || window.event;
-            var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
-            if (code == 13) {
-                $(this).find("button[lay-filter='LAY-user-login-submit']").click();
-            }
-        });
+        // $(".layui-form").keyup(function (e) {
+        //     // 兼容FF和IE和Opera
+        //     var theEvent = e || window.event;
+        //     var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+        //     if (code == 13) {
+        //         $(this).find("button[lay-filter='LAY-user-login-submit']").click();
+        //     }
+        // });
     });
 </script>
