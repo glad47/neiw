@@ -19,6 +19,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
         var uploadCommon = layui.uploadCommon;
         var filePathProcess = layui.filePathProcess;
 
+    form.render(null,'market-inside-contract-formlist');
+    
     tabRenderPCB();
     // 全局变量
     var defVal = {
@@ -39,18 +41,32 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
     var pcbtabObj;
     var stenciltabObj;
     // 监听tab选项卡
-    element.on('tab(tab-internalQuote)', function (data) {
+    element.on('tab(inside-contract-tabs-brief)', function (data) {
         defVal.orderType = data.index;
-        if (defVal.orderType === 1) {
-            tabRenderStencil();
-            $(".inside-contract-search").attr("reload-table", "icontract_Tabstencil");
-        } else if (defVal.orderType === 2) {
-            $(".inside-contract-search").attr("reload-table", "");
-        } else {
-            $(".inside-contract-search").attr("reload-table", "inside_cotract_Tabpcb");
+        if (defVal.orderType === 0) {
             tabRenderPCB();
+        } else if (defVal.orderType === 1) {
+            tabRenderStencil();
+        } else if (defVal.orderType === 2){
+            
         }
     });
+
+    form.on('submit(LAY-app-inside-contract-search)', function (data) {
+        var field = data.field;
+        var reTab,tabNum = defVal.orderType;
+        if (tabNum === 0) {   // PCB
+            reTab = 'inside_cotract_Tabpcb';
+        } else if (tabNum === 1) {    //  Stencil
+            reTab = 'icontract_Tabstencil';
+        } else if(tabNum === 2){
+            // reTab = 'smt_orderTab_ok_payment'; //assembly
+        }
+        table.reload(reTab,{
+            where: field
+        });
+    });
+    
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ PCB订单
     function tabRenderPCB() {

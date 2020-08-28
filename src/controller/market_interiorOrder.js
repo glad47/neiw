@@ -3,8 +3,6 @@
  @Name:    市场管理－－［内部订单］
 
  */
-
-
 layui.define(['admin','table','index','element','form','laydate', 'jsTools'], function (exports) {
     table = layui.table
         ,view = layui.view
@@ -24,25 +22,37 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
         tipsId: null,  // tip绑定dom
     };
 
+    form.render(null,'interior-order-formlist');
+
     tabRenderPCB();
     // 表格对象
     var pcbtabObj;
     var stenciltabObj;
     // 监听tab选项卡
-    element.on('tab(tab-internalQuote)', function (data) {
+    element.on('tab(inside-no-payment-tabs-brief)', function (data) {
         defVal.orderType = data.index;
-        if (defVal.orderType === 1) {
-            $(".interior-order-search").attr("reload-table", "inside_no_payment_Tabstencil");
-            tabRenderStencil();
-        } else if (defVal.orderType === 2) {
-            console.log("SMT订单选项卡");
-            $(".interior-order-search").attr("reload-table", "");
-        } else {
+        if (defVal.orderType === 0) {
             tabRenderPCB();
-            $(".interior-order-search").attr("reload-table", "interior_order_Tabstencil");
+        } else if (defVal.orderType === 1) {
+            tabRenderStencil();
+        } else if(defVal.orderType === 2){
+            tabRenderAssembly();
         }
     });
-
+    form.on('submit(LAY-app-interior-order-search)', function (data) {
+        var field = data.field;
+        var reTab,tabNum = defVal.orderType;
+        if (tabNum === 0) {   // PCB
+            reTab = 'interior_order_Tabpcb';
+        } else if (tabNum === 1) {    //  Stencil
+            reTab = 'interior_order_Tabstencil';
+        } else if(tabNum === 2){
+            // reTab = 'smt_orderTab_ok_payment'; //assembly
+        }
+        table.reload(reTab,{
+            where: field
+        });
+    });
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ PCB订单
     function tabRenderPCB() {
         table.render({
@@ -178,7 +188,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'okquote':
-                var postData = new Array(),bool = false;
+                var postData = new Array(),bool = false,dd = checkStatus.data;
+                if(dd.length === 0) return layer.msg('请选择一条数据');
                 if (!bool) {
                     bool = true;
                     for (var i=0;i<checkStatus.data.length;i++) {
@@ -581,7 +592,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'okquote':
-                var postData = new Array(),bool = false;
+                var postData = new Array(),bool = false,dd = checkStatus.data;
+                if(dd.length === 0) return layer.msg('请选择一行数据');
                 if (!bool) {
                     bool = true;
                     for (var i=0;i<checkStatus.data.length;i++) {

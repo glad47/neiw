@@ -1,315 +1,313 @@
 <title>市场管理-网上订单</title>
+
 <div class="layui-fluid">
-    <input type="text" autocomplete="off" class="layui-input" placeholder="查询订单评审信息" style="display: none">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto ok-payment-search" id="okPayment_form" data-type="search-form" reload-table="or_Tabpcb_ok_payment">
-        <div class="layui-form-item">
-            <div class="layui-inline" id="orderReview_searll" style="display: none;">
-                <label class="layui-form-label">查询：</label>
-                <div class="layui-input-inline">
-                    <select name="quiz" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
-                        <option value="">请选择</option>
-                        <option value="P/N">P/N</option>
-                        <option value="FileName">File Name</option>
-                        <option value="OrderId">Order ID</option>
-                        <option value="OrderTime">Order Time</option>
-                    </select>
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="market-ok-payment-formlist">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">P/N：</label>
+                    <div class="layui-input-block" style="width: 120px;">
+                        <input type="text" name="productNo" id="supplier_id" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
-                <div class="layui-input-inline" style="width: 120px;">
-                    <input type="text" name="P/N" id="orderReview_sinp" autocomplete="off" class="layui-input" placeholder="P/N">
+                <div class="layui-inline">
+                    <label class="layui-form-label">支付情况</label>
+                    <div class="layui-input-block" style="width: 120px;">
+                        <select name="payLogId" lay-filter="ok-payment-payLogId">
+                            <option value="0">请选择</option>
+                            <option value="">待支付</option>
+                            <option value="1">已支付</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <!--电脑端-->
-            <div class="layui-inline" id="orderReview_pcsear">
-                <label class="layui-form-label">P/N：</label>
-                <div class="layui-input-inline" style="width: 120px;">
-                    <input type="text" name="productNo" id="supplier_id" autocomplete="off" class="layui-input">
+                <div class="layui-inline">
+                    <label class="layui-form-label">File Name：</label>
+                    <div class="layui-input-block" style="width: 120px;">
+                        <input type="text" name="gerberName" id="supplier_companyName" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
-
-                <label class="layui-form-label">支付情况</label>
-                <div class="layui-input-inline" style="width: 120px;">
-                    <select name="payLogId" lay-filter="ok-payment-payLogId">
-                        <option value="0">请选择</option>
-                        <option value="">待支付</option>
-                        <option value="1">已支付</option>
-                    </select>
+                <div class="layui-inline">
+                    <label class="layui-form-label">Order ID：</label>
+                    <div class="layui-input-block" style="width: 120px;">
+                        <input type="text" name="orderId" id="supplier_type" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
-
-                <label class="layui-form-label">File Name：</label>
-                <div class="layui-input-inline" style="width: 120px;">
-                    <input type="text" name="gerberName" id="supplier_companyName" autocomplete="off" class="layui-input">
+                <div class="layui-inline">
+                    <label class="layui-form-label">Order Time:</label>
+                    <div class="layui-input-block" style="width: 120px;">
+                        <!--<input type="text" name="gmtCreate" class="layui-input">-->
+                        <input type="text" name="gmtCreate" id="gmtCreate" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
-
-                <label class="layui-form-label">Order ID：</label>
-                <div class="layui-input-inline" style="width: 120px;">
-                    <input type="text" name="orderId" id="supplier_type" autocomplete="off" class="layui-input">
+                <div class="layui-inline">
+                    <label class="layui-form-label">状态：</label>
+                    <div class="layui-input-block" style="width: 120px;">
+                        <select name="status" id="orderReview_statusSel" lay-filter="ok-payment-search-sel">
+                            <option value="">请选择状态</option>
+                            <option value="2">已审待支付</option>
+                            <option value="3">已支付</option>
+                            <option value="4">待出货</option>
+                            <option value="5">运输中</option>
+                            <option value="6">订单完成</option>
+                            <option value="7">订单取消</option>
+                            <option value="8">订单投诉</option>
+                        </select>
+                    </div>
                 </div>
-
-                <label class="layui-form-label">Order Time:</label>
-                <div class="layui-input-inline" style="width: 120px;">
-                    <!--<input type="text" name="gmtCreate" class="layui-input">-->
-                    <input type="text" name="gmtCreate" id="gmtCreate" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-ok-payment-search" style="margin-bottom: 3px;">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
                 </div>
-            </div>
-
-            <div class="layui-inline">
-                <label class="layui-form-label">状态：</label>
-                <div class="layui-input-inline" style="width: 120px;">
-                    <select name="status" id="orderReview_statusSel" lay-filter="ok-payment-search-sel">
-                        <option value="">请选择状态</option>
-                        <option value="2">已审待支付</option>
-                        <option value="3">已支付</option>
-                        <option value="4">待出货</option>
-                        <option value="5">运输中</option>
-                        <option value="6">订单完成</option>
-                        <option value="7">订单取消</option>
-                        <option value="8">订单投诉</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="ok_payment_search1" style="margin-bottom: 3px;">
-                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                </button>
             </div>
         </div>
-    </div>
-    <!--卡片－表格信息-->
-    <div class="layui-tab layui-tab-brief" lay-filter="ok_payment_tab" id="orderReview_card">
-        <ul class="layui-tab-title">
-            <li class="layui-this" id="pcborders-li">PCB订单</li>
-            <li id="stencilorders-li">钢网订单</li>
-            <li id="smtlorders-li">SMT订单</li>
-            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 0px;">
-                <button class="layui-btn layui-btn-primary layui-btn-sm"  id="okPayment-operation">隐藏操作栏</button>
-            </div>
-        </ul>
-        <div class="layui-tab-content">
-            <!--PCB订单-->
-            <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="or_Tabpcb_ok_payment" lay-filter="or_Tabpcb_ok_payment"></table>
-                <script type="text/html" id="pcb-file">
-                    {{# var arr = d.gerberPath.slice(6,-1) }}
-                    {{# d.gerberPath = arr }}
-                    <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}">
-                        <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" id="pcbfile-i" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
-                    </a>
-                </script>
-                <script type="text/html" id="stencil-file">
-                    {{# var arr = d.gerberPath.slice(6,-1) }}
-                    {{# d.gerberPath = arr }}
-                    <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}">
-                        <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
-                    </a>
-                </script>
-                <script type="text/html" id="panelWay">
-                    {{ d.panelWayX || ''}}
-                    {{ if(d.panelWayY != null || d.panelWayY != ""){ }}
-                    {{ d.panelWayY || ''}}
-                    {{ } }}
-                </script>
-                <script type="text/html" id="Tabtb-pcb-market-okPayment-option">
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="supplier_search">查看</a>
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_ok_payment:submit") != -1){ }}
-                        {{# if(d.isLock != 3) { }}
-                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pcb-submit">提交</a>
-                        {{# } }}
-                        {{# if(d.isLock == 3) {}}
+
+        <div class="layui-card-body">
+             <!--卡片－表格信息-->
+            <div class="layui-tab layui-tab-brief" lay-filter="ok_payment_tab">
+                <ul class="layui-tab-title">
+                    <li class="layui-this" id="pcborders-li">PCB订单</li>
+                    <li id="stencilorders-li">钢网订单</li>
+                    <li id="smtlorders-li">贴片订单</li>
+                    <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 0px;">
+                        <button class="layui-btn layui-btn-primary layui-btn-sm"  id="okPayment-operation">隐藏操作栏</button>
+                    </div>
+                </ul>
+                <div class="layui-tab-content">
+                    <!--PCB订单-->
+                    <div class="layui-tab-item layui-show">
+                        <table class="layui-table" id="or_Tabpcb_ok_payment" lay-filter="or_Tabpcb_ok_payment"></table>
+                        <script type="text/html" id="pcb-file">
+                            {{# if(d.gerberPath != null){ }}
+                            {{# var arr = d.gerberPath.slice(6,-1) }}
+                            {{# d.gerberPath = arr }}
+                            <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}">
+                                <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" id="pcbfile-i" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
+                            </a>
+                            {{# } else { }}
+                            <div>无</div>
+                            {{# } }}
+                        </script>
+                        <script type="text/html" id="stencil-file">
+                            {{# var arr = d.gerberPath.slice(6,-1) }}
+                            {{# d.gerberPath = arr }}
+                            <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}">
+                                <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
+                            </a>
+                        </script>
+                        <script type="text/html" id="panelWay">
+                            {{ d.panelWayX || ''}}
+                            {{ if(d.panelWayY != null || d.panelWayY != ""){ }}
+                            {{ d.panelWayY || ''}}
+                            {{ } }}
+                        </script>
+                        <script type="text/html" id="Tabtb-pcb-market-okPayment-option">
+                            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="supplier_search">查看</a>
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_ok_payment:submit") != -1){ }}
+                                {{# if(d.isLock != 3) { }}
+                                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pcb-submit">提交</a>
+                                {{# } }}
+                                {{# if(d.isLock == 3) {}}
+                                    <a class="layui-btn layui-btn-normal layui-btn-xs" >已提交</a>
+                                {{# } }}
+                            {{#  } }}
+                            <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="pcb-sendback">锁定</a>-->
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_audit:update") != -1 && d.isLock != 3){ }}
+                            <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">修改</a>
+                            {{#  } }}
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_ok_payment:submit") != -1){ }}
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="info_pact">合同</a>
+                            {{#  } }}
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_audit:delete") != -1 && d.isLock != 3){ }}
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                            {{#  } }}
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_ok_payment:submit") != -1){ }} 
+                            <a class="layui-btn layui-btn-xs" lay-event="showProcess">流程</a>
+                            {{#  } }} 
+                        </script>
+                        <script type="text/html" id="Tabtb-pcb-market-okPayment-status">
+                            {{# if(d.status === 1){ }}
+                            <a style="color: #1E9FFF">
+                                <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
+                            </a>
+                            {{# } else if(d.status === 2){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>已审待支付
+                            </a>
+                            {{# } else if(d.status === 3){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>已支付
+                            </a>
+                            {{# } else if(d.status === 4){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>待出货
+                            </a>
+                            {{# } else if(d.status === 5){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>运输中
+                            </a>
+                            {{# } else if(d.status === 6){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>订单完成
+                            </a>
+                            {{# } else if(d.status === 7){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>订单取消
+                            </a>
+                            {{# } else if(d.status === 8){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>订单投诉
+                            </a>
+                            {{# } }}
+                        </script>
+                        <script type="text/html" id="Tabtb-stencil-market-okPayment-status">
+                            {{# if(d.status === 1){ }}
+                            <a style="color: #1E9FFF">
+                                <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
+                            </a>
+                            {{# } else if(d.status === 2){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>已审待支付
+                            </a>
+                            {{# } else if(d.status === 3){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>已支付
+                            </a>
+                            {{# } else if(d.status === 4){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>待出货
+                            </a>
+                            {{# } else if(d.status === 5){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>运输中
+                            </a>
+                            {{# } else if(d.status === 6){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>订单完成
+                            </a>
+                            {{# } else if(d.status === 7){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>订单取消
+                            </a>
+                            {{# } else if(d.status === 8){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>订单投诉
+                            </a>
+                            {{# } }}
+                        </script>
+                        <script type="text/html" id="orderOkPaymentOrdertype">
+                            {{#  if(d.orderType =='1'){ }}
+                            <a style="color: green;">新单</a>
+                            {{#  } else if (d.orderType == '2'){ }}
+                            <a>返单</a>
+                            {{#  } else{ }}
+                            <a>返单有改</a>
+                            {{# } }}
+                        </script>
+                        <script type="text/html" id="marker_orderOkPayment_courierNo">
+                            {{# if(d.courierName == 'FedEx') { }}
+                                <a href="https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers={{d.courierNo}}&locale=zh_CN&cntry_code=ch-zh" class="layui-table-link" target="_blank">{{ d.courierNo }}</a>
+                            {{# } else if(d.courierName == 'DHL') { }}
+                                <a href="https://etracing.5idhl.com/TracingQuery.aspx?WaybillNO={{d.courierNo}}&source=1" class="layui-table-link" target="_blank">{{ d.courierNo }}</a>
+                            {{# } }}
+                        </script>
+                    </div>
+
+                    <!--钢网订单-->
+                    <div class="layui-tab-item" id="stencil-orders">
+                        <table class="layui-table" id="stencil_orderTab_ok_payment" lay-filter="stencil_orderTab_ok_payment"></table>
+                        <!--钢网订单表格操作栏-->
+                        <script type="text/html" id="Tabtb-stencil-market-okPayment-option">
+                            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_ok_payment:submit") != -1){ }}
+                                {{# if(d.isLock != 3) { }}
+                                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stencil-submit">提交</a>
+                                {{# } }}
+                                {{# if(d.isLock == 3) {}}
+                                    <a class="layui-btn layui-btn-normal layui-btn-xs">已提交</a>
+                                {{# } }}
+                            {{#  } }}
+                            <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>-->
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_ok_payment:submit") != -1){ }}
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="info_pact">合同</a>
+                            {{#  } }} 
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_ok_payment:delete") != -1 && d.isLock != 3){ }}
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="stencil-del">删除</a>
+                            {{#  } }}
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_ok_payment:submit") != -1){ }} 
+                            <a class="layui-btn layui-btn-xs" lay-event="showProcess">流程</a>
+                            {{#  } }} 
+                        </script>
+                        <script type="text/html" id="orderOkPaymentOrdertypeS">
+                            {{#  if(d.orderType =='1'){ }}
+                            <a style="color: green;">新单</a>
+                            {{#  } else if (d.orderType == '2'){ }}
+                            <a>返单</a>
+                            {{#  } else{ }}
+                            <a>返单有改</a>
+                            {{# } }}
+                        </script>
+                    </div>
+
+                    <!--SMT订单-->
+                    <div class="layui-tab-item">
+                        <table class="layui-table" id="smt_orderTab_ok_payment" lay-filter="smt_orderTab_ok_payment"></table>
+                        <!--SMT订单表格操作栏-->
+                        <script type="text/html" id="Tabtb-smt-market-okPayment-option">
+                            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:assembly_ok_payment:submit") != -1){ }}
+                            {{# if(d.isLock != 3) { }}
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="smt-submit">提交</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="smt-del">删除</a>
+                            {{# } }}
+                            {{# if(d.isLock == 3) {}}
                             <a class="layui-btn layui-btn-normal layui-btn-xs" >已提交</a>
-                        {{# } }}
-                    {{#  } }}
-                    <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="pcb-sendback">锁定</a>-->
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_audit:update") != -1 && d.isLock != 3){ }}
-                    <a class="layui-btn layui-btn-xs" lay-event="edit" id="supplier_edit">修改</a>
-                    {{#  } }}
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_ok_payment:submit") != -1){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="info_pact">合同</a>
-                    {{#  } }}
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_audit:delete") != -1 && d.isLock != 3){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                    {{#  } }}
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:quote_ok_payment:submit") != -1){ }} 
-                    <a class="layui-btn layui-btn-xs" lay-event="showProcess">流程</a>
-                    {{#  } }} 
-                </script>
-                <script type="text/html" id="Tabtb-pcb-market-okPayment-status">
-                    {{# if(d.status === 1){ }}
-                    <a style="color: #1E9FFF">
-                        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
-                    </a>
-                    {{# } else if(d.status === 2){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>已审待支付
-                    </a>
-                    {{# } else if(d.status === 3){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>已支付
-                    </a>
-                    {{# } else if(d.status === 4){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>待出货
-                    </a>
-                    {{# } else if(d.status === 5){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>运输中
-                    </a>
-                    {{# } else if(d.status === 6){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>订单完成
-                    </a>
-                    {{# } else if(d.status === 7){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>订单取消
-                    </a>
-                    {{# } else if(d.status === 8){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>订单投诉
-                    </a>
-                    {{# } }}
-                </script>
-                <script type="text/html" id="Tabtb-stencil-market-okPayment-status">
-                    {{# if(d.status === 1){ }}
-                    <a style="color: #1E9FFF">
-                        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
-                    </a>
-                    {{# } else if(d.status === 2){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>已审待支付
-                    </a>
-                    {{# } else if(d.status === 3){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>已支付
-                    </a>
-                    {{# } else if(d.status === 4){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>待出货
-                    </a>
-                    {{# } else if(d.status === 5){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>运输中
-                    </a>
-                    {{# } else if(d.status === 6){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>订单完成
-                    </a>
-                    {{# } else if(d.status === 7){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>订单取消
-                    </a>
-                    {{# } else if(d.status === 8){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>订单投诉
-                    </a>
-                    {{# } }}
-                </script>
-                <script type="text/html" id="orderOkPaymentOrdertype">
-                    {{#  if(d.orderType =='1'){ }}
-                    <a style="color: green;">新单</a>
-                    {{#  } else if (d.orderType == '2'){ }}
-                    <a>返单</a>
-                    {{#  } else{ }}
-                    <a>返单有改</a>
-                    {{# } }}
-                </script>
-                <script type="text/html" id="marker_orderOkPayment_courierNo">
-                    {{# if(d.courierName == 'FedEx') { }}
-                        <a href="https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers={{d.courierNo}}&locale=zh_CN&cntry_code=ch-zh" class="layui-table-link" target="_blank">{{ d.courierNo }}</a>
-                    {{# } else if(d.courierName == 'DHL') { }}
-                        <a href="https://etracing.5idhl.com/TracingQuery.aspx?WaybillNO={{d.courierNo}}&source=1" class="layui-table-link" target="_blank">{{ d.courierNo }}</a>
-                    {{# } }}
-                </script>
-            </div>
-
-            <!--钢网订单-->
-            <div class="layui-tab-item" id="stencil-orders">
-                <table class="layui-table" id="stencil_orderTab_ok_payment" lay-filter="stencil_orderTab_ok_payment"></table>
-                <!--钢网订单表格操作栏-->
-                <script type="text/html" id="Tabtb-stencil-market-okPayment-option">
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_ok_payment:submit") != -1){ }}
-                        {{# if(d.isLock != 3) { }}
-                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stencil-submit">提交</a>
-                        {{# } }}
-                        {{# if(d.isLock == 3) {}}
-                            <a class="layui-btn layui-btn-normal layui-btn-xs">已提交</a>
-                        {{# } }}
-                    {{#  } }}
-                    <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>-->
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_ok_payment:submit") != -1){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="info_pact">合同</a>
-                    {{#  } }} 
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_ok_payment:delete") != -1 && d.isLock != 3){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="stencil-del">删除</a>
-                    {{#  } }}
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:sml_stencil_ok_payment:submit") != -1){ }} 
-                    <a class="layui-btn layui-btn-xs" lay-event="showProcess">流程</a>
-                    {{#  } }} 
-                </script>
-                <script type="text/html" id="orderOkPaymentOrdertypeS">
-                    {{#  if(d.orderType =='1'){ }}
-                    <a style="color: green;">新单</a>
-                    {{#  } else if (d.orderType == '2'){ }}
-                    <a>返单</a>
-                    {{#  } else{ }}
-                    <a>返单有改</a>
-                    {{# } }}
-                </script>
-            </div>
-
-            <!--SMT订单-->
-            <div class="layui-tab-item">
-                <table class="layui-table" id="smt_orderTab_ok_payment" lay-filter="smt_orderTab_ok_payment"></table>
-                <!--SMT订单表格操作栏-->
-                <script type="text/html" id="Tabtb-smt-market-okPayment-option">
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:assembly_ok_payment:submit") != -1){ }}
-                    {{# if(d.isLock != 3) { }}
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="smt-submit">提交</a>
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="smt-del">删除</a>
-                    {{# } }}
-                    {{# if(d.isLock == 3) {}}
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" >已提交</a>
-                    {{# } }}
-                    {{#  } }}
-                    <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>-->
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:assembly_ok_payment:submit") != -1){ }}
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="info_pact">合同</a>
-                    {{# } }} 
-                    {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:assembly_ok_payment:submit") != -1){ }}
-                    <a class="layui-btn layui-btn-xs" lay-event="showProcess">流程</a>
-                    {{# } }}
-                </script>
-                <script type="text/html" id="Tabtb-smt-market-okPayment-status">
-                    {{# if(d.status === 1){ }}
-                    <a style="color: #1E9FFF">
-                        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
-                    </a>
-                    {{# } else if(d.status === 2){ }}
-                    <a style="color: green">
-                        <i class="layui-icon layui-icon-ok"></i>已提交
-                    </a>
-                    {{# } else if(d.status === 3){ }}
-                    <a style="color: green;">
-                        <i class="layui-icon layui-icon-ok"></i>已支付
-                    </a>
-                    {{# } }}
-                </script>
-                <script type="text/html" id="okPaymentPayLog">
-                    {{# if(d.payLogId == null){ }}
-                    <a class="interiorPCB-payDetail" data-type="0" id="okpcbDetail{{d.id}}">待支付</a>
-                    {{#  } else { }}
-                    <a class="interiorPCB-payDetail isOKPcbDonePay" data-type="1" data="{{d.payLogId}}" id="okpcbDetail{{d.id}}">已支付</a>
-                    {{#  } }}
-                </script>
-                <script type="text/html" id="okPaymentPayLogS">
-                    {{# if(d.payLogId == null){ }}
-                    <a class="interiorPCB-payDetail" data-type="0" id="okpcbDetailS{{d.id}}">待支付</a>
-                    {{#  } else { }}
-                    <a class="interiorPCB-payDetail isOkStencilDonePay" data-type="1" data="{{d.id}}" id="okpcbDetailS{{d.id}}">已支付</a>
-                    {{#  } }}
-                </script>
+                            {{# } }}
+                            {{#  } }}
+                            <!--<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="stencil-sendback">锁定</a>-->
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:assembly_ok_payment:submit") != -1){ }}
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="info_pact">合同</a>
+                            {{# } }} 
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("market:assembly_ok_payment:submit") != -1){ }}
+                            <a class="layui-btn layui-btn-xs" lay-event="showProcess">流程</a>
+                            {{# } }}
+                        </script>
+                        <script type="text/html" id="Tabtb-smt-market-okPayment-status">
+                            {{# if(d.status === 1){ }}
+                            <a style="color: #1E9FFF">
+                                <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
+                            </a>
+                            {{# } else if(d.status === 2){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>已提交
+                            </a>
+                            {{# } else if(d.status === 3){ }}
+                            <a style="color: green;">
+                                <i class="layui-icon layui-icon-ok"></i>已支付
+                            </a>
+                            {{# } }}
+                        </script>
+                        <script type="text/html" id="okPaymentPayLog">
+                            {{# if(d.payLogId == null){ }}
+                            <a class="interiorPCB-payDetail" data-type="0" id="okpcbDetail{{d.id}}">待支付</a>
+                            {{#  } else { }}
+                            <a class="interiorPCB-payDetail isOKPcbDonePay" data-type="1" data="{{d.payLogId}}" id="okpcbDetail{{d.id}}">已支付</a>
+                            {{#  } }}
+                        </script>
+                        <script type="text/html" id="okPaymentPayLogS">
+                            {{# if(d.payLogId == null){ }}
+                            <a class="interiorPCB-payDetail" data-type="0" id="okpcbDetailS{{d.id}}">待支付</a>
+                            {{#  } else { }}
+                            <a class="interiorPCB-payDetail isOkStencilDonePay" data-type="1" data="{{d.id}}" id="okpcbDetailS{{d.id}}">已支付</a>
+                            {{#  } }}
+                        </script>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    
+   
 </div>
 
 <style>
@@ -348,12 +346,10 @@
 </style>
 
 <script>
-        layui.use('market_orderOkPayment', layui.factory('market_orderOkPayment')).use(['market_orderOkPayment', 'table', 'index','element','form'], function(){
-        var form = layui.form;
-        form.render();
+    layui.use('market_orderOkPayment', layui.factory('market_orderOkPayment')).use(['market_orderOkPayment', 'table', 'index','element','form'], function(){
     });
 </script>
-<style>
+<!-- <style>
     .interiorPCB-payDetail {
         padding: 4px 16px;
         border-radius: 20px;
@@ -371,5 +367,5 @@
         background: #5FB878;
     }
     .layui-layer-tips {width: 480px;}
-</style>
+</style> -->
 

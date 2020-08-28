@@ -18,6 +18,8 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
         var uploadCommon = layui.uploadCommon;
         var filePathProcess = layui.filePathProcess;
 
+    form.render(null,'market-inside-no-payment-formlist');
+    
     tabRenderPCB();
     // 全局变量
     var defVal = {
@@ -28,19 +30,32 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
     var pcbtabObj;
     var stenciltabObj;
     // 监听tab选项卡
-    element.on('tab(tab-internalQuote)', function (data) {
+    element.on('tab(inside-no-payment-tabs-brief)', function (data) {
         defVal.orderType = data.index;
-        if (defVal.orderType === 1) {
-            $(".inside-no-payment-search").attr("reload-table", "inside_no_payment_Tabstencil");
-            tabRenderStencil();
-        } else if (defVal.orderType === 2) {
-            $(".inside-no-payment-search").attr("reload-table", "");
-            console.log("SMT订单选项卡");
-        } else {
-            $(".inside-no-payment-search").attr("reload-table", "inside_no_payment_Tabpcb");
+        var tabNum = data.index;
+        if (tabNum === 0) {
             tabRenderPCB();
+        } else if (tabNum === 1) {
+            tabRenderStencil();
+        } else if (tabNum === 2) {
+            // tabRenderAssembly();
         }
     });
+
+    form.on('submit(LAY-app-no-payment-search)', function (data) {
+        var field = data.field;
+        var reTab, tabNum = defVal.orderType;;
+        if (tabNum === 0) {   // PCB
+            reTab = 'inside_no_payment_Tabpcb';
+        } else if (tabNum === 1) {    //  Stencil
+            reTab = 'inside_no_payment_Tabstencil';
+        } else if(tabNum === 2){
+            // reTab = 'smt_orderTab_no_payment'; //assembly
+        }
+        table.reload(reTab,{
+            where: field
+        });
+    })
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ PCB订单
     function tabRenderPCB() {

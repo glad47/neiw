@@ -18,7 +18,10 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
         var uploadCommon = layui.uploadCommon;
         var filePathProcess = layui.filePathProcess;
 
+    form.render(null,'market-internal-quote-formlist');
+
     tabRenderPCB();
+
     // 全局变量
     var defVal = {
         orderType: 0,   //订单类型
@@ -27,18 +30,32 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
     };
 
     // 监听tab选项卡
-    element.on('tab(tab-internalQuote)', function (data) {
+    element.on('tab(internal-quote-tabs-brief)', function (data) {
         defVal.orderType = data.index;
-        if (defVal.orderType === 1) {
-            $(".internal-quote-search").attr("reload-table", "iquote_Tabstencil");
-            tabRenderStencil();
-        } else if (defVal.orderType === 2) {
-            console.log("SMT订单选项卡");
-            $(".internal-quote-search").attr("reload-table", "");
-        } else {
-            $(".internal-quote-search").attr("reload-table", "iquote_Tabpcb");
+        var tabNum = data.index;
+        if (tabNum === 0) {
             tabRenderPCB();
+        }  else if (tabNum === 1){
+            tabRenderStencil();
+        } else if (tabNum === 2){
+            tabRenderAssembly();
         }
+    });
+
+    //监听搜搜
+    form.on('submit(LAY-app-internal-quote-search)', function (data) {
+        var field = data.field;
+        var tabNum = defVal.orderType;
+        if (tabNum === 0) {   // PCB
+            reTab = 'iquote_Tabpcb';
+        } else if (tabNum === 1) {    //  Stencil
+            reTab = 'iquote_Tabstencil';
+        } else if(tabNum === 2){
+            reTab = 'smt_orderTab_ok_payment'; //assembly
+        }
+        table.reload(reTab,{
+            where: field
+        });
     });
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ PCB订单

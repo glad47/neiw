@@ -1,90 +1,96 @@
 <title>内部待支付</title>
 <div class="layui-fluid">
-    <div class="layui-form inside-no-payment-search" data-type="search-form" reload-table="inside_no_payment_Tabpcb">
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">订单类型</label>
-                <div class="layui-input-inline">
-                    <select name="orderType" lay-filter="inside-no-payment-search-sel">
-                        <option value="">请选择</option>
-                        <option value="1">新单</option>
-                        <option value="2">返单</option>
-                        <option value="3">返单有改</option>
-                    </select>
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="market-inside-no-payment-formlist">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">订单类型</label>
+                    <div class="layui-input-block">
+                        <select name="orderType" lay-filter="inside-no-payment-search-sel">
+                            <option value="">请选择</option>
+                            <option value="1">新单</option>
+                            <option value="2">返单</option>
+                            <option value="3">返单有改</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">内部编码</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">文件名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="gerberName" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">F/N</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="pcbName" class="layui-input" id="customer_orderTime">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-no-payment-search" style="margin-bottom: 3px;">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
                 </div>
             </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">内部编码</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+        </div>
+
+        <div class="layui-card-body">
+             <!--卡片－表格信息-->
+            <div class="layui-tab layui-tab-brief" lay-filter="inside-no-payment-tabs-brief">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">PCB订单</li>
+                    <li>钢网订单</li>
+                    <li>SMT订单</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <!--PCB订单-->
+                    <div class="layui-tab-item layui-show">
+                        <table class="layui-table" id="inside_no_payment_Tabpcb" lay-filter="inside_no_payment_Tabpcb"></table>
+                        <script type="text/html" id="inside_no_payment_option">
+                            <div class="layui-btn-container">
+                                <button class="layui-btn layui-btn-sm" lay-event="confirmCheckData">提交合同</button>
+                            </div>
+                        </script>
+                        <script type="text/html" id="inside_no_payment_Bar">
+                            <a class="layui-btn layui-btn-xs" lay-event="search">查看合同</a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="inside_no_payment_fileMana">资料</a>
+                        </script>
+                        <script type="text/html" id="order_type">
+                            {{#  if(d.orderType =='1'){ }}
+                            <a style="color: green;">新单</a>
+                            {{#  } else if (d.orderType == '2'){ }}
+                            <a>返单</a>
+                            {{#  } else{ }}
+                            <a>返单有改</a>
+                            {{# } }}
+                        </script>
+                    </div>
+                    <!--钢网订单-->
+                    <div class="layui-tab-item">
+                        <table class="layui-table" id="inside_no_payment_Tabstencil" lay-filter="inside_no_payment_Tabstencil"></table>
+                        <script type="text/html" id="inside_no_payment_optionS">
+                            <div class="layui-btn-container">
+                                <button class="layui-btn layui-btn-sm" lay-event="confirmCheckData">提交合同</button>
+                            </div>
+                        </script>
+                    </div>
+                    <!--SMT订单-->
+                    <div class="layui-tab-item">
+                        <table class="layui-table" id="inside_no_payment_Tabsmt" lay-filter="inside_no_payment_Tabsmt"></table>
+                    </div>
                 </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">文件名</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="gerberName" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">F/N</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="pcbName" class="layui-input" id="customer_orderTime">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="nopayment-search">
-                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                </button>
             </div>
         </div>
     </div>
-    <!--卡片－表格信息-->
-    <div class="layui-tab layui-tab-brief" lay-filter="tab-internalQuote">
-        <ul class="layui-tab-title">
-            <li class="layui-this">PCB订单</li>
-            <li>钢网订单</li>
-            <li>SMT订单</li>
-        </ul>
-        <div class="layui-tab-content">
-            <!--PCB订单-->
-            <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="inside_no_payment_Tabpcb" lay-filter="inside_no_payment_Tabpcb"></table>
-                <script type="text/html" id="inside_no_payment_option">
-                    <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-sm" lay-event="confirmCheckData">提交合同</button>
-                    </div>
-                </script>
-                <script type="text/html" id="inside_no_payment_Bar">
-                    <a class="layui-btn layui-btn-xs" lay-event="search">查看合同</a>
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="inside_no_payment_fileMana">资料</a>
-                </script>
-                <script type="text/html" id="order_type">
-                    {{#  if(d.orderType =='1'){ }}
-                    <a style="color: green;">新单</a>
-                    {{#  } else if (d.orderType == '2'){ }}
-                    <a>返单</a>
-                    {{#  } else{ }}
-                    <a>返单有改</a>
-                    {{# } }}
-                </script>
-            </div>
-            <!--钢网订单-->
-            <div class="layui-tab-item">
-                <table class="layui-table" id="inside_no_payment_Tabstencil" lay-filter="inside_no_payment_Tabstencil"></table>
-                <script type="text/html" id="inside_no_payment_optionS">
-                    <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-sm" lay-event="confirmCheckData">提交合同</button>
-                    </div>
-                </script>
-            </div>
-            <!--SMT订单-->
-            <div class="layui-tab-item">
-                <table class="layui-table" id="inside_no_payment_Tabsmt" lay-filter="inside_no_payment_Tabsmt"></table>
-            </div>
-        </div>
-    </div>
+   
 </div>
 
 <script>

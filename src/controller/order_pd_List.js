@@ -16,6 +16,8 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
         ,element = layui.element;
     var $ = layui.jquery;
 
+    form.render(null,'market-order-pd-list-formlist');
+
     // 范围查询 对象
     var dateObj = {
         startOrderTime: null, // 开始时间
@@ -67,6 +69,17 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
             }
         }
     }
+
+    //监听搜索
+    form.on('submit(LAY-app-order-pd-list-search)', function(data){
+        var field = data.field;
+        
+        //执行重载
+        table.reload('tab-order-pd-list', {
+        where: field
+        });
+    });
+
 
     table.render({
         elem: '#tab-order-pd-list'
