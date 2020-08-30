@@ -113,7 +113,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
     };
 
     // 监听 tab切换 判断订单的类型 1 pcb 2钢网 3 贴片
-    element.on('tab(tab-planToger)', function(data){
+    element.on('tab(sqe-plan-together-tabs-brief)', function(data){
         if (data.index === 0){
             _public_val.orderType = 1;       //pcb
             _public_val.tableOn = 'sqeManaPlan_tabPcb';     // 监听换成pcb
