@@ -8,7 +8,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
     view = layui.view,
     setter = layui.setter;
     
-    form.render(null,'app-content-comment');
+    form.render(null,'customer-info-formlist');
     table.render({
         elem: '#customer_listTab'
         ,url: setter.baseUrl+'sys/consumer/user/list'
@@ -47,6 +47,16 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
             });
         }
         ,page: true
+    });
+
+     //监听搜索
+    form.on('submit(LAY-app-constomer-info-search)', function(data){
+        var field = data.field;
+        
+        //执行重载
+        table.reload('customer_listTab', {
+        where: field
+        });
     });
 
     //监听 工具条

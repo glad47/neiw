@@ -1,36 +1,36 @@
 <title>用户信息管理</title>
 <div class="layui-fluid">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto user-info-search-form" lay-filter="user_info_formlist" data-type="search-form" reload-table="user_infoTab">
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label" id="yonghuming">用户名</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="username" autocomplete="off" class="layui-input" id="search_userName">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="user-info-formlist">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="username" autocomplete="off" class="layui-input" id="search_userName">
+                    </div>
                 </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">部门</label>
-                <div class="layui-input-inline">
-                    <!--<input type="text" name="deptName" autocomplete="off" class="layui-input">-->
-                    <select name="deptName" lay-filter="search-dept-sel">
-                        <option value=""></option>
-                    </select>
+                <div class="layui-inline">
+                    <label class="layui-form-label">部门</label>
+                    <div class="layui-input-block">
+                        <!--<input type="text" name="deptName" autocomplete="off" class="layui-input">-->
+                        <select name="deptName" lay-filter="search-dept-sel">
+                            <option value=""></option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">工号</label>
-                <div class="layui-input-inline">
-                    <input type="text" class="layui-input" name="jobNumber" id="user_orderTime">
+                <div class="layui-inline">
+                    <label class="layui-form-label">工号</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="jobNumber" id="user_orderTime">
+                    </div>
                 </div>
-            </div>
-            <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-user-info-search">
-                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                </button>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-user-info-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;" name="permission-user-add">
                 <script type="text/html" template lay-done="layui.data.done(d);">

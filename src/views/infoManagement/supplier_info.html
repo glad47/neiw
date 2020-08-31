@@ -1,45 +1,45 @@
 <title>系统管理-供应商信息</title>
 <div class="layui-fluid">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto supplier-info-form-search" lay-filter="supplierInfo_from" data-type="search-form" reload-table="supplier_infoTab">
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">供应商编号</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="supplier_id" name="supplierId" autocomplete="off" class="layui-input">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="supplier-info-fromlist">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">供应商编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="supplier_id" name="supplierId" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">公司名称</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="supplier_companyName" name="companyName" autocomplete="off" class="layui-input">
+                <div class="layui-inline">
+                    <label class="layui-form-label">公司名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="supplier_companyName" name="companyName" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">类别</label>
-                <div class="layui-input-inline">
-                    <!--<input type="text" id="supplier_type" name="type" autocomplete="off" class="layui-input">-->
-                    <select name="type" lay-filter="search-supplierInfo-type-sel">
-                        <option value=""></option>
-                        <option value="1">PCB</option>
-                        <option value="2">PCBA</option>
-                        <option value="3">SMT</option>
-                    </select>
+                <div class="layui-inline">
+                    <label class="layui-form-label">类别</label>
+                    <div class="layui-input-block">
+                        <!--<input type="text" id="supplier_type" name="type" autocomplete="off" class="layui-input">-->
+                        <select name="type" lay-filter="search-supplierInfo-type-sel">
+                            <option value=""></option>
+                            <option value="1">PCB</option>
+                            <option value="2">PCBA</option>
+                            <option value="3">SMT</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">联系人</label>
-                <div class="layui-input-inline">
-                    <input type="text" class="layui-input" name="contact" id="supplier_contact">
+                <div class="layui-inline">
+                    <label class="layui-form-label">联系人</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="contact" id="supplier_contact">
+                    </div>
                 </div>
-            </div>
-            <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-supplier-search" data-type="reload">
-                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                </button>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-supplier-info-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="layui-card" lay-filter="addInfo">
         <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
                 <script type="text/html" template>
@@ -171,10 +171,6 @@
     </div>
 
 </div>
-
-<style>
-    /*.layui-table-box .layui-table-header thead tr td , .layui-table-box .layui-table-body .layui-table tbody tr td {width: 200px !important;}*/
-</style>
 
 
 <script>

@@ -23,7 +23,14 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
     }
 
 
-    form.render(null, 'user_info_formlist')
+    form.render(null, 'user-info-formlist')
+
+    form.on('submit(LAY-user-info-search)',function(data){
+        var field = data.field;
+        table.reload('user_infoTab',{
+           where: field 
+        });
+    });
 
     table.render({
         elem: '#user_infoTab'
@@ -195,8 +202,9 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                 }
             })
         }
-    }
-    $('div').delegate('.layui-btn','click',function () {
+    };
+
+    $('.layui-btn.per_userAdd').on('click',function () {
         var type = $(this).data('type');
         active[type] && active[type].call(this);
     })

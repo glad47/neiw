@@ -17,7 +17,17 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
         console.log(data);
         alert("1");
     });
-    form.render(null,'supplierInfo_from');
+    form.render(null,'supplier-info-fromlist');
+
+     //监听搜索
+    form.on('submit(LAY-app-supplier-info-search)', function(data){
+        var field = data.field;
+        
+        //执行重载
+        table.reload('supplier_infoTab', {
+        where: field
+        });
+    })
 
     table.render({
         elem: '#supplier_infoTab'
@@ -48,7 +58,7 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             ,{field:'updateUserId', title: '修改人', sort: true}
             ,{field:'updateTime', title: '修改时间', sort: true}
             ,{field:'remark', title: '备注', hide:true}
-            ,{title: '操作', width: 160, align:'center', fixed: 'right', toolbar: '#table-supplier'}
+            ,{title: '操作', width: 180, align:'center', fixed: 'right', toolbar: '#table-supplier'}
         ]]
         ,done : function () {
             //手机端
