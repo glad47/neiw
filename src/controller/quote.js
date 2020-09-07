@@ -170,6 +170,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         customerSysName: null,                          // 客户名
         userId: null,
         productNo: null,
+        exchangeId: 1,                                  // 币种  默认为 => 美元 
     }
 
     var _MT_data = {};             //全局变量容器
@@ -1176,6 +1177,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     // 监听选择汇率
     layui.formSelects.on('exchangeId', function (id, vals, val, isAdd, isDisabled) {
         pcb_container.exchangeId = val.value;
+        saveSMTStencil.exchangeId = val.value;
         var courierId = post_data.companyId;
         var countryId = post_data.countrysId;
         var _currency = exchangerate.find(item => item.id == val.value).currency;   // 币种
