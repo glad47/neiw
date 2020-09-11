@@ -5,15 +5,17 @@
  */
 
 
-layui.define(['admin','table','index','element','form','convertCurrency', 'requestInterface', 'formSelects'], function (exports) {
-    table = layui.table
+layui.define(['admin','table','index','element','form','convertCurrency', 'requestInterface', 'formSelects','laydate'], function (exports) {
+    var table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
         ,setter = layui.setter
         ,formSelects = layui.formSelects
-        ,element = layui.element;
-    var $ = layui.jquery;
+        ,laydate = layui.laydate
+        ,element = layui.element
+        ,$ = layui.jquery;
+
     var convertCurrency = layui.convertCurrency;
     var requestInterface = layui.requestInterface;
 
@@ -139,12 +141,10 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                     type: 'post',
                     data: {'supplierContractNo':supplierContractNo},
                     url: setter.baseUrl+'scm/pcborder/signBackByOc',
-                    success: function (data) {
-                        if (data.code == '0'){
-                            layer.alert("提交成功！！");
-                            table.reload('scmManaOutSC_tabPcb');
-                            layer.close(index);
-                        }
+                    done: function (res) {
+                        layer.alert("提交成功！！");
+                        table.reload('scmManaOutSC_tabPcb');
+                        layer.close(index);
                     }
                 });
             });
@@ -160,10 +160,13 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                    data:  JSON.stringify(orderSupplierList),
                    contentType: "application/json;charset=utf-8",
                    url: setter.baseUrl+'scm/pcborder/confirmDeliveryByOc',
-                   success: function () {
+                   done: function () {
                        layer.alert('已确认');
                        table.reload('scmManaOutSC_tabPcb');
-                   }
+                   },
+                   fail: function (res) {
+                        layer.msg('供应商加失败');
+                    }
                });
             layer.closeAll();
             }); 
@@ -177,49 +180,11 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             layer.msg('编辑操作');
             admin.popup({
                 title: 'PCB报价协同编辑'
-                ,area: ['50%','80%']
+                ,area: ['65%','80%']
                 ,btn: ['保存', '下载客户资料', '取消']
                 ,yes: function (index, layero) {
-                    layer.msg('提交信息');
-                    var postData = new Object();
-                    // 供应商修改报价
-                    // 接口：sqe/pcborder/quotationTogether/update
-                    // 参数：OrderSupplierEntity对象
-                    postData.id = data.id;                                      //id
-                    postData.orderId = data.orderId;                            //订单id
-                    postData.supplierId = data.supplierId;                      //供应商id
-                    postData.supplierQuoteNo = data.supplierQuoteNo;            //供应商报价单号
-                    postData.boardFee = data.boardFee;                          //板费
-                    postData.testCostFee = $("#qt_pcb_testCostFee").val();      //测试费
-                    postData.engineeringFee = $("#qt_pcb_engineeringFee").val();//工程费
-                    postData.toolingFee = $("#qt_pcb_toolingFee").val();        //cnc磨具费
-                    postData.overworkFee = $("#qt_pcb_overworkFee").val();      //加急费
-                    postData.deliveryTime = $("#pcbDeliveryDate").val();        //交期
-                    postData.unitPrice = $("#qt_pcb_unitPrice").val();          //单价
-                    postData.remark = $("#qRemark").val();                      //备注
-                    postData.status = '';                                       //状态
-                    postData.factoryMake = $("#pcbfactoryMake").val();          //厂编
-                    postData.testPointType = $("#hiddenTestPoint").val();     //侧孔方式
-                    postData.totalFee = $("#qt_pcb_totalFee").text();          //总价
-                    // PCBA
-                    postData.pcbaProcessFee = $("#qt_pcbaProcessFee").val();          //加工费
-                    postData.pcbaPartsFee = $("#qt_pcbaPartsFee").val();          //零件费
-                    postData.pcbaTestFee = $("#qt_pcbaTestFee").val();          //测试费
-                    postData.pcbaToolFee = $("#qt_pcbaToolFee").val();          //工具钢网费
-                    postData.pcbaSubtotalFee = $("#qt_pcbaSubtotalFee").text();          //小计
-                    console.log(postData);
-                    admin.req({
-                        type: 'post',
-                        data: postData,
-                        url: setter.baseUrl+'scm/pcborder/updateQuoteBeOt',
-                        success: function (data) {
-                            layer.alert("供应商报价修改成功");
-                            // layer.closeAll();
-                            table.reload('scmManaOutSC_tabPcb');
-                            layer.close(index);
-                        }
-                    });
-
+                    form.val("scm-quote-detail-form-list",{optionMark:"save"});
+                    $("#scm-quote-detail-form-submit").click();
                 }
                 ,btn2: function (index, layero) {
                     layer.msg('下载资料');
@@ -227,7 +192,32 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                 }
                 ,success: function (layero, index) {
                     view(this.id).render('scmManagement/iframeWindow/quote_detail_pcb',data).done(function () {
-
+                        form.render(null,'scm-quote-detail-form-list');
+                       
+                        form.on('submit(LAY-scm-quote-detail-form-submit)',function(data){
+                            let field = data.field;
+                            if(field.optionMark === "pricing"){//计算小计和总计
+                                let pcbTotal = parseFloat(field.engineeringFee) + parseFloat(field.overworkFee) + parseFloat(field.testCostFee) + parseFloat(field.toolingFee) + parseFloat(field.otherFee);
+                                let pcbaTotal = parseFloat(field.pcbaToolFee) + parseFloat(field.pcbaTestFee) + parseFloat(field.pcbaPartsFee) + parseFloat(field.pcbaProcessFee);
+                                let allTotal = pcbTotal + pcbaTotal
+                                form.val("scm-quote-detail-form-list",{allFee:allTotal,totalFee:pcbTotal,pcbaSubtotalFee:pcbaTotal});
+                                return false;
+                            }else if(field.optionMark === "save"){//保存操作
+                                admin.req({
+                                    type: 'post',
+                                    data: field,
+                                    url: setter.baseUrl+'scm/pcborder/updateQuoteBeOt',
+                                    done: function (res) {
+                                        layer.msg('修改成功');
+                                        table.reload('scmManaOutSC_tabPcb');
+                                    },
+                                    fail: function (res) {
+                                        layer.msg('修改失败');
+                                    }
+                                });
+                                layer.close(index);   
+                            }
+                        });
                     });
                 }
             });
