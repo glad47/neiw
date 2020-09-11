@@ -7,7 +7,7 @@
                 <div class="layui-card-header">pcb信息</div>
                 <div class="layui-card-body">
                     <form class="layui-form" lay-filter="scm-quote-detail-form-list">
-                        <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allSupplier" lay-data="{roleId:14}" lay-type="post" lay-done="layui.data.done(d);">
+                        <script type="text/html" template lay-url="{{layui.setter.baseUrl}}scm/pcborder/allSupplier" lay-type="post" lay-done="layui.data.done(d);">
                         <div class="layui-form-item layui-row layui-col-space10">
                             <div class="layui-col-lg6">
                                 <label class="layui-form-label">报价单号:</label>
@@ -183,7 +183,7 @@
                                             layui.each(d.data, function(index, item){   
                                         }}
                                         <option value=""></option>
-                                        <option value="{{ item.username || ''}}" {{ d.params.tpSupplier == item.username ? 'selected' : ''}}>{{ item.username }}</option>
+                                        <option value="{{ item.supplierId || ''}}" {{ d.params.tpSupplier == item.supplierId ? 'selected' : ''}}>{{ item.supplierId }}</option>
                                         {{#  }); }}
                                         {{#  if(d.data.length === 0){ }}
                                         无数据 
@@ -207,7 +207,7 @@
                                             layui.each(d.data, function(index, item){   
                                         }}
                                         <option value=""></option>
-                                        <option value="{{ item.username || ''}}" {{ d.params.ljSupplier == item.username ? 'selected' : ''}}>{{ item.username }}</option>
+                                        <option value="{{ item.supplierId || ''}}" {{ d.params.ljSupplier == item.supplierId ? 'selected' : ''}}>{{ item.supplierId }}</option>
                                         {{#  }); }}
                                         {{#  if(d.data.length === 0){ }}
                                         无数据 
@@ -231,7 +231,7 @@
                                             layui.each(d.data, function(index, item){   
                                         }}
                                         <option value="0"></option>
-                                        <option value="{{ item.username || ''}}" {{ d.params.csSupplier == item.username ? 'selected' : ''}}>{{ item.username }}</option>
+                                        <option value="{{ item.supplierId || ''}}" {{ d.params.csSupplier == item.supplierId ? 'selected' : ''}}>{{ item.supplierId }}</option>
                                         {{#  }); }}
                                         {{#  if(d.data.length === 0){ }}
                                         无数据 
@@ -340,27 +340,27 @@
                     <hr class="layui-bg-red">
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" placeholder="贴片费" autocomplete="off" class="layui-input">      
+                            <input type="text" name="title" value="{{d.params.pcbaProcessFeeCustomer || 0}}" disabled placeholder="贴片费" autocomplete="off" class="layui-input">      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" placeholder="零件费" autocomplete="off" class="layui-input">      
+                            <input type="text" name="title" value="{{d.params.pcbaPartsFeeCustomer || 0}}" disabled placeholder="零件费" autocomplete="off" class="layui-input">      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" placeholder="测试费" autocomplete="off" class="layui-input">      
+                            <input type="text" name="title" value="{{d.params.pcbaTestFeeCustomer || 0}}" disabled placeholder="测试费" autocomplete="off" class="layui-input">      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" placeholder="钢网工具费" autocomplete="off" class="layui-input">      
+                            <input type="text" name="title" value="{{d.params.pcbaToolFeeCustomer || 0}}" disabled placeholder="钢网工具费" autocomplete="off" class="layui-input">      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" placeholder="paca小计" autocomplete="off" class="layui-input">      
+                            <input type="text" name="title" value="{{d.params.pcbaSubtotalFeeCustomer || 0}}" disabled placeholder="paca小计" autocomplete="off" class="layui-input">      
                         </div>
                     </div>
                     
