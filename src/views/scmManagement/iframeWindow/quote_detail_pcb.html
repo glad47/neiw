@@ -32,7 +32,7 @@
                             <div class="layui-col-lg6">
                                 <label class="layui-form-label">数量(PCS):</label>
                                 <div class="layui-input-block">
-                                <input type="text" disabled="" value="{{ d.params.quantityPcs ||  0 }}" placeholder="" autocomplete="off" class="layui-input">
+                                <input type="text" disabled="" name="quantityPcs" value="{{ d.params.quantityPcs ||  0 }}" placeholder="" autocomplete="off" class="layui-input">
                                 </div> 
                             </div>  
                         </div> 
@@ -317,11 +317,11 @@
                         </div>
                     </div> <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" placeholder="pcb小计" autocomplete="off" class="layui-input" disabled>      
+                            <input type="text" name="title" placeholder="pcb小计" value="{{ d.params.subtotal }}" disabled autocomplete="off" class="layui-input">      
                         </div>
                     </div> <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="subtotal" placeholder="费用总计" value="{{ d.params.subtotal || ''}}" autocomplete="off" class="layui-input" disabled>      
+                            <input type="text" name="subtotal" placeholder="费用总计" value="{{ d.params.totalFeeCustomer || ''}}" autocomplete="off" class="layui-input" disabled>      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
@@ -387,7 +387,8 @@
                 console.log('监听到离焦事件');
                 form.val("scm-quote-detail-form-list",{optionMark:"pricing"});
                 $("#scm-quote-detail-form-submit").click();
-            })
+            });
+
         })
     };
 </script>

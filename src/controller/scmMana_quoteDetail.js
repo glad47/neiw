@@ -246,7 +246,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
                         form.on('submit(LAY-scm-quote-detail-form-submit)',function(data){
                             let field = data.field;
                             if(field.optionMark === "pricing"){//计算小计和总计
-                                let pcbTotal = parseFloat(field.engineeringFee) + parseFloat(field.overworkFee) + parseFloat(field.testCostFee) + parseFloat(field.toolingFee) + parseFloat(field.otherFee);
+                                let pcbTotal = parseFloat(field.engineeringFee) + parseFloat(field.overworkFee) + parseFloat(field.testCostFee) + parseFloat(field.toolingFee) + parseFloat(field.otherFee) + parseFloat(field.unitPrice * field.quantityPcs);
                                 let pcbaTotal = parseFloat(field.pcbaToolFee) + parseFloat(field.pcbaTestFee) + parseFloat(field.pcbaPartsFee) + parseFloat(field.pcbaProcessFee);
                                 let allTotal = pcbTotal + pcbaTotal
                                 form.val("scm-quote-detail-form-list",{allFee:allTotal,totalFee:pcbTotal,pcbaSubtotalFee:pcbaTotal});
