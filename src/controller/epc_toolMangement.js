@@ -3,8 +3,6 @@
  @Name:    工程管理－－［工具管理］
 
  */
-
-
 layui.define(['admin','table','index','element','form','uploadCommon', 'filePathProcess'], function (exports) {
     table = layui.table
         ,view = layui.view
@@ -15,6 +13,18 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
         ,$ = layui.jquery
         ,uploadCommon = layui.uploadCommon
         ,filePathProcess = layui.filePathProcess;
+
+
+    form.render(null,'tool-mangement-form-list');
+
+    //监听搜索
+    form.on('submit(LAY-tool-mangement-search)', function(data){
+        var field = data.field;
+        //执行重载
+        table.reload('epcToolMana_tab', {
+            where: field
+        });
+    });
 
     //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ PCB订单
     table.render({
@@ -33,7 +43,7 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
         }
         ,cols: [[
             {type:'checkbox', fixed: 'left'}
-            ,{field: 'productNo',title: '内部型号', width: 130, fixed: 'left', sort: true}      // 1 ＝ 待报价
+            ,{field: 'productNo',title: '内部型号', width: 150, fixed: 'left', sort: true}      // 1 ＝ 待报价
             ,{field: 'makeWay',title: '制作方式', width: 89, sort: true}
             ,{field: 'type',title: '类型', width: 110, sort: true}
             ,{field: 'cost',title: '费用', width: 110, sort: true}

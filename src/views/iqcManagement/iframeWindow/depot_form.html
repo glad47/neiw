@@ -1,0 +1,176 @@
+<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
+<div class="layui-fluid">
+    <div class="layui-form" lay-filter="iqc-depot-edit-add-form" style="padding: 20px 0 0 0;">
+        <div class="layui-form-item">
+            <div class="layui-col-md6">
+                <label class="layui-form-label">仓库</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="depotName" lay-verify="required">
+                            <option></option>
+                            <option {{ d.params.depotName == 'PCBA' ? 'selected' : '' }}>PCBA</option>
+                            <option {{ d.params.depotName == '板料' ? 'selected' : '' }}>板料</option>
+                            <option {{ d.params.depotName == '工具' ? 'selected' : '' }}>工具</option>
+                            <option {{ d.params.depotName == '物料' ? 'selected' : '' }}>物料</option>
+                            <option {{ d.params.depotName == '油墨' ? 'selected' : '' }}>油墨</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">产品</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="productName" lay-verify="required">
+                            <option></option>
+                            <option {{ d.params.productName == '测试架' ? 'selected' : '' }}>测试架</option> 
+                            <option {{ d.params.productName == '模具' ? 'selected' : '' }}>模具</option> 
+                            <option {{ d.params.productName == '钢网' ? 'selected' : '' }}>钢网</option> 
+                            <option {{ d.params.productName == '夹具' ? 'selected' : '' }}>夹具</option> 
+                        </select>
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-col-md6">
+                <label class="layui-form-label">规格</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                    <input type="text" name="specification" value="{{ d.params.specification || '' }}" lay-verify="required" placeholder="规格" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">尺寸</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                    <input type="text" name="size" value="{{ d.params.size || '' }}" lay-verify="required" placeholder="尺寸" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-col-md6">
+                <label class="layui-form-label">数量</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                    <input type="text" name="number" value="{{ d.params.number || '' }}" lay-verify="required" placeholder="数量" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">单位</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                    <input type="text" name="units" value="{{ d.params.units || '' }}" lay-verify="required" placeholder="单位" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-col-md6">
+                <label class="layui-form-label">位置</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                    <input type="text" name="position" value="{{ d.params.position || '' }}" lay-verify="required" placeholder="位置" autocomplete="off" class="layui-input" lay-verify="required">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">型号</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-done="layui.data.done(d);">
+                        <select name="model" xm-select="model" xm-select-radio  xm-select-search="" xm-select-search-type="dl" lay-verify="required">
+                            {{# if(d.params.model != null){ }}
+                            <option class="def-option" value="{{d.params.model}}" selected>{{d.params.model}}</option>
+                            {{# } }}
+                        </select>
+                    </script>
+                </div>
+            </div>
+        </div>
+    
+        <div class="layui-form-item">
+            <div class="layui-col-md12">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-inline">
+                    <script type="text/html" template>
+                    <textarea class="layui-textarea" name="remarks" value="{{d.params.remark || ''}}" style="height: 30px; width: 670px;" autocomplete="off">
+                        {{d.params.remarks || ''}}
+                    </textarea>
+                    </script>
+                </div>
+            </div>
+        </div>
+    
+        <div class="layui-form-item layui-col-md-offset2" style="display: none;">
+            <div class="layui-input-block">
+                <script type="text/html" template>
+                    <input type="text" name="id" value="{{d.params.id || ''}}"placeholder="id" autocomplete="off" class="layui-input">
+                </script> 
+                <input type="button" lay-submit lay-filter="LAY-iqc-depot-submit" id="iqc-depot-sumbit" value="确认" class="layui-btn">
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+  <script>
+    layui.data.done = function(d) {
+        var model;
+        if(d.params.model != null){
+            model = d.params.model;
+        }
+
+        layui.use(['admin', 'form', 'formSelects'], function(){
+            var $ = layui.$
+            ,form = layui.form
+            ,formSelects = layui.formSelects
+            ,setter = layui.setter;
+
+            form.render(null,'iqc-depot-edit-add-form');
+
+            $(".xm-select-label").remove();
+            formSelects.render('model');
+            formSelects.value('model', [model]);
+
+            var isGetProductNo = false;
+            $("div").delegate(".xm-select-title","click", function () {
+                var $this = $(this).parents(".xm-select-parent").attr("fs_id");
+                if ($this == "model") {
+                    if (!isGetProductNo) {
+                        getProductNo($this);
+                        isGetProductNo = true;
+                    }
+                } 
+            });
+
+            // 获取型号
+            function getProductNo(dom) {
+                layer.msg("正在加载列表.....");
+                $("select[xm-select='"+dom+"']").find("option").remove();
+                admin.req({
+                    type: 'post',
+                    async: true,
+                    url: setter.baseUrl+'epc/pcborder/allProductNo',
+                    success: function (res) {
+                        var resList = res.data;
+                        if (resList != null && resList.length>0) {
+                            var $html = "";
+                            for (var i=0;i<resList.length;i++) {
+                                $html += "<option value="+resList[i]+">"+resList[i]+"</option>"
+                            }
+                            $("select[xm-select='model']").append($html)
+                            formSelects.render('model');
+                        }
+                        formSelects.value('model', [model]);
+                        $(".xm-select-parent[fs_id='"+dom+"']").children(".xm-form-select").addClass("xm-form-selected");
+                        layer.msg("加载成功！");
+                    }
+                });
+            }
+        });
+      }
+  
+  </script>
