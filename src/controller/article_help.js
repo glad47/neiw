@@ -12,32 +12,25 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
         ,layedit = layui.layedit
         ,$ = layui.jquery;
 
-    // layerdate.render({
-    //     elem: '#gmtCreate'
-    // })
-    // laydate.render({
-    //     elem: '#gmtCreate'
-    // });
-    
-    form.render(null, 'article-blog-formlist');
+    form.render(null, 'article-help-formlist');
 
      //监听搜索
-    form.on('submit(LAY-article-blog-form-search)', function(data){
+    form.on('submit(LAY-article-help-form-search)', function(data){
         var field = data.field;
     
         //执行重载
-        table.reload('article_Table_blog', {
+        table.reload('article_table_help', {
             where: field
         });
     })
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 文章博客管理
     table.render({
-        elem: '#article_Table_blog'
-        ,url: setter.baseUrl+'/article/list'
-        ,toolbar: '#toolbarBlog'
+        elem: '#article_table_help'
+        ,url: setter.baseUrl+'/article/help/list'
+        ,toolbar: '#toolbar-add-help'
         ,cellMinWidth: 80
-        ,id:"article_Table_blog"
+        ,id:"article_table_help"
         ,page: true
          ,parseData: function (res) {
             return{
@@ -51,17 +44,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
         }
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
-            ,{field:'articleName', title: '文章名称', hide: false, align:'center', sort: true}
-            ,{field:'articleTime', title: '发布时间', align:'center', width: 176, sort: true}
-            ,{field:'articleIp', title: '发布ip', align:'center', sort: true}
-            ,{field:'articleClick', title: '查看人数', align:'center', sort: true}
-            ,{field:'articleLike', title: '点赞数', align:'center', sort: true}
-            ,{field:'articleComment', title: '评论数', align:'center', sort: true}
-            ,{field:'articleClassify', title: '文章分类', align:'center', sort: true}
-            ,{field:'articleType', title: '文章类型', align:'center',templet:'#Tabtb-blog-type', sort: true}
-            ,{field:'articleUserName', title: '文章发布用户', align:'center', width: 130, sort: true}
-            ,{field:'articleStatus', title: '文章状态', align:'center',templet: '#Tabtb-article-management-status', sort: true}
-            ,{title: '操作', width: 120, align:'center', fixed: 'right', toolbar: '#Tabtb-article-management-option', sort: true}
+            ,{field:'classifyOne', title: '一级分类', align:'center', width: 176, sort: true}
+            ,{field:'classifyTwo', title: '二级分类', align:'center', sort: true}
+            ,{field:'title', title: '主题', hide: false, align:'center', sort: true}
+            // ,{field:'content', title: '内容', align:'center', sort: true}
+            ,{field:'gmtCreate', title: '创建时间', align:'center', sort: true}
+            ,{field:'gmtModified', title: '修改时间', align:'center', sort: true}
+            ,{title: '操作', width: 120, align:'center', fixed: 'right', toolbar: '#Tabtb-article-help-management-option', sort: true}
         ]]
         ,done : function (res, curr, count) {
             //手机端
@@ -77,12 +66,12 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
     });
 
     //监听右侧工具条事件
-    table.on('tool(article_Table_blog)',function(obj){
+    table.on('tool(article_table_help)',function(obj){
         var data = obj.data;
         console.log(data);
         if (obj.event === 'edit') {
             admin.popup({
-                title: '修改Blog',
+                title: '修改Help',
                 area: ['100%', '100%'],
                 btn: ['提交', '取消'],
                 yes: function (index, layero) {
@@ -95,16 +84,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                 },
                 id: 'LAY-popup-role-add',
                 success: function (layero, index) {
-                    view(this.id).render('articleManagement/blogformadd',data).done(function () {
+                    view(this.id).render('articleManagement/help_edit_add_form',data).done(function () {
                         //清空form表单
-                        form.render(null,'layuiadmin-app-form-list');
+                        form.render(null,'article-edit-add-form-list');
                         _t_layedit();
-                        var edit = layedit.build('blogcontent',{
-                            uploadImage:{
-                                url:setter.imUrl+'file/fileupload'
-                            }
-                        });
-                        var internalChain = layedit.build('blogInternalChain',{
+                        var edit = layedit.build('helpcontent',{
                             uploadImage:{
                                 url:setter.imUrl+'file/fileupload'
                             }
@@ -115,33 +99,19 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                             var field = data.field;
                             console.log(field);
                             var c = layedit.getContent(edit);
-                            var d = layedit.getContent(internalChain);
-                            field.articleContent = c;
-                            field.articleInternalChain = d;
-                            if (field.articleKing == 'on') {
-                                field.articleKing = 1;
-                            } else {
-                                field.articleKing = 0;
-                            }
+                            field.content = c;
                             admin.req({
-                                url: setter.baseUrl + 'article/update',
+                                url: setter.baseUrl + 'article/help/update',
                                 type: 'POST',
                                 data: field,
                                 success: function (data) {
                                     console.log(data);
-                                    layui.table.reload('article_Table_blog'); //重载表格
+                                    layui.table.reload('article_table_help'); //重载表格
                                     layer.close(index); //执行关闭
                                 }
                             });
                             // var fn = field.articleName.trim().replace(/\s+/g,"_")+'_'+field.id+'.html';
-                            // console.log(fn);
-                            admin.req({
-                                url: setter.imUrl + 'blog/updateStaticPage?fileName=' +field.articleName,
-                                type: 'GET',
-                                success:function(data){
-                                    console.log(data)
-                                }
-                            })
+                           
                         });
                     });
                 }
@@ -149,11 +119,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
         } else if (obj.event === 'del') {
             layer.confirm('确定删除此博客？', function(index){
                 admin.req({
-                    url:setter.baseUrl+'article/delete',
+                    url:setter.baseUrl+'article/help/delete',
                     type:'POST',
                     data:{ids:data.id},
                     success:function(data){
-                        layui.table.reload('article_Table_blog'); //重载表格
+                        layui.table.reload('article_table_help'); //重载表格
                         layer.msg('已删除');
                     }
                 });
@@ -162,12 +132,12 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
     });
 
 
-    table.on('toolbar(article_Table_blog)', function(obj) {
+    table.on('toolbar(article_table_help)', function(obj) {
         switch (obj.event) {
             case 'add':
                 clickTr = {};
                 admin.popup({
-                    title: '添加Blog',
+                    title: '添加Help',
                     area: ['100%', '100%'],
                     btn: ['提交', '取消'],
                     yes: function (index, layero) {
@@ -180,29 +150,24 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                     },
                     id: 'LAY-popup-role-add',
                     success: function (layero, index) {
-                        view(this.id).render('articleManagement/blogformadd').done(function () {
+                        view(this.id).render('articleManagement/help_edit_add_form').done(function () {
                             //清空form表单
-                            form.render(null,'layuiadmin-app-form-list');
+                            form.render(null,'article-edit-add-form-list');
                             _t_layedit();
-                            var i = layedit.build('blogcontent',{
+                            var i = layedit.build('helpcontent',{
                                 uploadImage:{
                                     url:setter.imUrl+'file/fileupload'
                                 }
                             });
-                            var ss = layedit.build('blogInternalChain',{
-                                height:'150px'
-                            });
                             //监听提交
                             form.on('submit(layuiadmin-app-form-submit)', function (data) {
                                 var field = data.field;
-                                console.log(field);
+                                //console.log(field);
                                 var c = layedit.getContent(i);
-                                console.log(c);
-                                field.articleContent = c;
-                                var b = layedit.getContent(ss);
-                                field.blogInternalChain = b;
+                                //console.log(c);
+                                field.content = c;
                                 admin.req({
-                                    url: setter.baseUrl + 'article/save',
+                                    url: setter.baseUrl + 'article/help/save',
                                     type: 'POST',
                                     //dataType:'json',
                                     //contentType:'application/json',
@@ -351,5 +316,5 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
     //         active[type] ? active[type].call(this) : '';
     // });
 
-    exports('article_blog', {})
+    exports('article_help', {})
 });

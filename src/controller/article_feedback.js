@@ -174,7 +174,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit', 'f
                             }
                             //新增iframe外置样式和js
                             , quote:{
-                                style: ['Content/css.css'],
+                                // style: ['Content/css.css'],
                                 //js: ['/Content/Layui-KnifeZ/lay/modules/jquery.js']
                             }
                             //自定义样式-暂只支持video添加

@@ -1,0 +1,66 @@
+<title>Help管理</title>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="article-help-formlist">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">一级分类：</label>
+                    <div class="layui-input-block">
+                        <select name="classifyOne">
+                            <option value="">请选择</option>
+                            <option value="common problem">common problem</option>
+                            <option value="technical knowledge">technical knowledge</option>
+                            <option value="coupon usage">coupon usage</option>
+                            <option value="quality related">quality related</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="layui-inline">
+                    <label class="layui-form-label">二级分类：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="classifyTwo" class="layui-input"/>
+                    </div>
+                </div>
+    
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit style="margin-bottom: 3px;" lay-filter="LAY-article-help-form-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+             <!--卡片－表格信息-->
+            <div class="layui-tab layui-tab-brief" lay-filter="pcdorstencil_tab" id="orderReview_card">
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <script type="text/html" id="toolbar-add-help">
+                            <div class="layui-btn-container">
+                                <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+                                <!--<button class="layui-btn layui-btn-primary layui-btn-sm"  id="outgoingQuote-operation">隐藏操作栏</button>-->
+                            </div>
+                        </script>
+                        <table class="layui-table" id="article_table_help" lay-filter="article_table_help"></table>
+                    
+                        <script type="text/html" id="Tabtb-article-help-management-option">
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("am:blog:update") != -1){ }}
+                            <a class="layui-btn layui-btn-xs" lay-event="edit" id="blog_edit">修改</a>
+                            {{#  } }}
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("am:blog:delete") != -1){ }}
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                            {{#  } }}
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+   
+</div>
+<script src="../../start/quote/ace/ace.js"></script>
+<script>
+    layui.use('article_help', layui.factory('article_help')).use(['article_help', 'table', 'index','element','form'], function(){
+    });
+</script>
