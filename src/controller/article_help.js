@@ -174,7 +174,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                                     data: field,
                                     success: function (data) {
                                         console.log(data);
-                                        layui.table.reload('article_Table_blog'); //重载表格
+                                        layui.table.reload('article_table_help'); //重载表格
                                         layer.close(index); //执行关闭
                                     }
                                 })
