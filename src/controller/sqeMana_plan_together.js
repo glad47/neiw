@@ -200,11 +200,15 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                             headers: {access_token:layui.data('layuiAdmin').access_token},
                             data:  JSON.stringify(orderSupplierList),
                             contentType: "application/json;charset=utf-8",
-                            success: function () {
-                                layer.alert('通知出货成功！',function () {
-                                    table.reload('sqeManaPlan_tabPcb');
-                                    layer.closeAll();
-                                });
+                            success: function (res) {
+                                console.log(res);
+                                if(res.code === 0){
+                                    layer.msg('通知出货成功！');
+                                }else{
+                                    layer.msg(res.msg);
+                                }
+                                table.reload('sqeManaPlan_tabPcb');
+                                layer.closeAll();
                                 bool = false;
                             } ,error: function () {
                                 bool = false;
@@ -223,11 +227,14 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                             headers: {access_token:layui.data('layuiAdmin').access_token},
                             data:  JSON.stringify(orderSupplierList),
                             contentType: "application/json;charset=utf-8",
-                            success: function () {
-                                layer.alert('通知出货成功！',function () {
+                            success: function (res) {
+                                if(res.code === 0){
+                                    layer.msg('通知出货成功！');
                                     table.reload('sqeManaPlan_tabPcb');
                                     layer.closeAll();
-                                });
+                                }else{
+                                    layer.msg(res.msg);
+                                }
                                 bool = false;
                             } ,error: function () {
                                 bool = false;
@@ -374,16 +381,21 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                        headers: {access_token:layui.data('layuiAdmin').access_token},
                        data:  JSON.stringify(orderSupplierList),
                        contentType: "application/json;charset=utf-8",
-                        success: function () {
-                            layer.alert('通知出货成功！',function () {
-                                table.reload('sqeManaPlan_tabStencil');
-                                layer.closeAll();
-                            });
+                        success: function (res) {
+                            if(res.code === 0){
+                                layer.msg('通知出货成功！');
+                            }else{
+                                layer.msg(res.msg);   
+                            }
+                            table.reload('sqeManaPlan_tabStencil');
+                            layer.closeAll();
                             bool = false;
                         } ,error: function () {
                             bool = false;
                         }
                     });
+                }else{
+
                 }
                  
             });
@@ -413,13 +425,14 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                             headers: {access_token:layui.data('layuiAdmin').access_token},
                             data:  JSON.stringify(orderSupplierList),
                             contentType: "application/json;charset=utf-8",
-                            success: function () {
-                                layer.alert('通知出货成功！',function () {
-                                    table.reload('sqeManaPlan_tabStencil');
-                                    layer.closeAll();
-                                });
-                                bool = false;
-                            } ,error: function () {
+                            success: function (res) {
+                                if(res.code === 0){
+                                    layer.msg('通知出货成功!!');
+                                }else if(res.code === 444){
+                                    layer.msg(res.msg);
+                                }
+                                table.reload('sqeManaPlan_tabStencil');
+                                layer.close(index);
                                 bool = false;
                             }
                         });

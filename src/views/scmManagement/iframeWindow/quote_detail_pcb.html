@@ -12,13 +12,13 @@
                             <div class="layui-col-lg6">
                                 <label class="layui-form-label">报价单号:</label>
                                 <div class="layui-input-block">
-                                <input type="text"  disabled="" placeholder="" autocomplete="off" class="layui-input" value="{{ d.params.quoteOrderNo }}">
+                                <input type="text"  disabled="" placeholder="" autocomplete="off" class="layui-input layui-disabled" value="{{ d.params.quoteOrderNo }}">
                                 </div>
                             </div>
                             <div class="layui-col-lg6">
                                 <label class="layui-form-label">报价时间:</label>
                                 <div class="layui-input-block">
-                                <input type="text"  disabled="" value="{{ d.params.gmtCreate || '' }}" placeholder="" autocomplete="off" class="layui-input">
+                                <input type="text"  disabled="" value="{{ d.params.gmtCreate || '' }}" placeholder="" autocomplete="off" class="layui-input layui-disabled">
                                 </div> 
                             </div>  
                         </div>
@@ -26,13 +26,13 @@
                             <div class="layui-col-lg6">
                                 <label class="layui-form-label">供应商编号:</label>
                                 <div class="layui-input-block">
-                                <input type="text" disabled="" value="{{ d.params.supplierNo }}" placeholder="" autocomplete="off" class="layui-input">
+                                <input type="text" disabled="" value="{{ d.params.supplierNo }}" placeholder="" autocomplete="off" class="layui-input layui-disabled">
                                 </div>
                             </div>
                             <div class="layui-col-lg6">
                                 <label class="layui-form-label">数量(PCS):</label>
                                 <div class="layui-input-block">
-                                <input type="text" disabled="" name="quantityPcs" value="{{ d.params.quantityPcs ||  0 }}" placeholder="" autocomplete="off" class="layui-input">
+                                <input type="text" disabled="" name="quantityPcs" value="{{ d.params.quantityPcs ||  0 }}" placeholder="" autocomplete="off" class="layui-input layui-disabled">
                                 </div> 
                             </div>  
                         </div> 
@@ -54,7 +54,7 @@
                             <div class="layui-col-lg6">
                                 <label class="layui-form-label">聚谷型号:</label>
                                 <div class="layui-input-block">
-                                <input type="text" disabled="" value="{{ d.params.productNo || '' }}" placeholder="" autocomplete="off" class="layui-input">
+                                <input type="text" disabled="" value="{{ d.params.productNo || '' }}" placeholder="" autocomplete="off" class="layui-input layui-disabled">
                                 </div>
                             </div>
                             <div class="layui-col-lg6">
@@ -68,7 +68,7 @@
                             <div class="layui-col-lg6">
                                 <label class="layui-form-label">聚谷物料号:</label>
                                 <div class="layui-input-block">
-                                <input type="text" disabled="" value="{{ d.params.pcbName || '' }}" placeholder="" autocomplete="off" class="layui-input">
+                                <input type="text" disabled="" value="{{ d.params.pcbName || '' }}" placeholder="" autocomplete="off" class="layui-input layui-disabled">
                                 </div>
                             </div>
                             <div class="layui-col-lg6">
@@ -107,11 +107,11 @@
                                 <div class="layui-input-block">
                                     {{# if(d.params.panelSizeX != null){ }}
                                     {{# var panelWay = d.params.panelWayX*d.params.panelWayY }}
-                                    <input type="text" name="fullnamesize" disabled="" value="{{ d.params.panelSizeX }} * {{ d.params.panelSizeY }}mm / {{ panelWay }}" placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" name="fullnamesize" disabled="" value="{{ d.params.panelSizeX }} * {{ d.params.panelSizeY }}mm / {{ panelWay }}" placeholder="" autocomplete="off" class="layui-input layui-disabled">
                                     {{# }else if(d.params.dimensionsX != null){ }}
-                                    <input type="text" name="fullnamesize" disabled="" value="{{ d.params.dimensionsX}} * {{ d.params.dimensionsY}}mm /1 " placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" name="fullnamesize" disabled="" value="{{ d.params.dimensionsX}} * {{ d.params.dimensionsY}}mm /1 " placeholder="" autocomplete="off" class="layui-input layui-disabled">
                                     {{# }else{ }}
-                                    <input type="text" name="fullnamesize" disabled="" value="都为空" placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" name="fullnamesize" disabled="" value="都为空" placeholder="" autocomplete="off" class="layui-input layui-disabled">
                                     {{# } }}
                                 </div>
                             </div>
@@ -283,50 +283,50 @@
                 <div class="layui-card-body">
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" disabled="" placeholder="报价时间" autocomplete="off" class="layui-input"> 
+                            <input type="text" name="title" disabled="" placeholder="报价时间" autocomplete="off" class="layui-input layui-disabled"> 
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" disabled=""  placeholder="数量" autocomplete="off" class="layui-input">      
+                            <input type="text" name="title" disabled=""  placeholder="数量" autocomplete="off" class="layui-input layui-disabled">      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="unitPriceCustomer" placeholder="单价" autocomplete="off" class="layui-input" value="{{ d.params.unitPriceCustomer || 0 }}" disabled="">      
+                            <input type="text" name="unitPriceCustomer" placeholder="单价" autocomplete="off" class="layui-input layui-disabled" value="{{ d.params.unitPriceCustomer || 0 }}" disabled="">      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="engineeringFeeCustomer" value="{{ d.params.engineeringFeeCustomer || 0 }}" placeholder="工程费" autocomplete="off" class="layui-input" disabled="">      
+                            <input type="text" name="engineeringFeeCustomer" value="{{ d.params.engineeringFeeCustomer || 0 }}" placeholder="工程费" autocomplete="off" class="layui-input layui-disabled" disabled="">      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="overworkFeeCustomer" value="{{ d.params.overworkFeeCustomer || 0 }}" placeholder="加急费" autocomplete="off" class="layui-input" disabled="">      
+                            <input type="text" name="overworkFeeCustomer" value="{{ d.params.overworkFeeCustomer || 0 }}" placeholder="加急费" autocomplete="off" class="layui-input layui-disabled" disabled="">      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="testCostFeeCustomer" value="{{ d.params.testCostFeeCustomer || 0 }}" placeholder="测试费" autocomplete="off" class="layui-input" disabled="">      
+                            <input type="text" name="testCostFeeCustomer" value="{{ d.params.testCostFeeCustomer || 0 }}" placeholder="测试费" autocomplete="off" class="layui-input layui-disabled" disabled="">      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="pcbaToolFeeCustomer" value="{{ d.params.pcbaToolFeeCustomer || 0 }}" placeholder="模具费" autocomplete="off" class="layui-input" disabled>      
+                            <input type="text" name="pcbaToolFeeCustomer" value="{{ d.params.pcbaToolFeeCustomer || 0 }}" placeholder="模具费" autocomplete="off" class="layui-input layui-disabled" disabled>      
                         </div>
                     </div> <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" placeholder="pcb小计" value="{{ d.params.subtotal }}" disabled autocomplete="off" class="layui-input">      
+                            <input type="text" name="title" placeholder="pcb小计" value="{{ d.params.subtotal }}" disabled autocomplete="off" class="layui-input layui-disabled">      
                         </div>
                     </div> <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="subtotal" placeholder="费用总计" value="{{ d.params.totalFeeCustomer || ''}}" autocomplete="off" class="layui-input" disabled>      
+                            <input type="text" name="subtotal" placeholder="费用总计" value="{{ d.params.totalFeeCustomer || ''}}" autocomplete="off" class="layui-input layui-disabled" disabled>      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" value="{{ d.params.buildTime || '' }}" placeholder="交期" autocomplete="off" class="layui-input" disabled>      
+                            <input type="text" value="{{ d.params.buildTime || '' }}" placeholder="交期" autocomplete="off" class="layui-input layui-disabled" disabled>      
                         </div>
                     </div>
                     <!-- <div class="layui-form-item layui-row layui-col-space10">
@@ -340,27 +340,27 @@
                     <hr class="layui-bg-red">
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" value="{{d.params.pcbaProcessFeeCustomer || 0}}" disabled placeholder="贴片费" autocomplete="off" class="layui-input">      
+                            <input type="text" name="title" value="{{d.params.pcbaProcessFeeCustomer || 0}}" disabled placeholder="贴片费" autocomplete="off" class="layui-input layui-disabled">      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" value="{{d.params.pcbaPartsFeeCustomer || 0}}" disabled placeholder="零件费" autocomplete="off" class="layui-input">      
+                            <input type="text" name="title" value="{{d.params.pcbaPartsFeeCustomer || 0}}" disabled placeholder="零件费" autocomplete="off" class="layui-input layui-disabled">      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" value="{{d.params.pcbaTestFeeCustomer || 0}}" disabled placeholder="测试费" autocomplete="off" class="layui-input">      
+                            <input type="text" name="title" value="{{d.params.pcbaTestFeeCustomer || 0}}" disabled placeholder="测试费" autocomplete="off" class="layui-input layui-disabled">      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" value="{{d.params.pcbaToolFeeCustomer || 0}}" disabled placeholder="钢网工具费" autocomplete="off" class="layui-input">      
+                            <input type="text" name="title" value="{{d.params.pcbaToolFeeCustomer || 0}}" disabled placeholder="钢网工具费" autocomplete="off" class="layui-input layui-disabled">      
                         </div>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <input type="text" name="title" value="{{d.params.pcbaSubtotalFeeCustomer || 0}}" disabled placeholder="paca小计" autocomplete="off" class="layui-input">      
+                            <input type="text" name="title" value="{{d.params.pcbaSubtotalFeeCustomer || 0}}" disabled placeholder="paca小计" autocomplete="off" class="layui-input layui-disabled">      
                         </div>
                     </div>
                     
