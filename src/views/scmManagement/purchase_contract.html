@@ -1,56 +1,31 @@
 <title>供应链管理-采购合同</title>
 <div class="layui-fluid">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto purchase-contract-form-search" lay-filter="app-content-comment">
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">产品型号</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="productNo" autocomplete="off" class="layui-input">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="scm-purchase-contract-form-list">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">产品型号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-scm-purchase-contract-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
                 </div>
             </div>
-            <!-- <div class="layui-inline">
-                <label class="layui-form-label">类型</label>
-                <div class="layui-input-inline">
-                    <select name="type" id="" lay-filter="search-toolMana">
-                        <option value=""></option>
-                        <option value="测试架">测试架</option>
-                        <option value="模具">模具</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">制造商</label>
-                <div class="layui-input-inline">
-                    <input name="manufacturers" type="text" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">供应商存放</label>
-                <div class="layui-input-inline">
-                    <input name="supplier" type="text" class="layui-input">
-                </div>
-            </div> -->
-            <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="purchase-contract-search">
-                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                </button>
-            </div>
+        </div>
+        <div class="layui-card-body">
+            <table class="layui-table" id="scm_purchase_contract_tab" lay-filter="scm_purchase_contract_tab"></table>
+            <script type="text/html" id="scm_purchase_contract_tab_tabbar">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="th">退回</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pcedit">编辑</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="ckht">查看合同</a>
+            </script>
         </div>
     </div>
-    <table class="layui-table" id="scm_purchase_contract_tab" lay-filter="scm_purchase_contract_tab"></table>
-   <!--  <script type="text/html" id="scm_material_purchasing_tb">
-        <div class="layui-btn-container">
-            <button class="layui-btn layui-btn-sm" lay-event="add">新增物料</button>
-            <button class="layui-btn layui-btn-sm" lay-event="create-contract">生成合同</button>
-        </div>
-    </script> -->
-    <script type="text/html" id="scm_purchase_contract_tab_tabbar">
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="th">退回</a>
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pcedit">编辑</a>
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="ckht">查看合同</a>
-        <!-- <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a> -->
-        <!-- <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="tool-fileMang">资料</a> -->
-    </script>
+   
 </div>
 
 <script>
