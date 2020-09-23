@@ -135,8 +135,8 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
                         data: {'ids':_this_id},
                         url: setter.baseUrl + 'scm/procurement/delete',
                         success: function () {
-                            // table.reload('epcToolMana_tab');
-                            obj.del();
+                            table.reload('scm_material_purchasing_tab');
+                            // obj.del();
                             layer.close(index);
                             layer.msg('删除成功');
                         }

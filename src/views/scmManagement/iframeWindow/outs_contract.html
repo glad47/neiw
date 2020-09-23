@@ -125,15 +125,15 @@
                     <td>{{ item.layerNum || '' }}</td>
                     <!--表面处理-->
                     <td>
-                        {{# if(item.surfaceFinish == 'HASL_with_lead'){ }}
+                        {{# if(item.surfaceFinish == 'HASL_with_lead' || item.surfaceFinish == 'HASL with lead'){ }}
                             有铅喷锡
-                        {{# } else if(item.surfaceFinish == 'HASL_lead_free'){ }}
+                        {{# } else if(item.surfaceFinish == 'HASL_lead_free' || item.surfaceFinish == 'HASL lead free'){ }}
                             无铅喷锡
-                        {{# } else if(item.surfaceFinish == 'Immersion_Gold'){ }}
+                        {{# } else if(item.surfaceFinish == 'Immersion_Gold' || item.surfaceFinish == 'Immersion Gold'){ }}
                             沉金
-                        {{# } else if(item.surfaceFinish == 'Immersion_tin'){ }}
+                        {{# } else if(item.surfaceFinish == 'Immersion_tin' || item.surfaceFinish == 'Immersion tin'){ }}
                             沉锡
-                        {{# } else if(item.surfaceFinish == 'Immersion_silver'){ }}
+                        {{# } else if(item.surfaceFinish == 'Immersion_silver' || item.surfaceFinish == 'Immersion silver'){ }}
                             沉银
                         {{# } else if(item.surfaceFinish == 'OSP'){ }}
                             OSP
@@ -246,7 +246,7 @@
                         {{# } }}
                     </li>
                     <li>
-                        五、票据方式：<input type="checkbox" checked>
+                        六、票据方式：<input type="checkbox" checked>
                         {{# if(d.params.supplierInfo.invoiceType == '1'){ }}
                             收据
                         {{# } else if(d.params.supplierInfo.invoiceType == '2'){ }}
