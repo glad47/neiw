@@ -69,7 +69,7 @@
                     <tr>
                         <th rowspan="2">序号</th>
                         <th rowspan="2">内部型号</th>
-                        <th rowspan="2">供应商产品型号</th>
+                        <!-- <th rowspan="2">供应商产品型号</th> -->
                         <th colspan="9" style="text-align: center;">成品工艺表</th>
                         <th rowspan="2">数量PCS</th>
                         <th rowspan="2">单价</th>
@@ -102,7 +102,7 @@
                     <!--内部型号-->
                     <td>{{ item.productNo || '' }}</td>
                     <!--供应商产品号-->
-                    <td>{{ item.factoryMake || '' }}</td>
+                    <!-- <td>{{ item.factoryMake || '' }}</td> -->
                     <!--交货尺寸-->
                     <td>
                         {{# if(item.panelSizeX != null){ }}
@@ -272,7 +272,7 @@
             <div class="modul-bot">
                 <ul style="width: 40%;">
                     <li>甲方：深圳聚谷科技有限公司</li>
-                    <li>地址：深圳市宝安区沙井街道后亭地铁C出口鹏程中骏2楼J区</li>
+                    <li>地址：深圳市宝安区沙井街道马安山社区鞍胜路33号4栋</li>
                     <script type="text/html" template>
                         <li>代表：{{ layui.data('userInfo').userChinaName || '' }}</li>
                     <li>

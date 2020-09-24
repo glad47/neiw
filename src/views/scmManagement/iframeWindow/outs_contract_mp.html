@@ -50,6 +50,7 @@
                     </label>
                     <p>
                         <label>
+                        合同时间：
                         {{ d.params[0].gmtCreate || '' }}
                         </label>
                     </p>
@@ -114,7 +115,7 @@
                     <script type="text/html" template>
                         <li>供方：{{ d.params[0].supplier || ''}} </li>
                         {{# if(d.params[0].supplierInfo != null){ }}
-
+                             
                         {{# } }}
                         <li>
                             地址：
@@ -139,10 +140,12 @@
                 <ul style="width: 50%;">
                     <script type="text/html" template>
                         <li>需方：深圳聚谷科技有限公司</li>
-                        <li>地址：深圳市宝安区沙井街道后亭地铁C出口鹏程中骏2楼J区</li>
-                        <li>电话：18664938359</li> 
-                        <li>传真：</li>
-                        <li>代表签字：</li>
+                        <li>地址：深圳市宝安区沙井街道马安山社区鞍胜路33号4栋</li>
+                        <li>电话：0755-27398155</li> 
+                        <li>传真：0755-27398355</li>
+                        <li>代表签字：
+                            {{ layui.data('userInfo').userChinaName || '' }}
+                        </li>
                     </script>
                     <img src="../../../src/style/res/template/seal.png" style="position: absolute;margin-top: -82px;">
                 </ul>
