@@ -39,78 +39,83 @@ layui.define(function(exports){
   });
 
   //数据概览
-  layui.use(['carousel', 'echarts','admin', 'formSelects', 'jsTools'], function(){
+  layui.use(['carousel', 'echarts','admin', 'formSelects', 'jsTools','form','element'], function(){
     var $ = layui.$
     ,carousel = layui.carousel
     ,echarts = layui.echarts
     ,admin = layui.admin
     ,formSelects = layui.formSelects
-    ,jsTools = layui.jsTools
+    ,jsTools = layui.jsTools,
+    form = layui.form,
+    element = layui.element
     ,set = layui.setter;
 
+    
     var currYears;
+      
+    initCurrYears();
+    function initCurrYears() {
+        var myDate = new Date();
+        currYears = myDate.getFullYear();
+        admin.req({
+            type: 'get',
+            url: '../../start/json/pcbonline/date.js',
+            success: function (res) {
+                var _arr = res.data;
+                _arr.reverse();
+                _arr = _arr.reduce(function (prev, cur) {
+                    var newArr;
+                    if (cur>=2018 && cur<=currYears) {
+                        newArr = prev.concat(cur)
+                    } else {
+                        newArr = prev
+                    }
+                    return newArr;
+                }, []);
+                // console.log(_arr)
+                var $html = '';
+                for (var i=0;i<_arr.length;i++) {
+                    if (currYears == _arr[i]) {
+                        $html += "<option value=" +  _arr[i] + "\ selected>"+ _arr[i] + "</option>"
+                    } else {
+                        $html += "<option value=" +  _arr[i] + "\">"+ _arr[i] + "</option>"
+                    }
 
+                }
+                $("select[xm-select='currYears']").append($html);
+                formSelects.render();
+                getMonthlySales();
+            }
+        })
+    }
 
-      initCurrYears();
-      function initCurrYears() {
-          var myDate = new Date();
-          currYears = myDate.getFullYear();
-          admin.req({
-              type: 'get',
-              url: '../../start/json/pcbonline/date.js',
-              success: function (res) {
-                  var _arr = res.data;
-                  _arr.reverse();
-                  _arr = _arr.reduce(function (prev, cur) {
-                      var newArr;
-                      if (cur>=2018 && cur<=currYears) {
-                          newArr = prev.concat(cur)
-                      } else {
-                          newArr = prev
-                      }
-                      return newArr;
-                  }, []);
-                  console.log(_arr)
-                  var $html = '';
-                  for (var i=0;i<_arr.length;i++) {
-                      if (currYears == _arr[i]) {
-                          $html += "<option value=" +  _arr[i] + "\ selected>"+ _arr[i] + "</option>"
-                      } else {
-                          $html += "<option value=" +  _arr[i] + "\">"+ _arr[i] + "</option>"
-                      }
+    function getMonthlySales () {
+        //发送请求
+        admin.req({
+            type:'get',
+            data: {"currYears": currYears},
+            url:set.baseUrl+'allGraphs/monthlySales',
+            success: function (res) {
+                // console.log(res.data);
+                var result = lineChartCheckData(res.data,currYears);
+                // console.log(result);
+                var result3 =lineChartCheckData(res.userData,currYears);
+                // console.log(result3);
+                var result4 = barChartCheckData(res.data);
+                // console.log(result4);
+                var result5 = barStackChartCheckData(res.data,currYears);
+                //填充数据
+                var result6 = lineChartCheckData(res.productSales,currYears);
+                // console.log(result6);
+                fillData(result,result5,result3,result4,result6);
+            }
+        });
+    }
 
-                  }
-                  $("select[xm-select='currYears']").append($html);
-                  formSelects.render();
-                  getMonthlySales();
-              }
-          })
-      }
+   
 
-
-      function getMonthlySales () {
-          //发送请求
-          admin.req({
-              type:'get',
-              data: {"currYears": currYears},
-              url:set.baseUrl+'allGraphs/monthlySales',
-              success: function (res) {
-                  // console.log(res.data);
-                  var result = lineChartCheckData(res.data,currYears);
-                  // console.log(result);
-                  var result3 =lineChartCheckData(res.userData,currYears);
-                  // console.log(result3);
-                  var result4 = barChartCheckData(res.data);
-                  // console.log(result4);
-                  var result5 = barStackChartCheckData(res.data,currYears);
-                  //填充数据
-                  fillData(result,result5,result3,result4);
-              }
-          });
-      }
-
-    function fillData(data1,data2,data3,data4){
-      var currentYear = new Date().getFullYear();
+    function fillData(data1,data2,data3,data4,data6){
+      // var currentYear = new Date().getFullYear();
       var echartsApp = [], options = [
         //今年月销售额
         {
@@ -143,6 +148,38 @@ layui.define(function(exports){
             }
           }],
           series : data1.seriesData
+        },
+        //各自类型销售额
+        {
+          title: { 
+            text: currYears+'各种类型销售额',
+            x: 'center',
+            itemGap: 10,
+            textStyle: {
+                fontSize: 18,
+                // padding: 5,
+            },
+            subtext: '单位（$）'
+          }, 
+          tooltip : {
+            trigger: 'axis'
+          },
+          legend: {
+            padding: 25,
+            data:data6.legendData
+          },
+          xAxis : [{
+            type : 'category',
+            boundaryGap : false,
+            data: data6.months
+          }],
+          yAxis : [{
+            type : 'value',
+            axisLabel : {
+              formatter: '$ '+'{value}'
+            }
+          }],
+          series : data6.seriesData
         },
         //总的月销售额
         {
@@ -321,12 +358,13 @@ layui.define(function(exports){
       layui.admin.on('hash(tab)', function(){
         layui.router().path.join('') || renderDataView(carouselIndex);
       });
-
-    // formSelect 监听==>选择 年份
-    layui.formSelects.on('currYears', function (id, vals, val, isAdd, isDisabled) {
+  
+      // formSelect 监听==>选择 年份
+      layui.formSelects.on('currYears', function (id, vals, val, isAdd, isDisabled) {
         currYears = val.value;
         getMonthlySales();
-    });
+      });
+   
 
     }
 
@@ -521,52 +559,52 @@ layui.define(function(exports){
 
 
   //最新订单
-  layui.use('table', function(){
-    var $ = layui.$
-    ,table = layui.table;
+  // layui.use('table', function(){
+  //   var $ = layui.$
+  //   ,table = layui.table;
     
-    //今日热搜
-    table.render({
-      elem: '#LAY-index-topSearch'
-      ,url: './json/console/top-search.js' //模拟接口
-      ,page: true
-      ,cols: [[
-        {type: 'numbers', fixed: 'left'}
-        ,{field: 'keywords', title: '关键词', minWidth: 300, templet: '<div><a href="https://www.baidu.com/s?wd={{ d.keywords }}" target="_blank" class="layui-table-link">{{ d.keywords }}</div>'}
-        ,{field: 'frequency', title: '搜索次数', minWidth: 120, sort: true}
-        ,{field: 'userNums', title: '用户数', sort: true}
-      ]]
-      ,skin: 'line'
-    });
+  //   //今日热搜
+  //   table.render({
+  //     elem: '#LAY-index-topSearch'
+  //     ,url: './json/console/top-search.js' //模拟接口
+  //     ,page: true
+  //     ,cols: [[
+  //       {type: 'numbers', fixed: 'left'}
+  //       ,{field: 'keywords', title: '关键词', minWidth: 300, templet: '<div><a href="https://www.baidu.com/s?wd={{ d.keywords }}" target="_blank" class="layui-table-link">{{ d.keywords }}</div>'}
+  //       ,{field: 'frequency', title: '搜索次数', minWidth: 120, sort: true}
+  //       ,{field: 'userNums', title: '用户数', sort: true}
+  //     ]]
+  //     ,skin: 'line'
+  //   });
     
-    //今日热贴
-    table.render({
-      elem: '#LAY-index-topCard'
-      ,url: './json/console/top-card.js' //模拟接口
-      ,page: true
-      ,cellMinWidth: 120
-      ,cols: [[
-        {type: 'numbers', fixed: 'left'}
-        ,{field: 'title', title: '标题', minWidth: 300, templet: '<div><a href="{{ d.href }}" target="_blank" class="layui-table-link">{{ d.title }}</div>'}
-        ,{field: 'username', title: '发帖者'}
-        ,{field: 'channel', title: '类别'}
-        ,{field: 'crt', title: '点击率', sort: true}
-      ]]
-      ,skin: 'line'
-    });
-    // 手机端横屏显示
-      // transform 强制横屏
-      // var conW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-      // var conH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-      //
-      // $("body").css({
-      //     "transform":"rotate(90deg) translate("+((conH-conW)/2)+"px,"+((conH-conW)/2)+"px)",
-      //     "width":conH+"px",
-      //     "height":conW+"px",
-      //     "transform-origin":"center center",
-      //     "-webkit-transform-origin": "center center"
-      // });
-  });
+  //   //今日热贴
+  //   table.render({
+  //     elem: '#LAY-index-topCard'
+  //     ,url: './json/console/top-card.js' //模拟接口
+  //     ,page: true
+  //     ,cellMinWidth: 120
+  //     ,cols: [[
+  //       {type: 'numbers', fixed: 'left'}
+  //       ,{field: 'title', title: '标题', minWidth: 300, templet: '<div><a href="{{ d.href }}" target="_blank" class="layui-table-link">{{ d.title }}</div>'}
+  //       ,{field: 'username', title: '发帖者'}
+  //       ,{field: 'channel', title: '类别'}
+  //       ,{field: 'crt', title: '点击率', sort: true}
+  //     ]]
+  //     ,skin: 'line'
+  //   });
+  //   // 手机端横屏显示
+  //     // transform 强制横屏
+  //     // var conW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  //     // var conH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  //     //
+  //     // $("body").css({
+  //     //     "transform":"rotate(90deg) translate("+((conH-conW)/2)+"px,"+((conH-conW)/2)+"px)",
+  //     //     "width":conH+"px",
+  //     //     "height":conW+"px",
+  //     //     "transform-origin":"center center",
+  //     //     "-webkit-transform-origin": "center center"
+  //     // });
+  // });
   
   exports('console', {})
 });
