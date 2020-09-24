@@ -33,7 +33,7 @@
                 </a>
             </td>
             <td>
-                <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.gerberPath }}&fileName={{ d.gerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>
+                <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.gerberPath }}&fileName={{ d.params.gerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>
             </td>
         </tr>
 
@@ -50,6 +50,7 @@
 
 <script>
     layui.data.done = function(d){
+        // console.log('ssssssssssssssssssssssssss->',d);
         layui.use(['form', 'jquery', 'admin', 'index', 'element', 'uploadCommon'], function(){
             var $ = layui.jquery
                 ,setter = layui.setter
