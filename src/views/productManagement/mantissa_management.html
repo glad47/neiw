@@ -1,57 +1,58 @@
 <title>尾数管理</title>
 <div class="layui-fluid">
-    <!--卡片－表格信息-->
-    <div class="layui-tab layui-tab-brief" lay-filter="tab-planToger">
-        <ul class="layui-tab-title">
-            <li class="layui-this">PCB订单</li>
-            <li>钢网订单</li>
-            <li>SMT订单</li>
-        </ul>
-        <div class="layui-tab-content">
-            <!--PCB订单-->
-            <div class="layui-tab-item layui-show">
-                <table class="layui-table" id="proMana_MantissaMana" lay-filter="proMana_MantissaMana"></table>
-                <script type="text/html" id="ord_sqpManaPlan_tb">
-                    <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-sm" lay-event="submit">通知出货</button>
-                        <button class="layui-btn layui-btn-sm" lay-event="innerLable">内标签</button>
-                        <button class="layui-btn layui-btn-sm" lay-event="outLable">外标签</button>
-                    </div>
-                </script>
-                <script type="text/html" id="scmManaPlan_tabbar">
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">包装要求</a>
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="search">查看明细</a>
-                </script>
-            </div>
-            <!--钢网订单-->
-            <div class="layui-tab-item">
-                <table class="layui-table" id="proMana_MantissaManaS" lay-filter="proMana_MantissaManaS"></table>
-                <script type="text/html" id="ord_sqpManaPlan_tbS">
-                    <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-sm" lay-event="submit">通知出货</button>
-                        <button class="layui-btn layui-btn-sm" lay-event="innerLable">内标签</button>
-                        <button class="layui-btn layui-btn-sm" lay-event="outLable">外标签</button>
-                    </div>
-                </script>
-                <script type="text/html" id="scmManaPlan_tabbarS">
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">包装要求</a>
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="search">查看明细</a>
-                </script>
-            </div>
-            <script type="text/html" id="proManaMantissaMana_tabbar">
-                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
-            </script>
-            <!--SMT订单-->
-            <div class="layui-tab-item">
-                <table class="layui-table"></table>
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="iqc-mantissa-management-formlist">
+            <div class="layui-form-item">
+              <div class="layui-inline">
+                <label class="layui-form-label">入库时间</label>
+                <div class="layui-input-block">
+                  <input type="text" name="storageDate" placeholder="请输入" autocomplete="off" class="layui-input" id="storageDate">
+                </div>
+              </div>
+              <div class="layui-inline">
+                <label class="layui-form-label">修改时间</label>
+                <div class="layui-input-block">
+                  <input type="text" name="gmtModified" placeholder="请输入" autocomplete="off" class="layui-input" id="gmtModified">
+                </div>
+              </div>
+              <div class="layui-inline">
+                <label class="layui-form-label">聚谷型号</label>
+                <div class="layui-input-block">
+                  <input type="text" name="productNo" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-inline">
+                <label class="layui-form-label">订单类型</label>
+                <div class="layui-input-block">
+                  <select name="orderType">
+                    <option value=""></option>
+                    <option value="PCB">PCB</option>
+                    <option value="PCBA">PCBA</option>
+                  </select>
+                </div>
+              </div>
+              <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-iqc-mantissa-search">
+                  <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+              </div>
             </div>
         </div>
-    </div>
-</div>
 
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-useradmin" data-type="add">添加</button>
+            </div>
+            <table id="LAY-iqc-mantissa-tab" lay-filter="LAY-iqc-mantissa-tab"></table>
+            <script type="text/html" id="table-iqc-mantissa">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+            </script>
+        </div>
+    </div>
+   
+</div>
+<!-- 原来js  proMana_mantissa_management  -->
 <script>
-    layui.use('proMana_mantissa_management', layui.factory('proMana_mantissa_management')).use(['proMana_mantissa_management', 'table', 'index','element','form'], function(){
-        var form = layui.form;
-        form.render();
+    layui.use('iqc_mantissa_management', layui.factory('iqc_mantissa_management')).use(['iqc_mantissa_management', 'table', 'index','element','form'], function(){
     });
 </script>

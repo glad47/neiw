@@ -199,7 +199,7 @@
                         if (resList && resList.length>0) {
                             var $html = "";
                             for (var i=0;i<resList.length;i++) {
-                                $html += "<option data-type='" + resList[i].id +"' value="+resList[i].id+">"+resList[i].companyName+"</option>";
+                                $html += "<option data-type='" + resList[i].id +"' value="+resList[i].companyName+">"+resList[i].companyName+"</option>";
                             }
                             // $("select[xm-select='manufacturers']").append($html);
                             $("select[xm-select='supplier']").append($html);
@@ -208,7 +208,7 @@
                         }
                         // formSelects.value('manufacturers', [supplierId]);
                         formSelects.value('supplier', [supplier ]);
-                        console.log("dom:"+dom);
+                        //console.log("dom:"+dom);
                         $(".xm-select-parent[fs_id='supplier']").children(".xm-form-select").addClass("xm-form-selected");
                         layer.msg("加载成功！");
                     }
