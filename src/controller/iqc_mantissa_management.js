@@ -62,7 +62,7 @@ layui.define(['admin','table','index','element','form','laydate'], function(expo
         if(obj.event === 'edit'){
             admin.popup({
                 title: '编辑尾数'
-                ,area: ['500px', '450px']
+                ,area: ['50%', '50%']
                 ,id: 'LAY-popup-iqc-mantissa-add'
                 ,btn:['保存', '取消']
                 ,yes: function(){
