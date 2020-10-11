@@ -65,7 +65,7 @@
     
     <div class="layui-card-body">
       <div style="padding-bottom: 10px;">
-        <!-- <button class="layui-btn layuiadmin-btn-useradmin" data-type="batchdel">删除</button> -->
+        <button class="layui-btn layui-btn-danger layuiadmin-btn-depot-manage" data-type="batchdel"><i class="layui-icon layui-icon-delete"></i></button>
         <button class="layui-btn layuiadmin-btn-depot-manage" data-type="add">添加</button>
       </div>
       
@@ -110,7 +110,7 @@ layui.use('iqc_depotMangement', layui.factory('iqc_depotMangement')).use(['admin
     //事件
     var active = {
         add: function(){
-        admin.popup({
+          admin.popup({
             title: '添加仓库'
             ,area: ['55%', '60%']
             ,id: 'LAY-popup-depot-add'
@@ -143,6 +143,31 @@ layui.use('iqc_depotMangement', layui.factory('iqc_depotMangement')).use(['admin
             });
             }
         });
+        },
+        batchdel: function(){
+            var checkStatus = table.checkStatus('LAY-iqc-depot-manage')
+            ,checkData = checkStatus.data; //得到选中的数据
+    
+            if(checkData.length === 0){
+              return layer.msg('请选择数据');
+            }
+            var ids = checkStatus.data.map(function(elem){return elem.id}).join(",");
+            layer.confirm('确定删除吗？', function(index) {
+              //执行 Ajax 后重载
+              admin.req({
+                type: 'post',
+                url: setter.baseUrl+"iqc/depot/delete",
+                data: {'ids': ids},
+                done: function(res){
+                    layer.msg('已删除');
+                    table.reload('LAY-iqc-depot-manage');
+                }
+                ,fail: function (res) {
+                    layer.msg('删除失败');
+                },
+              });
+              
+            });
         }
     };
   

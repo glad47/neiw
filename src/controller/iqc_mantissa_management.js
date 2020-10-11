@@ -134,6 +134,31 @@ layui.define(['admin','table','index','element','form','laydate'], function(expo
                     });
                 }
             });
+        },
+        batchdel: function(){
+            var checkStatus = table.checkStatus('LAY-iqc-mantissa-tab')
+            ,checkData = checkStatus.data; //得到选中的数据
+    
+            if(checkData.length === 0){
+              return layer.msg('请选择数据');
+            }
+            var ids = checkStatus.data.map(function(elem){return elem.id}).join(",");
+            layer.confirm('确定删除吗？', function(index) {
+              //执行 Ajax 后重载
+              admin.req({
+                type: 'post',
+                url: setter.baseUrl+"iqc/mantissa/delete",
+                data: {'ids': ids},
+                done: function(res){
+                    layer.msg('已删除');
+                    table.reload('LAY-iqc-mantissa-tab');
+                }
+                ,fail: function (res) {
+                    layer.msg('删除失败');
+                },
+              });
+              
+            });
         }
     };
 

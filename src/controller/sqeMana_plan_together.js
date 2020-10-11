@@ -131,10 +131,12 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
     form.on('select(currentProcess-sel)', function (data) {
         var $this_val = data.value;
         var $this_id = _public_val.rowData.id;
+        var oid = _public_val.rowData.onlineOid;
+        var isInternal = _public_val.rowData.isInternal;
         var url = 'scm/ordersupplier/update';
         admin.req({
            type: 'post',
-            data:{'currentProcess':$this_val,'id':$this_id},
+            data:{'currentProcess':$this_val,'id':$this_id,'businessTypeMark':1,'orderId':oid,'isInternal':isInternal},
             url: setter.baseUrl+url,
             success: function (res) {
                 layer.msg('当前工序修改成功!');
