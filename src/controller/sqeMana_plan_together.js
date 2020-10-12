@@ -136,7 +136,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
         var url = 'scm/ordersupplier/update';
         admin.req({
            type: 'post',
-            data:{'currentProcess':$this_val,'id':$this_id,'businessTypeMark':1,'orderId':oid,'isInternal':isInternal},
+            data:{'currentProcess':$this_val,'id':$this_id,'businessTypeMark':1,'onlineOid':oid,'isInternal':isInternal},
             url: setter.baseUrl+url,
             success: function (res) {
                 layer.msg('当前工序修改成功!');
