@@ -6,14 +6,16 @@
 
 
 layui.define(['admin','table','index','element','form','laydate','jsTools','optimizeSelectOption'], function (exports) {
-    table = layui.table
+    var table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
         ,setter = layui.setter
-        ,element = layui.element;
-    var $ = layui.jquery;
-    var jstools = layui.jsTools;
+        ,element = layui.element
+        ,$ = layui.jquery
+        ,laydate = layui.laydate;
+
+    // var jstools = layui.jsTools;
 
     var bunames = ['ada','alisa','tracy','tina','richard','donna','amber','zero'];
     var uname = layui.data('userInfo').uname;
@@ -30,7 +32,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
             // ,{field: 'supplierNickname', title: '供应商昵称', width: 117, sort: true}
             ,{field: 'currentProcess',title: '当前工序', width: 160,templet: '#currentProcess', sort: true}
             ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt', sort: true}
-            ,{field: 'gmtModified',title: '更新时间', width: 177, sort: true}
+            ,{field: 'gmtModified',title: '更新时间', width: 177, sort: true, }
             ,{field: 'currPcsNumber', title: '此次数量(PCS)', width: 134, sort: true}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
             ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134, sort: true}
@@ -70,7 +72,9 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
             ,{field: 'areaSq', title: '面积', width: 117, sort: true} 
             ,{field: 'supplierNickname', title: '供应商简称', width: 117, sort: true}
             ,{field: 'currentProcess',title: '当前工序', width: 160,templet: '#currentProcess', sort: true}
-            ,{field: 'deliveryTime',title: '交期', width: 110, templet: '#sqeManaDt', sort: true}
+            ,{field: 'buildTime',title: '客户交期', width: 110, templet: '#sqeBuildTimeC', sort: true}
+            ,{field: 'deliveryTime',title: '生产交期', width: 110, templet: "<div>{{layui.util.toDateString(d.deliveryTime, 'yyyy-MM-dd')}}</div>", sort: true}
+            ,{field: 'secondDeliveryTime',title: '二次交期', width: 110, templet: "<div>{{layui.util.toDateString(d.secondDeliveryTime, 'yyyy-MM-dd')}}</div>", sort: true}
             ,{field: 'gmtModified',title: '更新时间', width: 177, sort: true}
             ,{field: 'currPcsNumber', title: '此次数量(PCS)', width: 134, sort: true}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
@@ -176,12 +180,35 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                     $(this).parents('tr').css('background-color','rgba(121, 228, 119, 0.43)');
                     $(this).parents('td').css({'border-right':'none !important','border-bottom':'none !important'});
                 });
+                //根据当前时间判断生产交期的颜色
+                var nowDate = Date.parse(new Date())/1000; //现在的时间
+                var that = this.elem.next();
+                for(var i in res.data){
+                    var data = res.data[i];
+                    if(data.deliveryTime != null && data.deliveryTime != ''){
+                        //交期
+                        var oldDate = Date.parse(new Date(data.deliveryTime.substring(0,10)))/1000;
+                        var difValue = ((nowDate - oldDate) / (1000 * 60 * 60 * 24));
+                        var tr = that.find(".layui-table-box tbody tr[data-index='" + i + "']");
+                        if(difValue > 3){
+                            // tr.css("background-color", "#009688");
+                            tr.find(".laytable-cell-1-0-8").css("background-color", "#009688");
+                        }else if(difValue <= 3 && difValue > 1){
+                            // tr.css("background-color", "#FFB800"); 
+                            tr.find(".laytable-cell-1-0-8").css("background-color", "#FFB800");
+                        }else {
+                            // tr.css("background-color", "#FF5722");
+                            tr.find(".laytable-cell-1-0-8").css("background-color", "#FF5722");
+                        }
+                    }
+                }
             }
         });
     }
     table.on('toolbar(sqeManaPlan_tabPcb)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
+        console.log(data);
         var supplierOrderIds = null;
         if (data.length == 0) {
             layer.msg('请选择一条数据！');
@@ -244,6 +271,52 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                         });
                     }
                 });
+            } else if (obj.event === 'twoDelivery') {
+                let twoDate = null;
+                layer.open({
+                    title: '选择日期',
+                    type: 1,
+                    icon: 3,
+                    skin: 'layui-layer-molv',
+                    area: ['300px', '200px'],
+                    content: 
+                            '<div class="layui-inline" style="padding-top: 20px;">\n' +
+                            '      <label class="layui-form-label" >二次交期:</label>\n' +
+                            '      <div class="layui-input-inline">\n' +
+                            '        <input type="text" class="layui-input" name="test1" id="test1" placeholder="yyyy-MM-dd">\n' +
+                            '      </div>\n' +
+                            '</div>',
+                    btn:['确定'],
+                    success:function(layero, index) {
+                      laydate.render({
+                         elem:"#test1",
+                         min: data[0].deliveryTime,
+                         done: function(value,date,endDate){
+                            // console.log(value);
+                            twoDate = value;
+                         }
+                      }) ;
+                    },
+                    yes: function(index){
+                        if(twoDate == null){
+                            layer.msg('请选择时间');
+                            return;
+                        }
+                        var postData = new Object();
+                        postData.id = data[0].id;
+                        postData.secondDeliveryTime = twoDate;
+                        admin.req({
+                            type: 'post',
+                            data: postData,
+                            url: setter.baseUrl+'sqe/pcborder/quotationTogether/update',
+                            success: function (result) {
+                                layer.alert("提交成功！");
+                                table.reload('sqeManaPlan_tabPcb');
+                                layer.close(index);
+                            }
+                        }); 
+                    }
+                })
             }
         }
     });
@@ -358,6 +431,24 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                     $(this).parents('tr').css('background-color','rgba(121, 228, 119, 0.43)');
                     $(this).parents('td').css({'border-right':'none !important','border-bottom':'none !important'});
                 });
+                //根据当前时间判断生产交期的颜色
+                var nowDate = Date.parse(new Date())/1000; //现在的时间
+                for(var i in res.data){
+                    var data = res.data[i];
+                    if(data.deliveryTime != null && data.deliveryTime != ''){
+                        //交期
+                        var oldDate = Date.parse(new Date(data.deliveryTime.substring(0,10)))/1000;
+                        var difValue = ((nowDate - oldDate) / (1000 * 60 * 60 * 24));
+                        var tr = that.find(".layui-table-box tbody tr[data-index='" + i + "']");
+                        if(difValue > 3){
+                            tr.css("background-color", "#009688");
+                        }else if(difValue <= 3 && difValue > 1){
+                            tr.css("background-color", "#FFB800"); 
+                        }else {
+                            tr.css("background-color", "#FF5722");
+                        }
+                    }
+                }
             }
         });
     }

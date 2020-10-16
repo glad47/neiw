@@ -44,6 +44,7 @@
                             <div class="layui-btn-container">
                                 <button class="layui-btn layui-btn-sm" lay-event="submit" style="display: none;">通知出货</button>
                                 <button class="layui-btn layui-btn-sm" lay-event="submitX">直接出货</button>
+                                <button class="layui-btn layui-btn-sm" lay-event="twoDelivery">二次交期</button>
                             </div>
                         </script>
                         <script type="text/html" id="scmManaPlan_tabbar">
@@ -65,7 +66,18 @@
                         </script>
                         <script type="text/html" id="sqeManaDt">
                             {{# if(d.deliveryTime != null && d.deliveryTime != '') { }}
-                                {{ d.deliveryTime.substring(0, 10) }}
+                                {{# var ttt = d.deliveryTime.substring(0,10) }}
+                                {{# var nowDate = Date.parse(new Date())/1000,oldDate = Date.parse(new Date(ttt))/1000; }}
+                                {{# var time = nowDate - oldDate; }}
+                                {{# if(time > 259200){  }}
+                                <span style="background-color: #2F4056;">{{ ttt }}</span>
+                                {{# } else if(time > 86400 && time < 259200){ }}
+                                <span style="color: #FFB800;">{{ ttt }}</span>
+                                {{# } else if(time < 86400){ }}
+                                <span style="color: #FF5722;">{{ ttt }}</span>
+                                {{# } else{ }}
+                                <span class="layui-bg-cyan">{{ ttt }}</span>
+                                {{# } }}
                             {{# } else { }}
                                 交期未定
                             {{# } }}
