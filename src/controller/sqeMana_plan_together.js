@@ -73,8 +73,8 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
             ,{field: 'supplierNickname', title: '供应商简称', width: 117, sort: true}
             ,{field: 'currentProcess',title: '当前工序', width: 160,templet: '#currentProcess', sort: true}
             ,{field: 'buildTime',title: '客户交期', width: 110, templet: '#sqeBuildTimeC', sort: true}
-            ,{field: 'deliveryTime',title: '生产交期', width: 110, templet: "<div>{{layui.util.toDateString(d.deliveryTime, 'yyyy-MM-dd')}}</div>", sort: true}
-            ,{field: 'secondDeliveryTime',title: '二次交期', width: 110, templet: "<div>{{layui.util.toDateString(d.secondDeliveryTime, 'yyyy-MM-dd')}}</div>", sort: true}
+            ,{field: 'deliveryTime',title: '生产交期', width: 110, templet: "<div>{{ d.deliveryTime != null ? layui.util.toDateString(d.deliveryTime, 'yyyy-MM-dd') : ''}}</div>", sort: true}
+            ,{field: 'secondDeliveryTime',title: '二次交期', width: 110, templet: "<div>{{ d.secondDeliveryTime != null ? layui.util.toDateString(d.secondDeliveryTime, 'yyyy-MM-dd') : ''}}</div>", sort: true}
             ,{field: 'gmtModified',title: '更新时间', width: 177, sort: true}
             ,{field: 'currPcsNumber', title: '此次数量(PCS)', width: 134, sort: true}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
