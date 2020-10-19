@@ -186,7 +186,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                             _t_layedit();
                             var i = layedit.build('blogcontent',{
                                 uploadImage:{
-                                    url:setter.imUrl+'file/fileupload'
+                                    url:setter.imUrl+'imgfile/fileupload'
                                 }
                             });
                             var ss = layedit.build('blogInternalChain',{
