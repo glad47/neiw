@@ -211,7 +211,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit', 'f
                         });
                         var edit = layedit.build('blogcontent',{
                             uploadImage:{
-                                url:setter.imUrl+'file/fileupload'
+                                url:setter.imUrl+'imgfile/fileupload'
                             }
                         });
                         // 监听提交
