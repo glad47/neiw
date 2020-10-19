@@ -106,7 +106,15 @@
                 {{# if (d.params.isInternal == '1'){ }}
                     <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.productionGerberPath }}&fileName={{ d.params.productionGerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>
                 {{# } else if(d.params.isInternal == '2'){ }}
-                    <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.productionGerberPath }}&fileName={{ d.params.productionGerberName }}">下载</a>
+                    {{# if(d.params.gerberPath.indexOf("pcbonline.com:9090") != -1) { }}
+                    <a href="{{d.params.gerberPath}}">下载</a> 
+                    {{# } else { }}
+                        {{# var arr = d.params.gerberPath.slice(6,-1) }}
+                        {{# d.params.gerberPath = arr }}
+                        <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.gerberPath }}&fileName={{ d.params.gerberName }}">
+                            下载
+                        </a>
+                    {{# } }}
                 {{# } }}
             </td>
         </tr>

@@ -187,17 +187,17 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                     var data = res.data[i];
                     if(data.deliveryTime != null && data.deliveryTime != ''){
                         //交期
-                        var oldDate = Date.parse(new Date(data.deliveryTime.substring(0,10)))/1000;
-                        var difValue = ((nowDate - oldDate) / (1000 * 60 * 60 * 24));
+                        var t1 = Date.parse(new Date(data.deliveryTime.substring(0,10)))/1000;
+                        var t2 = Date.parse(new Date())/1000;
+                        var days = (Math.floor((t1-t2)/86400)+1);
                         var tr = that.find(".layui-table-box tbody tr[data-index='" + i + "']");
-                        if(difValue > 3){
-                            // tr.css("background-color", "#009688");
-                            tr.find(".laytable-cell-1-0-8").css("background-color", "#009688");
-                        }else if(difValue <= 3 && difValue > 1){
-                            // tr.css("background-color", "#FFB800"); 
-                            tr.find(".laytable-cell-1-0-8").css("background-color", "#FFB800");
+                        if(days < 0){
+                            tr.find(".laytable-cell-1-0-8").css("background-color", "red");
+                        }else if(days == 0){
+                            tr.find(".laytable-cell-1-0-8").css("background-color","#009688")
+                        }else if(days >= 3){
+                            tr.find(".laytable-cell-1-0-8").css("background-color", "#FFB800"); 
                         }else {
-                            // tr.css("background-color", "#FF5722");
                             tr.find(".laytable-cell-1-0-8").css("background-color", "#FF5722");
                         }
                     }
@@ -437,15 +437,18 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                     var data = res.data[i];
                     if(data.deliveryTime != null && data.deliveryTime != ''){
                         //交期
-                        var oldDate = Date.parse(new Date(data.deliveryTime.substring(0,10)))/1000;
-                        var difValue = ((nowDate - oldDate) / (1000 * 60 * 60 * 24));
+                        var t1 = Date.parse(new Date(data.deliveryTime.substring(0,10)))/1000;
+                        var t2 = Date.parse(new Date())/1000;
+                        var days = (Math.floor((t1-t2)/86400)+1);
                         var tr = that.find(".layui-table-box tbody tr[data-index='" + i + "']");
-                        if(difValue > 3){
-                            tr.css("background-color", "#009688");
-                        }else if(difValue <= 3 && difValue > 1){
-                            tr.css("background-color", "#FFB800"); 
+                        if(days < 0){
+                            tr.find(".laytable-cell-1-0-8").css("background-color", "red");
+                        }else if(days == 0){
+                            tr.find(".laytable-cell-1-0-8").css("background-color","#009688")
+                        }else if(days >= 3){
+                            tr.find(".laytable-cell-1-0-8").css("background-color", "#FFB800"); 
                         }else {
-                            tr.css("background-color", "#FF5722");
+                            tr.find(".laytable-cell-1-0-8").css("background-color", "#FF5722");
                         }
                     }
                 }
