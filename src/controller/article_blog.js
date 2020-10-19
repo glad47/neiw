@@ -101,12 +101,12 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                         _t_layedit();
                         var edit = layedit.build('blogcontent',{
                             uploadImage:{
-                                url:setter.imUrl+'file/fileupload'
+                                url:setter.imUrl+'imgfile/fileupload'
                             }
                         });
                         var internalChain = layedit.build('blogInternalChain',{
                             uploadImage:{
-                                url:setter.imUrl+'file/fileupload'
+                                url:setter.imUrl+'imgfile/fileupload'
                             }
                         });
                         // layedit.setContent(edit,data.articleContent);
