@@ -198,7 +198,7 @@
                 <!-- 定义公司提成变量 -->
                 {{# if(totalGs >= 1000000){  }} 
                 {{# var totalGsTc = (totalAll * 0.02).toFixed(2) }}   
-                {{# else { }}
+                {{# } else { }}
                 {{# var totalGsTc = (totalAll * 0.015).toFixed(2) }}
                 {{# } }}    
             </td>
