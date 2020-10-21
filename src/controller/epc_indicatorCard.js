@@ -175,48 +175,53 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                         $(".laytable-cell-1-0-22").css({"width":"130px"});
                     })
                 }
+                var pcbdata = res.data.filter(i => i.status == 5);
+                // console.log(pcbdata);
+                //统计数量
+                $("#count_pcb").text(pcbdata.length);
+                
                 // pcb_gerberUpload();
-                tabPCBObj = res.data;
-                layui.each($(".pcbReupload"),function(index, elem){
-                    var _this_id = elem.id.substring(11);
-                    var fileName;
-                    var uploadInsts = upload.render({
-                        elem: elem //绑定元素
-                        ,url: setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token
-                        ,field: 'file'
-                        ,data: {id:_this_id}
-                        ,accept: 'file'
-                        ,exts: 'zip|rar|7z'
-                        ,before: function (obj) {
-                            obj.preview(function (index, file, result) {
-                                fileName = file.name;   //文件名
-                            });
-                        }
-                        ,done: function(res){
-                            var url = res.url;
-                            var r = /\[(.+?)\]/g;
-                            var filePatha = url.match(r);
-                            var filePath = filePatha[0].replace(/\[|]/g,'');    //去除前后两端的中括号
-                            var saveObj = {
-                                data: {'quoteGerberName':fileName,'quoteGerberPath':filePath,'id':_this_id,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
-                                url: setter.baseUrl+'epc/pcborder/update',      // 将字段保存到数据库的接口
-                                retab: 'epc_Tabpcb_ok_payment_order'            // 表格对象，请求成功后重新渲染表格
-                            };
-                            admin.req({
-                               type: 'post',
-                               url: saveObj.url,
-                                data: saveObj.data,
-                                success: function () {
-                                    layer.alert("更改正式资料成功");
-                                    table.reload('epc_Tabpcb_ok_payment_order');
-                                }
-                            });
-                        }
-                        ,error: function(){
-                            layer.msg("文件上传失败！");
-                        }
-                    });
-                });
+                // tabPCBObj = res.data;
+                // layui.each($(".pcbReupload"),function(index, elem){
+                //     var _this_id = elem.id.substring(11);
+                //     var fileName;
+                //     var uploadInsts = upload.render({
+                //         elem: elem //绑定元素
+                //         ,url: setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token
+                //         ,field: 'file'
+                //         ,data: {id:_this_id}
+                //         ,accept: 'file'
+                //         ,exts: 'zip|rar|7z'
+                //         ,before: function (obj) {
+                //             obj.preview(function (index, file, result) {
+                //                 fileName = file.name;   //文件名
+                //             });
+                //         }
+                //         ,done: function(res){
+                //             var url = res.url;
+                //             var r = /\[(.+?)\]/g;
+                //             var filePatha = url.match(r);
+                //             var filePath = filePatha[0].replace(/\[|]/g,'');    //去除前后两端的中括号
+                //             var saveObj = {
+                //                 data: {'quoteGerberName':fileName,'quoteGerberPath':filePath,'id':_this_id,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
+                //                 url: setter.baseUrl+'epc/pcborder/update',      // 将字段保存到数据库的接口
+                //                 retab: 'epc_Tabpcb_ok_payment_order'            // 表格对象，请求成功后重新渲染表格
+                //             };
+                //             admin.req({
+                //                type: 'post',
+                //                url: saveObj.url,
+                //                 data: saveObj.data,
+                //                 success: function () {
+                //                     layer.alert("更改正式资料成功");
+                //                     table.reload('epc_Tabpcb_ok_payment_order');
+                //                 }
+                //             });
+                //         }
+                //         ,error: function(){
+                //             layer.msg("文件上传失败！");
+                //         }
+                //     });
+                // });
             }
         });
     }
@@ -536,48 +541,50 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                         $(".laytable-cell-1-0-22").css({"width":"130px"});
                     })
                 }
-                stencil_gerberUpload();
-                tabStencilObj = res.data;
-                layui.each($(".stencilReupload"),function(index, elem){
-                    var _this_id = elem.id.substring(15);
-                    var fileName;
-                    var uploadInsts = upload.render({
-                        elem: elem //绑定元素
-                        ,url: setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token
-                        ,field: 'file'
-                        ,data: {id:_this_id}
-                        ,accept: 'file'
-                        ,exts: 'zip|rar|7z'
-                        ,before: function (obj) {
-                            obj.preview(function (index, file, result) {
-                                fileName = file.name;   //文件名
-                            });
-                        }
-                        ,done: function(res){
-                            var url = res.url;
-                            var r = /\[(.+?)\]/g;
-                            var filePatha = url.match(r);
-                            var filePath = filePatha[0].replace(/\[|]/g,'');    //去除前后两端的中括号
-                            var saveObj = {
-                                data: {'quoteGerberName':fileName,'quoteGerberPath':filePath,'id':_this_id,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
-                                url: setter.baseUrl+'epc/stencilorder/update',      // 将字段保存到数据库的接口
-                                retab: 'epc_Tabstencil_ok_payment_order'            // 表格对象，请求成功后重新渲染表格
-                            };
-                            admin.req({
-                                type: 'post',
-                                url: saveObj.url,
-                                data: saveObj.data,
-                                success: function () {
-                                    layer.alert("更改正式资料成功");
-                                    table.reload(saveObj.retab);
-                                }
-                            });
-                        }
-                        ,error: function(){
-                            layer.msg("文件上传失败！");
-                        }
-                    });
-                });
+                var stedata = res.data.filter(i => i.status == 5);
+                $("#count_smt").text(stedata.length); 
+                // stencil_gerberUpload();
+                // tabStencilObj = res.data;
+                // layui.each($(".stencilReupload"),function(index, elem){
+                //     var _this_id = elem.id.substring(15);
+                //     var fileName;
+                //     var uploadInsts = upload.render({
+                //         elem: elem //绑定元素
+                //         ,url: setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token
+                //         ,field: 'file'
+                //         ,data: {id:_this_id}
+                //         ,accept: 'file'
+                //         ,exts: 'zip|rar|7z'
+                //         ,before: function (obj) {
+                //             obj.preview(function (index, file, result) {
+                //                 fileName = file.name;   //文件名
+                //             });
+                //         }
+                //         ,done: function(res){
+                //             var url = res.url;
+                //             var r = /\[(.+?)\]/g;
+                //             var filePatha = url.match(r);
+                //             var filePath = filePatha[0].replace(/\[|]/g,'');    //去除前后两端的中括号
+                //             var saveObj = {
+                //                 data: {'quoteGerberName':fileName,'quoteGerberPath':filePath,'id':_this_id,'access_token': layui.data('layuiAdmin').access_token},   // ajax请求传输的data数据  quoteGerberPath字段请求上传文件接口成功回调后再赋值
+                //                 url: setter.baseUrl+'epc/stencilorder/update',      // 将字段保存到数据库的接口
+                //                 retab: 'epc_Tabstencil_ok_payment_order'            // 表格对象，请求成功后重新渲染表格
+                //             };
+                //             admin.req({
+                //                 type: 'post',
+                //                 url: saveObj.url,
+                //                 data: saveObj.data,
+                //                 success: function () {
+                //                     layer.alert("更改正式资料成功");
+                //                     table.reload(saveObj.retab);
+                //                 }
+                //             });
+                //         }
+                //         ,error: function(){
+                //             layer.msg("文件上传失败！");
+                //         }
+                //     });
+                // });
             }
             });
     }

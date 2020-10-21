@@ -196,7 +196,11 @@
                 {{# var totalGs =  totalAll.toFixed(0) }}
                 提成：￥{{(totalAll * 0.01).toFixed(0)}}
                 <!-- 定义公司提成变量 -->
-                {{# var totalGsTc = (totalAll * 0.01).toFixed(2) }}   
+                {{# if(totalGs >= 1000000){  }} 
+                {{# var totalGsTc = (totalAll * 0.02).toFixed(2) }}   
+                {{# else { }}
+                {{# var totalGsTc = (totalAll * 0.015).toFixed(2) }}
+                {{# } }}    
             </td>
         </tr>
         </tbody>

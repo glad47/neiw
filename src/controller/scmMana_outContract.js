@@ -197,9 +197,9 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                         form.on('submit(LAY-scm-quote-detail-form-submit)',function(data){
                             let field = data.field;
                             if(field.optionMark === "pricing"){//计算小计和总计
-                                let pcbTotal = parseFloat(field.engineeringFee) + parseFloat(field.overworkFee) + parseFloat(field.testCostFee) + parseFloat(field.toolingFee) + parseFloat(field.otherFee) + parseFloat(field.unitPrice * field.quantityPcs);
-                                let pcbaTotal = parseFloat(field.pcbaToolFee) + parseFloat(field.pcbaTestFee) + parseFloat(field.pcbaPartsFee) + parseFloat(field.pcbaProcessFee);
-                                let allTotal = pcbTotal + pcbaTotal
+                                let pcbTotal = (parseFloat(field.engineeringFee) + parseFloat(field.overworkFee) + parseFloat(field.testCostFee) + parseFloat(field.toolingFee) + parseFloat(field.otherFee) + parseFloat(field.unitPrice * field.quantityPcs)).toFixed(2);
+                                let pcbaTotal = (parseFloat(field.pcbaToolFee) + parseFloat(field.pcbaTestFee) + parseFloat(field.pcbaPartsFee) + parseFloat(field.pcbaProcessFee)).toFixed(2);
+                                let allTotal = (parseFloat(pcbTotal) + parseFloat(pcbaTotal)).toFixed(2);
                                 form.val("scm-quote-detail-form-list",{allFee:allTotal,totalFee:pcbTotal,pcbaSubtotalFee:pcbaTotal});
                                 return false;
                             }else if(field.optionMark === "save"){//保存操作
