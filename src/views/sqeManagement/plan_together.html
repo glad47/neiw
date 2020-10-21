@@ -68,15 +68,15 @@
                             {{# if(d.deliveryTime != null && d.deliveryTime != '') { }}
                                 {{# var ttt = d.deliveryTime.substring(0,10) }}
                                 {{# var nowDate = Date.parse(new Date())/1000,oldDate = Date.parse(new Date(ttt))/1000; }}
-                                {{# var time = nowDate - oldDate; }}
-                                {{# if(time > 259200){  }}
-                                <span style="background-color: #2F4056;">{{ ttt }}</span>
-                                {{# } else if(time > 86400 && time < 259200){ }}
-                                <span style="color: #FFB800;">{{ ttt }}</span>
-                                {{# } else if(time < 86400){ }}
-                                <span style="color: #FF5722;">{{ ttt }}</span>
+                                {{# var days = (Math.floor((oldDate-nowDate)/86400)+1); }}
+                                {{# if(days < 0){  }}
+                                <div style="background-color: red; color: #fff">{{ ttt }}</div>
+                                {{# } else if(days == 0){ }}
+                                <div class="layui-bg-red">{{ ttt }}</div>
+                                {{# } else if(days <= 3 && days > 0){ }}
+                                <div class="layui-bg-orange">{{ ttt }}</div>
                                 {{# } else{ }}
-                                <span class="layui-bg-cyan">{{ ttt }}</span>
+                                <div class="layui-bg-green">{{ ttt }}</div>
                                 {{# } }}
                             {{# } else { }}
                                 交期未定
@@ -109,10 +109,21 @@
                             {{# } }}
                         </script>
                         <script type="text/html" id="sqeManaDtS">
-                            {{# if(d.deliveryTime != null && d.deliveryTime != '') {}}
-                            {{ d.deliveryTime.substring(0, 10) }}
+                            {{# if(d.deliveryTime != null && d.deliveryTime != '') { }}
+                                {{# var ttt = d.deliveryTime.substring(0,10) }}
+                                {{# var nowDate = Date.parse(new Date())/1000,oldDate = Date.parse(new Date(ttt))/1000; }}
+                                {{# var days = (Math.floor((oldDate-nowDate)/86400)+1); }}
+                                {{# if(days < 0){  }}
+                                <div style="background-color: red; color: #fff">{{ ttt }}</div>
+                                {{# } else if(days == 0){ }}
+                                <div class="layui-bg-red">{{ ttt }}</div>
+                                {{# } else if(days <= 3 && days > 0){ }}
+                                <div class="layui-bg-orange">{{ ttt }}</div>
+                                {{# } else{ }}
+                                <div class="layui-bg-green">{{ ttt }}</div>
+                                {{# } }}
                             {{# } else { }}
-                            交期未定
+                                交期未定
                             {{# } }}
                         </script>
                     </div>
