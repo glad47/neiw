@@ -269,15 +269,37 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 layer.close(index);
             })
         } else if (obj.event === 'info_pact') {
-            layer.open({
-                type: 2
-                ,title: 'Look Invoice'
-                ,content: setter.imUrl+'order/invoicePage?orderId='+ data.orderId
-                ,maxmin: true
-                ,area: ['75%', '70%']
-                ,btn: ['确定', '取消']
-                ,yes: function(index, layero){}
-            });
+            //先发送请求得到数据，在页面里显示
+            admin.req({
+                type:'get',
+                async: false,
+                url: setter.baseUrl + 'market/order/info/'+data.orderId,
+                success: function(res){
+                   admin.popup({
+                    title: '网上订单合同'
+                    ,area: ['100%', '100%']
+                    ,btn: ['打印','关闭']
+                    ,yes:function(index, layero){
+                        document.body.innerHTML=document.getElementById('order-interior-print').innerHTML;
+                        window.print();
+                        window.location.reload();
+                    }
+                    ,success: function (layero, index) {
+                        view(this.id).render('marketManagement/iframeWindow/order_invoice', res.data).done(function () {
+                        });
+                    }
+                }); 
+                }
+            })
+            // layer.open({
+            //     type: 2
+            //     ,title: 'Look Invoice'
+            //     ,content: setter.imUrl+'order/invoicePage?orderId='+ data.orderId
+            //     ,maxmin: true
+            //     ,area: ['75%', '70%']
+            //     ,btn: ['确定', '取消']
+            //     ,yes: function(index, layero){}
+            // });
         } else if (obj.event == 'showProcess') {
             var postData  = {'orderId':data.id,'isInternal':2,'orderType':1};
             admin.req({
