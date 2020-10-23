@@ -7,13 +7,13 @@
             @media print {
                 @page {
                     size: A4 portrait;
-                    margin: 3.7cm 2.6cm 3.5cm;
+                    /* margin: 3.7cm 2.6cm 3.5cm; */
                 }
-                .contract-module-one{padding:50px 0 10px 0;}
+                /* .contract-module-one{padding:50px 0 10px 0;}
                 .contract-top-logo .lef-logo img{margin-top: 20px;width: 300px !important;}
-                .contract-top-logo .rig-text{margin-top: -30px;font-size: 36px;}
+                .contract-top-logo .rig-text{margin-top: -30px;font-size: 36px;} */
                 /* .contract-module-three-tab{margin-top: 0px;word-break: break-all;} */
-                .contract-module-four{display: flex;}
+                /* .contract-module-four{display: flex;}
                 .contract-module-four-lef{float: left;width: 50%;}
                 .contract-module-four-rig{float: right;width: 50%;margin-right: 50px;margin-top: -20px;}
                 .contract-module-five{position: fixed;bottom: 16px;}
@@ -21,7 +21,7 @@
                 .contract-module-five .bot-info-rig{float: right;width: 55%;}
                 .contract-module-five li,.contract-module-four li{line-height: 20px;}
                 .contract-bank-ul li span{float: left;width: 30%;}
-                .contract-bank-ul li a{float: right;width: 70%;}
+                .contract-bank-ul li a{float: right;width: 70%;} */
                 /*打印字体大小*/
                 .contract-module-one,.contract-module-four,.contract-module-five,.contrackB-tabBot{font-size: 18px;}
                 /*表格明细*/
@@ -29,22 +29,6 @@
                 .paymentTeam{width: 180px;}
                 /*.bot-info-rig li{line-height: 21px;}*/
                 /*.bot-info-lef li{line-height: 25px;}*/
-                /*表格*/
-                .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 20px;word-break: break-all;}
-                .contract-module-three-tab tbody tr td {border: solid #086aafdb 1px;text-align: center;}
-                .contract-module-three-tab thead tr th{background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
-                .contract-module-three-tab thead tr th:nth-of-type(1){width: 12%;text-align: center;line-height: 20px;padding-left: 10px;min-width: 130px;overflow: hidden;}
-                .contract-module-three-tab thead tr th:nth-of-type(2){width: 20%;min-width: 190px;}
-                .contract-module-three-tab thead tr th:nth-of-type(3){width: 7%;min-width: 59px;}
-                .contract-module-three-tab thead tr th:nth-of-type(4){width: 9%;min-width: 59px;}
-                .contract-module-three-tab thead tr th:nth-of-type(5){width: 9%;min-width: 90px;}
-                .contract-module-three-tab thead tr th:nth-of-type(6){width: 8%;min-width: 80px;}
-                .contract-module-three-tab thead tr th:nth-of-type(7){width: 8%;min-width: 90px;}
-                .contract-module-three-tab thead tr th:nth-of-type(8){width: 9%;min-width: 70px;}
-                .contract-module-three-tab thead tr th:nth-of-type(9){width: 8%;min-width: 92px;}
-                .contract-module-three-tab thead tr th:nth-of-type(10){width: 6%;min-width: 92px;}
-                .contract-module-three-tab thead tr th:nth-of-type(11){width: 8%;min-width: 100px;}
-                .contract-module-three-tab thead tr th{border-right: solid #086aafdb 1px;text-align: center;border-bottom: solid #086aafdb 1px;}
             }
             .contract-top-logo .rig-text{text-align: right;}
             .contract-top-logo .rig-text a{font-size: 20px;font-weight: 600;}
@@ -374,7 +358,7 @@
                             <li>7. Please note that our quotation does not include bank transfer/paypal commission fees, and the amount you see is the one that reaches our account, which will be indicated in the invoice.</li>
                         </ul>
                        </td>
-                       <td style="width: 50%" class="contract-module-four-rig layui-col-md8">
+                       <td style="width: 50%" class="contract-module-four-rig">
                             <div class="top-info">
                                 <a id="contractCusName">{{ d.params.orderEntity != null ? d.params.orderEntity.businessName : '' }}</a>
                                 <a id="contractBotDate">{{ d.params.orderEntity != null ? layui.util.toDateString(d.params.orderEntity.paymentTime, 'yyyy/MM/dd') : '' }}</a>
