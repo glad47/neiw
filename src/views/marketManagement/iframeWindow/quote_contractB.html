@@ -5,7 +5,11 @@
             /*.remark>a:first-of-type {margin-left: 80px;}*/
             .contract-top-logo .lef-logo img{width: 190px;}
             @media print {
-                .contract-module-one{padding:50px 0 10px 0;}
+                @page {
+                    size: A4 portrait;
+                    /* margin: 3.7cm 2.6cm 3.5cm; */
+                }
+                /* .contract-module-one{padding:50px 0 10px 0;}
                 .contract-top-logo .lef-logo img{margin-top: 20px;width: 300px !important;}
                 .contract-top-logo .rig-text{margin-top: -30px;font-size: 36px;}
                 .contract-module-three-tab{margin-top: 0px;word-break: break-all;}
@@ -17,12 +21,12 @@
                 .contract-module-five .bot-info-rig{float: right;width: 55%;}
                 .contract-module-five li,.contract-module-four li{line-height: 20px;}
                 .contract-bank-ul li span{float: left;width: 30%;}
-                .contract-bank-ul li a{float: right;width: 70%;}
+                .contract-bank-ul li a{float: right;width: 70%;} */
                 /*打印字体大小*/
-                .contract-module-one,.contract-module-four,.contract-module-five,.contrackB-tabBot{font-size: 18px;}
+                /* .contract-module-one,.contract-module-four,.contract-module-five,.contrackB-tabBot{font-size: 18px;} */
                 /*表格明细*/
-                .contract-module-three{max-width: 500px !important;}
-                .paymentTeam{width: 180px;}
+                /* .contract-module-three{max-width: 500px !important;} */
+                /* .paymentTeam{width: 180px;} */
                 /*.bot-info-rig li{line-height: 21px;}*/
                 /*.bot-info-lef li{line-height: 25px;}*/
             }
@@ -37,17 +41,19 @@
             .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 20px;word-break: break-all;}
             .contract-module-three-tab tbody tr td {border: solid #086aafdb 1px;text-align: center;}
             .contract-module-three-tab thead tr th{background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
-            .contract-module-three-tab thead tr th:nth-of-type(1){width: 12%;text-align: left;line-height: 20px;padding-left: 10px;min-width: 130px;overflow: hidden;}
-            .contract-module-three-tab thead tr th:nth-of-type(2){width: 25%;min-width: 190px;}
-            .contract-module-three-tab thead tr th:nth-of-type(3){width: 7%;min-width: 59px;}
-            .contract-module-three-tab thead tr th:nth-of-type(4){width: 9%;min-width: 59px;}
+            .contract-module-three-tab thead tr th:nth-of-type(1){width: 12%;text-align: left;line-height: 20px;padding-left: 10px;min-width: 100px;overflow: hidden;}
+            .contract-module-three-tab thead tr th:nth-of-type(2){width: 25%;min-width: 160px;}
+            .contract-module-three-tab thead tr th:nth-of-type(3){width: 7%;min-width: 50px;}
+            .contract-module-three-tab thead tr th:nth-of-type(4){width: 9%;min-width: 50px;}
             .contract-module-three-tab thead tr th:nth-of-type(5){width: 9%;min-width: 90px;}
-            .contract-module-three-tab thead tr th:nth-of-type(6){width: 8%;min-width: 80px;}
-            .contract-module-three-tab thead tr th:nth-of-type(7){width: 8%;min-width: 90px;}
-            .contract-module-three-tab thead tr th:nth-of-type(8){width: 9%;min-width: 70px;}
-            .contract-module-three-tab thead tr th:nth-of-type(9){width: 8%;min-width: 92px;}
-            .contract-module-three-tab thead tr th:nth-of-type(10){width: 6%;min-width: 92px;}
-            .contract-module-three-tab thead tr th:nth-of-type(11){width: 8%;min-width: 100px;}
+            .contract-module-three-tab thead tr th:nth-of-type(6){width: 8%;min-width: 60px;}
+            .contract-module-three-tab thead tr th:nth-of-type(7){width: 8%;min-width: 80px;}
+            .contract-module-three-tab thead tr th:nth-of-type(8){width: 8%;min-width: 80px;}
+            .contract-module-three-tab thead tr th:nth-of-type(9){width: 9%;min-width: 70px;}
+            .contract-module-three-tab thead tr th:nth-of-type(10){width: 8%;min-width: 72px;}
+            .contract-module-three-tab thead tr th:nth-of-type(11){width: 8%;min-width: 72px;}
+            .contract-module-three-tab thead tr th:nth-of-type(12){width: 8%;min-width: 76px;}
+            .contract-module-three-tab thead tr th:nth-of-type(13){width: 8%;min-width: 90px;}
             .contract-module-three-tab thead tr th{border-right: solid #086aafdb 1px;text-align: center;border-bottom: solid #086aafdb 1px;}
             .tr-orderInfo,.tr-orderTotal{border-bottom: solid 1px #086aafdb;}
             /*.tr-orderTotal*/
@@ -190,11 +196,13 @@
                         <th>Price</th>
                         <th>Engineering<br>Fee</th>
                         <!--<th>Board Fee</th>-->
-                        <th>Test Fee</th>
+                        <th>Flying</th>
+                        <th>Fixture</th>
                         <th>Tooling Fee</th>
                         <th>Overwork Fee</th>
                         <th>Freight Fee</th>
-                        <th>PCBA Fee</th>
+                        <th>Components Fee</th>
+                        <th>Assembly Fee</th>
                         <th>Amount(
                             {{# if(d.params.data[0].exchangeId == '1') { }}
                                 USD
@@ -286,7 +294,8 @@
                         <!--板费-->
                         <!--<td>{{ item.boardFee }}</td>-->
                         <!--测试费-->
-                        <td>{{ item.testCostFee || '0' }}</td>
+                        <td>{{ item.testPointType === 1 ? item.testCostFee : '0' }}</td>
+                        <td>{{ item.testPointType === 1 ? '0' : item.testCostFee }}</td>
                         <!--工具费-->
                         <td>{{ item.toolingFee || '0' }}</td>
                         <!--加急费-->
@@ -302,7 +311,14 @@
                         </td>
                         <!--PCBA 费用小计-->
                         <td>
-                            {{ item.pcbaSubtotalFee || '0'}}
+                            {{# if(item.pcbaProcessFee != null && item.pcbaToolFee != null && item.pcbaTestFee != null) { }}
+                            {{ (item.pcbaProcessFee + item.pcbaToolFee + item.pcbaTestFee)}}
+                            {{# } else { }}
+                            0
+                            {{# } }}
+                        </td>
+                        <td>
+                            {{ item.pcbaPartsFee || '0'}}
                         </td>
                         <!--总价格-->
                         <td>{{ item.totalFee }}</td>
@@ -310,7 +326,7 @@
                     </tr>
                     {{#  }); }}
                     <tr>
-                        <td colspan="9"></td>
+                        <td colspan="11"></td>
                         <td>Total:</td>
                         <td>
                             {{Total.toFixed(3)}}
@@ -397,44 +413,56 @@
 
         <!--模块五 contract-module-five，底部信息-->
         <div class="contract-module-five layui-col-md12">
+            <table style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li><strong>PCBONLINE</strong></li>
+                                <li>Ansheng Road, No.4 Building,Shajing,</li>
+                                <li>Bao'an District,Shenzhen, China.</li>
+                                <li>Tel: +86 0755-27398155&nbsp;&nbsp;<a>Fax: +86 0755-27398355</a></li>
+                                <li>info@pcbonline.com&nbsp;&nbsp;<a>www.pcbonline.com</a></li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul class="contract-bank-ul">
+                                <li>
+                                    <span class="layui-col-md4">Bank Name:</span>
+                                    <a class="layui-col-md8">The Hongkong and Shanghai Banking Corporation Limited (or HSBC HK)</a>
+                                </li>
+                                <li>
+                                    <span class="layui-col-md4">Bank Code Name:</span>
+                                    <a class="layui-col-md8">024</a>
+                                </li>
+                                <li>
+                                    <span class="layui-col-md4">Company Name:</span>
+                                    <a class="layui-col-md8">PCB ONLINE LIMITED</a>
+                                </li>
+                                <li>
+                                    <span class="layui-col-md4">Bank Address:</span>
+                                    <a class="layui-col-md8">No. 1 Queen's Road Central Hong Kong</a>
+                                </li>
+                                <li>
+                                    <span class="layui-col-md4">Account No:</span>
+                                    <a class="layui-col-md8">741-201131-838</a>
+                                </li>
+                                <li>
+                                    <span class="layui-col-md4">Swift Address:</span>
+                                    <a class="layui-col-md8">HSBCHKHHHKH</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <!-- bot-info-lef bot-info-rig -->
-            <div class="layui-col-md6 module-1">
-                <ul>
-                    <li><strong>PCBONLINE</strong></li>
-                    <li>Ansheng Road, No.4 Building,Shajing,</li>
-                    <li>Bao'an District,Shenzhen, China.</li>
-                    <li>Tel: +86 0755-27398155&nbsp;&nbsp;<a>Fax: +86 0755-27398355</a></li>
-                    <li>info@pcbonline.com&nbsp;&nbsp;<a>www.pcbonline.com</a></li>
-                </ul>
+            <!-- <div class="layui-col-md6 module-1">
+               
             </div>
             <div class="layui-col-md6 module-2">
-                <ul class="contract-bank-ul">
-                    <li>
-                        <span class="layui-col-md4">Bank Name:</span>
-                        <a class="layui-col-md8">The Hongkong and Shanghai Banking Corporation Limited (or HSBC HK)</a>
-                    </li>
-                    <li>
-                        <span class="layui-col-md4">Bank Code Name:</span>
-                        <a class="layui-col-md8">024</a>
-                    </li>
-                    <li>
-                        <span class="layui-col-md4">Company Name:</span>
-                        <a class="layui-col-md8">PCB ONLINE LIMITED</a>
-                    </li>
-                    <li>
-                        <span class="layui-col-md4">Bank Address:</span>
-                        <a class="layui-col-md8">No. 1 Queen's Road Central Hong Kong</a>
-                    </li>
-                    <li>
-                        <span class="layui-col-md4">Account No:</span>
-                        <a class="layui-col-md8">741-201131-838</a>
-                    </li>
-                    <li>
-                        <span class="layui-col-md4">Swift Address:</span>
-                        <a class="layui-col-md8">HSBCHKHHHKH</a>
-                    </li>
-                </ul>
-            </div>
+                
+            </div> -->
         </div>
     </div>
 </div>

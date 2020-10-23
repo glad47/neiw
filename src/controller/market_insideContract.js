@@ -6,7 +6,7 @@
 
 
 layui.define(['admin','table','index','element','form','laydate', 'jsTools', 'requestInterface','uploadCommon', 'filePathProcess'], function (exports) {
-    table = layui.table
+    var table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
@@ -433,7 +433,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                                     } else if (contractType == "2"){
                                         printId = "quoteContract_AllB";
                                     }
-                                    layer.alert(printId);
+                                    // layer.alert(printId);
                                     document.body.innerHTML=document.getElementById(printId).innerHTML;
                                     window.print();
                                     window.location.reload();
