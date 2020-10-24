@@ -311,12 +311,12 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
                                 ,maxmin: true
                                 ,yes:function(index, layero){
                                     var printId;
-                                    if (contractType == "1"){
+                                    if (contractType === 1){
                                         printId = "quoteContract_AllB";
                                     } else if (contractType == "2"){
                                         printId = "quoteContract_AllA";
                                     }
-                                    layer.alert(printId);
+                                    // layer.alert(printId);
                                     document.body.innerHTML=document.getElementById(printId).innerHTML;
                                     window.print();
                                     window.location.reload();
