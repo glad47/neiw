@@ -11,7 +11,7 @@
         </ul>
         <ul style="width: 50%;float: right;">
             <script type="text/html" template>
-                <li>客户交期：{{ d.params.secondDeliveryTime != null ? layui.util.toDateString(d.params.secondDeliveryTime, 'yyyy-MM-dd') : '' }}
+                <li>客户交期：{{ d.params.deliveryTime != null ? layui.util.toDateString(d.params.deliveryTime, 'yyyy-MM-dd') : '' }}
                 </li>
                 <li>PCB数量：{{ d.params.quantityPcs || '' }}</li>
                 <li>零件数量：{{ d.params.pcbaPartsCount || ''}}</li>
