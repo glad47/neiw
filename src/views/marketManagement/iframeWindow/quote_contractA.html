@@ -344,17 +344,13 @@
                         <tr>
                             <td>Components Fee</td>
                             {{# layui.each(d.params.data, function(index, item){  }}
-                            {{# if(item.pcbaProcessFee != null && item.pcbaToolFee != null && item.pcbaTestFee != null) { }}
-                            <td value="{{ item.id }}">{{ (item.pcbaProcessFee + item.pcbaToolFee + item.pcbaTestFee) }}</td> 
-                            {{# }else { }}
-                            <td value="{{ item.id }}">0</td>
-                            {{# } }}
-                            {{#  }); }}
+                            <td value="{{ item.id }}">{{ item.pcbaPartsFee || '0' }}</td>
+                            {{#  }); }} 
                         </tr>
                         <tr>
                             <td>Assembly Fee</td>
                             {{# layui.each(d.params.data, function(index, item){  }}
-                            <td value="{{ item.id }}">{{ item.pcbaPartsFee || '0' }}</td>
+                            <td value="{{ item.id }}">{{ ((item.pcbaProcessFee != null ? item.pcbaProcessFee : 0)+(item.pcbaToolFee != null ? item.pcbaToolFee : 0)+(item.pcbaTestFee != null ? item.pcbaTestFee : 0)+(item.pcbaPackingFee != null ? item.pcbaPackingFee : 0)) }}</td> 
                             {{#  }); }} 
                         </tr>
                         <tr>

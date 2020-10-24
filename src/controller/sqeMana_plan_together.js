@@ -68,9 +68,9 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
             {type:'checkbox', fixed: 'left'}
             ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left', sort: true}
             ,{field: 'productionType',title: '生产类别', width: 110, sort: true}     // 1 ＝ 待报价
-            ,{field: 'supplierNo', title: '供应商编号', width: 117, sort: true}
+            ,{field: 'supplierNo', title: '供应商', width: 117, sort: true, templet: '<div>{{ d.supplierNo || "" }} {{ d.supplierNickname || "" }}</div>'}
             ,{field: 'areaSq', title: '面积', width: 117, sort: true} 
-            ,{field: 'supplierNickname', title: '供应商简称', width: 117, sort: true}
+            // ,{field: 'supplierNickname', title: '供应商简称', width: 117, sort: true}
             ,{field: 'currentProcess',title: '当前工序', width: 160,templet: '#currentProcess', sort: true}
             ,{field: 'buildTime',title: '客户交期', width: 110, templet: '#sqeBuildTimeC', sort: true}
             ,{field: 'deliveryTime',title: '生产交期', width: 110, templet: "#sqeManaDt", sort: true}
@@ -86,7 +86,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
             ,{field: 'gmtCreate',title: '签约日期', minWidth: 172, sort: true}
             // ,{field: 'gerberName',title: '文件名'}
             // ,{field: 'pcbType',title: 'PCB类型'}
-            ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',minWidth: 160}
+            ,{fixed: 'right', title:'操作', toolbar: '#scmManaPlan_tabbar',minWidth: 120}
         ]];
         scols = [[
             {type:'checkbox',fixed: 'left'}
@@ -385,7 +385,20 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                 }
             });
         } else if (obj.event == 'search'){
-            layer.msg('查看订单协同');
+            // layer.msg('查看订单协同');
+            admin.popup({
+                title: "查看［"+data.productNo+"］信息"
+                ,shadeClose: true
+                ,shade: false
+                ,maxmin: true
+                ,area: ['598px', '375px']
+                // ,id: 'sys_menu'
+                ,success: function(layero, index){
+                    view(this.id).render('/sqeManagement/iframeWindow/pcbinfo_search_sqe', data).done(function(){
+                        //监听提交
+                    });
+                }
+            });
         }
     });
 

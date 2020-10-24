@@ -595,15 +595,15 @@
         <h3 style="text-align: center;padding-bottom: 15px;">PCBA</h3>
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
-                <label class="layui-form-label">加工费：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="pcbaProcessFee" value="{{ d.params.pcbaProcessFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
-                </div>
-            </div>
-            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">零件费：</label>
                 <div class="layui-input-block">
                     <input type="text" name="pcbaPartsFee" value="{{ d.params.pcbaPartsFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">贴片费：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="pcbaProcessFee" value="{{ d.params.pcbaProcessFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
@@ -616,9 +616,30 @@
 
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">零件数量：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="pcbaPartsCount" value="{{ d.params.pcbaPartsCount || 0 }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">贴片数量：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="pcbaPasterCount" value="{{ d.params.pcbaPasterCount || 0 }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">钢网费：</label>
                 <div class="layui-input-block">
                     <input type="text" name="pcbaToolFee" value="{{ d.params.pcbaToolFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
+                </div>
+            </div>
+        </div>
+        
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">包装费：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="pcbaPackingFee" value="{{ d.params.pcbaPackingFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
@@ -627,7 +648,12 @@
                     <input type="text" name="pcbaSubtotalFee" value="{{ d.params.pcbaSubtotalFee || 0 }}" autocomplete="off" class="layui-input pcbaSubtotal">
                 </div>
             </div>
-
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <!-- <label class="layui-form-label">明细备注到报价单:</label> -->
+                <div class="layui-input-block" style="margin-left: 42px;">
+                    <input type="checkbox" name="noteToQuote" value="1" {{ d.params.noteToQuote == '1' ? 'checked' : '' }} class="layui-input" title="明细备注到报价单" lay-skin="primary" lay-filter="is-mark-quote-note">
+                </div>
+            </div>
         </div>
 
         {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:paylog:update") != -1){ }}
@@ -721,12 +747,38 @@
                 q_params.totalPrice = parseFloat(q_params.shippingPrice+q_params.pcbCost+pcbaSubtotal).toFixed(2);
                 $(".orderPCBupdateForm input[name='totalFee']").val(q_params.totalPrice);      // 总价
             }
+            
+            var oldRm = $("input[name='remark']").val();   
+            //监听点选项
+            form.on('checkbox(is-mark-quote-note)',function(data){
+                let pcbaQuoteInfo = '';
+                // console.log(data.elem.checked); //是否被选中，true或者false
+                // console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+               
+                if(data.elem.checked){
+                    $.each($(".pcbaInput"), function () {
+                        var this_val = $(this).val();
+                        var nana = $(this).attr("name");
+                        if(this_val != 0){
+                            pcbaQuoteInfo += (nana+'='+this_val+' ');
+                        }
+                    }); 
+                    // console.log(pcbaQuoteInfo);
+                    var rm = pcbaQuoteInfo.trim().replace(/\s+/g,',').replace('pcbaPartsFee','Components').replace('pcbaProcessFee','Assembly').replace('pcbaTestFee','Test').replace('pcbaToolFee','Stencil').replace('pcbaPackingFee','Packing');
+                    // console.log(rm);
+                    $("input[name='remark']").val(oldRm+rm); 
+                }else{
+                    pcbaQuoteInfo = '';
+                    $("input[name='remark']").val(oldRm); 
+                }
+            })
 
             // 遍历获取PCBA所有表单的值
             function getPCBA() {
                 var _val = 0;
                 $.each($(".pcbaInput"), function () {
                     var this_val = $(this).val();
+                    var nana = $(this).attr("name");
                     if (isNaN(this_val) || this_val == "") {
                         this_val = 0;
                     }

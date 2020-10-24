@@ -311,14 +311,10 @@
                         </td>
                         <!--PCBA 费用小计-->
                         <td>
-                            {{# if(item.pcbaProcessFee != null && item.pcbaToolFee != null && item.pcbaTestFee != null) { }}
-                            {{ (item.pcbaProcessFee + item.pcbaToolFee + item.pcbaTestFee)}}
-                            {{# } else { }}
-                            0
-                            {{# } }}
+                            {{ item.pcbaPartsFee || '0'}}
                         </td>
                         <td>
-                            {{ item.pcbaPartsFee || '0'}}
+                            {{ ((item.pcbaProcessFee != null ? item.pcbaProcessFee : 0)+(item.pcbaToolFee != null ? item.pcbaToolFee : 0)+(item.pcbaTestFee != null ? item.pcbaTestFee : 0)+(item.pcbaPackingFee != null ? item.pcbaPackingFee : 0)) }}
                         </td>
                         <!--总价格-->
                         <td>{{ item.totalFee }}</td>
