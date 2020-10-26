@@ -347,22 +347,28 @@
                 <div class="contract-module-remark">
                     <div class="remark" style="width: 85%;">
                         <span>Remark:</span>
-                        {{# var remarkMap = new Map()}}
+                        <!-- {{# var remarkMap = new Map()}} -->
                         {{# var $ = layui.jquery }}
                         {{# layui.each(d.params.data, function(index, item){  }}
                             {{# if(!$.trim(item.remark) == false){ }}
-                                {{# if(remarkMap.has(item.pcbName)){ }}
+                                <a style="color: #1E9FFF;">{{ item.pcbName }}:</a>
+                                <a>{{ item.remark }}</a> 
+                                <!-- {{# if(remarkMap.has(item.pcbName)){ }}
                                     {{# remarkMap.set(item.pcbName, remarkMap.get(item.pcbName) + ',' + item.remark)}}
-                                {{# } else{ }}
-                                    {{# remarkMap.set(item.pcbName, item.remark)}}
-                                {{# } }}
+                                {{# } else{ }} -->
+                                    <!-- {{# remarkMap.set(item.pcbName, item.remark)}} -->
+                                <!-- {{# } }} -->
                             {{# }}}
+                            {{# if(item.noteToQuote != null && item.noteToQuote == 1){ }}
+                                <a style="color: orangered;">PCBA:<a>
+                                <a>{{ (item.pcbaPartsFee != null && item.pcbaPartsFee != 0 ? 'Components='+item.pcbaPartsFee+' ' : '')+(item.pcbaProcessFee != null && item.pcbaProcessFee != 0 ? 'Assembly='+item.pcbaProcessFee : '')+(item.pcbaTestFee != null && item.pcbaTestFee != 0 ? 'Test='+item.pcbaTestFee : '')+(item.pcbaToolFee != null && item.pcbaToolFee != 0 ? 'Stencil='+item.pcbaToolFee : '')+(item.pcbaPackingFee != null && item.pcbaPackingFee != 0 ? 'Packing='+item.pcbaPackingFee : '') }}</a>
+                            {{# } }}
                         {{#  }); }}
 
-                        {{# for(var z of remarkMap) { }}
+                        <!-- {{# for(var z of remarkMap) { }}
                             <a style="color: #1E9FFF;">{{z[0]}}:</a>
                             <a>{{z[1]}}</a>
-                        {{# } }}
+                        {{# } }} -->
                     </div>
                 </div>
             </script>
