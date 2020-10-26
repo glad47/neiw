@@ -39,19 +39,19 @@
             .contract-top-logo .rig-text a{font-size: 20px;font-weight: 600;}
             .contract-module-one{margin-top: 20px;}
             /*模块二*/
-            .contract-module-two{padding-bottom: 20px;height: 180px;}
+            .contract-module-two{padding-bottom: 10px;height: 85px;}
             .moudle-description{background-color: #086aaf59;text-align: center;margin-top: 20px;margin-bottom: 20px;padding: 4px;}
             .moudle-description span{color: black;font-weight: 500;}
             /*表格*/
-            .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 20px;}
-            .contract-module-three-tab thead th{background-color: #e0edfa;line-height: 40px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
+            .contract-module-three-tab{width: 100%;border: solid #086aafdb 1px;border-top: solid 3px #146bad;margin-top: 10px;}
+            .contract-module-three-tab thead th{background-color: #e0edfa;line-height: 20px;border-bottom: solid 1px #086aafdb;border-right: solid 1px #086aafdb;}
             .contract-module-three-tab tbody tr td:first-of-type{width: 15%;text-align: left;line-height: 20px;padding-left: 10px;min-width: 145px;}
             .contract-module-three-tab tbody tr td{border-right: solid #086aafdb 1px;text-align: center;}
             .tr-orderInfo,.tr-orderTotal{border-bottom: solid 1px #086aafdb;}
             /*.tr-orderTotal*/
             /*模块四 tips*/
-            .contract-module-four{margin-top: 40px;}
-            .contract-module-four-rig{padding: 40px 0;}
+            .contract-module-four{margin-top: 10px;}
+            .contract-module-four-rig{padding: 20px 0;}
             .contract-module-four-rig .top-info{width: 100%;border-bottom: solid 2px black;}
             .contract-module-four-rig a{font-weight: 500;font-size: 15px;}
             .contract-module-four-rig a:last-of-type{float: right;}
@@ -185,7 +185,19 @@
         <!--模块二 contract-module-two，DESCRIPTION-->
         <div class="contract-module-two">
             <script type="text/html" template>
-                <div class="module-two-lef layui-col-md6">
+                <!-- <table style="width: 100%;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> -->
+                <div class="module-two-lef layui-col-md6" style='float:left'>
                     <ul class="module-two-lef-title">
                         <li>
                             <span>P/O</span>
@@ -227,9 +239,9 @@
                                 {{# } }}
                             </a>
                         </li>
-                    </ul>
+                    </ul> 
                 </div>
-                <div class="module-two-rig layui-col-md6">
+                <div class="module-two-rig layui-col-md6" style='float:right'>
                     <ul class="module-two-rig-title">
                         <li>
                             <span>F/N</span>
@@ -503,34 +515,35 @@
                                 <li><strong>PCBONLINE</strong></li>
                                 <li>Ansheng Road, No.4 Building,Shajing,</li>
                                 <li>Bao'an District,Shenzhen, China.</li>
-                                <li>Tel: +86 0755-27398155&nbsp;&nbsp;<a>Fax: +86 0755-27398355</a></li>
+                                <li>Tel: +86 0755-27398155</li>
+                                <li>Fax: +86 0755-27398355</li>
                                 <li>info@pcbonline.com&nbsp;&nbsp;<a>www.pcbonline.com</a></li>
                             </ul>
                         </td>
                         <td>
                             <ul class="contract-bank-ul">
-                                <li>
+                                <li style="display: flex;">
                                     <span class="layui-col-md4">Bank Name:</span>
                                     <a class="layui-col-md8">The Hongkong and Shanghai Banking Corporation Limited (or HSBC HK)</a>
                                 </li>
-                                <li>
-                                    <span class="layui-col-md4">Bank Code Name:</span>
+                                <li style="display: flex;">
+                                    <span class="layui-col-md4">Bank Code Name:&nbsp;&nbsp;</span>
                                     <a class="layui-col-md8">024</a>
                                 </li>
-                                <li>
-                                    <span class="layui-col-md4">Company Name:</span>
+                                <li style="display: flex;">
+                                    <span class="layui-col-md4">Company Name:&nbsp;&nbsp;</span>
                                     <a class="layui-col-md8">PCB ONLINE LIMITED</a>
                                 </li>
-                                <li>
-                                    <span class="layui-col-md4">Bank Address:</span>
+                                <li style="display: flex;">
+                                    <span class="layui-col-md4">Bank Address:&nbsp;&nbsp;</span>
                                     <a class="layui-col-md8">No. 1 Queen's Road Central Hong Kong</a>
                                 </li>
-                                <li>
-                                    <span class="layui-col-md4">Account No:</span>
+                                <li style="display: flex;">
+                                    <span class="layui-col-md4">Account No:&nbsp;&nbsp;</span>
                                     <a class="layui-col-md8">741-201131-838</a>
                                 </li>
-                                <li>
-                                    <span class="layui-col-md4">Swift Address:</span>
+                                <li style="display: flex;">
+                                    <span class="layui-col-md4">Swift Address:&nbsp;&nbsp;</span>
                                     <a class="layui-col-md8">HSBCHKHHHKH</a>
                                 </li>
                             </ul>
