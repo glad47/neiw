@@ -749,8 +749,7 @@
             }
             
             // var oldRm = $("input[name='remark']").val();   
-            //监听点选项
-            // form.on('checkbox(is-mark-quote-note)',function(data){
+           
             //     let pcbaQuoteInfo = '';
             //     // console.log(data.elem.checked); //是否被选中，true或者false
             //     // console.log(data.value); //复选框value值，也可以通过data.elem.value得到
@@ -801,9 +800,21 @@
                 }
             }
 
+            //监听点选项
+            var nqc;
+            form.on('checkbox(is-mark-quote-note)',function(data){
+                if (data.elem.checked) { 
+                    layer.msg('明细备注到报价单');
+                    nqc = 1;
+                }else{
+                    layer.msg('明细不备注到报价单');
+                    nqc = 2;
+                }
+            });
             // 表单提交
             form.on('submit(LAY-pcborder-update-submit)',function (data) {
                 var field = data.field;
+                field.noteToQuote = nqc;
                 if (field.remark == "" || field.remark == "null") {
                     field.remark = "";
                 }
