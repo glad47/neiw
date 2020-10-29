@@ -32,7 +32,20 @@
                 {{# if (d.params.isInternal == '1'){ }}
                     <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.gerberPath }}&fileName={{ d.params.gerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>
                 {{# } else if(d.params.isInternal == '2'){ }}
-                    <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.gerberPath }}&fileName={{ d.params.gerberName }}">下载</a>
+                    {{# if(d.params.gerberPath != null){ }}
+                    {{# if(d.params.gerberPath.indexOf("pcbonline.com:9090") != -1) { }}
+                    <a href="{{layui.setter.baseUrl1}}api/file/download/zip?filename={{ d.gerberPath.split('pcbonline/')[1].trim() }}">下载</a> 
+                    {{# } else if ( d.params.gerberPath.indexOf("erp-server") != -1) { }}
+                    <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.gerberPath }}&fileName={{ d.params.gerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>                        
+                    {{# } else { }}
+                        {{# var arr = d.params.gerberPath.slice(6,-1) }}
+                        {{# d.params.gerberPath = arr }}
+                        <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.gerberPath }}&fileName={{ d.params.gerberName }}">
+                            下载
+                        </a>
+                    {{# } }}
+                    {{# } }}
+                    <!-- <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.gerberPath }}&fileName={{ d.params.gerberName }}">下载</a> -->
                 {{# } }}
             </td>
         </tr>
@@ -68,7 +81,19 @@
                 {{# if (d.params.isInternal == '1'){ }}
                     <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.quoteGerberPath }}&fileName={{ d.params.quoteGerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>
                 {{# } else if(d.params.isInternal == '2'){ }}
-                    <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.quoteGerberPath }}&fileName={{ d.params.quoteGerberName }}">下载</a>
+                    {{# if(d.params.quoteGerberPath != null){ }}
+                    {{# if( d.params.quoteGerberPath.indexOf("pcbonline.com:9090") != -1) { }}
+                    <a href="{{layui.setter.baseUrl1}}api/file/download/zip?filename={{ d.quoteGerberPath.split('pcbonline/')[1].trim() }}">下载</a> 
+                    {{# } else if ( d.params.quoteGerberPath.indexOf("erp-server") != -1) { }}
+                    <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.quoteGerberPath }}&fileName={{ d.params.quoteGerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>                        
+                    {{# } else { }}
+                        {{# var arr = d.params.quoteGerberPath.slice(6,-1) }}
+                        <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{arr}}&fileName={{ d.params.quoteGerberName }}">
+                            下载
+                        </a>
+                    {{# } }}
+                    {{# } }}
+                    <!-- <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.quoteGerberPath }}&fileName={{ d.params.quoteGerberName }}">下载</a> -->
                 {{# } }}
             </td>
         </tr>
@@ -106,14 +131,18 @@
                 {{# if (d.params.isInternal == '1'){ }}
                     <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.productionGerberPath }}&fileName={{ d.params.productionGerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>
                 {{# } else if(d.params.isInternal == '2'){ }}
-                    {{# if(d.params.gerberPath.indexOf("pcbonline.com:9090") != -1) { }}
-                    <a href="{{d.params.gerberPath}}">下载</a> 
+                    {{# if(d.params.productionGerberPath != null){ }}
+                    {{# if(d.params.productionGerberPath.indexOf("pcbonline.com:9090") != -1) { }}
+                    <a href="{{layui.setter.baseUrl1}}api/file/download/zip?filename={{ d.productionGerberPath.split('pcbonline/')[1].trim() }}">下载</a> 
+                    {{# } else if ( d.params.productionGerberPath.indexOf("erp-server") != -1) { }}
+                    <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.productionGerberPath }}&fileName={{ d.params.productionGerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>                        
                     {{# } else { }}
-                        {{# var arr = d.params.gerberPath.slice(6,-1) }}
-                        {{# d.params.gerberPath = arr }}
-                        <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{ d.params.gerberPath }}&fileName={{ d.params.gerberName }}">
+                        {{# var arr = d.params.productionGerberPath.slice(6,-1) }}
+                        <a href="{{layui.setter.baseUrl1}}quote/gerberFileDownload?filePathName={{arr}}&fileName={{ d.params.productionGerberName }}">
                             下载
                         </a>
+                    {{# } }}
+                    {{# }else{ }}
                     {{# } }}
                 {{# } }}
             </td>
@@ -144,7 +173,7 @@
             var $orderType = $("input[name='orderType']").val();        // 订单类型。    根据订单类型来发送到不同的接口
             var $isInternal = $("input[name='isInternal']").val();        // 是否是网上订单
             var $retab = $("input[name='retab']").val();     // 操作成功以后要刷新的表格id
-            var uploadUrl;  // 文件上传接口;
+            var uploadUrl = setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token;  // 内部订单上传文件;  // 文件上传接口;
             var saveUrl;
 
             if ($orderType == 'pcbOrder') {
@@ -152,11 +181,11 @@
             } else if($orderType == 'stencilOrder') {
                 saveUrl = setter.baseUrl+'epc/stencilorder/update';      // 将字段保存到数据库的接口
             }
-            if ($isInternal == '1') {
-                uploadUrl = setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token;  // 内部订单上传文件
-            } else {
-                uploadUrl = setter.baseUrl1 + 'quote/upload'   // 网上订单上传文件
-            }
+            // if ($isInternal == '1') {
+            //     uploadUrl = setter.baseUrl+'sys/oss/upload/geber?access_token='+layui.data('layuiAdmin').access_token;  // 内部订单上传文件
+            // } else {
+            //     uploadUrl = setter.baseUrl1 + 'quote/upload'   // 网上订单上传文件
+            // }
             pcb_omgerberUpload();   // 原始资料修改
             pcb_gerberUpload();     // 正式资料上传&修改
             pcb_productionUpload(); // 生产资料

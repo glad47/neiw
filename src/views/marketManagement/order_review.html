@@ -66,7 +66,7 @@
                         <script type="text/html" id="pcb-file">
                             {{# if(d.gerberPath != null) { }}
                                 {{# if(d.gerberPath.indexOf("pcbonline.com:9090") != -1) { }}
-                                <a href="{{d.gerberPath}}">
+                                <a href="{{layui.setter.baseUrl1}}api/file/download/zip?filename={{ d.gerberPath.split('pcbonline/')[1].trim() }}">
                                     <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" id="pcbfile-i" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
                                 </a> 
                                 {{# } else { }}
@@ -83,7 +83,7 @@
                         <script type="text/html" id="stencil-file">
                             {{# if(d.gerberPath != null){ }}
                             {{# if(d.gerberPath.indexOf("pcbonline.com:9090") != -1){ }}
-                            <a href="{{d.gerberPath}}">
+                            <a href="{{layui.setter.baseUrl1}}api/file/download/zip?filename={{ d.gerberPath.split('pcbonline/')[1].trim() }}">
                                 <i class="layui-icon layui-icon-file-b" style="font-size: 1.4em;" id="pcbfile-i" data-type="pcbgerber_download" lay-event="downpcb-gerber"></i>
                             </a> 
                             {{# }else{ }}
