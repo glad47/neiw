@@ -259,7 +259,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 $.ajax({
                     type: 'post',
                     data:{'userId':data.userId,'productNo':data.gerberName},
-                    url:setter.imUrl+'sendAuditResultEmail',
+                    url:setter.imUrl+'quote/sendAuditResultEmail',
                     success:function(){}
                 })
                 table.reload('or_Tabpcb');
@@ -436,7 +436,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 $.ajax({
                     type: 'post',
                     data:{'userId':data.userId,'productNo':data.gerberName},
-                    url:setter.imUrl+'sendAuditResultEmail',
+                    url:setter.imUrl+'quote/sendAuditResultEmail',
                     success:function(){}
                 })
                 layui.table.reload('stencil_orderTab');

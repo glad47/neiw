@@ -61,7 +61,7 @@
                 elem: '#pmPayMemo',
                 acceptMime: 'image/*',
                 accept: 'images',
-                url: setter.imUrl+'file/fileupload',
+                url: setter.imUrl+'imgfile/fileupload',
                 done: function (res) {
                     if(res.code == 0){
                         customerMemoScreenshots = res.data.src;
@@ -81,7 +81,7 @@
                 elem: '#pmPayToAccount',
                 acceptMime: 'image/*',
                 accept: 'images',
-                url: setter.imUrl+'file/fileupload',
+                url: setter.imUrl+'imgfile/fileupload',
                 done: function (res) {
                     if(res.code == 0){
                         bankPayScreenshotsImg = res.data.src;

@@ -16,7 +16,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
     })
     //监听参数类型切换
     form.on('select(f)',function(data){
-        $.get(setter.imUrl+"getAllParameter",{parameterTypeId:data.value},function(data){
+        $.get(setter.imUrl+"quoteConfig/getAllParameter",{parameterTypeId:data.value},function(data){
             $("select[name='g']").empty();
             $("select[name='h']").empty();
             $.each(data.data, function (i, d) {
@@ -29,7 +29,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
 
     //监听参数切换
     form.on('select(g)',function(data){
-        $.get(setter.imUrl+"getAllParameterValue",{parameterId:data.value},function(data){
+        $.get(setter.imUrl+"quoteConfig/getAllParameterValue",{parameterId:data.value},function(data){
             var _this = $("select[name='h']");
             _this.empty();
             $.each(data.data, function (i, d) {
@@ -44,7 +44,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
     function echoLinkageData(ptid,pnid,pvid){
         console.log(ptid + " "+ pnid + " "+pvid);
         $.ajaxSettings.async = false;
-        $.get(setter.imUrl+"getAllParameter",{parameterTypeId:ptid},function(data){
+        $.get(setter.imUrl+"quoteConfig/getAllParameter",{parameterTypeId:ptid},function(data){
             $("select[name='g']").empty();
             $("select[name='h']").empty();
             $.each(data.data, function (i, d) {
@@ -61,7 +61,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
         });
         // $.ajaxSettings.async = true;
         // $.ajaxSettings.async = false;
-        $.get(setter.imUrl+"getAllParameterValue",{parameterId:pnid},function(data){
+        $.get(setter.imUrl+"quoteConfig/getAllParameterValue",{parameterId:pnid},function(data){
             var _this = $("select[name='h']");
             _this.empty();
             $.each(data.data, function (i, d) {
@@ -82,7 +82,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
 
     table.render({
         elem: '#customer_quote_config_listTab'
-        ,url: setter.imUrl+'getAllQuoteConfigByConsumerAdjusten'
+        ,url: setter.imUrl+'quoteConfig/getAllQuoteConfigByConsumerAdjusten'
         ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,cols: [[
              {field:'consumerAdjustQuoteId', title: 'id', sort: true}
@@ -190,7 +190,7 @@ layui.define(['admin', 'table','element','form'], function(exports){
 
                             var field = data.field;
                             admin.req({
-                                url:setter.imUrl+"findQuoteConfig",
+                                url:setter.imUrl+"quoteConfig/findQuoteConfig",
                                 type:"POST",
                                 data:{
                                     areaSq: field.a

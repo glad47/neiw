@@ -145,7 +145,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                     type: 'post',
                     contentType: "application/json;charset=utf-8",
                     data: JSON.stringify(data),
-                    url: setter.imUrl+'sendShippingEmail',
+                    url: setter.imUrl+'quote/sendShippingEmail',
                     success: function () {}
                 })
 
@@ -300,7 +300,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                     type: 'post',
                     contentType: "application/json;charset=utf-8",
                     data: JSON.stringify(data),
-                    url: setter.imUrl+'sendShippingEmail',
+                    url: setter.imUrl+'quote/sendShippingEmail',
                     success: function () {
                     }
                 })

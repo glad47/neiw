@@ -3,7 +3,7 @@
 
 <div class="layui-fluid" id="LAY-info-quote-config">
   <div class="layui-card">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="sys-quote-config-form-list">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="sys-quote-config-form-list" id="sqcfl">
         <div class="layui-form-item">
           <div class="layui-inline">
             <label class="layui-form-label">ID</label>
@@ -14,7 +14,7 @@
           <div class="layui-inline">
             <label class="layui-form-label">平米</label>
             <div class="layui-input-inline">
-                <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllAreaParameter" lay-done="layui.data.done(d);" lay-type="post">
+                <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllAreaParameter" lay-done="layui.data.done(d);" lay-type="post">
                     <select name="areaSq" lay-verify="required"  lay-filter="a">
                         {{# 
                             layui.each(d.data, function(index, item){   
@@ -32,7 +32,7 @@
           <div class="layui-inline">
             <label class="layui-form-label">基材</label>
             <div class="layui-input-inline">
-                <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllPcbType" lay-done="layui.data.done(d);" lay-type="post">
+                <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllPcbType" lay-done="layui.data.done(d);" lay-type="post">
                     <select name="pcbtype" lay-verify="required"  lay-filter="b">
                         {{# 
                             layui.each(d.data, function(index, item){   
@@ -50,7 +50,7 @@
           <div class="layui-inline">
             <label class="layui-form-label">层数</label>
             <div class="layui-input-inline">
-                <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllLayerNumber" lay-done="layui.data.done(d);" lay-type="post">
+                <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllLayerNumber" lay-done="layui.data.done(d);" lay-type="post">
                     <select name="layerNum" lay-verify="required" lay-filter="c">
                         {{# 
                             layui.each(d.data, function(index, item){   
@@ -68,7 +68,7 @@
           <div class="layui-inline">
             <label class="layui-form-label">加急类型</label>
             <div class="layui-input-inline">
-                <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllUrgentType" lay-done="layui.data.done(d);" lay-type="post">
+                <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllUrgentType" lay-done="layui.data.done(d);" lay-type="post">
                     <select name="urgentType" lay-verify="required" lay-filter="d">
                         {{# 
                             layui.each(d.data, function(index, item){   
@@ -86,7 +86,7 @@
           <div class="layui-inline">
             <label class="layui-form-label">参数类型</label>
             <div class="layui-input-inline">
-                <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllParameterType" lay-done="layui.data.done(d);" lay-type="post">
+                <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllParameterType" lay-done="layui.data.done(d);" lay-type="post">
                     <select name="parameterType" lay-verify="required" lay-filter="e">
                         {{# 
                             layui.each(d.data, function(index, item){   
@@ -120,7 +120,7 @@
           <div class="layui-inline">
             <label class="layui-form-label">加价类别</label>
             <div class="layui-input-inline">
-                <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllPremiumType" lay-done="layui.data.done(d);" lay-type="post">
+                <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllPremiumType" lay-done="layui.data.done(d);" lay-type="post">
                     <select name="premiumType" lay-verify="required" lay-filter="h">
                         {{# 
                             layui.each(d.data, function(index, item){   
@@ -174,112 +174,42 @@
         </div>
         <!-- 重量配置 -->
         <div class="layui-tab-item">
-        
-          <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
-            <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-events="del">删除</button>
-            <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-events="ready">标记已读</button>
-            <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-events="readyAll">全部已读</button>
-          </div>
-          
           <table id="LAY-info-qc-zl-table" lay-filter="LAY-info-qc-zl-table"></table>
         </div>
         <!-- 非金属板配置 -->
         <div class="layui-tab-item">
-        
-          <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
-            <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="del">删除</button>
-            <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="ready">标记已读</button>
-            <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="readyAll">全部已读</button>
-          </div>
-          
           <table id="LAY-info-qc-jsb-table" lay-filter="LAY-info-qc-jsb-table"></table>
         </div>
         <!-- 非金属板配置 -->
         <div class="layui-tab-item">
-        
-            <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="del">删除</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="ready">标记已读</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="readyAll">全部已读</button>
-            </div>
-            
             <table id="LAY-info-qc-fjsb-table" lay-filter="LAY-info-qc-fjsb-table"></table>
         </div>
         <!-- 其他配置 -->
         <div class="layui-tab-item">
-        
-            <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="del">删除</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="ready">标记已读</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="readyAll">全部已读</button>
-            </div>
-            
             <table id="LAY-info-qc-qt-table" lay-filter="LAY-info-qc-qt-table"></table>
         </div>
         <!-- 交期配置 -->
         <div class="layui-tab-item">
-        
-            <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="del">删除</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="ready">标记已读</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="readyAll">全部已读</button>
-            </div>
-            
-            <table id="LAY-info-qc-jqsb-table" lay-filter="LAY-info-qc-jqsb-table"></table>
+            <table id="LAY-info-qc-jq-table" lay-filter="LAY-info-qc-jq-table"></table>
         </div>
         <!-- 平米类型配置 -->
         <div class="layui-tab-item">
-        
-            <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="del">删除</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="ready">标记已读</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="readyAll">全部已读</button>
-            </div>
-            
             <table id="LAY-info-qc-pmlx-table" lay-filter="LAY-info-qc-pmlx-table"></table>
         </div>
         <!-- 汇率配置 -->
-        <div class="layui-tab-item">
-        
-            <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="del">删除</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="ready">标记已读</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="readyAll">全部已读</button>
-            </div>
-            
+        <div class="layui-tab-item">     
             <table id="LAY-info-qc-hl-table" lay-filter="LAY-info-qc-hl-table"></table>
         </div>
         <!-- 运费配置 --> 
         <div class="layui-tab-item">
-        
-            <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="del">删除</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="ready">标记已读</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="readyAll">全部已读</button>
-            </div>
-            
             <table id="LAY-info-qc-yf-table" lay-filter="LAY-info-qc-yf-table"></table>
         </div>
         <!-- 钢网配置 --> 
         <div class="layui-tab-item">
-        
-            <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="del">删除</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="ready">标记已读</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="readyAll">全部已读</button>
-            </div>
-            
             <table id="LAY-info-qc-gw-table" lay-filter="LAY-info-qc-gw-table"></table>
         </div>
         <!-- 贴片配置 --> 
-        <div class="layui-tab-item">
-        
-            <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="del">删除</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="ready">标记已读</button>
-              <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="readyAll">全部已读</button>
-            </div>
-            
+        <div class="layui-tab-item">    
             <table id="LAY-info-qc-tp-table" lay-filter="LAY-info-qc-tp-table"></table>
         </div>
       </div>
@@ -300,7 +230,7 @@
 
             //监听参数类型切换
             form.on('select(e)',function(data){
-                $.get(setter.imUrl+"getAllParameter",{parameterTypeId:data.value},function(data){
+                $.get(setter.imUrl+"quoteConfig/getAllParameter",{parameterTypeId:data.value},function(data){
                     $("select[name='parameterName']").empty();
                     $("select[name='parameterValue']").empty();
                     $.each(data.data, function (i, d) {
@@ -313,7 +243,7 @@
             
             //监听参数切换
             form.on('select(f)',function(data){
-                $.get(setter.imUrl+"getAllParameterValue",{parameterId:data.value},function(data){
+                $.get(setter.imUrl+"quoteConfig/getAllParameterValue",{parameterId:data.value},function(data){
                     var _this = $("select[name='parameter']");
                     _this.empty();
                     $.each(data.data, function (i, d) {

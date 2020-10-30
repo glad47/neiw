@@ -4,7 +4,7 @@
         <div class="layui-col-md6">
             <label class="layui-form-label">平米</label>
             <div class="layui-input-inline">
-                <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllAreaParameter" lay-done="layui.data.done(d);" lay-type="post">
+                <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllAreaParameter" lay-done="layui.data.done(d);" lay-type="post">
                     <select name="areaSq" lay-verify="required">
                         {{# 
                             layui.each(d.data, function(index, item){   
@@ -22,7 +22,7 @@
         <div class="layui-col-md6">
             <label class="layui-form-label">加急类型</label>
             <div class="layui-input-inline">
-                <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllUrgentType" lay-done="layui.data.done(d);" lay-type="post">
+                <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllUrgentType" lay-done="layui.data.done(d);" lay-type="post">
                     <select name="urgentType" lay-verify="required">
                         {{# 
                             layui.each(d.data, function(index, item){   
@@ -42,7 +42,7 @@
         <div class="layui-col-md6">
             <label class="layui-form-label">基材</label>
             <div class="layui-input-inline">
-                <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllPcbType" lay-done="layui.data.done(d);" lay-type="post">
+                <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllPcbType" lay-done="layui.data.done(d);" lay-type="post">
                     <select name="pcbtype" lay-verify="required">
                         {{# 
                             layui.each(d.data, function(index, item){   
@@ -60,7 +60,7 @@
         <div class="layui-col-md6">
             <label class="layui-form-label">层数</label>
             <div class="layui-input-inline">
-                <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllLayerNumber" lay-done="layui.data.done(d);" lay-type="post">
+                <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllLayerNumber" lay-done="layui.data.done(d);" lay-type="post">
                     <select name="layerNum" lay-verify="required">
                         {{# 
                             layui.each(d.data, function(index, item){   
@@ -80,7 +80,7 @@
         <dov class="layui-col-md6">
             <label class="layui-form-label">参数类型</label>
             <div class="layui-input-inline">
-                <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllParameterType" lay-done="layui.data.done(d);" lay-type="post">
+                <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllParameterType" lay-done="layui.data.done(d);" lay-type="post">
                     <select name="parameterType" lay-verify="required" lay-filter="pt">
                         {{# 
                             layui.each(d.data, function(index, item){   
@@ -126,7 +126,7 @@
         <dov class="layui-col-md6">
             <label class="layui-form-label">加价类别</label>
             <div class="layui-input-inline">
-                <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllPremiumType" lay-done="layui.data.done(d);" lay-type="post">
+                <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllPremiumType" lay-done="layui.data.done(d);" lay-type="post">
                     <select name="premiumType" lay-verify="required" lay-filter="h">
                         {{# 
                             layui.each(d.data, function(index, item){   
@@ -175,7 +175,7 @@
 
             //监听参数类型切换
             form.on('select(pt)',function(data){
-                $.get(setter.imUrl+"getAllParameter",{parameterTypeId:data.value},function(data){
+                $.get(setter.imUrl+"quoteConfig/getAllParameter",{parameterTypeId:data.value},function(data){
                     $("select[name='parameterName']").empty();
                     $("select[name='parameterValue']").empty();
                     var h;
@@ -189,7 +189,7 @@
             
             //监听参数切换
             form.on('select(pn)',function(data){
-                $.get(setter.imUrl+"getAllParameterValue",{parameterId:data.value},function(data){
+                $.get(setter.imUrl+"quoteConfig/getAllParameterValue",{parameterId:data.value},function(data){
                     var _this = $("select[name='parameter']");
                     _this.empty();
                     var h;

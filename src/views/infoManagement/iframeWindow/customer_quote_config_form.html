@@ -23,7 +23,7 @@
             <div class="addcus-email layui-col-md4">
                 <label class="layui-form-label">平米：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllAreaParameter" lay-done="layui.data.done(d);" lay-type="post">
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllAreaParameter" lay-done="layui.data.done(d);" lay-type="post">
                         <select name="a" lay-verify="required"  lay-filter="a">
                             {{# 
                                 layui.each(d.data, function(index, item){   
@@ -41,7 +41,7 @@
             <div class="addcus-email layui-col-md4">
                 <label class="layui-form-label">基材：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllPcbType" lay-done="layui.data.done(d);" lay-type="post">
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllPcbType" lay-done="layui.data.done(d);" lay-type="post">
                         <select name="b" lay-verify="required"  lay-filter="b">
                             {{# 
                                 layui.each(d.data, function(index, item){   
@@ -63,7 +63,7 @@
             <div class="addcus-email layui-col-md4">
                 <label class="layui-form-label">层数：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllLayerNumber" lay-done="layui.data.done(d);" lay-type="post">
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllLayerNumber" lay-done="layui.data.done(d);" lay-type="post">
                         <select name="c" lay-verify="required" lay-filter="c">
                             {{# 
                                 layui.each(d.data, function(index, item){   
@@ -81,7 +81,7 @@
             <div class="addcus-email layui-col-md4">
                 <label class="layui-form-label">加急类型：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllUrgentType" lay-done="layui.data.done(d);" lay-type="post">
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllUrgentType" lay-done="layui.data.done(d);" lay-type="post">
                         <select name="d" lay-verify="required" lay-filter="d">
                             {{# 
                                 layui.each(d.data, function(index, item){   
@@ -99,7 +99,7 @@
             <div class="addcus-email layui-col-md4">
                 <label class="layui-form-label">加价类别：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllPremiumType" lay-done="layui.data.done(d);" lay-type="post">
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllPremiumType" lay-done="layui.data.done(d);" lay-type="post">
                         <select name="e" lay-verify="required" lay-filter="e">
                             {{# 
                                 layui.each(d.data, function(index, item){   
@@ -120,7 +120,7 @@
             <div class="addcus-email layui-col-md4">
                 <label class="layui-form-label">参数类型：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}getAllParameterType" lay-done="layui.data.done(d);" lay-type="post">
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}quoteConfig/getAllParameterType" lay-done="layui.data.done(d);" lay-type="post">
                         <select name="f" lay-verify="required" lay-filter="f">
                             {{# 
                                 layui.each(d.data, function(index, item){   
