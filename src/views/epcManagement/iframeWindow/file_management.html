@@ -33,7 +33,7 @@
                     <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.gerberPath }}&fileName={{ d.params.gerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>
                 {{# } else if(d.params.isInternal == '2'){ }}
                     {{# if(d.params.gerberPath != null){ }}
-                    {{# if(d.params.gerberPath.indexOf("pcbonline.com:9090") != -1) { }}
+                    {{# if(d.params.gerberPath.indexOf("pcbonline.com:9090") != -1 || d.params.gerberPath != '') { }}
                     <a href="{{layui.setter.baseUrl1}}api/file/download/zip?filename={{ d.gerberPath.split('pcbonline/')[1].trim() }}">下载</a> 
                     {{# } else if ( d.params.gerberPath.indexOf("erp-server") != -1) { }}
                     <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.gerberPath }}&fileName={{ d.params.gerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>                        
@@ -81,7 +81,7 @@
                 {{# if (d.params.isInternal == '1'){ }}
                     <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.quoteGerberPath }}&fileName={{ d.params.quoteGerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>
                 {{# } else if(d.params.isInternal == '2'){ }}
-                    {{# if(d.params.quoteGerberPath != null){ }}
+                    {{# if(d.params.quoteGerberPath != null || d.params.quoteGerberPath != ''){ }}
                     {{# if( d.params.quoteGerberPath.indexOf("pcbonline.com:9090") != -1) { }}
                     <a href="{{layui.setter.baseUrl1}}api/file/download/zip?filename={{ d.quoteGerberPath.split('pcbonline/')[1].trim() }}">下载</a> 
                     {{# } else if ( d.params.quoteGerberPath.indexOf("erp-server") != -1) { }}
@@ -131,7 +131,7 @@
                 {{# if (d.params.isInternal == '1'){ }}
                     <a href="{{layui.setter.baseUrl}}sys/oss/download/geber?filePathName={{ d.params.productionGerberPath }}&fileName={{ d.params.productionGerberName }}&access_token={{layui.data('layuiAdmin').access_token}}">下载</a>
                 {{# } else if(d.params.isInternal == '2'){ }}
-                    {{# if(d.params.productionGerberPath != null){ }}
+                    {{# if(d.params.productionGerberPath != null || d.params.productionGerberPath != ''){ }}
                     {{# if(d.params.productionGerberPath.indexOf("pcbonline.com:9090") != -1) { }}
                     <a href="{{layui.setter.baseUrl1}}api/file/download/zip?filename={{ d.productionGerberPath.split('pcbonline/')[1].trim() }}">下载</a> 
                     {{# } else if ( d.params.productionGerberPath.indexOf("erp-server") != -1) { }}
