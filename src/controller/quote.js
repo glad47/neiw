@@ -124,7 +124,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         countries: 'Afghanistan',     //国家  默认Afghanistan
         courierName: def_expressCountry.courierId,    // 快递公司 String
         exchangeId: 1,      // 币种  默认为 => 美元
-        unitPrice: ''
+        unitPrice: '',
+        mantissa: 0
         // pcbCost: '',
     };
     var pcb_rigdetaily = {};
@@ -1376,6 +1377,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             $(".up-subbtn").click();
             $("*[lay-filter='quoteForm']").click();
             var quote_data = Object.assign(pcb_rigdetaily,pcb_container);
+            //console.log(quote_data);
             if (parseFloat(quote_data.areaSq) > 15 && quote_data.pcbType === 'Aluminum' && quote_data.toolingFee === 0) {
                     layer.confirm('此板为铝基板,请确认是否需要开模具？', {
                     btn: ['确定', '取消']
@@ -1661,11 +1663,13 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
                        admin.req({
                            type: 'post',
                            url: setter.baseUrl+'epc/pcborder/findOrderByUidAndProductNo',
-                           data: data.field,
+                           data: {'id':postData.productNo},
                            success: function (res) {
                                var importPcbInfo = res.data;
                                if (importPcbInfo != null) {
+                                   importPcbInfo.mantissa = postData.mantissa;
                                    getBuildTime();getCouriers();getCountrys();    // 获取国家快递信息
+                                   console.log(importPcbInfo);
                                    setAllInput(importPcbInfo);
                                } else {
                                    layer.alert('当前不存在PCB参数详情！');
@@ -1744,6 +1748,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         pcb_container.postFee = importPcbInfo['postFee'];
         pcb_container.quoteGerberName = importPcbInfo['quoteGerberName'];
         pcb_container.quoteGerberPath = importPcbInfo['quoteGerberPath'];
+        pcb_container.mantissa = importPcbInfo['mantissa'];
         // 绑定客户id和客户名
         var userId = $("dl[xid='selCustomer']").children(".xm-select-this").attr("lay-value");
         var customerSysName = $("dl[xid='selCustomer'] .xm-select-this").find("span").attr("name");

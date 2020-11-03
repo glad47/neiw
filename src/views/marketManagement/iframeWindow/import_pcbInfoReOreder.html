@@ -18,6 +18,12 @@
                     </select>
                 </div>
             </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">尾数</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" type="text" name="mantissa">
+                </div>
+            </div>
             <div class="layui-form-item" style="display: none;">
                 <button class="layui-btn layuiadmin-btn-forum-list" lay-submit lay-filter="importRePCBInfo" id="importRePCBInfo">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
@@ -42,7 +48,7 @@
                 "orderType": null,
                 "userId": null
             };
-                admin.req({
+            admin.req({
                 type: 'post',
                 url: setter.baseUrl+'sys/consumer/user/all',
                 success: function (data) {
@@ -72,11 +78,11 @@
                     url: setter.baseUrl + 'epc/pcborder/findAllProductNo',   // 查询客户所有产品号
                     success: function (res) {
                         if (res.data == null || res.data.length == 0) {
-                            layer.alert('没有查询到此当前类型下所对应的客户型号，请确定添加后再试！');
+                            layer.msg('没有查询到此当前类型下所对应的客户型号，请确定添加后再试！');
                         } else {
                             var $html;
                             for (var i=0;i<res.data.length;i++) {
-                                $html += "<option value="+res.data[i]+">"+res.data[i]+"</option>"
+                                $html += "<option value="+res.data[i].id+">"+res.data[i].product_no+"</option>"
                             }
                         }
                         $("select[xm-select='productNo']").append($html);
@@ -86,6 +92,24 @@
                     }
                 });
 
+            });
+
+            //查询尾数
+            layui.formSelects.on('productNo',function(id, vals, val, isAdd, isDisabled){
+                admin.req({
+                    type: 'post',
+                    data: {"pid":val.value},
+                    async: false,
+                    url: setter.baseUrl + 'iqc/mantissa/queryMantissaByPid',   // 查询客户所有产品号
+                    success: function (res) {
+                        console.log(res);
+                        if (res.data == null || res.data.length == 0) {
+                            form.val('pert_form',{'mantissa':0});
+                        } else {
+                            form.val('pert_form',{'mantissa':res.data});
+                        }
+                    }
+                }); 
             });
 
         });

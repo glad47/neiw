@@ -679,7 +679,7 @@
                           </div>
 
                           <div class="layui-form-item">
-                              <div class="rig-price-input layui-col-md6 layui-col-xs12" style="margin-top: 15px;">
+                              <div class="rig-price-input layui-col-md6" style="margin-top: 15px;">
                                   <label class="layui-form-label">币种：</label>
                                   <div class="layui-input-inline" style="width: 106px;">
                                       <select name="exchangeId" xm-select="exchangeId" xm-select-radio  xm-select-search="" xm-select-search-type="dl"></select>
@@ -762,6 +762,12 @@
                                           <input class="layui-input pcb-fee" name="overworkFee" name="engineeringFee" type="text" id="urgentFee" placeholder="0.00" >
                                       </div>
                                   </div>
+                                  <div class="rig-others layui-col-md6">
+                                    <label class="layui-form-label">尾数：</label>
+                                    <div class="layui-input-inline">
+                                        <input class="layui-input" name="mantissa" type="text"/>
+                                    </div>
+                                </div>
                                   <div class="rig-others build-time-item layui-col-md6" style="display: none;width: 146px;">
                                       <div class="layui-input-block build-time-block">
                                           <select name="selBuildTime" lay-filter="selBuildTime" lay-verify="required" id="selBuildTime" lay-search="">
