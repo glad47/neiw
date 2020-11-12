@@ -62,11 +62,11 @@ layui.define(['admin', 'table','setter','form','jquery'], function(exports){
     			}
     		});
     	} else if (obj.event === 'del') {
-    		layer.confirm('确定删除此部门？', function(index){
+    		layer.confirm('确定删除此工序？', function(index){
     			admin.req({
     				url:setter.baseUrl+'epc/process/delete',
     				type:'POST',
-    				data:{deptIds:data.deptId},
+    				data:{ids:data.deptId},
     				success:function(data){
     					layui.table.reload('process_listTab'); //重载表格
     					layer.msg('已删除');

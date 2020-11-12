@@ -1,0 +1,144 @@
+<!-- 装箱计算 -->
+<title>市场管理-装箱计算</title>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space5">
+        <div class="layui-col-md5">
+            <div class="layui-card">
+                <div class="layui-card-header"><h2>基本信息</h2></div>
+                <div class="layui-card-body">
+                    <div class="layui-form layuiadmin-card-header-auto"  lay-filter="market-packing-form">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">成品尺寸:</label>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                  <input type="text" name="finishedSizeX" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                </div>
+                                <div class="layui-form-mid"></div>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                  <input type="text" name="finishedSizeY" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">MM</div>
+                            </div>
+                            
+                            <div class="layui-inline">
+                                <label class="layui-form-label">出货数量:</label>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                  <input type="text" name="qty" autocomplete="off" class="layui-input onblur-mark">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">PCS</div>
+                            </div>
+                            
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">拼板方式:</label>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                  <input type="text" name="panelX" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                </div>
+                                <div class="layui-form-mid"></div>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                  <input type="text" name="panelY" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">PCS</div>
+                            </div>
+                            
+                            <div class="layui-inline">
+                                <label class="layui-form-label">出货面积:</label>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                  <input type="text" name="area" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">㎡</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">板子类型:</label>
+                                <input type="radio" name="boardType" value="FR4" title="FR4" checked>
+                                <input type="radio" name="boardType" value="Aluminum" title="铝基板">
+                            </div>
+                            
+                            <div class="layui-inline">
+                                <label class="layui-form-label">板子层数:</label>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                  <select name="layerNum" lay-verify="myrequired">
+                                    <option value="">请选择</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="4">4</option>
+                                    <option value="6">6</option>
+                                    <option value="8">8</option>
+                                  </select>  
+                                </div>
+                                <!-- <div class="layui-form-mid layui-word-aux">m</div> -->
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">成品厚度:</label>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                    <select name="finishThickness" lay-verify="myrequired">
+                                        <option value="">请选择</option>
+                                        <option value="0.2">0.2mm</option>
+                                        <option value="0.3">0.3mm</option>
+                                        <option value="0.4">0.4mm</option>
+                                        <option value="0.6">0.6mm</option>
+                                        <option value="0.8">0.8mm</option>
+                                        <option value="1.0">1.0mm</option>
+                                        <option value="1.2">1.2mm</option>
+                                        <option value="1.5">1.5mm</option>
+                                        <option value="1.6">1.6mm</option>
+                                        <option value="1.8">1.8mm</option>
+                                        <option value="2.0">2.0mm</option>
+                                        <option value="2.4">2.4mm</option>
+                                        <option value="3.0">3.0mm</option>
+                                        <option value="3.2">3.2mm</option>
+                                    </select> 
+                                </div>
+                                <div class="layui-form-mid"></div>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                  <input type="text" name="packingSet" placeholder="" autocomplete="off" class="layui-input" lay-verify="myrequired">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">SET/包</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <input type="text" style="display: none;" name="optionMark" placeholder="操作标识" class="layui-input">
+                                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="market-packing-count-sumbit" id="mpcs" style="margin-bottom: 3px;">
+                                    <i class="layui-icon layui-icon-search layuiadmin-button-btn">计算</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header"><h2>箱子大小</h2></div>
+                <div class="layui-card-body">
+                    <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
+                        <button class="layui-btn layuiadmin-btn-list" data-type="packingSizeAdd">新增</button>
+                        <button class="layui-btn layuiadmin-btn-list" data-type="packingSizeDel">删除</button>
+                    </div>
+                    <table id="market-packing-size-tab" lay-filter="market-packing-size-tab"></table>
+                </div>
+            </div>  
+        </div>
+        <div class="layui-col-md7">
+            <div class="layui-card">
+                <div class="layui-card-header"><h2>计算结果</h2></div>
+                <div class="layui-card-body">
+                    <table id="market-count-result-tab" lay-filter="market-count-result-tab"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('market_packing_count', layui.factory('market_packing_count')).use(['table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render(null,'market-packing-form');
+    });
+</script>
