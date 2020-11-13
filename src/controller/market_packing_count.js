@@ -224,12 +224,14 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             if(checkData.length === 0){
                 return layer.msg('请选择数据');
             }
+            // console.log(checkData);
+            var ids = checkData.map(function(elem){return elem.id}).join(",");
             layer.confirm('确定删除吗？', function(index) {
                 //执行 Ajax 后重载
                 admin.req({
+                    type: 'post',
                     url: setter.baseUrl+'/marker/packing/delSpecification',
-                    data: {'ids':checkData.id},
-                    url: setter.baseUrl + '/marker/packing/delSpecification',
+                    data: {'ids':ids},
                     success: function () {
                         table.reload('market-packing-size-tab');
                         layer.msg('已删除');
