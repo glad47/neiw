@@ -394,16 +394,27 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
 
             })
         } else if (obj.event === 'info_pact') {
-            console.log(data);
-            layer.open({
-                type: 2
-                ,title: 'Look Invoice'
-                ,content: setter.imUrl+'order/invoicePage?orderId='+ data.orderId
-                ,maxmin: true
-                ,area: ['75%', '70%']
-                ,btn: ['确定', '取消']
-                ,yes: function(index, layero){}
-            });
+            admin.req({
+                type:'get',
+                async: false,
+                url: setter.baseUrl + 'market/order/info/'+data.orderId,
+                success: function(res){
+                   admin.popup({
+                    title: '网上订单合同'
+                    ,area: ['100%', '100%']
+                    ,btn: ['打印','关闭']
+                    ,yes:function(index, layero){
+                        document.body.innerHTML=document.getElementById('order-interior-print').innerHTML;
+                        window.print();
+                        window.location.reload();
+                    }
+                    ,success: function (layero, index) {
+                        view(this.id).render('marketManagement/iframeWindow/order_invoice', res.data).done(function () {
+                        });
+                    }
+                }); 
+                }
+            })
         } else if (obj.event === 'stencil-submit') {
             var bool = false;
             if(!bool){
@@ -542,16 +553,27 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
 
             })
         }  else if (obj.event === 'info_pact') {
-            console.log(data);
-            layer.open({
-                type: 2
-                ,title: 'Look Invoice'
-                ,content: setter.imUrl+'order/invoicePage?orderId='+ data.orderId
-                ,maxmin: true
-                ,area: ['75%', '70%']
-                ,btn: ['确定', '取消']
-                ,yes: function(index, layero){}
-            });
+            admin.req({
+                type:'get',
+                async: false,
+                url: setter.baseUrl + 'market/order/info/'+data.orderId,
+                success: function(res){
+                   admin.popup({
+                    title: '网上订单合同'
+                    ,area: ['100%', '100%']
+                    ,btn: ['打印','关闭']
+                    ,yes:function(index, layero){
+                        document.body.innerHTML=document.getElementById('order-interior-print').innerHTML;
+                        window.print();
+                        window.location.reload();
+                    }
+                    ,success: function (layero, index) {
+                        view(this.id).render('marketManagement/iframeWindow/order_invoice', res.data).done(function () {
+                        });
+                    }
+                }); 
+                }
+            })
         } else if (obj.event === 'smt-submit') {
             layer.confirm('确定提交订单［'+data.productNo+'］?',function (index) {
                 data.isLock = 3;
