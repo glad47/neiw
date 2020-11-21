@@ -1,0 +1,12 @@
+@media print {
+    section {page-break-before: always;}
+    /* h1 {page-break-after: always; */
+    p {page-break-inside: avoid;}
+    .table-title{
+        float: left;
+    }
+    .table-title2{
+        float: right !important;
+    }
+    
+}

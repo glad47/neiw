@@ -465,6 +465,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                             "<input type='text' autocomplete='off'/>"+
                             "</td><td>"+
                             "<input type='text' autocomplete='off'/>"+
+                            "</td><td>"+
                             "<input type='button' class='layui-btn layui-btn-xs' value='删除'></td></tr>";
                             $('#table_address').append(tr);
                             resetTableIndex();

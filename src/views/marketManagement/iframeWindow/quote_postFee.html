@@ -87,7 +87,7 @@
         function getPostFee() {
             admin.req({
                 type: 'post',
-                url: setter.imUrl+'quote/getCountry',
+                url: setter.imUrl+'v1/quote/getCountry',
                 success: function (res) {
                     var $html;
                     var data = res.data;
@@ -109,7 +109,7 @@
             if (postData.countryId != null && postData.countryId != "") {
                 admin.req({
                     type: 'post',
-                    url: setter.imUrl+'quote/getShippingCost',
+                    url: setter.imUrl+'v1/quote/getShippingCost',
                     data: postData,
                     success: function (res) {
                         $("input[name='qtPostFee']").val(res.data.shippingCost);

@@ -915,7 +915,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         admin.req({
             type: 'post',
             // dataType: 'json',
-            url: setter.imUrl+'quote/countAdditionInfo',
+            url: setter.imUrl+'v1/quote/countAdditionInfo',
             data: data,
             success: function (data) {
                 if (data.data.pcbPriceDetail != null && data.data.pcbPriceDetail != ""){
@@ -996,7 +996,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         admin.req({
             type: 'post',
             async: false,
-            url: setter.imUrl+'quote/getBuildTime',
+            url: setter.imUrl+'v1/quote/getBuildTime',
             data: {areaSq:areaSq,layerNum: layerNum,'exchangeId':pcb_container.exchangeId},
             success: function (data) {
                 $(".build-time-item").css("display","");
@@ -1037,7 +1037,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         }
         admin.req({
             type: 'post',
-            url: setter.imUrl+'quote/getCouriers',
+            url: setter.imUrl+'v1/quote/getCouriers',
             async: false,
             success: function (data) {
                 $("select[id='"+SelectId+"'] option").remove();
@@ -1077,7 +1077,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         admin.req({
             type: 'post',
             async: false,
-            url: setter.imUrl+'quote/getCountry',
+            url: setter.imUrl+'v1/quote/getCountry',
             success: function (data) {
                 post_data.countrysId = data.data[0].id;
                 for (var i=0;i<data.data.length;i++){
@@ -1113,7 +1113,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         }
         admin.req({
             type: 'post',
-            url: setter.imUrl+'quote/getShippingCost',
+            url: setter.imUrl+'v1/quote/getShippingCost',
             data: {courierId:courierId,countryId:countryId,totalWeight:this_weight,exchangeId:pcb_container.exchangeId},
             success: function (data) {
                 if (data.data != null && post_data.bordType === 1){

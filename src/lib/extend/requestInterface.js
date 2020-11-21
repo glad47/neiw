@@ -93,7 +93,7 @@ layui.define(['admin', 'index'],function (exports) {
          */
         GetCountry: function () {
             console.log("获取国家信息")
-            var _url = setter.imUrl+'quote/getCountry';
+            var _url = setter.imUrl+'v1/quote/getCountry';
             if (localStorage.getItem("allCountry") == null) {
                 admin.req({
                     type: 'get',

@@ -1,0 +1,84 @@
+<title>添加报关单</title>
+<!-- <script type="text/html" template>
+    <link rel="stylesheet" href="{{ layui.setter.base }}style/formSelects-v4.css?v={{ layui.admin.v }}-1" />
+</script> -->
+<div class="layui-fluid">
+    <div class="layui-form" lay-filter="market-customs-declaration-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户编号</label>
+            <div class="layui-input-inline">
+                <script type="text/html" template lay-done="layui.data.sendParams(d.params)">
+                    <input type="text" name="customerNo" autocomplete="off" class="layui-input" value="{{ d.params.customerNo || ''}}" lay-verify="required">
+                    <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+                </script>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-inline">
+                <button class="layui-btn  layui-btn-danger" lay-active="e1">添加</button>
+                <button class="layui-btn  layui-btn-normal" lay-active="e2">删除</button>
+                <input type="button" id="mcdfs" lay-submit lay-filter="market-customs-declaration-form-submit" value="确认" class="layui-btn" style="display: none;" >
+            </div>
+        </div>
+
+    </div>
+    <table id="market-packing-list-en-table" lay-filter="market-packing-list-en-table"></table>
+</div>
+
+<script>
+    layui.data.sendParams = function(params){
+        console.log(params.itemEntityList);
+        var ddd = params.itemEntityList || [];
+         
+        layui.use(['admin', 'table', 'util', 'form'], function(){
+            var $ = layui.$
+            ,admin = layui.admin
+            ,view = layui.view
+            ,table = layui.table
+            ,setter = layui.setter
+            ,form = layui.form
+            ,util = layui.util;
+
+            form.render(null,'market-customs-declaration-form');
+
+            table.render({
+                elem: '#market-packing-list-en-table'
+                ,data: ddd
+                ,totalRow: false
+                ,cellMinWidth: 90
+                ,cols: [[
+                    {field: 'marks',  title: '唛头', align:'center', totalRowText:'Total',edit: 'text'}
+                    ,{field: 'qty', title: "数量", align:'center', totalRow: true,edit: 'text'}
+                    ,{field: 'packages', title: '件数', align:'center', totalRow: true,edit: 'text'}
+                    ,{field: 'description', align:'center', title: '品名及规格',edit: 'text'}
+                    ,{field: 'grossWeight', align:'center', title: '毛重', totalRow: true,edit: 'text'}
+                    ,{field: 'netWeight', align:'center', title: '净重', totalRow: true,edit: 'text'}
+                    ,{field: 'measurement', align:'center', title: '尺寸',edit: 'text'}
+                    ,{field: 'orderNo', align:'center', title: '订单号码',edit: 'text'}
+                    ,{field: 'commercialInvoiceno', align:'center', title: '发票号码',edit: 'text'}
+                ]]
+            });
+    
+            //监听but
+            util.event('lay-active',{
+                e1: function(){
+                    let oldData = table.cache["market-packing-list-en-table"],d={};
+                    oldData.push(d);
+                    // console.log(oldData);
+                    table.reload('market-packing-list-en-table',{data:oldData})
+                },
+                e2: function(){
+                    layer.confirm("你确定要删除么？",function(){  
+                        let oldData = table.cache["market-packing-list-en-table"]; 
+                        // console.log(oldData); 
+                        oldData.splice(oldData.length-1,1);  
+                        layer.msg("删除成功",{time: 10},function(){  
+                            table.reload('market-packing-list-en-table',{data : oldData});  
+                        });  
+                    }) 
+                }
+            })
+        });
+    }
+</script>
