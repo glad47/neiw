@@ -1,15 +1,21 @@
 <title>添加报关单</title>
-<!-- <script type="text/html" template>
+<script type="text/html" template>
     <link rel="stylesheet" href="{{ layui.setter.base }}style/formSelects-v4.css?v={{ layui.admin.v }}-1" />
-</script> -->
+</script>
 <div class="layui-fluid">
     <div class="layui-form" lay-filter="market-customs-declaration-form">
         <div class="layui-form-item">
             <label class="layui-form-label">客户编号</label>
             <div class="layui-input-inline">
                 <script type="text/html" template lay-done="layui.data.sendParams(d.params)">
-                    <input type="text" name="customerNo" autocomplete="off" class="layui-input" value="{{ d.params.customerNo || ''}}" lay-verify="required">
+                    <select name="receiverId" xm-select-height="34px" xm-select="receiverId" xm-select-radio  xm-select-search="" xm-select-search-type="dl" lay-verify="required">
+                        {{# if(d.params.receiverId != null){ }}
+                        <option class="def-option" value="{{d.params.receiverId}}" selected>{{d.params.customerNo}}</option>
+                        {{# } }}
+                    </select>
+                    <!-- <input type="text" name="customerNo" autocomplete="off" class="layui-input" value="{{ d.params.customerNo || ''}}" lay-verify="required"> -->
                     <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+                    <input type="hidden" name="customerNo" value="{{d.params.customerNo || ''}}">
                 </script>
             </div>
         </div>
@@ -28,19 +34,22 @@
 
 <script>
     layui.data.sendParams = function(params){
-        console.log(params.itemEntityList);
+        // console.log(params);
         var ddd = params.itemEntityList || [];
          
-        layui.use(['admin', 'table', 'util', 'form'], function(){
+        layui.use(['admin', 'table', 'util', 'form','requestInterface','formSelects'], function(){
             var $ = layui.$
             ,admin = layui.admin
             ,view = layui.view
             ,table = layui.table
             ,setter = layui.setter
             ,form = layui.form
+            ,requestInterface = layui.requestInterface
+            ,formSelects = layui.formSelects
             ,util = layui.util;
 
             form.render(null,'market-customs-declaration-form');
+            initSelCustomer();
 
             table.render({
                 elem: '#market-packing-list-en-table'
@@ -60,6 +69,34 @@
                     ,{field: 'orderNo', align:'center', title: '订单号码',edit: 'text'}
                     ,{field: 'commercialInvoiceno', align:'center', title: '发票号码',edit: 'text'}
                 ]]
+            });
+
+              /**
+             * 初始化下拉， 获取所有客户信息
+             */
+            function initSelCustomer() {
+                var _obj = requestInterface.getAllCustomer();
+                var $html;
+                for (let c of _obj) {
+                    $html += "<option value="+c.id+">"+c.userSystemId+"</option>"
+                }
+                $("select[xm-select='receiverId']").append($html);
+                formSelects.render('receiverId');
+                // formSelects.value('giCustomer', []);
+                // $(".xm-select-parent[fs_id='"+dom+"']").children(".xm-form-select").addClass("xm-form-selected");
+            }
+
+            formSelects.on('receiverId', function (id, vals, val, isAdd, isDisabled) {
+                //id:           点击select的id
+                //vals:         当前select已选中的值
+                //val:          当前select点击的值
+                //isAdd:        当前操作选中or取消
+                //isDisabled:   当前选项是否是disabled                    
+                if(isAdd){//对form赋值
+                  form.val("market-customs-declaration-form",{"customerNo":val.name});
+                }else{
+                   form.val("market-customs-declaration-form",{"customerNo":null});
+                }
             });
     
             //监听but

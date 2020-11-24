@@ -4,40 +4,41 @@
         <div class="layui-col-md12" style="text-align: center;">
             <h1>CONTRACT 合同</h1>
         </div>
-
+        <script type="text/html" template>
         <div style="display: flex;justify-content: space-between;">
             <div class="layui-col-md6" style="width: 50%;">
                 <ul>
-                    <li class="layui-text">买方/Buyers: AVOTRA INC.</li>
+                    <li class="layui-text">买方/Buyers: {{d.params.userInfo.contact || ''}}</li>
                 </ul>
                 <ul>
-                    <li class="layui-text">地址/Address: 1 408-506-6028</li>
+                    <li class="layui-text">地址/Address: {{d.params.userInfo.address || ''}}</li>
                 </ul>
                 <ul>
-                    <li class="layui-text">电话/Tel: 0</li>
+                    <li class="layui-text">电话/Tel: {{d.params.userInfo.mobilePhone || ''}}</li>
                 </ul>
                 <ul>
-                    <li class="layui-text">传真/Fax: 0</li>
+                    <li class="layui-text">传真/Fax: </li>
                 </ul>            
             </div>
             <div class="layui-col-md6" style="width: 50%;">
-                <ul>
+                <!-- <ul>
                     <li class="layui-text">&nbsp;</li>
-                </ul>
+                </ul> -->
                 <ul>
                     <li class="layui-text">合同号码</li>
                 </ul>
                 <ul>
-                    <li class="layui-text">Contract No:  A202111111</li>
+                    <li class="layui-text">Contract No: {{d.params.commercialInvoice || ''}}</li>
                 </ul>
                 <ul>
-                    <li class="layui-text">Date:  A202111111</li>
+                    <li class="layui-text">Date: </li>
                 </ul>
                 <ul>
                     <li class="layui-text">Singed at:  Shenzhen</li>
                 </ul>
             </div>
         </div>
+        </script>
         <div class="layui-col-md12">
             <ul>
                 <li>卖方/Sellers: 深圳聚谷科技有限公司</li>

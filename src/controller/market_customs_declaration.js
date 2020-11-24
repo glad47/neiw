@@ -1,11 +1,12 @@
 
-layui.define(['table', 'form', 'util'], function(exports){
+layui.define(['table', 'form', 'util','requestInterface'], function(exports){
     var $ = layui.$
     ,admin = layui.admin
     ,view = layui.view
     ,table = layui.table
     ,setter = layui.setter
-    ,form = layui.form;
+    ,form = layui.form
+    ,requestInterface = layui.requestInterface;
     
     form.render(null, 'marker-customs-declaration-list');
 
@@ -35,7 +36,7 @@ layui.define(['table', 'form', 'util'], function(exports){
       ,cols: [[
         {type: 'checkbox', fixed: 'left'}
         ,{field: 'id', width: 100, title: 'ID', sort: true}
-        ,{field: 'orderNos', title: '订单号串'}
+        ,{field: 'commercialInvoice', title: '发票号（CI）'}
         ,{field: 'customerNo', title: '客户编号'}
         ,{field: 'gmtCreate', title: '创建时间', sort: true,  templet: "<div>{{ d.gmtCreate != null ? layui.util.toDateString(d.gmtCreate, 'yyyy-MM-dd') : ''}}</div>"}
         ,{title: '操作', width: 450, align: 'center', fixed: 'right', toolbar: '#table-customs-declaration-toolbar'}
@@ -45,6 +46,10 @@ layui.define(['table', 'form', 'util'], function(exports){
     //监听工具条
     table.on('tool(market-customs-declaration-table)', function(obj){
       var data = obj.data;
+      var userInfoUrl = setter.baseUrl+'sys/consumer/user/info/'+data.receiverId;
+      //获取用户信息
+      var userInfo = requestInterface.GetCustomerInfo(userInfoUrl);
+      data.userInfo = userInfo;
       if(obj.event === 'packingListEn'){
         admin.req({
           type: 'post',
@@ -52,7 +57,7 @@ layui.define(['table', 'form', 'util'], function(exports){
           success: function (res) {
             if(res.data.length === 0) return layer.msg('详细为空，请添加数据');
             data.itemEntityList = res.data;
-            console.log(data);
+            // console.log(data);
             admin.popup({
               title: '装箱单(英)'
               ,area: ['100%', '100%']
@@ -103,7 +108,7 @@ layui.define(['table', 'form', 'util'], function(exports){
           success: function(res){
             if(res.data.length === 0) return layer.msg('详细为空，请添加数据');
             data.itemEntityList = res.data;
-            console.log(data);
+            // console.log(data);
             admin.popup({
               title: '合同'
               ,area: ['100%', '100%']
