@@ -50,7 +50,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
             at:1
         }
         ,cols: [[
-            {field:'id', title: 'ID',hide: true}
+            {field:'id', title: 'ID',hide: false}
             ,{field:'articleName', title: '文章名称', hide: false, align:'center', sort: true}
             ,{field:'articleTime', title: '发布时间', align:'center', width: 176, sort: true}
             ,{field:'articleIp', title: '发布ip', align:'center', sort: true}
@@ -136,7 +136,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                             // var fn = field.articleName.trim().replace(/\s+/g,"_")+'_'+field.id+'.html';
                             // console.log(fn);
                             admin.req({
-                                url: setter.imUrl + 'blog/updateStaticPage?fileName=' +field.articleName,
+                                url: setter.imUrl + 'blogapi/updateStaticPage?fileName='+field.articleName+'&pathMark=blog',
                                 type: 'GET',
                                 success:function(data){
                                     console.log(data)

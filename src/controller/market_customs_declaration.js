@@ -46,49 +46,133 @@ layui.define(['table', 'form', 'util'], function(exports){
     table.on('tool(market-customs-declaration-table)', function(obj){
       var data = obj.data;
       if(obj.event === 'packingListEn'){
-        admin.popup({
-            title: '装箱单(英)'
-            ,area: ['100%', '100%']
-            ,id: 'LAY-popup-packing-list-en'
-            ,btn:['打印', '取消']
-            ,yes: function(index, layero){
+        admin.req({
+          type: 'post',
+          url: setter.baseUrl+'market/customsdeclaration/detailedInfo/'+data.id,
+          success: function (res) {
+            if(res.data.length === 0) return layer.msg('详细为空，请添加数据');
+            data.itemEntityList = res.data;
+            console.log(data);
+            admin.popup({
+              title: '装箱单(英)'
+              ,area: ['100%', '100%']
+              ,id: 'LAY-popup-packing-list-en'
+              ,btn:['打印', '取消']
+              ,yes: function(index, layero){
+                  // console.log('ssssss')
+                  document.body.innerHTML=document.getElementById('market-packing-list-en-print').innerHTML;
+                  window.print();
+                  window.location.reload();
+              }
+              ,success: function(layero, index){
+                view(this.id).render('marketManagement/iframeWindow/packing_list_en', data).done(function(){
+                });
+              }
+            });
+          } 
+        })
+      } else if(obj.event === 'packingListCn'){
+        admin.req({
+          type: 'post', 
+          url: setter.baseUrl+'market/customsdeclaration/detailedInfoGroup/'+data.id, 
+          success: function(res){
+            if(res.data.length === 0) return layer.msg('详细为空，请添加数据');
+            data.itemEntityList = res.data;
+            admin.popup({
+              title: '装箱单(中)'
+              ,area: ['100%', '100%']
+              ,id: 'LAY-popup-packing-list-cn'
+              ,btn:['打印', '取消'] 
+              ,yes: function(index, layero){
                 // console.log('ssssss')
-                document.body.innerHTML=document.getElementById('market-packing-list-en-print').innerHTML;
+                document.body.innerHTML=document.getElementById('market-packing-list-cn-print').innerHTML;
                 window.print();
                 window.location.reload();
-            }
-            ,success: function(layero, index){
-              view(this.id).render('marketManagement/iframeWindow/packing_list_en', data).done(function(){
-              });
-            }
-         });
-      } else if(obj.event === 'packingListCn'){
-        admin.popup({
-          title: '编辑评论'
-          ,area: ['450px', '300px']
-          ,id: 'LAY-popup-content-comm'
-          ,success: function(layero, index){
-            view(this.id).render('app/content/contform', data).done(function(){
-              form.render(null, 'layuiadmin-form-comment');
-              
-              //监听提交
-              form.on('submit(layuiadmin-app-com-submit)', function(data){
-                var field = data.field; //获取提交的字段
-  
-                //提交 Ajax 成功后，关闭当前弹层并重载表格
-                //$.ajax({});
-                layui.table.reload('LAY-app-content-comm'); //重载表格
-                layer.close(index); //执行关闭 
-              });
+              }
+              ,success: function(layero, index){
+                view(this.id).render('marketManagement/iframeWindow/packing_list_cn', data).done(function(){
+                });
+              }
             });
           }
-        });
+        })
       } else if(obj.event === 'contract'){
-
+        admin.req({
+          type: 'post',
+          url: setter.baseUrl + 'market/customsdeclaration/detailedInfoGroup/'+data.id,
+          success: function(res){
+            if(res.data.length === 0) return layer.msg('详细为空，请添加数据');
+            data.itemEntityList = res.data;
+            console.log(data);
+            admin.popup({
+              title: '合同'
+              ,area: ['100%', '100%']
+              ,id: 'LAY-popup-packing-list-contract'
+              ,btn:['打印', '取消']
+              ,yes: function(index, layero){
+                  document.body.innerHTML=document.getElementById('market-packing-list-contract-print').innerHTML;
+                  window.print();
+                  window.location.reload();
+              }
+              ,success: function(layero, index){
+                view(this.id).render('marketManagement/iframeWindow/packing_list_contract', data).done(function(){
+                });
+              }
+            });   
+          }
+        })
       } else if(obj.event === 'invoice'){
-
+        admin.req({
+          type: 'post',
+          url: setter.baseUrl + 'market/customsdeclaration/detailedInfoGroup/'+data.id,
+          success: function(res){
+            if(res.data.length === 0) return layer.msg('详细为空，请添加数据');
+            data.itemEntityList = res.data;
+            console.log(data);
+            admin.popup({
+              title: '发票'
+              ,area: ['100%', '100%']
+              ,id: 'LAY-popup-packing-list-invoice'
+              ,btn:['打印', '取消']
+              ,yes: function(index, layero){
+                  // console.log('ssssss')
+                  document.body.innerHTML=document.getElementById('market-packing-list-invoice-print').innerHTML;
+                  window.print();
+                  window.location.reload();
+              }
+              ,success: function(layero, index){
+                view(this.id).render('marketManagement/iframeWindow/packing_list_invoice', data).done(function(){
+                });
+              }
+            });   
+          }
+        })
       } else if(obj.event === 'declaration'){
-
+        admin.req({
+          type: 'post',
+          url: setter.baseUrl + 'market/customsdeclaration/detailedInfoGroup/'+data.id,
+          success: function(res){
+            if(res.data.length === 0) return layer.msg('详细为空，请添加数据');
+            data.itemEntityList = res.data;
+            console.log(data);
+            admin.popup({
+              title: '报关单'
+              ,area: ['100%', '100%']
+              ,id: 'LAY-popup-packing-list-customs'
+              ,btn:['打印', '取消']
+              ,yes: function(index, layero){
+                  // console.log('ssssss')
+                  document.body.innerHTML=document.getElementById('market-packing-list-customs-print').innerHTML;
+                  window.print();
+                  window.location.reload();
+              }
+              ,success: function(layero, index){
+                view(this.id).render('marketManagement/iframeWindow/packing_list_customs', data).done(function(){
+                });
+              }
+            });   
+          }
+        })
       }
     });
 

@@ -30,7 +30,7 @@
             <div class="addcus-skype layui-col-md6">
                 <label class="layui-form-label"><span class="span-required">*</span>国家:</label>
                 <div class="layui-input-block">
-                   <script type="text/html" template lay-url="{{layui.setter.imUrl}}quote/getCountry" lay-done="layui.data.done(d);" lay-type="post">
+                   <script type="text/html" template lay-url="{{layui.setter.imUrl}}v1/quote/getCountry" lay-done="layui.data.done(d);" lay-type="post">
                         <select name="countryInfo" lay-verify="required" lay-search="" lay-filter="lf-country">
                             {{# 
                                 layui.each(d.data, function(index, item){   

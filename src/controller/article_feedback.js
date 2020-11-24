@@ -20,10 +20,17 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit', 'f
     // layerdate.render({
     //     elem: '#gmtCreate'
     // })
-    laydate.render({
-        elem: '#gmtCreate'
-    });
+    form.render(null, 'article-feedback-formlist');
+    
 
+     form.on('submit(LAY-article-feedback-search)', function(data){
+        var field = data.field;
+    
+        //执行重载
+        table.reload('article_Table_feedback', {
+            where: field
+        });
+    })
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 文章博客管理
     table.render({
         elem: '#article_Table_feedback'
@@ -43,7 +50,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit', 'f
             at:2
         }
         ,cols: [[
-            {field:'id', title: 'ID',hide: true}
+            {field:'id', title: 'ID',hide: false}
             ,{field:'articleName', title: '文章名称', hide: false, align:'center', sort: true}
             ,{field:'articleTime', title: '发布时间', align:'center', width: 176, sort: true}
             ,{field:'articleIp', title: '发布ip', align:'center', sort: true}
@@ -231,7 +238,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit', 'f
                                     layer.close(index); //执行关闭
                                 }
                             })
-
+                            admin.req({
+                                url: setter.imUrl + 'blogapi/updateStaticPage?fileName='+field.articleName+'&pathMark=feedback',
+                                type: 'GET',
+                                success:function(data){
+                                    console.log(data)
+                                }
+                            })
                         });
                     });
                 }

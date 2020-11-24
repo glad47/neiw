@@ -174,6 +174,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                         "<input type='text' autocomplete='off' value='"+(e.receiverPostcode == null ? "" : e.receiverPostcode)+"'/>"+
                                         "</td><td>"+
                                         "<input type='text' autocomplete='off' value='"+(e.receiverAddress == null ? "" : e.receiverAddress)+"' />"+
+                                        "</td><td>"+
                                         "<input type='button' class='layui-btn layui-btn-xs' value='删除' addid='"+e.id+"'></td></tr>";
                                     });
                                     $('#table_address').append(tr);
@@ -202,6 +203,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                     "<input type='text' autocomplete='off'/>"+
                                     "</td><td>"+
                                     "<input type='text' autocomplete='off'/>"+
+                                    "</td><td>"+
                                     "<input type='button' class='layui-btn layui-btn-xs' value='删除'></td></tr>";
                                     $('#table_address').append(tr);
                                     resetTableIndex();

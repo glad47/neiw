@@ -25,7 +25,48 @@
             <button class="layui-btn layui-hide" lay-active="e1" id="e1">添加</button>
         </div>
         <div class="layui-col-md12">
-            <table id="market-packing-list-en-table" lay-filter="market-packing-list-en-table"></table>
+            <!-- <table id="market-packing-list-en-table" lay-filter="market-packing-list-en-table"></table> -->
+            <table class="layui-table">
+                <thead>
+                    <tr>
+                        <td>marks(C/T No.)</td>
+                        <td>Q'type(pcs)</td>
+                        <td>Packages</td>
+                        <td>Description</td>
+                        <td>Gross Weight(kg)</td>
+                        <td>Net Weight(kg)</td>
+                        <td>Measurement</td>
+                        <td>Order No</td>
+                        <td>COMMERCIAL INVOICE No.</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <script type="text/html" template>
+                        {{# layui.each(d.params.itemEntityList, function(index, item){  }}
+                        <tr>
+                            <td>{{ item.marks || ''}}</td>
+                            <td>{{ item.qty || ''}}</td>
+                            <td>{{ item.packages || ''}}</td>
+                            <td>{{ item.description || ''}}</td>
+                            <td>{{ item.grossWeight || ''}}</td>
+                            <td>{{ item.netWeight || ''}}</td>
+                            <td>{{ item.measurement || ''}}</td>
+                            <td>{{ item.orderNo || ''}}</td>
+                            <td>{{ item.commercialInvoiceno || ''}}</td>
+                        </tr>
+                        {{# }) }}
+                        <tr>
+                            <td>Total</td>
+                            <td>{{ d.params.itemEntityList.map(i => i.qty).reduce((total,num)=> total + num) }}</td>
+                            <td>{{ d.params.itemEntityList.map(i => i.packages).reduce((total,num)=> total + num) }}</td>
+                            <td></td>
+                            <td>{{ d.params.itemEntityList.map(i => Number(i.grossWeight)).reduce((total,num)=> total + num) }}</td>
+                            <td>{{ d.params.itemEntityList.map(i => Number(i.netWeight)).reduce((total,num)=> total + num) }}</td>
+                            <td colspan="3"></td>
+                        </tr>
+                    </script>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
