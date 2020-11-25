@@ -1,0 +1,174 @@
+<title>报关单</title>
+<div class="layui-fluid" id="market-packing-list-customs-print">
+    <script type="text/html" template>
+    <div class="layui-row  layui-col-space7">
+        <div class="layui-col-md12" style="text-align: center; margin-bottom: 20px;">
+            <h1>中华人名共和国海关出口货物报关单</h1>
+        </div>
+        <div class="layui-col-md12" style="display: flex; margin-bottom: -10px;">
+            <div style="text-indent: 30px; width: 30%;">预录入编号:</div>
+            <div style="width: 30%;">申报口岸:</div>
+            <div style="flex: 1;">海关编号:{{d.params.ccrn || ''}}</div>
+        </div>
+        <div class="layui-col-md12">
+            <table class="layui-table">
+                <tbody>
+                    <tr>
+                        <td>
+                            境内发货人： <strong>深圳聚谷科技有限公司</strong>
+                        </td>
+                        <td colspan="2" valign='top'>
+                            出境关别： <strong>深圳海关</strong>
+                        </td>
+                        <td colspan="2" valign='top'>
+                            出口日期：
+                        </td>
+                        <td valign='top'>
+                            申报日期：
+                        </td>
+                        <td colspan="2" valign='top'>
+                            备案号：
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign='top'>
+                            境外收货人 AEO： <strong>{{d.params.userInfo != null ? d.params.userInfo.contact || '' : ''}}</strong>
+                        </td>
+                        <td colspan="2" valign='top'>
+                            运输方式： <strong>深圳监管</strong>
+                        </td>
+                        <td colspan="2" valign='top'>
+                            运输工具名称及航次号
+                        </td>
+                        <td valign='top' valign='top'>
+                            提运单号： <strong>{{d.params.deliveryNo}}</strong>
+                        </td>
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td valign='top' valign='top'>
+                            生产销售单位：<strong>深圳聚谷科技有限公司</strong>
+                        </td>
+                        <td colspan="2" valign='top'>
+                            监管方式： <strong>一般贸易</strong> 
+                        </td>
+                        <td colspan="2" valign='top'>
+                            征免性质：<strong>一般征税</strong>
+                        </td>
+                        <td valign='top'>许可证号</td>
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td valign='top'>
+                            合同协议号：<strong>{{d.params.commercialInvoice || ''}}</strong>
+                        </td>
+                        <td colspan="2" valign='top'>
+                            贸易国(地区)： <strong>{{d.params.userInfo != null ? d.params.userInfo.countryCn || '' : ''}}</strong>  
+                        </td>
+                        <td colspan="2" valign='top'>
+                            运抵国(地区)： <strong>{{d.params.userInfo != null ? d.params.userInfo.countryCn || '' : ''}}</strong>
+                        </td>
+                        <td valign='top'>指运港</td>
+                        <td colspan="2" valign='top'>
+                            离境口岸（  ）跨境的才需要申报
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign='top'>
+                            包装种类： <strong>纸箱</strong>
+                        </td>
+                        <td valign='top'>
+                            件数： <strong>{{d.params.itemEntityList.map(i => Number(i.qty)).reduce((total,num)=> total + num) }}</strong>
+                        </td>
+                        <td valign='top'>
+                            毛重： <strong>{{d.params.itemEntityList.map(i => Number(i.grossWeight)).reduce((total,num)=> total + num) }}</strong>
+                        </td>
+                        <td valign='top'>
+                            净重： <strong>{{d.params.itemEntityList.map(i => Number(i.netWeight)).reduce((total,num)=> total + num) }}</strong>
+                        </td>
+                        <td valign='top'>
+                            成交方式： <strong>{{d.params.tradeType || ''}}</strong>
+                        </td>
+                        <td valign='top'>
+                            运费：
+                        </td>
+                        <td valign='top'>
+                            保费：
+                        </td>
+                        <td valign='top'>
+                            杂费：
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" valign='top'>
+                            随附单证及编号境外收货人完整显示：<strong>{{d.params.userInfo != null ? d.params.userInfo.contact || '' : ''}}</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8">标记唛码及备注:</td>
+                    </tr>
+                    <tr>
+                        <td colspan="8">备注:</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"></td>
+                        <td colspan="3">
+                            报关联系电话：
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>特殊关系确认：</td>
+                        <td>价格影响确认：</td>
+                        <td>支付特许权使用费：</td>
+                        <td colspan="5">自报自缴：出口不填原产国/目的国/货源地未注明的项默认与提供的项相同</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">商品编号</td>
+                        <td style="text-align: center;">商品名称及规格型号</td>
+                        <td colspan="6" style="text-align: center;">数量及单位 单价/总价/币制 原产国（地区）最终目的国（地区）境内货源地 征免</td>
+                    </tr>
+                    {{# layui.each(d.params.itemEntityList, function(index, item){  }}
+                    <tr>
+                        <td rowspan="3" style="text-align: center;">
+                        {{d.params.goodsNo || ''}}
+                        </td>
+                        <td rowspan="3" style="text-align: center;">
+                            硬刷线路板组装<br>
+                            无牌|无型号|已组装元器件<br>
+                            型号: {{ item.description || ''}}
+                        </td>
+                        <td rowspan="3" style="text-align: center;">
+                            {{ item.qty || ''}}块
+                        </td>
+                        <td rowspan="1" style="text-align: center;">
+                            {{ item.unitPrice || ''}}
+                        </td>
+                        <td rowspan="3" style="text-align: center;">
+                            中国
+                        </td>
+                        <td rowspan="3" style="text-align: center;">
+                            {{d.params.userInfo != null ? d.params.userInfo.countryCn || '' : ''}} 
+                        </td>
+                        <td rowspan="3" style="text-align: center;">
+                            {{d.params.sourceSupply || ''}}
+                        </td>
+                        <td rowspan="3" style="text-align: center;">
+                            {{d.params.zm || ''}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">{{item.totalPrice || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">USD</td>
+                    </tr>
+                    {{# }) }}
+                </tbody>
+            </table>
+        </div>
+        <div class="layui-col-md12">
+            <h2 style="text-align: center;">TOTAL  ${{d.params.itemEntityList.map(i => Number(i.totalPrice)).reduce((total,num)=> total + num) }}</h2>
+        </div>
+    </div>
+    </script>
+</div>

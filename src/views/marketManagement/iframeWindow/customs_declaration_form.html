@@ -3,20 +3,69 @@
     <link rel="stylesheet" href="{{ layui.setter.base }}style/formSelects-v4.css?v={{ layui.admin.v }}-1" />
 </script>
 <div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.sendParams(d.params)">
     <div class="layui-form" lay-filter="market-customs-declaration-form">
         <div class="layui-form-item">
-            <label class="layui-form-label">客户编号</label>
-            <div class="layui-input-inline">
-                <script type="text/html" template lay-done="layui.data.sendParams(d.params)">
-                    <select name="receiverId" xm-select-height="34px" xm-select="receiverId" xm-select-radio  xm-select-search="" xm-select-search-type="dl" lay-verify="required">
-                        {{# if(d.params.receiverId != null){ }}
-                        <option class="def-option" value="{{d.params.receiverId}}" selected>{{d.params.customerNo}}</option>
-                        {{# } }}
-                    </select>
-                    <!-- <input type="text" name="customerNo" autocomplete="off" class="layui-input" value="{{ d.params.customerNo || ''}}" lay-verify="required"> -->
-                    <input type="hidden" name="id" value="{{ d.params.id || '' }}">
-                    <input type="hidden" name="customerNo" value="{{d.params.customerNo || ''}}">
-                </script>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">客户编号</label>
+                <div class="layui-input-inline">
+                        <select name="receiverId" xm-select-height="34px" xm-select="receiverId" xm-select-radio  xm-select-search="" xm-select-search-type="dl" lay-verify="required">
+                            {{# if(d.params.receiverId != null){ }}
+                            <option class="def-option" value="{{d.params.receiverId}}" selected>{{d.params.customerNo}}</option>
+                            {{# } }}
+                        </select>
+                        <!-- <input type="text" name="customerNo" autocomplete="off" class="layui-input" value="{{ d.params.customerNo || ''}}" lay-verify="required"> -->
+                        <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+                        <input type="hidden" name="customerNo" value="{{d.params.customerNo || ''}}">
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">下单时间</label> 
+                <div class="layui-input-inline">
+                    <input type="text" name="orderTime" id="orderTime" autocomplete="off" class="layui-input" value="{{ d.params.orderTime || ''}}" lay-verify="required">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-col-md6">
+                <label class="layui-form-label">海关编号</label> 
+                <div class="layui-input-inline">
+                    <input type="text" name="ccrn" autocomplete="off" class="layui-input" value="{{ d.params.ccrn || ''}}">
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">提运单号</label> 
+                <div class="layui-input-inline">
+                    <input type="text" name="deliveryNo" autocomplete="off" class="layui-input" value="{{ d.params.deliveryNo || ''}}">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-col-md6">
+                <label class="layui-form-label">成交方式</label> 
+                <div class="layui-input-inline">
+                    <input type="text" name="tradeType" autocomplete="off" class="layui-input" value="{{ d.params.tradeType || ''}}">
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">商品编号</label> 
+                <div class="layui-input-inline">
+                    <input type="text" name="goodsNo"autocomplete="off" class="layui-input" value="{{ d.params.goodsNo || ''}}">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-col-md6">
+                <label class="layui-form-label">境内货源地</label> 
+                <div class="layui-input-inline">
+                    <input type="text" name="sourceSupply" autocomplete="off" class="layui-input" value="{{ d.params.sourceSupply || ''}}">
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">征免</label> 
+                <div class="layui-input-inline">
+                    <input type="text" name="zm" autocomplete="off" class="layui-input" value="{{ d.params.zm || ''}}">
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
@@ -27,8 +76,8 @@
                 <input type="button" id="mcdfs" lay-submit lay-filter="market-customs-declaration-form-submit" value="确认" class="layui-btn" style="display: none;" >
             </div>
         </div>
-
     </div>
+    </script>
     <table id="market-packing-list-en-table" lay-filter="market-packing-list-en-table"></table>
 </div>
 
@@ -37,7 +86,7 @@
         // console.log(params);
         var ddd = params.itemEntityList || [];
          
-        layui.use(['admin', 'table', 'util', 'form','requestInterface','formSelects'], function(){
+        layui.use(['admin', 'table', 'util', 'form','requestInterface','formSelects','laydate'], function(){
             var $ = layui.$
             ,admin = layui.admin
             ,view = layui.view
@@ -46,9 +95,13 @@
             ,form = layui.form
             ,requestInterface = layui.requestInterface
             ,formSelects = layui.formSelects
-            ,util = layui.util;
+            ,util = layui.util
+            ,laydate = layui.laydate;
 
             form.render(null,'market-customs-declaration-form');
+            laydate.render({
+                elem: "#orderTime"
+            })
             initSelCustomer();
 
             table.render({
@@ -67,7 +120,7 @@
                     ,{field: 'unitPrice', align:'center', title: '单价', edit: 'text'}
                     ,{field: 'totalPrice', align:'center', title: '总价', edit: 'text'}
                     ,{field: 'orderNo', align:'center', title: '订单号码',edit: 'text'}
-                    ,{field: 'commercialInvoiceno', align:'center', title: '发票号码',edit: 'text'}
+                    // ,{field: 'commercialInvoiceno', align:'center', title: '发票号码',edit: 'text'}
                 ]]
             });
 

@@ -9,16 +9,20 @@
         </div>
         <div class="layui-col-md6" style="float: left;">
             <ul>
-                <li class="layui-text">Cuest: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
+                <script type="text/html" template>
+                <li class="layui-text">Cuest: {{d.params.userInfo.contact || ''}}</li>
+                </script>
             </ul>
         </div>
         <div class="layui-col-md6" style="float: right;">
+            <script type="text/html" template>
             <ul>
-                <li class="layui-text">Date: 28th. Sep 2020</li>
+                <li class="layui-text">Date: {{new Date(d.params.gmtCreate).toDateString()}}</li>
             </ul>
             <ul>
-                <li class="layui-text">Terms of Payment: at the end of month</li>
+                <li class="layui-text">Terms of Payment: {{d.params.userInfo.paymentType || ''}}</li>
             </ul>
+            </script>
         </div>
         <div class="layui-col-md12">
             <hr class="layui-bg-black">

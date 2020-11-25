@@ -1,11 +1,13 @@
 
-layui.define(['table', 'form', 'util','requestInterface'], function(exports){
+layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurrency'], function(exports){
     var $ = layui.$
     ,admin = layui.admin
     ,view = layui.view
     ,table = layui.table
     ,setter = layui.setter
     ,form = layui.form
+    ,jsTools = layui.jsTools
+    ,convertCurrency = layui.convertCurrency
     ,requestInterface = layui.requestInterface;
     
     form.render(null, 'marker-customs-declaration-list');
@@ -108,7 +110,16 @@ layui.define(['table', 'form', 'util','requestInterface'], function(exports){
           success: function(res){
             if(res.data.length === 0) return layer.msg('详细为空，请添加数据');
             data.itemEntityList = res.data;
-            // console.log(data);
+            console.log(res.data);
+            //计算总值
+            let tp = res.data.map(i =>(Number(i.totalPrice))).reduce((total,num)=> total + num);
+            let tp2 = convertCurrency.conversion(tp);
+            //计算交期
+            let tw = jsTools.TimeWeekage(data.orderTime,2);
+            console.log(tw);
+            data.tp = tp;
+            data.tp2 =tp2;
+            data.tw = tw;
             admin.popup({
               title: '合同'
               ,area: ['100%', '100%']
@@ -166,7 +177,6 @@ layui.define(['table', 'form', 'util','requestInterface'], function(exports){
               ,id: 'LAY-popup-packing-list-customs'
               ,btn:['打印', '取消']
               ,yes: function(index, layero){
-                  // console.log('ssssss')
                   document.body.innerHTML=document.getElementById('market-packing-list-customs-print').innerHTML;
                   window.print();
                   window.location.reload();
@@ -222,7 +232,7 @@ layui.define(['table', 'form', 'util','requestInterface'], function(exports){
                     //获取表格数据
                     let field = data.field,tableData = table.cache["market-packing-list-en-table"];
                     field.itemEntityList = tableData;
-                    console.log(field);
+                    // console.log(field);
                     //提交表单
                     admin.req({
                         type: 'post'
@@ -234,12 +244,13 @@ layui.define(['table', 'form', 'util','requestInterface'], function(exports){
                         ,success: function (res) {
                             layer.msg('添加成功！！');
                             table.reload('market-customs-declaration-table');
+                            layer.close(index);
                         }
                         ,error: function (res) {
                             layer.msg("添加失败，请稍后再试！");
                         }
                     });
-                    layer.close(index);
+                    
                 });
               });
             }

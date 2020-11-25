@@ -8,13 +8,13 @@
         <div style="display: flex;justify-content: space-between;">
             <div class="layui-col-md6" style="width: 50%;">
                 <ul>
-                    <li class="layui-text">买方/Buyers: {{d.params.userInfo.contact || ''}}</li>
+                    <li class="layui-text">买方/Buyers: {{d.params.userInfo != null ? d.params.userInfo.contact || '' : ''}}</li>
                 </ul>
                 <ul>
-                    <li class="layui-text">地址/Address: {{d.params.userInfo.address || ''}}</li>
+                    <li class="layui-text">地址/Address: {{d.params.userInfo != null ? d.params.userInfo.address || '' : ''}}</li>
                 </ul>
                 <ul>
-                    <li class="layui-text">电话/Tel: {{d.params.userInfo.mobilePhone || ''}}</li>
+                    <li class="layui-text">电话/Tel: {{d.params.userInfo != null ? d.params.userInfo.mobilePhone || '' : ''}}</li>
                 </ul>
                 <ul>
                     <li class="layui-text">传真/Fax: </li>
@@ -31,7 +31,7 @@
                     <li class="layui-text">Contract No: {{d.params.commercialInvoice || ''}}</li>
                 </ul>
                 <ul>
-                    <li class="layui-text">Date: </li>
+                    <li class="layui-text">Date: {{d.params.orderTime || ''}}</li>
                 </ul>
                 <ul>
                     <li class="layui-text">Singed at:  Shenzhen</li>
@@ -110,6 +110,7 @@
             </table>
         </div>
         <div class="layui-col-md12">
+            <script type="text/html" template>
             <ul style="display: flex;justify-content: space-between;">
                 <li>数量及总值允许有5%的增减</li>
                 <li>总值</li>
@@ -118,11 +119,11 @@
                 <!-- <li>总值</li> -->
                 <li>5% more or less both on amount and quantity allowed</li>
                 <li>Total Amount:</li>
-                <li>$2607.13</li>
+                <li>${{d.params.tp}}</li>
             </ul>
             <ul style="display: flex;justify-content: space-between;">
                 <li>(5)合同总值（大写）:</li>
-                <li>XXXXXXXXXXXXXX</li>
+                <li>{{d.params.tp2}}</li>
             </ul>
             <ul style="display: flex;justify-content: space-between;">
                 <li>Total Vatue in Word</li>
@@ -138,8 +139,8 @@
             </ul> 
             <ul style="display: flex;justify-content: space-between;">
                 <li>(8)装运日期和目的地:</li>
-                <li>2020/10/22 之前</li>
-                <li>深圳-美国</li>
+                <li>{{d.params.tw}} 之前</li>
+                <li>深圳-{{d.params.userInfo != null ? d.params.userInfo.countryCn || '' : ''}}</li>
             </ul>
             <ul style="display: flex;justify-content: space-between;">
                 <li>(9)保险：</li>
@@ -151,7 +152,7 @@
             </ul>
             <ul style="display: flex;justify-content: space-between;">
                 <li>(10)付款条件：</li>
-                <li>Terms of Payment: T/T</li>
+                <li>Terms of Payment: {{d.params.userInfo != null ? d.params.userInfo.paymentType || '' : ''}}</li>
             </ul>
             <ul style="display: flex;justify-content: space-between;">
                 <li>(11)装运标记Shipping Marks：</li>
@@ -164,6 +165,7 @@
                 <li>THE BUYERS</li>
                 <li>THE SELLERS</li>
             </ul>
+            </script> 
         </div>
     </div>
 </div>
