@@ -229,6 +229,7 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
 
                 //监听提交
                 form.on('submit(market-customs-declaration-form-submit)',function (data) {
+                    let loadindex = layer.load(1, {shade: [0.1,'#fff']}); 
                     //获取表格数据
                     let field = data.field,tableData = table.cache["market-packing-list-en-table"];
                     field.itemEntityList = tableData;
@@ -242,6 +243,7 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
                         ,dataType:'json'
                         ,data: JSON.stringify(field)
                         ,success: function (res) {
+                            layer.close(loadindex);
                             layer.msg('添加成功！！');
                             table.reload('market-customs-declaration-table');
                             layer.close(index);

@@ -71,8 +71,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label"></label>
             <div class="layui-input-inline">
-                <button class="layui-btn  layui-btn-danger" lay-active="e1">添加</button>
-                <button class="layui-btn  layui-btn-normal" lay-active="e2">删除</button>
+                <button class="layui-btn layuiadmin-btn-list layui-btn-danger" data-type="e1">添加</button>
+                <button class="layui-btn layuiadmin-btn-list layui-btn-normal" data-type="e2">删除</button>
                 <input type="button" id="mcdfs" lay-submit lay-filter="market-customs-declaration-form-submit" value="确认" class="layui-btn" style="display: none;" >
             </div>
         </div>
@@ -83,7 +83,7 @@
 
 <script>
     layui.data.sendParams = function(params){
-        // console.log(params);
+        console.log(params);
         var ddd = params.itemEntityList || [];
          
         layui.use(['admin', 'table', 'util', 'form','requestInterface','formSelects','laydate'], function(){
@@ -153,7 +153,25 @@
             });
     
             //监听but
-            util.event('lay-active',{
+            // util.event('lay-active',{
+            //     e1: function(){
+            //         let oldData = table.cache["market-packing-list-en-table"],d={};
+            //         oldData.push(d);
+            //         // console.log(oldData);
+            //         table.reload('market-packing-list-en-table',{data:oldData})
+            //     },
+            //     e2: function(){
+            //         layer.confirm("你确定要删除么？",function(){  
+            //             let oldData = table.cache["market-packing-list-en-table"]; 
+            //             // console.log(oldData); 
+            //             oldData.splice(oldData.length-1,1);  
+            //             layer.msg("删除成功",{time: 10},function(){  
+            //                 table.reload('market-packing-list-en-table',{data : oldData});  
+            //             });  
+            //         }) 
+            //     }
+            // })
+            var active = {
                 e1: function(){
                     let oldData = table.cache["market-packing-list-en-table"],d={};
                     oldData.push(d);
@@ -170,7 +188,12 @@
                         });  
                     }) 
                 }
-            })
+            }
+
+            $('.layui-btn.layuiadmin-btn-list').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+            });
         });
     }
 </script>
