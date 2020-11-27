@@ -239,6 +239,34 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 });
                
             });
+        },
+        orderInfoInput : function(){
+            admin.popup({
+                title: '选择订单型号',
+                closeBtn: 0, //不显示关闭按钮
+                anim: 2,
+                shadeClose: true, //开启遮罩关闭
+                area: ['50%', '60%'],
+                btn:['导入', '取消'],
+                yes: function() {
+                    //todo 加入监听时间,这里不能这样玩。。。。。。。。。待改
+                    $("#drsjyc").click();
+                },
+                success: function(layero,index){
+                    view(this.id).render('common/common_import_order_form_table').done(function(){
+                        var active = {
+                            drsjyc : function(){
+                                console.log('ssss');
+                            }
+                        }
+                    });
+
+                    $('.layui-btn.layuiadmin-btn-list').on('click', function(){
+                        var type = $(this).data('type');
+                        active[type] ? active[type].call(this) : '';
+                    });
+                }
+            }) 
         }
     };
 

@@ -1,0 +1,55 @@
+<title>导入返单信息</title>
+<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
+<div class="layui-fluid">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+        <form class="layui-form" lay-filter="pert_form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">产品型号</label>
+                <div class="layui-input-inline">
+                    <select name="productNo" xm-select="productNo" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item" style="display: none;">
+                <button class="layui-btn layuiadmin-btn-forum-list" lay-submit lay-filter="importRePCBInfo" id="importRePCBInfo">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </form>
+    </script>
+</div>
+
+<script>
+    layui.data.done = function (d) {
+        layui.use(['setter',  'admin', 'element', 'jquery', 'form', 'formSelects'], function () {
+            var $ = layui.$,
+                table = layui.table,
+                form = layui.form,
+                admin = layui.admin,
+                view = layui.view,
+                formSelects = layui.formSelects,
+                setter = layui.setter;
+            
+                form.render(null, "pert_form");
+
+                admin.req({
+                    type: 'post',
+                    async: false,
+                    url: setter.baseUrl + 'epc/pcborder/allProductNo',   // 查询客户所有产品号
+                    success: function (res) {
+                        if (res.data == null || res.data.length == 0) {
+                            layer.msg('没有查询到此当前类型下所对应的客户型号，请确定添加后再试！');
+                        } else {
+                            var $html;
+                            for (var i=0;i<res.data.length;i++) {
+                                $html += "<option value="+res.data[i]+">"+res.data[i]+"</option>"
+                            }
+                        }
+                        $("select[xm-select='productNo']").append($html);
+                        formSelects.render('productNo');
+                    }
+                });
+
+        });
+    }
+</script>

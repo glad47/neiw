@@ -240,7 +240,6 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
                         ,headers: {access_token:layui.data('layuiAdmin').access_token}
                         ,url: setter.baseUrl+'market/customsdeclaration/save'
                         ,contentType: "application/json;charset=utf-8"
-                        ,dataType:'json'
                         ,data: JSON.stringify(field)
                         ,success: function (res) {
                             layer.close(loadindex);
