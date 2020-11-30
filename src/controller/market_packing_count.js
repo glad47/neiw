@@ -249,21 +249,35 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 area: ['50%', '60%'],
                 btn:['导入', '取消'],
                 yes: function() {
-                    //todo 加入监听时间,这里不能这样玩。。。。。。。。。待改
                     $("#drsjyc").click();
                 },
                 success: function(layero,index){
                     view(this.id).render('common/common_import_order_form_table').done(function(){
-                        var active = {
-                            drsjyc : function(){
-                                console.log('ssss');
+                        //用于监听导入按钮的提交
+                        $("#drsjyc").click(function(){
+                            //获取表格数据
+                            let checkStatus = table.checkStatus('LAY-common-import-order-table-list'),data = checkStatus.data;
+                            console.log(data);
+                            if(data.length === 0){
+                                return layer.msg('请选择要导入的数据');
+                            }else{
+                                data = data[0];
+                                let dd = {
+                                    'finishedSizeX':data.dimensionsX || data.panelSizeX,
+                                    'finishedSizeY':data.dimensionsY || data.panelSizeY,
+                                    'qty': data.quantityPcs,
+                                    'area': data.areaSq,
+                                    'panelX': data.panelWayX || 1,
+                                    'panelY': data.panelWayY || 1,
+                                    'boardType': data.pcbType,
+                                    'layerNum': data.layerNum,
+                                    'finishThickness':data.finishThickness.replace('mm',' ').trim(),
+                                }
+                                console.log(dd);
+                                form.val('market-packing-form',dd);
                             }
-                        }
-                    });
-
-                    $('.layui-btn.layuiadmin-btn-list').on('click', function(){
-                        var type = $(this).data('type');
-                        active[type] ? active[type].call(this) : '';
+                            layer.close(index);
+                        })
                     });
                 }
             }) 
