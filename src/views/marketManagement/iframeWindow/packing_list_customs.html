@@ -8,7 +8,7 @@
         <div class="layui-col-md12" style="display: flex; margin-bottom: -10px;">
             <div style="text-indent: 30px; width: 30%;">预录入编号:</div>
             <div style="width: 30%;">申报口岸:</div>
-            <div style="flex: 1;">海关编号:{{d.params.ccrn || ''}}</div>
+            <div style="flex: 1;">海关编号: 4403161FBD</div>
         </div>
         <div class="layui-col-md12">
             <table class="layui-table">
@@ -130,7 +130,7 @@
                     {{# layui.each(d.params.itemEntityList, function(index, item){  }}
                     <tr>
                         <td rowspan="3" style="text-align: center;">
-                        {{d.params.goodsNo || ''}}
+                        {{item.goodsNo || ''}}
                         </td>
                         <td rowspan="3" style="text-align: center;">
                             硬刷线路板组装<br>
@@ -150,10 +150,10 @@
                             {{d.params.userInfo != null ? d.params.userInfo.countryCn || '' : ''}} 
                         </td>
                         <td rowspan="3" style="text-align: center;">
-                            {{d.params.sourceSupply || ''}}
+                            {{item.sourceSupply || ''}}
                         </td>
                         <td rowspan="3" style="text-align: center;">
-                            {{d.params.zm || ''}}
+                            照章征税
                         </td>
                     </tr>
                     <tr>

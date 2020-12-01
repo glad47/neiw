@@ -1,40 +1,27 @@
 <title>添加报关单</title>
 <link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />>
 <div class="layui-fluid">
-    <script type="text/html" template lay-done="layui.data.sendParams(d.params)">
+    
     <div class="layui-form" lay-filter="market-customs-declaration-form">
+        
         <div class="layui-form-item">
             <div class="layui-col-md6">
                 <label class="layui-form-label">客户编号</label>
                 <div class="layui-input-inline">
-                        <select name="receiverId" xm-select-height="34px" xm-select="receiverId" xm-select-radio  xm-select-search="" xm-select-search-type="dl" lay-verify="required">
-                            {{# if(d.params.receiverId != null){ }}
-                            <option class="def-option" value="{{d.params.receiverId}}" selected>{{d.params.customerNo}}</option>
-                            {{# } }}
-                        </select>
-                        <!-- <input type="text" name="customerNo" autocomplete="off" class="layui-input" value="{{ d.params.customerNo || ''}}" lay-verify="required"> -->
-                        <input type="hidden" name="id" value="{{ d.params.id || '' }}">
-                        <input type="hidden" name="customerNo" value="{{d.params.customerNo || ''}}">
+                    <script type="text/html" template>
+                    <select name="receiverId" xm-select-height="34px" xm-select="receiverId" xm-select-radio  xm-select-search="" xm-select-search-type="dl" lay-verify="required"></select>
+                    <!-- <input type="text" name="customerNo" autocomplete="off" class="layui-input" value="{{ d.params.customerNo || ''}}" lay-verify="required"> -->
+                    <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+                    <input type="hidden" name="customerNo" value="{{d.params.customerNo || ''}}">
+                    </script>
                 </div>
             </div>
             <div class="layui-col-md6">
                 <label class="layui-form-label">下单时间</label> 
                 <div class="layui-input-inline">
+                    <script type="text/html" template>
                     <input type="text" name="orderTime" id="orderTime" autocomplete="off" class="layui-input" value="{{ d.params.orderTime || ''}}" lay-verify="required">
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-col-md6">
-                <label class="layui-form-label">海关编号</label> 
-                <div class="layui-input-inline">
-                    <input type="text" name="ccrn" autocomplete="off" class="layui-input" value="{{ d.params.ccrn || ''}}">
-                </div>
-            </div>
-            <div class="layui-col-md6">
-                <label class="layui-form-label">提运单号</label> 
-                <div class="layui-input-inline">
-                    <input type="text" name="deliveryNo" autocomplete="off" class="layui-input" value="{{ d.params.deliveryNo || ''}}">
+                    </script>
                 </div>
             </div>
         </div>
@@ -42,48 +29,49 @@
             <div class="layui-col-md6">
                 <label class="layui-form-label">成交方式</label> 
                 <div class="layui-input-inline">
-                    <input type="text" name="tradeType" autocomplete="off" class="layui-input" value="{{ d.params.tradeType || ''}}">
-                </div>
+                    <script type="text/html" template lay-done="layui.data.done(d)" lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'发货方式'}" lay-type="post">
+                    <select name="tradeType">
+                        {{# 
+                            layui.each(d.data, function(index, item){   
+                        }}
+                        <option value=""></option>
+                        <option value="{{ item.dictKey || ''}}" {{ d.params.tradeType == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
+                        {{#  }); }}
+                        {{#  if(d.data.length === 0){ }}
+                        无数据 
+                        {{#  } }}
+                    </select>
+                    </script>
+                </div> 
             </div>
             <div class="layui-col-md6">
-                <label class="layui-form-label">商品编号</label> 
+                <label class="layui-form-label">提运单号</label> 
                 <div class="layui-input-inline">
-                    <input type="text" name="goodsNo"autocomplete="off" class="layui-input" value="{{ d.params.goodsNo || ''}}">
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-col-md6">
-                <label class="layui-form-label">境内货源地</label> 
-                <div class="layui-input-inline">
-                    <input type="text" name="sourceSupply" autocomplete="off" class="layui-input" value="{{ d.params.sourceSupply || ''}}">
-                </div>
-            </div>
-            <div class="layui-col-md6">
-                <label class="layui-form-label">征免</label> 
-                <div class="layui-input-inline">
-                    <input type="text" name="zm" autocomplete="off" class="layui-input" value="{{ d.params.zm || ''}}">
+                    <script type="text/html" template>
+                    <input type="text" name="deliveryNo" autocomplete="off" class="layui-input" value="{{ d.params.deliveryNo || ''}}">
+                    </script> 
                 </div>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label"></label>
             <div class="layui-input-inline">
+                <script type="text/html" template>
                 <button class="layui-btn layuiadmin-btn-list layui-btn-danger" data-type="e1">添加</button>
                 <button class="layui-btn layuiadmin-btn-list layui-btn-normal" data-type="e2">删除</button>
                 <input type="button" id="mcdfs" lay-submit lay-filter="market-customs-declaration-form-submit" value="确认" class="layui-btn" style="display: none;" >
+                </script>
             </div>
         </div>
+        
     </div>
-    </script>
     <table id="market-packing-list-en-table" lay-filter="market-packing-list-en-table"></table>
 </div>
 
 <script>
-    layui.data.sendParams = function(params){
-        console.log(params);
-        var ddd = params.itemEntityList || [];
-         
+    layui.data.done = function(d){
+        console.log(d);
+        var ddd = d.params.itemEntityList || [],rid = d.params.receiverId;
         layui.use(['admin', 'table', 'util', 'form','requestInterface','formSelects','laydate'], function(){
             var $ = layui.$
             ,admin = layui.admin
@@ -96,11 +84,14 @@
             ,util = layui.util
             ,laydate = layui.laydate;
 
-            form.render(null,'market-customs-declaration-form');
+            
             laydate.render({
                 elem: "#orderTime"
             })
-            initSelCustomer();
+
+            initSelCustomer(rid); 
+
+            form.render(null,'market-customs-declaration-form');
 
             table.render({
                 elem: '#market-packing-list-en-table'
@@ -118,23 +109,41 @@
                     ,{field: 'unitPrice', align:'center', title: '单价', edit: 'text'}
                     ,{field: 'totalPrice', align:'center', title: '总价', edit: 'text'}
                     ,{field: 'orderNo', align:'center', title: '订单号码',edit: 'text'}
+                    ,{field: 'goodsNo', align:'center', title: '商品编号',edit: 'text'}
+                    ,{field: 'sourceSupply', align:'center', title: '货源地',edit: 'text'} 
                     // ,{field: 'commercialInvoiceno', align:'center', title: '发票号码',edit: 'text'}
                 ]]
             });
 
-              /**
+            //监听单元格编辑
+            table.on('edit(market-packing-list-en-table)', function(obj){ 
+                //注：edit是固定事件名，test是table原始容器的属性 lay-filter="对应的值"
+                // console.log(obj.value); //得到修改后的值
+                // console.log(obj.field); //当前编辑的字段名
+                // console.log(obj.data); //所在行的所有相关数据
+                if(obj.field === 'totalPrice'){
+                    // table.reload('market-packing-list-en-table',{data:[obj.data]})
+                    let totalPrice = Number(obj.data.qty) * Number(obj.data.unitPrice);;
+                    console.log(totalPrice);
+                    $(obj.tr.selector + ' td[data-field="' + obj.field + '"] input').val(totalPrice);
+                }
+            });
+
+             /**
              * 初始化下拉， 获取所有客户信息
              */
-            function initSelCustomer() {
+            function initSelCustomer(rid) {
                 var _obj = requestInterface.getAllCustomer();
                 var $html;
                 for (let c of _obj) {
                     $html += "<option value="+c.id+">"+c.userSystemId+"</option>"
                 }
                 $("select[xm-select='receiverId']").append($html);
+
                 formSelects.render('receiverId');
-                // formSelects.value('giCustomer', []);
-                // $(".xm-select-parent[fs_id='"+dom+"']").children(".xm-form-select").addClass("xm-form-selected");
+                if(ddd.length !== 0){
+                    formSelects.value('receiverId',[rid],true);
+                }
             }
 
             formSelects.on('receiverId', function (id, vals, val, isAdd, isDisabled) {
@@ -150,25 +159,6 @@
                 }
             });
     
-            //监听but
-            // util.event('lay-active',{
-            //     e1: function(){
-            //         let oldData = table.cache["market-packing-list-en-table"],d={};
-            //         oldData.push(d);
-            //         // console.log(oldData);
-            //         table.reload('market-packing-list-en-table',{data:oldData})
-            //     },
-            //     e2: function(){
-            //         layer.confirm("你确定要删除么？",function(){  
-            //             let oldData = table.cache["market-packing-list-en-table"]; 
-            //             // console.log(oldData); 
-            //             oldData.splice(oldData.length-1,1);  
-            //             layer.msg("删除成功",{time: 10},function(){  
-            //                 table.reload('market-packing-list-en-table',{data : oldData});  
-            //             });  
-            //         }) 
-            //     }
-            // })
             var active = {
                 e1: function(){
                     let oldData = table.cache["market-packing-list-en-table"],d={};

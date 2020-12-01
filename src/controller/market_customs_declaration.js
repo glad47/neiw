@@ -191,6 +191,11 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
       }
     });
 
+    //双击操作
+    table.on('rowDouble(market-customs-declaration-table)',function(obj){
+      editOperate(obj.data);
+    });
+
     var active = {
         //删除
         batchdel: function(){
@@ -268,57 +273,59 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
           if(checkData.length > 1){
             return layer.msg('只能选择一条数据');
           }
-
-          admin.req({
-            type: 'post',
-            url: setter.baseUrl+'market/customsdeclaration/detailedInfo/'+checkData[0].id,
-            success: function (res) {
-              let data = checkData[0];
-              data.itemEntityList = res.data;
-              admin.popup({
-                title: '编辑报关单'
-                ,area: ['90%', '85%']
-                ,id: 'LAY-popup-customs-declaration-edit'
-                ,btn:['修改', '取消']
-                ,yes: function(){
-                    $("#mcdfs").click();
-                }
-                ,success: function(layero, index){
-                  view(this.id).render('marketManagement/iframeWindow/customs_declaration_form',data).done(function(){
-                    form.render(null,'market-customs-declaration-form');
-    
-                    //监听提交
-                    form.on('submit(market-customs-declaration-form-submit)',function (data) {
-                        //获取表格数据
-                        let field = data.field,tableData = table.cache["market-packing-list-en-table"];
-                        field.itemEntityList = tableData;
-                        console.log(field);
-                        //提交表单
-                        admin.req({
-                            type: 'post'
-                            ,headers: {access_token:layui.data('layuiAdmin').access_token}
-                            ,url: setter.baseUrl+'market/customsdeclaration/update'
-                            ,contentType: "application/json;charset=utf-8"
-                            ,dataType:'json'
-                            ,data: JSON.stringify(field)
-                            ,success: function (res) {
-                                layer.msg('修改成功！！');
-                                table.reload('market-customs-declaration-table');
-                            }
-                            ,error: function (res) {
-                                layer.msg("添加失败，请稍后再试！");
-                            }
-                        });
-                        layer.close(index);
-                    });
-                  });
-                }
-              }); 
-              
-            }
-        });
+          editOperate(checkData[0]);
         }
-    }; 
+    };
+    
+    function editOperate(data){
+      admin.req({
+        type: 'post',
+        url: setter.baseUrl+'market/customsdeclaration/detailedInfo/'+data.id,
+        success: function (res) {
+          data.itemEntityList = res.data;
+          admin.popup({
+            title: '编辑报关单'
+            ,area: ['90%', '85%']
+            ,id: 'LAY-popup-customs-declaration-edit'
+            ,btn:['修改', '取消']
+            ,yes: function(){
+                $("#mcdfs").click();
+            }
+            ,success: function(layero, index){
+              view(this.id).render('marketManagement/iframeWindow/customs_declaration_form',data).done(function(){
+                form.render(null,'market-customs-declaration-form');
+
+                //监听提交
+                form.on('submit(market-customs-declaration-form-submit)',function (data) {
+                    //获取表格数据
+                    let field = data.field,tableData = table.cache["market-packing-list-en-table"];
+                    field.itemEntityList = tableData;
+                    console.log(field);
+                    //提交表单
+                    admin.req({
+                        type: 'post'
+                        ,headers: {access_token:layui.data('layuiAdmin').access_token}
+                        ,url: setter.baseUrl+'market/customsdeclaration/update'
+                        ,contentType: "application/json;charset=utf-8"
+                        ,dataType:'json'
+                        ,data: JSON.stringify(field)
+                        ,success: function (res) {
+                            layer.msg('修改成功！！');
+                            table.reload('market-customs-declaration-table');
+                        }
+                        ,error: function (res) {
+                            layer.msg("添加失败，请稍后再试！");
+                        }
+                    });
+                    layer.close(index);
+                });
+              });
+            }
+          }); 
+          
+        }
+      });
+    }
   
     $('.layui-btn.layuiadmin-btn-list').on('click', function(){
       var type = $(this).data('type');
