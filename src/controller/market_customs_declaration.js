@@ -222,7 +222,7 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
         ,add: function(othis){
           admin.popup({
             title: '添加报关单'
-            ,area: ['90%', '85%']
+            ,area: ['100%', '100%']
             ,id: 'LAY-popup-customs-declaration-add'
             ,btn:['保存', '取消']
             ,yes: function(){
@@ -285,7 +285,7 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
           data.itemEntityList = res.data;
           admin.popup({
             title: '编辑报关单'
-            ,area: ['90%', '85%']
+            ,area: ['100%', '100%']
             ,id: 'LAY-popup-customs-declaration-edit'
             ,btn:['修改', '取消']
             ,yes: function(){
