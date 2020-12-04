@@ -116,6 +116,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                             console.log(field);
                             var c = layedit.getContent(edit);
                             var d = layedit.getContent(internalChain);
+                            //中文‘替换英文'
+                            c.replace(/\’/g,"'");
                             field.articleContent = c;
                             field.articleInternalChain = d;
                             if (field.articleKing == 'on') {
@@ -195,9 +197,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                             //监听提交
                             form.on('submit(layuiadmin-app-form-submit)', function (data) {
                                 var field = data.field;
-                                console.log(field);
+                                // console.log(field);
                                 var c = layedit.getContent(i);
-                                console.log(c);
+                                // console.log(c);
+                                //中文‘替换英文'
+                                c.replace(/\’/g,"'");
                                 field.articleContent = c;
                                 var b = layedit.getContent(ss);
                                 field.blogInternalChain = b;
