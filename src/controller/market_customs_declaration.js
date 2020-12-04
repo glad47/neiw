@@ -238,7 +238,7 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
                     //获取表格数据
                     let field = data.field,tableData = table.cache["market-packing-list-en-table"];
                     field.itemEntityList = tableData;
-                    // console.log(field);
+                    console.log(field);
                     //提交表单
                     admin.req({
                         type: 'post'
