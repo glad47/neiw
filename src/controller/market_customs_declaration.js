@@ -39,6 +39,7 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
         {type: 'checkbox', fixed: 'left'}
         ,{field: 'id', width: 100, title: 'ID', sort: true}
         ,{field: 'commercialInvoice', title: '发票号（CI）'}
+        ,{field: 'goodsNo', title:'品名号'}
         ,{field: 'customerNo', title: '客户编号'}
         ,{field: 'gmtCreate', title: '创建时间', sort: true,  templet: "<div>{{ d.gmtCreate != null ? layui.util.toDateString(d.gmtCreate, 'yyyy-MM-dd') : ''}}</div>"}
         ,{title: '操作', width: 450, align: 'center', fixed: 'right', toolbar: '#table-customs-declaration-toolbar'}
@@ -238,6 +239,7 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
                     //获取表格数据
                     let field = data.field,tableData = table.cache["market-packing-list-en-table"];
                     field.itemEntityList = tableData;
+                    field.goodsNo = tableData.map(function(e){return e.description}).join(",");
                     console.log(field);
                     //提交表单
                     admin.req({
@@ -300,6 +302,7 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
                     //获取表格数据
                     let field = data.field,tableData = table.cache["market-packing-list-en-table"];
                     field.itemEntityList = tableData;
+                    field.goodsNo = tableData.map(function(e){return e.description}).join(",");
                     console.log(field);
                     //提交表单
                     admin.req({
