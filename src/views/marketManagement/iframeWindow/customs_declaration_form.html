@@ -5,7 +5,7 @@
     .layui-table-cell {
         overflow: visible;
     }
-    
+
     .layui-table-box {
         overflow: visible;
     }
@@ -141,7 +141,7 @@
                     ,{field: 'unitPrice', align:'center', title: '单价', edit: 'text'}
                     ,{field: 'totalPrice', align:'center', title: '总价', edit: 'text'}
                     ,{field: 'orderNo', align:'center', title: '订单号码',edit: 'text'}
-                    ,{field: 'sourceSupply', align:'center', title: '货源地',edit: 'text'} 
+                    ,{field: 'sourceSupply', align:'center', title: '货源地',event:'initSourceSupply'} 
                     ,{field: 'goodsNo', align:'center', title: '商品编号及描述',minWidth:450,event:'initSelect'}
                     
                     // ,{field: 'commercialInvoiceno', align:'center', title: '发票号码',edit: 'text'}
@@ -218,6 +218,56 @@
                             }
                         }
                     })
+                } else if(layEvent === 'initSourceSupply'){
+                    let oldData = table.cache["market-packing-list-en-table"],
+                        rowIndex = obj.tr.selector.replace(/[^0-9]/ig,""),//获取当前行的索引 
+                        ss = null;
+                    
+                    admin.popup({
+                        title: '选择货源地',
+                        closeBtn: 0, //不显示关闭按钮
+                        anim: 2,
+                        skin: 'layui-layer-molv',
+                        shadeClose: true, //开启遮罩关闭
+                        area: ['20%', '60%'],
+                        btn:['确定'],
+                        content: 
+                            '<div class="layui-form" lay-filter="select22-form"> \n'+
+                            '<div class="layui-form-item" style="padding-top: 20px;">\n' +
+                                  '<label class="layui-form-label">货源地：</label>\n' +
+                            '      <div class="layui-input-inline">\n' +
+                                    '<select lay-filter="select22" name="sourceSupply">\n'+
+                                        '<option value="深圳特区">深圳特区</option> \n'+
+                                        '<option value="江西其他">江西其他</option> \n'+
+                                        '<option value="惠州其他">惠州其他</option> \n'+
+                                    '</select> \n'+
+                            '      </div>\n' +
+                            '</div>\n'+
+                            '</div>',
+                        yes: function(index) {
+                            // console.log(fsv); 
+                            if(ss  !== null){
+                                oldData[rowIndex].sourceSupply = ss;
+                                table.reload('market-packing-list-en-table',{data:oldData})
+                                layer.close(index);
+                            }else{
+                                layer.msg('请选择数据！！');
+                            }
+                            // $(obj.tr.selector + ' td[data-field="' + obj.field + '"] input').val(fsv[0].name);
+                        },
+                        success: function(layero,index){
+                            form.render(null,'select22-form');
+
+                            //监听select
+                            form.on('select(select22)',function(data){
+                                ss = data.value;
+                            })
+                            //如果原先数据显示原先的
+                            if(oldData[rowIndex].sourceSupply != null){
+                                form.val('select22-form',{sourceSupply:oldData[rowIndex].sourceSupply});
+                            }
+                        }
+                    }) 
                 }
             })
 
