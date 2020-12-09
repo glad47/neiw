@@ -3,7 +3,7 @@
     <script type="text/html" template>
     <div class="layui-row  layui-col-space7">
         <div class="layui-col-md12" style="text-align: center; margin-bottom: 20px;">
-            <h1>中华人名共和国海关出口货物报关单</h1>
+            <h1>中华人民共和国海关出口货物报关单</h1>
         </div>
         <div class="layui-col-md12" style="display: flex; margin-bottom: -10px;">
             <div style="text-indent: 30px; width: 30%;">预录入编号:</div>
@@ -32,7 +32,7 @@
                     </tr>
                     <tr>
                         <td valign='top'>
-                            境外收货人 AEO： <strong>{{d.params.userInfo != null ? d.params.userInfo.contact || '' : ''}}</strong>
+                            境外收货人 AEO： <strong>{{d.params.userInfo != null ? d.params.userInfo.companName || '' : ''}}</strong>
                         </td>
                         <td colspan="2" valign='top'>
                             运输方式： <strong>深圳监管</strong>
@@ -81,10 +81,10 @@
                             件数： <strong>{{d.params.itemEntityList.map(i => Number(i.qty)).reduce((total,num)=> total + num) }}</strong>
                         </td>
                         <td valign='top'>
-                            毛重： <strong>{{d.params.itemEntityList.map(i => Number(i.grossWeight)).reduce((total,num)=> total + num) }}</strong>
+                            毛重： <strong>{{d.params.itemEntityList.map(i => Number(i.grossWeight * i.packages)).reduce((total,num)=> total + num) }}</strong>
                         </td>
                         <td valign='top'>
-                            净重： <strong>{{d.params.itemEntityList.map(i => Number(i.netWeight)).reduce((total,num)=> total + num) }}</strong>
+                            净重： <strong>{{d.params.itemEntityList.map(i => Number(i.netWeight * i.packages)).reduce((total,num)=> total + num) }}</strong>
                         </td>
                         <td valign='top'>
                             成交方式： <strong>{{d.params.tradeType || ''}}</strong>
@@ -101,7 +101,7 @@
                     </tr>
                     <tr>
                         <td colspan="8" valign='top'>
-                            随附单证及编号境外收货人完整显示：<strong>{{d.params.userInfo != null ? d.params.userInfo.contact || '' : ''}}</strong>
+                            随附单证及编号境外收货人完整显示：<strong>{{d.params.userInfo != null ? d.params.userInfo.companName || '' : ''}}</strong>
                         </td>
                     </tr>
                     <tr>
@@ -125,7 +125,13 @@
                     <tr>
                         <td style="text-align: center;">商品编号</td>
                         <td style="text-align: center;">商品名称及规格型号</td>
-                        <td colspan="6" style="text-align: center;">数量及单位 单价/总价/币制 原产国（地区）最终目的国（地区）境内货源地 征免</td>
+                        <td style="text-align: center;">数量及单位</td>
+                        <td style="text-align: center;">单价/总价/币制</td>
+                        <td style="text-align: center;">原产国（地区）</td>
+                        <td style="text-align: center;">最终目的国（地区）</td>
+                        <td style="text-align: center;">境内货源地 </td>
+                        <td style="text-align: center;">征免</td>
+                        <!-- <td colspan="6" style="text-align: center;">数量及单位 单价/总价/币制 原产国（地区）最终目的国（地区）境内货源地 征免</td> -->
                     </tr>
                     {{# layui.each(d.params.itemEntityList, function(index, item){  }}
                     <tr>

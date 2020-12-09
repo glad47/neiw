@@ -10,7 +10,7 @@
         <div class="layui-col-md6" style="float: left;">
             <ul>
                 <script type="text/html" template>
-                <li class="layui-text">Cuest: {{d.params.userInfo.contact || ''}}</li>
+                <li class="layui-text">Guest: {{d.params.userInfo.companName || ''}}</li>
                 </script>
             </ul>
         </div>
@@ -33,39 +33,53 @@
             <table class="layui-table">
                 <thead>
                     <tr>
-                        <td>marks(C/T No.)</td>
-                        <td>Q'type(pcs)</td>
-                        <td>Packages</td>
-                        <td>Description</td>
-                        <td>Gross Weight(kg)</td>
-                        <td>Net Weight(kg)</td>
-                        <td>Measurement</td>
-                        <td>Order No</td>
-                        <td>COMMERCIAL INVOICE No.</td>
+                        <td style="text-align: center;">marks(C/T No.)</td>
+                        <td style="text-align: center;">Q'type(pcs)</td>
+                        <td style="text-align: center;">Packages</td>
+                        <td style="text-align: center;">Description</td>
+                        <td style="text-align: center;">Gross Weight(kg)</td>
+                        <td style="text-align: center;">Net Weight(kg)</td>
+                        <td style="text-align: center;">Measurement</td>
+                        <td style="text-align: center;">Order No</td>
+                        <td style="text-align: center;">COMMERCIAL INVOICE No.</td>
                     </tr>
                 </thead>
                 <tbody>
                     <script type="text/html" template>
                         {{# layui.each(d.params.itemEntityList, function(index, item){  }}
+                        {{# if(item.rowspan == null){ }}
                         <tr>
-                            <td>{{ item.marks || ''}}</td>
-                            <td>{{ item.qty || ''}}</td>
-                            <td>{{ item.packages || ''}}</td>
-                            <td>{{ item.description || ''}}</td>
-                            <td>{{ item.grossWeight || ''}}</td>
-                            <td>{{ item.netWeight || ''}}</td>
-                            <td>{{ item.measurement || ''}}</td>
-                            <td>{{ item.orderNo || ''}}</td>
-                            <td>{{ item.commercialInvoiceno || ''}}</td>
+                            <td style="text-align: center;">{{ item.marks || ''}}</td>
+                            <td style="text-align: center;">{{ item.qty || ''}}</td>
+                            <!-- <td rowspan="{{item.rowspan || ''}}">{{ item.packages || ''}}</td> -->
+                            <td style="text-align: center;">{{ item.description || ''}}</td>
+                            <td style="text-align: center;">{{ item.grossWeight || ''}}</td>
+                            <td style="text-align: center;">{{ item.netWeight || ''}}</td>
+                            <!-- <td rowspan="{{item.rowspan || ''}}">{{ item.measurement || ''}}</td> -->
+                            <td style="text-align: center;">{{ item.orderNo || ''}}</td>
+                            <td style="text-align: center;">{{ item.commercialInvoiceno || ''}}</td>
                         </tr>
+                        {{# }else{ }}
+                        <tr>
+                            <td style="text-align: center;">{{ item.marks || ''}}</td>
+                            <td style="text-align: center;">{{ item.qty || ''}}</td>
+                            <td style="text-align: center;" rowspan="{{item.rowspan || ''}}">{{ item.packages || ''}}</td>
+                            <td style="text-align: center;">{{ item.description || ''}}</td>
+                            <td style="text-align: center;">{{ item.grossWeight || ''}}</td>
+                            <td style="text-align: center;">{{ item.netWeight || ''}}</td>
+                            <td style="text-align: center;" rowspan="{{item.rowspan || ''}}">{{ item.measurement || ''}}</td>
+                            <td style="text-align: center;">{{ item.orderNo || ''}}</td>
+                            <td style="text-align: center;">{{ d.params.commercialInvoice || ''}}</td>
+                        </tr>
+                        {{# } }}
                         {{# }) }}
                         <tr>
                             <td>Total</td>
                             <td>{{ d.params.itemEntityList.map(i => i.qty).reduce((total,num)=> total + num) }}</td>
                             <td>{{ d.params.itemEntityList.map(i => i.packages).reduce((total,num)=> total + num) }}</td>
                             <td></td>
-                            <td>{{ d.params.itemEntityList.map(i => Number(i.grossWeight)).reduce((total,num)=> total + num) }}</td>
-                            <td>{{ d.params.itemEntityList.map(i => Number(i.netWeight)).reduce((total,num)=> total + num) }}</td>
+                            <td>{{ d.params.itemEntityList.map(i => Number(i.grossWeight * i.packages)).reduce((total,num)=> total + num) }}</td>
+                            <td>{{ d.params.itemEntityList.map(i => Number(i.netWeight * i.packages)).reduce((total,num)=> total + num) }}</td>
                             <td colspan="3"></td>
                         </tr>
                     </script>

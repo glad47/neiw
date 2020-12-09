@@ -88,14 +88,17 @@
                     <script type="text/html" template>
                         {{# layui.each(d.params.itemEntityList, function(index, item){  }}
                         <tr>
-                            <td colspan="2">
-                                硬刷线路板组装<br>
-                                无牌|无型号|已组装元器件<br>
+                            <td colspan="2" style="text-align: center;">
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[1] : ''}}<br>
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[2] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[3] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[4] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[5] : ''}}<br>
                                 型号: {{ item.description || ''}}
                             </td>
-                            <td>{{ item.qty || ''}}</td>
-                            <td>{{ item.unitPrice || ''}}</td>
-                            <td>{{ item.totalPrice || ''}}</td>
+                            <td style="text-align: center;">{{ item.qty || ''}}</td>
+                            <td style="text-align: center;">{{ item.unitPrice || ''}}</td>
+                            <td style="text-align: center;">{{ item.totalPrice || ''}}</td>
                         </tr>
                         {{# }) }}
                         <!-- <tr>

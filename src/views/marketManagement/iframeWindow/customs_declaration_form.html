@@ -36,7 +36,7 @@
                 <label class="layui-form-label">客户编号</label>
                 <div class="layui-input-inline">
                     <script type="text/html" template>
-                    <select name="receiverId" xm-select-height="34px" xm-select="receiverId" xm-select-radio  xm-select-search="" xm-select-search-type="dl" lay-verify="required"></select>
+                    <select name="receiverInfo" xm-select-height="34px" xm-select="receiverInfo" xm-select-radio  xm-select-search="" xm-select-search-type="dl" lay-verify="required"></select>
                     <!-- <input type="text" name="customerNo" autocomplete="off" class="layui-input" value="{{ d.params.customerNo || ''}}" lay-verify="required"> -->
                     <input type="hidden" name="id" value="{{ d.params.id || '' }}">
                     <input type="hidden" name="customerNo" value="{{d.params.customerNo || ''}}">
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="layui-col-md6">
-                <label class="layui-form-label">下单时间</label> 
+                <label class="layui-form-label">发票时间</label> 
                 <div class="layui-input-inline">
                     <script type="text/html" template>
                     <input type="text" name="orderTime" id="orderTime" autocomplete="off" class="layui-input" value="{{ d.params.orderTime || ''}}" lay-verify="required">
@@ -103,7 +103,7 @@
 <script>
     layui.data.done = function(d){
         // console.log(d);
-        var ddd = d.params.itemEntityList || [],rid = d.params.receiverId;
+        var ddd = d.params.itemEntityList || [],rid = d.params.receiverId+","+d.params.bid;
         layui.use(['admin', 'table', 'util', 'form','requestInterface','formSelects','laydate'], function(){
             var $ = layui.$
             ,admin = layui.admin
@@ -132,14 +132,15 @@
                 ,cellMinWidth: 90
                 ,cols: [[
                     {field: 'marks',  title: '唛头', align:'center', totalRowText:'Total',edit: 'text'}
+                    ,{field: 'rowspan', align:'center', title: '箱型号数', edit: 'text'}
+                    ,{field: 'totalPrice', align:'center', title: '总价', edit: 'text'}
                     ,{field: 'qty', title: "数量", align:'center', totalRow: true,edit: 'text'}
                     ,{field: 'packages', title: '件数', align:'center', totalRow: true,edit: 'text'}
                     ,{field: 'description', align:'center', title: '品名及规格',edit: 'text'}
                     ,{field: 'grossWeight', align:'center', title: '毛重', totalRow: true,edit: 'text'}
-                    ,{field: 'netWeight', align:'center', title: '净重', totalRow: true,edit: 'text'}
+                    ,{field: 'netWeight', align:'center', title: '净重', totalRow: true,event:'countNetWeight'}
+                    ,{field: 'unitPrice', align:'center', title: '单价', event: 'countUnitPrice'}
                     ,{field: 'measurement', align:'center', title: '尺寸',edit: 'text'}
-                    ,{field: 'unitPrice', align:'center', title: '单价', edit: 'text'}
-                    ,{field: 'totalPrice', align:'center', title: '总价', edit: 'text'}
                     ,{field: 'orderNo', align:'center', title: '订单号码',edit: 'text'}
                     ,{field: 'sourceSupply', align:'center', title: '货源地',event:'initSourceSupply'} 
                     ,{field: 'goodsNo', align:'center', title: '商品编号及描述',minWidth:450,event:'initSelect'}
@@ -149,18 +150,18 @@
             });
 
             //监听单元格编辑
-            table.on('edit(market-packing-list-en-table)', function(obj){ 
+            // table.on('edit(market-packing-list-en-table)', function(obj){ 
                 //注：edit是固定事件名，test是table原始容器的属性 lay-filter="对应的值"
                 // console.log(obj.value); //得到修改后的值
                 // console.log(obj.field); //当前编辑的字段名
                 // console.log(obj.data); //所在行的所有相关数据
-                if(obj.field === 'totalPrice'){
-                    // table.reload('market-packing-list-en-table',{data:[obj.data]})
-                    let totalPrice = Number(obj.data.qty) * Number(obj.data.unitPrice);;
-                    console.log(totalPrice);
-                    $(obj.tr.selector + ' td[data-field="' + obj.field + '"] input').val(totalPrice);
-                }
-            });
+                // if(obj.field === 'totalPrice'){
+                //     // table.reload('market-packing-list-en-table',{data:[obj.data]})
+                //     let totalPrice = Number(obj.data.qty) * Number(obj.data.unitPrice);;
+                //     console.log(totalPrice);
+                //     $(obj.tr.selector + ' td[data-field="' + obj.field + '"] input').val(totalPrice);
+                // }
+            // });
 
             //table单击行事件
             table.on('tool(market-packing-list-en-table)',function(obj){
@@ -268,6 +269,32 @@
                             }
                         }
                     }) 
+                } else if(layEvent === 'countNetWeight'){
+                    let oldData = table.cache["market-packing-list-en-table"],
+                        rowIndex = obj.tr.selector.replace(/[^0-9]/ig,""),//获取当前行的索引 
+                        gw = oldData[rowIndex].grossWeight;
+                    // console.log(gw);
+                    if(gw){
+                        let nw = Number(gw) - 0.5;
+                        oldData[rowIndex].netWeight = nw;
+                        table.reload('market-packing-list-en-table',{data:oldData}); 
+                    }else{
+                        layer.msg('请先添加毛重！！'); 
+                    }
+                    
+                } else if(layEvent === 'countUnitPrice'){
+                    let oldData = table.cache["market-packing-list-en-table"],
+                        rowIndex = obj.tr.selector.replace(/[^0-9]/ig,""),//获取当前行的索引 
+                        tp = oldData[rowIndex].totalPrice,
+                        qty = oldData[rowIndex].qty; 
+                    
+                    if(tp && qty){
+                        let up = (Number(tp) / Number(qty)).toFixed(2);
+                        oldData[rowIndex].unitPrice = up;
+                        table.reload('market-packing-list-en-table',{data:oldData});  
+                    }else{
+                        layer.msg('请先添加总价和数量！！')
+                    }
                 }
             })
 
@@ -278,24 +305,24 @@
                 var _obj = requestInterface.getAllCustomer();
                 var $html;
                 for (let c of _obj) {
-                    $html += "<option value="+c.id+">"+c.userSystemId+"</option>"
+                    $html += "<option value="+c.id+","+c.businessId+">"+c.userSystemId+"</option>"
                 }
-                $("select[xm-select='receiverId']").append($html);
+                $("select[xm-select='receiverInfo']").append($html);
 
-                formSelects.render('receiverId');
+                formSelects.render('receiverInfo');
                 if(ddd.length !== 0){
-                    formSelects.value('receiverId',[rid],true);
+                    formSelects.value('receiverInfo',[rid],true);
                 }
             }
 
-            formSelects.on('receiverId', function (id, vals, val, isAdd, isDisabled) {
+            formSelects.on('receiverInfo', function (id, vals, val, isAdd, isDisabled) {
                 //id:           点击select的id
                 //vals:         当前select已选中的值
                 //val:          当前select点击的值
                 //isAdd:        当前操作选中or取消
                 //isDisabled:   当前选项是否是disabled                    
                 if(isAdd){//对form赋值
-                  form.val("market-customs-declaration-form",{"customerNo":val.name});
+                   form.val("market-customs-declaration-form",{"customerNo":val.name});
                 }else{
                    form.val("market-customs-declaration-form",{"customerNo":null});
                 }
@@ -307,7 +334,7 @@
 
             function createArr(){
                 var a = ['8534009000','8534001000','8517709000','7616910000'], 
-                    b = ['空白线路板','线路板贴装','刚铝板网'],
+                    b = ['空白线路板','线路板贴装','钢铝板网'],
                     c = ['0','铝制'],
                     d = ['1层','2层','4层','6层','8层','10层','14层','16层','18层','20层','22层','24层','0','网'],
                     e = ['无牌'],
@@ -2040,7 +2067,7 @@
                             "pid": "1"
                         },
                         {
-                            "name": "刚铝板网",
+                            "name": "钢铝板网",
                             "value": 288,
                             "children": [
                             {
@@ -4546,7 +4573,7 @@
                             "pid": "431"
                         },
                         {
-                            "name": "刚铝板网",
+                            "name": "钢铝板网",
                             "value": 718,
                             "children": [
                             {
@@ -7052,7 +7079,7 @@
                             "pid": "861"
                         },
                         {
-                            "name": "刚铝板网",
+                            "name": "钢铝板网",
                             "value": 1148,
                             "children": [
                             {
@@ -9558,7 +9585,7 @@
                             "pid": "1291"
                         },
                         {
-                            "name": "刚铝板网",
+                            "name": "钢铝板网",
                             "value": 1578,
                             "children": [
                             {
