@@ -2,17 +2,17 @@
 <div class="layui-fluid" id="market-packing-list-cn-print">
     <div class="layui-row layui-col-space10">
         <div class="layui-col-md12" style="text-align: center;">
-            <h1>深证聚谷科技有限公司</h1>
-            <h3>COMPASS NO.8299,BAO'AN AVENUE.SHAJING DISTRICT,SHENZHEN,CHINA</h3>
+            <h1>深圳聚谷科技有限公司</h1>
+            <h3>AnshengRoad,No.4Building,Shajing,BaoanDistrict,Shenzhen,CHINA</h3>
             <h3>Tel: +86-755-27398155  Fax: +86-755-27398355</h3>
         </div>
         <script type="text/html" template>
         <div class="layui-col-md6" style="float: left;">
             <ul>
-                <li class="layui-text">Buyer's COMPANY: {{d.params.userInfo.contact || ''}}</li>
+                <li class="layui-text">Buyer's COMPANY: {{d.params.userInfo != null ? d.params.userInfo.companName || '' : ''}}</li>
             </ul>
             <ul>
-                <li class="layui-text">TEL:  {{d.params.userInfo.mobilePhone || ''}}</li>
+                <li class="layui-text">TEL:  {{ d.params.userInfo != null ? d.params.userInfo.mobilePhone || '' : '' }}</li>
             </ul>
             <ul>
                 <li class="layui-text">FAX: 0</li>
@@ -75,8 +75,11 @@
                         {{# }else{ }}
                         <tr>
                             <td colspan="2" style="text-align: center;">
-                                硬刷线路板组装<br>
-                                无牌|无型号|已组装元器件<br>
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[1] : ''}}<br>
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[2] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[3] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[4] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[5] : ''}}<br>
                                 型号: {{ item.description || ''}}
                             </td>
                             <td rowspan="{{item.rowspan || ''}}" style="text-align: center;">{{ item.packages || ''}}</td>

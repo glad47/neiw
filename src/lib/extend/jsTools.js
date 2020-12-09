@@ -11,7 +11,7 @@ layui.define(['admin', 'index'],function (exports) {
 
         //获取某一时间的几周后的时间
         TimeWeekage: function(date,weeks){
-            var date2 = new Date(date).getTime() + (weeks * 7 * 24 * 60 * 60 * 1000);
+            var date2 = new Date(date).getTime() - (weeks * 7 * 24 * 60 * 60 * 1000);
             return new Date(date2).toLocaleDateString().replace(/\//g,"/");
         },
 

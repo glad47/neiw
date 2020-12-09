@@ -31,7 +31,7 @@
                     <li class="layui-text">Contract No: {{d.params.commercialInvoice || ''}}</li>
                 </ul>
                 <ul>
-                    <li class="layui-text">Date: {{d.params.orderTime || ''}}</li>
+                    <li class="layui-text">Date: {{d.params.tw || ''}}</li>
                 </ul>
                 <ul>
                     <li class="layui-text">Singed at:  Shenzhen</li>
@@ -142,7 +142,7 @@
             </ul> 
             <ul style="display: flex;justify-content: space-between;">
                 <li>(8)装运日期和目的地:</li>
-                <li>{{d.params.tw}} 之前</li>
+                <li>{{d.params.orderTime}} 之前</li>
                 <li>深圳-{{d.params.userInfo != null ? d.params.userInfo.countryCn || '' : ''}}</li>
             </ul>
             <ul style="display: flex;justify-content: space-between;">
