@@ -58,7 +58,7 @@
                 <tbody>
                     <script type="text/html" template>
                         {{# layui.each(d.params.itemEntityList, function(index, item){  }}
-                        {{# if(item.rowspan == null){ }}
+                        {{# if(item.rowspan == null || item.rowspan == ''){ }}
                         <tr>
                             <td colspan="2" style="text-align: center;">
                                 {{item.goodsNo != null ? item.goodsNo.split('/')[1] : ''}}<br>
