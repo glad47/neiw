@@ -74,12 +74,10 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field: 'status',title: '状态',templet: '#og_status', minWidth: 104, sort: true}      // 1 ＝ 待报价
-                ,{field: 'supplierContractNo',title: '合同编号', minWidth: 171, sort: true}
-                ,{field: 'gmtCreate',title: '创建时间', width: 166, sort: true}
-                ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
-                ,{field: 'factoryMake', title: '供应商厂编', minWidth: 190, sort: true}
                 ,{field: 'productNo', title: '聚谷型号', width: 124, sort: true}
+                ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
+                ,{field: 'status',title: '状态',templet: '#og_status', minWidth: 104, sort: true}      // 1 ＝ 待报价
+                ,{field: 'gmtCreate',title: '创建时间', width: 166, sort: true}
                 ,{field: 'pcbName', title: '聚谷物料号', width: 144, sort: true}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
                 ,{field: 'unitPrice', title: '单价', width: 96, sort: true}
@@ -89,6 +87,9 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                 ,{field: 'toolingFee', title: '模具', width: 96, sort: true}
                 ,{field: 'totalFee', title: '合计', width: 96, sort: true}
                 ,{field: 'remark', title: '订单备注', width: 168, sort: true}
+                ,{field: 'supplierContractNo',title: '合同编号', minWidth: 171, sort: true}
+                ,{field: 'factoryMake', title: '供应商厂编', minWidth: 190, sort: true}
+                
                 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
                 ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
                 ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}
@@ -301,12 +302,10 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field: 'status',title: '状态',templet: '#og_statusS', minWidth: 104, sort: true}      // 1 ＝ 待报价
-                ,{field: 'supplierContractNo',title: '合同编号', minWidth: 171, sort: true}
-                ,{field: 'gmtCreate',title: '创建时间', width: 166, sort: true}
-                ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
-                ,{field: 'factoryMake', title: '供应商厂编', minWidth: 190, sort: true}
                 ,{field: 'productNo', title: '聚谷型号', width: 124, sort: true}
+                ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
+                ,{field: 'status',title: '状态',templet: '#og_statusS', minWidth: 104, sort: true}      // 1 ＝ 待报价
+                ,{field: 'gmtCreate',title: '创建时间', width: 166, sort: true}
                 ,{field: 'pcbName', title: '聚谷物料号', width: 144, sort: true}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
                 ,{field: 'unitPrice', title: '单价', width: 96, sort: true}
@@ -316,6 +315,9 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                 ,{field: 'toolingFee', title: '模具', width: 96, sort: true}
                 ,{field: 'subtotal', title: '合计', width: 96, sort: true}
                 ,{field: 'remark', title: '订单备注', width: 168, sort: true}
+                ,{field: 'supplierContractNo',title: '合同编号', minWidth: 171, sort: true}
+                ,{field: 'factoryMake', title: '供应商厂编', minWidth: 190, sort: true}
+                
                 //▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
                 ,{field: 'dimensionsX', title: 'dimensionsX', hide: true}
                 ,{field: 'dimensionsY', title: 'dimensionsY', hide: true}

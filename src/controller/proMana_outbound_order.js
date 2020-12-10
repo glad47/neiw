@@ -200,17 +200,43 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                     })
                 }
             })
-            console.log(customerInfo);
+            // console.log(customerInfo);
         } else if (obj.event == 'search') {
-            admin.popup({
-                title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
-                ,area: ['100%', '100%']
-                ,success: function (layero, index) {
-                    view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
+             // title: '订单id:［'+ data.id + '］-----------'+'订单时间：［'+data.gmtCreate+'］'
+            // ,area: ['100%', '100%']
+            // ,success: function (layero, index) {
+            //     view(this.id).render('marketManagement/iframeWindow/order_pcb_detail', data).done(function () {
 
+            //     })
+            // }
+            // console.log(data);
+            admin.req({
+                type: 'post',
+                url: setter.baseUrl+'scm/ordersupplier/infoByOid/'+data.id,
+                done: function (res) {
+                    // console.log(res);
+                    data.deliveryTime = res.data.deliveryTime;
+                    data.supplierNo = res.data.supplierNo;
+                    data.ljSupplier = res.data.ljSupplier;
+                    data.tpSupplier = res.data.tpSupplier;
+                    data.pcbaPartsCount = res.data.pcbaPartsCount;
+                    data.pcbaPasterCount = res.data.pcbaPasterCount;
+                    admin.popup({
+                        title: "查看［"+data.productNo+"］信息"
+                        ,shadeClose: true
+                        ,shade: false
+                        ,maxmin: true
+                        ,area: ['598px', '375px']
+                        // ,id: 'sys_menu'
+                        ,success: function(layero, index){
+                            view(this.id).render('/sqeManagement/iframeWindow/pcbinfo_search_sqe', data).done(function(){
+                                //监听提交
+                            });
+                        }
                     })
                 }
-            })
+            });
+           
         } else if (obj.event == 'chxx') {
             data.table = 'iqcMana_outBound';
             proMana_global.chxx(data);
@@ -247,7 +273,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                 ,{field: 'deliveryDate',title: '交期', templet: '#outboundDDateStencil', sort: true}
                 ,{field: 'courierName',title: '快递公司', sort: true}
                 ,{field: 'courierNumber',title: '快递单号', sort: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 230}
+                ,{fixed: 'right', title:'操作', toolbar: '#proManaNgveiw_tabbar',width: 200}
             ]]
             ,done: function (res, curr, count) {
                 $("a[data='isOk']").each(function (i, n) {

@@ -15,9 +15,10 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
 
         ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,cols: [[
-             {field:'id', title: 'id', sort: true, width: 130}
+             {field:'id', title: 'id', sort: true, width: 80}
             ,{field:'status', title: '状态', width: 130, templet:'#customerStatus'}
             ,{field:'userSystemId', title: '客户代码', sort: true, width: 130}
+            ,{field:'businessName', title: '跟单员',width: 100}
             ,{field:'userName', title: '用户名', width: 130}
             ,{field:'country', title: '国家', sort: true}
             ,{field:'email', title: '邮箱', sort: true, minWidth: 196}

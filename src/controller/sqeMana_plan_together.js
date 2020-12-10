@@ -364,17 +364,21 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
                                         }
                                     }
                                     // console.log(data);
+                                    //todo 添加锁屏操作
+                                    let loadindex = layer.load(1, {shade: [0.1,'#fff']}); 
                                     admin.req({
                                         type: 'post',
                                         data: data,
                                         // url: setter.baseUrl+'sqe/pcborder/saveShipmentOrderByPt',
                                         url: setter.baseUrl+'sqe/pcborder/saveSo',
                                         success: function (result) {
-                                            layer.alert('保存成功！', function () {
-                                                layer.alert("提交成功！");
-                                                table.reload('sqeManaPlan_tabPcb');
-                                                layer.closeAll();
-                                            });
+                                            layer.close(loadindex);
+                                            layer.msg('保存成功!');
+                                            table.reload('sqeManaPlan_tabPcb');
+                                            layer.close(index);
+                                        }
+                                        ,error: function (res) {
+                                            layer.msg("添加失败，请稍后再试！");
                                         }
                                     });
                                     return false;

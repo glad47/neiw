@@ -38,6 +38,28 @@
                         <input type="text" name="companName" class="layui-input" id="customer_orderTime">
                     </div>
                 </div>
+                <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-type="post">
+                    {{#
+                    if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:delete") != -1){
+                    }}
+                    <div class="layui-inline">
+                        <label class="layui-form-label">跟单员</label>
+                        <div class="layui-input-block">
+                            <select name="bid">
+                                <option></option>
+                                {{#
+                                    layui.each(d.data, function(index, item){
+                                }}
+                                <option value="{{ item.userId || ''}}">{{ item.username }}</option>
+                                {{#  }); }}
+                                {{#  if(d.data.length === 0){ }}
+                                无数据
+                                {{#  } }}
+                            </select>
+                        </div>
+                    </div>
+                    {{# } }}
+                </script>
                 <div class="layui-inline">
                     <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-constomer-info-search" style="margin-bottom: 3px;">
                         <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
@@ -93,7 +115,7 @@
     layui.data.done = function(d){
     layui.use('sys_coustomer', layui.factory('sys_coustomer')).use(['admin', 'table','element','form'],function(){
         var table = layui.table,$ = layui.jquery,element = layui.element,admin = layui.admin,form = layui.form,view = layui.view,setter = layui.setter;             
-        form.render();
+        form.render(null,'customer-info-formlist');
     });
     layui.use('mobileterminal',layui.factory('mobileterminal')).use(['mobileterminal'],function () {
 

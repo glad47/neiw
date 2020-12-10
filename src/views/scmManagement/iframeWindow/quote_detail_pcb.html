@@ -26,7 +26,18 @@
                             <div class="layui-col-lg6">
                                 <label class="layui-form-label">供应商编号:</label>
                                 <div class="layui-input-block">
-                                <input type="text" disabled="" value="{{ d.params.supplierNo }}" placeholder="" autocomplete="off" class="layui-input layui-disabled">
+                                <!-- <input type="text" disabled="" value="{{ d.params.supplierNo }}" placeholder="" autocomplete="off" class="layui-input layui-disabled"> -->
+                                <select name="supplierId">
+                                    {{# 
+                                        layui.each(d.data, function(index, item){   
+                                    }}
+                                    <option value=""></option>
+                                    <option value="{{ item.id || ''}}" {{ d.params.supplierId == item.id ? 'selected' : ''}}>{{ item.supplierId }}</option>
+                                    {{#  }); }}
+                                    {{#  if(d.data.length === 0){ }}
+                                    无数据 
+                                    {{#  } }}
+                                </select>  
                                 </div>
                             </div>
                             <div class="layui-col-lg6">
