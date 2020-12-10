@@ -38,7 +38,7 @@
                         <input type="text" name="companName" class="layui-input" id="customer_orderTime">
                     </div>
                 </div>
-                <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-type="post">
+                <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-type="post"  lay-done="layui.data.done(d);">
                     {{#
                     if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:user:delete") != -1){
                     }}
@@ -69,7 +69,7 @@
         </div>
         <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-                <script type="text/html" template lay-done="layui.data.done(d);">
+                <script type="text/html" template>
                     {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:consumer_user:save") != -1){ }}
                         <button class="layui-btn" id="customerInfo_add" data-type="customerInfo_add">新增</button>
                     {{# } }}
