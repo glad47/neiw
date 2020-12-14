@@ -69,232 +69,247 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
             admin.req({
                 type: 'post',
                 data: {'userId': data.id},
-                url: setter.baseUrl+'sys/receiveradders/queryReceiverAddersByUid/',
+                url: setter.baseUrl+'sys/receiveradders/queryReceiverAddersByUid',
                 success:function(ret){
                     // console.log(ret);
                     data.receiverAddersEntityList = ret.data;
                     admin.popup({
                         title:'编辑客户',
-                        area:['60%', '100%'],
+                        area:['80%', '100%'],
                         id:'LAY-popup-customer-edit',
                         btn:['提交','取消'],
                         yes:function(index, layero){
                             $("#layuiadmin-app-form-submit").click();
                         },
-                        end:function(){},
                         success:function(layero,index){
                             view(this.id).render('/infoManagement/iframeWindow/customer_edit_info',data)
                             .then(function(value){
                                 //视图文件请求完毕，视图内容渲染前的回调
                             }).done(function(){
                                 form.render(null,'customer-add-edit-form-list');
+                                
+                                //todo 待优化
                                 //监听提交
-                                var productionVerification;
-                                form.on('switch(productionVerification)', function (data) {
-                                    if (data.elem.checked == true) {
-                                        layer.msg('需要确定生产资料');
-                                        productionVerification = 0;
-                                    }  else {
-                                        layer.msg('不需要确定生产资料');
-                                        productionVerification = 1;
-                                    }
-                                });
-                                var invalidMark;
-                                form.on('switch(optionUser)',function (data) {
-                                    if (data.elem.checked == true){
-                                        layer.msg('已启用');
-                                        invalidMark =0;
-                                    } else {
-                                        layer.msg('停用');
-                                        invalidMark =1;
-                                    }
-                                });
-                                var userType;
-                                form.on('switch(isneibuUser)',function (data) {
-                                    if (data.elem.checked == true){
-                                        layer.msg('内部用户');
-                                        userType =1;
-                                    } else {
-                                        layer.msg('客户系统用户');
-                                        userType =0;
-                                    }
-                                });
-                                var auditMark;
-                                form.on('switch(isAuditMark)',function(data){
-                                    if (data.elem.checked == true) {
-                                        layer.msg('需要审核');
-                                        auditMark = 0;
-                                    }else{
-                                        layer.msg('不需审核');
-                                        auditMark = 1;
-                                    }
-                                });
-                                var deliveryReport = 0;
-                                form.on('switch(deliveryReport)',function (data) {
-                                    if (data.elem.checked == true){
-                                        layer.msg('需要出货报告');
-                                        deliveryReport =1;
-                                    } else {
-                                        layer.msg('不需要出货报告');
-                                        deliveryReport =0;
-                                    }
-                                });
+                                // var dddd = {}
+                                // var dddd = listonCheckbox();
+                                
+                                // var productionVerification;
+                                // form.on('switch(productionVerification)', function (data) {
+                                //     if (data.elem.checked == true) {
+                                //         layer.msg('需要确定生产资料');
+                                //         productionVerification = 0;
+                                //     }  else {
+                                //         layer.msg('不需要确定生产资料');
+                                //         productionVerification = 1;
+                                //     }
+                                // });
+                                // var invalidMark;
+                                // form.on('switch(optionUser)',function (data) {
+                                //     if (data.elem.checked == true){
+                                //         layer.msg('已启用');
+                                //         invalidMark =0;
+                                //     } else {
+                                //         layer.msg('停用');
+                                //         invalidMark =1;
+                                //     }
+                                // });
+                                // var userType;
+                                // form.on('switch(isneibuUser)',function (data) {
+                                //     if (data.elem.checked == true){
+                                //         layer.msg('内部用户');
+                                //         userType =1;
+                                //     } else {
+                                //         layer.msg('客户系统用户');
+                                //         userType =0;
+                                //     }
+                                // });
+                                // var auditMark;
+                                // form.on('switch(isAuditMark)',function(data){
+                                //     if (data.elem.checked == true) {
+                                //         layer.msg('需要审核');
+                                //         auditMark = 0;
+                                //     }else{
+                                //         layer.msg('不需审核');
+                                //         auditMark = 1;
+                                //     }
+                                // });
+                                // var deliveryReport = 0;
+                                // form.on('switch(deliveryReport)',function (data) {
+                                //     if (data.elem.checked == true){
+                                //         layer.msg('需要出货报告');
+                                //         deliveryReport =1;
+                                //     } else {
+                                //         layer.msg('不需要出货报告');
+                                //         deliveryReport =0;
+                                //     }
+                                // });
 
-                                var isSourceCompany = 0;
-                                form.on('switch(isSourceCompany)',function(data){
-                                    if (data.elem.checked == true) {
-                                        layer.msg('来自公司');
-                                        isSourceCompany = 1;
-                                    }else{
-                                        layer.msg('不来自公司');
-                                        isSourceCompany = 0;
-                                    }
-                                }); 
+                                // var isSourceCompany = 0;
+                                // form.on('switch(isSourceCompany)',function(data){
+                                //     if (data.elem.checked == true) {
+                                //         layer.msg('来自公司');
+                                //         isSourceCompany = 1;
+                                //     }else{
+                                //         layer.msg('不来自公司');
+                                //         isSourceCompany = 0;
+                                //     }
+                                // }); 
 
-                                var addlist = data.receiverAddersEntityList;
+                                // var addlist = data.receiverAddersEntityList;
                                 // console.log(addlist);
-                                if(addlist.length != 0){
-                                    var tr = '',radiodiv = '';
-                                    addlist.forEach(function(e,i){
-                                        // console.log(e);
-                                        if(e.isDefault != 0){
-                                            radiodiv = "<input type='radio' name='isDefault' autocomplete='off' checked/>"
-                                        }else{
-                                            radiodiv = "<input type='radio' name='isDefault' autocomplete='off' />"
-                                        }
-                                        tr += "<tr><td>"+
-                                        radiodiv+
-                                        "<input type='hidden' autocomplete='off' value='"+(e.id == null ? "" : e.id)+"'/>"+
-                                        "</td><td>"+
-                                        "<input type='text' autocomplete='off' value='"+(e.receiverName == null ? "" : e.receiverName)+"'/>"+
-                                        "</td><td>"+
-                                        "<input type='text' autocomplete='off' value='"+(e.receiverTelephone == null ? "" : e.receiverTelephone)+"' />"+
-                                        "</td><td>"+
-                                        "<input type='text' autocomplete='off' value='"+(e.receiverCompany == null ? "" : e.receiverCompany)+"'/>"+
-                                        "</td><td>"+
-                                        "<input type='text' autocomplete='off' value='"+(e.receiverPostcode == null ? "" : e.receiverPostcode)+"'/>"+
-                                        "</td><td>"+
-                                        "<input type='text' autocomplete='off' value='"+(e.receiverAddress == null ? "" : e.receiverAddress)+"' />"+
-                                        "</td><td>"+
-                                        "<input type='button' class='layui-btn layui-btn-xs' value='删除' addid='"+e.id+"'></td></tr>";
-                                    });
-                                    $('#table_address').append(tr);
-                                    resetTableIndex();
-                                    form.render();
-                                }else{
-                                    resetTableIndex();
-                                    form.render();
-                                }
+                                // if(addlist.length != 0){
+                                //     var tr = '',radiodiv = '';
+                                //     addlist.forEach(function(e,i){
+                                //         // console.log(e);
+                                //         if(e.isDefault != 0){
+                                //             radiodiv = "<input type='radio' name='isDefault' autocomplete='off' checked/>"
+                                //         }else{
+                                //             radiodiv = "<input type='radio' name='isDefault' autocomplete='off' />"
+                                //         }
+                                //         tr += "<tr><td>"+
+                                //         radiodiv+
+                                //         "<input type='hidden' autocomplete='off' value='"+(e.id == null ? "" : e.id)+"'/>"+
+                                //         "</td><td>"+
+                                //         "<input type='text' autocomplete='off' value='"+(e.receiverName == null ? "" : e.receiverName)+"'/>"+
+                                //         "</td><td>"+
+                                //         "<input type='text' autocomplete='off' value='"+(e.receiverTelephone == null ? "" : e.receiverTelephone)+"' />"+
+                                //         "</td><td>"+
+                                //         "<input type='text' autocomplete='off' value='"+(e.receiverCompany == null ? "" : e.receiverCompany)+"'/>"+
+                                //         "</td><td>"+
+                                //         "<input type='text' autocomplete='off' value='"+(e.receiverPostcode == null ? "" : e.receiverPostcode)+"'/>"+
+                                //         "</td><td>"+
+                                //         "<input type='text' autocomplete='off' value='"+(e.receiverAddress == null ? "" : e.receiverAddress)+"' />"+
+                                //         "</td><td>"+
+                                //         "<input type='button' class='layui-btn layui-btn-xs' value='删除' addid='"+e.id+"'></td></tr>";
+                                //     });
+                                //     $('#table_address').append(tr);
+                                //     resetTableIndex();
+                                // }else{
+                                //     resetTableIndex();
+                                // }
+                                // form.render(null,'customer-add-edit-form-list');
                                
-                               
-                                var add_del_array = [];
+                                // var add_del_array = [];
 
                                 //监听添加时间
-                                $('#add_address').click(function(){
-                                    var tr = "<tr><td>"+
-                                    "<input type='radio' name='isDefault' autocomplete='off'/>"+
-                                    "<input type='hidden' autocomplete='off'/>"+
-                                    "</td><td>"+
-                                    "<input type='text' autocomplete='off'/>"+
-                                    "</td><td>"+
-                                    "<input type='text' autocomplete='off'/>"+
-                                    "</td><td>"+
-                                    "<input type='text' autocomplete='off'/>"+
-                                    "</td><td>"+
-                                    "<input type='text' autocomplete='off'/>"+
-                                    "</td><td>"+
-                                    "<input type='text' autocomplete='off'/>"+
-                                    "</td><td>"+
-                                    "<input type='button' class='layui-btn layui-btn-xs' value='删除'></td></tr>";
-                                    $('#table_address').append(tr);
-                                    resetTableIndex();
-                                    form.render();
-                                    $(":button").click(function () {    
-                                        $(this).parent().parent().remove();     
-                                        var addid = $(this).attr("addid");
-                                        if(addid != undefined && addid != ""){
-                                            add_del_array.push(addid);
-                                        }
-                                        resetTableIndex();
-                                        form.render();
-                                    });
-                                });
+                                // $('#add_address').click(function(){
+                                //     var tr = "<tr><td>"+
+                                //     "<input type='radio' name='isDefault' autocomplete='off'/>"+
+                                //     "<input type='hidden' autocomplete='off'/>"+
+                                //     "</td><td>"+
+                                //     "<input type='text' autocomplete='off'/>"+
+                                //     "</td><td>"+
+                                //     "<input type='text' autocomplete='off'/>"+
+                                //     "</td><td>"+
+                                //     "<input type='text' autocomplete='off'/>"+
+                                //     "</td><td>"+
+                                //     "<input type='text' autocomplete='off'/>"+
+                                //     "</td><td>"+
+                                //     "<input type='text' autocomplete='off'/>"+
+                                //     "</td><td>"+
+                                //     "<input type='button' class='layui-btn layui-btn-xs' value='删除'></td></tr>";
+                                //     $('#table_address').append(tr);
+                                //     resetTableIndex();
+                                //     form.render();
+                                //     $(":button").click(function () {    
+                                //         $(this).parent().parent().remove();     
+                                //         var addid = $(this).attr("addid");
+                                //         if(addid != undefined && addid != ""){
+                                //             add_del_array.push(addid);
+                                //         }
+                                //         resetTableIndex();
+                                //         form.render();
+                                //     });
+                                // });
             
-                                $(":button").click(function () {    
-                                    $(this).parent().parent().remove();     
-                                    var addid = $(this).attr("addid");
-                                    if(addid != undefined && addid != ""){
-                                        add_del_array.push(addid);
-                                    }
-                                    //var height1=$(document.body).height()+10;
-                                    //$(window.parent.document).find("#myiframe").attr("height",height1);  
-                                    resetTableIndex();
-                                    form.render();
-                                });
+                                // $(":button").click(function () {    
+                                //     $(this).parent().parent().remove();     
+                                //     var addid = $(this).attr("addid");
+                                //     if(addid != undefined && addid != ""){
+                                //         add_del_array.push(addid);
+                                //     }
+                                //     //var height1=$(document.body).height()+10;
+                                //     //$(window.parent.document).find("#myiframe").attr("height",height1);  
+                                //     resetTableIndex();
+                                //     form.render();
+                                // });
 
-                                function getFormData($form) {
-                                    var unindexed_array = $form.serializeArray();
-                                    var indexed_array = {};
-                                    var add_array = [],add_obj = {}, receiverAddersEntityList = [];
-                                    $.map(unindexed_array, function (n, i) {
-                                        if(n['name'].indexOf('receiverAddersEntityList') === 0){
-                                                return add_array.push(n['value']);
-                                        }else{
-                                            indexed_array[n['name']] = n['value'];
-                                        }
-                                    });
-                                    add_array.forEach(function(e,i){
-                                        if(((i+1)%6) == 0){
-                                            console.log(e);
-                                            console.log(i);
-                                            add_obj.id = add_array[i-5];
-                                            add_obj.receiverName = add_array[i-4];
-                                            add_obj.receiverTelephone = add_array[i-3];
-                                            add_obj.receiverCompany = add_array[i-2];
-                                            add_obj.receiverPostcode = add_array[i-1];
-                                            add_obj.receiverAddress = add_array[i];
-                                            add_obj.isDefault = 0;
-                                            receiverAddersEntityList.push(add_obj);
-                                            add_obj = {};
-                                        }
-                                    });
-                                    console.log(unindexed_array);
-                                    var isDefault = indexed_array.isDefault;
-                                    if(isDefault != undefined && isDefault != null){
-                                        console.log(isDefault)
-                                        receiverAddersEntityList[isDefault].isDefault = 1;
-                                    }
-                                    //console.log(receiverAddersEntityList);
-                                    //var receiverAddersEntityList = handleAddersData(add);
-                                    //console.log(receiverAddersEntityList);
-                                    indexed_array.receiverAddersEntityList = receiverAddersEntityList;
-                                    return indexed_array;
-                                }
+                                // function getFormData($form) {
+                                //     var unindexed_array = $form.serializeArray();
+                                //     var indexed_array = {};
+                                //     var add_array = [],add_obj = {}, receiverAddersEntityList = [];
+                                //     $.map(unindexed_array, function (n, i) {
+                                //         if(n['name'].indexOf('receiverAddersEntityList') === 0){
+                                //                 return add_array.push(n['value']);
+                                //         }else{
+                                //             indexed_array[n['name']] = n['value'];
+                                //         }
+                                //     });
+                                //     add_array.forEach(function(e,i){
+                                //         if(((i+1)%6) == 0){
+                                //             console.log(e);
+                                //             console.log(i);
+                                //             add_obj.id = add_array[i-5];
+                                //             add_obj.receiverName = add_array[i-4];
+                                //             add_obj.receiverTelephone = add_array[i-3];
+                                //             add_obj.receiverCompany = add_array[i-2];
+                                //             add_obj.receiverPostcode = add_array[i-1];
+                                //             add_obj.receiverAddress = add_array[i];
+                                //             add_obj.isDefault = 0;
+                                //             receiverAddersEntityList.push(add_obj);
+                                //             add_obj = {};
+                                //         }
+                                //     });
+                                //     console.log(unindexed_array);
+                                //     var isDefault = indexed_array.isDefault;
+                                //     if(isDefault != undefined && isDefault != null){
+                                //         console.log(isDefault)
+                                //         receiverAddersEntityList[isDefault].isDefault = 1;
+                                //     }
+                                //     //console.log(receiverAddersEntityList);
+                                //     //var receiverAddersEntityList = handleAddersData(add);
+                                //     //console.log(receiverAddersEntityList);
+                                //     indexed_array.receiverAddersEntityList = receiverAddersEntityList;
+                                //     return indexed_array;
+                                // }
 
                                 //动态加载行
-                                function resetTableIndex(){
-                                    $('#table_address tbody tr').each(function(index){
-                                        $(this).find("td").eq(0).find("input[type=radio]").attr("value",index);
-                                        $(this).find("td").eq(0).find("input[type='hidden']").attr("name",'receiverAddersEntityList['+index+'].id');
-                                        $(this).find("td").eq(1).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverName');
-                                        $(this).find("td").eq(2).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverTelephone');
-                                        $(this).find("td").eq(3).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverCompany');
-                                        $(this).find("td").eq(4).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverPostcode');
-                                        $(this).find("td").eq(5).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverAddress');
-                                    });
-                                }
+                                // function resetTableIndex(){
+                                //     $('#table_address tbody tr').each(function(index){
+                                //         $(this).find("td").eq(0).find("input[type=radio]").attr("value",index);
+                                //         $(this).find("td").eq(0).find("input[type='hidden']").attr("name",'receiverAddersEntityList['+index+'].id');
+                                //         $(this).find("td").eq(1).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverName');
+                                //         $(this).find("td").eq(2).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverTelephone');
+                                //         $(this).find("td").eq(3).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverCompany');
+                                //         $(this).find("td").eq(4).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverPostcode');
+                                //         $(this).find("td").eq(5).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverAddress');
+                                //     });
+                                // }
 
                                 form.on('submit(customer-edit-info-form-submit)',function(formdata){
-                                    var field = getFormData($('#customer-add-edit-form-list'));
-                                    field.invalidMark = invalidMark;
-                                    field.userType = userType;
-                                    field.auditMark = auditMark;
-                                    field.deliveryReport = deliveryReport;
-                                    field.productionVerification = productionVerification;
-                                    field.id = data.id;
-                                    field.addDelIdList = add_del_array;
-                                    field.isSourceCompany = isSourceCompany;
-                                    console.log(field);
+                                    // console.log(formdata);
+                                    // console.log(formdata.field)
+                                    //获取table数据
+                                    let addressList = table.cache["sys-customer-address-list-table"],field = formdata.field;
+                                    for (let i = 0; i <addressList.length ; i++) {
+                                        if(addressList[i].LAY_CHECKED){
+                                            addressList[i].isDefault = 1;
+                                        }else{
+                                            addressList[i].isDefault = 0;
+                                        }
+                                    }
+
+                                    field.receiverAddersEntityList = addressList;
+                                    //处理删除id
+                                    if(field.delIdArr !== undefined && field.delIdArr !== ""){
+                                        field.addDelIdList = field.delIdArr.split(",");
+                                    }else{
+                                        field.addDelIdList = [];
+                                    }
+                                    // console.log(addressList);
+                                    console.log(field)
+                                    //处理下默认地址数据
+                                    let loadindex = layer.load(1, {shade: [0.1,'#fff']}); 
                                     admin.req({
                                         url: setter.baseUrl+'sys/consumer/user/update',
                                         type:'POST',
@@ -302,10 +317,13 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                         contentType:'application/json',
                                         data: JSON.stringify(field),
                                         success:function(data){
-                                            console.log(data);
-                                            layui.table.reload('customer_listTab'); //重载表格
-                                            layer.close(index); //执行关闭 
-                                            
+                                            layer.close(loadindex);
+                                            if(data.code === 0){
+                                                layer.msg('修改成功!');
+                                                // console.log(data);
+                                                layui.table.reload('customer_listTab'); //重载表格
+                                                layer.close(index); //执行关闭 
+                                            }
                                         }
                                     })
                     
@@ -367,6 +385,83 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
         }
     });
 
+    function listonCheckbox(){
+        var r = {}
+         //监听提交
+         let productionVerification = 1;
+         form.on('switch(productionVerification)', function (data) {
+             if (data.elem.checked == true) {
+                 layer.msg('需要确定生产资料');
+                 productionVerification = 0;
+             }  else {
+                 layer.msg('不需要确定生产资料');
+                 productionVerification = 1;
+             }
+         });
+         r.productionVerification = productionVerification;
+         let invalidMark = 0;
+         form.on('switch(optionUser)',function (data) {
+             if (data.elem.checked == true){
+                 layer.msg('已启用');
+                 invalidMark =0;
+             } else {
+                 layer.msg('停用');
+                 invalidMark =1;
+             }
+         });
+         r.invalidMark = invalidMark;
+         let userType = 0;
+         form.on('switch(isneibuUser)',function (data) {
+             if (data.elem.checked == true){
+                 layer.msg('内部用户');
+                 userType =1;
+             } else {
+                 layer.msg('客户系统用户');
+                 userType =0;
+             }
+         });
+         r.userType = userType;
+         let auditMark = 0;
+         form.on('switch(isAuditMark)',function(data){
+             if (data.elem.checked == true) {
+                 layer.msg('需要审核');
+                 auditMark = 0;
+             }else{
+                 layer.msg('不需审核');
+                 auditMark = 1;
+             }
+         });
+         r.auditMark = auditMark;
+         let deliveryReport = 0;
+         form.on('switch(deliveryReport)',function (data) {
+             if (data.elem.checked == true){
+                 layer.msg('需要出货报告');
+                 deliveryReport =1;
+             } else {
+                 layer.msg('不需要出货报告');
+                 deliveryReport =0;
+             }
+         });
+         r.deliveryReport = deliveryReport;
+
+         let isSourceCompany = 0;
+         form.on('switch(isSourceCompany)',function(data){
+             if (data.elem.checked == true) {
+                 layer.msg('来自公司');
+                 isSourceCompany = 1;
+             }else{
+                 layer.msg('不来自公司');
+                 isSourceCompany = 0;
+             }
+         });
+         r.isSourceCompany = isSourceCompany;
+         
+         function f2(){
+            console.log(r);
+            return r;
+         }
+         return f2;
+    }
 
     var active = {
         customerInfo_add:function(){
@@ -378,8 +473,8 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                 shadeClose: true,
                 shade: false,
                 maxmin: false, //开启最大化最小化按钮
-                area: ['60%', '100%'],
-                content:'<div class="layui-row" id="customer_edit_info"></div>',
+                area:['80%', '100%'],
+                // content:'<div class="layui-row" id="customer_edit_info"></div>',
                 btn:['确定','取消'],
                 yes: function(index, layero) {
                     $('#layuiadmin-app-form-submit').click();
@@ -392,111 +487,108 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                     }).done(function(){
                         form.render(null, 'customer-add-edit-form-list');
                         //监听提交
-                        var productionVerification;
-                        form.on('switch(productionVerification)', function (data) {
-                            if (data.elem.checked == true) {
-                                layer.msg('需要确定生产资料');
-                                productionVerification = 0;
-                            }  else {
-                                layer.msg('不需要确定生产资料');
-                                productionVerification = 1;
-                            }
-                        });
-                        var invalidMark;
-                        form.on('switch(optionUser)',function (data) {
-                            if (data.elem.checked == true){
-                                layer.msg('已启用');
-                                invalidMark =0;
-                            } else {
-                                layer.msg('停用');
-                                invalidMark =1;
-                            }
-                        });
-                        var userType;
-                        form.on('switch(isneibuUser)',function (data) {
-                            if (data.elem.checked == true){
-                                layer.msg('内部用户');
-                                userType =1;
-                            } else {
-                                layer.msg('客户系统用户');
-                                userType =0;
-                            }
-                        });
-                        var auditMark;
-                        form.on('switch(isAuditMark)',function(data){
-                            if (data.elem.checked == true) {
-                                layer.msg('需要审核');
-                                auditMark = 0;
-                            }else{
-                                layer.msg('不需审核');
-                                auditMark = 1;
-                            }
-                        });
-                        var deliveryReport = 0;
-                        form.on('switch(deliveryReport)',function (data) {
-                            if (data.elem.checked == true){
-                                layer.msg('需要出货报告');
-                                deliveryReport =1;
-                            } else {
-                                layer.msg('不需要出货报告');
-                                deliveryReport =0;
-                            }
-                        });
+                        // var productionVerification;
+                        // form.on('switch(productionVerification)', function (data) {
+                        //     if (data.elem.checked == true) {
+                        //         layer.msg('需要确定生产资料');
+                        //         productionVerification = 0;
+                        //     }  else {
+                        //         layer.msg('不需要确定生产资料');
+                        //         productionVerification = 1;
+                        //     }
+                        // });
+                        // var invalidMark;
+                        // form.on('switch(optionUser)',function (data) {
+                        //     if (data.elem.checked == true){
+                        //         layer.msg('已启用');
+                        //         invalidMark =0;
+                        //     } else {
+                        //         layer.msg('停用');
+                        //         invalidMark =1;
+                        //     }
+                        // });
+                        // var userType;
+                        // form.on('switch(isneibuUser)',function (data) {
+                        //     if (data.elem.checked == true){
+                        //         layer.msg('内部用户');
+                        //         userType =1;
+                        //     } else {
+                        //         layer.msg('客户系统用户');
+                        //         userType =0;
+                        //     }
+                        // });
+                        // var auditMark;
+                        // form.on('switch(isAuditMark)',function(data){
+                        //     if (data.elem.checked == true) {
+                        //         layer.msg('需要审核');
+                        //         auditMark = 0;
+                        //     }else{
+                        //         layer.msg('不需审核');
+                        //         auditMark = 1;
+                        //     }
+                        // });
+                        // var deliveryReport = 0;
+                        // form.on('switch(deliveryReport)',function (data) {
+                        //     if (data.elem.checked == true){
+                        //         layer.msg('需要出货报告');
+                        //         deliveryReport =1;
+                        //     } else {
+                        //         layer.msg('不需要出货报告');
+                        //         deliveryReport =0;
+                        //     }
+                        // });
 
-                        var isSourceCompany = 0;
-                        form.on('switch(isSourceCompany)',function(data){
-                            if (data.elem.checked == true) {
-                                layer.msg('来自公司'); 
-                                isSourceCompany = 1;
-                            }else{
-                                layer.msg('不来自公司');   
-                                isSourceCompany = 0;
-                            }
-                        }); 
+                        // var isSourceCompany = 0;
+                        // form.on('switch(isSourceCompany)',function(data){
+                        //     if (data.elem.checked == true) {
+                        //         layer.msg('来自公司'); 
+                        //         isSourceCompany = 1;
+                        //     }else{
+                        //         layer.msg('不来自公司');   
+                        //         isSourceCompany = 0;
+                        //     }
+                        // }); 
             
-                        //监听添加时间
-                        $('#add_address').click(function(){
-                            var tr = "<tr><td>"+
-                            "<input type='radio' name='isDefault' autocomplete='off'/>"+
-                            "</td><td>"+
-                            "<input type='text' autocomplete='off'/>"+
-                            "</td><td>"+
-                            "<input type='text' autocomplete='off'/>"+
-                            "</td><td>"+
-                            "<input type='text' autocomplete='off'/>"+
-                            "</td><td>"+
-                            "<input type='text' autocomplete='off'/>"+
-                            "</td><td>"+
-                            "<input type='text' autocomplete='off'/>"+
-                            "</td><td>"+
-                            "<input type='button' class='layui-btn layui-btn-xs' value='删除'></td></tr>";
-                            $('#table_address').append(tr);
-                            resetTableIndex();
-                            form.render();
-                            $(":button").click(function () {    
-                                $(this).parent().parent().remove();     
-                                var height1=$(document.body).height()+10;
-                                $(window.parent.document).find("#myiframe").attr("height",height1);  
-                                resetTableIndex();
-                                form.render();
-                            });
-                        });
+                        // //监听添加时间
+                        // $('#add_address').click(function(){
+                        //     var tr = "<tr><td>"+
+                        //     "<input type='radio' name='isDefault' autocomplete='off'/>"+
+                        //     "</td><td>"+
+                        //     "<input type='text' autocomplete='off'/>"+
+                        //     "</td><td>"+
+                        //     "<input type='text' autocomplete='off'/>"+
+                        //     "</td><td>"+
+                        //     "<input type='text' autocomplete='off'/>"+
+                        //     "</td><td>"+
+                        //     "<input type='text' autocomplete='off'/>"+
+                        //     "</td><td>"+
+                        //     "<input type='text' autocomplete='off'/>"+
+                        //     "</td><td>"+
+                        //     "<input type='button' class='layui-btn layui-btn-xs' value='删除'></td></tr>";
+                        //     $('#table_address').append(tr);
+                        //     resetTableIndex();
+                        //     form.render();
+                        //     $(":button").click(function () {    
+                        //         $(this).parent().parent().remove();     
+                        //         var height1=$(document.body).height()+10;
+                        //         $(window.parent.document).find("#myiframe").attr("height",height1);  
+                        //         resetTableIndex();
+                        //         form.render();
+                        //     });
+                        // });
             
                         form.on('submit(customer-edit-info-form-submit)',function(data){
-            
-                            var field = getFormData($('#customer-add-edit-form-list'));
-                            // var d = JSON.stringify(ff);
-                            // console.log(d);
-                            // console.log(ff);
-                            // var field = data.field;
-                            field.invalidMark = invalidMark;
-                            field.userType = userType;
-                            field.auditMark = auditMark;
-                            field.deliveryReport = deliveryReport;
-                            field.productionVerification = productionVerification;
-                            field.isSourceCompany = isSourceCompany;
-                            // field.country = country;
+                            let addressList = table.cache["sys-customer-address-list-table"],field = data.field;
+                            for (let i = 0; i <addressList.length ; i++) {
+                                if(addressList[i].LAY_CHECKED){
+                                    addressList[i].isDefault = 1;
+                                }else{
+                                    addressList[i].isDefault = 0;
+                                }
+                            }
+                            field.receiverAddersEntityList = addressList; 
                             console.log(field);
+                            let loadindex = layer.load(1, {shade: [0.1,'#fff']}); 
                             admin.req({
                                 url: setter.baseUrl+'sys/consumer/user/save',
                                 type:'POST',
@@ -504,7 +596,9 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                 contentType:'application/json',
                                 data: JSON.stringify(field),
                                 success:function(data){
-                                    console.log(data);
+                                    layer.close(loadindex);
+                                    // console.log(data);
+                                    layer.msg('添加成功!'); 
                                     layui.table.reload('customer_listTab'); //重载表格
                                     layer.close(index); //执行关闭 
                                 }
@@ -513,54 +607,54 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                         });
             
                         //动态加载行
-                        function resetTableIndex(){
-                            $('#table_address tbody tr').each(function(index){
-                                $(this).find("td").eq(0).find("input[type=radio]").attr("value",index);
-                                $(this).find("td").eq(1).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverName');
-                                $(this).find("td").eq(2).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverTelephone');
-                                $(this).find("td").eq(3).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverCompany');
-                                $(this).find("td").eq(4).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverPostcode');
-                                $(this).find("td").eq(5).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverAddress');
-                            });
-                        }
+                        // function resetTableIndex(){
+                        //     $('#table_address tbody tr').each(function(index){
+                        //         $(this).find("td").eq(0).find("input[type=radio]").attr("value",index);
+                        //         $(this).find("td").eq(1).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverName');
+                        //         $(this).find("td").eq(2).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverTelephone');
+                        //         $(this).find("td").eq(3).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverCompany');
+                        //         $(this).find("td").eq(4).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverPostcode');
+                        //         $(this).find("td").eq(5).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverAddress');
+                        //     });
+                        // }
             
-                        function getFormData($form) {
-                            var unindexed_array = $form.serializeArray();
-                            var indexed_array = {};
-                            var add_array = [],add_obj = {}, receiverAddersEntityList = [];
-                            $.map(unindexed_array, function (n, i) {
-                                if(n['name'].indexOf('receiverAddersEntityList') === 0){
-                                        return add_array.push(n['value']);
-                                }else{
-                                    indexed_array[n['name']] = n['value'];
-                                }
-                            });
-                            add_array.forEach(function(e,i){
-                                if(((i+1)%5) == 0){
-                                    console.log(i);                                    
-                                    console.log(e);
-                                    add_obj.receiverName = add_array[i-4];
-                                    add_obj.receiverTelephone = add_array[i-3];
-                                    add_obj.receiverCompany = add_array[i-2];
-                                    add_obj.receiverPostcode = add_array[i-1];
-                                    add_obj.receiverAddress = add_array[i];
-                                    add_obj.isDefault = 0;
-                                    receiverAddersEntityList.push(add_obj);
-                                    add_obj = {};
-                                }
-                            });
-                            console.log(unindexed_array);
-                            var isDefault = indexed_array.isDefault;
-                            if(isDefault != undefined && isDefault != null){
-                                console.log(isDefault)
-                                receiverAddersEntityList[isDefault].isDefault = 1;
-                            }
-                            console.log(receiverAddersEntityList);
-                            //var receiverAddersEntityList = handleAddersData(add);
-                            //console.log(receiverAddersEntityList);
-                            indexed_array.receiverAddersEntityList = receiverAddersEntityList;
-                            return indexed_array;
-                        }
+                        // function getFormData($form) {
+                        //     var unindexed_array = $form.serializeArray();
+                        //     var indexed_array = {};
+                        //     var add_array = [],add_obj = {}, receiverAddersEntityList = [];
+                        //     $.map(unindexed_array, function (n, i) {
+                        //         if(n['name'].indexOf('receiverAddersEntityList') === 0){
+                        //                 return add_array.push(n['value']);
+                        //         }else{
+                        //             indexed_array[n['name']] = n['value'];
+                        //         }
+                        //     });
+                        //     add_array.forEach(function(e,i){
+                        //         if(((i+1)%5) == 0){
+                        //             console.log(i);                                    
+                        //             console.log(e);
+                        //             add_obj.receiverName = add_array[i-4];
+                        //             add_obj.receiverTelephone = add_array[i-3];
+                        //             add_obj.receiverCompany = add_array[i-2];
+                        //             add_obj.receiverPostcode = add_array[i-1];
+                        //             add_obj.receiverAddress = add_array[i];
+                        //             add_obj.isDefault = 0;
+                        //             receiverAddersEntityList.push(add_obj);
+                        //             add_obj = {};
+                        //         }
+                        //     });
+                        //     console.log(unindexed_array);
+                        //     var isDefault = indexed_array.isDefault;
+                        //     if(isDefault != undefined && isDefault != null){
+                        //         console.log(isDefault)
+                        //         receiverAddersEntityList[isDefault].isDefault = 1;
+                        //     }
+                        //     console.log(receiverAddersEntityList);
+                        //     //var receiverAddersEntityList = handleAddersData(add);
+                        //     //console.log(receiverAddersEntityList);
+                        //     indexed_array.receiverAddersEntityList = receiverAddersEntityList;
+                        //     return indexed_array;
+                        // }
 
                        
                     });

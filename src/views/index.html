@@ -7,9 +7,7 @@
         <div class="layui-card-header">年/月目标</div>
         <div class="layui-card-body">
           <div class="layui-carousel layadmin-carousel layadmin-backlog" style="height: unset !important;">
-            {{#
-              if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:index:target") != -1){
-            }}
+            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:index:target") != -1){ }}
             <div carousel-item>
               <ul class="layui-row layui-col-space10">
                 <div style="text-align: center">
@@ -65,9 +63,7 @@
                 </li>
               </ul>
 
-              {{#
-                          layui.each(d.list, function(index, item){
-                      }}
+              {{# layui.each(d.list, function(index, item){ }}
               <ul class="layui-row layui-col-space10">
                 <div style="text-align: center">
                   <h2>{{item.name}}</h2>
@@ -165,7 +161,7 @@
 </div>
 <script>
   layui.data.done = function (d) {
-    layui.use('console', layui.factory('console'));
+    layui.use('console',layui.factory('console'));
   };
 </script>
 

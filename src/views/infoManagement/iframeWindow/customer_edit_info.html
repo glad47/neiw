@@ -1,6 +1,6 @@
 <title>Add Customer Info</title>
 <div class="layui-fluid">
-    <form class="layui-form edit-cusInfo" lay-filter="customer-add-edit-form-list" id="customer-add-edit-form-list">
+    <form class="layui-form edit-cusInfo" lay-filter="customer-add-edit-form-list">
         <div class="layui-form-item">
             <div class="addcus-cusNum layui-col-md6">
                 <label class="layui-form-label"><span class="span-required">*</span>客户名称：</label>
@@ -32,10 +32,10 @@
                 <div class="layui-input-block">
                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}v1/quote/getCountry" lay-done="layui.data.done(d);" lay-type="post">
                         <select name="countryInfo" lay-verify="required" lay-search="" lay-filter="lf-country">
+                            <option value=""></option>
                             {{# 
                                 layui.each(d.data, function(index, item){   
                             }}
-                            <option value=""></option>
                             <option value="{{ item.id+'_'+item.name || ''}}" {{ d.params.country == item.name ? 'selected' : ''}}>{{ item.name }}</option>
                             {{#  }); }}
                         </select>
@@ -66,12 +66,12 @@
             <div class="addcus-cusCom layui-col-md6">
                 <label class="layui-form-label"><span class="span-required">*</span>付款方式：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'付款方式'}" lay-type="post">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'付款方式'}" lay-type="post" lay-done="layui.data.renderSelect(d);">
                         <select name="paymentType" lay-verify="required">
+                            <option value=""></option>
                             {{# 
                                 layui.each(d.data, function(index, item){   
                             }}
-                            <option value=""></option>
                             <option value="{{ item.dictKey || ''}}" {{ d.params.paymentType == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
                             {{#  }); }}
                             {{#  if(d.data.length === 0){ }}
@@ -84,12 +84,12 @@
             <div class="addcus-merchandiser layui-col-md6">
                 <label class="layui-form-label"><span class="span-required">*</span>发货方式：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'发货方式'}" lay-type="post">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'发货方式'}" lay-type="post" lay-done="layui.data.renderSelect(d);">
                         <select name="deliveryType" lay-verify="required">
+                            <option value=""></option>
                             {{# 
                                 layui.each(d.data, function(index, item){   
                             }}
-                            <option value=""></option>
                             <option value="{{ item.dictKey || ''}}" {{ d.params.deliveryType == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
                             {{#  }); }}
                             {{#  if(d.data.length === 0){ }}
@@ -100,42 +100,15 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="layui-form-item">
-            <div class="layui-col-md6">
-                <label class="layui-form-label"><span class="span-required">*</span>邮编：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="postcode" autocomplete="off" class="layui-input" value="{{ d.params.postcode || '' }}" lay-verify="required">
-                    </script>
-                </div>
-            </div>
-            <div class="layui-col-md6">
-                <label class="layui-form-label"><span class="span-required">*</span>联系人：</label>
-                <div class="layui-input-block">
-                    <script type="text/html" template>
-                        <input type="text" name="contact" autocomplete="off" class="layui-input" value="{{ d.params.contact || '' }}" lay-verify="required">
-                    </script>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="layui-form-item">
-            <label class="layui-form-label"><span class="span-required">*</span>地址：</label>
-            <div class="layui-input-block">
-                <script type="text/html" template>
-                    <textarea name="address" autocomplete="off" class="layui-textarea" lay-verify="required">
-                        {{ d.params.address || '' }}
-                    </textarea>
-                </script>
-            </div>
-        </div> -->
         <div class="layui-form-item">
             <div class="addcus-merchandiser">
                 <label class="layui-form-label"><span class="span-required">*</span>收货地址：</label>
                 <div class="layui-input-block">
-                    <a href="javascript:void(0)" id="add_address" class="layui-btn layui-btn"><i>添加</i></a>
+                    <!-- <a href="javascript:void(0)" id="add_address" class="layui-btn layui-btn"><i>添加</i></a> -->
+                    <a href="javascript:void(0)" class="layui-btn layuiadmin-btn-list" data-type="addAddress">添加</a>
                 </div>
-                <div class="layui-input-block" style="margin-left: unset;width: 100%;overflow: scroll;">
-                    <table cellspacing="0" cellpadding="0" class="layui-table form-table" id="table_address">
+                <div class="layui-input-block" style="margin-left: unset;width: 100%;">
+                    <!-- <table cellspacing="0" cellpadding="0" class="layui-table form-table" id="table_address">
                         <thead>
                         <tr>
                             <th>默认</th>
@@ -148,20 +121,8 @@
                         </tr>
                         </thead>
                         <tbody></tbody>
-                    </table>
-                    <!-- <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/receiveradders/queryReceiverAddersByUid?userId={{d.params.id}}" lay-done="layui.data.done(d);" lay-type="post">
-                        <select name="ssdz" lay-verify="required" lay-filter="ssdz">
-                            <option value="addAddr">添加地址</option>
-                            {{#
-                            layui.each(d.data, function(index, item){
-                            }}
-                            <option value="{{ item.id || ''}}" {{ item.isDefault == 1 ? 'selected' : ''}}>收货人：{{ item.receiverName }}&nbsp;&nbsp;联系电话：{{ item.receiverTelephone }}</option>
-                            {{#  }); }}
-                            {{#  if(d.data.length === 0){ }}
-                            无数据
-                            {{#  } }}
-                        </select>
-                    </script> -->
+                    </table> -->
+                    <table id="sys-customer-address-list-table" lay-filter="sys-customer-address-list-table"></table>
                 </div>
             </div>
         </div>
@@ -169,12 +130,12 @@
             <div class="addcus-cusCom layui-col-md6">
                 <label class="layui-form-label">快递公司：</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'快递公司'}" lay-type="post">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dict/commonSelectData" lay-data="{tableName:'客户管理',fileName:'快递公司'}" lay-type="post" lay-done="layui.data.renderSelect(d);">
                         <select name="courierName">
+                            <option value=""></option>
                             {{# 
                                 layui.each(d.data, function(index, item){   
                             }}
-                            <option value=""></option>
                             <option value="{{ item.dictKey || ''}}" {{ d.params.courierName == item.dictKey ? 'selected' : ''}}>{{ item.dictValue }}</option>
                             {{#  }); }}
                             {{#  if(d.data.length === 0){ }}
@@ -298,82 +259,92 @@
                 </div>
             </div>
         </div>
-        <div>
-            <div class="layui-form-item">
-                
-                <div class="addcus-merchandiser layui-col-md6">
-                    <label class="layui-form-label"><span class="span-required">*</span>跟单员：</label>
-                    <div class="layui-input-block">
-                        <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-type="post">
-                            <select name="businessInfo" id="user_edit_dep" lay-verify="required">
-                                {{#
-                                    var businessId = d.params.businessId;
-                                    layui.each(d.data, function(index, item){
-                                }}
-                                <option></option>
-                                <option value="{{ item.userId || ''}},{{item.jobNumber}},{{item.username}}" {{ businessId == item.userId ? 'selected' : ''}}>{{ item.username }}</option>
-                                {{#  }); }}
-                                {{#  if(d.data.length === 0){ }}
-                                无数据
-                                {{#  } }}
-                            </select>
-                        </script>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-col-md6">
-                    <label class="layui-form-label" style="width: 126px;">需要确认生产资料：</label>
-                    <div class="layui-input-block">
-                        <script type="text/html" template>
-                            <input type="checkbox" name="productionVerification" lay-skin="switch" lay-text="是|否" {{ d.params.productionVerification == '0' ? 'checked' : '' }} lay-filter="productionVerification">
-                        </script>
-                    </div>
-                </div>
-                <div class="layui-col-md6">
-                    <label class="layui-form-label">来自公司：</label>
-                    <div class="layui-input-block">
-                        <script type="text/html" template>
-                            <input type="checkbox" name="isSourceCompany" lay-skin="switch" lay-text="是|否" {{ d.params.isSourceCompany === undefined || d.params.isSourceCompany == '0' ? '' : 'checked' }} lay-filter="isSourceCompany">
-                        </script>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-col-md12">
-                    <label class="layui-form-label">客户标准：</label>
-                    <div class="layui-input-block">
-                        <script type="text/html" template>
-                            <textarea name="customerStandards" autocomplete="off" class="layui-textarea">
-                                {{ d.params.customerStandards || '' }}
-                            </textarea>
-                        </script>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-col-md12">
-                    <label class="layui-form-label">包装要求：</label>
-                    <div class="layui-input-block">
-                        <script type="text/html" template>
-                            <textarea name="packageRequirements" autocomplete="off" class="layui-textarea">
-                                {{ d.params.packageRequirements || '' }}
-                            </textarea>
-                        </script>
-                    </div>
+        <div class="layui-form-item">
+            <div class="addcus-merchandiser layui-col-md6">
+                <label class="layui-form-label"><span class="span-required">*</span>跟单员：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-type="post">
+                        <select name="businessInfo" id="user_edit_dep" lay-verify="required">
+                            {{#
+                                var businessId = d.params.businessId;
+                                layui.each(d.data, function(index, item){
+                            }}
+                            <option></option>
+                            <option value="{{ item.userId || ''}},{{item.jobNumber}},{{item.username}}" {{ businessId == item.userId ? 'selected' : ''}}>{{ item.username }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据
+                            {{#  } }}
+                        </select>
+                    </script>
                 </div>
             </div>
         </div>
-         <script type="text/html" template>
+        <div class="layui-form-item">
+            <div class="layui-col-md6">
+                <label class="layui-form-label" style="width: 126px;">需要确认生产资料：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.productionVerification == '0' ? 'checked' : '' }} lay-filter="isProductionVerification">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">来自公司：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.isSourceCompany == undefined || d.params.isSourceCompany == '0' ? '' : 'checked' }} lay-filter="isSourceCompanyF">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-col-md12">
+                <label class="layui-form-label">客户标准：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <textarea name="customerStandards" autocomplete="off" class="layui-textarea">
+                            {{ d.params.customerStandards || '' }}
+                        </textarea>
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-col-md12">
+                <label class="layui-form-label">包装要求：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <textarea name="packageRequirements" autocomplete="off" class="layui-textarea">
+                            {{ d.params.packageRequirements || '' }}
+                        </textarea>
+                    </script>
+                </div>
+            </div>
+        </div>
+        <script type="text/html" template>
           <input type="hidden" name="id" value="{{ d.params.id || '' }}">
           <input type="hidden" name="aid" value="{{d.params.aid || ''}}">
+          <input type="hidden" name="productionVerification" value="{{d.params.productionVerification || ''}}">
+          <input type="hidden" name="isSourceCompany" value="{{d.params.isSourceCompany || ''}}">
+          <input type="hidden" name="invalidMark" value="{{d.params.invalidMark || 0}}">
+          <input type="hidden" name="userType" value="{{d.params.userType || 0}}">
+          <input type="hidden" name="auditMark" value="{{d.params.auditMark || 0}}">
+          <input type="hidden" name="deliveryReport" value="{{d.params.deliveryReport || 0}}">
+          <input type="hidden" name="needTb"  value="{{d.params.needTb || 0}}">
+          <input type="hidden" name="needSlice" value="{{d.params.needSlice || 0}}">
+          <input type="hidden" name="needDrier" value="{{d.params.needDrier || 0}}">
+          <input type="hidden" name="needRh"  value="{{d.params.needRh || 0}}">
+          <input type="hidden" name="needOhm" value="{{d.params.needOhm || 0}}">
+          <input type="hidden" name="needNp" value="{{d.params.needNp || 0}}">
+          <input type="hidden" name="delIdArr" >
         </script>
         <div class="layui-form-item">
             <div class="addcus-cusNum layui-col-md3">
                 <label class="layui-form-label">操作：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="checkbox" name="invalidMark" lay-skin="switch" lay-text="启用|停用"lay-filter="optionUser" {{ d.params.invalidMark === undefined || d.params.invalidMark === 1 ? '' : 'checked' }}>
+                        <input type="checkbox" lay-skin="switch" lay-text="启用|停用" lay-filter="isOptionUser" {{ d.params.invalidMark === 0 ? 'checked' : '' }}>
                     </script>
                 </div>
             </div>
@@ -381,7 +352,7 @@
                 <label class="layui-form-label">内部用户：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="checkbox" name="userType" lay-skin="switch" lay-text="是|否" {{ d.params.userType === undefined || d.params.userType === 0 ? '' : 'checked' }} lay-filter="isneibuUser">
+                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.userType === 1 ? 'checked' : '' }} lay-filter="isNeibuUser">
                     </script>
                 </div>
             </div>
@@ -390,7 +361,7 @@
                 <label class="layui-form-label">需要审核：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="checkbox" name="auditMark" lay-skin="switch" lay-text="是|否" {{ d.params.auditMark === undefined || d.params.auditMark === 1 ? '' : 'checked' }} lay-filter="isAuditMark">
+                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.auditMark === 0 ? 'checked' : '' }} lay-filter="isAuditMark">
                     </script>
                 </div>
             </div>
@@ -399,7 +370,58 @@
                 <label class="layui-form-label">出货报告：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="checkbox" name="deliveryReport" lay-skin="switch" lay-text="是|否" {{ d.params.deliveryReport === undefined || d.params.deliveryReport == '0' ? '' : 'checked' }} lay-filter="deliveryReport">
+                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.deliveryReport == 1 ? 'checked' : '' }} lay-filter="isDeliveryReport">
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md2">
+                <label class="layui-form-label">锡试验板：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.needTb === 0 ? '' : 'checked' }} lay-filter="isNeedTb">
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-cusNum layui-col-md2">
+                <label class="layui-form-label">切片：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="checkbox"  lay-skin="switch" lay-text="是|否" {{ d.params.needSlice === 0 ? '' : 'checked' }} lay-filter="isNeedSlice">
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-cusNum layui-col-md2">
+                <label class="layui-form-label">干燥剂：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="checkbox"  lay-skin="switch" lay-text="是|否" {{ d.params.needDrier === 0 ? '' : 'checked' }} lay-filter="isNeedDrier">
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-cusNum layui-col-md2">
+                <label class="layui-form-label">湿度卡：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.needRh === 0 ? '' : 'checked' }} lay-filter="isNeedRh" >
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-cusNum layui-col-md2">
+                <label class="layui-form-label">阻抗条：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="checkbox"  lay-skin="switch" lay-text="是|否" {{ d.params.needOhm === 0 ? '' : 'checked' }} lay-filter="isNeedOhm">
+                    </script>
+                </div>
+            </div> 
+            <div class="addcus-cusNum layui-col-md2">
+                <label class="layui-form-label">中性包装：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="checkbox"  lay-skin="switch" lay-text="是|否" {{ d.params.needNp === 0 ? '' : 'checked' }} lay-filter="isNeedNp">
                     </script>
                 </div>
             </div>
@@ -412,6 +434,9 @@
           </div>
         </div>
     </form>
+    <script type="text/html" id="customer-address-table-toolbar">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+    </script>
 </div>
 <style>
    /*.edit-cusInfo .layui-input-block {margin-top: 10px;}*/
@@ -421,13 +446,190 @@
 
 <script>
     layui.data.done = function(d){
-        layui.use(['form','admin','setter'], function() {
+        var ddd = d.params.receiverAddersEntityList || [];
+        if(ddd.length !== 0 ){
+            for (let i = 0; i <ddd.length ; i++) {
+                if(ddd[i].isDefault === 1){
+                    ddd[i].LAY_CHECKED = true;
+                } 
+            }
+        }
+        console.log(ddd);
+        layui.use(['form','admin','setter','table'], function() {
             var $ = layui.$
-                ,form = layui.form;
+                ,form = layui.form
+                ,table = layui.table;
+            form.render(null,'customer-add-edit-form-list');
 
-            form.render();
-        })
+            //监听checkebox
+            form.on('switch(isProductionVerification)', function (data) {
+                if (data.elem.checked == true) {
+                    layer.msg('需要确定生产资料');
+                    form.val('customer-add-edit-form-list',{productionVerification:0})
+                }  else {
+                    layer.msg('不需要确定生产资料');
+                    form.val('customer-add-edit-form-list',{productionVerification:1})
+                }
+            });
+
+            form.on('switch(isSourceCompanyF)',function(data){
+                if (data.elem.checked == true) {
+                    layer.msg('来自公司');
+                    //isSourceCompany = 1;
+                    form.val('customer-add-edit-form-list',{isSourceCompany:1})
+                }else{
+                    layer.msg('不来自公司');
+                    // isSourceCompany = 0;
+                    form.val('customer-add-edit-form-list',{isSourceCompany:0})
+                }
+            }); 
+
+            form.on('switch(isOptionUser)',function (data) {
+                if (data.elem.checked == true){
+                    layer.msg('已启用');
+                    form.val('customer-add-edit-form-list',{invalidMark:0})
+                } else {
+                    layer.msg('停用');
+                    form.val('customer-add-edit-form-list',{invalidMark:1})
+                }
+            });
+            form.on('switch(isNeibuUser)',function (data) {
+                if (data.elem.checked == true){
+                    layer.msg('内部用户');
+                    form.val('customer-add-edit-form-list',{userType:1})
+                } else {
+                    layer.msg('客户系统用户');
+                    form.val('customer-add-edit-form-list',{userType:0})
+                }
+            });
+            form.on('switch(isAuditMark)',function(data){
+                if (data.elem.checked == true) {
+                    layer.msg('需要审核');
+                    form.val('customer-add-edit-form-list',{auditMark:0})
+                }else{
+                    layer.msg('不需审核');
+                    form.val('customer-add-edit-form-list',{auditMark:1})
+                }
+            });
+            form.on('switch(isDeliveryReport)',function (data) {
+                if (data.elem.checked){
+                    layer.msg('需要出货报告');
+                    form.val('customer-add-edit-form-list',{deliveryReport:1})
+                } else {
+                    layer.msg('不需要出货报告');
+                    form.val('customer-add-edit-form-list',{deliveryReport:0})
+                }
+            });
+
+            form.on('switch(isNeedTb)',function (data) {
+                if (data.elem.checked){
+                    layer.msg('需要锡试验板');
+                    form.val('customer-add-edit-form-list',{needTb:1})
+                } else {
+                    layer.msg('不需要锡试验板');
+                    form.val('customer-add-edit-form-list',{needTb:0})
+                }
+            });
+           
+            form.on('switch(isNeedSlice)',function (data) {
+                if (data.elem.checked){
+                    layer.msg('需要切片');
+                    form.val('customer-add-edit-form-list',{needSlice:1})
+                } else {
+                    layer.msg('不需要切片');
+                    form.val('customer-add-edit-form-list',{needSlice:0})
+                }
+            });
+            form.on('switch(isNeedDrier)',function (data) {
+                if (data.elem.checked){
+                    layer.msg('需要干燥剂');
+                    form.val('customer-add-edit-form-list',{needDrier:1})
+                } else {
+                    layer.msg('不需要干燥剂');
+                    form.val('customer-add-edit-form-list',{needDrier:0})
+                }
+            });
+            form.on('switch(isNeedRh)',function (data) {
+                if (data.elem.checked){
+                    layer.msg('需要湿度卡');
+                    form.val('customer-add-edit-form-list',{needRh:1})
+                } else {
+                    layer.msg('不需要湿度卡');
+                    form.val('customer-add-edit-form-list',{needRh:0})
+                }
+            });
+            form.on('switch(isNeedOhm)',function (data) {
+                if (data.elem.checked){
+                    layer.msg('需要阻抗条');
+                    form.val('customer-add-edit-form-list',{needOhm:1})
+                } else {
+                    layer.msg('不需要阻抗条');
+                    form.val('customer-add-edit-form-list',{needOhm:0})
+                }
+            });
+            form.on('switch(isNeedNp)',function (data) {
+                if (data.elem.checked){
+                    layer.msg('需要中性包装');
+                    form.val('customer-add-edit-form-list',{needNp:1})
+                } else {
+                    layer.msg('不需要中性包装');
+                    form.val('customer-add-edit-form-list',{needNp:0})
+                }
+            });
+            
+            //地址table
+            table.render({
+                elem: '#sys-customer-address-list-table'
+                ,data: ddd
+                ,totalRow: false
+                ,cellMinWidth: 90
+                ,cols: [[
+                    {type: 'radio', title: '默认', align:'center'}
+                    ,{field: 'receiverName', align:'center', title: '收货人', edit: 'text'}
+                    ,{field: 'receiverTelephone', align:'center', title: '联系电话', edit: 'text'}
+                    ,{field: 'receiverCompany', title: "公司名", align:'center', totalRow: true,edit: 'text'}
+                    ,{field: 'receiverPostcode', title: '邮编', align:'center', totalRow: true,edit: 'text'}
+                    ,{field: 'receiverAddress', align:'center', title: '详细地址',edit: 'text',width: '30%'}
+                    ,{title: '操作', width: '10%', align: 'center', fixed: 'right', toolbar: '#customer-address-table-toolbar'}
+                ]]
+            });
+
+            //监听操作栏
+            let add_del_array = [];//删除arr
+            table.on('tool(sys-customer-address-list-table)', function(obj){
+                var data = obj.data;
+                if(obj.event === 'del'){
+                    layer.confirm('确定该地址删除？', function(index){
+                        console.log(data);
+                        if(data.id !== undefined && data.id !== ""){
+                            add_del_array.push(data.id);
+                            form.val('customer-add-edit-form-list',{delIdArr:add_del_array.toString()})
+                        }
+                        obj.del();
+                        layer.close(index);
+                    });
+                }
+            });
+
+
+            var active = {
+                addAddress: function(){
+                    let oldData = table.cache["sys-customer-address-list-table"],d={};
+                    oldData.push(d);
+                    table.reload('sys-customer-address-list-table',{data:oldData});
+                }
+            }
+
+            $('.layui-btn.layuiadmin-btn-list').on('click', function(){
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+        });
     }
+    layui.data.renderSelect = function(d){layui.use(['form'], function() {
+        var form = layui.form;
+        form.render(null,'customer-add-edit-form-list');
+    })}
     // layui.use(['form','admin','setter'], function(){
     //     var $ = layui.$,form = layui.form,admin = layui.admin,setter = layui.setter;
     //

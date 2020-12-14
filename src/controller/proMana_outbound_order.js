@@ -180,24 +180,30 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(iqcMana_outBound)', function (obj) {
         var data = obj.data;
+        console.log(data);
         if (obj.event == 'packReq'){
-            var url = setter.baseUrl+'/sys/consumer/user/info/'+data.userId;
-            var customerInfo = requestInterface.GetCustomerInfo(url);
+            var url = setter.baseUrl+'epc/pcborder/info/'+data.id;
+            var dd = requestInterface.getData(url);
+            console.log(dd);
             admin.popup({
-                title: 'PCB包装要求'
-                ,id: 'packReq'
-                ,area: ['734px','468px']
+                title: '聚谷出货检查表'
+                ,id: 'LAY-proMana-checkTable'
+                ,area: ['80%','90%']
                 ,btn: ['打印', '返回']
                 ,btn1: function () {
                     layer.msg('打印');
-                    document.body.innerHTML=document.getElementById("packReqAll").innerHTML;
+                    // document.body.innerHTML=document.getElementById("packReqAll").innerHTML;
+                    document.body.innerHTML=document.getElementById("product-packing-check-print").innerHTML;
                     window.print();
                     window.location.reload();
                 }
                 ,success: function (layero, index0) {
-                    view(this.id).render('productManagement/iframeWindow/packaging _requirements', customerInfo).done(function () {
+                    // view(this.id).render('productManagement/iframeWindow/packaging_requirements', customerInfo).done(function () {
+                    //     form.render();
+                    // })
+                    view(this.id).render('productManagement/iframeWindow/packaging_check', dd).done(function () {
                         form.render();
-                    })
+                    });
                 }
             })
             // console.log(customerInfo);

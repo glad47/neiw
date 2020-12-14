@@ -10,6 +10,21 @@ layui.define(['admin', 'index'],function (exports) {
     admin = layui.admin;
     var obj = {
 
+        getData: function(url){
+            var r = new Object();
+            admin.req({
+                type: 'get',
+                url: url,
+                async: false,
+                success: function(data){
+                    if(data.data != null){
+                        r = data.data;
+                    }
+                }
+            });
+            return r;
+        },
+
         /**
          * 打开合同 回填 用户信息
          */

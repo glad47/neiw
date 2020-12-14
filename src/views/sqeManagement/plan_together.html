@@ -136,6 +136,7 @@
                         <select class="layui-select" data="{{d.id}}" lay-search name="currentProcess" lay-filter="currentProcess-sel">
                             <option value="">请选择</option>
                             <option value="工程" {{ d.currentProcess == '工程' ? 'selected' : '' }}>工程</option>
+                            <option value="EQ中" {{ d.currentProcess == 'EQ中' ? 'selected' : '' }}>EQ中</option>
                             <option value="开料" {{ d.currentProcess == '开料' ? 'selected' : '' }}>开料</option>
                             <option value="内层线路" {{ d.currentProcess == '内层线路' ? 'selected' : '' }}>内层线路</option>
                             <option value="内层蚀刻" {{ d.currentProcess == '内层蚀刻' ? 'selected' : '' }}>内层蚀刻</option>
