@@ -180,18 +180,23 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
     //监听行工具事件＝＝＝＝》pcb订单
     table.on('tool(iqcMana_outBound)', function (obj) {
         var data = obj.data;
-        console.log(data);
+        // console.log(data);
         if (obj.event == 'packReq'){
-            var url = setter.baseUrl+'epc/pcborder/info/'+data.id;
-            var dd = requestInterface.getData(url);
-            console.log(dd);
+            let url = setter.baseUrl+'epc/pcborder/info/'+data.id;
+            let dd = requestInterface.getData(url);
+            let userInfoUrl = setter.baseUrl+'sys/consumer/user/info/'+data.userId;
+            let userInfo = requestInterface.GetCustomerInfo(userInfoUrl);
+            // console.log(userInfo);
+            
+            dd.userInfo = userInfo;
+            // console.log(dd);
             admin.popup({
                 title: '聚谷出货检查表'
                 ,id: 'LAY-proMana-checkTable'
                 ,area: ['80%','90%']
                 ,btn: ['打印', '返回']
                 ,btn1: function () {
-                    layer.msg('打印');
+                    // layer.msg('打印');
                     // document.body.innerHTML=document.getElementById("packReqAll").innerHTML;
                     document.body.innerHTML=document.getElementById("product-packing-check-print").innerHTML;
                     window.print();

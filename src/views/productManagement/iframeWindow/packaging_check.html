@@ -240,15 +240,15 @@
                     </tr>
                     <tr>
                         <td style="text-align: center;">上锡试验板</td>
-                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">{{ d.params.userInfo.needTb != null &&  d.params.userInfo.needTb == '1' ? '需要' : '不需要'}}</td>
                         <td style="text-align: center;"></td>
                         <td style="text-align: center;">阻抗条</td>
-                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">{{ d.params.userInfo.needOhm != null &&  d.params.userInfo.needOhm == '1' ? '需要' : '不需要'}}</td>
                         <td style="text-align: center;"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">切片</td>
-                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">{{ d.params.userInfo.needSlice != null &&  d.params.userInfo.needSlice == '1' ? '需要' : '不需要'}}</td>
                         <td style="text-align: center;"></td>
                         <td style="text-align: center;"></td>
                         <td style="text-align: center;"></td>
@@ -256,23 +256,23 @@
                     </tr>
                     <tr>
                         <td style="text-align: center;">干燥剂</td>
-                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">{{ d.params.userInfo.needDrier != null &&  d.params.userInfo.needDrier == '1' ? '需要' : '不需要'}}</td>
                         <td style="text-align: center;"></td>
                         <td style="text-align: center;">中性包装</td>
-                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">{{ d.params.userInfo.needNp != null &&  d.params.userInfo.needNp == '1' ? '需要' : '不需要'}}</td>
                         <td style="text-align: center;"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">湿度卡</td>
-                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">{{ d.params.userInfo.needRh != null &&  d.params.userInfo.needRh == '1' ? '需要' : '不需要'}}</td>
                         <td style="text-align: center;"></td>
                         <td style="text-align: center;">包装要求</td>
-                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">真空</td>
                         <td style="text-align: center;"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">出货报告</td>
-                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">{{ d.params.userInfo.deliveryReport != null &&  d.params.userInfo.deliveryReport == '1' ? '需要' : '不需要'}}</td>
                         <td style="text-align: center;"></td>
                         <td style="text-align: center;"></td>
                         <td style="text-align: center;"></td>
