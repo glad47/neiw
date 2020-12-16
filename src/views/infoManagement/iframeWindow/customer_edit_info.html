@@ -381,7 +381,7 @@
                 <label class="layui-form-label">锡试验板：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.needTb === 0 ? '' : 'checked' }} lay-filter="isNeedTb">
+                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{  d.params.needTb === 1 ? 'checked' : '' }} lay-filter="isNeedTb">
                     </script>
                 </div>
             </div>
@@ -389,7 +389,7 @@
                 <label class="layui-form-label">切片：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="checkbox"  lay-skin="switch" lay-text="是|否" {{ d.params.needSlice === 0 ? '' : 'checked' }} lay-filter="isNeedSlice">
+                        <input type="checkbox"  lay-skin="switch" lay-text="是|否" {{ d.params.needSlice === 1 ? 'checked' : '' }} lay-filter="isNeedSlice">
                     </script>
                 </div>
             </div>
@@ -397,7 +397,7 @@
                 <label class="layui-form-label">干燥剂：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="checkbox"  lay-skin="switch" lay-text="是|否" {{ d.params.needDrier === 0 ? '' : 'checked' }} lay-filter="isNeedDrier">
+                        <input type="checkbox"  lay-skin="switch" lay-text="是|否" {{ d.params.needDrier === 1 ? 'checked' : '' }} lay-filter="isNeedDrier">
                     </script>
                 </div>
             </div>
@@ -405,7 +405,7 @@
                 <label class="layui-form-label">湿度卡：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.needRh === 0 ? '' : 'checked' }} lay-filter="isNeedRh" >
+                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.needRh === 1 ? 'checked' : '' }} lay-filter="isNeedRh" >
                     </script>
                 </div>
             </div>
@@ -413,7 +413,7 @@
                 <label class="layui-form-label">阻抗条：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="checkbox"  lay-skin="switch" lay-text="是|否" {{ d.params.needOhm === 0 ? '' : 'checked' }} lay-filter="isNeedOhm">
+                        <input type="checkbox"  lay-skin="switch" lay-text="是|否" {{ d.params.needOhm === 1 ? 'checked' : '' }} lay-filter="isNeedOhm">
                     </script>
                 </div>
             </div> 
@@ -421,7 +421,7 @@
                 <label class="layui-form-label">中性包装：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="checkbox"  lay-skin="switch" lay-text="是|否" {{ d.params.needNp === 0 ? '' : 'checked' }} lay-filter="isNeedNp">
+                        <input type="checkbox"  lay-skin="switch" lay-text="是|否" {{ d.params.needNp === 1 ? 'checked' : '' }} lay-filter="isNeedNp">
                     </script>
                 </div>
             </div>
