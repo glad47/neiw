@@ -81,10 +81,10 @@
                             件数： <strong>{{d.params.itemEntityList.map(i => Number(i.qty)).reduce((total,num)=> total + num) }}</strong>
                         </td>
                         <td valign='top'>
-                            毛重： <strong>{{d.params.itemEntityList.map(i => Number(i.grossWeight * i.packages)).reduce((total,num)=> total + num) }}</strong>
+                            毛重： <strong>{{d.params.itemEntityList.map(i => Number(i.grossWeight)).reduce((total,num)=> total + num) }}</strong>
                         </td>
                         <td valign='top'>
-                            净重： <strong>{{d.params.itemEntityList.map(i => Number(i.netWeight * i.packages)).reduce((total,num)=> total + num) }}</strong>
+                            净重： <strong>{{d.params.itemEntityList.map(i => Number(i.netWeight)).reduce((total,num)=> total + num) }}</strong>
                         </td>
                         <td valign='top'>
                             成交方式： <strong>{{d.params.tradeType || ''}}</strong>
