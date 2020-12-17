@@ -74,12 +74,12 @@
                         {{# } }}
                         {{# }) }}
                         <tr>
-                            <td>Total</td>
-                            <td>{{ d.params.itemEntityList.map(i => i.qty).reduce((total,num)=> total + num) }}</td>
-                            <td>{{ d.params.itemEntityList.map(i => i.packages).reduce((total,num)=> total + num) }}</td>
+                            <td style="text-align: center;">Total</td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => i.qty).reduce((total,num)=> total + num) }}</td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => i.packages).reduce((total,num)=> total + num) }}</td>
                             <td></td>
-                            <td>{{ d.params.itemEntityList.map(i => Number(i.grossWeight * i.packages)).reduce((total,num)=> total + num) }}</td>
-                            <td>{{ d.params.itemEntityList.map(i => Number(i.netWeight * i.packages)).reduce((total,num)=> total + num) }}</td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => Number(i.grossWeight * (i.packages == null ? 1 : i.packages))).reduce((total,num)=> total + num) }}</td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => Number(i.netWeight * (i.packages == null ? 1 : i.packages))).reduce((total,num)=> total + num) }}</td>
                             <td colspan="3"></td>
                         </tr>
                     </script>
