@@ -267,7 +267,7 @@
                         <td style="text-align: center;">{{ d.params.userInfo.needRh != null &&  d.params.userInfo.needRh == '1' ? '需要' : '不需要'}}</td>
                         <td style="text-align: center;"></td>
                         <td style="text-align: center;">包装要求</td>
-                        <td style="text-align: center;">真空</td>
+                        <td style="text-align: center;">{{ d.params.userInfo.packageRequirements != null ?  d.params.userInfo.packageRequirements : ''}}</td>
                         <td style="text-align: center;"></td>
                     </tr>
                     <tr>
@@ -281,11 +281,11 @@
                     <tr>
                         <td colspan="3">
                             客户标准:<br>
-
+                            {{ d.params.userInfo.customerStandards != null ?  d.params.userInfo.customerStandards : ''}} 
                         </td>
                         <td colspan="3">
                             注意事项:<br/>
-                            {{ d.params.remark || '' }}
+                            {{ d.params.checkRemark || '' }}
                         </td>
                     </tr>
                     <tr>
