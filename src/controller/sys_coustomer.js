@@ -465,14 +465,13 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
 
     var active = {
         customerInfo_add:function(){
-            var that = this;
             admin.popup({
-                id: 'layer-customer-info-add-form',
-                type: 1,
+                // id: 'layer-customer-info-add-form',
+                id:'LAY-popup-customer-add',
                 title: '客户新增',
-                shadeClose: true,
-                shade: false,
-                maxmin: false, //开启最大化最小化按钮
+                // shadeClose: true,
+                // shade: false,
+                // maxmin: false, //开启最大化最小化按钮
                 area:['80%', '100%'],
                 // content:'<div class="layui-row" id="customer_edit_info"></div>',
                 btn:['确定','取消'],
@@ -480,103 +479,13 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                     $('#layuiadmin-app-form-submit').click();
                 },
                 success: function (layero,index) {
-                    view('customer_edit_info').render('/infoManagement/iframeWindow/customer_edit_info')
+                    view(this.id).render('/infoManagement/iframeWindow/customer_edit_info')
                     .then(function (value) {
                         //视图文件请求完毕，视图内容渲染前的回调
-                        // console.log(value);
+                        console.log(value);
                     }).done(function(){
                         form.render(null, 'customer-add-edit-form-list');
-                        //监听提交
-                        // var productionVerification;
-                        // form.on('switch(productionVerification)', function (data) {
-                        //     if (data.elem.checked == true) {
-                        //         layer.msg('需要确定生产资料');
-                        //         productionVerification = 0;
-                        //     }  else {
-                        //         layer.msg('不需要确定生产资料');
-                        //         productionVerification = 1;
-                        //     }
-                        // });
-                        // var invalidMark;
-                        // form.on('switch(optionUser)',function (data) {
-                        //     if (data.elem.checked == true){
-                        //         layer.msg('已启用');
-                        //         invalidMark =0;
-                        //     } else {
-                        //         layer.msg('停用');
-                        //         invalidMark =1;
-                        //     }
-                        // });
-                        // var userType;
-                        // form.on('switch(isneibuUser)',function (data) {
-                        //     if (data.elem.checked == true){
-                        //         layer.msg('内部用户');
-                        //         userType =1;
-                        //     } else {
-                        //         layer.msg('客户系统用户');
-                        //         userType =0;
-                        //     }
-                        // });
-                        // var auditMark;
-                        // form.on('switch(isAuditMark)',function(data){
-                        //     if (data.elem.checked == true) {
-                        //         layer.msg('需要审核');
-                        //         auditMark = 0;
-                        //     }else{
-                        //         layer.msg('不需审核');
-                        //         auditMark = 1;
-                        //     }
-                        // });
-                        // var deliveryReport = 0;
-                        // form.on('switch(deliveryReport)',function (data) {
-                        //     if (data.elem.checked == true){
-                        //         layer.msg('需要出货报告');
-                        //         deliveryReport =1;
-                        //     } else {
-                        //         layer.msg('不需要出货报告');
-                        //         deliveryReport =0;
-                        //     }
-                        // });
 
-                        // var isSourceCompany = 0;
-                        // form.on('switch(isSourceCompany)',function(data){
-                        //     if (data.elem.checked == true) {
-                        //         layer.msg('来自公司'); 
-                        //         isSourceCompany = 1;
-                        //     }else{
-                        //         layer.msg('不来自公司');   
-                        //         isSourceCompany = 0;
-                        //     }
-                        // }); 
-            
-                        // //监听添加时间
-                        // $('#add_address').click(function(){
-                        //     var tr = "<tr><td>"+
-                        //     "<input type='radio' name='isDefault' autocomplete='off'/>"+
-                        //     "</td><td>"+
-                        //     "<input type='text' autocomplete='off'/>"+
-                        //     "</td><td>"+
-                        //     "<input type='text' autocomplete='off'/>"+
-                        //     "</td><td>"+
-                        //     "<input type='text' autocomplete='off'/>"+
-                        //     "</td><td>"+
-                        //     "<input type='text' autocomplete='off'/>"+
-                        //     "</td><td>"+
-                        //     "<input type='text' autocomplete='off'/>"+
-                        //     "</td><td>"+
-                        //     "<input type='button' class='layui-btn layui-btn-xs' value='删除'></td></tr>";
-                        //     $('#table_address').append(tr);
-                        //     resetTableIndex();
-                        //     form.render();
-                        //     $(":button").click(function () {    
-                        //         $(this).parent().parent().remove();     
-                        //         var height1=$(document.body).height()+10;
-                        //         $(window.parent.document).find("#myiframe").attr("height",height1);  
-                        //         resetTableIndex();
-                        //         form.render();
-                        //     });
-                        // });
-            
                         form.on('submit(customer-edit-info-form-submit)',function(data){
                             let addressList = table.cache["sys-customer-address-list-table"],field = data.field;
                             for (let i = 0; i <addressList.length ; i++) {
@@ -605,58 +514,6 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                             })
             
                         });
-            
-                        //动态加载行
-                        // function resetTableIndex(){
-                        //     $('#table_address tbody tr').each(function(index){
-                        //         $(this).find("td").eq(0).find("input[type=radio]").attr("value",index);
-                        //         $(this).find("td").eq(1).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverName');
-                        //         $(this).find("td").eq(2).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverTelephone');
-                        //         $(this).find("td").eq(3).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverCompany');
-                        //         $(this).find("td").eq(4).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverPostcode');
-                        //         $(this).find("td").eq(5).find("input[type='text']").attr("name",'receiverAddersEntityList['+index+'].receiverAddress');
-                        //     });
-                        // }
-            
-                        // function getFormData($form) {
-                        //     var unindexed_array = $form.serializeArray();
-                        //     var indexed_array = {};
-                        //     var add_array = [],add_obj = {}, receiverAddersEntityList = [];
-                        //     $.map(unindexed_array, function (n, i) {
-                        //         if(n['name'].indexOf('receiverAddersEntityList') === 0){
-                        //                 return add_array.push(n['value']);
-                        //         }else{
-                        //             indexed_array[n['name']] = n['value'];
-                        //         }
-                        //     });
-                        //     add_array.forEach(function(e,i){
-                        //         if(((i+1)%5) == 0){
-                        //             console.log(i);                                    
-                        //             console.log(e);
-                        //             add_obj.receiverName = add_array[i-4];
-                        //             add_obj.receiverTelephone = add_array[i-3];
-                        //             add_obj.receiverCompany = add_array[i-2];
-                        //             add_obj.receiverPostcode = add_array[i-1];
-                        //             add_obj.receiverAddress = add_array[i];
-                        //             add_obj.isDefault = 0;
-                        //             receiverAddersEntityList.push(add_obj);
-                        //             add_obj = {};
-                        //         }
-                        //     });
-                        //     console.log(unindexed_array);
-                        //     var isDefault = indexed_array.isDefault;
-                        //     if(isDefault != undefined && isDefault != null){
-                        //         console.log(isDefault)
-                        //         receiverAddersEntityList[isDefault].isDefault = 1;
-                        //     }
-                        //     console.log(receiverAddersEntityList);
-                        //     //var receiverAddersEntityList = handleAddersData(add);
-                        //     //console.log(receiverAddersEntityList);
-                        //     indexed_array.receiverAddersEntityList = receiverAddersEntityList;
-                        //     return indexed_array;
-                        // }
-
-                       
                     });
 
 
