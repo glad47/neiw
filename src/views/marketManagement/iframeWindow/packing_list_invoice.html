@@ -98,7 +98,7 @@
             </ul>
             <ul style="display: flex;justify-content: space-between;">
                 <li>TRADE TERM:</li>
-                <li>FOB</li>
+                <li>{{ d.params.deliveryType != null ? d.params.userInfo.deliveryType || '' : ''}}</li>
             </ul>
             <ul style="display: flex;justify-content: space-between;">
                 <li>MADE IN:</li>
