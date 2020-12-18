@@ -81,6 +81,16 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <div class="layui-col-md6">
+                <label class="layui-form-label">发票号(CI)</label> 
+                <div class="layui-input-inline">
+                    <script type="text/html" template>
+                    <input type="text" name="commercialInvoice" autocomplete="off" class="layui-input" value="{{ d.params.commercialInvoice || ''}}">
+                    </script> 
+                </div>
+            </div> 
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label"></label>
             <div class="layui-input-inline">
                 <script type="text/html" template>

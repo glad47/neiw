@@ -78,7 +78,7 @@
                             包装种类： <strong>纸箱</strong>
                         </td>
                         <td valign='top'>
-                            件数： <strong>{{d.params.itemEntityList.map(i => Number(i.qty)).reduce((total,num)=> total + num) }}</strong>
+                            件数： <strong>{{d.params.itemEntityList.map(i => Number(i.packages)).reduce((total,num)=> total + num) }}</strong>
                         </td>
                         <td valign='top'>
                             毛重： <strong>{{d.params.itemEntityList.map(i => Number(i.grossWeight)).reduce((total,num)=> total + num) }}</strong>

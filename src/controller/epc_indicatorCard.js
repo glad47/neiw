@@ -357,39 +357,51 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             })
         } else if (obj.event === 'edit') {
             if (data.quoteGerberName != "" && data.quoteGerberName != null && typeof data.quoteGerberName != 'undefined') {
-                var _this_id = data.id,_this_isInternal = data.isInternal,_this_onlineOid = data.onlineOid;
-                admin.popup({
-                    title: '审核订单[PCB]'
-                    ,area: ['867px', '325px']
-                    ,id: 'epc_incSH'
-                    ,btn:['审核','取消']
-                    ,yes: function () {
-                        $("#epc_auditOrders").click();
-                    }
-                    ,success: function (layero, index) {
-                        view(this.id).render('epcManagement/iframeWindow/audit_orders', data).done(function () {
-                            form.render();
-                            form.on('submit(epc_auditOrders)', function (data) {
-                                var field = data.field;
-                                field.id = _this_id;
-                                field.isInternal = _this_isInternal;
-                                field.onlineOid = _this_onlineOid;
-                                admin.req({
-                                    type: 'post'
-                                    ,url: setter.baseUrl+'epc/pcborder/auditPcbOrder'
-                                    ,data: field
-                                    ,done: function () {
-                                        layer.alert('审核成功', function () {
-                                            layui.table.reload('epc_Tabpcb_ok_payment_order');
-                                            layer.closeAll();
-                                        });
-                                    }
-                                });
-                                return false;
-                            });
-                        });
+                // var _this_id = data.id,_this_isInternal = data.isInternal,_this_onlineOid = data.onlineOid;
+                // 2020年12月18日10:28:25 修改为不用弹窗
+                // let loadindex = layer.load(1, {shade: [0.1,'#fff']}); 
+                admin.req({
+                    type: 'post'
+                    ,url: setter.baseUrl+'epc/pcborder/auditPcbOrder'
+                    ,data: data
+                    ,done: function (res) {
+                        // layer.close(loadindex);
+                        layer.msg('审核成功!');
+                        table.reload('epc_Tabpcb_ok_payment_order');
                     }
                 });
+                // admin.popup({
+                //     title: '审核订单[PCB]'
+                //     ,area: ['867px', '325px']
+                //     ,id: 'epc_incSH'
+                //     ,btn:['审核','取消']
+                //     ,yes: function () {
+                //         $("#epc_auditOrders").click();
+                //     }
+                //     ,success: function (layero, index) {
+                //         view(this.id).render('epcManagement/iframeWindow/audit_orders', data).done(function () {
+                //             form.render();
+                //             form.on('submit(epc_auditOrders)', function (data) {
+                //                 var field = data.field;
+                //                 field.id = _this_id;
+                //                 field.isInternal = _this_isInternal;
+                //                 field.onlineOid = _this_onlineOid;
+                //                 admin.req({
+                //                     type: 'post'
+                //                     ,url: setter.baseUrl+'epc/pcborder/auditPcbOrder'
+                //                     ,data: field
+                //                     ,done: function () {
+                //                         layer.alert('审核成功', function () {
+                //                             layui.table.reload('epc_Tabpcb_ok_payment_order');
+                //                             layer.closeAll();
+                //                         });
+                //                     }
+                //                 });
+                //                 return false;
+                //             });
+                //         });
+                //     }
+                // });
             } else {
                 var $dataIndex = $(this).parents("tr").attr("data-index");      // 获取行下标
                 layer.alert('请先上传正式资料！！！', function (layero, index) {
