@@ -9,11 +9,11 @@
                             <h1>聚谷出货检查表</h1>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td colspan="6" style="text-align: center;">
                             <h2>订单基本检查项目</h2>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td style="text-align: center;">客户型号</td>
                         <td colspan="2" style="text-align: center;">{{ d.params.gerberName || ''}}</td>
@@ -172,11 +172,11 @@
                         <td style="text-align: center;">连片</td>
                         <td style="text-align: center;"></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td style="text-align: center;" colspan="6">
                             <h2>特殊工艺检查项目</h2>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td style="text-align: center;">检验项目</td>
                         <td style="text-align: center;">订单要求</td>
@@ -225,11 +225,11 @@
                         <td style="text-align: center;">{{ d.params.bevellingCamfer == '1' ? '是' : '否'}}</td>
                         <td style="text-align: center;"></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td style="text-align: center;" colspan="6">
                             <h2>包装方式检查项目</h2>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td style="text-align: center;">检验项目</td>
                         <td style="text-align: center;">订单要求</td>
@@ -250,8 +250,8 @@
                         <td style="text-align: center;">切片</td>
                         <td style="text-align: center;">{{ d.params.userInfo.needSlice != null &&  d.params.userInfo.needSlice == '1' ? '需要' : '不需要'}}</td>
                         <td style="text-align: center;"></td>
-                        <td style="text-align: center;"></td>
-                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">湿度卡</td>
+                        <td style="text-align: center;">{{ d.params.userInfo.needRh != null &&  d.params.userInfo.needRh == '1' ? '需要' : '不需要'}}</td>
                         <td style="text-align: center;"></td>
                     </tr>
                     <tr>
@@ -262,14 +262,7 @@
                         <td style="text-align: center;">{{ d.params.userInfo.needNp != null &&  d.params.userInfo.needNp == '1' ? '需要' : '不需要'}}</td>
                         <td style="text-align: center;"></td>
                     </tr>
-                    <tr>
-                        <td style="text-align: center;">湿度卡</td>
-                        <td style="text-align: center;">{{ d.params.userInfo.needRh != null &&  d.params.userInfo.needRh == '1' ? '需要' : '不需要'}}</td>
-                        <td style="text-align: center;"></td>
-                        <td style="text-align: center;">包装要求</td>
-                        <td style="text-align: center;">{{ d.params.userInfo.packageRequirements != null ?  d.params.userInfo.packageRequirements : ''}}</td>
-                        <td style="text-align: center;"></td>
-                    </tr>
+                   
                     <tr>
                         <td style="text-align: center;">出货报告</td>
                         <td style="text-align: center;">{{ d.params.userInfo.deliveryReport != null &&  d.params.userInfo.deliveryReport == '1' ? '需要' : '不需要'}}</td>
@@ -279,13 +272,19 @@
                         <td style="text-align: center;"></td>
                     </tr>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="6">
                             客户标准:<br>
-                            {{ d.params.userInfo.customerStandards != null ?  d.params.userInfo.customerStandards : ''}} 
+                            {{ d.params.userInfo.customerStandards != null ?  d.params.userInfo.customerStandards : ''}} <br> 
+                            {{ d.params.userInfo.packageRequirements != null ?  d.params.userInfo.packageRequirements : ''}} <br>
+                            <br>
                         </td>
-                        <td colspan="3">
+                    </tr>
+                    <tr>
+                        <td colspan="6">
                             注意事项:<br/>
-                            {{ d.params.checkRemark || '' }}
+                            {{ d.params.remark || ''}}<br>
+                            {{ d.params.checkRemark || '' }} <br>
+                            <br>
                         </td>
                     </tr>
                     <tr>
