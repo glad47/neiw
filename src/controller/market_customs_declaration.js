@@ -82,7 +82,7 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
       } else if(obj.event === 'packingListCn'){
         admin.req({
           type: 'post', 
-          url: setter.baseUrl+'market/customsdeclaration/detailedInfoGroup/'+data.id, 
+          url: setter.baseUrl+'market/customsdeclaration/detailedInfo/'+data.id, 
           success: function(res){
             if(res.data.length === 0) return layer.msg('详细为空，请添加数据');
             data.itemEntityList = res.data;

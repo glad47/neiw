@@ -44,10 +44,25 @@
 
       <div class="layui-card-body">
         <div style="padding-bottom: 10px;">
-          <button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button>
           <button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
         </div>
         <table id="LAY-sys-coupons-list" lay-filter="LAY-sys-coupons-list"></table> 
+
+        <script type="text/html" id="uidTpl">
+          {{#  if(d.top == true){ }}
+            <button class="layui-btn layui-btn-xs">已置顶</button>
+          {{#  } else { }}
+            <button class="layui-btn layui-btn-primary layui-btn-xs">正常显示</button>
+          {{#  } }}
+        </script> 
+
+        <script type="text/html" id="couponStatusTpl">
+          {{#  if(d.couponStatus == 1){ }}
+            未使用
+          {{#  } else if(d.couponStatus == 2) { }}
+            已使用
+          {{#  } }}
+        </script> 
 
         <script type="text/html" id="table-content-list">
           <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
