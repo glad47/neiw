@@ -1,4 +1,9 @@
-layui.define(['layer', 'jquery'], function (exports) {
+/**
+ * author ZL
+ * 代码复用工具类
+ */
+layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
+
     "use strict";
 
     let MOD_NAME = "r"
@@ -7,6 +12,9 @@ layui.define(['layer', 'jquery'], function (exports) {
         ,setter = layui.setter
         ,request = setter.request
         ,response = setter.response
+        ,admin = layui.admin
+        ,view = layui.view
+        ,form = layui.form
         ,headers = {};
 
     headers[request.tokenName] = layui.data(setter.tableName)[request.tokenName] || '';
@@ -18,12 +26,13 @@ layui.define(['layer', 'jquery'], function (exports) {
     };
 
     let r = new function () {
-        this.get = function (url, params) {
-            return ajax("GET", url, params);
+        this.get = function (url, params, loading) {
+            return ajax("GET", url, params, loading);
         };
 
-        this.post = function (url, params) {
-            return ajax("POST", url, JSON.stringify(params));
+        this.post = function (url, params, loading) {
+            if(loading) loading = true;
+            return ajax("POST", url, JSON.stringify(params),loading);
         };
 
         this.delete = function (url, params) {
@@ -45,11 +54,19 @@ layui.define(['layer', 'jquery'], function (exports) {
             let localData = layui.data('LocalData');
             return localData[key];
         };
+
+        this.popup = function(title,size,btn,url,data,clickSubmitMark,tableMark,gainTableDataMark){
+            return popup(title,size,btn,url,data,clickSubmitMark,tableMark,gainTableDataMark);
+        }
     }
 
-    function ajax(type, url, data) {
+    function ajax(type, url, data, loading) {
         return new Promise(function (resolve, reject) {
-            let roleSaveLoading = layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
+            let roleSaveLoading;
+            console.log(loading);
+            if(loading) {
+               roleSaveLoading = layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
+            }
             $.ajax({
                 type: type,
                 url: config.baseURL + url,
@@ -57,7 +74,9 @@ layui.define(['layer', 'jquery'], function (exports) {
                 contentType: "application/json; charset=utf-8",
                 data: data,
                 success: function (res) {
-                    layer.close(roleSaveLoading);
+                    if(loading){
+                        layer.close(roleSaveLoading);
+                    }
                     if (res[response.statusName] != response.statusCode.ok) {
                         layer.msg(res[response.msgName]);
                     } else {
@@ -72,6 +91,42 @@ layui.define(['layer', 'jquery'], function (exports) {
             });
         });
     };
+
+    //todo 代码工具类 是否获取全部数据
+    function popup(title,area,btn,url,data,clickSubmitMark,tableMark,gainTableDataMark){
+       return new Promise(function(resolve,reject){
+            admin.popup({
+                title: title,
+                area: area,
+                btn: btn,
+                yes:function(index, layero){
+                    $(`#${clickSubmitMark}`).click();
+                },
+                success:function(layero,index){
+                    view(this.id).render(url,data)
+                    .then(function(value){}) //视图文件请求完毕，视图内容渲染前的回调 
+                    .done(function(){
+                        form.on(`submit(${clickSubmitMark})`,function(formdata){
+                            let d = {};
+                            if(tableMark){
+                                if(gainTableDataMark == 1){//获取全部table表格的数据
+                                    let tableData = table.cache[`${tableMark}`];
+                                    d.tableData = tableData;
+                                } else if(gainTableDataMark == 2){//获取单个
+                                    let checkStatus = table.checkStatus(`${tableMark}`),tableData = checkStatus.data;
+                                    if(tableData.length == 0) return layer.msg('请选择表格数据!!');
+                                    d.tableData = tableData[0]; 
+                                }
+                            }
+                            d.formData = formdata;
+                            d.index = index;
+                            resolve(d);
+                        });
+                    });
+                }
+            });
+       }) 
+    }
 
     exports(MOD_NAME, r);
 })

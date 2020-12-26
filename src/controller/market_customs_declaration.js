@@ -113,7 +113,7 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
             data.itemEntityList = res.data;
             console.log(res.data);
             //计算总值
-            let tp = res.data.map(i =>(Number(i.totalPrice))).reduce((total,num)=> total + num);
+            let tp = (res.data.map(i => Number(i.totalPrice)).reduce((total,num)=> total + num)).toFixed(2);
             let tp2 = convertCurrency.conversion(tp);
             //计算交期
             let tw = jsTools.TimeWeekage(data.orderTime,2);

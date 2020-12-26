@@ -4,20 +4,32 @@
  */
 
 
-layui.define(['table', 'form'], function(exports){
+layui.define(['table', 'form','r'], function(exports){
     var $ = layui.$
         ,admin = layui.admin
         ,view = layui.view
         ,table = layui.table
         ,setter = layui.setter
-        ,form = layui.form;
+        ,form = layui.form
+        ,r = layui.r;
+
+    form.render(null, 'market-invoice-list-search-form');
+
+    //监听搜索
+    form.on('submit(market-invoice-list-search)', function(data){
+        var field = data.field;
+        //执行重载
+        table.reload('LAY-market-invoice-list-table', {
+            where: field
+        });
+    });
 
     table.render({
-        elem: '#invoiceList_Tabpcb'
+        elem: '#LAY-market-invoice-list-table'
         ,url: setter.baseUrl+'epc/orderinvoice/list'
         ,toolbar: "#invoiceList_TopBar"
         ,cellMinWidth: 80
-        ,id: "invoiceList_Tabpcb"
+        ,id: "LAY-market-invoice-list-table"
         ,page: true
         ,parseData: function (res) {
             return{
@@ -39,61 +51,20 @@ layui.define(['table', 'form'], function(exports){
         ]]
     });
 
-    table.on('toolbar(invoiceList_Tabpcb)', function (obj) {
-        var checkStatus = table.checkStatus(obj.config.id);
+    table.on('toolbar(LAY-market-invoice-list-table)', function (obj) {
         if (obj.event === 'generateInvoice') {
-            checkStatus.data.type = '1';
-            admin.popup({
-                title: '添加发票'
-                ,area: ['100%', '100%']
-                ,btn: ['保存', '取消']
-                ,id: 'popGenerateInvoice'
-                ,yes: function (index, ) {
-                    $(".gi-submit").click();
-                }
-                ,success: function () {
-                    view(this.id).render('/marketManagement/iframeWindow/generate_invoice',checkStatus.data).done(function () {
-
-                    })
-                }
-            })
+            window.add();
         }
     });
 
-    table.on('tool(invoiceList_Tabpcb)', function (obj) {
+    table.on('tool(LAY-market-invoice-list-table)', function (obj) {
         var data = obj.data;
         if (obj.event === 'il-edit') {
-            var getInvoiceData = getInvoice(data.id);
-            getInvoiceData.type = '2';
-            getInvoiceData.consumerId = data.consumerId;
-            getInvoiceData.receiveAddersId = data.receiveAddersId;
-            getInvoiceData.id = data.id;
-            admin.popup({
-                title: '编辑发票'
-                ,area: ['100%', '100%']
-                ,btn: ['更新', '取消']
-                ,id: 'popGenerateInvoiceUpdate'
-                ,yes: function (index, ) {
-                    $(".gi-submit").click();
-                }
-                ,success: function () {
-                    view(this.id).render('/marketManagement/iframeWindow/generate_invoice',getInvoiceData).done(function () {})
-                }
-            })
-
+            window.edit(data);
         } else if (obj.event === 'il-del') {
-            layer.confirm('确定删除吗？', function(index) {
-                admin.req({
-                    type: 'post',
-                    data: {ids: data.id},
-                    url: setter.baseUrl + 'epc/orderinvoice/delete',
-                    success: function () {
-                        obj.del();
-                        layer.msg('已删除');
-                    }
-                })
-            });
+            window.del(data);
         } else if (obj.event === 'il-search') {
+            // window.show(data);
             var popupData = {data:{}};
             var invoiceNo = data.invoiceNo;
             var businessName = data.businessName;
@@ -143,6 +114,88 @@ layui.define(['table', 'form'], function(exports){
         }
     });
 
+    
+    window.show = function(obj){
+        console.log(obj);
+        //订单项
+        r.get('epc/custominvoice/queryCustomInvoiceById',{invoiceId: obj.id},false).then((res)=>{
+            console.log(res);
+            obj.data = res;
+            return r.get('sys/consumer/user/info/'+obj.consumerId)
+        })
+    }
+
+    window.del = function(obj){
+        layer.confirm('确定删除吗？', function(index) {
+            r.get('epc/orderinvoice/delete',{ids:obj.id}).then(()=>{
+                layer.msg('已删除'); 
+                table.reload('LAY-market-invoice-list-table');
+                layer.clone(index);
+            })
+        });
+    }
+
+    window.edit = function(obj){
+        let layerIndex;
+        r.get(
+            'epc/custominvoice/queryCustomInvoiceById',
+            {invoiceId:obj.id},
+            false
+        ).then((res)=>{
+            // console.log(res);
+            obj.customInvoiceList = res;
+            return r.popup(
+                '编辑发票',
+                ['100%', '100%'],
+                ['更新', '取消'],
+                '/marketManagement/iframeWindow/market_invoicelList_add_edit_form',
+                obj,
+                'market-invoiceList-add-edit-submit',
+                'LAY-market-custom-invoice-list-table',
+                1 
+            )
+        }).then((d)=>{
+            let sendData = d.formData.field;
+            layerIndex = d.index;
+            sendData.customInvoiceEntityList = d.tableData;
+            sendData.productNos = d.tableData.map((i)=>i.productNo).join(",");
+            return r.post('epc/orderinvoice/update',sendData) 
+        }).then((res)=>{
+            layer.msg('修改成功！！！');
+            table.reload('LAY-market-invoice-list-table');
+            layer.close(layerIndex); 
+        })
+    }
+
+    window.add = function(){
+        let layerIndex;
+        r.popup(
+            '添加发票',
+            ['100%', '100%'],
+            ['保存','取消'],
+            '/marketManagement/iframeWindow/market_invoicelList_add_edit_form',
+            null,
+            'market-invoiceList-add-edit-submit',
+            'LAY-market-custom-invoice-list-table',
+            1
+        ).then((d)=>{
+            console.log(d);
+            let sendData = d.formData.field;
+            layerIndex = d.index;
+            sendData.customInvoiceEntityList = d.tableData;
+            sendData.productNos = d.tableData.map((i)=>i.productNo).join(",");
+            console.log(sendData);
+            //发送数据
+            return r.post('epc/orderinvoice/addOrderInvoice',sendData);
+        }).then((res)=>{
+            //关闭窗口，刷新表格
+            layer.msg('添加成功！！！');
+            table.reload('LAY-market-invoice-list-table');
+            layer.close(layerIndex);
+        })
+    }
+
+
     function getInvoice (invoiceId) {
         var _obj = new Object();
         admin.req({
@@ -156,6 +209,5 @@ layui.define(['table', 'form'], function(exports){
         });
         return _obj;
     }
-
     exports('market_invoiceList', {})
 });

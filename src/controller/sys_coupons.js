@@ -1,7 +1,5 @@
 layui.define(['table', 'form', 'r'], function(exports){
     var $ = layui.$
-    ,admin = layui.admin
-    ,view = layui.view
     ,table = layui.table
     ,form = layui.form
     ,setter = layui.setter
@@ -44,34 +42,11 @@ layui.define(['table', 'form', 'r'], function(exports){
     });
     
     //监听工具条
-    table.on('tool(LAY-app-content-list)', function(obj){
-      var data = obj.data;
+    table.on('tool(LAY-sys-coupons-list)', function(obj){
       if(obj.event === 'del'){
-        layer.confirm('确定删除此文章？', function(index){
-          obj.del();
-          layer.close(index);
-        });
+        window.del(obj);
       } else if(obj.event === 'edit'){
-        admin.popup({
-          title: '编辑文章'
-          ,area: ['550px', '550px']
-          ,id: 'LAY-popup-content-edit'
-          ,success: function(layero, index){
-            view(this.id).render('app/content/listform', data).done(function(){
-              form.render(null, 'layuiadmin-app-form-list');
-              
-              //监听提交
-              form.on('submit(layuiadmin-app-form-submit)', function(data){
-                var field = data.field; //获取提交的字段
-  
-                //提交 Ajax 成功后，关闭当前弹层并重载表格
-                //$.ajax({});
-                layui.table.reload('LAY-app-content-list'); //重载表格
-                layer.close(index); //执行关闭 
-              });
-            });
-          }
-        });
+        window.edit(obj);
       }
     });
   
@@ -85,49 +60,101 @@ layui.define(['table', 'form', 'r'], function(exports){
         }
       
         layer.confirm('确定删除吗？', function(index) {
-          
-          //执行 Ajax 后重载
-          /*
-          admin.req({
-            url: 'xxx'
-            //,……
-          });
-          */
           table.reload('LAY-app-content-list');
           layer.msg('已删除');
         });
       }
       //添加
-      ,add: function(othis){
-        //获取所有的优惠券生成规则表
-        r.get('sys/coupons/ruleList').then((res)=>{
-          console.log(res);
-          let data = {};
-          data.ruleList = res;
-          admin.popup({
-            title: '添加优惠卷'
-            ,area: ['550px', '550px']
-            ,id: 'LAY-popup-sys-coupons-add'
-            ,success: function(layero, index){
-              view(this.id).render('infoManagement/iframeWindow/sys_coupons_form',data).done(function(){
-                form.render(null, 'layuiadmin-app-form-list');
-                
-                //监听提交
-                form.on('submit(layuiadmin-app-form-submit)', function(data){
-                  var field = data.field; //获取提交的字段
-  
-                  //提交 Ajax 成功后，关闭当前弹层并重载表格
-                  //$.ajax({});
-                  layui.table.reload('LAY-app-content-list'); //重载表格
-                  layer.close(index); //执行关闭 
-                });
-              });
-            }
-          });
-        })
-        
+      ,add: function(){
+        window.add({});
+      }
+      ,createCode: function(){
+        window.couponGenerate({});
       }
     }; 
+
+
+    window.del = function(obj){
+      layer.confirm('确定删除吗？', function(index) {
+        r.get('sys/coupons/delete',{ids:obj.id}).then(()=>{
+            layer.msg('已删除'); 
+            table.reload('LAY-sys-coupons-list');
+            layer.clone(index);
+        })
+    });
+    }
+
+    window.couponGenerate = function(obj){
+      r.get('sys/coupons/ruleList',null,false).then((res)=>{
+        obj.ruleList = res;
+        obj.operateMark = 2;
+        return r.popup(
+          '选择生成规则',
+          ['60%', '65%'],
+          ['生成','取消'],
+          'infoManagement/iframeWindow/sys_coupons_form',
+          obj,
+          'sys-coupons-form-submit',
+          'sys-coupons-rule-list-table',
+          2
+        )
+      }).then((d)=>{
+        // console.log(d);
+        layer.close(d.index);
+        return r.get('sys/coupons/couponGenerate',{flag:d.tableData.codeFlag},true);
+      }).then((res)=>{
+        // console.log(res);
+        layer.alert(res,{icon: 1,skin: 'layer-ext-moon' });
+      })
+    }
+
+    window.edit = function(obj){
+      let layerIndex;
+      r.get('sys/coupons/ruleList',null,false).then((res)=>{
+        obj.ruleList = res;
+        obj.operateMark = 1;
+        return r.popup(
+          '编辑优惠券',
+          ['60%', '65%'],
+          ['修改','取消'],
+          'infoManagement/iframeWindow/sys_coupons_form',
+          obj,
+          'sys-coupons-form-submit',
+          'sys-coupons-rule-list-table',
+          2
+        ); 
+      })
+    }
+
+    window.add = function(obj){
+      let layerIndex;
+      //获取所有的优惠券生成规则表
+      r.get('sys/coupons/ruleList',null,false).then((res)=>{
+        // console.log(res);
+        obj.ruleList = res;
+        obj.operateMark = 1;
+        return r.popup(
+          '添加优惠券',
+          ['60%', '65%'],
+          ['保存','取消'],
+          'infoManagement/iframeWindow/sys_coupons_form',
+          obj,
+          'sys-coupons-form-submit',
+          'sys-coupons-rule-list-table',
+          2
+        );
+      }).then((d)=>{
+        // console.log(d);
+        let sendData = d.formData.field;
+        layerIndex = d.index;
+        sendData.couponRule = d.tableData;
+        return r.post('sys/coupons/save',sendData)
+      }).then((r)=>{
+        layer.msg('添加成功！！！');
+        table.reload('LAY-sys-coupons-list');
+        layer.close(layerIndex);
+      })
+    }
 
     $('.layui-btn.layuiadmin-btn-list').on('click', function(){
       var type = $(this).data('type');

@@ -3,34 +3,20 @@
     <div class="layui-card">
       <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="sys-coupons-list">
         <div class="layui-form-item">
-          <div class="layui-inline">
-            <label class="layui-form-label">文章ID</label>
-            <div class="layui-input-inline">
-              <input type="text" name="id" placeholder="请输入" autocomplete="off" class="layui-input">
-            </div>
-          </div>
-          <div class="layui-inline">
-            <label class="layui-form-label">作者</label>
-            <div class="layui-input-inline">
-              <input type="text" name="author" placeholder="请输入" autocomplete="off" class="layui-input">
-            </div>
-          </div>
-          <div class="layui-inline">
-            <label class="layui-form-label">标题</label>
+          <!-- <div class="layui-inline">
+            <label class="layui-form-label">客户编号</label>
             <div class="layui-input-inline">
               <input type="text" name="title" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
-          </div>
+          </div> -->
           <div class="layui-inline">
-            <label class="layui-form-label">文章标签</label>
+            <label class="layui-form-label">状态</label>
             <div class="layui-input-inline">
-              <select name="label">
+              <select name="couponStatus">
                 <option value="">请选择标签</option>
-                <option value="0">美食</option>
-                <option value="1">新闻</option>
-                <option value="2">八卦</option>
-                <option value="3">体育</option>
-                <option value="4">音乐</option>
+                <option value="1">未使用</option>
+                <option value="2">已使用</option>
+                <option value="3">已过期</option>
               </select>
             </div>
           </div>
@@ -45,6 +31,7 @@
       <div class="layui-card-body">
         <div style="padding-bottom: 10px;">
           <button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
+          <button class="layui-btn layuiadmin-btn-list" data-type="createCode">生成优惠劵</button>
         </div>
         <table id="LAY-sys-coupons-list" lay-filter="LAY-sys-coupons-list"></table> 
 

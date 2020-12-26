@@ -88,9 +88,9 @@
             <script type="text/html" template>
             <ul style="display: flex;justify-content: space-between;">
                 <li>TOTAL AMOUNT:</li>
-                <li>USD {{d.params.itemEntityList.map(i => Number(i.totalPrice)).reduce((total,num)=> total + num) }}</li>
+                <li>USD {{(d.params.itemEntityList.map(i => Number(i.totalPrice)).reduce((total,num)=> total + num)).toFixed(2) }}</li>
                 <li>TOTAL AMOUNT:</li>
-                <li>$ {{d.params.itemEntityList.map(i => Number(i.totalPrice)).reduce((total,num)=> total + num) }}</li>
+                <li>$ {{(d.params.itemEntityList.map(i => Number(i.totalPrice)).reduce((total,num)=> total + num)).toFixed(2) }}</li>
             </ul>
             <ul style="display: flex;justify-content: space-between;">
                 <li>TOTAL QUANTITY:</li>
