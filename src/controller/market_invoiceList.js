@@ -64,64 +64,88 @@ layui.define(['table', 'form','r'], function(exports){
         } else if (obj.event === 'il-del') {
             window.del(data);
         } else if (obj.event === 'il-search') {
-            // window.show(data);
-            var popupData = {data:{}};
-            var invoiceNo = data.invoiceNo;
-            var businessName = data.businessName;
-            popupData.data = getInvoice(data.id);
-            admin.req({
-                type: 'get',
-                data: '',
-                url: setter.baseUrl+"sys/consumer/user/info/"+obj.data.consumerId,
-                success: function (data) {
-                    popupData.userName = data.user.userName;
-                    popupData.companyName = data.user.companName;
-                    popupData.country = data.user.country;
-                    popupData.invoiceNo = invoiceNo;
-                    popupData.businessName = businessName;
-                    popupData.city = data.user.city;
-                    popupData.address = data.user.address;
-                    popupData.mobilePhone = data.user.mobilePhone;
-                    popupData.postcode = data.user.postcode;
-                    popupData.paymentType = data.user.paymentType;
-                    popupData.deliveryType = data.user.deliveryType;
-                    popupData.contact = data.user.contact;
-                    admin.popup({
-                        title: '发票合同'
-                        ,area: ['100%', '100%']
-                        ,btn: ['打印','关闭']
-                        ,maxmin: true
-                        ,yes:function(index, layero){
-                            var printId = "quoteContract_AllB";
-                            document.body.innerHTML=document.getElementById(printId).innerHTML;
-                            window.print();
-                            window.location.reload();
-                        }
-                        // btn2: function(index, layero){}
-                        ,success: function (layero, index) {
-                            popupData.htmlType = 2;     //页面标识 1为内部合同 主要用于判断头部左侧标题
-                            view(this.id).render("marketManagement/iframeWindow/quote_contractInvo", popupData).done(function () {
-                                console.log(popupData);
-                                // 实时时间设置   最新时间显示
-                                var timeArray = [];     // 修改时间
-                                var ctimeArray = [];    // 创建时间
-                                var newEstTime;
-                            });
-                        }
-                    });
-                }
-            });
+            window.show(data);
+            // var popupData = {data:{}};
+            // var invoiceNo = data.invoiceNo;
+            // var businessName = data.businessName;
+            // popupData.data = getInvoice(data.id);
+            // admin.req({
+            //     type: 'get',
+            //     data: '',
+            //     url: setter.baseUrl+"sys/consumer/user/info/"+obj.data.consumerId,
+            //     success: function (data) {
+            //         popupData.userName = data.user.userName;
+            //         popupData.companyName = data.user.companName;
+            //         popupData.country = data.user.country;
+            //         popupData.invoiceNo = invoiceNo;
+            //         popupData.businessName = businessName;
+            //         popupData.city = data.user.city;
+            //         popupData.address = data.user.address;
+            //         popupData.mobilePhone = data.user.mobilePhone;
+            //         popupData.postcode = data.user.postcode;
+            //         popupData.paymentType = data.user.paymentType;
+            //         popupData.deliveryType = data.user.deliveryType;
+            //         popupData.contact = data.user.contact;
+            //         admin.popup({
+            //             title: '发票合同'
+            //             ,area: ['100%', '100%']
+            //             ,btn: ['打印','关闭']
+            //             ,maxmin: true
+            //             ,yes:function(index, layero){
+            //                 var printId = "quoteContract_AllB";
+            //                 document.body.innerHTML=document.getElementById(printId).innerHTML;
+            //                 window.print();
+            //                 window.location.reload();
+            //             }
+            //             // btn2: function(index, layero){}
+            //             ,success: function (layero, index) {
+            //                 popupData.htmlType = 2;     //页面标识 1为内部合同 主要用于判断头部左侧标题
+            //                 view(this.id).render("marketManagement/iframeWindow/quote_contractInvo", popupData).done(function () {
+            //                     console.log(popupData);
+            //                     // 实时时间设置   最新时间显示
+            //                     var timeArray = [];     // 修改时间
+            //                     var ctimeArray = [];    // 创建时间
+            //                     var newEstTime;
+            //                 });
+            //             }
+            //         });
+            //     }
+            // });
         }
     });
 
     
     window.show = function(obj){
-        console.log(obj);
+        // console.log(obj);
         //订单项
         r.get('epc/custominvoice/queryCustomInvoiceById',{invoiceId: obj.id},false).then((res)=>{
-            console.log(res);
+            // console.log(res);
             obj.data = res;
             return r.get('sys/consumer/user/info/'+obj.consumerId)
+        }).then((res)=>{
+            // console.log(res);
+            // obj.userInfo = res;
+            obj.userName = res.userName;
+            obj.companyName = res.companName;
+            obj.country = res.country;
+            // obj.invoiceNo = res.invoiceNo;
+            // obj.businessName = businessName;
+            obj.city = res.city;
+            obj.address = res.address;
+            obj.mobilePhone = res.mobilePhone;
+            obj.postcode = res.postcode;
+            obj.paymentType = res.paymentType;
+            obj.deliveryType = res.deliveryType;
+            obj.contact = res.contact;
+            obj.fiscalCode = res.fiscalCode;
+            return r.print(
+                '发票合同',
+                ['100%', '100%'],
+                ['打印','关闭'],
+                'marketManagement/iframeWindow/quote_contractInvo',
+                obj,
+                'quoteContract_AllB'
+            )
         })
     }
 

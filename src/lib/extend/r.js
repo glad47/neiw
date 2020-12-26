@@ -57,13 +57,17 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
 
         this.popup = function(title,size,btn,url,data,clickSubmitMark,tableMark,gainTableDataMark){
             return popup(title,size,btn,url,data,clickSubmitMark,tableMark,gainTableDataMark);
+        };
+
+        this.print = function(title,area,btn,url,data,printId){
+            return printPopup(title,area,btn,url,data,printId);
         }
     }
 
     function ajax(type, url, data, loading) {
         return new Promise(function (resolve, reject) {
             let roleSaveLoading;
-            console.log(loading);
+            // console.log(loading);
             if(loading) {
                roleSaveLoading = layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
             }
@@ -80,7 +84,12 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
                     if (res[response.statusName] != response.statusCode.ok) {
                         layer.msg(res[response.msgName]);
                     } else {
-                        resolve(res[response.dataName]);
+                        if(res[response.dataName] == null){
+                            resolve(res['user']);
+                        }else{
+                            resolve(res[response.dataName]);
+                        }
+                        
                     }
                 },
                 error: function () {
@@ -126,6 +135,29 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
                 }
             });
        }) 
+    }
+
+    //打印窗口弹出
+    function printPopup(title,area,btn,url,data,printId){
+        return new Promise(function(resolve,reject){
+            admin.popup({
+                title: title
+                ,area: area
+                ,btn: btn
+                ,maxmin: true
+                ,yes:function(index, layero){
+                    document.body.innerHTML=document.getElementById(printId).innerHTML;
+                    window.print();
+                    window.location.reload();
+                }
+                // btn2: function(index, layero){}
+                ,success: function (layero, index) {
+                    view(this.id).render(url, data).done(function () {
+                       resolve(index);
+                    });
+                }
+            });
+        })
     }
 
     exports(MOD_NAME, r);

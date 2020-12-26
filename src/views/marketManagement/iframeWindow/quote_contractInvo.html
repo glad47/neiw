@@ -73,7 +73,14 @@
         <!--顶部logo-->
         <div class="contract-top-logo layui-col-md12" style="padding: 0 0 20px 0px;">
             <div class="lef-logo layui-col-md6">
-                <img src="../../../src/style/res/logoMax-n.png">
+                <script type="text/html" template>
+                    {{# if(d.params.iconMark == 'pcbonline' || d.params.iconMark == null){ }}
+                    <img src="../../../src/style/res/logoMax-n.png">
+                    {{# }else{ }}
+                    <img src="../../../src/style/res/sglogoMax-black.png"> 
+                    {{# } }}
+                </script>
+                
             </div>
             <div class="rig-text layui-col-md6">
                 <a>COMMERCIAL INVOICE</a>
@@ -151,6 +158,16 @@
                         <td style="width: 50%;">
                             <label class="cmo-lable" style="width: 140px;text-align: left;">PRODUCT ORGIN:</label>
                             <label class="layui-form-label" style="width: unset;float: unset;display: inline-block;">China</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="layui-form-label" style="width: auto;">FISCAL CODE:</label>
+                            <label class="layui-form-label" style="width: 130px;text-align: left;">{{d.params.fiscalCode || ''}}</label>
+                        </td> 
+                        <td style="width: 50%;">
+                            <label class="cmo-lable" style="width: 140px;text-align: left;">ORDER NO:</label>
+                            <label class="layui-form-label" style="width: unset;float: unset;display: inline-block;">{{ d.params.orderNo || '' }}</label>
                         </td>
                     </tr>
                     <tr>
@@ -251,7 +268,7 @@
                         <td colspan="9"></td>
                         <td>Total:</td>
                         <td>
-                            {{Total}}
+                            {{Total.toFixed(2)}}
                         </td>
                     </tr>
                     </tbody>
@@ -309,7 +326,15 @@
         <div class="contract-module-five layui-col-md12">
             <div class="layui-col-md6 bot-info-lef">
                 <ul>
-                    <li><strong>PCBONLINE</strong></li>
+                    <li>
+                        <script type="text/html" template>
+                            {{# if(d.params.iconMark == 'pcbonline' || d.params.iconMark == null){ }}
+                            <strong>PCBONLINE</strong>
+                            {{# }else{ }}
+                            <strong>GLOBAL SUCCESS</strong>
+                            {{# } }}
+                        </script>
+                    </li>
                     <li>Ansheng Road, No.4 Building,Shajing,</li>
                     <li>Bao'an District,Shenzhen, China.</li>
                     <li>Tel: +86 0755-27398155&nbsp;&nbsp;<a>Fax: +86 0755-27398355</a></li>
