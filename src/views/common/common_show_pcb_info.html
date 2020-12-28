@@ -1,4 +1,4 @@
-<title>报价订单编辑</title>
+<title>报价订单查看</title>
 <div class="layui-fluid pcb-edit-info">
     <script type="text/html" template lay-done="layui.data.done(d);">
     <form class="layui-form orderPCBupdateForm" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 750px">
@@ -697,70 +697,70 @@
     layui.data.done = function(d) {
         var tabId = d.params.tabId;
         layui.use(['admin', 'table', 'form', 'laydate'], function () {
-            var $ = layui.jquery,
-                layer = layui.layer;
-                laydate = layui.laydate;
-            var form = layui.form;
+            // var $ = layui.jquery,
+            //     layer = layui.layer;
+            //     laydate = layui.laydate;
+            // var form = layui.form;
 
-            var q_params = {
-                pcbCost: 0,         // 小计
-                totalPrice: 0,      // 总价
-                shippingPrice: 0    // 运费
-            }
-            var $this = {
-                name: null  // 元素属性名
-            }
-            laydate.render({
-               elem: '#oupBuildTime'
-            });
-            $("#user_editInfo_form").bind('input propertychange', function (e) {
-                var a = 0;
-                var $this = $(e.target).attr("name");
-                quoteBPU($this);
-                var cobj = get_qObj();
-                $.each(cobj, function (i, val) {
-                    var _val = parseFloat(val);
-                    a += _val;
-                });
-                q_params.pcbCost = a.toFixed(2);
-                $(".orderPCBupdateForm input[name='subtotal']").val(q_params.pcbCost);       // 小计
-                getPCBA();
-                set_qObj();
-            });
+            // var q_params = {
+            //     pcbCost: 0,         // 小计
+            //     totalPrice: 0,      // 总价
+            //     shippingPrice: 0    // 运费
+            // }
+            // var $this = {
+            //     name: null  // 元素属性名
+            // }
+            // laydate.render({
+            //    elem: '#oupBuildTime'
+            // });
+            // $("#user_editInfo_form").bind('input propertychange', function (e) {
+            //     var a = 0;
+            //     var $this = $(e.target).attr("name");
+            //     quoteBPU($this);
+            //     var cobj = get_qObj();
+            //     $.each(cobj, function (i, val) {
+            //         var _val = parseFloat(val);
+            //         a += _val;
+            //     });
+            //     q_params.pcbCost = a.toFixed(2);
+            //     $(".orderPCBupdateForm input[name='subtotal']").val(q_params.pcbCost);       // 小计
+            //     getPCBA();
+            //     set_qObj();
+            // });
             // 获取对象
-            function get_qObj() {
-                $.each(q_params, function (i, val) {    // 初始化
-                   q_params[i] = 0;
-                });
-                var _quote_obj = new Object();
-                _quote_obj.engineeringFee = $(".orderPCBupdateForm input[name='engineeringFee']").val();
-                _quote_obj.boardFee = parseFloat($(".orderPCBupdateForm input[name='boardFee']").val());
-                _quote_obj.testCostFee = parseFloat($(".orderPCBupdateForm input[name='testCostFee']").val());
-                _quote_obj.overworkFee = parseFloat($(".orderPCBupdateForm input[name='overworkFee']").val());
-                _quote_obj.toolingFee = parseFloat($(".orderPCBupdateForm input[name='toolingFee']").val());
-                for (var key in _quote_obj) {
-                    if (isNaN(_quote_obj[key])) {
-                        _quote_obj[key] = 0;
-                    }
-                }
-                return _quote_obj;
-            }
+            // function get_qObj() {
+            //     $.each(q_params, function (i, val) {    // 初始化
+            //        q_params[i] = 0;
+            //     });
+            //     var _quote_obj = new Object();
+            //     _quote_obj.engineeringFee = $(".orderPCBupdateForm input[name='engineeringFee']").val();
+            //     _quote_obj.boardFee = parseFloat($(".orderPCBupdateForm input[name='boardFee']").val());
+            //     _quote_obj.testCostFee = parseFloat($(".orderPCBupdateForm input[name='testCostFee']").val());
+            //     _quote_obj.overworkFee = parseFloat($(".orderPCBupdateForm input[name='overworkFee']").val());
+            //     _quote_obj.toolingFee = parseFloat($(".orderPCBupdateForm input[name='toolingFee']").val());
+            //     for (var key in _quote_obj) {
+            //         if (isNaN(_quote_obj[key])) {
+            //             _quote_obj[key] = 0;
+            //         }
+            //     }
+            //     return _quote_obj;
+            // }
 
             // 修改表单对象-->回传到页面
-            function set_qObj() {
-                var postFee = $(".orderPCBupdateForm input[name='postFee']").val();
-                if (isNaN(postFee) || postFee == "") {
-                    postFee = 0;
-                }
-                var pcbaSubtotal = parseFloat($("input[name='pcbaSubtotalFee']").val());
-                if (isNaN(pcbaSubtotal) || pcbaSubtotal == "") {
-                    pcbaSubtotal = 0;
-                }
-                q_params.shippingPrice = parseFloat(postFee);
-                q_params.pcbCost = parseFloat(q_params.pcbCost);
-                q_params.totalPrice = parseFloat(q_params.shippingPrice+q_params.pcbCost+pcbaSubtotal).toFixed(2);
-                $(".orderPCBupdateForm input[name='totalFee']").val(q_params.totalPrice);      // 总价
-            }
+            // function set_qObj() {
+            //     var postFee = $(".orderPCBupdateForm input[name='postFee']").val();
+            //     if (isNaN(postFee) || postFee == "") {
+            //         postFee = 0;
+            //     }
+            //     var pcbaSubtotal = parseFloat($("input[name='pcbaSubtotalFee']").val());
+            //     if (isNaN(pcbaSubtotal) || pcbaSubtotal == "") {
+            //         pcbaSubtotal = 0;
+            //     }
+            //     q_params.shippingPrice = parseFloat(postFee);
+            //     q_params.pcbCost = parseFloat(q_params.pcbCost);
+            //     q_params.totalPrice = parseFloat(q_params.shippingPrice+q_params.pcbCost+pcbaSubtotal).toFixed(2);
+            //     $(".orderPCBupdateForm input[name='totalFee']").val(q_params.totalPrice);      // 总价
+            // }
             
             // var oldRm = $("input[name='remark']").val();   
            
@@ -826,32 +826,32 @@
             //     }
             // });
             // 表单提交
-            form.on('submit(LAY-pcborder-update-submit)',function (data) {
-                var field = data.field;
-                field.noteToQuote = nqc;
-                if (field.remark == "" || field.remark == "null") {
-                    field.remark = "";
-                }
-                if (field.productionVerification == null || field.productionVerification == "" || field.productionVerification == "off") {
-                    field.productionVerification = 0;
-                } else {
-                    field.productionVerification = 1;
-                }
-                admin.req({
-                    type: 'post'
-                    ,url: setter.baseUrl+'epc/pcborder/update'
-                    ,data: field
-                    ,done: function (res) {
-                        layer.msg('订单信息修改成功');
-                        parent.layui.table.reload(tabId,{page: {curr: 1}});
-                    }
-                    ,fail: function (res) {
-                        layer.msg("订单信息修改失败，请稍后再试！");
-                    },
-                });
-                layer.closeAll();
-                return false;
-            });
+            // form.on('submit(LAY-pcborder-update-submit)',function (data) {
+            //     var field = data.field;
+            //     field.noteToQuote = nqc;
+            //     if (field.remark == "" || field.remark == "null") {
+            //         field.remark = "";
+            //     }
+            //     if (field.productionVerification == null || field.productionVerification == "" || field.productionVerification == "off") {
+            //         field.productionVerification = 0;
+            //     } else {
+            //         field.productionVerification = 1;
+            //     }
+            //     admin.req({
+            //         type: 'post'
+            //         ,url: setter.baseUrl+'epc/pcborder/update'
+            //         ,data: field
+            //         ,done: function (res) {
+            //             layer.msg('订单信息修改成功');
+            //             parent.layui.table.reload(tabId,{page: {curr: 1}});
+            //         }
+            //         ,fail: function (res) {
+            //             layer.msg("订单信息修改失败，请稍后再试！");
+            //         },
+            //     });
+            //     layer.closeAll();
+            //     return false;
+            // });
         });
     }
 </script>
