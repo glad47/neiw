@@ -11,7 +11,8 @@ layui.define(['table', 'form','r'], function(exports){
         ,table = layui.table
         ,setter = layui.setter
         ,form = layui.form
-        ,r = layui.r;
+        ,r = layui.r
+        ,active = {};
 
     form.render(null, 'market-invoice-list-search-form');
 
@@ -53,69 +54,23 @@ layui.define(['table', 'form','r'], function(exports){
 
     table.on('toolbar(LAY-market-invoice-list-table)', function (obj) {
         if (obj.event === 'generateInvoice') {
-            window.add();
+            active.add();
         }
     });
 
     table.on('tool(LAY-market-invoice-list-table)', function (obj) {
         var data = obj.data;
         if (obj.event === 'il-edit') {
-            window.edit(data);
+            active.edit(data);
         } else if (obj.event === 'il-del') {
-            window.del(data);
+            active.del(data);
         } else if (obj.event === 'il-search') {
-            window.show(data);
-            // var popupData = {data:{}};
-            // var invoiceNo = data.invoiceNo;
-            // var businessName = data.businessName;
-            // popupData.data = getInvoice(data.id);
-            // admin.req({
-            //     type: 'get',
-            //     data: '',
-            //     url: setter.baseUrl+"sys/consumer/user/info/"+obj.data.consumerId,
-            //     success: function (data) {
-            //         popupData.userName = data.user.userName;
-            //         popupData.companyName = data.user.companName;
-            //         popupData.country = data.user.country;
-            //         popupData.invoiceNo = invoiceNo;
-            //         popupData.businessName = businessName;
-            //         popupData.city = data.user.city;
-            //         popupData.address = data.user.address;
-            //         popupData.mobilePhone = data.user.mobilePhone;
-            //         popupData.postcode = data.user.postcode;
-            //         popupData.paymentType = data.user.paymentType;
-            //         popupData.deliveryType = data.user.deliveryType;
-            //         popupData.contact = data.user.contact;
-            //         admin.popup({
-            //             title: '发票合同'
-            //             ,area: ['100%', '100%']
-            //             ,btn: ['打印','关闭']
-            //             ,maxmin: true
-            //             ,yes:function(index, layero){
-            //                 var printId = "quoteContract_AllB";
-            //                 document.body.innerHTML=document.getElementById(printId).innerHTML;
-            //                 window.print();
-            //                 window.location.reload();
-            //             }
-            //             // btn2: function(index, layero){}
-            //             ,success: function (layero, index) {
-            //                 popupData.htmlType = 2;     //页面标识 1为内部合同 主要用于判断头部左侧标题
-            //                 view(this.id).render("marketManagement/iframeWindow/quote_contractInvo", popupData).done(function () {
-            //                     console.log(popupData);
-            //                     // 实时时间设置   最新时间显示
-            //                     var timeArray = [];     // 修改时间
-            //                     var ctimeArray = [];    // 创建时间
-            //                     var newEstTime;
-            //                 });
-            //             }
-            //         });
-            //     }
-            // });
+            active.show(data);
         }
     });
 
     
-    window.show = function(obj){
+    active.show = function(obj){
         // console.log(obj);
         //订单项
         r.get('epc/custominvoice/queryCustomInvoiceById',{invoiceId: obj.id},false).then((res)=>{
@@ -149,17 +104,17 @@ layui.define(['table', 'form','r'], function(exports){
         })
     }
 
-    window.del = function(obj){
+    active.del = function(obj){
         layer.confirm('确定删除吗？', function(index) {
             r.get('epc/orderinvoice/delete',{ids:obj.id}).then(()=>{
                 layer.msg('已删除'); 
                 table.reload('LAY-market-invoice-list-table');
-                layer.clone(index);
+                layer.close(index);
             })
         });
     }
 
-    window.edit = function(obj){
+    active.edit = function(obj){
         let layerIndex;
         r.get(
             'epc/custominvoice/queryCustomInvoiceById',
@@ -191,7 +146,7 @@ layui.define(['table', 'form','r'], function(exports){
         })
     }
 
-    window.add = function(){
+    active.add = function(){
         let layerIndex;
         r.popup(
             '添加发票',
@@ -216,7 +171,7 @@ layui.define(['table', 'form','r'], function(exports){
             layer.msg('添加成功！！！');
             table.reload('LAY-market-invoice-list-table');
             layer.close(layerIndex);
-        })
+        });
     }
 
 

@@ -94,7 +94,7 @@
                 <label class="layui-form-label">唛头</label> 
                 <div class="layui-input-inline">
                     <script type="text/html" template>
-                    <input type="text" name="marks"  autocomplete="off" class="layui-input" value="{{ d.params.mark || ''}}" lay-verify="required">
+                    <input type="text" name="marks"  autocomplete="off" class="layui-input" value="{{ d.params.mark || ''}}">
                     </script>
                 </div> 
             </div>
@@ -124,7 +124,7 @@
     layui.data.done = function(d){
         // console.log(d);
         var ddd = d.params.itemEntityList || [],rid = d.params.receiverId+","+d.params.bid;
-        layui.use(['admin', 'table', 'util', 'form','requestInterface','formSelects','laydate'], function(){
+        layui.use(['admin', 'table', 'util', 'form','requestInterface','formSelects','laydate','r'], function(){
             var $ = layui.$
             ,admin = layui.admin
             ,view = layui.view
@@ -134,6 +134,7 @@
             ,requestInterface = layui.requestInterface
             ,formSelects = layui.formSelects
             ,util = layui.util
+            ,r = layui.r
             ,laydate = layui.laydate;
 
             
@@ -151,7 +152,7 @@
                 ,totalRow: false
                 ,cellMinWidth: 90
                 ,cols: [[
-                    {field: 'marks',  title: '唛头', align:'center', totalRowText:'Total',edit: 'text'}
+                    {field: 'marks',  title: '唛头', align:'center', totalRowText:'Total',edit: 'text',hide:false}
                     ,{field: 'rowspan', align:'center', title: '一箱几款', edit: 'text'}
                     ,{field: 'totalPrice', align:'center', title: '总价', edit: 'text'}
                     ,{field: 'qty', title: "数量", align:'center', totalRow: true,edit: 'text'}
@@ -948,16 +949,33 @@
                                         return layer.msg('请选择要导入的数据');
                                     }else{
                                         data = data[0];
-                                        
-                                        let oldData = table.cache["market-packing-list-en-table"];
-                                        let dd = {
-                                            'qty': data.quantityPcs,
-                                            'description': data.pcbName || ''
-                                        }
-                                        //console.log(dd);
-                                        //form.val('market-packing-form',dd);
-                                        oldData.push(dd);
-                                        table.reload('market-packing-list-en-table',{data:oldData});
+                                        let imporDataArr = [],oldData = table.cache["market-packing-list-en-table"] || [] ;
+                                        //发送请求获取自定义发票项
+                                        r.get(
+                                            'epc/custominvoice/queryCustomInvoiceById',
+                                            {invoiceId:data.id},
+                                            false
+                                        ).then((res)=>{
+                                            console.log(res);
+                                            res.forEach(element => {
+                                                let imporData = {};
+                                                imporData.totalPrice = element.totalFee;
+                                                imporData.qty = element.quantityPcs;
+                                                imporData.description = element.pcbName;
+                                                imporData.unitPrice  = element.unitPrice;
+                                                oldData.push(imporData);
+                                            });
+                                            table.reload('market-packing-list-en-table',{data:oldData});
+                                        });
+                                        // let oldData = table.cache["market-packing-list-en-table"];
+                                        // let dd = {
+                                        //     'qty': data.quantityPcs,
+                                        //     'description': data.pcbName || ''
+                                        // }
+                                        // //console.log(dd);
+                                        // //form.val('market-packing-form',dd);
+                                        // oldData.push(dd);
+                                       
                                         form.val('market-customs-declaration-form',{commercialInvoice:data.invoiceNo});
                                     }
                                     layer.close(index);

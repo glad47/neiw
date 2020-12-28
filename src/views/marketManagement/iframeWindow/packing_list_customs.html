@@ -125,7 +125,7 @@
                     <tr>
                         <td style="text-align: center; padding:5px 15px">商品编号</td>
                         <td style="text-align: center; padding:5px 15px; width: 126px;">商品名称及规格型号</td>
-                        <td style="text-align: center; padding:5px 15px; width: 70px;">数量及单位</td>
+                        <td style="text-align: center; padding:5px 15px; width: 75px;">数量及单位</td>
                         <td style="text-align: center; padding:5px 15px; width: 94px;">单价/总价/币制</td>
                         <td style="text-align: center; padding:5px 15px">原产国（地区）</td>
                         <td style="text-align: center; padding:5px 15px">最终目的国（地区）</td>
@@ -166,7 +166,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: center; padding:0px 15px">{{item.totalPrice || ''}}</td>
+                        <td style="text-align: center; padding:0px 15px">{{ Number(item.totalPrice).toFixed(3) || ''}}</td>
                     </tr>
                     <tr>
                         <td style="text-align: center; padding:0px 15px">USD</td>

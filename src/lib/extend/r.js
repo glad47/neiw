@@ -56,6 +56,7 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
         };
 
         this.popup = function(title,size,btn,url,data,clickSubmitMark,tableMark,gainTableDataMark){
+            console.log(url);
             return popup(title,size,btn,url,data,clickSubmitMark,tableMark,gainTableDataMark);
         };
 
@@ -103,18 +104,18 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
 
     function splitPopupId(data){
         let urlarr = data.split("/"),popupId = urlarr[urlarr.length - 1].replace(/_/g,'-');
-        console.log(popupId);
-        return popupId; 
+        // console.log(popupId);
+        return popupId;
     }
 
     //todo 代码工具类 是否获取全部数据
     function popup(title,area,btn,url,data,clickSubmitMark,tableMark,gainTableDataMark){
         // let urlarr = url.split("/"),popupId = urlarr[urlarr.length - 1].replace(/_/g,'-');
-        // console.log(popupId);
-        let popupId = splitPopupId(url);
        return new Promise(function(resolve,reject){
+           let pid = splitPopupId(url);
+           console.log(pid);
             admin.popup({
-                id: 'LAY-popup-'+popupId,
+                id: 'LAY-popup-'+pid,
                 title: title,
                 area: area,
                 btn: btn,
@@ -156,8 +157,9 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
 
     //打印窗口弹出
     function printPopup(title,area,btn,url,data,printId){
-        let pid = splitPopupId(url);
         return new Promise(function(resolve,reject){
+            let pid = splitPopupId(url);
+            console.log(pid);
             admin.popup({
                 id: "LAY-print-"+pid
                 ,title: title
