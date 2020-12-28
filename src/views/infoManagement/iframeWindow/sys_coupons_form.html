@@ -76,7 +76,7 @@
                 
             }
 
-            formSelects.on('receiverInfo', function (id, vals, val, isAdd, isDisabled) {
+            formSelects.on('customerInfo', function (id, vals, val, isAdd, isDisabled) {
                 console.log(val);
                 if(isAdd){//对form赋值
                    form.val("sys-coupons-form-list",{"userId":val.value});
@@ -110,7 +110,9 @@
                         console.log(data);
                         if(data.id !== undefined && data.id !== ""){
                             add_del_array.push(data.id);
-                            form.val('sys-coupons-form-list',{delIdArr:add_del_array.toString()})
+                            let ids = add_del_array.toString();
+                            console.log(ids);
+                            form.val('sys-coupons-form-list',{delIdArr:ids})
                         }
                         obj.del();
                         layer.close(index);

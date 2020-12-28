@@ -61,6 +61,7 @@
             <input type="hidden" name="businessId" value="{{ d.params.businessId || '' }}">
             <input type="hidden" name="businessName" value="{{ d.params.businessName || '' }}">
             <input type="hidden" name="totalFee" value="{{ d.params.totalFee || '' }}">
+            <input type="hidden" name="delIdArr" >
             <input type="button" style="display: none;" lay-submit lay-filter="market-invoiceList-add-edit-submit" value="确认" class="layui-btn" id="market-invoiceList-add-edit-submit">
         </div>
         <div class="top-total">
@@ -330,9 +331,14 @@
             };
             
 
+            let add_del_array = [];//删除arr
             window.del = function(obj){
                 layer.confirm('真的删除行么', function (index) {
+                    if(obj.data.id){
+                       add_del_array.push(obj.data.id); 
+                    }
                     obj.del();
+                    form.val('market-invoiceList-add-edit-form',{delIdArr:add_del_array.toString()})
                     window.initInvoiceTab();
                     layer.close(index);
                 })

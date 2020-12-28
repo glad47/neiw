@@ -92,7 +92,9 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
                                     // console.log(formdata);
                                     // console.log(formdata.field)
                                     //获取table数据
-                                    let addressList = table.cache["sys-customer-address-list-table"],field = formdata.field;
+                                    let addressList = table.cache["sys-customer-address-list-table"].filter(item=>!Array.isArray(item))
+                                    ,field = formdata.field;
+                                    console.log(addressList);
                                     for (let i = 0; i <addressList.length ; i++) {
                                         if(addressList[i].LAY_CHECKED){
                                             addressList[i].isDefault = 1;

@@ -1,0 +1,101 @@
+<div class="layui-fluid">
+    <div class="layui-card">
+      <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="common-import-ci-form-list">
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">产品型号</label>
+            <div class="layui-input-inline">
+              <input type="text" name="productNos" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">发票号</label>
+            <div class="layui-input-block">
+                <input type="text" name="invoiceNo" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-inline">
+            <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-common-import-ci-form-search">
+              <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+            </button>
+            <button class="layui-btn layuiadmin-btn-list layui-btn-danger layui-hide" data-type="drsjyc-ci" id="drsjyc-ci">导入数据隐藏</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="layui-card-body">
+        <table id="LAY-common-import-ci-table-list" lay-filter="LAY-common-import-ci-table-list"></table>
+        <script type="text/html" id="order_type_import">
+            {{#  if(d.orderType =='1'){ }}
+            <a style="color: green;">新单</a>
+            {{#  } else if (d.orderType == '2'){ }}
+            <a>返单</a>
+            {{#  } else{ }}
+            <a>返单有改</a>
+            {{# } }}
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  layui.use(['admin', 'table', 'form'], function(){
+    var $ = layui.$
+    ,admin = layui.admin
+    ,view = layui.view
+    ,table = layui.table
+    ,setter = layui.setter
+    ,form = layui.form;
+
+    let ddd = [];
+
+    //查询出的结果用table显示
+    window.loadingTable = function(ddd){
+        table.render({
+            elem: '#LAY-common-import-ci-table-list'
+            ,data: ddd
+            ,totalRow: false
+            ,cellMinWidth: 90
+            ,cols: [[
+                {type: 'radio',fixed: 'left'}
+                ,{field: 'invoiceNo',  title: '发票号', align:'center'}
+                ,{field: 'businessName', title: "跟单员", align:'center'}
+                ,{field: 'totalFee', title: "发票金额", align:'center'}
+                ,{field: 'gmtCreate', title: '创建时间', align:'center'}
+            ]]
+        });
+    };
+
+
+    window.loadingTable(ddd); 
+    form.render(null, 'common-import-ci-form-list');
+    
+    //监听搜索
+    form.on('submit(LAY-common-import-ci-form-search)', function(data){
+        var field = data.field;
+        //发送请求
+        // console.log(field);   
+        admin.req({
+            type: 'post'
+            ,url: setter.baseUrl+'epc/orderinvoice/list'       // 需要修改成退回的接口
+            ,data:field
+            ,done: function (res) {
+              if(res.code === 0){
+                ddd = res.page.list;
+                if(ddd.length === 0){
+                  layer.msg('没有数据');
+                }else{
+                    window.loadingTable(res.page.list);
+                }
+              }
+            }
+            ,fail: function (res) {
+                layer.msg('服务器异常，稍后再试！');
+                bool = false;
+            }
+        })
+      
+    });
+
+  });
+  </script>

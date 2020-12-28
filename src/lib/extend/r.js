@@ -101,10 +101,20 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
         });
     };
 
+    function splitPopupId(data){
+        let urlarr = data.split("/"),popupId = urlarr[urlarr.length - 1].replace(/_/g,'-');
+        console.log(popupId);
+        return popupId; 
+    }
+
     //todo 代码工具类 是否获取全部数据
     function popup(title,area,btn,url,data,clickSubmitMark,tableMark,gainTableDataMark){
+        // let urlarr = url.split("/"),popupId = urlarr[urlarr.length - 1].replace(/_/g,'-');
+        // console.log(popupId);
+        let popupId = splitPopupId(url);
        return new Promise(function(resolve,reject){
             admin.popup({
+                id: 'LAY-popup-'+popupId,
                 title: title,
                 area: area,
                 btn: btn,
@@ -116,16 +126,23 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
                     .then(function(value){}) //视图文件请求完毕，视图内容渲染前的回调 
                     .done(function(){
                         form.on(`submit(${clickSubmitMark})`,function(formdata){
+                            console.log(formdata);
                             let d = {};
                             if(tableMark){
                                 if(gainTableDataMark == 1){//获取全部table表格的数据
-                                    let tableData = table.cache[`${tableMark}`];
+                                    let tableData = table.cache[`${tableMark}`].filter(item=>!Array.isArray(item));
                                     d.tableData = tableData;
                                 } else if(gainTableDataMark == 2){//获取单个
                                     let checkStatus = table.checkStatus(`${tableMark}`),tableData = checkStatus.data;
                                     if(tableData.length == 0) return layer.msg('请选择表格数据!!');
                                     d.tableData = tableData[0]; 
                                 }
+                            }
+                            //处理删除id,规定删除id字段必须为delIdArr
+                            if(formdata.field.delIdArr){
+                                formdata.field.delIdArr = formdata.field.delIdArr.split(",");
+                            }else{
+                                formdata.field.delIdArr = [];
                             }
                             d.formData = formdata;
                             d.index = index;
@@ -139,9 +156,11 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
 
     //打印窗口弹出
     function printPopup(title,area,btn,url,data,printId){
+        let pid = splitPopupId(url);
         return new Promise(function(resolve,reject){
             admin.popup({
-                title: title
+                id: "LAY-print-"+pid
+                ,title: title
                 ,area: area
                 ,btn: btn
                 ,maxmin: true

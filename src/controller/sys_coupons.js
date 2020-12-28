@@ -148,6 +148,12 @@ layui.define(['table', 'form', 'r'], function(exports){
         let sendData = d.formData.field;
         layerIndex = d.index;
         sendData.couponRule = d.tableData;
+        //处理删除id
+        // if(sendData.delIdArr){
+        //   sendData.delIdArr = sendData.delIdArr.split(",");
+        // }else{
+        //   sendData.delIdArr = [];
+        // }
         return r.post('sys/coupons/save',sendData)
       }).then((r)=>{
         layer.msg('添加成功！！！');

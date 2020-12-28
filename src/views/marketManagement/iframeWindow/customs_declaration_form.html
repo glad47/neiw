@@ -40,6 +40,7 @@
                     <!-- <input type="text" name="customerNo" autocomplete="off" class="layui-input" value="{{ d.params.customerNo || ''}}" lay-verify="required"> -->
                     <input type="hidden" name="id" value="{{ d.params.id || '' }}">
                     <input type="hidden" name="customerNo" value="{{d.params.customerNo || ''}}">
+                    <input type="hidden" name="delIdArr" >
                     </script>
                 </div>
             </div>
@@ -89,6 +90,14 @@
                     </script>
                 </div>
             </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">唛头</label> 
+                <div class="layui-input-inline">
+                    <script type="text/html" template>
+                    <input type="text" name="marks"  autocomplete="off" class="layui-input" value="{{ d.params.mark || ''}}" lay-verify="required">
+                    </script>
+                </div> 
+            </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label"></label>
@@ -97,7 +106,7 @@
                 <button class="layui-btn layuiadmin-btn-list layui-btn-normal" data-type="e1">添加</button>
                 <button class="layui-btn layuiadmin-btn-list layui-btn-danger" data-type="e2">删除</button>
                 <button class="layui-btn layuiadmin-btn-list" data-type="e3">导入</button>
-                <input type="button" id="mcdfs" lay-submit lay-filter="market-customs-declaration-form-submit" value="确认" class="layui-btn" style="display: none;" >
+                <input type="button" id="market-customs-declaration-form-submit" lay-submit lay-filter="market-customs-declaration-form-submit" value="确认" class="layui-btn" style="display: none;" >
                 </script>
             </div>
         </div>
@@ -890,7 +899,7 @@
                 ];
             }
             
-    
+            let add_del_array = [];//删除arr
             var active = {
                 e1: function(index){
                     let oldData = table.cache["market-packing-list-en-table"],d={};
@@ -904,23 +913,17 @@
                     layer.confirm("你确定要删除么？",function(){  
                         let oldData = table.cache["market-packing-list-en-table"]; 
                         // console.log(oldData); 
-                        oldData.splice(oldData.length-1,1);  
+                        //获取最后一个元素
+                        let lastObj = oldData[oldData.length-1];
+                        if(lastObj.id){
+                            add_del_array.push(lastObj.id); 
+                        }
+                        oldData.splice(oldData.length-1,1);
+                        form.val('market-customs-declaration-form',{delIdArr:add_del_array.toString()})  
                         layer.msg("删除成功",{time: 10},function(){  
                             table.reload('market-packing-list-en-table',{data : oldData});  
                         });  
                     }) 
-                },
-                change: function(elem,p){
-                    const index = elem.dataset.index;
-                    const key = elem.dataset.key;
-                    console.log(index);
-                    console.log(key);
-                    
-                    let fsv = formSelects.value('select'+index);
-                    let oldData = table.cache["market-packing-list-en-table"];
-                    console.log(fsv);
-                    console.log(oldData);
-                    // oldData[index - 1][key] = fsv;
                 },
                 e3: function(){
                     admin.popup({
@@ -930,20 +933,22 @@
                         shadeClose: true, //开启遮罩关闭
                         area: ['50%', '60%'],
                         btn:['导入', '取消'],
+                        id: 'LAY-popup-customs-import-ci',
                         yes: function() {
-                            $("#drsjyc").click();
+                            $("#drsjyc-ci").click();
                         },
                         success: function(layero,index){
-                            view(this.id).render('common/common_import_order_form_table').done(function(){
+                            view(this.id).render('common/common_import_ci_form_table').done(function(){
                                 //用于监听导入按钮的提交
-                                $("#drsjyc").click(function(){
+                                $("#drsjyc-ci").click(function(){
                                     //获取表格数据
-                                    let checkStatus = table.checkStatus('LAY-common-import-order-table-list'),data = checkStatus.data;
+                                    let checkStatus = table.checkStatus('LAY-common-import-ci-table-list'),data = checkStatus.data;
                                     console.log(data);
                                     if(data.length === 0){
                                         return layer.msg('请选择要导入的数据');
                                     }else{
                                         data = data[0];
+                                        
                                         let oldData = table.cache["market-packing-list-en-table"];
                                         let dd = {
                                             'qty': data.quantityPcs,
@@ -957,7 +962,7 @@
                                     }
                                     layer.close(index);
                                 })
-                            });
+                            })
                         }
                     })  
                 }
