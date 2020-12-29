@@ -1,24 +1,24 @@
 <title>报价订单查看</title>
 <div class="layui-fluid pcb-edit-info">
     <script type="text/html" template lay-done="layui.data.done(d);">
-    <form class="layui-form orderPCBupdateForm" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 750px">
+    <form class="layui-form" lay-filter="common-show-pcb-info-form">
         <div class="layui-form-item">
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label" name="orderNo">订单号：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="orderNo" value="{{ d.params.orderNo || '' }}" autocomplete="off" class="layui-input">
+                <div class="layui-input-block layui-disabled">
+                    <input type="text" name="orderNo" value="{{ d.params.orderNo || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label" name="pcbName">订单型号：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="pcbName" value="{{ d.params.pcbName || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="pcbName" value="{{ d.params.pcbName || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label" name="orderType">订单类型：</label>
                 <div class="layui-input-block">
-                    <select name="orderType" lay-search="">
+                    <select name="orderType" lay-search="" disabled>
                         <option value="1" {{ d.params.orderType == '1' ? 'selected' : '' }}>新单</option>
                         <option value="2" {{ d.params.orderType == '2' ? 'selected' : '' }}>返单</option>
                         <option value="3" {{ d.params.orderType == '3' ? 'selected' : '' }}>返单有改</option>
@@ -32,19 +32,19 @@
                 <label class="layui-form-label" name="dimensionsX">Pcs X：</label>
                 <div class="layui-input-block">
                     <input type="text" name="id" value="{{ d.params.id || '' }}" autocomplete="off" class="layui-input" style="display: none;">
-                    <input type="text" name="dimensionsX" value="{{ d.params.dimensionsX || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="dimensionsX" value="{{ d.params.dimensionsX || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label" name="dimensionsX">Panel X：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="panelSizeX" value="{{ d.params.panelSizeX || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="panelSizeX" value="{{ d.params.panelSizeX || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label" name="dimensionsX">Array X：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="panelWayX" value="{{ d.params.panelWayX || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="panelWayX" value="{{ d.params.panelWayX || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
         </div>
@@ -53,19 +53,19 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Pcs Y：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="dimensionsY" value="{{ d.params.dimensionsY || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="dimensionsY" value="{{ d.params.dimensionsY || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Panel Y：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="panelSizeY" value="{{ d.params.panelSizeY || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="panelSizeY" value="{{ d.params.panelSizeY || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Array Y：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="panelWayY" value="{{ d.params.panelWayY || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="panelWayY" value="{{ d.params.panelWayY || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
         </div>
@@ -74,19 +74,19 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label" name="dimensionsX">Pcs数：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="quantityPcs" value="{{ d.params.quantityPcs || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="quantityPcs" value="{{ d.params.quantityPcs || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Panel数：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="quantityPanel" value="{{ d.params.quantityPanel || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="quantityPanel" value="{{ d.params.quantityPanel || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label" name="dimensionsX">面积：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="areaSq" value="{{ d.params.areaSq || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="areaSq" value="{{ d.params.areaSq || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">PCB类型：</label>
                 <div class="layui-input-block">
-                    <select name="pcbType">
+                    <select name="pcbType" class="layui-unselect" disabled>
                         <option value="FPC"  {{ d.params.pcbType == 'FPC' ? 'selected' : '' }}>FPC</option>
                         <option value="FR4"  {{ d.params.pcbType == 'FR4' ? 'selected' : '' }}>FR4</option>
                         <option value="CEM-1"  {{ d.params.pcbType == 'CEM-1' ? 'selected' : '' }}>CEM-1</option>
@@ -109,7 +109,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">TG：</label>
                 <div class="layui-input-block">
-                    <select name="tg">
+                    <select name="tg" disabled>
                         <option value="135"  {{ d.params.tg == '135' ? 'selected' : '' }}>135</option>
                         <option value="140" {{ d.params.tg == '140' ? 'selected' : '' }}>140</option>
                         <option value="150" {{ d.params.tg == '150' ? 'selected' : '' }}>150</option>
@@ -121,7 +121,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">层数：</label>
                 <div class="layui-input-block">
-                    <select name="layerNum">
+                    <select name="layerNum" disabled>
                         <option value="1"  {{ d.params.layerNum == '1' ? 'selected' : '' }}>1.0</option>
                         <option value="2" {{ d.params.layerNum == '2' ? 'selected' : '' }}>2.0</option>
                         <option value="4" {{ d.params.layerNum == '4' ? 'selected' : '' }}>4.0</option>
@@ -141,7 +141,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">CTI：</label>
                 <div class="layui-input-block">
-                    <select name="cti">
+                    <select name="cti" disabled>
                         <option value="175≤CTI<250"  {{ d.params.cti == '175≤CTI<250' ? 'selected' : '' }}>175≤CTI<250</option>
                         <option value="250≤CTI<400" {{ d.params.cti == '250≤CTI<400' ? 'selected' : '' }}>250≤CTI<400</option>
                         <option value="400≤CTI<600" {{ d.params.cti == '400≤CTI<600' ? 'selected' : '' }}>400≤CTI<600</option>
@@ -171,13 +171,13 @@
                         <!--<option value="3.2mm" {{ d.params.finishThickness == '4.0mm' ? 'selected' : '' }}>4.0mm</option>-->
                         <!--<option value="3.2mm" {{ d.params.finishThickness == '5.0mm' ? 'selected' : '' }}>5.0mm</option>-->
                     <!--</select>-->
-                    <input type="text" name="finishThickness" value="{{ d.params.finishThickness || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="finishThickness" value="{{ d.params.finishThickness || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">无卤素：</label>
                 <div class="layui-input-block">
-                    <select name="halogenFree">
+                    <select name="halogenFree" disabled>
                         <option value="NO"  {{ d.params.halogenFree == 'NO' ? 'selected' : '' }}>NO</option>
                         <option value="YES"  {{ d.params.halogenFree == 'YES' ? 'selected' : '' }}>YES</option>
                     </select>
@@ -189,19 +189,19 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">材料品牌：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="material" value="{{ d.params.material || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="material" value="{{ d.params.material || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">材料型号：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="productCode" value="{{ d.params.productCode || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="productCode" value="{{ d.params.productCode || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">生产类别：</label>
                 <div class="layui-input-block">
-                    <select name="productionType">
+                    <select name="productionType" disabled>
                         <option value="PCB"  {{ d.params.productionType == 'PCB' ? 'selected' : '' }}>PCB</option>
                         <option value="COM" {{ d.params.productionType == 'COM' ? 'selected' : '' }}>COM</option>
                         <option value="SMT" {{ d.params.productionType == 'SMT' ? 'selected' : '' }}>SMT</option>
@@ -218,7 +218,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">导热系数：</label>
                 <div class="layui-input-block">
-                    <select name="heatConductivity">
+                    <select name="heatConductivity" disabled>
                         <option value="none"  {{ d.params.heatConductivity == 'none' ? 'selected' : '' }}>none</option>
                         <option value="1W"  {{ d.params.heatConductivity == '1W' ? 'selected' : '' }}>1W</option>
                         <option value="2W"  {{ d.params.heatConductivity == '2W' ? 'selected' : '' }}>2W</option>
@@ -230,7 +230,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">最小孔：</label>
                 <div class="layui-input-block">
-                    <select name="minHoleSize">
+                    <select name="minHoleSize" disabled>
                         <option value="0.2"  {{ d.params.minHoleSize == 0.2 ? 'selected' : '' }}>0.2</option>
                         <option value="0.35"  {{ d.params.minHoleSize == 0.3 ? 'selected' : '' }}>0.3</option>
                         <option value="0.35"  {{ d.params.minHoleSize == 0.35 ? 'selected' : '' }}>0.35</option>
@@ -243,7 +243,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">孔铜：</label>
                 <div class="layui-input-block">
-                    <select name="pthCopper">
+                    <select name="pthCopper" disabled>
                         <option value="none" {{ d.params.pthCopper == 'none' ? 'selected' : '' }}>none</option>
                         <option value="min18um" {{ d.params.pthCopper == 'min18um' ? 'selected' : '' }}>min18um</option>
                         <option value="min20um" {{ d.params.pthCopper == 'min20um' ? 'selected' : '' }}>min20um</option>
@@ -256,7 +256,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">内层铜厚：</label>
                 <div class="layui-input-block">
-                    <select name="innerLayerCopper">
+                    <select name="innerLayerCopper" disabled>
                         <option value="none"  {{ d.params.innerLayerCopper == 'none' ? 'selected' : '' }}>none</option>
                         <option value="1oz"  {{ d.params.innerLayerCopper == '1oz' ? 'selected' : '' }}>1oz</option>
                         <option value="2oz"  {{ d.params.innerLayerCopper == '2oz' ? 'selected' : '' }}>2oz</option>
@@ -268,7 +268,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">外层铜厚：</label>
                 <div class="layui-input-block">
-                    <select name="outerLayerCopper">
+                    <select name="outerLayerCopper" disabled>
                         <option value="0oz"  {{ d.params.outerLayerCopper == '0oz' ? 'selected' : '' }}>0oz</option>
                         <option value="1oz"  {{ d.params.outerLayerCopper == '1oz' ? 'selected' : '' }}>1oz</option>
                         <option value="2oz"  {{ d.params.outerLayerCopper == '2oz' ? 'selected' : '' }}>2oz</option>
@@ -281,7 +281,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">外层线宽：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="outerMinTrack" value="{{ d.params.outerMinTrack || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="outerMinTrack" value="{{ d.params.outerMinTrack || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
         </div>
@@ -290,7 +290,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">Bga大小：</label>
                 <div class="layui-input-block">
-                    <select name="bgaSize">
+                    <select name="bgaSize" disabled>
                         <option value="none"  {{ d.params.bgaSize == 'none' ? 'selected' : '' }}>None</option>
                         <option value="0.22"  {{ d.params.bgaSize == 0.22 ? 'selected' : '' }}>0.22</option>
                         <option value="0.25"  {{ d.params.bgaSize == 0.25 ? 'selected' : '' }}>0.25</option>
@@ -301,7 +301,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">阻焊颜色：</label>
                 <div class="layui-input-block">
-                    <select name="solderMaskTopColor">
+                    <select name="solderMaskTopColor" disabled>
                         <option value="none"  {{ d.params.solderMaskTopColor == 'none' ? 'selected' : '' }}>none</option>
                         <option value="green"  {{ d.params.solderMaskTopColor == 'green' ? 'selected' : '' }}>green</option>
                         <option value="black"  {{ d.params.solderMaskTopColor == 'black' ? 'selected' : '' }}>black</option>
@@ -319,7 +319,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">字符颜色：</label>
                 <div class="layui-input-block">
-                    <select name="silkScreenTopColor">
+                    <select name="silkScreenTopColor" disabled>
                         <option value="none"  {{ d.params.silkScreenTopColor == 'none' ? 'selected' : '' }}>none</option>
                         <option value="black"  {{ d.params.silkScreenTopColor == 'black' ? 'selected' : '' }}>black</option>
                         <option value="white"  {{ d.params.silkScreenTopColor == 'white' ? 'selected' : '' }}>white</option>
@@ -338,7 +338,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">测试方式：</label>
                 <div class="layui-input-block">
-                    <select name="testPointType">
+                    <select name="testPointType" disabled>
                         <option value="0"  {{ d.params.testPointType == '0' ? 'selected' : '' }}>无</option>
                         <option value="1"  {{ d.params.testPointType == '1' ? 'selected' : '' }}>飞针</option>
                         <option value="2"  {{ d.params.testPointType == '2' ? 'selected' : '' }}>测试架</option>
@@ -348,7 +348,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">表面处理：</label>
                 <div class="layui-input-block">
-                    <select name="surfaceFinish">
+                    <select name="surfaceFinish" disabled>
                         <option value="none"  {{ d.params.surfaceFinish == 'none' ? 'selected' : '' }}>无</option>
                         <option value="HASL_with_lead"  {{ d.params.surfaceFinish == 'HASL_with_lead' || d.params.surfaceFinish == 'HASL with lead' ? 'selected' : '' }}>HASL with lead</option>
                         <option value="HASL_lead_free"  {{ d.params.surfaceFinish == 'HASL_lead_free' || d.params.surfaceFinish == 'HASL lead free' ? 'selected' : '' }}>HASL lead free</option>
@@ -362,7 +362,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">表面处理厚度：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="thickness" value="{{ d.params.thickness || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="thickness" value="{{ d.params.thickness || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
         </div>
@@ -396,7 +396,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">过孔方式：</label>
                 <div class="layui-input-block">
-                    <select name="viaProcess">
+                    <select name="viaProcess" disabled>
                         <option value="none"  {{ d.params.viaProcess == 'none' ? 'selected' : '' }}>None</option>
                         <option value="tenting"  {{ d.params.viaProcess == 'tenting' ? 'selected' : '' }}>Tenting</option>
                         <option value="plugged"  {{ d.params.viaProcess == 'plugged' ? 'selected' : '' }}>Plugged</option>
@@ -409,7 +409,7 @@
                 <label class="layui-form-label">盲孔：</label>
                 <div class="layui-input-block">
                     <!--<input type="text" name="blindHoles" value="{{ d.params.blindHoles || 'No' }}" autocomplete="off" class="layui-input">-->
-                    <select name="blindHoles">
+                    <select name="blindHoles" disabled>
                         <option value="0"  {{ d.params.blindHoles == '' ? 'selected' : '' }}>No</option>
                         <option value="1" {{ d.params.blindHoles == '1' ? 'selected' : '' }}>Yes</option>
                     </select>
@@ -418,7 +418,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">金属包边：</label>
                 <div class="layui-input-block">
-                    <select name="edgePlated">
+                    <select name="edgePlated" disabled>
                         <option value="0"  {{ d.params.edgePlated == '' ? 'selected' : '' }}>No</option>
                         <option value="1" {{ d.params.edgePlated == '1' ? 'selected' : '' }}>Yes</option>
                     </select>
@@ -430,7 +430,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">半孔：</label>
                 <div class="layui-input-block">
-                    <select name="halfHoleLated">
+                    <select name="halfHoleLated" disabled>
                         <option value="0"  {{ d.params.halfHoleLated == '' ? 'selected' : '' }}>No</option>
                         <option value="1" {{ d.params.halfHoleLated == '1' ? 'selected' : '' }}>Yes</option>
                     </select>
@@ -439,7 +439,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">阻抗：</label>
                 <div class="layui-input-block">
-                    <select name="contrlImpeance">
+                    <select name="contrlImpeance" disabled>
                         <option value="0"  {{ d.params.contrlImpeance == '0' ? 'selected' : '' }}>No</option>
                         <option value="1" {{ d.params.contrlImpeance == '1' ? 'selected' : '' }}>Yes</option>
                     </select>
@@ -448,7 +448,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">埋孔：</label>
                 <div class="layui-input-block">
-                    <select name="buriedHoles">
+                    <select name="buriedHoles" disabled>
                         <option value="0"  {{ d.params.buriedHoles == '' ? 'selected' : '' }}>No</option>
                         <option value="1" {{ d.params.buriedHoles == '1' ? 'selected' : '' }}>Yes</option>
                     </select>
@@ -460,7 +460,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">碳油：</label>
                 <div class="layui-input-block">
-                    <select name="carbon">
+                    <select name="carbon" disabled>
                         <option value="0"  {{ d.params.carbon == '' ? 'selected' : '' }}>No</option>
                         <option value="1" {{ d.params.carbon == '1' ? 'selected' : '' }}>Yes</option>
                     </select>
@@ -469,7 +469,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">控深锣：</label>
                 <div class="layui-input-block">
-                    <select name="deepMillRouting">
+                    <select name="deepMillRouting" disabled>
                         <option value="0"  {{ d.params.deepMillRouting == '' ? 'selected' : '' }}>No</option>
                         <option value="1" {{ d.params.deepMillRouting == '1' ? 'selected' : '' }}>Yes</option>
                     </select>
@@ -478,7 +478,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">斜边：</label>
                 <div class="layui-input-block">
-                    <select name="bevellingCamfer">
+                    <select name="bevellingCamfer" disabled>
                         <option value="0"  {{ d.params.bevellingCamfer == '' ? 'selected' : '' }}>No</option>
                         <option value="1" {{ d.params.bevellingCamfer == '1' ? 'selected' : '' }}>Yes</option>
                     </select>
@@ -490,19 +490,19 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">聚谷型号：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="productNo" value="{{ d.params.productNo || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="productNo" value="{{ d.params.productNo || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">交期：</label>
                 <div class="layui-input-block">
-                    <input type="text" id="oupBuildTime" name="buildTime" value="{{ d.params.buildTime || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" id="oupBuildTime" name="buildTime" value="{{ d.params.buildTime || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">单价：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="unitPrice" value="{{ d.params.unitPrice || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="unitPrice" value="{{ d.params.unitPrice || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
         </div>
@@ -521,19 +521,19 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">工程费：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="engineeringFee" value="{{ d.params.engineeringFee || 0 }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="engineeringFee" value="{{ d.params.engineeringFee || 0 }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">板费：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="boardFee" value="{{ d.params.boardFee || 0 }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="boardFee" value="{{ d.params.boardFee || 0 }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">测试费：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="testCostFee" value="{{ d.params.testCostFee || 0 }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="testCostFee" value="{{ d.params.testCostFee || 0 }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
         </div>
@@ -542,20 +542,20 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">加急费：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="overworkFee" value="{{ d.params.overworkFee || 0 }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="overworkFee" value="{{ d.params.overworkFee || 0 }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">工具费：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="toolingFee" value="{{ d.params.toolingFee || 0 }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="toolingFee" value="{{ d.params.toolingFee || 0 }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">小计：</label>
                 <div class="layui-input-block">
                     {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+parseFloat(d.params.testCostFee)+d.params.overworkFee).toFixed(2)}}
-                    <input type="text" name="subtotal" value="{{ pcbcost || 0 }}" autocomplete="off" class="layui-input" readonly>
+                    <input type="text" name="subtotal" value="{{ pcbcost || 0 }}" autocomplete="off" class="layui-input layui-disabled" readonly>
                 </div>
             </div>
         </div>
@@ -564,19 +564,19 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">重量：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="weight" value="{{ d.params.weight || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="weight" value="{{ d.params.weight || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">邮费：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="postFee" value="{{ d.params.postFee || 0 }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="postFee" value="{{ d.params.postFee || 0 }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">总计：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="totalFee" value="{{ d.params.totalFee || 0 }}" autocomplete="off" class="layui-input" readonly>
+                    <input type="text" name="totalFee" value="{{ d.params.totalFee || 0 }}" autocomplete="off" class="layui-input layui-disabled" readonly>
                 </div>
             </div>
         </div>
@@ -585,7 +585,7 @@
             <div class="layui-col-md12 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">备注：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="remark" value="{{ d.params.remark || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="remark" value="{{ d.params.remark || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
         </div>
@@ -593,7 +593,7 @@
             <div class="layui-col-md12 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">注意事项：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="checkRemark" value="{{ d.params.checkRemark || '' }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="checkRemark" value="{{ d.params.checkRemark || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
         </div>
@@ -601,7 +601,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 126px;">需要确认生产资料：</label>
             <div class="layui-input-block">
-                <input type="checkbox" name="productionVerification" lay-skin="switch" lay-text="是|否" {{d.params.productionVerification == null  || d.params.productionVerification === undefined || d.params.productionVerification === 0 ? '' : 'checked' }} lay-filter="productionVerification">
+                <input type="checkbox" name="productionVerification" lay-skin="switch" lay-text="是|否" {{d.params.productionVerification == null  || d.params.productionVerification === undefined || d.params.productionVerification === 0 ? '' : 'checked' }} lay-filter="productionVerification" disabled>
             </div>
         </div>
 
@@ -611,19 +611,19 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">零件费：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="pcbaPartsFee" value="{{ d.params.pcbaPartsFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
+                    <input type="text" name="pcbaPartsFee" value="{{ d.params.pcbaPartsFee || 0 }}" autocomplete="off" class="layui-input pcbaInput layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">贴片费：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="pcbaProcessFee" value="{{ d.params.pcbaProcessFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
+                    <input type="text" name="pcbaProcessFee" value="{{ d.params.pcbaProcessFee || 0 }}" autocomplete="off" class="layui-input pcbaInput layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">测试费：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="pcbaTestFee" value="{{ d.params.pcbaTestFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
+                    <input type="text" name="pcbaTestFee" value="{{ d.params.pcbaTestFee || 0 }}" autocomplete="off" class="layui-input pcbaInput layui-disabled">
                 </div>
             </div>
         </div>
@@ -632,19 +632,19 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">零件数量：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="pcbaPartsCount" value="{{ d.params.pcbaPartsCount || 0 }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="pcbaPartsCount" value="{{ d.params.pcbaPartsCount || 0 }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">贴片数量：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="pcbaPasterCount" value="{{ d.params.pcbaPasterCount || 0 }}" autocomplete="off" class="layui-input">
+                    <input type="text" name="pcbaPasterCount" value="{{ d.params.pcbaPasterCount || 0 }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">钢网费：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="pcbaToolFee" value="{{ d.params.pcbaToolFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
+                    <input type="text" name="pcbaToolFee" value="{{ d.params.pcbaToolFee || 0 }}" autocomplete="off" class="layui-input pcbaInput layui-disabled">
                 </div>
             </div>
         </div>
@@ -653,19 +653,19 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">包装费：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="pcbaPackingFee" value="{{ d.params.pcbaPackingFee || 0 }}" autocomplete="off" class="layui-input pcbaInput">
+                    <input type="text" name="pcbaPackingFee" value="{{ d.params.pcbaPackingFee || 0 }}" autocomplete="off" class="layui-input pcbaInput layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">小计：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="pcbaSubtotalFee" value="{{ d.params.pcbaSubtotalFee || 0 }}" autocomplete="off" class="layui-input pcbaSubtotal">
+                    <input type="text" name="pcbaSubtotalFee" value="{{ d.params.pcbaSubtotalFee || 0 }}" autocomplete="off" class="layui-input pcbaSubtotal layui-disabled">
                 </div>
             </div>
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <!-- <label class="layui-form-label">明细备注到报价单:</label> -->
                 <div class="layui-input-block" style="margin-left: 42px;">
-                    <input type="checkbox" name="noteToQuote" value="1" {{ d.params.noteToQuote == '1' ? 'checked' : '' }} class="layui-input" title="明细备注到报价单" lay-skin="primary" lay-filter="is-mark-quote-note">
+                    <input type="checkbox" name="noteToQuote" value="1" {{ d.params.noteToQuote == '1' ? 'checked' : '' }} class="layui-input" title="明细备注到报价单" lay-skin="primary" lay-filter="is-mark-quote-note" disabled>
                 </div>
             </div>
         </div>
@@ -677,7 +677,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">支付id：</label>
                 <div class="layui-input-block">
-                     <input type="text" name="payLogId" value="{{ d.params.payLogId || '' }}" autocomplete="off" class="layui-input">
+                     <input type="text" name="payLogId" value="{{ d.params.payLogId || '' }}" autocomplete="off" class="layui-input layui-disabled">
                 </div>
             </div>
         </div>
@@ -695,163 +695,8 @@
 
 <script>
     layui.data.done = function(d) {
-        var tabId = d.params.tabId;
         layui.use(['admin', 'table', 'form', 'laydate'], function () {
-            // var $ = layui.jquery,
-            //     layer = layui.layer;
-            //     laydate = layui.laydate;
-            // var form = layui.form;
-
-            // var q_params = {
-            //     pcbCost: 0,         // 小计
-            //     totalPrice: 0,      // 总价
-            //     shippingPrice: 0    // 运费
-            // }
-            // var $this = {
-            //     name: null  // 元素属性名
-            // }
-            // laydate.render({
-            //    elem: '#oupBuildTime'
-            // });
-            // $("#user_editInfo_form").bind('input propertychange', function (e) {
-            //     var a = 0;
-            //     var $this = $(e.target).attr("name");
-            //     quoteBPU($this);
-            //     var cobj = get_qObj();
-            //     $.each(cobj, function (i, val) {
-            //         var _val = parseFloat(val);
-            //         a += _val;
-            //     });
-            //     q_params.pcbCost = a.toFixed(2);
-            //     $(".orderPCBupdateForm input[name='subtotal']").val(q_params.pcbCost);       // 小计
-            //     getPCBA();
-            //     set_qObj();
-            // });
-            // 获取对象
-            // function get_qObj() {
-            //     $.each(q_params, function (i, val) {    // 初始化
-            //        q_params[i] = 0;
-            //     });
-            //     var _quote_obj = new Object();
-            //     _quote_obj.engineeringFee = $(".orderPCBupdateForm input[name='engineeringFee']").val();
-            //     _quote_obj.boardFee = parseFloat($(".orderPCBupdateForm input[name='boardFee']").val());
-            //     _quote_obj.testCostFee = parseFloat($(".orderPCBupdateForm input[name='testCostFee']").val());
-            //     _quote_obj.overworkFee = parseFloat($(".orderPCBupdateForm input[name='overworkFee']").val());
-            //     _quote_obj.toolingFee = parseFloat($(".orderPCBupdateForm input[name='toolingFee']").val());
-            //     for (var key in _quote_obj) {
-            //         if (isNaN(_quote_obj[key])) {
-            //             _quote_obj[key] = 0;
-            //         }
-            //     }
-            //     return _quote_obj;
-            // }
-
-            // 修改表单对象-->回传到页面
-            // function set_qObj() {
-            //     var postFee = $(".orderPCBupdateForm input[name='postFee']").val();
-            //     if (isNaN(postFee) || postFee == "") {
-            //         postFee = 0;
-            //     }
-            //     var pcbaSubtotal = parseFloat($("input[name='pcbaSubtotalFee']").val());
-            //     if (isNaN(pcbaSubtotal) || pcbaSubtotal == "") {
-            //         pcbaSubtotal = 0;
-            //     }
-            //     q_params.shippingPrice = parseFloat(postFee);
-            //     q_params.pcbCost = parseFloat(q_params.pcbCost);
-            //     q_params.totalPrice = parseFloat(q_params.shippingPrice+q_params.pcbCost+pcbaSubtotal).toFixed(2);
-            //     $(".orderPCBupdateForm input[name='totalFee']").val(q_params.totalPrice);      // 总价
-            // }
-            
-            // var oldRm = $("input[name='remark']").val();   
-           
-            //     let pcbaQuoteInfo = '';
-            //     // console.log(data.elem.checked); //是否被选中，true或者false
-            //     // console.log(data.value); //复选框value值，也可以通过data.elem.value得到
-               
-            //     if(data.elem.checked){
-            //         $.each($(".pcbaInput"), function () {
-            //             var this_val = $(this).val();
-            //             var nana = $(this).attr("name");
-            //             if(this_val != 0){
-            //                 pcbaQuoteInfo += (nana+'='+this_val+' ');
-            //             }
-            //         }); 
-            //         // console.log(pcbaQuoteInfo);
-            //         var rm = pcbaQuoteInfo.trim().replace(/\s+/g,',').replace('pcbaPartsFee','Components').replace('pcbaProcessFee','Assembly').replace('pcbaTestFee','Test').replace('pcbaToolFee','Stencil').replace('pcbaPackingFee','Packing');
-            //         // console.log(rm);
-            //         $("input[name='remark']").val(oldRm+rm); 
-            //     }else{
-            //         pcbaQuoteInfo = '';
-            //         $("input[name='remark']").val(oldRm); 
-            //     }
-            // })
-
-            // 遍历获取PCBA所有表单的值
-            // function getPCBA() {
-            //     var _val = 0;
-            //     $.each($(".pcbaInput"), function () {
-            //         var this_val = $(this).val();
-            //         var nana = $(this).attr("name");
-            //         if (isNaN(this_val) || this_val == "") {
-            //             this_val = 0;
-            //         }
-            //         _val += parseFloat(this_val);
-            //     });
-            //     $("input[name='pcbaSubtotalFee']").val(_val);
-            // }
-
-            // 板费、PCS、单价 联动计算
-            // function quoteBPU(type) {
-            //     var boardFee = parseFloat($(".orderPCBupdateForm input[name='boardFee']").val());   // 板费
-            //     var unitPrice = parseFloat($(".orderPCBupdateForm input[name='unitPrice']").val()); // 单价
-            //     var quantityPcs = parseFloat($(".orderPCBupdateForm input[name='quantityPcs']").val()); // PCS数
-            //     if (type == "boardFee" || type == "quantityPcs") {
-            //         var up = parseFloat(boardFee/quantityPcs).toFixed(3);
-            //         $(".orderPCBupdateForm input[name='unitPrice']").val(up);
-            //     } else if (type == "unitPrice") {
-            //         var bf = parseFloat(unitPrice*quantityPcs).toFixed(3);
-            //         $(".orderPCBupdateForm input[name='boardFee']").val(bf);
-            //     }
-            // }
-
-            //监听点选项
-            // var nqc;
-            // form.on('checkbox(is-mark-quote-note)',function(data){
-            //     if (data.elem.checked) { 
-            //         layer.msg('明细备注到报价单');
-            //         nqc = 1;
-            //     }else{
-            //         layer.msg('明细不备注到报价单');
-            //         nqc = 2;
-            //     }
-            // });
-            // 表单提交
-            // form.on('submit(LAY-pcborder-update-submit)',function (data) {
-            //     var field = data.field;
-            //     field.noteToQuote = nqc;
-            //     if (field.remark == "" || field.remark == "null") {
-            //         field.remark = "";
-            //     }
-            //     if (field.productionVerification == null || field.productionVerification == "" || field.productionVerification == "off") {
-            //         field.productionVerification = 0;
-            //     } else {
-            //         field.productionVerification = 1;
-            //     }
-            //     admin.req({
-            //         type: 'post'
-            //         ,url: setter.baseUrl+'epc/pcborder/update'
-            //         ,data: field
-            //         ,done: function (res) {
-            //             layer.msg('订单信息修改成功');
-            //             parent.layui.table.reload(tabId,{page: {curr: 1}});
-            //         }
-            //         ,fail: function (res) {
-            //             layer.msg("订单信息修改失败，请稍后再试！");
-            //         },
-            //     });
-            //     layer.closeAll();
-            //     return false;
-            // });
+            form.render(null,'common-show-pcb-info-form');
         });
     }
 </script>

@@ -5,10 +5,11 @@
  */
 
 
-layui.define(['admin','table','index','element','form','laydate', 'tools_printLable', 'proMana_global'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate', 'tools_printLable', 'proMana_global','r'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
+        ,r = layui.r
         ,form = layui.form
         ,setter = layui.setter
         ,tools_printLable = layui.tools_printLable
@@ -96,7 +97,34 @@ layui.define(['admin','table','index','element','form','laydate', 'tools_printLa
         var data = obj.data;
         if (obj.event == 'edit'){
         } else if (obj.event == 'search') {
-            layer.msg('查看订单协同');
+            // layer.msg('查看订单协同');
+            r.get('scm/ordersupplier/infoByOid/'+data.id,null,false).then((res)=>{
+                console.log(res);
+                if(res){
+                    data.deliveryTime = res.deliveryTime;
+                    data.supplierNo = res.supplierNo;
+                    data.ljSupplier = res.ljSupplier;
+                    data.tpSupplier = res.tpSupplier;
+                    data.pcbaPartsCount = res.pcbaPartsCount;
+                    data.pcbaPasterCount = res.pcbaPasterCount; 
+                    admin.popup({
+                        title: "查看［"+data.productNo+"］信息"
+                        ,shadeClose: true
+                        ,shade: false
+                        ,maxmin: true
+                        ,area: ['598px', '375px']
+                        // ,id: 'sys_menu'
+                        ,success: function(layero, index){
+                            view(this.id).render('/sqeManagement/iframeWindow/pcbinfo_search_sqe', data).done(function(){
+                                //监听提交
+                            });
+                        }
+                    })
+                }else{
+                    layer.msg('没有查询到该数据！！');
+                }
+                
+            })
         } else if (obj.event == 'chxx') {
             data.table = 'proMana_outBoundOD_tb';
             proMana_global.chxx(data);

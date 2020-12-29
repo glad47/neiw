@@ -62,6 +62,10 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
 
         this.print = function(title,area,btn,url,data,printId){
             return printPopup(title,area,btn,url,data,printId);
+        };
+
+        this.showPcbInfo = function(data){
+            return showPopup('查看pcb信息',['50%','100%'],'common/common_show_pcb_info',data);
         }
     }
 
@@ -113,7 +117,7 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
         // let urlarr = url.split("/"),popupId = urlarr[urlarr.length - 1].replace(/_/g,'-');
        return new Promise(function(resolve,reject){
            let pid = splitPopupId(url);
-           console.log(pid);
+           //console.log(pid);
             admin.popup({
                 id: 'LAY-popup-'+pid,
                 title: title,
@@ -159,7 +163,7 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
     function printPopup(title,area,btn,url,data,printId){
         return new Promise(function(resolve,reject){
             let pid = splitPopupId(url);
-            console.log(pid);
+            //console.log(pid);
             admin.popup({
                 id: "LAY-print-"+pid
                 ,title: title
@@ -179,6 +183,26 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
                 }
             });
         })
+    }
+
+    //显示框
+    function showPopup(title,area,url,data){
+        return new Promise(function(resolve,reject){
+            let pid = splitPopupId(url);
+            //console.log(pid);
+            admin.popup({
+                id: "LAY-show-"+pid
+                ,title: title
+                ,area: area
+                ,offset: 'r'
+                ,anim: 2
+                ,success: function (layero, index) {
+                    view(this.id).render(url, data).done(function () {
+                       resolve(index);
+                    });
+                }
+            });
+        }) 
     }
 
     exports(MOD_NAME, r);

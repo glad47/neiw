@@ -3,11 +3,12 @@
  @Name:    市场管理－－［内部订单］
 
  */
-layui.define(['admin','table','index','element','form','laydate', 'jsTools'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate', 'jsTools','r'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
+        ,r = layui.r
         // ,laydate = layui.laydate
         ,setter = layui.setter
         ,element = layui.element;
@@ -458,6 +459,12 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools'], fu
             });
         }
     });
+    
+    //双击
+    table.on('rowDouble(interior_order_Tabpcb)', function(obj){
+        // console.log(obj);
+        r.showPcbInfo(obj.data);
+    }); 
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ Stencil 钢网 订单
     function tabRenderStencil() {

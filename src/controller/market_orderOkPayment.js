@@ -5,13 +5,14 @@
  */
 
 
-layui.define(['admin', 'table', 'index','element','form','laydate'], function(exports){
+layui.define(['admin', 'table', 'index','element','form','laydate','r'], function(exports){
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
         ,laydate = layui.laydate
         ,setter = layui.setter
+        ,r = layui.r
         ,element = layui.element;
         var $ = layui.jquery;
 
@@ -170,6 +171,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
         });
     }
    
+    //双击
+    table.on('rowDouble(or_Tabpcb_ok_payment)', function(obj){
+        // console.log(obj);
+        r.showPcbInfo(obj.data);
+    }); 
 
     //监听工具条
     table.on('tool(or_Tabpcb_ok_payment)', function(obj){
