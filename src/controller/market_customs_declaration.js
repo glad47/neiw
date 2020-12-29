@@ -43,7 +43,7 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
         ,{field: 'goodsNo', title:'品名号'}
         ,{field: 'customerNo', title: '客户编号'}
         ,{field: 'gmtCreate', title: '创建时间', sort: true,  templet: "<div>{{ d.gmtCreate != null ? layui.util.toDateString(d.gmtCreate, 'yyyy-MM-dd') : ''}}</div>"}
-        ,{title: '操作', width: 450, align: 'center', fixed: 'right', toolbar: '#table-customs-declaration-toolbar'}
+        ,{title: '操作', width: 520, align: 'center', fixed: 'right', toolbar: '#table-customs-declaration-toolbar'}
       ]]
     });
     
