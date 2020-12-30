@@ -104,7 +104,7 @@
             <div class="layui-input-inline" style="width: auto;">
                 <script type="text/html" template>
                 <button class="layui-btn layuiadmin-btn-list layui-btn-normal" data-type="e1">添加</button>
-                <button class="layui-btn layuiadmin-btn-list layui-btn-danger" data-type="e2">删除</button>
+                <!-- <button class="layui-btn layuiadmin-btn-list layui-btn-danger" data-type="e2">删除</button> -->
                 <button class="layui-btn layuiadmin-btn-list" data-type="e3">导入</button>
                 <input type="button" id="market-customs-declaration-form-submit" lay-submit lay-filter="market-customs-declaration-form-submit" value="确认" class="layui-btn" style="display: none;" >
                 </script>
@@ -117,6 +117,9 @@
         <select xm-select="select{{d.LAY_INDEX}}" xm-select-radio data-index={{d.LAY_INDEX}} lay-filter="goods" data-key="goodsNo">
             <option value="">请选择</option>
         </select>
+    </script>
+    <script type="text/html" id="customs-declaration-del-toolbar">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
     </script>
 </div>
 
@@ -165,8 +168,7 @@
                     ,{field: 'orderNo', align:'center', title: '订单号码',edit: 'text'}
                     ,{field: 'sourceSupply', align:'center', title: '货源地',event:'initSourceSupply'} 
                     ,{field: 'goodsNo', align:'center', title: '商品编号及描述',minWidth:450,event:'initSelect'}
-                    
-                    // ,{field: 'commercialInvoiceno', align:'center', title: '发票号码',edit: 'text'}
+                    ,{title: '操作', width: '5%', align: 'center', fixed: 'right', toolbar: '#customs-declaration-del-toolbar'} 
                 ]]
             });
 
@@ -319,6 +321,25 @@
                     }
                 }
             })
+
+
+            let add_del_array = [];//删除arr
+            table.on('tool(market-packing-list-en-table)', function(obj){
+                var data = obj.data;
+                if(obj.event === 'del'){
+                    layer.confirm('确定删除该数据？', function(index){
+                        // console.log(data);
+                        if(data.id){
+                            add_del_array.push(data.id);
+                            let ids = add_del_array.toString();
+                            // console.log(ids);
+                            form.val('market-customs-declaration-form',{delIdArr:ids})
+                        }
+                        obj.del();
+                        layer.close(index);
+                    });
+                }
+            });
 
              /**
              * 初始化下拉， 获取所有客户信息
@@ -909,7 +930,7 @@
                 ];
             }
             
-            let add_del_array = [];//删除arr
+            // let add_del_array = [];//删除arr
             var active = {
                 e1: function(index){
                     let oldData = table.cache["market-packing-list-en-table"],d={};
