@@ -187,6 +187,7 @@
             // });
 
             //table单击行事件
+            let add_del_array = [];//删除arr
             table.on('tool(market-packing-list-en-table)',function(obj){
                 var data = obj.data; //获得当前行数据
                 var layEvent = obj.event; //获得 lay-event 对应的值
@@ -319,14 +320,7 @@
                     }else{
                         layer.msg('请先添加总价和数量！！')
                     }
-                }
-            })
-
-
-            let add_del_array = [];//删除arr
-            table.on('tool(market-packing-list-en-table)', function(obj){
-                var data = obj.data;
-                if(obj.event === 'del'){
+                } else if(obj.event === 'del'){
                     layer.confirm('确定删除该数据？', function(index){
                         // console.log(data);
                         if(data.id){
@@ -339,7 +333,14 @@
                         layer.close(index);
                     });
                 }
-            });
+            })
+
+
+            
+            // table.on('tool(market-packing-list-en-table)', function(obj){
+            //     var data = obj.data;
+                
+            // });
 
              /**
              * 初始化下拉， 获取所有客户信息
