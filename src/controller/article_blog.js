@@ -117,7 +117,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                             var c = layedit.getContent(edit);
                             var d = layedit.getContent(internalChain);
                             //中文‘替换英文'
-                            c.replace(/\’/g,"'");
+                            // c.replace(/\’/g,"'");
                             field.articleContent = c;
                             field.articleInternalChain = d;
                             if (field.articleKing == 'on') {
@@ -159,6 +159,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                         layer.msg('已删除');
                     }
                 });
+                admin.req({
+                    url: setter.imUrl + 'blogapi/updateStaticPage?fileName='+data.articleName+'&pathMark=blog',
+                    type: 'GET',
+                    success:function(data){
+                        console.log(data)
+                    }
+                })
             });
         }
     });
@@ -201,7 +208,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                                 var c = layedit.getContent(i);
                                 // console.log(c);
                                 //中文‘替换英文'
-                                c.replace(/\’/g,"'");
+                                // c.replace(/\’/g,"'");
                                 field.articleContent = c;
                                 var b = layedit.getContent(ss);
                                 field.blogInternalChain = b;
