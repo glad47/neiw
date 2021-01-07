@@ -161,7 +161,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 ,{field:'nofCore', title: 'NofCore', align:'center', width: 80,hide: true}
                 ,{field:'nofPp', title: 'NofPp', align:'center', width: 80,hide: true}
                 ,{field:'nofHoles', title: 'NofHoles', align:'center', width: 90,hide: true}
-                ,{title: '操作', width: 320, align:'center', fixed: 'right', toolbar: '#Tabtb-pcb-epc-indicatorCard-option'}
+                ,{title: '操作', width: 380, align:'center', fixed: 'right', toolbar: '#Tabtb-pcb-epc-indicatorCard-option'}
             ]]
             ,done : function (res, curr, count) {
                 $("a[data='isOk']").each(function (i, n) {
