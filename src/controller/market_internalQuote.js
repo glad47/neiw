@@ -253,6 +253,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
                             tabdata.paymentType = data.user.paymentType;
                             tabdata.deliveryType = data.user.deliveryType;
                             tabdata.contact = data.user.contact;
+                            tabdata.isMilitaryProject = data.user.isMilitaryProject;
                             admin.popup({
                                 title: '报价合同'
                                 ,area: ['100%', '100%']

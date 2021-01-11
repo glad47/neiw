@@ -450,6 +450,9 @@
                     <li>5. Acceptable x-out: international;</li>
                     <li>6. Customer Note points;</li>
                     <li>7. Please note that our quotation does not include bank transfer/paypal commission fees, and the amount you see is the one that reaches our account, which will be indicated in the invoice.</li>
+                    {{# if(d.params.isMilitaryProject != null && d.params.isMilitaryProject == 1){ }}
+                    <li>8. The entrusting party guarantees that it has intellectual property rights to the products and technologies it entrusts to process. If there is any infringement of intellectual property rights, the entrusting party shall actively cooperate with us to deal with it. Meanwhile, all liabilities caused by intellectual property rights infringement shall be borne by the entrusting party.</li>    
+                    {{# } }}
                 </ul>
             </div>
             <div class="contract-module-four-rig layui-col-md6">

@@ -289,7 +289,7 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <div class="layui-col-md6">
+            <div class="layui-col-md4">
                 <label class="layui-form-label" style="width: 126px;">需要确认生产资料：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
@@ -297,11 +297,19 @@
                     </script>
                 </div>
             </div>
-            <div class="layui-col-md6">
+            <div class="layui-col-md4">
                 <label class="layui-form-label">来自公司：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.isSourceCompany == undefined || d.params.isSourceCompany == '0' ? '' : 'checked' }} lay-filter="isSourceCompanyF">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md4">
+                <label class="layui-form-label">是否军工：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.isMilitaryProject == undefined || d.params.isMilitaryProject == '0' ? '' : 'checked' }} lay-filter="isMilitaryProjectF">
                     </script>
                 </div>
             </div>
@@ -345,6 +353,7 @@
           <input type="hidden" name="needRh"  value="{{d.params.needRh || 0}}">
           <input type="hidden" name="needOhm" value="{{d.params.needOhm || 0}}">
           <input type="hidden" name="needNp" value="{{d.params.needNp || 0}}">
+          <input type="hidden" name="isMilitaryProject" value="{{d.params.isMilitaryProject || 0}}">
           <input type="hidden" name="delIdArr" >
         </script>
         <div class="layui-form-item">
@@ -491,6 +500,16 @@
                     form.val('customer-add-edit-form-list',{isSourceCompany:0})
                 }
             }); 
+
+            form.on('switch(isMilitaryProjectF)',function(data){
+                if(data.elem.checked){
+                    layer.msg('军工项目');
+                    form.val('customer-add-edit-form-list',{isMilitaryProject:1})
+                }else{
+                    layer.msg('非军工项目');
+                    form.val('customer-add-edit-form-list',{isMilitaryProject:0})
+                }
+            })
 
             form.on('switch(isOptionUser)',function (data) {
                 if (data.elem.checked == true){
