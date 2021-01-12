@@ -1746,8 +1746,11 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         pcb_container.productNo = importPcbInfo['productNo'];
         pcb_container.countries = post_data.countrysId = importPcbInfo['countries'];
         pcb_container.postFee = importPcbInfo['postFee'];
-        pcb_container.quoteGerberName = importPcbInfo['quoteGerberName'];
+        pcb_container.quoteGerberName = importPcbInfo['quoteGerberName'];//报价资料
         pcb_container.quoteGerberPath = importPcbInfo['quoteGerberPath'];
+        pcb_container.productionGerberName = importPcbInfo['productionGerberName'];//生产资料
+        pcb_container.productionGerberPath = importPcbInfo['productionGerberPath'];
+
         pcb_container.mantissa = importPcbInfo['mantissa'];
         // 绑定客户id和客户名
         var userId = $("dl[xid='selCustomer']").children(".xm-select-this").attr("lay-value");
