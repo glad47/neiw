@@ -66,6 +66,28 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
 
         this.showPcbInfo = function(data){
             return showPopup('查看pcb信息',['50%','100%'],'common/common_show_pcb_info',data);
+        };
+
+        this.commonInportProductNos = function(){
+            return importPopup(
+                '选择订单型号',
+                ['50%', '60%'],
+                ['确定', '取消'],
+                'common/common_import_order_form_table',
+                'drsjyc',
+                'LAY-common-import-order-table-list'
+            );
+        };
+
+        this.commonInportSupplier = function(){
+            return importPopup(
+                '选择供应商',
+                ['50%', '60%'],
+                ['确定', '取消'],
+                'common/common_import_supplier_form_table',
+                'drsjyc-supplier',
+                'LAY-common-import-supplier-table-list'
+            );
         }
     }
 
@@ -144,11 +166,14 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
                                 }
                             }
                             //处理删除id,规定删除id字段必须为delIdArr
-                            if(formdata.field.delIdArr){
-                                formdata.field.delIdArr = formdata.field.delIdArr.split(",");
-                            }else{
-                                formdata.field.delIdArr = [];
+                            if(tableMark){
+                                if(formdata.field.delIdArr){
+                                    formdata.field.delIdArr = formdata.field.delIdArr.split(",");
+                                }else{
+                                    formdata.field.delIdArr = [];
+                                }
                             }
+                            
                             d.formData = formdata;
                             d.index = index;
                             resolve(d);
@@ -203,6 +228,45 @@ layui.define(['layer', 'jquery', 'admin', 'form'], function (exports) {
                 }
             });
         }) 
+    }
+
+    function importPopup(title,area,btn,url,clickSubmitMark,tableMark){
+        return new Promise(function(resolve,reject){
+            let pid = splitPopupId(url);
+            admin.popup({
+                id: 'LAY-popup-'+pid, 
+                title: title,
+                closeBtn: 0, //不显示关闭按钮
+                anim: 2,
+                shadeClose: true, //开启遮罩关闭
+                area: area,
+                btn: btn,
+                yes: function() {
+                    $(`#${clickSubmitMark}`).click();
+                    // $("#drsjyc-ci").click();
+                },
+                success: function(layero,index){
+                    view(this.id).render(url).done(function(){
+                        //用于监听导入按钮的提交
+                        $(`#${clickSubmitMark}`).click(function(){
+                            let d = {};
+                            //获取表格数据
+                            let checkStatus = table.checkStatus(tableMark),data = checkStatus.data;
+                            console.log(data);
+                            if(data.length === 0){
+                                return layer.msg('请选择要导入的数据');
+                            }else{
+                                data = data[0];
+                            }
+                            d.data = data;
+                            d.index = index;
+
+                            resolve(d);
+                        })
+                    })
+                }
+            }) 
+        })
     }
 
     exports(MOD_NAME, r);

@@ -17,6 +17,9 @@
             </div>
         </div>
         <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-list" data-type="import">导入返单</button>
+            </div>
             <table class="layui-table" id="scm_purchase_contract_tab" lay-filter="scm_purchase_contract_tab"></table>
             <script type="text/html" id="scm_purchase_contract_tab_tabbar">
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="th">退回</a>
@@ -29,8 +32,5 @@
 </div>
 
 <script>
-    layui.use('scm_materialPurchasing', layui.factory('scm_materialPurchasing')).use(['scm_materialPurchasing', 'table', 'index','element','form'], function(){
-        var form = layui.form;
-        form.render();
-    });
+    layui.use('scm_materialPurchasing', layui.factory('scm_materialPurchasing'));
 </script>

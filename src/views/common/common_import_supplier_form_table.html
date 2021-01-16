@@ -1,0 +1,106 @@
+<div class="layui-fluid">
+    <div class="layui-card">
+      <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="common-import-suplier-form-list">
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">供应商编号</label>
+            <div class="layui-input-inline">
+              <input type="text" name="supplierId" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">公司名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="companyName" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-inline">
+            <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-common-import-supplier-form-search">
+              <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+            </button>
+            <button class="layui-btn layuiadmin-btn-list layui-btn-danger layui-hide" data-type="drsjyc-supplier" id="drsjyc-supplier">导入数据隐藏</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="layui-card-body">
+        <table id="LAY-common-import-supplier-table-list" lay-filter="LAY-common-import-supplier-table-list"></table>
+        <script type="text/html" id="supplier_type_import">
+            {{#  if(d.type ===1){ }}
+                <span style="color: orangered;">PCB</span>
+            {{#  } else if (d.type ===2){ }}
+                <span style="color: chocolate;">PCBA</span>
+            {{#  } else if (d.type ===3){ }}
+                <span style="color: deepskyblue;">SMT</span>
+            {{#  } else if (d.type === 4){ }}
+                <span style="color: deepskyblue;">物料</span>
+            {{# } }}
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  layui.use(['admin', 'table', 'form'], function(){
+    var $ = layui.$
+    ,admin = layui.admin
+    ,view = layui.view
+    ,table = layui.table
+    ,setter = layui.setter
+    ,form = layui.form;
+
+    let ddd = [];
+    
+    form.render(null, 'common-import-supplier-form-list');
+    
+    //监听搜索
+    form.on('submit(LAY-common-import-supplier-form-search)', function(data){
+        var field = data.field;
+        //发送请求
+        // console.log(field);   
+        admin.req({
+            type: 'post'
+            ,url: setter.baseUrl+'sys/supplier/list'       // 需要修改成退回的接口
+            ,data:field
+            ,done: function (res) {
+              if(res.code === 0){
+                ddd = res.data;
+                if(ddd.length === 0){
+                  layer.msg('没有数据');
+                }else{
+                  active.pulldata(ddd);
+                }
+              }
+            }
+            ,fail: function (res) {
+                layer.msg('服务器异常，稍后再试！');
+                bool = false;
+            }
+        })
+      
+    });
+
+    //查询出的结果用table显示
+    var active = {
+        pulldata: function(ddd){
+            table.render({
+                elem: '#LAY-common-import-supplier-table-list'
+                ,data: ddd
+                ,totalRow: false
+                ,cellMinWidth: 90
+                ,cols: [[
+                    {type: 'radio',fixed: 'left'}
+                    ,{field: 'supplierId',  title: '供应商编号', align:'center'}
+                    ,{field: 'type', title: "类别", align:'center', templet: '#supplier_type_import'}
+                    ,{field: 'companyName', title: '公司名称', align:'center'}
+                ]]
+            });
+        }
+    }
+
+
+    active.pulldata(ddd);
+   
+
+  });
+  </script>

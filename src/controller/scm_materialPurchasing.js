@@ -1,10 +1,9 @@
 /**
-
-
+ * 供应链管理
  */
 
 
-layui.define(['admin','table','index','element','form','uploadCommon', 'filePathProcess','convertCurrency','requestInterface'], function (exports) {
+layui.define(['admin','table','index','element','form','uploadCommon', 'filePathProcess','convertCurrency','requestInterface','r'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -12,13 +11,21 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
         ,setter = layui.setter
         ,element = layui.element
         ,$ = layui.jquery
+        ,r = layui.r
         ,uploadCommon = layui.uploadCommon
         ,filePathProcess = layui.filePathProcess
         ,convertCurrency = layui.convertCurrency
         ,requestInterface = layui.requestInterface;
 
     form.render(null,'material-purchasing-form-list');
-
+    //监听搜索
+    form.on('submit(material-purchasing-search)', function(data){
+        var field = data.field;
+        //执行重载
+        table.reload('scm_material_purchasing_tab', {
+            where: field
+        });
+    });
     //－－－－－－－－－－－－－－－－－－－－ 物料采购
     table.render({
         elem: '#scm_material_purchasing_tab'
@@ -70,7 +77,7 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
                         view(this.id).render('scmManagement/iframeWindow/material_purchasing_edit_add').done(function () {
                             form.render(null,'scm-material-purchasin-edit-add-form');
 
-                            form.on('submit(scm_add_material_purchasing_submit)', function(data){
+                            form.on('submit(scm-material-purchasin-edit-add-sumbit)', function(data){
                                 var field = data.field;
                                 // data.field.supplier = supplier;
                                 // data.field.supplierId = supplierId;
@@ -157,7 +164,7 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
                     view(this.id).render('scmManagement/iframeWindow/material_purchasing_edit_add',data).done(function () {
                         form.render(null,'scm-material-purchasin-edit-add-form');
 
-                        form.on('submit(scm_add_material_purchasing_submit)', function(data){
+                        form.on('submit(scm-material-purchasin-edit-add-sumbit)', function(data){
                             var field = data.field;
                             // data.field.supplier = supplier;
                             // data.field.supplierId = supplierId;
@@ -195,19 +202,20 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
             });
         }
     });
-    //监听搜索
-    form.on('submit(material-purchasing-search)', function(data){
-        var field = data.field;
-        //执行重载
-        table.reload('scm_material_purchasing_tab', {
-            where: field
-        });
-    });
+    
 
 
     //--------------------------------------------- 采购合同
 
     form.render(null,'scm-purchase-contract-form-list');
+    //监听搜索
+    form.on('submit(LAY-scm-purchase-contract-search)', function(data){
+        var field = data.field;
+        //执行重载
+        table.reload('scm_purchase_contract_tab', {
+            where: field
+        });
+    });
 
     table.render({
         elem: '#scm_purchase_contract_tab'
@@ -300,7 +308,7 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
                     view(this.id).render('scmManagement/iframeWindow/material_purchasing_edit_add',data).done(function () {
                         form.render(null,'scm-material-purchasin-edit-add-form');
 
-                        form.on('submit(scm_add_material_purchasing_submit)', function(data){
+                        form.on('submit(scm-material-purchasin-edit-add-sumbit)', function(data){
                             var field = data.field;
                             admin.req({
                                 type: 'post',
@@ -319,15 +327,43 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
             });
         }
     });
-    //监听搜索
-    form.on('submit(LAY-scm-purchase-contract-search)', function(data){
-        var field = data.field;
-        //执行重载
-        table.reload('scm_purchase_contract_tab', {
-            where: field
-        });
-    });
+    
+    var active = {
+        import: function(data){
+            if(!data){
+                var checkStatus = table.checkStatus('scm_purchase_contract_tab')
+                ,checkData = checkStatus.data; //得到选中的数据
+                if(checkData.length === 0){
+                return layer.msg('请选择数据');
+                }
+                if(checkData.length > 1){
+                return layer.msg('只能选择一条数据');
+                }
+                data = checkData[0];
+            }
+            let layerIndex;
+            r.popup(
+                '导入物料数据',
+                ['733px','532px'],
+                ['导入', '取消'], 
+                'scmManagement/iframeWindow/material_purchasing_edit_add',
+                data,
+                'scm-material-purchasin-edit-add-sumbit',
+                null,
+                0
+            ).then((d)=>{
+                console.log(d);
+                let sendData = d.formData.field;
+                layerIndex = d.index;
+                return r.get('scm/procurement/save',sendData,true);
+            }).then((res)=>{
+                layer.msg('导入添加成功！！！');
+                // table.reload('market-customs-declaration-table');
+                layer.close(layerIndex); 
+              });
 
+        }
+    }
 
     // $(".material-purchasing-form-search input").bind("input propertychange", function (even) {
     //     $("*[lay-filter='material-purchasing-search']").click();
@@ -335,6 +371,11 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
     // $(".purchase-contract-form-search input").bind("input propertychange", function (even) {
     //     $("*[lay-filter='purchase-contract-search']").click();
     // });
+    $('.layui-btn.layuiadmin-btn-list').on('click', function(){
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+    
 
     exports('scm_materialPurchasing', {});
 });

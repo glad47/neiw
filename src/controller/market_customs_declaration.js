@@ -257,7 +257,7 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
             if(checkData.length > 1){
               return layer.msg('只能选择一条数据');
             }
-            data = checkStatus[0];
+            data = checkData[0];
           }
          
           // editOperate(checkData[0]);
