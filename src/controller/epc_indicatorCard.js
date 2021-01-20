@@ -799,7 +799,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 admin.req({
                     type: 'post'
                     ,url: setter.baseUrl+'epc/stencilorder/epcAuditStencilOrder'
-                    ,data: field
+                    ,data: data
                     ,done: function () {
                         layer.msg('审核成功!');
                         layui.table.reload('epc_Tabstencil_ok_payment_order');
