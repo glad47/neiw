@@ -763,36 +763,46 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
         } else if (obj.event === 'edit') {
             if (data.quoteGerberName != "" && data.quoteGerberName != null && typeof data.quoteGerberName != 'undefined') {
                 var _this_id = data.id,_this_isInternal = data.isInternal,_this_onlineOid = data.onlineOid;;
-                admin.popup({
-                    title: '审核订单[钢网]'
-                    ,area: ['867px', '325px']
-                    ,id: 'epc_incSH'
-                    ,btn:['审核','取消']
-                    ,yes: function () {
-                        $("#epc_auditOrders").click();
-                    }
-                    ,success: function (layero, index) {
-                        view(this.id).render('epcManagement/iframeWindow/audit_orders', data).done(function () {
-                            form.render();
-                            form.on('submit(epc_auditOrders)', function (data) {
-                                var field = data.field;
-                                field.id = _this_id;
-                                field.isInternal = _this_isInternal;
-                                field.onlineOid = _this_onlineOid;
-                                admin.req({
-                                    type: 'post'
-                                    ,url: setter.baseUrl+'epc/stencilorder/epcAuditStencilOrder'
-                                    ,data: field
-                                    ,done: function () {
-                                        layer.alert('钢网订单审核成功', function () {
-                                            layui.table.reload('epc_Tabstencil_ok_payment_order');
-                                            layer.closeAll();
-                                        });
-                                    }
-                                });
-                                return false;
-                            });
-                        });
+                // admin.popup({
+                //     title: '审核订单[钢网]'
+                //     ,area: ['867px', '325px']
+                //     ,id: 'epc_incSH'
+                //     ,btn:['审核','取消']
+                //     ,yes: function () {
+                //         $("#epc_auditOrders").click();
+                //     }
+                //     ,success: function (layero, index) {
+                //         view(this.id).render('epcManagement/iframeWindow/audit_orders', data).done(function () {
+                //             form.render();
+                //             form.on('submit(epc_auditOrders)', function (data) {
+                //                 var field = data.field;
+                //                 field.id = _this_id;
+                //                 field.isInternal = _this_isInternal;
+                //                 field.onlineOid = _this_onlineOid;
+                //                 admin.req({
+                //                     type: 'post'
+                //                     ,url: setter.baseUrl+'epc/stencilorder/epcAuditStencilOrder'
+                //                     ,data: field
+                //                     ,done: function () {
+                //                         layer.alert('钢网订单审核成功', function () {
+                //                             layui.table.reload('epc_Tabstencil_ok_payment_order');
+                //                             layer.closeAll();
+                //                         });
+                //                     }
+                //                 });
+                //                 return false;
+                //             });
+                //         });
+                //     }
+                // });
+
+                admin.req({
+                    type: 'post'
+                    ,url: setter.baseUrl+'epc/stencilorder/epcAuditStencilOrder'
+                    ,data: field
+                    ,done: function () {
+                        layer.msg('审核成功!');
+                        layui.table.reload('epc_Tabstencil_ok_payment_order');
                     }
                 });
             } else {
