@@ -314,7 +314,7 @@
                         qty = oldData[rowIndex].qty; 
                     
                     if(tp && qty){
-                        let up = (Number(tp) / Number(qty)).toFixed(2);
+                        let up = (Number(tp) / Number(qty)).toFixed(3);
                         oldData[rowIndex].unitPrice = up;
                         table.reload('market-packing-list-en-table',{data:oldData});  
                     }else{
