@@ -1,4 +1,4 @@
-<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
+<!-- <link href="../../../src/style/formSelects-v4.css" rel="stylesheet" /> -->
 <div class="layui-fluid">
     <div class="layui-form" lay-filter="iqc-mantissa-edit-add-form" style="padding: 20px 0 0 0;">
         <div class="layui-form-item">
@@ -6,11 +6,12 @@
                 <label class="layui-form-label">聚谷型号</label>
                 <div class="layui-input-block">
                     <script type="text/html" template lay-done="layui.data.done(d);">
-                        <select name="productNo" xm-select="productNo" xm-select-radio  xm-select-search="" xm-select-search-type="dl" lay-verify="required">
+                        <!-- <select name="productNo" xm-select="productNo" xm-select-radio  xm-select-search="" xm-select-search-type="dl" lay-verify="required">
                             {{# if(d.params.productNo != null){ }}
                             <option class="def-option" value="{{d.params.productNo}}" selected>{{d.params.productNo}}</option>
                             {{# } }}
-                        </select>
+                        </select> -->
+                        <input type="text" name="productNo" value="{{d.params.productNo || ''}}" autocomplete="off" class="layui-input"  lay-verify="required" id="impcbpnos">
                     </script>
                 </div>
             </div>
@@ -79,7 +80,6 @@
     </div>
 </div>
 
-  
   <script>
     layui.data.done = function(d) {
         var productNo;
@@ -87,53 +87,65 @@
             productNo = d.params.productNo;
         }
 
-        layui.use(['admin', 'form', 'formSelects'], function(){
+        layui.use(['admin', 'form', 'formSelects','r'], function(){
             var $ = layui.$
             ,form = layui.form
             ,formSelects = layui.formSelects
-            ,setter = layui.setter;
+            ,setter = layui.setter
+            ,r = layui.r;
 
             form.render(null,'iqc-mantissa-edit-add-form');
 
-            $(".xm-select-label").remove();
-            formSelects.render('productNo');
-            formSelects.value('productNo', [productNo]);
+            // $(".xm-select-label").remove();
+            // formSelects.render('productNo');
+            // formSelects.value('productNo', [productNo]);
 
-            var isGetProductNo = false;
-            $("div").delegate(".xm-select-title","click", function () {
-                var $this = $(this).parents(".xm-select-parent").attr("fs_id");
-                if ($this == "productNo") {
-                    if (!isGetProductNo) {
-                        getProductNo($this);
-                        isGetProductNo = true;
-                    }
-                } 
-            });
+            // var isGetProductNo = false;
+            // $("div").delegate(".xm-select-title","click", function () {
+            //     var $this = $(this).parents(".xm-select-parent").attr("fs_id");
+            //     if ($this == "productNo") {
+            //         if (!isGetProductNo) {
+            //             getProductNo($this);
+            //             isGetProductNo = true;
+            //         }
+            //     } 
+            // });
 
             // 获取型号
-            function getProductNo(dom) {
-                layer.msg("正在加载列表.....");
-                $("select[xm-select='"+dom+"']").find("option").remove();
-                admin.req({
-                    type: 'post',
-                    async: true,
-                    url: setter.baseUrl+'epc/pcborder/allProductNo',
-                    success: function (res) {
-                        var resList = res.data;
-                        if (resList != null && resList.length>0) {
-                            var $html = "";
-                            for (var i=0;i<resList.length;i++) {
-                                $html += "<option value="+resList[i]+">"+resList[i]+"</option>"
-                            }
-                            $("select[xm-select='productNo']").append($html)
-                            formSelects.render('productNo');
-                        }
-                        formSelects.value('productNo', [productNo]);
-                        $(".xm-select-parent[fs_id='"+dom+"']").children(".xm-form-select").addClass("xm-form-selected");
-                        layer.msg("加载成功！");
-                    }
-                });
-            }
+            // function getProductNo(dom) {
+            //     layer.msg("正在加载列表.....");
+            //     $("select[xm-select='"+dom+"']").find("option").remove();
+            //     admin.req({
+            //         type: 'post',
+            //         async: true,
+            //         url: setter.baseUrl+'epc/pcborder/allProductNo',
+            //         success: function (res) {
+            //             var resList = res.data;
+            //             if (resList != null && resList.length>0) {
+            //                 var $html = "";
+            //                 for (var i=0;i<resList.length;i++) {
+            //                     $html += "<option value="+resList[i]+">"+resList[i]+"</option>"
+            //                 }
+            //                 $("select[xm-select='productNo']").append($html)
+            //                 formSelects.render('productNo');
+            //             }
+            //             formSelects.value('productNo', [productNo]);
+            //             $(".xm-select-parent[fs_id='"+dom+"']").children(".xm-form-select").addClass("xm-form-selected");
+            //             layer.msg("加载成功！");
+            //         }
+            //     });
+            // }
+
+            $("#impcbpnos").on("click",function(){
+                r.commonInportProductNos().then((d)=>{
+                    console.log(d);
+                    //填充数据
+                    form.val('iqc-mantissa-edit-add-form',{
+                       'productNo':d.data.productNo,
+                    })
+                    layer.close(d.index);
+                })
+            })
         });
       }
   

@@ -36,7 +36,7 @@
                         <!--{{ d.params.stencilType }} {{ d.params.stencilSizeX }}*{{ d.params.stencilSizeY }} (Valid area {{ d.params.stencilAreaX}}*{{ d.params.stencilAreaY}})-->
                         <!--Price: {{ d.params.totalStencilFee }}-->
                     <!--</option>-->
-                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}/quote/getStencilSize" lay-done="layui.data.done(d);">
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}/v1/quote/getStencilSize" lay-done="layui.data.done(d);">
                         <select name="parentId" id="selStencilSize" lay-filter="selStencilSize">
                             {{#  layui.each(d.data, function(index, item){ }}
                             <option data="{'materialName':'{{ item.materialName }}','stencilSizeX':'{{ item.stencilSizex }}','stencilSizeY':'{{ item.stencilSizey }}','stencilAreaX':'{{ item.stencilAreax }}','stencilAreaY':'{{ item.stencilAreay }}','price':'{{ item.priceToUSD}}','weight':'{{ item.weight}}'}" price="{{ item.priceToUSD }}" value="{{ item.id }}" {{ d.params.stencilSizeX*d.params.stencilSizeY == item.stencilSizex*item.stencilSizey ? 'selected' : ''}}>
