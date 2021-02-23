@@ -24,6 +24,14 @@
         </script>
       </div>
     </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">数量</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template>
+            <input type="text" name="numberPacking" value="{{ d.params.numberPacking || '' }}" lay-verify="required" placeholder="请输入数量" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+    </div>
     <script type="text/html" template>
       <input type="hidden" name="id" value="{{ d.params.id || '' }}">
     </script>

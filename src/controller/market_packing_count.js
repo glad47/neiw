@@ -135,6 +135,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
             ,{field:'longPacking', title: '长（CM）',align: 'center', sort: true ,edit: 'text'}
             ,{field:'widePacking',title: '宽（CM）', align:'center', sort: true ,edit: 'text'}
             ,{field:'highPacking', title: '高（CM）', align:'center', sort: true ,edit: 'text'}
+            ,{field:'numberPacking', title: '数量', align:'center', sort: true ,edit: 'text'} 
         ]]
     });
 
