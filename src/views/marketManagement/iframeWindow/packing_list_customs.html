@@ -84,10 +84,10 @@
                             件数： <strong>{{d.params.itemEntityList.map(i => Number(i.packages)).reduce((total,num)=> total + num) }}</strong>
                         </td>
                         <td valign='top' style="padding:5px 15px; width: 65px;">
-                            毛重： <strong>{{d.params.itemEntityList.map(i => Number(i.grossWeight)).reduce((total,num)=> total + num) }}</strong>
+                            毛重： <strong>{{ d.params.itemEntityList.map(i => Number(i.grossWeight)).reduce((total,num)=> total + num).toFixed(2) }}</strong>
                         </td>
                         <td valign='top' style="padding:5px 15px; width: 65px;">
-                            净重： <strong>{{d.params.itemEntityList.map(i => Number(i.netWeight)).reduce((total,num)=> total + num) }}</strong>
+                            净重： <strong>{{ d.params.itemEntityList.map(i => Number(i.netWeight)).reduce((total,num)=> total + num).toFixed(2) }}</strong>
                         </td>
                         <td valign='top' style="padding:5px 15px; width: 110px;">
                             成交方式： <strong>{{d.params.tradeType || ''}}</strong>

@@ -93,8 +93,8 @@
                             <td colspan="2" style="text-align: center;">Total</td>
                             <td style="text-align: center;">{{ d.params.itemEntityList.map(i => i.packages).reduce((total,num)=> total + num) }}</td>
                             <td style="text-align: center;">{{ d.params.itemEntityList.map(i => i.qty).reduce((total,num)=> total + num) }}</td>
-                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => Number(i.netWeight * (i.packages == null ? 1 : i.packages))).reduce((total,num)=> total + num) }}</td>
-                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => Number(i.grossWeight * (i.packages == null ? 1 : i.packages))).reduce((total,num)=> total + num) }}</td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => Number(i.netWeight * (i.packages == null || i.packages == 0 ? 1 : i.packages))).reduce((total,num)=> total + num).toFixed(2) }}</td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => Number(i.grossWeight * (i.packages == null || i.packages == 0 ? 1 : i.packages))).reduce((total,num)=> total + num).toFixed(2) }}</td>
                         </tr>
                     </script>
                 </tbody>
