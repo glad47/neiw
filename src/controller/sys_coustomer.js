@@ -16,6 +16,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
         ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,cols: [[
              {field:'id', title: 'id', sort: true, width: 80}
+             ,{field:'userType',title:'客户来源',sort:true, templet:'#userType', width: 130}
             ,{field:'status', title: '状态', width: 130, templet:'#customerStatus'}
             ,{field:'userSystemId', title: '客户代码', sort: true, width: 130}
             ,{field:'businessName', title: '跟单员',width: 100}
@@ -25,7 +26,7 @@ layui.define(['admin', 'table','element','form', 'edit_customer_info'], function
             ,{field:'gmtCreate', title: '注册时间', sort: true}
             ,{field:'gmtModified', title: '更新时间', sort: true}
 
-            ,{field:'userType',title:'内外',sort:true, templet:'#userType', width: 130, hide: true}
+            
             ,{field:'userIp',title:'注册IP',sort:true, hide: true}
             ,{field:'skypeId', title: 'Skype', sort: true, hide: true}
             ,{field:'receiverTelephone', title: '收货电话',minWidth: 120, sort: true, hide: true}
