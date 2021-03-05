@@ -1,5 +1,5 @@
 
-  <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list"style="padding: 10px 15px 0 0;">
+  <div class="layui-form" lay-filter="article-manage-blog-add-edit-form" style="padding: 10px 15px 0 0;">
     <div class="layui-form-item">
       <label class="layui-form-label">URL</label>
       <div class="layui-input-inline" style="width: 400px;">
@@ -54,6 +54,27 @@
       </div>
     </div>
     <div class="layui-form-item">
+      <label class="layui-form-label">标签</label>
+      <div class="layui-input-inline" style="width: 400px;">
+        <script type="text/html" template>
+          <input type="text" name="articleTab" value="{{ d.params.articleTab || '' }}" lay-verify="required" placeholder="多个用,号隔开" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">缩率图</label>
+      <div class="layui-input-inline" style="width: 400px;">
+        <script type="text/html" template>
+          <input type="text" name="articleImg" value="{{ d.params.articleImg || '' }}" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+      <div>
+        <button type="button" class="layui-btn" id="imgUploadBut">
+          <i class="layui-icon">&#xe67c;</i>上传图片
+        </button>
+      </div>
+    </div>
+    <div class="layui-form-item">
        <script type="text/html" template>
          <textarea class="layui-textarea" id="blogcontent" style="display: none" wrap="hard">
           {{ d.params.articleContent || '' }}
@@ -82,12 +103,28 @@
     .article-fl .layui-form-checkbox{margin-left: 26px;}
   </style>
   <script>
-    layui.use(['jquery', 'form', 'admin','setter','layedit'], function(){
+    layui.use(['jquery', 'form', 'admin','setter','layedit','upload'], function(){
       var $ = layui.jquery
-      ,authtree = layui.authtree
       ,form = layui.form
       ,admin = layui.admin
       ,setter = layui.setter
+      ,upload = layui.upload
       ,layedit = layui.layedit;
+
+      var uploadInst = upload.render({
+        elem: '#imgUploadBut' //绑定元素
+        ,url: setter.imUrl+'imgfile/fileupload' //上传接口
+        ,done: function(res){
+          //上传完毕回调
+          console.log(res);
+          form.val('article-manage-blog-add-edit-form',{
+            'articleImg':res.data.src
+          })
+        }
+        ,error: function(){
+          //请求异常回调
+          layer.error('上传异常！！');
+        }
+      });
     });
   </script>
