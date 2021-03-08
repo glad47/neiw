@@ -170,6 +170,7 @@
     layui.data.done = function(d){
         layui.use(['form'], function(){
             var form = layui.form,
+                setter = layui.setter,
                 $ = layui.jquery;
             form.render(null, ''); //渲染该模板下的动态表单
             var ss_type;
