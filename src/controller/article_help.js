@@ -27,7 +27,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 文章博客管理
     table.render({
         elem: '#article_table_help'
-        ,url: setter.baseUrl+'/article/help/list'
+        ,url: setter.baseUrl+'/article/list'
         ,toolbar: '#toolbar-add-help'
         ,cellMinWidth: 80
         ,id:"article_table_help"
@@ -40,16 +40,16 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
             }
         }
         ,where: {
-            at:1
+            at:3
         }
         ,cols: [[
             {field:'id', title: 'ID',hide: true}
-            ,{field:'classifyOne', title: '一级分类', align:'center', width: 176, sort: true}
-            ,{field:'classifyTwo', title: '二级分类', align:'center', sort: true}
-            ,{field:'title', title: '主题', hide: false, align:'center', sort: true}
+            ,{field:'articleClassify', title: '一级分类', align:'center', width: 176, sort: true}
+            ,{field:'articleKeyword', title: '二级分类', align:'center', sort: true}
+            ,{field:'articleName', title: '主题', hide: false, align:'center', sort: true}
             // ,{field:'content', title: '内容', align:'center', sort: true}
-            ,{field:'gmtCreate', title: '创建时间', align:'center', sort: true}
-            ,{field:'gmtModified', title: '修改时间', align:'center', sort: true}
+            ,{field:'articleTime', title: '创建时间', align:'center', sort: true}
+            ,{field:'articleUpdateTime', title: '修改时间', align:'center', sort: true}
             ,{title: '操作', width: 120, align:'center', fixed: 'right', toolbar: '#Tabtb-article-help-management-option', sort: true}
         ]]
         ,done : function (res, curr, count) {
@@ -99,9 +99,9 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                             var field = data.field;
                             console.log(field);
                             var c = layedit.getContent(edit);
-                            field.content = c;
+                            field.articleContent = c;
                             admin.req({
-                                url: setter.baseUrl + 'article/help/update',
+                                url: setter.baseUrl + 'article/update',
                                 type: 'POST',
                                 data: field,
                                 success: function (data) {
@@ -165,9 +165,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                                 //console.log(field);
                                 var c = layedit.getContent(i);
                                 //console.log(c);
-                                field.content = c;
+                                field.articleContent = c;
+                                field.articleTitle = field.articleName;
                                 admin.req({
-                                    url: setter.baseUrl + 'article/help/save',
+                                    url: setter.baseUrl + 'article/saveHelp',
                                     type: 'POST',
                                     //dataType:'json',
                                     //contentType:'application/json',
