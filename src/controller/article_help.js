@@ -86,7 +86,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                 success: function (layero, index) {
                     view(this.id).render('articleManagement/help_edit_add_form',data).done(function () {
                         //清空form表单
-                        form.render(null,'article-edit-add-form-list');
+                        form.render(null,'articlehelp-edit-add-form');
                         _t_layedit();
                         var edit = layedit.build('helpcontent',{
                             uploadImage:{
@@ -152,7 +152,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                     success: function (layero, index) {
                         view(this.id).render('articleManagement/help_edit_add_form').done(function () {
                             //清空form表单
-                            form.render(null,'article-edit-add-form-list');
+                            form.render(null,'articlehelp-edit-add-form');
                             _t_layedit();
                             var i = layedit.build('helpcontent',{
                                 uploadImage:{

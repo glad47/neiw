@@ -1,5 +1,5 @@
 
-  <div class="layui-form" lay-filter="article-edit-add-form-list">
+  <div class="layui-form" lay-filter="articlehelp-edit-add-form">
     <div class="layui-form-item">
       <label class="layui-form-label">一级分类:</label>
       <div class="layui-input-inline">
@@ -98,7 +98,7 @@
         ,done: function(res){
           //上传完毕回调
           console.log(res);
-          form.val('article-manage-blog-add-edit-form',{
+          form.val('articlehelp-edit-add-form',{
             'articleImg':res.data.src
           })
         }
