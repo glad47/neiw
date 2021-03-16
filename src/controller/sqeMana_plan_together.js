@@ -17,7 +17,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
 
     // var jstools = layui.jsTools;
 
-    var bunames = ['ada','alisa','tracy','tina','richard','donna','amber','zero'];
+    var bunames = ['ada','alisa','tracy','tina','richard','donna','amber','zero','carlos'];
     var uname = layui.data('userInfo').uname;
 
     form.render(null,'sqe-plan-together-formlist');
