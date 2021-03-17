@@ -1566,6 +1566,10 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
             });
         }
         ,done: function(res, index, upload){
+            if(res.code != 0){
+               layer.msg(res.msg);
+               return; 
+            }
             //上传完毕回调
             layer.msg("文件上传成功！");
             $progress.fadeOut();
