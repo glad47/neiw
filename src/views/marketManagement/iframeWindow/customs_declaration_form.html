@@ -302,7 +302,7 @@
                         gw = oldData[rowIndex].grossWeight;
                     // console.log(gw);
                     if(gw){
-                        let nw = Number(gw) - 0.5;
+                        let nw = Number(gw) - 0.1;
                         oldData[rowIndex].netWeight = nw;
                         table.reload('market-packing-list-en-table',{data:oldData}); 
                     }else{
