@@ -65,8 +65,8 @@
                             <td style="text-align: center;">{{ item.qty || ''}}</td>
                             <td style="text-align: center;" rowspan="{{item.rowspan || ''}}">{{ item.packages || ''}}</td>
                             <td style="text-align: center;">{{ item.description || ''}}</td>
-                            <td style="text-align: center;">{{ item.grossWeight || ''}}</td>
-                            <td style="text-align: center;">{{ item.netWeight || ''}}</td>
+                            <td style="text-align: center;">{{ Number(item.grossWeight).toFixed(3) || ''}}</td>
+                            <td style="text-align: center;">{{ Number(item.netWeight).toFixed(3) || ''}}</td>
                             <td style="text-align: center;" rowspan="{{item.rowspan || ''}}">{{ item.measurement || ''}}</td>
                             <td style="text-align: center;">{{ item.orderNo || ''}}</td>
                             <td style="text-align: center;">{{ d.params.commercialInvoice || ''}}</td>

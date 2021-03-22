@@ -69,8 +69,8 @@
                                 型号: {{ item.description || ''}}
                             </td>
                             <td style="text-align: center;">{{ item.qty || ''}}</td>
-                            <td style="text-align: center;">{{ item.netWeight || ''}}</td>
-                            <td style="text-align: center;">{{ item.grossWeight || ''}}</td>
+                            <td style="text-align: center;">{{ Number(item.netWeight).toFixed(3) || ''}}</td>
+                            <td style="text-align: center;">{{ Number(item.grossWeight).toFixed(3) || ''}}</td>
                         </tr> 
                         {{# }else{ }}
                         <tr>
