@@ -282,7 +282,7 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
             let sendData = d.formData.field;
             layerIndex = d.index;
             sendData.itemEntityList = d.tableData;
-            sendData.goodsNo = d.tableData.map(function(e){return e.description}).join(",");
+            // sendData.goodsNo = d.tableData.map(function(e){return e.description}).join(",");
             return r.post('market/customsdeclaration/update',sendData)
           }).then((res)=>{
             layer.msg('修改成功！！！');
