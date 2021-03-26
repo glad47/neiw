@@ -593,7 +593,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
         $.each(tabdata.data, function (idx, obj) {
             contractTotal = parseFloat(contractTotal+obj.subtotal);
             tabdata.total = contractTotal;
-            tabdata.data[idx].totalFee = obj.subtotal;
+            // tabdata.data[idx].totalFee = obj.subtotal;
             if (type === 2) {
                 viewName = "marketManagement/iframeWindow/quote_contractS";
                 contractType = 3;
