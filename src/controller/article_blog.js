@@ -131,19 +131,23 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                                 data: field,
                                 success: function (data) {
                                     console.log(data);
-                                    layui.table.reload('article_Table_blog'); //重载表格
-                                    layer.close(index); //执行关闭
+                                    if(data.code == 0){
+                                        layui.table.reload('article_Table_blog'); //重载表格
+                                        layer.close(index); //执行关闭
+                                    }else{
+                                        layer.msg('更新失败！！');
+                                    }
                                 }
                             });
                             // var fn = field.articleName.trim().replace(/\s+/g,"_")+'_'+field.id+'.html';
                             // console.log(fn);
-                            admin.req({
-                                url: setter.imUrl + 'blogapi/updateStaticPage?fileName='+field.articleName+'&pathMark=blog',
-                                type: 'GET',
-                                success:function(data){
-                                    console.log(data)
-                                }
-                            })
+                            // admin.req({
+                            //     url: setter.imUrl + 'blogapi/updateStaticPage?fileName='+field.articleName+'&pathMark=blog',
+                            //     type: 'GET',
+                            //     success:function(data){
+                            //         console.log(data)
+                            //     }
+                            // })
                         });
                     });
                 }
@@ -159,13 +163,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                         layer.msg('已删除');
                     }
                 });
-                admin.req({
-                    url: setter.imUrl + 'blogapi/updateStaticPage?fileName='+data.articleName+'&pathMark=blog',
-                    type: 'GET',
-                    success:function(data){
-                        console.log(data)
-                    }
-                })
+                // admin.req({
+                //     url: setter.imUrl + 'blogapi/updateStaticPage?fileName='+data.articleName+'&pathMark=blog',
+                //     type: 'GET',
+                //     success:function(data){
+                //         console.log(data)
+                //     }
+                // })
             });
         }
     });
@@ -220,8 +224,13 @@ layui.define(['admin', 'table', 'index','element','form','laydate','layedit'], f
                                     data: field,
                                     success: function (data) {
                                         console.log(data);
-                                        layui.table.reload('article_Table_blog'); //重载表格
-                                        layer.close(index); //执行关闭
+                                        if(data.code == 0){
+                                            layui.table.reload('article_Table_blog'); //重载表格
+                                            layer.close(index); //执行关闭
+                                        }else{
+                                            layer.msg('添加失败！！');
+                                        }
+                                        
                                     }
                                 })
 
