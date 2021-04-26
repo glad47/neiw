@@ -156,6 +156,7 @@
         <li>运费配置</li>
         <li>钢网配置</li>
         <li>贴片配置</li>
+        <li>Fedex运费</li>
       </ul>
       <div class="layui-tab-content">
         <!-- 价格配置 -->
@@ -212,6 +213,14 @@
         <div class="layui-tab-item">    
             <table id="LAY-info-qc-tp-table" lay-filter="LAY-info-qc-tp-table"></table>
         </div>
+
+        <!-- Fedex运费 -->
+        <div class="layui-tab-item">
+          <button class="layui-btn layui-btn-normal layui-btn-sm" id="excelFedexRates">
+            <i class="layui-icon">&#xe67c;</i>导入Fedex报价
+          </button>
+          <table id="LAY-info-qc-fedex-table" lay-filter="LAY-info-qc-fedex-table"></table>
+        </div>
       </div>
     </div>
   </div>
@@ -219,41 +228,6 @@
 
 <script>
     layui.data.done=function(d){
-        layui.use('sys_quote_config',layui.factory('sys_quote_config')).use(['admin', 'table', 'util','form'],function(){
-            var $ = layui.$
-                ,admin = layui.admin
-                ,setter = layui.setter
-                ,table = layui.table
-                ,element = layui.element
-                ,form = layui.form;
-            form.render();
-
-            //监听参数类型切换
-            form.on('select(e)',function(data){
-                $.get(setter.imUrl+"quoteConfig/getAllParameter",{parameterTypeId:data.value},function(data){
-                    $("select[name='parameterName']").empty();
-                    $("select[name='parameterValue']").empty();
-                    $.each(data.data, function (i, d) {
-                        $("select[name='parameterName']").append(
-                            "<option value='" + d.id + "'>" + d.parameterName + "</option>");
-                    });
-                    form.render();
-                });
-            });
-            
-            //监听参数切换
-            form.on('select(f)',function(data){
-                $.get(setter.imUrl+"quoteConfig/getAllParameterValue",{parameterId:data.value},function(data){
-                    var _this = $("select[name='parameter']");
-                    _this.empty();
-                    $.each(data.data, function (i, d) {
-                        $("select[name='parameter']").append(
-                            "<option value='" + d.id + "'>" + d.parameterValue + "</option>");
-                    });
-                    form.render();
-                });
-            });
-            
-        });
+        layui.use('sys_quote_config',layui.factory('sys_quote_config'));
     }
 </script>

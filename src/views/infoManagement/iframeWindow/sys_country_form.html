@@ -1,0 +1,53 @@
+<div class="layui-form" lay-filter="sys-country-form-list">
+    <div class="layui-form-item">
+        <label class="layui-form-label">国家英文名</label>
+        <div class="layui-input-inline">
+          <script type="text/html" template>
+            <input type="text" name="name" value="{{ d.params.name || '' }}" lay-verify="required" autocomplete="off" class="layui-input">
+          </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">国家中文名</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template>
+          <input type="text" name="cname" value="{{ d.params.cname || '' }}" lay-verify="required" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">国家简码</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+            <input type="text" name="fbCountryCode" value="{{ d.params.fbCountryCode || '' }}" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">fedex分区</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+            <input type="text" name="partitionFedex" value="{{ d.params.partitionFedex || '' }}" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+            <input type="text" name="remark" value="{{ d.params.remark || '' }}"   autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <script type="text/html" template>
+            <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+        </script>
+        <div class="layui-input-inline">
+          <input type="button"  lay-submit lay-filter="sys-country-form-submit" value="确认" class="layui-btn" style="display: none;" id="sys-country-form-submit">
+        </div>
+      </div>
+</div>
+

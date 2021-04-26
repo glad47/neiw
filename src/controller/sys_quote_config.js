@@ -1,13 +1,40 @@
-layui.define(['admin', 'table', 'util','form'], function(exports){
+layui.define(['admin', 'table', 'util','form','upload'], function(exports){
     var $ = layui.$
     ,admin = layui.admin
     ,setter = layui.setter
     ,table = layui.table
     ,form = layui.form
+    ,upload = layui.upload
     ,view = layui.view
     ,element = layui.element;
     
     form.render(null,'sys-quote-config-form-list');
+
+    //监听参数类型切换
+    form.on('select(e)',function(data){
+      $.get(setter.imUrl+"quoteConfig/getAllParameter",{parameterTypeId:data.value},function(data){
+          $("select[name='parameterName']").empty();
+          $("select[name='parameterValue']").empty();
+          $.each(data.data, function (i, d) {
+              $("select[name='parameterName']").append(
+                  "<option value='" + d.id + "'>" + d.parameterName + "</option>");
+          });
+          form.render(null,'sys-quote-config-form-list');
+      });
+    });
+  
+    //监听参数切换
+    form.on('select(f)',function(data){
+        $.get(setter.imUrl+"quoteConfig/getAllParameterValue",{parameterId:data.value},function(data){
+            var _this = $("select[name='parameter']");
+            _this.empty();
+            $.each(data.data, function (i, d) {
+                $("select[name='parameter']").append(
+                    "<option value='" + d.id + "'>" + d.parameterValue + "</option>");
+            });
+            form.render(null,'sys-quote-config-form-list');
+        });
+    });
     
     form.on('submit(LAY-sys-quote-config-formlist-search)', function(data){
         var field = data.field;
@@ -151,6 +178,39 @@ layui.define(['admin', 'table', 'util','form'], function(exports){
          ,{field: 'value', title: '价格/RMB', width: 150,align:'center',edit: 'text'}
          ]] 
       }
+      ,fedex: {
+        text: 'Fedex运费配置',
+        id: 'LAY-info-qc-fedex-table',
+        editUrl: setter.baseUrl+ 'sys/freight/updateFedexRate',
+        url: setter.baseUrl+'sys/freight/fedexRateList',
+        cols: [[
+          {field: 'id', title:'id',align:'center'},
+          {field: 'weight', title:'重量',width: 85,align:'center'},
+          {field: 'partitionA', title:'A区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionB', title:'B区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionD', title:'D区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionE', title:'E区',width: 82,align:'center',edit: 'text'},
+          {field: 'partitionF', title:'F区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionG', title:'G区',width: 82,align:'center',edit: 'text'},
+          {field: 'partitionH', title:'H区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionK', title:'K区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionM', title:'M区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionN', title:'N区',width: 82,align:'center',edit: 'text'},
+          {field: 'partitionO', title:'O区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionP', title:'P区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionQ', title:'Q区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionR', title:'R区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionS', title:'S区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionT', title:'T区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionU', title:'U区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionV', title:'V区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionX', title:'X区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionY', title:'Y区',width: 75,align:'center',edit: 'text'},
+          {field: 'partitionZ', title:'Z区',width: 75,align:'center',edit: 'text'},
+          {field: 'partition1', title:'1区',width: 82,align:'center',edit: 'text'},
+          {field: 'partition2', title:'2区',width: 82,align:'center',edit: 'text'},
+        ]]
+      }
     };
     
     //标题内容模板
@@ -212,6 +272,11 @@ layui.define(['admin', 'table', 'util','form'], function(exports){
         // tppz();
         var t = tabs['tp'];
         commonTableLoad(t.id,t.url,t.cols);
+        commonTableEdit(t.id,t.editUrl);
+      }else if(data.index === 11){
+        var t = tabs['fedex'];
+        commonTableLoad(t.id,t.url,t.cols,1);
+
         commonTableEdit(t.id,t.editUrl);
       }
     });
@@ -341,6 +406,20 @@ layui.define(['admin', 'table', 'util','form'], function(exports){
       }
     };
 
+    //excel导入上传
+    var uploadInst = upload.render({
+      elem: '#excelFedexRates' //绑定元素
+      ,url: setter.baseURL+'sys/freight/importFedexRates' //上传接口
+      ,done: function(res){
+        //上传完毕回调
+        layer.msg(res.msg);
+      }
+      ,error: function(){
+        //请求异常回调
+        layer.error('上传异常！！');
+      }
+    });
+
     function commonTableEdit(id,url){
       //监听单元格编辑
       table.on(`edit(${id})`, function(obj){
@@ -367,22 +446,33 @@ layui.define(['admin', 'table', 'util','form'], function(exports){
       });
     }
 
-    function commonTableLoad(id,url,cols){
+    function commonTableLoad(id,url,cols,mark){
       table.render({
         elem: `#${id}`
         ,url: url //模拟接口
         ,method: 'POST'
         ,parseData: function (res) {
-            return{
+            if(mark){
+              return{
                 "code": 0,
-                "data": res.data,
-                "count": res.data.length
+                "data": res.page.list,
+                "count": res.page.totalCount
+              }
+            }else{
+              return{
+                  "code": 0,
+                  "data": res.data,
+                  "count": res.data.length
+              }
             }
+            
         }
         ,cols: cols
+        ,page: false
         // ,skin: 'row'
       }); 
     }
+
 
     //编辑联动数据回显
     function echoLinkageData(ptid,pnid,pvid){

@@ -44,7 +44,7 @@ layui.define(['table', 'form', 'r'], function(exports){
     //监听工具条
     table.on('tool(LAY-sys-coupons-list)', function(obj){
       if(obj.event === 'del'){
-        window.del(obj);
+        window.del(obj.data);
       } else if(obj.event === 'edit'){
         window.edit(obj);
       }
@@ -79,7 +79,7 @@ layui.define(['table', 'form', 'r'], function(exports){
         r.get('sys/coupons/delete',{ids:obj.id}).then(()=>{
             layer.msg('已删除'); 
             table.reload('LAY-sys-coupons-list');
-            layer.clone(index);
+            layer.close(index);
         })
     });
     }

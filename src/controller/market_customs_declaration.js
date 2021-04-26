@@ -209,12 +209,11 @@ layui.define(['table', 'form', 'util','requestInterface','jsTools','convertCurre
             return layer.msg('请选择数据');
           }
           var ids = checkData.map(function(elem){return elem.id}).join(",");
-
           layer.confirm('确定删除吗？', function(index) {
-            r.post('market/customsdeclaration/delete',{ids:ids}).then((res)=>{
+            r.get('market/customsdeclaration/delete',{ids:ids}).then((res)=>{
               layer.msg('已删除'); 
               table.reload('market-customs-declaration-table');
-              layer.clone(index);
+              layer.close(index);
             })
           });
         }
