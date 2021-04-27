@@ -407,10 +407,11 @@ layui.define(['admin', 'table', 'util','form','upload'], function(exports){
     };
 
     //excel导入上传
-    var uploadInst = upload.render({
+    upload.render({
       elem: '#excelFedexRates' //绑定元素
-      ,url: setter.baseURL+'sys/freight/importFedexRates' //上传接口
+      ,url: setter.baseUrl+'sys/freight/importFedexRates' //上传接口
       ,exts: 'xlsx|xls'
+      ,headers:{token: layui.data('layuiAdmin').access_token}
       ,done: function(res){
         //上传完毕回调
         layer.msg(res.msg);
