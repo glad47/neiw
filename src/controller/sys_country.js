@@ -53,7 +53,7 @@ layui.define(['table', 'form', 'r', 'upload'], function(exports){
         elem: '#excelFedex' //绑定元素
         ,url: setter.baseURL+'sys/country/importPartitionFedex' //上传接口
         ,exts: 'xlsx|xls'
-        ,headers:{token: layui.data('layuiAdmin').access_token}
+        ,headers:{access_token: layui.data('layuiAdmin').access_token}
         ,done: function(res){
           //上传完毕回调
           layer.msg(res.msg);
