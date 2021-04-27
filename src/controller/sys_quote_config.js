@@ -410,6 +410,7 @@ layui.define(['admin', 'table', 'util','form','upload'], function(exports){
     var uploadInst = upload.render({
       elem: '#excelFedexRates' //绑定元素
       ,url: setter.baseURL+'sys/freight/importFedexRates' //上传接口
+      ,exts: 'xlsx|xls'
       ,done: function(res){
         //上传完毕回调
         layer.msg(res.msg);
