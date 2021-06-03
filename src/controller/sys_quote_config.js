@@ -114,7 +114,7 @@ layui.define(['admin', 'table', 'util','form','upload'], function(exports){
          ,{field: 'areaMaxParameter', title: '平米最大值', width: 150,align:'center'}
          ,{field: 'urgentType', title: '加急类型', width: 150,align:'center'}
          ,{field: 'layerNum', title: '层数', width: 150,align:'center'}
-         ,{field: 'dayNumber', title: '天数', width: 150,align:'center'}
+         ,{field: 'dayNumber', title: '天数', width: 150,align:'center',edit: 'text'}
          ,{field: 'price', title: '费用', width: 150,align:'center',templet:'<div>{{d.price || "0"}}<div>',edit: 'text'}
          ]]
       }
