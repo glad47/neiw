@@ -1,5 +1,5 @@
 
-layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'uploadCommon', 'filePathProcess', 'bug-tabRigTools'], function(exports){
+layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'uploadCommon', 'filePathProcess', 'bug-tabRigTools','requestInterface'], function(exports){
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
@@ -8,6 +8,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
         ,setter = layui.setter
         ,element = layui.element
         ,upload = layui.upload
+        ,requestInterface = layui.requestInterface;
         var $ = layui.jquery;
         var uploadCommon = layui.uploadCommon;
         var filePathProcess = layui.filePathProcess;
@@ -299,62 +300,92 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                 }
             });
         } else if(obj.event === 'epc-write-indicator'){
+            // admin.popup({
+            //     title: '编写指示卡'
+            //     ,area: ['45%', '561px']
+            //     ,btn:['提交','取消']
+            //     ,yes:function(index, layero){
+            //         $("#LAY-pcborder-update-submit").click();
+            //     }
+            //     ,end:function(){
+            //         localStorage.removeItem("saveBackResult");  // 清除localStorage
+            //     }
+            //     ,success: function (layero, index) {
+            //         view(this.id).render('epcManagement/Indicator_cardform', data).done(function () {
+            //             form.render(null, '')
+            //             form.on('submit(LAY-pcborder-update-submit)',function (data) {
+            //                 var field = data.field;
+            //                 //获取table里的数据，监听行编辑事件。
+            //                 table.on('edit(indicator_listTab)',function(obj){
+            //                     // var value = obj.value //得到修改后的值
+            //                     // ,data = obj.data //得到所在行所有键值
+            //                     // ,field = obj.field; //得到字段
+            //                     var data = obj.data;
+            //                     data.pcbOrderId = field.id; //设置订单id
+            //                     data.provessId = obj.data.id; //设置工序id
+            //                     requestData.unshift(data);
+            //                 });
+            //                 requestData = uniqueObjArray(requestData,"id");
+            //                 field.processEntityList = requestData;
+            //                 var token = layui.data('layuiAdmin').access_token;
+            //                 if (requestData.length != 0) {
+            //                     $.ajax({
+            //                         type: 'post'
+            //                         ,url: setter.baseUrl+'epc/pcborderprocess/saves'
+            //                         ,headers: {
+            //                             'access_token':token
+            //                         }
+            //                         ,data: JSON.stringify(requestData)
+            //                         ,dataType:"json"
+            //                         ,contentType : "application/json;charset=utf-8"
+            //                         ,done: function (res) {
+            //                             layer.msg('指示卡提交成功');
+            //                             table.reload('epc_Tabpcb_ok_payment_order');
+            //                         }
+            //                         ,fail: function (res) {
+            //                             layer.msg("订单信息修改失败，请稍后再试！");
+            //                         },
+            //                     });
+            //                     requestData = [];
+            //                     layer.close(index);
+            //                     table.reload('epc_Tabpcb_ok_payment_order');
+            //                     return false;
+            //                 }
+            //                 layer.msg("请至少写入一条工序！");
+            //             })
+            //         })
+            //     }
+            // })
+            //20210608修改为检查表
+            let url = setter.baseUrl+'epc/pcborder/info/'+data.id;
+            let dd = requestInterface.getData(url);
+            let userInfoUrl = setter.baseUrl+'sys/consumer/user/info/'+data.userId;
+            let userInfo = requestInterface.GetCustomerInfo(userInfoUrl);
+            // console.log(userInfo);
+            
+            dd.userInfo = userInfo;
+            // console.log(dd);
             admin.popup({
-                title: '编写指示卡'
-                ,area: ['45%', '561px']
-                ,btn:['提交','取消']
-                ,yes:function(index, layero){
-                    $("#LAY-pcborder-update-submit").click();
+                title: '聚谷出货检查表'
+                ,id: 'LAY-proMana-checkTable'
+                ,area: ['80%','90%']
+                ,btn: ['打印', '返回']
+                ,btn1: function () {
+                    // layer.msg('打印');
+                    // document.body.innerHTML=document.getElementById("packReqAll").innerHTML;
+                    document.body.innerHTML=document.getElementById("product-packing-check-print").innerHTML;
+                    window.print();
+                    window.location.reload();
                 }
-                ,end:function(){
-                    localStorage.removeItem("saveBackResult");  // 清除localStorage
+                ,success: function (layero, index0) {
+                    // view(this.id).render('productManagement/iframeWindow/packaging_requirements', customerInfo).done(function () {
+                    //     form.render();
+                    // })
+                    view(this.id).render('productManagement/iframeWindow/packaging_check', dd).done(function () {
+                        form.render();
+                    });
                 }
-                ,success: function (layero, index) {
-                    view(this.id).render('epcManagement/Indicator_cardform', data).done(function () {
-                        form.render(null, '')
-                        form.on('submit(LAY-pcborder-update-submit)',function (data) {
-                            var field = data.field;
-                            //获取table里的数据，监听行编辑事件。
-                            table.on('edit(indicator_listTab)',function(obj){
-                                // var value = obj.value //得到修改后的值
-                                // ,data = obj.data //得到所在行所有键值
-                                // ,field = obj.field; //得到字段
-                                var data = obj.data;
-                                data.pcbOrderId = field.id; //设置订单id
-                                data.provessId = obj.data.id; //设置工序id
-                                requestData.unshift(data);
-                            });
-                            requestData = uniqueObjArray(requestData,"id");
-                            field.processEntityList = requestData;
-                            var token = layui.data('layuiAdmin').access_token;
-                            if (requestData.length != 0) {
-                                $.ajax({
-                                    type: 'post'
-                                    ,url: setter.baseUrl+'epc/pcborderprocess/saves'
-                                    ,headers: {
-                                        'access_token':token
-                                    }
-                                    ,data: JSON.stringify(requestData)
-                                    ,dataType:"json"
-                                    ,contentType : "application/json;charset=utf-8"
-                                    ,done: function (res) {
-                                        layer.msg('指示卡提交成功');
-                                        table.reload('epc_Tabpcb_ok_payment_order');
-                                    }
-                                    ,fail: function (res) {
-                                        layer.msg("订单信息修改失败，请稍后再试！");
-                                    },
-                                });
-                                requestData = [];
-                                layer.close(index);
-                                table.reload('epc_Tabpcb_ok_payment_order');
-                                return false;
-                            }
-                            layer.msg("请至少写入一条工序！");
-                        })
-                    })
-                }
-            })
+            });
         } else if (obj.event === 'edit') {
             if (data.quoteGerberName != "" && data.quoteGerberName != null && typeof data.quoteGerberName != 'undefined') {
                 // var _this_id = data.id,_this_isInternal = data.isInternal,_this_onlineOid = data.onlineOid;
