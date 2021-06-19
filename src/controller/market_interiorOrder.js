@@ -10,7 +10,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','r',
         ,form = layui.form
         ,r = layui.r
         ,setter = layui.setter
-        ,requestInterface = layui.requestInterface
+        ,filePathProcess = layui.filePathProcess
         ,element = layui.element
         ,$ = layui.jquery
         ,jstools = layui.jsTools;
