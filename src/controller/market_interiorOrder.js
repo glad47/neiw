@@ -3,17 +3,17 @@
  @Name:    市场管理－－［内部订单］
 
  */
-layui.define(['admin','table','index','element','form','laydate', 'jsTools','r'], function (exports) {
+layui.define(['admin','table','index','element','form','laydate', 'jsTools','r','filePathProcess'], function (exports) {
     table = layui.table
         ,view = layui.view
         ,admin = layui.admin
         ,form = layui.form
         ,r = layui.r
-        // ,laydate = layui.laydate
         ,setter = layui.setter
-        ,element = layui.element;
-        var $ = layui.jquery;
-        var jstools = layui.jsTools;
+        ,requestInterface = layui.requestInterface
+        ,element = layui.element
+        ,$ = layui.jquery
+        ,jstools = layui.jsTools;
 
     // 全局变量
     var defVal = {
@@ -170,7 +170,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','r']
                 ,{field: 'quoteGerberPath',title: 'quoteGerberPath',hide: true}
                 ,{field: 'silkScreenBotColor',title: 'silkScreenBotColor',hide: true}
                 ,{field: 'solderMaskBotColor',title: 'solderMaskBotColor',hide: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#interior_order_Bar', width: '20%'}
+                ,{fixed: 'right', title:'操作', toolbar: '#interior_order_Bar', width: '23%'}
             ]]
             ,done: function (res, curr, count) {
                 var data = res.data;    //获取表格所有数据对象
@@ -456,6 +456,22 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','r']
                             });
                         }
                     });
+                }
+            });
+        } else if (obj.event == 'internal_order_fileMana_pcb'){
+            data.orderType = "pcbOrder";        // 根据orderType  发送不同的接口
+            data.retab = "interior_order_Tabpcb";
+            data = filePathProcess.isInternal(data);
+            console.log(data);
+            admin.popup({
+                title: 'PCB订单资料管理'
+                ,area: ['870px', '303px']
+                ,success: function (layero, index) {
+                    view(this.id).render('epcManagement/iframeWindow/file_management', data).done(function () {
+                    });
+                }
+                ,end: function () {
+                    localStorage.removeItem("saveBackResult");  // 清除localStorage
                 }
             });
         }
@@ -829,6 +845,22 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','r']
                             });
                         }
                     });
+                }
+            });
+        } else if (obj.event == 'internal_order_fileMana_stencil'){
+            data.orderType = "stencilOrder";        // 根据orderType  发送不同的接口
+            data.retab = "interior_order_Tabstencil";
+            data = filePathProcess.isInternal(data);
+            console.log(data);
+            admin.popup({
+                title: 'PCB订单资料管理'
+                ,area: ['870px', '303px']
+                ,success: function (layero, index) {
+                    view(this.id).render('epcManagement/iframeWindow/file_management', data).done(function () {
+                    });
+                }
+                ,end: function () {
+                    localStorage.removeItem("saveBackResult");  // 清除localStorage
                 }
             });
         }
