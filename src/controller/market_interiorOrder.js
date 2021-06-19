@@ -72,7 +72,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','r',
             }
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field: 'productNo', title: '内部型号',width: 130, fixed: 'left', sort: true}
+                ,{field: 'productNo', title: '内部型号',width: 135, fixed: 'left', sort: true}
                 ,{field:'businessName',title:'跟单员名字',width:100, sort: true}
                 ,{field:'status', title: '状态', align:'center',templet: '#interiorOrderStatus', width: 117, sort: true}
                 ,{field:'payLogId', title: '支付情况', align:'center',templet: '#interiorPayLog', width: 117, sort: true}
@@ -501,7 +501,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','r',
             }
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field: 'productNo', title: '内部型号', width: 130, fixed: 'left', sort: true}
+                ,{field: 'productNo', title: '内部型号', width: 135, fixed: 'left', sort: true}
                 ,{field:'status', title: '状态', templet: '#interiorOrderStatus', width: 117, sort: true}
                 ,{field:'payLogId', title: '支付情况', align:'center',templet: '#interiorPayLogS', width: 117, sort: true}
                 ,{field: 'orderType',title: '订单类型', templet: '#order_type', width: 117, sort: true}    //1=新单  2=返单    3=返单有改

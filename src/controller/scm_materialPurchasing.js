@@ -43,7 +43,7 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
         }
         ,cols: [[
             {type:'checkbox', fixed: 'left'}
-            ,{field: 'productNo',title: '产品型号', width: 130, fixed: 'left', sort: true}      // 1 ＝ 待报价
+            ,{field: 'productNo',title: '产品型号', width: 135, fixed: 'left', sort: true}      // 1 ＝ 待报价
             ,{field: 'productSpecification',title: '产品规格', width: 110, sort: true}
             ,{field: 'productSize',title: '产品尺寸', width: 110, sort: true}
             ,{field: 'number',title: '数量', width: 200, sort: true}
@@ -233,7 +233,7 @@ layui.define(['admin','table','index','element','form','uploadCommon', 'filePath
         }
         ,cols: [[
             {type:'checkbox', fixed: 'left'}
-            ,{field: 'productNo',title: '产品型号', width: 130, fixed: 'left', sort: true}      // 1 ＝ 待报价
+            ,{field: 'productNo',title: '产品型号', width: 135, fixed: 'left', sort: true}      // 1 ＝ 待报价
             ,{field: 'productSpecification',title: '产品规格', width: 110, sort: true}
             ,{field: 'productSize',title: '产品尺寸', width: 110, sort: true}
             ,{field: 'number',title: '数量', width: 200, sort: true}

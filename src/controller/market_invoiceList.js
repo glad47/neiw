@@ -41,11 +41,11 @@ layui.define(['table', 'form','r'], function(exports){
         }
         ,cols: [[
             {type: 'checkbox', fixed: 'left'}
-            ,{field:'productNos',fixed: 'left', title: '聚谷型号', align:'center', minWidth: 154, sort: true}
-            ,{field: 'invoiceNo', title: '发票号', minWidth: 150}
+            ,{field:'productNos',fixed: 'left', title: '聚谷型号', align:'center', width: 154, sort: true}
+            ,{field: 'invoiceNo', title: '发票号', width: 150}
             ,{field: 'businessName', title: '跟单员'}
             ,{field: 'totalFee', title: '发票金额'}
-            ,{field: 'gmtCreate', title: '创建时间', minWidth: 130}
+            ,{field: 'gmtCreate', title: '创建时间', width: 130}
             ,{field: 'businessId', title: '跟单员id', hide: true}
             ,{field: 'consumerId', title: '客户id', hide: true}
             ,{title: '操作', width: 190, align: 'center', fixed: 'right', toolbar: '#invoiceList_Bar'}

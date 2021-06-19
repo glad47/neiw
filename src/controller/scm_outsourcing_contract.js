@@ -46,7 +46,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'gmtCreate',title: '报价时间', width: 166}
             ,{field: 'supplierNo', title: '供应商编号', width: 124}
             ,{field: 'supplierQuoteNo', title: '供应商厂编', width: 117}
-            ,{field: 'productNo', title: '聚谷型号', width: 124}
+            ,{field: 'productNo', title: '聚谷型号', width: 135}
             ,{field: 'pcbName', title: '聚谷物料号', width: 144}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134}
             ,{field: 'unitPrice', title: '单价', width: 96}

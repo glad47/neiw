@@ -53,7 +53,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,cols: [[
                 // {type:'checkbox'}
                 //{field: 'productNo',title: '内部型号', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
-                {field: 'productNo', title: '内部型号', width: 124, sort: true}
+                {field: 'productNo', title: '内部型号', width: 135, sort: true}
                 ,{field: 'gmtCreate',title: '报价时间', width: 166, sort: true}
                 ,{field: 'invoiceNo',title: '合同编号', width: 210, sort: true}
                 ,{field: 'subtotal', title: '客户报价', width: 124, sort: true, templet:'<div>{{ (d.subtotal + d.pcbaSubtotalFee).toFixed(2) }}</div>'}
@@ -95,7 +95,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,cols: [[
                 // {type:'checkbox'}
                 //{field: 'productNo',title: '内部型号', width: 115, templet: '<div>{{ d.status == 4 ? "待确认交期" : "" }}</div>'}      // 1 ＝ 待报价
-                {field: 'productNo', title: '内部型号', width: 124, sort: true}
+                {field: 'productNo', title: '内部型号', width: 135, sort: true}
                 ,{field: 'gmtCreate',title: '报价时间', width: 166, sort: true}
                 ,{field: 'invoiceNo',title: '合同编号', width: 210, sort: true}
                 ,{field: 'subtotal', title: '客户报价', width: 124, sort: true}

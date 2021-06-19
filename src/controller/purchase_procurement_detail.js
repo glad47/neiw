@@ -48,7 +48,7 @@ layui.define(['admin','table','index','element','form','laydate', 'requestInterf
             }
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field: 'productNo',title: '内部编号', width: 130, fixed: 'left', templet:'#iqcMana_ia', sort: true}      // 1 ＝ 已指派  2= 已报价
+                ,{field: 'productNo',title: '内部编号', width: 135, fixed: 'left', templet:'#iqcMana_ia', sort: true}      // 1 ＝ 已指派  2= 已报价
                 ,{field: 'pcbName',title: '客户型号', width: 134, sort: true}
                 ,{field: 'gmtCreate', title: '下单日期', minWidth: 171, sort: true}
                 ,{field: 'currentProcess',title: '进度', width: 110, sort: true}
@@ -131,7 +131,7 @@ layui.define(['admin','table','index','element','form','laydate', 'requestInterf
             }
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field: 'productNo',title: '内部编号', width: 130, fixed: 'left', templet:'#iqcMana_ia', sort: true}      // 1 ＝ 已指派  2= 已报价
+                ,{field: 'productNo',title: '内部编号', width: 135, fixed: 'left', templet:'#iqcMana_ia', sort: true}      // 1 ＝ 已指派  2= 已报价
                 ,{field: 'id',title: '客户编号', width: 134, sort: true}
                 ,{field: 'gmtCreate', title: '下单日期', minWidth: 171, sort: true}
                 ,{field: 'currentProcess',title: '进度', width: 110, sort: true}

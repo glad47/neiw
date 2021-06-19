@@ -86,12 +86,12 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field: 'productNo', title: '内部编码',minWidth: 130,fixed: 'left', sort: true}
-                ,{field: 'orderType',title: '订单类型',edit: 'text', Width: 110, templet: '#order_type', sort: true}    //1=新单  2=返单    3=返单有改
-                ,{field: 'gerberName',title: '文件名',edit: 'text',minWidth: 160, sort: true}
-                ,{field: 'pcbName',title: 'F/N',edit: 'text',minWidth: 130, sort: true}
+                ,{field: 'productNo', title: '内部编码',width: 135,fixed: 'left', sort: true}
+                ,{field: 'orderType',title: '订单类型',edit: 'text', width: 110, templet: '#order_type', sort: true}    //1=新单  2=返单    3=返单有改
+                ,{field: 'gerberName',title: '文件名',edit: 'text',width: 160, sort: true}
+                ,{field: 'pcbName',title: 'F/N',edit: 'text',width: 130, sort: true}
                 ,{field: 'orderNo',title: '客户PO',edit: 'text', sort: true}
-                ,{field: 'quoteOrderNo',title: '报价单号',edit: 'text',minWidth: 130, sort: true}
+                ,{field: 'quoteOrderNo',title: '报价单号',edit: 'text',width: 130, sort: true}
                 ,{field: 'gmtCreate',title: '创建时间',edit: 'text', sort: true}
                 ,{field: 'gmtModified',title: '修改时间',edit: 'text', sort: true}
                 // 型号占位
@@ -574,7 +574,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field: 'productNo', title: '内部编码',minWidth: 130,fixed: 'left', sort: true}
+                ,{field: 'productNo', title: '内部编码',width: 135,fixed: 'left', sort: true}
                 ,{field: 'orderType',title: '订单类型',edit: 'text', Width: 110, templet: '#order_type', sort: true}    //1=新单  2=返单    3=返单有改
                 ,{field: 'gerberName',title: '文件名',edit: 'text',minWidth: 160, sort: true}
                 ,{field: 'pcbName',title: 'F/N',edit: 'text',minWidth: 130, sort: true}

@@ -60,7 +60,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                 ,{field: 'gmtCreate',title: '报价时间', width: 168, sort: true}
                 ,{field: 'supplierNo', title: '供应商编号', sort: true}
                 ,{field: 'factoryMake', title: '供应商厂编', sort: true}
-                ,{field: 'productNo', title: '聚谷型号', sort: true}
+                ,{field: 'productNo', title: '聚谷型号', sort: true, width:135}
                 ,{field: 'pcbName', title: '聚谷物料号', sort: true}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', sort: true}
                 ,{field: 'unitPrice', title: '单价', sort: true}
@@ -246,7 +246,7 @@ layui.define(['admin','table','index','element','form','laydate','requestInterfa
                 ,{field: 'gmtCreate',title: '报价时间', width: 168, sort: true}
                 ,{field: 'supplierNo', title: '供应商编号', sort: true}
                 ,{field: 'factoryMake', title: '供应商厂编', sort: true}
-                ,{field: 'productNo', title: '聚谷型号', sort: true}
+                ,{field: 'productNo', title: '聚谷型号', sort: true, width: 135}
                 ,{field: 'pcbName', title: '聚谷物料号', sort: true}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', sort: true}
                 ,{field: 'unitPrice', title: '单价', sort: true}

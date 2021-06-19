@@ -92,7 +92,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             ,cols: [[
                  {type:'checkbox', fixed: 'left'}
                 ,{field:'id', title: 'ID',hide: true}
-                ,{field:'productNo',fixed: 'left', title: '内部型号', align:'center', width: 114, sort: true}
+                ,{field:'productNo',fixed: 'left', title: '内部型号', align:'center', width: 135, sort: true}
                 ,{field:'status', title: '状态', hide: false, align:'center',templet: '#pcbor_status',width: 150, sort: true}
                 ,{field: '', title:'文件名', toolbar: '#pcb-file', align:'center', sort: true}
                 ,{field:'gerberName', title: 'Gerber Name', align:'center', width: 254, sort: true}
@@ -310,7 +310,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             }
             ,cols: [[
                  {type:'checkbox', fixed: 'left'}
-                ,{field: 'productNo', title: '内部型号', align:'center', width: 134, sort: true, fixed: 'left'}
+                ,{field: 'productNo', title: '内部型号', align:'center', width: 135, sort: true, fixed: 'left'}
                 ,{field: 'status' , title: '状态', align:'center', width: 100, templet: '#stencil_status', sort: true}
                 ,{field: '', title:'文件', templet: '#stencil-file', align:'center', sort: true}
                 ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224, sort: true}
@@ -462,7 +462,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             }
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field: 'productNo', title: '内部型号', align:'center', width: 134, sort: true}
+                ,{field: 'productNo', title: '内部型号', align:'center', width: 135, sort: true}
                 ,{field: 'status', title: '状态', align:'center', width: 100, templet: '#stencil_status', sort: true}
                 ,{field: '', title:'文件', templet: '#stencil-file', align:'center', sort: true, width: 50}
                 ,{field: 'gerberName', title: 'gerberName', align:'center', width: 224, sort: true}

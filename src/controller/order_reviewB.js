@@ -49,7 +49,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
         }
         ,cols: [[
             {type:'checkbox',fixed: 'left'}
-            ,{field:'productNo',fixed: 'left', title: 'Product No', align:'center', width: 114, sort: true}
+            ,{field:'productNo',fixed: 'left', title: 'Product No', align:'center', width: 135, sort: true}
             ,{field: 'status',title: '状态', width: 110, sort: true}      // 1 ＝ 待报价
             ,{field: 'customerNo',title: '客户编号', Width: 110, sort: true}
             ,{field: 'productNo',title: 'P/N', minWidth: 219, sort: true}

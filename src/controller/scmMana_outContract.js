@@ -74,7 +74,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field: 'productNo', title: '聚谷型号', width: 124, sort: true}
+                ,{field: 'productNo', title: '聚谷型号', width: 135, sort: true}
                 ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
                 ,{field: 'status',title: '状态',templet: '#og_status', minWidth: 104, sort: true}      // 1 ＝ 待报价
                 ,{field: 'gmtCreate',title: '创建时间', width: 166, sort: true}
@@ -302,7 +302,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field: 'productNo', title: '聚谷型号', width: 124, sort: true}
+                ,{field: 'productNo', title: '聚谷型号', width: 135, sort: true}
                 ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
                 ,{field: 'status',title: '状态',templet: '#og_statusS', minWidth: 104, sort: true}      // 1 ＝ 待报价
                 ,{field: 'gmtCreate',title: '创建时间', width: 166, sort: true}

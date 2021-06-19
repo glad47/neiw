@@ -70,7 +70,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field:'productNo', title: '内部型号', align:'center', width: 114,fixed: 'left', sort: true}
+                ,{field:'productNo', title: '内部型号', align:'center', width: 135,fixed: 'left', sort: true}
                 ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
@@ -321,7 +321,7 @@ layui.define(['admin','table','index','element','form', 'convertCurrency', 'requ
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field:'productNo', title: '内部型号', align:'center', width: 114,fixed: 'left', sort: true}
+                ,{field:'productNo', title: '内部型号', align:'center', width: 135,fixed: 'left', sort: true}
                 ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
                 ,{field: 'quantity', title: '订单数量(PCS)', width: 134, sort: true}

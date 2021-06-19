@@ -52,7 +52,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'deliveryTime',title: '交期', width: 110, templet: ' <a>{{ d.deliveryTime.substring(0,10) }}</a> ', sort: true}
                 ,{field: 'supplierId', title: '供应商编号', width: 117, sort: true}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
-                ,{field: 'productNo', title: '聚谷型号', width: 124, sort: true}
+                ,{field: 'productNo', title: '聚谷型号', width: 135, sort: true}
                 ,{field: 'orderPcsNumber', title: '订单数量(PCS)', width: 134, sort: true}
                 ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134, sort: true}
                 ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134, sort: true}
@@ -226,7 +226,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
                 ,{field: 'deliveryTime',title: '交期', width: 110, templet: ' <a>{{ d.deliveryTime.substring(0,10) }}</a> ', sort: true}
                 ,{field: 'supplierId', title: '供应商编号', width: 117, sort: true}
                 ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
-                ,{field: 'productNo', title: '聚谷型号', width: 124, sort: true}
+                ,{field: 'productNo', title: '聚谷型号', width: 135, sort: true}
                 ,{field: 'orderPcsNumber', title: '订单数量(PCS)', width: 134, sort: true}
                 ,{field: 'donePcsNumber', title: '已交数量(PCS)', width: 134, sort: true}
                 ,{field: 'surplusPcsNumber', title: '未交数量(PCS)', width: 134, sort: true}

@@ -65,7 +65,7 @@ layui.define(['admin','table','index','element','form','laydate','convertCurrenc
             ,cols: [[
                 {type:'checkbox'}
                 ,{field: 'orderTime',title: '下单时间', width:165, sort: true}      // 1 ＝ 待报价
-                ,{field: 'productNo',title: '内部型号', width: 125, sort: true}
+                ,{field: 'productNo',title: '内部型号', width: 135, sort: true}
                 ,{field: 'totalFee',title: '采购金额', width: 115, sort: true}
                 ,{field: 'contractTime', title: '采购时间', width: 165, sort: true}
                 ,{field: 'deliveryOrderNo', title: '送货单编号', width: 120, sort: true} 
@@ -328,7 +328,7 @@ layui.define(['admin','table','index','element','form','laydate','convertCurrenc
             ,cols: [[
                 {type:'checkbox'}
                 ,{field: 'orderTime',title: '下单时间', width:165, sort: true}      // 1 ＝ 待报价
-                ,{field: 'productNo',title: '内部型号', width: 125, sort: true}
+                ,{field: 'productNo',title: '内部型号', width: 135, sort: true}
                 ,{field: 'totalFee',title: '采购金额', width: 115, sort: true}
                 ,{field: 'contractTime', title: '采购时间', width: 165, sort: true}
                 ,{field: 'deliveryOrderNo', title: '送货单编号', width: 120, sort: true} 

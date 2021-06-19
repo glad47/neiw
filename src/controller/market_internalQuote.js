@@ -76,11 +76,11 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
-                ,{field: 'productNo', title: '内部编码',minWidth: 130,fixed: 'left', sort: true}
+                ,{field: 'productNo', title: '内部编码',width: 135,fixed: 'left', sort: true}
                 ,{field: 'orderType',title: '订单类型', Width: 110, templet: '#order_type', sort: true}    //1=新单  2=返单    3=返单有改
-                ,{field: 'pcbName',title: '文件名',minWidth: 130, sort: true}
+                ,{field: 'pcbName',title: '文件名',width: 130, sort: true}
                 ,{field: 'orderNo',title: '客户PO', sort: true}
-                ,{field: 'quoteOrderNo',title: '报价单号',minWidth: 130, sort: true}
+                ,{field: 'quoteOrderNo',title: '报价单号',width: 130, sort: true}
                 ,{field: 'gmtCreate',title: '创建时间', sort: true}
                 ,{field: 'gmtModified',title: '修改时间', sort: true}
                 // 型号占位
@@ -449,11 +449,11 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
             }
             ,cols: [[
                 {type:'checkbox'}
-                ,{field: 'orderType',title: '订单类型', Width: 110, templet: '#order_type', sort: true}    //1=新单  2=返单    3=返单有改
-                ,{field: 'productNo', title: '内部编码',minWidth: 130, sort: true}
-                ,{field: 'pcbName',title: '文件名',minWidth: 130, sort: true}
+                ,{field: 'orderType',title: '订单类型', width: 110, templet: '#order_type', sort: true}    //1=新单  2=返单    3=返单有改
+                ,{field: 'productNo', title: '内部编码',width: 135, sort: true}
+                ,{field: 'pcbName',title: '文件名',width: 130, sort: true}
                 ,{field: 'orderNo',title: '客户PO', sort: true}
-                ,{field: 'quoteOrderNo',title: '报价单号',minWidth: 130, sort: true}
+                ,{field: 'quoteOrderNo',title: '报价单号',width: 130, sort: true}
                 ,{field: 'gmtCreate',title: '创建时间', sort: true}
                 ,{field: 'gmtModified',title: '修改时间', sort: true}
                 // 型号占位

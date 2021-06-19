@@ -74,7 +74,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','r'], functio
             }
             ,cols: [[
                 {field:'id', title: 'ID',hide: true, sort: true}
-                ,{field:'productNo',fixed: 'left', title: '内部型号', align:'center', width: 114, sort: true}
+                ,{field:'productNo',fixed: 'left', title: '内部型号', align:'center', width: 135, sort: true}
                 ,{field:'businessName',title:'跟单员名字',width:100, sort: true}
                 ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-market-okPayment-status',width: 110, sort: true}
                 ,{field:'payLogId', title: '支付情况', align:'center',templet: '#okPaymentPayLog', width: 117, sort: true}
@@ -351,7 +351,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','r'], functio
             }
             ,cols: [[
     
-                {field: 'productNo', title: '内部型号', align:'center', width: 134,fixed: 'left', sort: true}
+                {field: 'productNo', title: '内部型号', align:'center', width: 135,fixed: 'left', sort: true}
                 ,{field:'businessName',title:'跟单员名字',width:100, sort: true}
                 ,{field: 'status' , title: '状态', align:'center', width: 100, templet: '#Tabtb-stencil-market-okPayment-status', sort: true}
                 ,{field:'payLogId', title: '支付情况', align:'center',templet: '#okPaymentPayLogS', width: 117, sort: true}
@@ -516,7 +516,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','r'], functio
             ,cols: [[
                 {field: 'id', title: 'ID', hide: true, sort: true},
                 {field: 'quoteId', title: 'ID', hide: true, sort: true}
-                ,{field: 'productNo', fixed: 'left', title: '内部型号', align:'center', width: 134, sort: true}
+                ,{field: 'productNo', fixed: 'left', title: '内部型号', align:'center', width: 135, sort: true}
                 ,{field: 'status', fixed: 'left' , title: '状态', align:'center', width: 100, templet: '#Tabtb-smt-market-okPayment-status', sort: true}
                 ,{field: '', title:'文件', templet: '#stencil-file', align:'center', sort: true}
                 ,{field: 'gerberName', title: '文件名', align:'center', width: 224, sort: true}

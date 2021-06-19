@@ -81,7 +81,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'id', title: 'ID',hide: true, sort: true}
-                ,{field:'productNo',fixed: 'left', title: 'Product No', align:'center', width: 114, sort: true}
+                ,{field:'productNo',fixed: 'left', title: 'Product No', align:'center', width: 135, sort: true}
                 ,{field:'businessName',title:'跟单员名字',width:100, sort: true}
                 ,{field:'orderType', title: 'Order Type', align:'center', width: 109, templet:'#Tabtb-pcb-epc-indicatorCard-orderType', sort: true}
                 ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130, sort: true}
@@ -494,7 +494,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'id', title: 'ID',hide: true, sort: true}
-                ,{field:'productNo', fixed: 'left',title: '聚谷型号', align:'center', width: 114, sort: true}
+                ,{field:'productNo', fixed: 'left',title: '聚谷型号', align:'center', width: 135, sort: true}
                 ,{field:'businessName',title:'跟单员名字',width:100, sort: true}
                 ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-epc-indicatorCard-status',width: 130, sort: true}
                 ,{field:'gerberName', title: '原始资料', align:'center', width: 254, sort: true}

@@ -26,7 +26,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
     if(bunames.indexOf(uname) != -1){
         cols = [[
             {type:'checkbox', fixed: 'left'}
-            ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left', sort: true}
+            ,{field: 'productNo', title: '聚谷型号', width: 135,fixed: 'left', sort: true}
             ,{field: 'productionType',title: '生产类别', width: 110, sort: true}      // 1 ＝ 待报价
             // ,{field: 'supplierNo', title: '供应商编号', width: 117, sort: true}
             // ,{field: 'supplierNickname', title: '供应商昵称', width: 117, sort: true}
@@ -46,7 +46,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
         ]];
         scols = [[
             {type:'checkbox',fixed: 'left'}
-            ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left', sort: true}
+            ,{field: 'productNo', title: '聚谷型号', width: 135,fixed: 'left', sort: true}
             ,{field: 'productionType',title: '生产类别', width: 110, sort: true}      // 1 ＝ 待报价
             // ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
             // ,{field: 'supplierNickname', title: '供应商昵称', width: 117, sort: true}
@@ -66,7 +66,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
     }else {
         cols = [[
             {type:'checkbox', fixed: 'left'}
-            ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left', sort: true}
+            ,{field: 'productNo', title: '聚谷型号', width: 135,fixed: 'left', sort: true}
             ,{field: 'productionType',title: '生产类别', width: 110, sort: true}     // 1 ＝ 待报价
             ,{field: 'supplierNo', title: '供应商', width: 117, sort: true, templet: '<div>{{ d.supplierNo || "" }} {{ d.supplierNickname || "" }}</div>'}
             ,{field: 'areaSq', title: '面积', width: 117, sort: true} 
@@ -90,7 +90,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
         ]];
         scols = [[
             {type:'checkbox',fixed: 'left'}
-            ,{field: 'productNo', title: '聚谷型号', width: 124,fixed: 'left', sort: true}
+            ,{field: 'productNo', title: '聚谷型号', width: 135,fixed: 'left', sort: true}
             ,{field: 'productionType',title: '生产类别', width: 110, sort: true}     // 1 ＝ 待报价
             ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
             ,{field: 'supplierNickname', title: '供应商简称', width: 117, sort: true}

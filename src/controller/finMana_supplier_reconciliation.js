@@ -46,7 +46,7 @@ layui.define(['admin','table','index','element','form','laydate'], function (exp
             ,{field: 'reconciliationNo',title: '对账编号', width: 210, sort: true}
             ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
             ,{field: 'factoryMake', title: '供应商厂编', width: 117, sort: true}
-            ,{field: 'productNo', title: '聚谷型号', width: 124, sort: true}
+            ,{field: 'productNo', title: '聚谷型号', width: 135, sort: true}
             ,{field: 'pcbName', title: '聚谷物料号', width: 144, sort: true}
             ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
             ,{field: 'unitPrice', title: '单价', width: 96, sort: true}

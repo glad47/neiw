@@ -103,7 +103,7 @@ layui.define(['admin','table','index','element','form', 'laydate'], function (ex
         ,cols: [[
             {field: 'businessName',title: '业务员', width: 120, sort: true}      // 1 ＝ 待报价
             ,{field: 'orderTime',title: '下单日期', width: 120, sort: true, templet: '#oplOrderTime'}
-            ,{field: 'productNo',title: '内部型号', width: 120, sort: true}
+            ,{field: 'productNo',title: '内部型号', width: 135, sort: true}
             ,{field: 'totalFee',title: '订单金额', width: 180, sort: true, templet: '#oplTotalFee'}
             ,{field: 'payLogId',title: '是否支付', width: 120, sort: true, templet: '#oplPayLogId'}
             ,{field: 'payTime',title: '支付日期', width: 120, sort: true, templet: '#oplPayTime'}
