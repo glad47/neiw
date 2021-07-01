@@ -221,7 +221,13 @@
                         <li>
                             <span>Thickness Cu</span>
                             :
-                            <a>{{ d.params.data[0].outerLayerCopper }}</a>
+                            <a>
+                                {{# if(d.params.data[0].layerNum >= 4){ }}
+                                INNER: {{d.params.data[0].innerLayerCopper}},OUTER:{{d.params.data[0].outerLayerCopper}}
+                                {{# }else{ }}
+                                {{ d.params.data[0].outerLayerCopper }}
+                                {{# } }}
+                            </a>
                         </li>
                         <li>
                             <span>Board Finish</span>

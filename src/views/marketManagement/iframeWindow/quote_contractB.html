@@ -252,10 +252,15 @@
                             <!--{{# } else { }}-->
                                 <!--[PCB Prototype]<br>-->
                             <!--{{# } }}-->
-                            {{ item.pcbType || '' }}<br>
+                            {{ item.pcbType || '' }}&nbsp;
+                            {{# if(item.layerNum >= 4){ }}
+                            INNER: {{item.innerLayerCopper}},OUTER:{{item.outerLayerCopper}}
+                            {{# }else{ }}
+                            {{ item.outerLayerCopper }}
+                            {{# } }}
+                            <br>
                             <!--FinishThickness 完成板厚-->
-                            {{ item.finishThickness }}
-
+                            {{ item.finishThickness }}  
                             <!--尺寸-->
                             <!--{{# if(item.panelSizeX != null && item.panelSizeX != ''){ }}-->
                                 <!--{{ item.panelSizeX }}*{{ item.panelSizeY }}mm<br>-->
