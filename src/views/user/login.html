@@ -106,6 +106,11 @@
                             key: 'userChinaName',
                             value: res.data.userChinaName
                         });
+                        //是否是跟单员
+                        layui.data('userInfo',{
+                          key:'isBusiness',
+                          value: res.data.businessMark
+                        })
                     } else {
                         refrenchCode();
                     }
