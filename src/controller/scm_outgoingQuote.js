@@ -396,7 +396,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             }
             ,cols: [[
                  {field: 'id', title: 'ID', hide: true, sort: true}
-                ,{field: 'productNo', title: '聚谷编号', align:'center', sort: true ,width = 135}
+                ,{field: 'productNo', title: '聚谷编号', align:'center', sort: true ,width: 135}
                 ,{field: 'status', title: '状态', align:'center',  templet: '#Tabtb-stencil-scm-outgoingQuote-status', minWidth: 130, sort: true}
                 ,{field: '', title:'File', templet: '#stencil-file',  align:'center', minWidth: 130, sort: true}
                 ,{field: 'stencilType', title: '钢网类型', align:'center', sort: true, templet:'<div> {{ d.stencilType=="Farmework" ? "钢网" : "钢片" }} </div>'}

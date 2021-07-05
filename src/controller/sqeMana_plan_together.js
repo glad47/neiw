@@ -17,13 +17,13 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
 
     // var jstools = layui.jsTools;
 
-    var bunames = ['ada','alisa','tracy','tina','richard','donna','amber','zero','carlos'];
-    var uname = layui.data('userInfo').uname;
+    // var bunames = ['ada','alisa','tracy','tina','richard','donna','amber','zero','carlos'];
+    var isBusines = layui.data('businessMark').userRoleList;
 
     form.render(null,'sqe-plan-together-formlist');
 
     var cols,scols;
-    if(bunames.indexOf(uname) != -1){
+    if(isBusines){
         cols = [[
             {type:'checkbox', fixed: 'left'}
             ,{field: 'productNo', title: '聚谷型号', width: 135,fixed: 'left', sort: true}
