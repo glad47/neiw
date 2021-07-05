@@ -18,7 +18,7 @@ layui.define(['admin','table','index','element','form','laydate','jsTools','opti
     // var jstools = layui.jsTools;
 
     // var bunames = ['ada','alisa','tracy','tina','richard','donna','amber','zero','carlos'];
-    var isBusines = layui.data('businessMark').userRoleList;
+    var isBusines = layui.data('userInfo').isBusiness;
 
     form.render(null,'sqe-plan-together-formlist');
 
