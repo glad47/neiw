@@ -246,8 +246,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 data.status = 2;
                 admin.req({
                     type: 'post'
-                    ,url: setter.baseUrl+'market/quote/audit/update'
-                    ,data: {"id":data.id,"status":data.status}
+                    ,url: setter.baseUrl+'market/quote/audit'
+                    ,data: {"id":data.id,"userId":data.userId,"status":data.status,"productNo":data.productNo}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
                     }
@@ -421,8 +421,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 data.status = 2;
                 admin.req({
                     type: 'post'
-                    ,url: setter.baseUrl+'market/stencil/audit/update'
-                    ,data: {"id":data.id,"status":data.status}
+                    ,url: setter.baseUrl+'market/stencil/audit'
+                    ,data: {"id":data.id,"status":data.status,"userId":data.userId,"productNo":data.productNo}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
                         console.log('提交的信息为'+JSON.stringify(data));
@@ -581,8 +581,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate'], function(ex
                 data.status = 2;
                 admin.req({
                     type: 'post'
-                    ,url: setter.baseUrl+'market/assembly/okPaymentList/submit'
-                    ,data: {"id":data.id,"status":data.status}
+                    ,url: setter.baseUrl+'market/assembly/audit'
+                    ,data: {"id":data.id,"status":data.status,"userId":data.userId,"productNo":data.productNo}
                     ,done: function () {
                         layer.msg('订单［'+data.productNo+'］提交成功！');
                         layui.table.reload('smt_orderTab');
