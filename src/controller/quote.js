@@ -322,7 +322,7 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
         if (this_checkVal == "HASL_with_lead" || this_checkVal == "HASL_lead_free") {
             $("#selSurfacethickness").val("2.54-25.4um");
         } else if (this_checkVal == "Immersion_Gold") {
-            $("#selSurfacethickness").val("2u");
+            $("#selSurfacethickness").val("1u");
         } else if (this_checkVal == "Immersion_tin") {
             $("#selSurfacethickness").val("0.5um-0.7um");
         } else if (this_checkVal == "Immersion_silver") {
