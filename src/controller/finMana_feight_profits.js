@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: your project
+ * @version: 1.0
+ * @Author: 
+ * @Date: 2021-07-16 20:29:01
+ * @LastEditors: ho huang
+ * @LastEditTime: 2021-09-04 11:02:08
+ */
 /**
 
  @Name:    财务管理  - 运费利润列表
@@ -28,7 +36,7 @@ layui.define(['admin','table','index','form'], function (exports) {
         }
         ,cols: [[
             {field: 'courierNumber', title: '运单号', width: 150, sort: true}
-            ,{field: 'invoiceNumber', title: '发票号', width: 130, sort: true}
+            // ,{field: 'invoiceNumber', title: '发票号', width: 130, sort: true}  2021-0904暂时取消
             ,{field: 'courierName',title: '快递公司', width: 180, sort: true}
             ,{field: 'totalPostFee',title: '运费(收)', width: 100, sort: true}
             ,{field: 'postalFee',title: '运费(支)', width: 100, sort: true}
