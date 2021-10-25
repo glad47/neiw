@@ -825,8 +825,8 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     function _init__MT_data(){
         _MT_data.selLayer = 2;
         _MT_data.selFinishThickness = '1.6mm';
-        _MT_data.selMaterial = 'KB';
-        _MT_data.selkbsy = 'KB6160';
+        _MT_data.selMaterial = 'none';
+        _MT_data.selkbsy = 'none';
         _MT_data.selTg = '135';
         _MT_data.selHf = 'NO';
         _MT_data.selHc = 'none';
@@ -985,14 +985,14 @@ layui.define(['admin','form','element','laytpl','layer','upload', 'jsTools', 'fo
     });
 
     /**
-     * 发送请求获取构造天数
+     * 发送请求获取生产天数
      */
     function getBuildTime(){
         var areaSq = $("#areasq").val();
         var layerNum = $("#selLayer").val();
         $("input[name='buildTime']").remove();
         $(".build-time-item .layui-form-radio").remove();
-        //发送请求获取构造天数
+        //发送请求获取生产天数
         admin.req({
             type: 'post',
             async: false,
