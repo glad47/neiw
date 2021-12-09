@@ -82,30 +82,34 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
                     datainfo.deptName = deptName;
                     console.log(datainfo);
                     admin.popup({
-                        title: '修改用户信息'
-                        ,shadeClose: true
-                        ,shade: false
-                        ,maxmin: true
-                        ,btn:['提交']['取消']
-                        ,id: 'userAdd_form'
+                        id: 'LAY-popup-sys-user-add'
+                        ,title: '修改用户信息'
+                        // ,shadeClose: true
+                        // ,shade: false
+                        // ,maxmin: true
+                        ,btn:['提交','取消'] 
+                        ,yes: function(index, layero) {
+                            $('#layuiadmin-user-editInfo-form-submit').click();
+                        }
                         ,area: ['766px', '510px']
                         ,success: function (layero, index) {
                             view(this.id).render('/infoManagement/iframeWindow/user_edit_info',datainfo).done(function () {
                                 var status ;
                                 form.render(null,'user_editInfo_form');
-                                form.on('switch(switchUser)',function (data) {
-                                    if (data.elem.checked == true){
-                                        layer.msg('已启用');
-                                        status =1;
-                                    } else {
-                                        layer.msg('停用');
-                                        status =0;
-                                    }
-                                });
+                                // form.on('switch(switchUser)',function (data) {
+                                //     if (data.elem.checked == true){
+                                //         layer.msg('已启用');
+                                //         status =1;
+                                //     } else {
+                                //         layer.msg('停用');
+                                //         status =0;
+                                //     }
+                                // });
                                 form.on('submit(LAY-user-editInfo-submit)',function (data) {
                                     var field = data.field;
+                                    console.log(data);
                                     field.userId = userId;
-                                    field.status = status;
+                                    // field.status = status;
                                     // var s = field.roleIdList;
                                     // console.log(bouncer(s));
                                     console.log("用户修改表单提交的信息为："+JSON.stringify(field));
@@ -158,29 +162,33 @@ layui.define(['admin', 'table', 'index','element','form'], function(exports){
             var status ;
             admin.popup({
                 title: '添加用户信息'
-                ,shadeClose: true
-                ,shade: false
-                ,maxmin: true
+                // ,shadeClose: true
+                // ,shade: false
+                // ,maxmin: true
                 ,area: ['766px', '510px']
+                ,btn:['提交','取消'] 
+                ,yes: function(index, layero) {
+                    $('#layuiadmin-user-editInfo-form-submit').click();
+                }
                 ,success: function (layero,index) {
                     view(this.id).render('/infoManagement/iframeWindow/user_edit_info',data).done(function () {
                         form.render(null,'user_editInfo_form');
-                        form.on('switch(switchUser)',function (data) {
-                            if (data.elem.checked == true){
-                                layer.msg('已启用');
-                                status =1;
-                            } else {
-                                layer.msg('停用');
-                                status =0;
-                            }
-                        });
+                        // form.on('switch(switchUser)',function (data) {
+                        //     if (data.elem.checked == true){
+                        //         layer.msg('已启用');
+                        //         status =1;
+                        //     } else {
+                        //         layer.msg('停用');
+                        //         status =0;
+                        //     }
+                        // });
                         form.on('submit(LAY-user-editInfo-submit)',function (data) {
                             var field = data.field;
-                            if (field.status == "" || field.status == null || field.status == 'off'){
-                                field.status = 0;
-                            } else if (field.status == 'on'){
-                                field.status = 1;
-                            }
+                            // if (field.status == "" || field.status == null || field.status == 'off'){
+                            //     field.status = 0;
+                            // } else if (field.status == 'on'){
+                            //     field.status = 1;
+                            // }
                             console.log("新增用户提交的表单值为："+JSON.stringify(field));
                             admin.req({
                                 type: 'post'

@@ -103,12 +103,8 @@
             <div class="user_status layui-col-md6 layui-col-sm6">
                 <label class="layui-form-label">状态:</label>
                 <div class="layui-input-block">
-                    <script type="text/html" template lay-done="layui.data.done(d);">
-                        {{# if(d.params.status === 1){ }}
-                        <input type="checkbox" checked="" name="status" lay-skin="switch" lay-filter="switchUser" lay-text="启用|禁用">
-                        {{# } else { }}
-                        <input type="checkbox" name="status" lay-skin="switch" lay-filter="switchUser" lay-text="启用|禁用">
-                        {{#  } }}
+                    <script type="text/html" template>
+                        <input type="checkbox" lay-skin="switch" lay-text="启用|停用" lay-filter="status" {{ d.params.status === 1 ? 'checked' : '' }}>
                     </script>
                 </div>
             </div>
@@ -117,6 +113,24 @@
                 <div class="layui-input-block">
                     <script type="text/html" template>
                         <input type="text" name="userChinaName" value="{{ d.params.userChinaName || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="user_status layui-col-md6 layui-col-sm6">
+                <label class="layui-form-label">消息通知:</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="checkbox" lay-skin="switch" lay-text="启用|停用" lay-filter="notify" {{ d.params.notify === 1 ? 'checked' : '' }}>
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">订单分配:</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="checkbox" lay-skin="switch" lay-text="启用|停用" lay-filter="onlineUserAssign" {{ d.params.onlineUserAssign === 1 ? 'checked' : '' }}>
                     </script>
                 </div>
             </div>
@@ -155,10 +169,18 @@
             </div>
         </div>
 
+        <script type="text/html" template>
+            <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+            <input type="hidden" name="status" value="{{ d.params.status || 0 }}">
+            <input type="hidden" name="notify" value="{{ d.params.notify || 0 }}">
+            <input type="hidden" name="onlineUserAssign" value="{{ d.params.onlineUserAssign || 0 }}">
+        </script>
+
         <div class="layui-form-item layui-col-md-offset3" style="margin-top: 30px;">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="LAY-user-editInfo-submit">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                <!-- <input type="button" class="layui-btn" lay-submit lay-filter="LAY-user-editInfo-submit" style="display: none;" value="确认" /> -->
+                <input type="button" lay-submit lay-filter="LAY-user-editInfo-submit" value="确认" class="layui-btn" style="display: none;" id="layuiadmin-user-editInfo-form-submit">
+                <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
             </div>
         </div>
     </form>
@@ -170,10 +192,42 @@
 <script>
     layui.data.done = function(d){
         layui.use(['form'], function(){
-            var $ = layui.$ ;
-            form = layui.form
-                ,admin = layui.admin
+            var $ = layui.$
+                ,form = layui.form
+                ,admin = layui.admin;
+
             form.render(null, 'user_editInfo_form');
+
+            //监听checkebox
+            form.on('switch(status)', function (data) {
+                if (data.elem.checked == true) {
+                    layer.msg('已启用');
+                    form.val('user_editInfo_form',{status:1})
+                }  else {
+                    layer.msg('停用');
+                    form.val('user_editInfo_form',{status:0})
+                }
+            });
+
+            form.on('switch(notify)', function (data) {
+                if (data.elem.checked == true) {
+                    layer.msg('已启用');
+                    form.val('user_editInfo_form',{notify:1})
+                }  else {
+                    layer.msg('停用');
+                    form.val('user_editInfo_form',{notify:0})
+                }
+            });
+
+            form.on('switch(onlineUserAssign)', function (data) {
+                if (data.elem.checked == true) {
+                    layer.msg('已启用');
+                    form.val('user_editInfo_form',{onlineUserAssign:1})
+                }  else {
+                    layer.msg('停用');
+                    form.val('user_editInfo_form',{onlineUserAssign:0})
+                }
+            });
         });
 
     }
