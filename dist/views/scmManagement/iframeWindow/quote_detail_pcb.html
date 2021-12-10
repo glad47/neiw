@@ -1,0 +1,408 @@
+<title>报价明细编辑(PCB)</title>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        
+        <div class="layui-col-md9">
+            <div class="layui-card">
+                <div class="layui-card-header">pcb信息</div>
+                <div class="layui-card-body">
+                    <form class="layui-form" lay-filter="scm-quote-detail-form-list">
+                        <script type="text/html" template lay-url="{{layui.setter.baseUrl}}scm/pcborder/allSupplier" lay-type="post" lay-done="layui.data.done(d);">
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">报价单号:</label>
+                                <div class="layui-input-block">
+                                <input type="text"  disabled="" placeholder="" autocomplete="off" class="layui-input layui-disabled" value="{{ d.params.quoteOrderNo }}">
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">报价时间:</label>
+                                <div class="layui-input-block">
+                                <input type="text"  disabled="" value="{{ d.params.gmtCreate || '' }}" placeholder="" autocomplete="off" class="layui-input layui-disabled">
+                                </div> 
+                            </div>  
+                        </div>
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">供应商编号:</label>
+                                <div class="layui-input-block">
+                                <!-- <input type="text" disabled="" value="{{ d.params.supplierNo }}" placeholder="" autocomplete="off" class="layui-input layui-disabled"> -->
+                                <select name="supplierId">
+                                    {{# 
+                                        layui.each(d.data, function(index, item){   
+                                    }}
+                                    <option value=""></option>
+                                    <option value="{{ item.id || ''}}" {{ d.params.supplierId == item.id ? 'selected' : ''}}>{{ item.supplierId }}</option>
+                                    {{#  }); }}
+                                    {{#  if(d.data.length === 0){ }}
+                                    无数据 
+                                    {{#  } }}
+                                </select>  
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">数量(PCS):</label>
+                                <div class="layui-input-block">
+                                <input type="text" disabled="" name="quantityPcs" value="{{ d.params.quantityPcs ||  0 }}" placeholder="" autocomplete="off" class="layui-input layui-disabled">
+                                </div> 
+                            </div>  
+                        </div> 
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">供应商厂编:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="factoryMake" value="{{ d.params.factoryMake || '' }}" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">单价:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="unitPrice" id="unitPrice" lay-verify="required" value="{{ d.params.unitPrice || 0 }}" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                </div> 
+                            </div>  
+                        </div> 
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">聚谷型号:</label>
+                                <div class="layui-input-block">
+                                <input type="text" disabled="" value="{{ d.params.productNo || '' }}" placeholder="" autocomplete="off" class="layui-input layui-disabled">
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">工程费:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="engineeringFee" lay-verify="required" value="{{ d.params.engineeringFee || 0 }}" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                </div> 
+                            </div>  
+                        </div> 
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">聚谷物料号:</label>
+                                <div class="layui-input-block">
+                                <input type="text" disabled="" value="{{ d.params.pcbName || '' }}" placeholder="" autocomplete="off" class="layui-input layui-disabled">
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">加急费:</label>
+                                <div class="layui-input-block onblur-mark">
+                                <input type="text" name="overworkFee" lay-verify="required" value="{{ d.params.overworkFee || 0 }}" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                </div> 
+                            </div>  
+                        </div> 
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">层别:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="layerNum" disabled="" value=" {{ d.params.layerNum || '' }}" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <div class="layui-row layui-col-space5">
+                                    <div class="layui-col-md5">
+                                        <select class="layui-select" disabled>
+                                            <option value="0" {{d.params.testPointTypeCustomer == '0' ? 'selected' : ''}}></option>
+                                            <option value="1" {{ d.params.testPointTypeCustomer == '1' ? 'selected' : ''}}>飞针费</option>
+                                            <option value="2" {{ d.params.testPointTypeCustomer == '2' ? 'selected' : ''}}>新开测试架</option>
+                                            <option value="3" {{ d.params.testPointTypeCustomer == '3' ? 'selected' : ''}}>客供测试架</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-col-md7">
+                                        <input type="text" name="testCostFee" value="{{ d.params.testCostFee || 0 }}" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">出货尺寸:</label>
+                                <div class="layui-input-block">
+                                    {{# if(d.params.panelSizeX != null){ }}
+                                    {{# var panelWay = d.params.panelWayX*d.params.panelWayY }}
+                                    <input type="text" name="fullnamesize" disabled="" value="{{ d.params.panelSizeX }} * {{ d.params.panelSizeY }}mm / {{ panelWay }}" placeholder="" autocomplete="off" class="layui-input layui-disabled">
+                                    {{# }else if(d.params.dimensionsX != null){ }}
+                                    <input type="text" name="fullnamesize" disabled="" value="{{ d.params.dimensionsX}} * {{ d.params.dimensionsY}}mm /1 " placeholder="" autocomplete="off" class="layui-input layui-disabled">
+                                    {{# }else{ }}
+                                    <input type="text" name="fullnamesize" disabled="" value="都为空" placeholder="" autocomplete="off" class="layui-input layui-disabled">
+                                    {{# } }}
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">模具费:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="toolingFee" value="{{ d.params.toolingFee || 0 }}" lay-verify="required" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                </div> 
+                            </div>  
+                        </div> 
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">订单备注:</label>
+                                <div class="layui-input-block">
+                                <input type="text" value="{{ d.params.remarkCustomer || '' }}" disabled placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">pcb小计:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="totalFee" value="{{d.params.totalFee || 0}}" placeholder="" autocomplete="off" class="layui-input">
+                                </div> 
+                            </div>  
+                        </div> 
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">其它费用:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="otherFee" value="{{d.params.otherFee || 0}}" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                </div> 
+                            </div>
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">费用总计:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="allFee" value="{{d.params.allFee || ''}}" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">报价备注:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="remark" value="{{ d.params.remark || ''}}" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">交期:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="deliveryTime" value="{{ layui.util.toDateString(d.params.deliveryTime, 'yyyy-MM-dd') || '' }}" id="deliveryTime" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                </div> 
+                            </div>  
+                        </div>  
+                      
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <!-- <div class="layui-col-lg6">
+                                <label class="layui-form-label">PCBA信息</label>
+                                <div class="layui-input-block">
+                                </div>
+                            </div> -->
+                            <div class="layui-form-mid layui-word-aux">PCBA信息</div> 
+                        </div>
+                        <hr class="layui-bg-red">
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">贴片供应商:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="tpSupplier" value="{{ d.params.tpSupplier || ''}}" placeholder="" autocomplete="off" class="layui-input">
+                                    <!-- <select name="tpSupplier">
+                                        {{# 
+                                            layui.each(d.data, function(index, item){   
+                                        }}
+                                        <option value=""></option>
+                                        <option value="{{ item.supplierId || ''}}" {{ d.params.tpSupplier == item.supplierId ? 'selected' : ''}}>{{ item.supplierId }}</option>
+                                        {{#  }); }}
+                                        {{#  if(d.data.length === 0){ }}
+                                        无数据 
+                                        {{#  } }}
+                                    </select>   -->
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">贴片费:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="pcbaProcessFee" value="{{ d.params.pcbaProcessFee || 0}}" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">零件供应商:</label>
+                                <div class="layui-input-block">
+                                    <!-- <select name="ljSupplier">
+                                        {{# 
+                                            layui.each(d.data, function(index, item){   
+                                        }}
+                                        <option value=""></option>
+                                        <option value="{{ item.supplierId || ''}}" {{ d.params.ljSupplier == item.supplierId ? 'selected' : ''}}>{{ item.supplierId }}</option>
+                                        {{#  }); }}
+                                        {{#  if(d.data.length === 0){ }}
+                                        无数据 
+                                        {{#  } }}
+                                    </select>   -->
+                                    <input type="text" name="ljSupplier" value="{{ d.params.ljSupplier || ''}}" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">零件费:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="pcbaPartsFee" value="{{ d.params.pcbaPartsFee || 0}}" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">测试供应商:</label>
+                                <div class="layui-input-block">
+                                    <!-- <select name="csSupplier">
+                                        {{# 
+                                            layui.each(d.data, function(index, item){   
+                                        }}
+                                        <option value="0"></option>
+                                        <option value="{{ item.supplierId || ''}}" {{ d.params.csSupplier == item.supplierId ? 'selected' : ''}}>{{ item.supplierId }}</option>
+                                        {{#  }); }}
+                                        {{#  if(d.data.length === 0){ }}
+                                        无数据 
+                                        {{#  } }}
+                                    </select>   -->
+                                    <input type="text" name="csSupplier" value="{{ d.params.csSupplier || ''}}" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <label class="layui-form-label">测试费:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="pcbaTestFee" value="{{ d.params.pcbaTestFee || 0}}" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg12">
+                                <label class="layui-form-label">工具钢网费:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="pcbaToolFee" value="{{ d.params.pcbaToolFee || 0}}" placeholder="" autocomplete="off" class="layui-input onblur-mark">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-row layui-col-space10">
+                            <div class="layui-col-lg12">
+                                <label class="layui-form-label">小计:</label>
+                                <div class="layui-input-block">
+                                <input type="text" name="pcbaSubtotalFee" value="{{ d.params.pcbaSubtotalFee || 0}}" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item"  style="display: none;">
+                            <div class="layui-input-block">
+                                <input type="text" name="optionMark" placeholder="操作标识" autocomplete="off" class="layui-input">
+                                <input type="text" name="id" value="{{ d.params.id || ''}}" placeholder="操作标识" autocomplete="off" class="layui-input">
+                                <input type="button" lay-submit lay-filter="LAY-scm-quote-detail-form-submit" value="确认" class="layui-btn" style="display: none;" id="scm-quote-detail-form-submit">
+                                <!-- <button class="layui-btn" lay-submit lay-filter="LAY-scm-quote-detail-form-submit" id="scm-quote-detail-form-submit">立即提交</button> -->
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </script> 
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md3">
+            <script type="text/html" template>
+            <div class="layui-card">
+                <div class="layui-card-header">内部报价</div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="title" disabled="" placeholder="报价时间" autocomplete="off" class="layui-input layui-disabled"> 
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="title" disabled=""  placeholder="数量" autocomplete="off" class="layui-input layui-disabled">      
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="unitPriceCustomer" placeholder="单价" autocomplete="off" class="layui-input layui-disabled" value="{{ d.params.unitPriceCustomer || 0 }}" disabled="">      
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="engineeringFeeCustomer" value="{{ d.params.engineeringFeeCustomer || 0 }}" placeholder="工程费" autocomplete="off" class="layui-input layui-disabled" disabled="">      
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="overworkFeeCustomer" value="{{ d.params.overworkFeeCustomer || 0 }}" placeholder="加急费" autocomplete="off" class="layui-input layui-disabled" disabled="">      
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="testCostFeeCustomer" value="{{ d.params.testCostFeeCustomer || 0 }}" placeholder="测试费" autocomplete="off" class="layui-input layui-disabled" disabled="">      
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="pcbaToolFeeCustomer" value="{{ d.params.pcbaToolFeeCustomer || 0 }}" placeholder="模具费" autocomplete="off" class="layui-input layui-disabled" disabled>      
+                        </div>
+                    </div> <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="title" placeholder="pcb小计" value="{{ d.params.subtotal }}" disabled autocomplete="off" class="layui-input layui-disabled">      
+                        </div>
+                    </div> <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="subtotal" placeholder="费用总计" value="{{ d.params.totalFeeCustomer || ''}}" autocomplete="off" class="layui-input layui-disabled" disabled>      
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" value="{{ d.params.buildTime || '' }}" placeholder="交期" autocomplete="off" class="layui-input layui-disabled" disabled>      
+                        </div>
+                    </div>
+                    <!-- <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="title" placeholder="其它费用" autocomplete="off" class="layui-input">      
+                        </div>
+                    </div>  -->
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-form-mid layui-word-aux">PCBA报价</div> 
+                    </div>
+                    <hr class="layui-bg-red">
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="title" value="{{d.params.pcbaProcessFeeCustomer || 0}}" disabled placeholder="贴片费" autocomplete="off" class="layui-input layui-disabled">      
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="title" value="{{d.params.pcbaPartsFeeCustomer || 0}}" disabled placeholder="零件费" autocomplete="off" class="layui-input layui-disabled">      
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="title" value="{{d.params.pcbaTestFeeCustomer || 0}}" disabled placeholder="测试费" autocomplete="off" class="layui-input layui-disabled">      
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="title" value="{{d.params.pcbaToolFeeCustomer || 0}}" disabled placeholder="钢网工具费" autocomplete="off" class="layui-input layui-disabled">      
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <input type="text" name="title" value="{{d.params.pcbaSubtotalFeeCustomer || 0}}" disabled placeholder="paca小计" autocomplete="off" class="layui-input layui-disabled">      
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            </script>
+        </div>
+        </script>
+    </div>
+</div>
+
+<script>
+    layui.data.done = function(d) {
+        layui.use(['admin', 'table', 'form', 'laydate'], function () {
+            var $ = layui.jquery,
+                form = layui.form,
+                laydate = layui.laydate;
+            form.render(null,'scm-quote-detail-form-list');
+            laydate.render({
+                elem: '#deliveryTime'
+            });
+             //监听计算小计和总价
+            $(".onblur-mark").bind('blur',function(){
+                // console.log('监听到离焦事件');
+                form.val("scm-quote-detail-form-list",{optionMark:"pricing"});
+                $("#scm-quote-detail-form-submit").click();
+            });
+
+        })
+    };
+</script>

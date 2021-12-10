@@ -1,0 +1,292 @@
+<title>报价订单编辑</title>
+<div class="layui-fluid stencil-edit-info">
+    <form class="layui-form" lay-filter="" id="orderStencilUpdateB" style="width: 750px">
+        <div class="layui-form-item">
+            <div class="layui-col-md12 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Stencil Side：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="stencilSide" lay-filter="stencilSide" data="{{ d.params.stencilSide }}">
+                            <option name="Top And Bottom (On Single Stencil)" value="Top" {{ d.params.stencilSide =='Top' ? 'selected' : '' }}>
+                            Top
+                            </option>
+                            <option name="Top And Bottom (On Single Stencil)" value="Bottom" {{ d.params.stencilSide =='Bottom' ? 'selected' : '' }}>
+                            Bottom
+                            </option>
+                            <option name="Top And Bottom (On Single Stencil)" value="Top And Bottom (On Single Stencil)" {{ d.params.stencilSide =='Top And Bottom (On Single Stencil)' ? 'selected' : '' }}>
+                            Top And Bottom (On Single Stencil)
+                            </option>
+                            <option name="Top And Bottom (On Separate Stencil)" value="Top And Bottom (On Separate Stencil)" {{ d.params.stencilSide =='Top And Bottom (On Separate Stencil)' ? 'selected' : '' }}>
+                            Top And Bottom (On Separate Stencil)
+                            </option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md12 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Stencil Size：</label>
+                <div class="layui-input-block" id="stencilSize_input">
+                    <!--<script type="text/html" template>-->
+                    <!--<input type="text" name="stencilSide" value="{{ d.params.stencilSide || '' }}" autocomplete="off" class="layui-input">-->
+                    <!--</script>-->
+                    <!--<option data="{'materialName':'{{ d.params.stencilType }}','stencilSizeX':'{{ d.params.stencilSizeX }}','stencilSizeY':'{{ d.params.stencilSizeY }}','stencilAreaX':'{{ d.params.stencilAreaX }}','stencilAreaY':'{{ d.params.stencilAreaY }}','price':'{{ d.params.totalStencilFee}}','weight':'{{ d.params.weight}}'}" id="initStencilPrice" name="{{ d.params.totalStencilFee}}">-->
+                        <!--{{ d.params.stencilType }} {{ d.params.stencilSizeX }}*{{ d.params.stencilSizeY }} (Valid area {{ d.params.stencilAreaX}}*{{ d.params.stencilAreaY}})-->
+                        <!--Price: {{ d.params.totalStencilFee }}-->
+                    <!--</option>-->
+                    <script type="text/html" template lay-url="{{layui.setter.imUrl}}/v1/quote/getStencilSize" lay-done="layui.data.done(d);">
+                        <select name="parentId" id="selStencilSize" lay-filter="selStencilSize">
+                            {{#  layui.each(d.data, function(index, item){ }}
+                            <option data="{'materialName':'{{ item.materialName }}','stencilSizeX':'{{ item.stencilSizex }}','stencilSizeY':'{{ item.stencilSizey }}','stencilAreaX':'{{ item.stencilAreax }}','stencilAreaY':'{{ item.stencilAreay }}','price':'{{ item.priceToUSD}}','weight':'{{ item.weight}}'}" price="{{ item.priceToUSD }}" value="{{ item.id }}" {{ d.params.stencilSizeX*d.params.stencilSizeY == item.stencilSizex*item.stencilSizey ? 'selected' : ''}}>
+                            {{ item.materialName }} {{ item.stencilSizex }}*{{ item.stencilSizey }} (Valid area {{ item.stencilAreax}}*{{ item.stencilAreay}})
+                            Price:{{ item.priceToUSD }}
+                            </option>
+                            {{#  }); }}
+                            {{#  if(d.length === 0){ }}
+                            无数据
+                            {{#  } }}
+                        </select>
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Fiducials：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="existingFiducials">
+                            <option value="none"  {{ d.params.existingFiducials === 'none' ? 'selected' : '' }}>None</option>
+                            <option value="half lasered"  {{ d.params.existingFiducials === 'half lasered' ? 'selected' : '' }}>Half Lasered</option>
+                            <option value="lasered through"  {{ d.params.existingFiducials === 'lasered through' ? 'selected' : '' }}>Lasered through</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Thickness：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <select name="thickness">
+                            <option value="0.10"  {{ d.params.thickness == '0.10' ? 'selected' : '' }}>0.10mm</option>
+                            <option value="0.12"  {{ d.params.thickness == '0.12' ? 'selected' : '' }}>0.12mm</option>
+                            <option value="0.15"  {{ d.params.thickness == '0.15' ? 'selected' : '' }}>0.15mm</option>
+                            <option value="0.20"  {{ d.params.thickness == '0.20' ? 'selected' : '' }}>0.20mm</option>
+                        </select>
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">UnitPrice：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="unitPrice" value="{{ d.params.unitPrice || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Quantity：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="quantity" value="{{ d.params.quantity || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">PostFee：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="postFee" value="{{ d.params.postFee || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">StencilFee：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="totalStencilFee" value="{{ d.params.totalStencilFee || '' }}" autocomplete="off" class="layui-input" readonly>
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <!--隐藏的，需要传的表单▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉satrt▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉-->
+        <div class="layui-form-item" style="display: none">
+            <div class="layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">id：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="id" value="{{ d.params.id || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <!--隐藏的，需要传的表单▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉end▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉-->
+
+        <div class="layui-form-item">
+            <div class="layui-col-md12 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">Remark：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="note" value="{{ d.params.note || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <script type="text/html" template lay-done="layui.data.done(d);">
+        {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("sys:paylog:update") != -1){ }}
+        <hr class="layui-bg-black">
+        <h3 style="text-align: center;padding-bottom: 15px;">其他</h3>
+        <div class="layui-form-item">
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">支付id：</label>
+                <div class="layui-input-block">
+                     <input type="text" name="payLogId" value="{{ d.params.payLogId || '' }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        {{# } }}
+        </script>
+        <div class="layui-form-item layui-col-md-offset3" style="display:none;">
+            <div class="layui-input-block">
+                <button class="layui-btn submitStencilUpB" type="button" lay-submit lay-filter="LAY-stencilorder-update-submit">立即提交</button>
+                <button type="reset" type="button" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    layui.data.done = function(d){
+        layui.use(['form'], function(){
+            var form = layui.form,
+                setter = layui.setter,
+                $ = layui.jquery;
+            form.render(null, ''); //渲染该模板下的动态表单
+            var ss_type;
+            var side;
+            var UnitPrice = $("#orderStencilUpdateB input[name='unitPrice']").val();
+            var stencilSide = $("#orderStencilUpdateB select[name='stencilSide']").attr('data');
+            console.log("stencilSide==>"+stencilSide)
+
+            getDomVal();
+
+            // 监听Stencil Size 下拉
+            form.on('select(selStencilSize)', function (data) {
+                var ss = $(data.elem).find("option:selected").attr("price");
+                var stencilSideJS = $("#orderStencilUpdateB select[name='stencilSide']").find("option:selected").attr("name");
+                if (stencilSideJS == "Top And Bottom (On Separate Stencil)") {
+                    ss = parseFloat(ss*2)
+                }
+                UnitPrice = ss;
+                stencilSide = stencilSideJS;
+                $("#orderStencilUpdateB input[name='unitPrice']").val(ss);
+                getDomVal();
+            });
+
+            // 监听Stencil Side 下拉
+            form.on('select(stencilSide)', function (data) {
+                var thisVal = data.value;
+                console.log('判断');
+                if (stencilSide == "Top And Bottom (On Separate Stencil)" && thisVal != "Top And Bottom (On Separate Stencil)") {
+                    $("input[name='unitPrice']").val(parseFloat(UnitPrice/2))
+                } else if (stencilSide != "Top And Bottom (On Separate Stencil)" && thisVal == "Top And Bottom (On Separate Stencil)") {
+                    $("input[name='unitPrice']").val(parseFloat(UnitPrice*2))
+                } else {
+                    $("input[name='unitPrice']").val(parseFloat(UnitPrice));
+                }
+                getDomVal();
+            });
+
+            // 监听quantity输入框值的变化
+            $("#orderStencilUpdateB input[name='quantity']").bind("input propertychange", function (even) {
+                getDomVal();
+            });
+            // 监听 PostFee 邮费 输入框值的变化
+            $("#orderStencilUpdateB input[name='postFee']").bind("input propertychange", function (even) {
+                getDomVal();
+            });
+
+            // 监听 unitPrice 单价 输入框值的变化
+            $("#orderStencilUpdateB input[name='unitPrice']").bind("input propertychange", function (even) {
+                UnitPrice = $(this).val();
+                getDomVal();
+            });
+
+            // $("#user_editInfo_form").bind('input propertychange', function () {
+            //     getDomVal();
+            // });
+
+            function quote(_domVal) {
+                // var a = parseFloat(_domVal.side*_domVal.unitPrice*_domVal.quantity)+_domVal.postFee;
+                $.each(_domVal, function (i, val) {
+                    if (isNaN(val) || val == "" || val == null) {    // 判断对象的值是否为空，则为0
+                        _domVal[i] = 0;
+                    }
+                });
+                var a = parseFloat(_domVal.unitPrice*_domVal.quantity)+_domVal.postFee;
+                $("#orderStencilUpdateB input[name='totalStencilFee']").val(a);
+            }
+            
+            function judgeSideType() {
+                var stencilSide_type = $("#orderStencilUpdateB select[name='stencilSide']").find("option:selected").attr("name");
+                if (stencilSide_type == "Top And Bottom (On Single Stencil)" || stencilSide_type == "Top" || stencilSide_type == "Bottom") {
+                    ss_type,side = 1;
+                } else {
+                    ss_type,side = 2;
+                }
+            }
+            function getDomVal() {
+                judgeSideType();
+                var _domVal = new Object();
+                _domVal.side = parseFloat(side);
+                // _domVal.unitPrice = parseFloat($("#selStencilSize").find("option:selected").attr("price"));    //获取回显的默认价格
+                _domVal.unitPrice = parseFloat($("#orderStencilUpdateB input[name='unitPrice']").val());    //获取回显的默认价格
+                _domVal.quantity = parseFloat($("#orderStencilUpdateB input[name='quantity']").val());
+                _domVal.postFee = parseFloat($("#orderStencilUpdateB input[name='postFee']").val());
+                quote(_domVal);
+            }
+
+            function getPostDomVal() {
+                var ssObj;
+                ssObj = $("#selStencilSize").find("option:selected").attr("data");
+                ssObj = ssObj.replace(/'/g, '"');
+                ssObj = JSON.parse(ssObj);
+                return ssObj;
+            }
+
+            form.on('submit(LAY-stencilorder-update-submit)',function (data) {
+                var field = data.field;
+                var ssObj = getPostDomVal();
+                field = Object.assign(field,ssObj);
+                console.log(field);
+                admin.req({
+                    type: 'post'
+                    ,url: setter.baseUrl+'epc/stencilorder/update'
+                    ,data: field
+                    ,done: function (res) {
+                        layer.msg('订单信息修改成功');
+                        layui.table.reload('epc_Tabstencil_ok_payment_order');
+                    }
+                });
+                layer.closeAll();
+                return false;
+            })
+
+        });
+    };
+</script>
+
+<style>
+    .stencil-edit-info>.layui-form>.layui-form-item>.layui-col-md4>.layui-form-label{text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+</style>

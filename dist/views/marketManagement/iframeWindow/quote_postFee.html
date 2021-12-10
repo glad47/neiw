@@ -1,0 +1,131 @@
+<div class="layui-fluid">
+    <form class="layui-form qp-fist-data">
+        <div class="layui-form-item">
+            <lable class="layui-form-label">长：</lable>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input qp-data" placeholder="cm">
+            </div>
+            <lable class="layui-form-label">宽：</lable>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input qp-data" placeholder="cm">
+            </div>
+            <lable class="layui-form-label">高：</lable>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input qp-data" placeholder="cm">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <lable class="layui-form-label">重量：</lable>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="quotePostFeeWeight" placeholder="kg">
+            </div>
+            <lable class="layui-form-label">国家：</lable>
+            <div class="layui-input-inline">
+                <select name="quotePostFeeCountry" xm-select="quotePostFeeCountry" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
+                    <option value=""></option>
+                </select>
+            </div>
+            <lable class="layui-form-label">运费：</lable>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="qtPostFee" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item" style="display: none;">
+            <button class="layui-btn layui-btn-primary" type="reset" id="quotePostFeeRest">清空</button>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['admin', 'form', 'formSelects'], function () {
+        var $ = layui.jquery,
+        form = layui.form,
+        admin = layui.admin,
+        formSelects = layui.formSelects,
+        setter = layui.setter;
+        var postData = {
+            courierId: 1,   // 默认为DHL
+            countryId: null,
+            totalWeight: 0 // 重量
+        }
+        var timeMsg;
+        getPostFee();
+        $(".qp-data").bind("input propertychange", function (even) {
+            clearTimeout(timeMsg);
+            quotePostFee();
+        });
+        $("input[name='quotePostFeeWeight']").bind("input propertychange", function (even) {
+            clearTimeout(timeMsg);
+            var _val = $(this).val();
+            if (_val >= 0 && _val != null && _val != "") {
+                postData.totalWeight = _val;
+            } else {
+                postData.totalWeight = 0;
+            }
+            getShippingFee();
+        });
+        function quotePostFee () {
+            var area = 1;
+            $(".qp-fist-data .qp-data").each(function (k, v) {
+                var $val = $(this).val();
+                if (typeof $val == "undefined" || $val == null || $val == "" || isNaN($val)) {
+                    $val = 0;
+                }
+                area = parseFloat(area*$val)
+            });
+            var quotePostFeeWeight = parseFloat(area/5000).toFixed(3);
+            if (isNaN(quotePostFeeWeight)) {
+                quotePostFeeWeight = 0;
+            }
+            $("input[name='quotePostFeeWeight']").val(quotePostFeeWeight);
+            if (quotePostFeeWeight != null && quotePostFeeWeight > 0) {
+                postData.totalWeight = quotePostFeeWeight;
+                getShippingFee();
+            }
+        }
+
+
+        function getPostFee() {
+            admin.req({
+                type: 'post',
+                url: setter.imUrl+'v1/quote/getCountry',
+                success: function (res) {
+                    var $html;
+                    var data = res.data;
+                    for (var i=0;i<data.length;i++) {
+                        $html += "<option id="+data[i].id+" value="+data[i].id+">"+data[i].name+"</option>"
+                    }
+                    $("select[xm-select='quotePostFeeCountry']").append($html);
+                    formSelects.render('quotePostFeeCountry');
+                    layui.formSelects.config('quotePostFeeCountry', {direction: 'down'});
+                }
+            });
+        }
+        layui.formSelects.on('quotePostFeeCountry', function (id, vals, val, isAdd, isDisabled) {
+            postData.countryId = val.value;
+            getShippingFee();
+        });
+        
+        function getShippingFee() {
+            if (postData.countryId != null && postData.countryId != "") {
+                admin.req({
+                    type: 'post',
+                    url: setter.imUrl+'v1/quote/getShippingCost',
+                    data: postData,
+                    success: function (res) {
+                        $("input[name='qtPostFee']").val(res.data.shippingCost);
+                    }
+                });
+            } else {
+                timeMsg = setTimeout(function () {
+                    layer.msg("请选择国家！");
+                },1000);
+            }
+        }
+    });
+</script>
+<style>
+    .qp-fist-data .layui-form-label{width: 42px;padding: 9px 0;}
+    .qp-fist-data .layui-input-inline{width: 135px;}
+    .qp-fist-data .layui-input{border: none;border-bottom: solid 1px silver;}
+    .layui-form-select dl{max-height: 78px;}
+</style>

@@ -1,0 +1,64 @@
+<title>发票列表</title>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="market-invoice-list-search-form">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">聚谷型号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="productNos" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">跟单员</label>
+                    <div class="layui-input-inline">
+                        <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allClerks" lay-data="{roleId:10}" lay-done="layui.data.done(d);" lay-type="post">
+                            <select name="businessId" lay-filter="sel-consumer-user-audit-businessName">
+                                {{#
+                                var businessName = d.params.businessName;
+                                layui.each(d.data, function(index, item){
+                                }}
+                                <option></option>
+                                <option value="{{ item.userId }}">{{ item.username }}</option>
+                                {{#  }); }}
+                                {{#  if(d.data.length === 0){ }}
+                                无数据
+                                {{#  } }}
+                            </select>
+                        </script>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="market-invoice-list-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+            <table class="layui-table" id="LAY-market-invoice-list-table" lay-filter="LAY-market-invoice-list-table"></table>
+            <script type="text/html" id="invoiceList_Bar">
+                <a class="layui-btn layui-btn-xs" lay-event="il-search">查看</a>
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="il-edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="il-del">删除</a>
+            </script>
+            <script type="text/html" id="invoiceList_TopBar">
+                <button class="layui-btn layui-btn-sm" lay-event="generateInvoice">添加发票</button>
+            </script>
+        </div>
+    </div>
+   
+   
+    <!--卡片－表格信息-->
+    <!-- <div class="layui-tab layui-tab-brief" lay-filter="tab-internalQuote">
+        <div class="layui-tab-item layui-show">
+            
+        </div>
+    </div> -->
+</div>
+
+<script>
+layui.data.done = function(d){
+    layui.use('market_invoiceList', layui.factory('market_invoiceList'));
+};
+</script>

@@ -1,0 +1,111 @@
+
+  <div class="layui-form" lay-filter="articlehelp-edit-add-form">
+    <div class="layui-form-item">
+      <label class="layui-form-label">一级分类:</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template>
+            <select name="articleClassify">
+                <option value=""></option>
+                <option value="common problem" {{ d.params.articleClassify == 'common problem' ? 'selected' : '' }}>common problem</option>
+                <option value="technical knowledge" {{ d.params.articleClassify == 'technical knowledge' ? 'selected' : '' }}>technical knowledge</option>
+                <option value="coupon usage" {{ d.params.articleClassify == 'coupon usage' ? 'selected' : '' }}>coupon usage</option>
+                <option value="quality related" {{ d.params.articleClassify == 'quality related' ? 'selected' : '' }}>quality related</option>
+            </select>
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">二级分类:</label>
+      <div class="layui-input-inline">
+        <script type="text/html" template>
+           <input type="text" name="articleKeyword" placeholder="主题" autocomplete="off" class="layui-input" value="{{ d.params.articleKeyword || ''}}">
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">主题:</label>
+      <div class="layui-input-inline" style="width: 400px;">
+        <script type="text/html" template>
+          <input type="text" name="articleName" value="{{ d.params.articleName || '' }}" lay-verify="required" placeholder="请输入文章主题" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">描述</label>
+      <div class="layui-input-inline" style="width: 400px;">
+        <script type="text/html" template>
+          <textarea type="text" name="articleDescribe" lay-verify="required" placeholder="请输入文章描述" autocomplete="off" class="layui-textarea">
+            {{ d.params.articleDescribe || '' }}
+          </textarea>
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">标签</label>
+      <div class="layui-input-inline" style="width: 400px;">
+        <script type="text/html" template>
+          <input type="text" name="articleTab" value="{{ d.params.articleTab || '' }}" lay-verify="required" placeholder="多个用,号隔开" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">缩率图</label>
+      <div class="layui-input-inline" style="width: 400px;">
+        <script type="text/html" template>
+          <input type="text" name="articleImg" value="{{ d.params.articleImg || '' }}" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+        </script>
+      </div>
+      <div>
+        <button type="button" class="layui-btn" id="imgUploadButs">
+          <i class="layui-icon">&#xe67c;</i>上传图片
+        </button>
+      </div>
+    </div>
+    <div class="layui-form-item">
+       <script type="text/html" template>
+         <textarea class="layui-textarea" id="helpcontent" style="display: none" wrap="hard">
+          {{ d.params.articleContent || '' }}
+         </textarea>
+       </script>
+    </div>
+    <script type="text/html" template>
+      <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+    </script>
+    <div class="layui-form-item">
+      <label class="layui-form-label"></label>
+      <div class="layui-input-inline">
+        <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn" style="display: none;" id="layuiadmin-app-form-submit">
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .article-fl .layui-form-checkbox{margin-left: 26px;}
+  </style>
+  <script>
+    layui.use(['jquery', 'form', 'admin','setter','layedit'], function(){
+      var $ = layui.jquery
+      ,authtree = layui.authtree
+      ,form = layui.form
+      ,admin = layui.admin
+      ,setter = layui.setter
+      ,upload = layui.upload
+      ,layedit = layui.layedit;
+
+      var uploadInst = upload.render({
+        elem: '#imgUploadButs' //绑定元素
+        ,url: setter.imUrl+'imgfile/fileupload' //上传接口
+        ,done: function(res){
+          //上传完毕回调
+          console.log(res);
+          form.val('articlehelp-edit-add-form',{
+            'articleImg':res.data.src
+          })
+        }
+        ,error: function(){
+          //请求异常回调
+          layer.error('上传异常！！');
+        }
+      });
+    });
+  </script>

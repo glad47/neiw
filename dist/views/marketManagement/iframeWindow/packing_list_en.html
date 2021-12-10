@@ -1,0 +1,90 @@
+<title>装箱单</title>
+<script type="text/html" template>
+    <link rel="stylesheet" href="{{ layui.setter.base }}style/print.css?v={{ layui.admin.v }}-1" media="print">
+</script>
+<div class="layui-fluid" id="market-packing-list-en-print">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md12" style="text-align: center;">
+            <h1>PACKING LIST</h1>
+        </div>
+        <div class="layui-col-md6" style="float: left;">
+            <ul>
+                <script type="text/html" template>
+                <li class="layui-text">Guest: {{d.params.userInfo.companName || ''}}</li>
+                </script>
+            </ul>
+        </div>
+        <div class="layui-col-md6" style="float: right;">
+            <script type="text/html" template>
+            <ul>
+                <li class="layui-text">Date: {{new Date(d.params.gmtCreate).toDateString()}}</li>
+            </ul>
+            <ul>
+                <li class="layui-text">Terms of Payment: {{d.params.userInfo.paymentType || ''}}</li>
+            </ul>
+            </script>
+        </div>
+        <div class="layui-col-md12">
+            <hr class="layui-bg-black">
+            <button class="layui-btn layui-hide" lay-active="e1" id="e1">添加</button>
+        </div>
+        <div class="layui-col-md12">
+            <!-- <table id="market-packing-list-en-table" lay-filter="market-packing-list-en-table"></table> -->
+            <table class="layui-table">
+                <thead>
+                    <tr>
+                        <td style="text-align: center;">marks(C/T No.)</td>
+                        <td style="text-align: center;">Q'type(pcs)</td>
+                        <td style="text-align: center;">Packages</td>
+                        <td style="text-align: center;">Description</td>
+                        <td style="text-align: center;">Gross Weight(kg)</td>
+                        <td style="text-align: center;">Net Weight(kg)</td>
+                        <td style="text-align: center;">Measurement</td>
+                        <td style="text-align: center;">Order No</td>
+                        <td style="text-align: center;">COMMERCIAL INVOICE No.</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <script type="text/html" template>
+                        {{# layui.each(d.params.itemEntityList, function(index, item){  }}
+                        {{# if(item.rowspan == null || item.rowspan == ''){ }}
+                        <tr>
+                            <!-- <td style="text-align: center;">{{ d.params.marks || ''}} {{ item.marks || ''}} </td> -->
+                            <td style="text-align: center;">{{ item.qty || ''}}</td>
+                            <!-- <td rowspan="{{item.rowspan || ''}}">{{ item.packages || ''}}</td> -->
+                            <td style="text-align: center;">{{ item.description || ''}}</td>
+                            <td style="text-align: center;">{{ Number(item.grossWeight).toFixed(3) || ''}}</td>
+                            <td style="text-align: center;">{{ Number(item.netWeight).toFixed(3) || ''}}</td>
+                            <!-- <td rowspan="{{item.rowspan || ''}}">{{ item.measurement || ''}}</td> -->
+                            <td style="text-align: center;">{{ item.orderNo || ''}}</td>
+                            <td style="text-align: center;">{{ d.params.commercialInvoice || ''}}</td>
+                        </tr>
+                        {{# }else{ }}
+                        <tr>
+                            <td style="text-align: center;" rowspan="{{item.rowspan || ''}}">{{ d.params.marks || ''}} {{ item.marks || ''}}</td>
+                            <td style="text-align: center;">{{ item.qty || ''}}</td>
+                            <td style="text-align: center;" rowspan="{{item.rowspan || ''}}">{{ item.packages || ''}}</td>
+                            <td style="text-align: center;">{{ item.description || ''}}</td>
+                            <td style="text-align: center;">{{ Number(item.grossWeight).toFixed(3) || ''}}</td>
+                            <td style="text-align: center;">{{ Number(item.netWeight).toFixed(3) || ''}}</td>
+                            <td style="text-align: center;" rowspan="{{item.rowspan || ''}}">{{ item.measurement || ''}}</td>
+                            <td style="text-align: center;">{{ item.orderNo || ''}}</td>
+                            <td style="text-align: center;">{{ d.params.commercialInvoice || ''}}</td>
+                        </tr>
+                        {{# } }}
+                        {{# }) }}
+                        <tr>
+                            <td style="text-align: center;">Total</td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => i.qty).reduce((total,num)=> total + num) }}</td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => i.packages).reduce((total,num)=> total + num) }}</td>
+                            <td></td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => Number(i.grossWeight * (i.packages == null  || i.packages == 0  ? 1 : i.packages))).reduce((total,num)=> total + num).toFixed(2) }}</td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => Number(i.netWeight * (i.packages == null  || i.packages == 0  ? 1 : i.packages))).reduce((total,num)=> total + num).toFixed(2) }}</td>
+                            <td colspan="3"></td>
+                        </tr>
+                    </script>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

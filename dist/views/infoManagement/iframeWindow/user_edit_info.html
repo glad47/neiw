@@ -1,0 +1,181 @@
+<div class="layui-fluid">
+    <form class="layui-form" lay-filter="user_editInfo_form" id="user_editInfo_form" style="width: 650px">
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label" name="editUsername">
+                    <span class="span-required">*</span>
+                    用户名：
+                </label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="username" value="{{ d.params.username || '' }}" autocomplete="off" class="layui-input" lay-verify="username">
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">密码：</label>
+                <div class="layui-input-block">
+                    <input type="password" name="password" autocomplete="off" class="layui-input" id="user_edit_pwd" lay-verify="password">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md6 layui-col-sm6">
+                <label class="layui-form-label">部门：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/dept/list" lay-done="layui.data.done(d);">
+                        <!--<select name="deptId" id="user_edit_dep" name="bm">-->
+                        <select name="deptId" id="user_edit_dep" name="bm">
+                            <!--编辑部门自动回填-->
+                            <option value="{{ d.params.deptId || ''}}">{{ d.params.deptName || ''}}</option>
+                            <!--遍历异步请求到的数据且填充-->
+                            {{#  layui.each(d.data, function(index, item){ }}
+                            <option value="{{ item.deptId || ''}}" >{{ item.deptName }}</option>
+                            {{#  }); }}
+                            {{#  if(d.data.length === 0){ }}
+                            无数据
+                            {{#  } }}
+                        </select>
+                    </script>
+
+                </div>
+            </div>
+
+            <div class="layui-col-md6">
+                <label class="layui-form-label">上级：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/user/allUser" lay-type="post" lay-done="layui.data.done(d);">
+                        <select name="superiorId">
+                            <option></option>
+                            {{# var superiorId = d.params.superiorId;
+                            layui.each(d.data, function(index, item){ }}
+                            <option value="{{ item.userId }}" {{ superiorId == item.userId ? 'selected' : ''}}>{{ item.username}}</option>
+                            {{# }); }}
+                            {{# if(d.data.lenth === 0 ){ }}
+                            无数据
+                            {{#  } }}
+                        </select>
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-cusID layui-col-md6 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label">
+                    <span class="span-required">*</span>
+                    Email：
+                </label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="email" value="{{ d.params.email || '' }}" autocomplete="off" class="layui-input" id="user_edit_cusid" lay-verify="eamil">
+                    </script>
+                </div>
+            </div>
+            <div class="addcus-cusPWd layui-col-md6 layui-col-sm6">
+                <label class="layui-form-label">Skype：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="skype" value="{{ d.params.skype || ''}}" autocomplete="off" class="layui-input" id="user_edit_skype">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="addcus-cusNum layui-col-md6 layui-col-sm6">
+                <label class="layui-form-label">办公电话：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="mobile" value="{{ d.params.mobile || ''}}" autocomplete="off" class="layui-input" id="user_edit_offTel">
+                    </script>
+
+                </div>
+            </div>
+            <div class="addcus-cusID layui-col-md6 layui-col-sm6">
+                <label class="layui-form-label">工号：</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="jobNumber" value="{{ d.params.jobNumber || '' }}" autocomplete="off" class="layui-input" id="user_edit_workNum" lay-verify="jobNumber">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="user_status layui-col-md6 layui-col-sm6">
+                <label class="layui-form-label">状态:</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template lay-done="layui.data.done(d);">
+                        {{# if(d.params.status === 1){ }}
+                        <input type="checkbox" checked="" name="status" lay-skin="switch" lay-filter="switchUser" lay-text="启用|禁用">
+                        {{# } else { }}
+                        <input type="checkbox" name="status" lay-skin="switch" lay-filter="switchUser" lay-text="启用|禁用">
+                        {{#  } }}
+                    </script>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">中文名:</label>
+                <div class="layui-input-block">
+                    <script type="text/html" template>
+                        <input type="text" name="userChinaName" value="{{ d.params.userChinaName || '' }}" autocomplete="off" class="layui-input">
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色：</label>
+            <div class="layui-input-block">
+                <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/role/list?limit=100" lay-done="layui.data.done(d);" lay-data="">
+                    {{#
+                    var plist = d.params.roleIdList;
+                    layui.each(d.data, function(index, item){
+                    }}
+                    <input type="checkbox" name="roleIdList[]" lay-skin="primary" title="{{ item.roleName }}" value="{{ item.roleId }}" {{ plist != "" && plist!= null && plist.indexOf(item.roleId) != -1 ? 'checked' : '' }}>
+                    {{#  }); }}
+                    {{#  if(d.data.length === 0){ }}
+                    无数据
+                    {{#  } }}
+                </script>
+                <!--<script type="text/html" template>-->
+                <!--{{# layui.each(d.params.roleIdList, function(index, item) { }}-->
+                <!--<a>{{ item[1] }}1212</a>-->
+                <!--&lt;!&ndash;{{ alert(JSON.stringify(d.params))}}&ndash;&gt;-->
+                <!--{{#  }); }}-->
+                <!--{{#  if(d.params.mobile === 0){ }}-->
+                <!--无数据-->
+                <!--{{#  } }}-->
+                <!--</script>-->
+            </div>
+        </div>
+        <div class="layui-form-item" style="display: none;">
+            <label class="layui-form-label">Salt</label>
+            <div class="layui-input-block">
+                <script type="text/html" template>
+                    <input type="text" name="salt" value="{{ d.params.salt || ''}}" autocomplete="off" class="layui-input" id="user_edit_salt">
+                </script>
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-col-md-offset3" style="margin-top: 30px;">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="LAY-user-editInfo-submit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    .span-required{color: red;}
+</style>
+<script>
+    layui.data.done = function(d){
+        layui.use(['form'], function(){
+            var $ = layui.$ ;
+            form = layui.form
+                ,admin = layui.admin
+            form.render(null, 'user_editInfo_form');
+        });
+
+    }
+
+</script>

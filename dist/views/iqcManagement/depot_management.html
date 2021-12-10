@@ -1,0 +1,179 @@
+
+<title>成品管理-仓库管理</title>
+
+<div class="layui-fluid">
+  <div class="layui-card">
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="iqc-depot-management-formlist">
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">仓库</label>
+          <div class="layui-input-block">
+            <select name="depotName">
+                <option></option>
+                <option value="PCBA">PCBA</option>
+                <option value="板料">板料</option>
+                <option value="工具">工具</option>
+                <option value="物料">物料</option>
+                <option value="油墨">油墨</option>
+            </select>
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">产品</label>
+          <div class="layui-input-block">
+            <select name="productName">
+                <option></option>
+                <option value="测试架">测试架</option> 
+                <option value="模具">模具</option> 
+                <option value="钢网">钢网</option> 
+                <option value="夹具">夹具</option> 
+                <option value="其它">其它</option> 
+            </select>
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">位置</label>
+          <div class="layui-input-block">
+            <input type="text" name="position" placeholder="请输入" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">型号</label>
+          <div class="layui-input-block">
+            <input type="text" name="model" placeholder="请输入" autocomplete="off" class="layui-input"> 
+          </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">创建时间</label>
+            <div class="layui-input-block">
+                <input type="text" id="gmtCreate" name="gmtCreate" placeholder="请输入" autocomplete="off" class="layui-input"> 
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">修改时间</label>
+            <div class="layui-input-block">
+                <input type="text" id="gmtModified" name="gmtModified" placeholder="请输入" autocomplete="off" class="layui-input"> 
+            </div>
+          </div>
+        <div class="layui-inline">
+          <button class="layui-btn layuiadmin-btn-useradmin" lay-submit lay-filter="LAY-iqc-depot-management-search">
+            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="layui-card-body">
+      <div style="padding-bottom: 10px;">
+        <button class="layui-btn layui-btn-danger layuiadmin-btn-depot-manage" data-type="batchdel"><i class="layui-icon layui-icon-delete"></i></button>
+        <button class="layui-btn layuiadmin-btn-depot-manage" data-type="add">添加</button>
+      </div>
+      
+      <table id="LAY-iqc-depot-manage" lay-filter="LAY-iqc-depot-manage"></table>
+      <script type="text/html" id="imgTpl"> 
+        <img style="display: inline-block; width: 50%; height: 100%;" src= {{ d.avatar }}>
+      </script> 
+      <script type="text/html" id="table-iqc-depot-toolbar">
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+        <!-- <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a> -->
+      </script>
+    </div>
+  </div>
+</div>
+
+<script>
+layui.use('iqc_depotMangement', layui.factory('iqc_depotMangement')).use(['admin', 'iqc_depotMangement', 'table','form','element'], function(){
+    var $ = layui.$
+    ,admin = layui.admin
+    ,view = layui.view
+    ,table = layui.table
+    ,setter = layui.setter
+    ,laydate = layui.laydate
+    ,form = layui.form;
+
+    form.render(null, 'iqc-depot-management-formlist');
+    laydate.render({
+        elem: '#gmtCreate'
+    });
+    laydate.render({
+        elem: '#gmtModified'
+    })
+    //监听搜索
+    form.on('submit(LAY-iqc-depot-management-search)', function(data){
+        var field = data.field;
+        //执行重载
+        table.reload('LAY-iqc-depot-manage', {
+            where: field
+        });
+    });
+
+    //事件
+    var active = {
+        add: function(){
+          admin.popup({
+            title: '添加仓库'
+            ,area: ['55%', '60%']
+            ,id: 'LAY-popup-depot-add'
+            ,btn:['添加', '取消']
+            ,yes: function () {
+                $("#iqc-depot-sumbit").click();
+            }
+            ,success: function(layero, index){
+            view(this.id).render('iqcManagement/iframeWindow/depot_form').done(function(){
+                form.render(null, 'iqc-depot-edit-add-form');
+                
+                //监听提交
+                form.on('submit(LAY-iqc-depot-submit)', function(data){
+                    var field = data.field; //获取提交的字段
+                    admin.req({
+                        type:'post',
+                        url: setter.baseUrl+'iqc/depot/save' //实际使用请改成服务端真实接口
+                        ,data: field
+                        ,done: function(res){
+                            console.log(res);
+                            layer.msg('仓库添加成功');
+                            layui.table.reload('LAY-iqc-depot-manage'); //重载表格
+                        }
+                        ,fail: function (res) {
+                            layer.msg('仓库添加失败');
+                        },
+                    });
+                    layer.close(index); //执行关闭 
+                });
+            });
+            }
+        });
+        },
+        batchdel: function(){
+            var checkStatus = table.checkStatus('LAY-iqc-depot-manage')
+            ,checkData = checkStatus.data; //得到选中的数据
+    
+            if(checkData.length === 0){
+              return layer.msg('请选择数据');
+            }
+            var ids = checkStatus.data.map(function(elem){return elem.id}).join(",");
+            layer.confirm('确定删除吗？', function(index) {
+              //执行 Ajax 后重载
+              admin.req({
+                type: 'post',
+                url: setter.baseUrl+"iqc/depot/delete",
+                data: {'ids': ids},
+                done: function(res){
+                    layer.msg('已删除');
+                    table.reload('LAY-iqc-depot-manage');
+                }
+                ,fail: function (res) {
+                    layer.msg('删除失败');
+                },
+              });
+              
+            });
+        }
+    };
+  
+    $('.layui-btn.layuiadmin-btn-depot-manage').on('click', function(){
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+});
+</script>

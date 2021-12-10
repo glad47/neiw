@@ -1,0 +1,71 @@
+<!--
+ * @Descripttion: 财务管理-运费利润
+ * @version: 1.0
+ * @Author: 
+ * @Date: 2021-07-16 20:29:01
+ * @LastEditors: ho huang
+ * @LastEditTime: 2021-09-04 10:26:53
+-->
+<title>财务管理-运费利润</title>
+<div class="layui-fluid">
+    <!--卡片－表格信息-->
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto paypal-form-search" lay-filter="feight-profits-formlist">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">运单号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="courierNumber" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">快递公司</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="courierName" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">内部型号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="productNos" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-feight-profits-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-card-body">
+            <table class="layui-table" id="fsm_feight_profits_tabPcb" lay-filter="fsm_feight_profits_tabPcb"></table>
+            <script type="text/html" id="fsm_feight_tabbar">
+                <div class="layui-btn-container">
+                    <a class="layui-btn layui-btn-sm" lay-event="feight_profits_edit">编辑</a>
+                </div>
+            </script>
+            <script type="text/html" id="feight-profits-ffff">
+                {{# if(d.totalPostFee != null && d.postalFee != null){ }}
+                {{ (d.totalPostFee - d.postalFee) }}
+                {{# } }}
+            </script>
+        </div>
+    </div>
+   
+    <!-- <div class="layui-tab">
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                
+            </div>
+        </div>
+    </div> -->
+    
+</div>
+
+<script>
+    layui.use('finMana_feight_profits', layui.factory('finMana_feight_profits')).use(['finMana_feight_profits', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>

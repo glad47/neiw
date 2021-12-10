@@ -1,0 +1,138 @@
+<link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
+<div class="layui-form" lay-filter="sys-coupons-form-list">
+    <script type="text/html" template lay-done="layui.data.done(d);">
+        {{# if(d.params.operateMark == 1 ){ }}
+        <div class="layui-form-item">
+        <label class="layui-form-label">选择客户</label>
+        <div class="layui-input-inline">
+            <select id="customerInfo" xm-select-height="34px" xm-select="customerInfo" xm-select-radio  xm-select-search="" xm-select-search-type="dl" lay-verify="required">
+            </select>
+        </div>
+        </div>
+        {{# } }}
+    </script>
+    <div class="layui-form-item">
+        <label class="layui-form-label">生成规则</label>
+        <div class="layui-input-block">
+            <a href="javascript:void(0)" class="layui-btn layuiadmin-btn-list" data-type="addCouponRule">添加</a>
+        </div>
+        <div class="layui-input-block" style="width: auto">
+            <table id="sys-coupons-rule-list-table" lay-filter="sys-coupons-rule-list-table"></table>
+        </div>
+    </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label"></label>
+    <div class="layui-input-inline">
+        <script type="text/html" template>
+            <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+            <input type="hidden" name="userId" value="{{ d.params.userId || '' }}">
+            <input type="hidden" name="delIdArr" >
+            <input type="button" style="display: none;" lay-submit lay-filter="sys-coupons-form-submit" value="确认" class="layui-btn" id="sys-coupons-form-submit">
+        </script>
+    </div>
+    </div>
+    <script type="text/html" id="coupons-rule-add-toolbar">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+    </script>
+</div>
+
+<script>
+    layui.data.done = function(d){
+        console.log(d);
+        let ddd = d.params.ruleList || []
+        ,operateMark = d.params.operateMark
+        ,uid = d.params.data != null ? d.params.data.userId || null : null
+        , cc = d.params.data != null ? d.params.data.couponType || null : null;
+        if(ddd.length !== 0 && cc != null){
+            for (let i = 0; i <ddd.length ; i++) {
+                // console.log(ddd[i].codeFlag == cc);
+                if(ddd[i].codeFlag == cc){
+                    ddd[i].LAY_CHECKED = true;
+                } 
+            }
+        }
+        layui.use(['table','formSelects','r','form','requestInterface'],function(){
+            let $ = layui.jquery
+                ,table = layui.table
+                ,formSelects = layui.formSelects
+                ,setter = layui.setter
+                ,requestInterface = layui.requestInterface
+                ,form = layui.form
+                ,r = layui.r;
+
+            initCustomerInfo(uid);
+
+            function initCustomerInfo(uid){
+                var _obj = requestInterface.getAllCustomer();
+                var $html;
+                for (let c of _obj) {
+                    $html += "<option value="+c.id+">"+c.userSystemId+"</option>"
+                }
+                $("select[xm-select='customerInfo']").append($html);
+                formSelects.render('customerInfo');
+                if(uid){
+                    formSelects.value('customerInfo',[uid],true);
+                }
+                
+            }
+
+            formSelects.on('customerInfo', function (id, vals, val, isAdd, isDisabled) {
+                console.log(val);
+                if(isAdd){//对form赋值
+                   form.val("sys-coupons-form-list",{"userId":val.value});
+                }else{
+                   form.val("sys-coupons-form-list",{"userId":null});
+                }
+            });
+
+            table.render({
+                elem: '#sys-coupons-rule-list-table'
+                ,data: ddd
+                ,totalRow: false
+                ,cellMinWidth: 90
+                ,cols: [[
+                    {type: 'radio', title: '', align:'center'}
+                    ,{field: 'name',  title: '规则名', align:'center', edit: 'text'}
+                    ,{field: 'describe', align:'center', title: '规则描述', edit: 'text'}
+                    ,{field: 'availableTime', align:'center', title: '券有效天数', edit: 'text'}
+                    ,{field: 'codeFlag', title: "券标识", align:'center',edit: 'text'}
+                    ,{field: 'money', title: '金额', align:'center', edit: 'text'}
+                    ,{title: '操作', width: '10%', align: 'center', fixed: 'right', toolbar: '#coupons-rule-add-toolbar'}
+                    // ,{field: 'commercialInvoiceno', align:'center', title: '发票号码',edit: 'text'}
+                ]]
+            });
+
+            let add_del_array = [];//删除arr
+            table.on('tool(sys-coupons-rule-list-table)', function(obj){
+                var data = obj.data;
+                if(obj.event === 'del'){
+                    layer.confirm('确定删除该规则？', function(index){
+                        console.log(data);
+                        if(data.id !== undefined && data.id !== ""){
+                            add_del_array.push(data.id);
+                            let ids = add_del_array.toString();
+                            console.log(ids);
+                            form.val('sys-coupons-form-list',{delIdArr:ids})
+                        }
+                        obj.del();
+                        layer.close(index);
+                    });
+                }
+            });
+
+            var active = {
+                addCouponRule: function(){
+                    let oldData = table.cache["sys-coupons-rule-list-table"],d={};
+                    oldData.push(d);
+                    table.reload('sys-coupons-rule-list-table',{data:oldData});
+                }
+            }
+
+            $('.layui-btn.layuiadmin-btn-list').on('click', function(){
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+        });
+    };
+</script>
+

@@ -1,0 +1,48 @@
+<div class="layui-fluid">
+    <script type="text/html" template>
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司网站：</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="siteUrl" value="{{d.params.siteUrl || ''}}" lay-verify="required">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">渠道：</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="channel" value="{{d.params.channel || ''}}" lay-verify="required">
+            </div>
+        </div>
+        <div class="layui-form-item" style="display: none;">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="id" value="{{d.params.id}}">
+                <input type="button" lay-submit lay-filter="customersh-submit" value="确认" class="layui-btn" id="customersh-submit">
+            </div>
+        </div>
+    </form>
+    </script>
+</div>
+
+<script>
+    layui.use(['admin', 'table', 'form'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            form = layui.form;
+        form.render();
+        form.on('submit(customersh-submit)',function(data) {
+            var field = data.field;
+            field.status = 1;   // 0未审核  1需要审核 2已审核
+            console.log(field);
+            admin.req({
+                url:setter.baseUrl+'sys/consumer/user/submitAudit',
+                type:'POST',
+                data:field,
+                success:function(data) {
+                    layui.table.reload('customer_listTab');
+                    layer.closeAll();
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,416 @@
+
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous"> -->
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <!-- 头部区域 -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item layadmin-flexible" lay-unselect>
+        <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+          <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+        </a>
+      </li>
+      <li class="layui-nav-item" lay-unselect>
+        <a href="javascript:;" layadmin-event="refresh" title="刷新">
+          <i class="layui-icon layui-icon-refresh-3"></i>
+        </a>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
+      
+      <li class="layui-nav-item" lay-unselect>
+        <a lay-href="app/message/" layadmin-event="message">
+          <i class="layui-icon layui-icon-notice"></i>
+          
+          <!-- 如果有新消息，则显示小圆点 -->
+          <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/message/newMsg">
+          {{# if(d.newmsg){ }} 
+            <span class="layui-badge-dot"></span>
+          {{# } }}
+          </script>
+          
+        </a>
+      </li>
+      <li class="layui-nav-item layui-hide-xs" lay-unselect>
+        <a href="javascript:;" layadmin-event="fullscreen">
+          <i class="layui-icon layui-icon-screen-full"></i>
+        </a>
+      </li>
+      <li class="layui-nav-item" lay-unselect style="margin-right: 30px;">
+        <script type="text/html" template >
+          <a href="javascript:;">
+            <cite>{{ layui.data('layuiAdmin').username }}</cite>
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;" id="OP_jbxx">基本资料</a></dd>
+            <dd><a href="javascript:;" id="OP_xgmm">修改密码</a></dd>
+            <hr>
+            <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
+          </dl>
+        </script>
+      </li>
+      <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-unselect>
+        <a href="javascript:;" layadmin-event="more"><i class="layui-icon layui-icon-more-vertical"></i></a>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- 侧边菜单 -->
+  <div class="layui-side layui-side-menu">
+    <div class="layui-side-scroll">
+      <script type="text/html" template lay-url="{{layui.setter.baseUrl}}sys/menu/erpnav"
+      lay-done="layui.element.render('nav', 'layadmin-system-side-menu');" id="TPL_layout">
+      
+        <div class="layui-logo" lay-href="">
+          <!--<span>{{ layui.setter.name || 'layuiAdmin' }}</span>-->
+          <span>
+            <img src="../../../src/style/res/logoMax-n.png" style="width: 150px">
+          </span>
+        </div>
+        <!--权限标示104行layer.msg('权限标识添加成功!!');layui.data('layuiAdmin').access_token-->
+        <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+        {{#
+          var path =  layui.router().path
+          ,pathURL = layui.admin.correctRouter(path.join('/'))
+          ,dataName = layui.setter.response.dataName
+          ,setter = layui.setter;
+
+          layui.sessionData(setter.tableName, {
+              key: setter.permissionsKeys
+              ,value: d.permissions
+          });
+
+          layui.each(d[dataName], function(index, item){
+            var hasChildren = typeof item.list === 'object' && item.list.length > 0
+            ,classSelected = function(){
+              var match = path[0] == item.name || (index == 0 && !path[0])
+              || (item.jump && pathURL == layui.admin.correctRouter(item.jump)) || item.spread;
+              if(match){
+                return hasChildren ? 'layui-nav-itemed' : 'layui-this';
+              }
+              return '';
+            }
+            ,url = (item.jump && typeof item.jump === 'string') ? item.jump : item.name;
+        }}
+          <li data-name="{{ item.name || '' }}" data-jump="{{ item.jump || '' }}" class="layui-nav-item {{ classSelected() }}">
+            <a href="javascript:;" {{ hasChildren ? '' : 'lay-href="'+ url +'"' }} lay-tips="{{ item.title }}" lay-direction="2">
+              <i class="layui-icon {{ item.icon }}"></i>
+              <cite>{{ item.title }}</cite>
+            </a>
+            {{# if(hasChildren){ }}
+              <dl class="layui-nav-child">
+              {{# layui.each(item.list, function(index2, item2){
+                var hasChildren2 = false
+                ,classSelected2 = function(){
+                  var match = (path[0] == item.name && path[1] == item2.name) 
+                  || (item2.jump && pathURL == layui.admin.correctRouter(item2.jump)) || item2.spread;
+                  if(match){
+                    return hasChildren2 ? 'layui-nav-itemed' : '';
+                  }
+                  return '';
+                }
+                ,url2 = (item2.jump && typeof item2.jump === 'string') 
+                  ? item2.jump 
+                : [item.name, item2.name, ''].join('/');
+              }}
+                <dd  data-name="{{ item2.name || '' }}"  data-jump="{{ item2.jump || '' }}" 
+                {{ classSelected2() ? ('class="'+ classSelected2() +'"') : '' }}>
+                <a class="border-dotted-aone"></a>
+                <a class="border-dotted-atwo"></a>
+                <a href="javascript:;" {{ hasChildren2 ? '' : 'lay-href="'+ url2 +'"' }}>{{ item2.title }}
+                  <i class="{{ item2.icon }}"></i>
+                </a>
+                  {{# if(hasChildren2){ }}
+                    <dl class="layui-nav-child">
+                      {{# layui.each(item2.list, function(index3, item3){ 
+                        var match = (path[0] == item.name && path[1] == item2.name && path[2] == item3.name) 
+                        || (item3.jump && pathURL == layui.admin.correctRouter(item3.jump))
+                        ,url3 = (item3.jump && typeof item3.jump === 'string') 
+                          ? item3.jump
+                        : [item.name, item2.name, item3.name].join('/')
+                      }}
+                        <dd data-name="{{ item3.name || '' }}"  data-jump="{{ item3.jump || '' }}" 
+                        {{ match ? 'class="layui-this"' : '' }}>
+                          <a href="javascript:;" lay-href="{{ url3 }}" {{ item3.iframe ? 'lay-iframe="true"' : '' }}>{{ item3.title }}</a>
+                        </dd>
+                      {{# }); }}
+                    </dl>
+                  {{# } }}
+                </dd>
+            {{# }); }}
+            </dl>
+            {{# } }}
+          </li>
+        {{# }); }}
+        </ul>
+      </script>
+    </div>
+  </div>
+  
+
+  <!-- 页面标签 -->
+  <script type="text/html" template lay-done="layui.element.render('nav', 'layadmin-pagetabs-nav')">
+    {{# if(layui.setter.pageTabs){ }}
+    <div class="layadmin-pagetabs" id="LAY_app_tabs">
+      <div class="layui-icon layadmin-tabs-control layui-icon-prev" layadmin-event="leftPage"></div>
+      <div class="layui-icon layadmin-tabs-control layui-icon-next" layadmin-event="rightPage"></div>
+      <div class="layui-icon layadmin-tabs-control layui-icon-down">
+        <ul class="layui-nav layadmin-tabs-select" lay-filter="layadmin-pagetabs-nav">
+          <li class="layui-nav-item" lay-unselect>
+            <a href="javascript:;"></a>
+            <dl class="layui-nav-child layui-anim-fadein">
+              <dd layadmin-event="closeThisTabs"><a href="javascript:;">关闭当前标签页</a></dd>
+              <dd layadmin-event="closeOtherTabs"><a href="javascript:;">关闭其它标签页</a></dd>
+              <dd layadmin-event="closeAllTabs"><a href="javascript:;">关闭全部标签页</a></dd>
+            </dl>
+          </li>
+        </ul>
+      </div>
+      <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
+        <ul class="layui-tab-title" id="LAY_app_tabsheader">
+          <li lay-id="/"><i class="layui-icon layui-icon-home"></i></li>
+        </ul>
+      </div>
+    </div>
+    {{# } }}
+  </script>
+  
+  
+  <!-- 主体内容 -->
+  <div class="layui-body" id="LAY_app_body">
+    <div class="layadmin-tabsbody-item layui-show"></div>
+  </div>
+  
+  <!-- 辅助元素，一般用于移动设备下遮罩 -->
+  <div class="layadmin-body-shade" layadmin-event="shade"></div>
+  
+</div>
+
+<style>
+  #LAY-system-side-menu .layui-nav-child dd .border-dotted-aone {
+    border-right: dotted 1px cornsilk;width: 5%;float: left;margin-left: 14px;
+  }
+  #LAY-system-side-menu .layui-nav-child dd .border-dotted-atwo {
+    border-top: dotted 1px cornsilk;width: 10px;padding-right: 0;margin-left: 26px;margin-top: 20px;height: 0;position: absolute;z-index: 999;
+  }
+  #LAY-system-side-menu .layui-nav-child dd .border-dotted-aone,#LAY-system-side-menu .layui-nav-child dd .border-dotted-atwo{
+    padding-left: 0;
+    padding-right: 0;
+    line-height: 0;
+    clear: display;
+  }
+  /*awesome图标样式和layui冲突修改*/
+  #LAY-system-side-menu .layui-nav-child dd .fa{
+    left: 20px;
+    position: absolute;
+    margin-top: -19px;
+    top: 100%;
+    line-height: 0;
+  }
+</style>
+<script type="text/javascript">
+    layui.use(['admin','form','laydate','upload', 'tableSearch'],function () {
+      var $ = layui.$
+      ,admin = layui.admin
+      ,setter = layui.setter
+      ,form = layui.form
+      ,view = layui.view
+      ,upload = layui.upload;
+      
+      //修改基本信息
+      $("#OP_jbxx").on('click',function(){
+          admin.req({
+              url: setter.baseUrl+'sys/user/info',
+              type: 'get',
+              async:false,
+              success: function (res) {
+                  var data = res.data;
+                  admin.popup({
+                      title: '修改基本信息',
+                      area: ['750px', '750px'],
+                      btn: ['提交', '取消'],
+                      yes: function (index, layero) {
+                          $('#setmyinfo').click();
+                      },
+                      btn2: function (index, layero) {
+                      },
+                      end: function () {
+                          clickTr = {};
+                      },
+                      id: 'LAY-popup-user-info-set',
+                      success: function (layero, index) {
+                          view(this.id).render('set/user/info',data).done(function () {
+                              //清空form表单
+                              form.render(null,'layadmin-system-user-info-set');
+
+                              //上传头像
+                              var avatarSrc = $('#LAY_avatarSrc');
+                              upload.render({
+                                url: setter.imUrl+'imgfile/fileupload'
+                                ,elem: '#LAY_avatarUpload'
+                                ,done: function(res){
+                                  if(res.code == 0){
+                                    avatarSrc.val(res.data.src);
+                                  } else {
+                                    layer.msg(res.msg, {icon: 5});
+                                  }
+                                }
+                              });
+                              
+                              //查看头像
+                              admin.events.avartatPreview = function(othis){
+                                var src = avatarSrc.val();
+                                layer.photos({
+                                  photos: {
+                                    "title": "查看头像" //相册标题
+                                    ,"data": [{
+                                      "src": src //原图地址
+                                    }]
+                                  }
+                                  ,shade: 0.01
+                                  ,closeBtn: 1
+                                  ,anim: 5
+                                });
+                              };
+                              //监听提交
+                              form.on('submit(setmyinfo)', function (data) {
+                                  var field = data.field;
+                                  admin.req({
+                                      url: setter.baseUrl + 'sys/user/updateBaseInfo',
+                                      type: 'POST',
+                                      //dataType:'json',
+                                      //contentType:'application/json',
+                                      data: field,
+                                      success: function (data) {
+                                          console.log(data);
+                                          // layui.table.reload('article_Table_blog'); //重载表格
+                                          layer.close(index); //执行关闭
+                                      }
+                                  })
+
+                              });
+                          });
+                      }
+                  });
+              }
+          });
+      });
+
+      //修改密码
+      $("#OP_xgmm").on('click',function(){
+          // admin.req({
+          //   url:setter.baseUrl+'sys/user/info',
+          //   type:'get',
+          //   success:function(res){
+          //       var data= res.data;
+          //       console.log(data);
+          //       admin.popup({
+          //               title: '修改基本信息',
+          //               area: ['750px', '750px'],
+          //               btn: ['提交', '取消'],
+          //               yes: function (index, layero) {
+          //                   $('#setmypass').click();
+          //               },
+          //               btn2: function (index, layero) {
+          //               },
+          //               end: function () {
+          //                   clickTr = {};
+          //               },
+          //               id: 'LAY-popup-user-info-set',
+          //               success: function (layero, index) {
+          //                   view(this.id).render('set/user/password',data).done(function () {
+          //                       //清空form表单
+          //                       form.render(null,'layadmin-system-user-pwssword-set');
+                              
+          //                       //监听提交
+          //                       form.on('submit(setmypass)', function (data) {
+          //                           var field = data.field;
+          //                           admin.req({
+          //                               url: setter.baseUrl + 'sys/user/updateBaseInfo',
+          //                               type: 'POST',
+          //                               data: field,
+          //                               success: function (data) {
+          //                                 if (data.code == 0) {
+          //                                     layer.msg(data.msg);
+          //                                 }else{
+          //                                     layer.msg(data.msg,{icon: 5});
+          //                                 }
+          //                                   // layui.table.reload('article_Table_blog'); //重载表格
+          //                                 layer.close(index); //执行关闭
+          //                               }
+          //                           })
+
+          //                       });
+          //                   });
+          //               }
+          //           });
+          //   }
+          // });
+
+          admin.popup({
+                  title: '修改基本信息',
+                  area: ['750px', '750px'],
+                  btn: ['提交', '取消'],
+                  yes: function (index, layero) {
+                      $('#setmypass').click();
+                  },
+                  btn2: function (index, layero) {
+                  },
+                  end: function () {
+                      clickTr = {};
+                  },
+                  id: 'LAY-popup-user-info-set',
+                  success: function (layero, index) {
+                      view(this.id).render('set/user/password').done(function () {
+                          //清空form表单
+                          form.render(null,'layadmin-system-user-pwssword-set');
+                        
+                          //监听提交
+                          form.on('submit(setmypass)', function (data) {
+                              var field = data.field;
+                              admin.req({
+                                  url: setter.baseUrl + 'sys/user/password',
+                                  type: 'POST',
+                                  data: field,
+                                  success: function (data) {
+                                    if (data.code == 0) {
+                                        layer.msg(data.msg);
+                                    }else{
+                                        layer.msg(data.msg,{icon: 5});
+                                    }
+                                      // layui.table.reload('article_Table_blog'); //重载表格
+                                    layer.close(index); //执行关闭
+                                  }
+                              })
+
+                          });
+                      });
+                  }
+              });
+          
+      });
+
+  })
+</script>
+<script>
+    // layui.use('imserver', layui.factory('imserver')).use(['jquery'], function () {
+    //     var $ = layui.jquery
+    //     // 缓存当前操作的是哪个表格的哪个tr的哪个td           解决表格操作栏收缩无法点击的bug
+    //     $(document).off('mousedown','.layui-table-grid-down')
+    //         .on('mousedown','.layui-table-grid-down',function(event){
+    //             table._tableTrCurr = $(this).closest('td');
+    //         });
+    //
+    //     $(document).off('click','.layui-table-tips-main [lay-event]')
+    //         .on('click','.layui-table-tips-main [lay-event]',function(event){
+    //             var elem = $(this);
+    //             var tableTrCurr = table._tableTrCurr;
+    //             if(!tableTrCurr){
+    //                 return;
+    //             }
+    //             var layerIndex = elem.closest('.layui-table-tips').attr('times');
+    //             // 关闭当前这个显示更多的tip
+    //             layer.close(layerIndex);
+    //             table._tableTrCurr.find('[lay-event="' + elem.attr('lay-event') + '"]').first().click();
+    //         });
+    // });
+</script>

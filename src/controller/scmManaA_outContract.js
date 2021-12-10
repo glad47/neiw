@@ -57,7 +57,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                 ,{field: 'productNo', title: '聚谷型号', width: 135, sort: true}
                 ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
                 ,{field: 'status',title: '状态',templet: '#og_statusA', minWidth: 104, sort: true}      // 1 ＝ 待报价
-                ,{field: 'gmtCreate',title: '创建时间', width: 166, sort: true}
+                ,{field: 'gmtCreate',title: '创建时间',templet:'<a>{{d.gmtCreate.substring(0,11)}}</a>' , width: 166, sort: true}
                 ,{field: 'pcbName', title: '聚谷物料号', width: 144, sort: true}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
                 ,{field: 'unitPrice', title: '单价', width: 96, sort: true}
@@ -89,6 +89,8 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             ,done: function (res, curr, count) {
                 var data = res.data;    //获取表格所有数据对象
                 pcbtabObj = data;
+                // console.log("i am inside the done function of the table  --- -- -- printing the stenciltabObj info  -- -- -- >  ");
+                // console.log(pcbtabObj)
             }
         });
     }
@@ -156,7 +158,10 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
         } else if (obj.event == 'search'){
             var popupData = {data:{}};
             var lineData = obj.data;
+            // console.log("************************very important iyou need tio understands this data structure *****************************")
+            // console.log(obj.data)
             var supplierContractNo = lineData.supplierContractNo;
+            var dataOfContract=lineData.gmtCreate;
             var sd_len = 0;
             var totalFee = 0;
             var convertSubtotal;
@@ -181,6 +186,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             popupData.convertSubtotal = convertSubtotal;
             // 获取供应商信息
             popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+data.supplierId);
+            popupData.dataOfContract=dataOfContract;
             console.log(popupData)
             admin.popup({
                 title: '外协合同'
@@ -221,7 +227,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                 ,{field: 'productNo', title: '聚谷型号', width: 135, sort: true}
                 ,{field: 'supplierNo', title: '供应商编号', width: 124, sort: true}
                 ,{field: 'status',title: '状态',templet: '#og_statusSA', minWidth: 104, sort: true}      // 1 ＝ 待报价
-                ,{field: 'gmtCreate',title: '创建时间', width: 166, sort: true}
+                ,{field: 'gmtCreate',title: '创建时间', width: 166,templet:'<a>{{d.gmtCreate.substring(0,11)}}</a>', sort: true}
                 ,{field: 'pcbName', title: '聚谷物料号', width: 144, sort: true}
                 ,{field: 'quantityPcs', title: '订单数量(PCS)', width: 134, sort: true}
                 ,{field: 'unitPrice', title: '单价', width: 96, sort: true}
@@ -310,6 +316,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             var popupData = {data:{}};
             var lineData = obj.data;
             var supplierContractNo = lineData.supplierContractNo;
+            var dataOfContract=lineData.gmtCreate;
             var sd_len = 0;
             var subtotal = 0;
             var convertSubtotal;
@@ -333,6 +340,7 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             console.log("convertSubtotal:"+convertSubtotal);
             popupData.subtotal = subtotal;
             popupData.convertSubtotal = convertSubtotal;
+            popupData.dataOfContract=dataOfContract;
             // 获取供应商信息
             popupData.supplierInfo =requestInterface.GetSupplierInfo(setter.baseUrl+'sys/supplier/info/'+data.supplierId);
             admin.popup({

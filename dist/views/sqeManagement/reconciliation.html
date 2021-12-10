@@ -1,0 +1,122 @@
+<title>供应商管理-对账协同</title>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="layadmin-reconciliation-formlist">
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-col-md4">
+                        <label class="layui-form-label">下单时间</label>
+                        <div class="layui-input-inline" style="width: 100px;">
+                            <input type="text" name="ot" id="todzDate" class="layui-input" style="width: 190px;" placeholder=" - ">
+                        </div>
+                        <!-- <div class="layui-form-mid" style="padding: 5px 0!important">-</div>
+                        <div class="layui-input-inline" style="width: 100px;">
+                            <input type="text" name="orderEndTime" id="fromdzDate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" style="height: 32px;">
+                        </div> -->
+                    </div>
+                    <div class="layui-col-md4">
+                        <label class="layui-form-label">付款时间</label>
+                        <div class="layui-input-inline" style="width: 100px;">
+                            <input type="text" name="pt" id="todzDate2" placeholder=" - " class="layui-input" style="width: 190px;">
+                        </div>
+                        <!-- <div class="layui-form-mid" style="padding: 5px 0!important">-</div>
+                        <div class="layui-input-inline" style="width: 100px;">
+                            <input type="text" name="payEndTime" id="fromdzDate2" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" style="height: 32px;">
+                        </div> -->
+                    </div>
+                    <div class="layui-col-md4">
+                        <label class="layui-form-label">是否付款</label>
+                        <div class="layui-input-inline">
+                            <select name="payStatus" lay-filter="inside-contract-sel">
+                                <option value="">请选择</option>
+                                <option value="8">未支付</option>
+                                <option value="9">已支付</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-row">
+                    <div class="layui-col-md4">
+                        <label class="layui-form-label">内部型号</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="productNo" class="layui-input">
+                        </div>
+                    </div>
+    
+                    <div class="layui-col-md4">
+                        <label class="layui-form-label">供应商编号</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="supplierNo" class="layui-input">
+                        </div>
+                    </div>
+    
+                    <div class="layui-col-md4">
+                    <label class="layui-form-label">送货单号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="deliveryOrderNo" class="layui-input">
+                    </div>
+                    </div>
+                    
+                </div>
+                <div class="layui-row">
+                    <div class="layui-col-md11 layui-col-md-offset11">
+                        <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-reconciliation-back-search">
+                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                          </button>
+                        <!-- <div class="layui-input-inline" style="width: 100px;">
+                            <button class="layui-btn layui-btn-sm" type="button" lay-submit  lay-filter="generateStatement">查询</button>
+                        </div> -->
+                    </div>
+                </div> 
+                
+            </div>
+        </div>
+
+        <div class="layui-card-body">
+            <!--卡片－表格信息-->
+            <div class="layui-tab layui-tab-brief" lay-filter="tab-quotationToger">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">PCB订单</li>
+                    <li>钢网订单</li>
+                    <li>SMT订单</li>
+                </ul>
+                <div class="layui-tab-content" style="padding: unset;">
+                    <!--PCB订单-->
+                    <div class="layui-tab-item layui-show">
+                        <table class="layui-table" id="sqeMana_reconPcbTab" lay-filter="sqeMana_reconPcbTab"></table>
+                        <script type="text/html" id="sqeMana_reconPcbTb">
+                            <button class="layui-btn layui-btn-sm" lay-event="submitPcb" type="button">标为已支付</button>
+                        </script>
+                        <!-- <script type="text/html" id="sqeMana_reconPcbTabbar">
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+                            <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
+                        </script> -->
+                    </div>
+                    <!--钢网订单-->
+                    <div class="layui-tab-item">
+                        <table class="layui-table" id="sqeMana_reconStencilTab" lay-filter="sqeMana_reconStencilTab"></table>
+                        <script type="text/html" id="sqeMana_reconStencilTb">
+                            <button class="layui-btn layui-btn-sm" lay-event="submitStencil" type="button">标为已支付</button>
+                        </script>
+                        <script type="text/html" id="sqeMana_reconStencilTabbar">
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+                            <a class="layui-btn layui-btn-xs" lay-event="search">查看</a>
+                        </script>
+                    </div>
+                    <!--SMT订单-->
+                    <div class="layui-tab-item">
+                        <table class="layui-table" id="sqeMana_reconSmtTab" lay-filter="sqeMana_reconSmtTab"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+    layui.use('sqeMana_reconciliation', layui.factory('sqeMana_reconciliation')).use(['sqeMana_reconciliation', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>

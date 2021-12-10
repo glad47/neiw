@@ -1,0 +1,174 @@
+<title>合同</title>
+<div class="layui-fluid" id="market-packing-list-contract-print">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md12" style="text-align: center;">
+            <h1>CONTRACT 合同</h1>
+        </div>
+        <script type="text/html" template>
+        <div style="display: flex;justify-content: space-between;">
+            <div class="layui-col-md6" style="width: 50%;">
+                <ul>
+                    <li class="layui-text">买方/Buyers: {{d.params.userInfo != null ? d.params.userInfo.contact || '' : ''}}</li>
+                </ul>
+                <ul>
+                    <li class="layui-text">地址/Address: {{d.params.userInfo != null ? d.params.userInfo.address || '' : ''}}</li>
+                </ul>
+                <ul>
+                    <li class="layui-text">电话/Tel: {{d.params.userInfo != null ? d.params.userInfo.mobilePhone || '' : ''}}</li>
+                </ul>
+                <ul>
+                    <li class="layui-text">传真/Fax: </li>
+                </ul>            
+            </div>
+            <div class="layui-col-md6" style="width: 50%;">
+                <!-- <ul>
+                    <li class="layui-text">&nbsp;</li>
+                </ul> -->
+                <ul>
+                    <li class="layui-text">合同号码</li>
+                </ul>
+                <ul>
+                    <li class="layui-text">Contract No: {{d.params.commercialInvoice || ''}}</li>
+                </ul>
+                <ul>
+                    <li class="layui-text">Date: {{d.params.tw || ''}}</li>
+                </ul>
+                <ul>
+                    <li class="layui-text">Singed at:  Shenzhen</li>
+                </ul>
+            </div>
+        </div>
+        </script>
+        <div class="layui-col-md12">
+            <ul>
+                <li>卖方/Sellers: 深圳聚谷科技有限公司</li>
+            </ul>
+            <ul>
+                <li>地址/Address: Ansheng Road, No.4 Building Shajing, Baoan District, SHENXHEN, CHINA</li>
+            </ul>
+            <ul>
+                <li>电话/Tel: +86-755-27398155</li>
+            </ul>
+            <ul>
+                <li>电话/Fax: +86-755-27398355</li>
+            </ul>
+            <ul>
+                <li>经买卖双方确认根据下列条款订立本合同:</li>
+            </ul>
+            <ul>
+                <li>
+                    This contract is made out by the Sellers and Buyers us per the following terms and condtions mutuilly conf
+                </li>
+            </ul>
+        </div>
+        <div class="layui-col-md12">
+            <table class="layui-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2" style="text-align: center;">description</th>
+                        <th rowspan="1" style="text-align: center;">DESCRIPTION</th>
+                        <th style="text-align: center;">TOTAL QTY</th>
+                        <th style="text-align: center;">UNIT PRICE</th>
+                        <th style="text-align: center;">AMOUNT</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="1" style="text-align: center;">Part No.</th>
+                        <th rowspan="1" style="text-align: center;">(块)</th>
+                        <th rowspan="1" style="text-align: center;">USD</th>
+                        <th style="text-align: center;">USD</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2" style="text-align: center;">商品名称及规格型号</th>
+                        <th style="text-align: center;">总数量</th>
+                        <th style="text-align: center;">单价</th>
+                        <th style="text-align: center;">总金额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <script type="text/html" template>
+                        {{# layui.each(d.params.itemEntityList, function(index, item){  }}
+                        <tr>
+                            <td colspan="2" style="text-align: center;">
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[1] : ''}}<br>
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[2] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[3] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[4] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[5] : ''}}<br>
+                                型号: {{ item.description || ''}}
+                            </td>
+                            <td style="text-align: center;">{{ item.qty || ''}}</td>
+                            <td style="text-align: center;">{{ item.unitPrice || ''}}</td>
+                            <td style="text-align: center;">{{ Number(item.totalPrice).toFixed(3) || ''}}</td>
+                        </tr>
+                        {{# }) }}
+                        <!-- <tr>
+                            <td colspan="2">Total</td>
+                            <td>{{ d.params.itemEntityList.map(i => i.packages).reduce((total,num)=> total + num) }}</td>
+                            <td>{{ d.params.itemEntityList.map(i => i.qty).reduce((total,num)=> total + num) }}</td>
+                            <td>{{ d.params.itemEntityList.map(i => Number(i.netWeight)).reduce((total,num)=> total + num) }}</td>
+                            <td>{{ d.params.itemEntityList.map(i => Number(i.grossWeight)).reduce((total,num)=> total + num) }}</td>
+                        </tr> -->
+                    </script>
+                </tbody>
+            </table>
+        </div>
+        <div class="layui-col-md12">
+            <script type="text/html" template>
+            <ul style="display: flex;justify-content: space-between;">
+                <li>数量及总值允许有5%的增减</li>
+                <li>总值</li>
+            </ul>
+            <ul style="display: flex;justify-content: space-between;">
+                <!-- <li>总值</li> -->
+                <li>5% more or less both on amount and quantity allowed</li>
+                <li>Total Amount:</li>
+                <li>${{d.params.tp}}</li>
+            </ul>
+            <ul style="display: flex;justify-content: space-between;">
+                <li>(5)合同总值（大写）:</li>
+                <li>{{d.params.tp2}}</li>
+            </ul>
+            <ul style="display: flex;justify-content: space-between;">
+                <li>Total Vatue in Word</li>
+            </ul> 
+            <ul style="display: flex;justify-content: space-between;">
+                <li>(6)包装机唛头:</li>
+                <li>Packing and shipping Marks: Carton Box</li>
+            </ul> 
+            <ul style="display: flex;justify-content: space-between;">
+                <li>(7)装运期:</li>
+                <li>2周</li>
+                <li>Time of Shipment: two weeks</li>
+            </ul> 
+            <ul style="display: flex;justify-content: space-between;">
+                <li>(8)装运日期和目的地:</li>
+                <li>{{d.params.orderTime}} 之前</li>
+                <li>深圳-{{d.params.userInfo != null ? d.params.userInfo.countryCn || '' : ''}}</li>
+            </ul>
+            <ul style="display: flex;justify-content: space-between;">
+                <li>(9)保险：</li>
+                <li>由卖方按发票全部金额110%投保至Inovar为止的险，按中国海督运输保险条款办理。</li>
+            </ul>
+            <ul style="display: flex;justify-content: space-between;">
+                <li>Insurance：</li>
+                <li>To be effectted by Seller for 110% of full invoice value covering up only subject to CIC</li>
+            </ul>
+            <ul style="display: flex;justify-content: space-between;">
+                <li>(10)付款条件：</li>
+                <li>Terms of Payment: {{d.params.userInfo != null ? d.params.userInfo.paymentType || '' : ''}}</li>
+            </ul>
+            <ul style="display: flex;justify-content: space-between;">
+                <li>(11)装运标记Shipping Marks：</li>
+            </ul>
+            <ul style="display: flex;justify-content: space-between;">
+                <li>买方</li>
+                <li>卖方</li>
+            </ul>
+            <ul style="display: flex;justify-content: space-between;">
+                <li>THE BUYERS</li>
+                <li>THE SELLERS</li>
+            </ul>
+            </script> 
+        </div>
+    </div>
+</div>

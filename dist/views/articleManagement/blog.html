@@ -1,0 +1,146 @@
+<title>Blog管理</title>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="article-blog-formlist">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">ID：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="id" class="layui-input"/>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">url：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="articleName" class="layui-input"/>
+                    </div>
+                </div>
+    
+                <div class="layui-inline">
+                    <label class="layui-form-label">文章分类：</label>
+                    <div class="layui-input-block">
+                        <select name="articleClassify" id="orderReview_searCriteria" lay-filter="orderReview-search-select">
+                            <option value="">请选择</option>
+                            <option value="PCB prototype ">PCB prototype</option>
+                            <option value="SMT">SMT</option>
+                            <option value="Assembly">Assembly</option>
+                            <option value="PCB Technology">PCB Technology</option>
+                            <option value="PCB Flow">PCB Flow</option>
+                            <option value="PCB News">PCB News</option>
+                            <option value="SMT Technology">SMT Technology</option>
+                            <option value="SMT Flow">SMT Flow</option>
+                            <option value="PCB design">PCB design</option>
+                            <option value="PCB component">PCB component</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit style="margin-bottom: 3px;" lay-filter="LAY-article-blog-form-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+             <!--卡片－表格信息-->
+            <div class="layui-tab layui-tab-brief" lay-filter="pcdorstencil_tab" id="orderReview_card">
+                <div class="layui-tab-content">
+                    <!--PCB订单-->
+                    <div class="layui-tab-item layui-show">
+                        <script type="text/html" id="toolbarBlog">
+                            <div class="layui-btn-container">
+                                <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+                                <!--<button class="layui-btn layui-btn-primary layui-btn-sm"  id="outgoingQuote-operation">隐藏操作栏</button>-->
+                            </div>
+                        </script>
+                        <table class="layui-table" id="article_Table_blog" lay-filter="article_Table_blog"></table>
+                    
+                        <script type="text/html" id="Tabtb-article-management-option">
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("am:blog:update") != -1){ }}
+                            <a class="layui-btn layui-btn-xs" lay-event="edit" id="blog_edit">修改</a>
+                            {{#  } }}
+                            {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("am:blog:delete") != -1){ }}
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                            {{#  } }}
+                        </script>
+                        <script type="text/html" id="Tabtb-article-management-status">
+                            {{# if(d.articleStatus === 1){ }}
+                            <a style="color: #1E9FFF">
+                                <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待评审
+                            </a>
+                            {{# } else if(d.articleStatus === 2){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>已审待
+                            </a>
+                            {{# } }}
+                        </script>
+
+                        <script type="text/html" id="Tabtb-blog-type">
+                            {{# if(d.articleType === 1){ }}
+                            <a style="color: #1E9FFF">
+                                <i class="layui-iconlayui-anim layui-anim-rotate layui-anim-loop"></i>博客
+                            </a>
+                            {{# } else if(d.articleType === 2){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>已审待
+                            </a>
+                            {{# } }}
+                        </script>
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+   
+</div>
+
+<!-- <style>
+    #orderReview_form {background-color: white;}
+    #orderReview_form .layui-input, .layui-textarea {width:100% !important;}
+    #orderReview_form .layui-form-label {width: 100px !important;}
+    #orderReview_searchbtn {margin-left: 25px;}
+    #orderReview_form .layui-form-select dl{min-width: 100% !important;}
+    #orderReview_card {background-color: white;}
+    @media screen and (max-width: 800px) {
+        #orderReview_form .layui-input, .layui-textarea {
+            width: 240% !important;
+            margin-left: -4px;
+        }
+
+        #orderReview_form .layui-form-label {
+            width: 80px !important;
+        }
+
+        #orderReview_form .layui-form-select .layui-edge {
+            right: -86px
+        }
+        #orderReview_form .layui-form-select dl{
+            width: 240% !important;
+        }
+        #orderReview_form .layui-form-item:last-child{
+            margin-left: -20px;
+        }
+        #orderReview_searchbtn{
+            margin-left: 105px;
+            width: 57%;
+        }
+        #orderReview_form.layuiadmin-card-header-auto{
+            padding-bottom: 0;
+        }
+    }
+
+    i.layui-anim{display:inline-block}
+    #pcbfile-i:hover{color: #1E9FFF;cursor: pointer;}
+</style> -->
+
+<script src="../../start/quote/ace/ace.js"></script>
+<script>
+    layui.use('article_blog', layui.factory('article_blog')).use(['article_blog', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>

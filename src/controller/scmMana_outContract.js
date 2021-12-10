@@ -338,6 +338,9 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
             ,done: function (res, curr, count) {
                 var data = res.data;    //获取表格所有数据对象
                 stenciltabObj = data;
+
+                console.log("i am inside the done function of the table  --- -- -- printing the stenciltabObj info  -- -- -- >  ");
+                console.log(stenciltabObj)
             }
         });
     }
@@ -452,8 +455,11 @@ layui.define(['admin','table','index','element','form','convertCurrency', 'reque
                 }
             });
         } else if (obj.event == 'search'){
+            console.log("i am inside the search  --------------> > >  ")
             var popupData = {data:{}};
             var lineData = obj.data;
+            console.log("************************very important iyou need tio understands this data structure *****************************")
+            console.log(obj.data)
             var supplierContractNo = lineData.supplierContractNo;
             var sd_len = 0;
             var subtotal = 0;

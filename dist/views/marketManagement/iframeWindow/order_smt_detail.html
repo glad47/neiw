@@ -1,0 +1,114 @@
+<!--查看SMT订单信息-->
+<div class="layui-fluid">
+    <!--<a class="layui-btn" lay-event="edit">查看合同</a>-->
+    <div class="order_review_search">
+        <form>
+            <script type="text/html" template>
+                <table class="layui-table" lay-skin="row" lay-even="">
+                    <colgroup>
+                        <col width="100">
+                        <col width="100">
+                        <col width="100">
+                        <col width="100">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <td>ID:</td>
+                        <td>{{ d.params.quoteId || ''}}</td>
+                        <td>User ID:</td>
+                        <td>{{ d.params.userId || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>Gerber File:</td>
+                        <td>{{ d.params.gerberName || ''}}</td>
+                        <td>Product No:</td>
+                        <td>{{ d.params.productNo || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>SMT PartNum:</td>
+                        <td>{{ d.params.smtPartNum || ''}}</td>
+                        <td>Through Hole PartNum:</td>
+                        <td>{{ d.params.throughHolePartNum || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>Assembly Side:</td>
+                        <td>{{ d.params.assemblySide || ''}}</td>
+                        <!--<td>Panel Way:</td>-->
+                        <!--<td>{{ d.params.panelWayX || ''}} * {{ d.params.panelWayX || ''}} mm</td>-->
+                    </tr>
+                    <tr>
+                        <td>Invoice No:</td>
+                        <td>{{ d.params.invoiceNo || ''}}</td>
+                        <td>TotalAssemblyFee($):</td>
+                        <td>{{ d.params.totalAssemblyFee || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>Assembly Type:</td>
+                        <td>{{ d.params.assemblyType || ''}}</td>
+                        <td>Unique PartNum:</td>
+                        <td>{{ d.params.uniquePartNum || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>Quantity:</td>
+                        <td>{{ d.params.quantity || ''}}</td>
+                        <td>Order ID:</td>
+                        <td>{{ d.params.orderId || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>Order No:</td>
+                        <td>{{ d.params.orderNo || ''}}</td>
+                        <td>Is Lock:</td>
+                        <td>{{ d.params.isLock || ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>Order Time:</td>
+                        <td>{{ d.params.ordertime || ''}}</td>
+                        <td>GmtModified:</td>
+                        <td>{{ d.params.gmtModified || ''}}</td>
+                    </tr>
+                    <!--<tr>-->
+                        <!--<td>GerberPath:</td>-->
+                        <!--<td>{{ d.params.gerberPath || ''}}</td>-->
+                        <!--<td>Ordertime:</td>-->
+                        <!--<td>{{ d.params.ordertime || ''}}</td>-->
+                    <!--</tr>-->
+                    <tr>
+                        <td>gerberName:</td>
+                        <td>{{ d.params.gerberName || ''}}</td>
+                        <td>Status:</td>
+                        <td>
+                            {{# if(d.params.status === 1){ }}
+                            <a style="color: #1E9FFF">
+                                <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>待处理
+                            </a>
+                            {{# } else if(d.params.status === 2){ }}
+                            <a style="color: green">
+                                <i class="layui-icon layui-icon-ok"></i>已提交
+                            </a>
+                            {{# } else if(d.params.stats === 3){ }}
+                            <a style="color: #FF5722">
+                                <i class="layui-icon layui-icon-close"></i>已退回
+                            </a>
+                            {{# } }}
+                        </td>
+                    </tr>
+                    <tr style="border: solid silver 1px;">
+                        <td>Remark:</td>
+                        <td colspan="3">{{ d.params.remark || '' }}</td>
+                    </tr>
+                    {{#
+                    if( d.params.isExistIndicator != null && d.params.isExistIndicator === 2) {
+                    }}
+                    {{# layui.each(d.params.pop, function(index, item){  }}
+                    <tr>
+                        <td colspan="1">{{ item.processEntity.processEname}}:</td>
+                        <td colspan="3">{{ item.processInfo}}</td>
+                    </tr>
+                    {{#  }); }}
+                    {{# } }}
+                    </tbody>
+                </table>
+            </script>
+        </form>
+        </div>
+</div>

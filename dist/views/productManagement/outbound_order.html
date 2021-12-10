@@ -1,0 +1,87 @@
+<title>成品管理-订单出货</title>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="pm-outbound-order-formlist">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">聚谷型号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="productNo" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">客户型号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="pcbName" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-outbound-order-search" style="margin-bottom: 3px;">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+             <!--卡片－表格信息-->
+            <div class="layui-tab layui-tab-brief" lay-filter="pm-outbound-order-tabs-brief">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">PCB订单</li>
+                    <li>钢网订单</li>
+                    <li>SMT订单</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <!--PCB订单-->
+                    <div class="layui-tab-item layui-show">
+                        <table class="layui-table" id="iqcMana_outBound" lay-filter="iqcMana_outBound"></table>
+                        <script type="text/html" id="ord_proMana_ootb">
+                            <div class="layui-btn-container">
+                                <button class="layui-btn layui-btn-sm" lay-event="submit">通知出货</button>
+                                <button class="layui-btn layui-btn-sm" lay-event="outerLable">p-标签</button>
+                                <button class="layui-btn layui-btn-sm" lay-event="n-outerLable">无-标签</button>
+                                <button class="layui-btn layui-btn-sm" lay-event="g-outerLable">g-标签</button>
+                                <button class="layui-btn layui-btn-sm" lay-event="outerCode">出货扫码</button>
+                            </div>
+                        </script>
+                        <script type="text/html" id="proManaNgveiw_tabbar">
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="chxx">出货信息</a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="packReq">检查表</a>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="search">供应商</a>
+                        </script>
+                        <script type="text/html" id="proManaquo_status">
+                            {{# if(d.status === 8){ }}
+                                {{# if(d.deliveryDate != null){ }}
+                                    <a data="outbound">已入库</a>
+                                {{# }else{ }}
+                                    <a data="notOutbound">已入库</a>
+                                {{# } }}
+                            {{# } else if(d.status === 9){ }}
+                            <a data="isOK">已出货</a>
+                            {{# } }}
+                        </script>
+                        <script type="text/html" id="outboundDDatePCB">
+                            {{# if(d.deliveryDate != null){ }}
+                                {{ d.deliveryDate.substring(0,10) }}
+                            {{# } }}
+                        </script>
+                    </div>
+                    <!--钢网订单-->
+                    <div class="layui-tab-item">
+                        <table class="layui-table" id="iqcMana_outBoundS" lay-filter="iqcMana_outBoundS"></table>
+                    </div>
+                    <!--SMT订单-->
+                    <div class="layui-tab-item">
+                        <table class="layui-table"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('proMana_outbound_order', layui.factory('proMana_outbound_order')).use(['proMana_outbound_order', 'table', 'index','element','form'], function(){
+        var form = layui.form;
+        form.render();
+    });
+</script>

@@ -1,0 +1,104 @@
+<title>装箱单</title>
+<div class="layui-fluid" id="market-packing-list-cn-print">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md12" style="text-align: center;">
+            <h1>深圳聚谷科技有限公司</h1>
+            <h3>AnshengRoad,No.4Building,Shajing,BaoanDistrict,Shenzhen,CHINA</h3>
+            <h3>Tel: +86-755-27398155  Fax: +86-755-27398355</h3>
+        </div>
+        <script type="text/html" template>
+        <div class="layui-col-md6" style="float: left;">
+            <ul>
+                <li class="layui-text">Buyer's COMPANY: {{d.params.userInfo != null ? d.params.userInfo.companName || '' : ''}}</li>
+            </ul>
+            <ul>
+                <li class="layui-text">TEL:  {{ d.params.userInfo != null ? d.params.userInfo.mobilePhone || '' : '' }}</li>
+            </ul>
+            <ul>
+                <li class="layui-text">FAX: 0</li>
+            </ul>
+        </div>
+        <div class="layui-col-md6" style="float: right;">
+            <ul>
+                <li class="layui-text">&nbsp;</li>
+            </ul>
+            <ul>
+                <li class="layui-text">Date: {{layui.util.toDateString(d.params.gmtCreate, 'yyyy/MM/dd')}}</li>
+            </ul>
+            <ul>
+                <li class="layui-text">P/O no.: {{d.params.commercialInvoice || ''}}</li>
+            </ul>
+        </div>
+        </script>
+        <div class="layui-col-md12" style="text-align: center;">
+            <h2>PACKING LIST 装箱单</h2>
+        </div>
+        <div class="layui-col-md12">
+            <table class="layui-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2" colspan="1" style="text-align: center;">description</th>
+                        <th rowspan="1" style="text-align: center;">DESCRIPTION</th>
+                        <th rowspan="2" colspan="2" style="text-align: center;">QUANTITY OF PARCELS 装箱明细</th>
+                        <th rowspan="1" colspan="2" style="text-align: center;">Weight</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="1" style="text-align: center;">Part No.</th>
+                        <th rowspan="1" style="text-align: center;">N.W</th>
+                        <th rowspan="1" style="text-align: center;">G.W</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="1" colspan="2" style="text-align: center;">商品名称及规格型号</th>
+                        <th style="text-align: center;">Carton箱数</th>
+                        <th style="text-align: center;">Qty数量(块)</th>
+                        <th style="text-align: center;">净重(kg)</th>
+                        <th style="text-align: center;">毛重(kg)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <script type="text/html" template>
+                        {{# layui.each(d.params.itemEntityList, function(index, item){  }}
+                        {{# if(item.rowspan == null || item.rowspan == ''){ }}
+                        <tr>
+                            <td colspan="2" style="text-align: center;">
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[1] : ''}}<br>
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[2] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[3] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[4] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[5] : ''}}<br>
+                                型号: {{ item.description || ''}}
+                            </td>
+                            <td style="text-align: center;">{{ item.qty || ''}}</td>
+                            <td style="text-align: center;">{{ Number(item.netWeight).toFixed(3) || ''}}</td>
+                            <td style="text-align: center;">{{ Number(item.grossWeight).toFixed(3) || ''}}</td>
+                        </tr> 
+                        {{# }else{ }}
+                        <tr>
+                            <td colspan="2" style="text-align: center;">
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[1] : ''}}<br>
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[2] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[3] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[4] : ''}}|
+                                {{item.goodsNo != null ? item.goodsNo.split('/')[5] : ''}}<br>
+                                型号: {{ item.description || ''}}
+                            </td>
+                            <td rowspan="{{item.rowspan || ''}}" style="text-align: center;">{{ item.packages || ''}}</td>
+                            <td style="text-align: center;">{{ item.qty || ''}}</td>
+                            <td style="text-align: center;">{{ Number(item.netWeight).toFixed(3) || ''}}</td>
+                            <td style="text-align: center;">{{ Number(item.grossWeight).toFixed(3) || ''}}</td>
+                        </tr>
+                        {{# } }}
+                        {{# }) }}
+                        <tr>
+                            <td colspan="2" style="text-align: center;">Total</td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => i.packages).reduce((total,num)=> total + num) }}</td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => i.qty).reduce((total,num)=> total + num) }}</td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => Number(i.netWeight * (i.packages == null || i.packages == 0 ? 1 : i.packages))).reduce((total,num)=> total + num).toFixed(2) }}</td>
+                            <td style="text-align: center;">{{ d.params.itemEntityList.map(i => Number(i.grossWeight * (i.packages == null || i.packages == 0 ? 1 : i.packages))).reduce((total,num)=> total + num).toFixed(2) }}</td>
+                        </tr>
+                    </script>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

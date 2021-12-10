@@ -1,0 +1,59 @@
+
+<title>工序流程模板管理</title>
+<div class="layui-fluid">
+    <div class="layui-card" lay-filter="addInfo">
+        <div class="layui-card-body">
+        	<div class="layui-form-item layui-form" lay-filter="app-content-comment" data-type="search-form" reload-table="process_template_listTab">
+	            <div class="layui-inline">
+	                <label class="layui-form-label">模板名称</label>
+	                <div class="layui-input-inline">
+	                    <input type="text" name="processTemplateName" autocomplete="off" class="layui-input">
+	                </div>
+	            </div>
+	            <div class="layui-inline">
+	                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+	                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+	                </button>
+	            </div>
+	            <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 5px;">
+                    <script type="text/html" template lay-done="layui.data.done(d);">
+                        {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:processtemplate:save") != -1){ }}
+	                       <button class="layui-btn" data-type="dept_add">新增</button>
+                        {{# } }}   
+                    </script>  
+	            </div>
+	        </div>
+            
+            <table class="layui-hide" id="process_template_listTab" lay-filter="process_template_listTab"></table>
+
+            <script type="text/html" id="dept-table-operate-barDemo">
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:processtemplate:update") != -1){ }}
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                {{# } }}   
+                {{# if(layui.sessionData('layuiAdmin').permissions.indexOf("epc:processtemplate:delete") != -1){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                {{# } }}   
+            </script>
+        </div>
+    </div>
+
+</div>
+
+<script>
+layui.data.done = function(d){
+    layui.use('sys_process_template', layui.factory('sys_process_template')).use(['admin', 'table','setter','form','jquery'],function(){
+        var $ = layui.jquery
+        ,table = layui.table
+        ,admin = layui.admin
+        ,setter = layui.setter
+        ,view = layui.view
+        ,form = layui.form;
+         
+        form.render();
+
+    });
+    layui.use('mobileterminal',layui.factory('mobileterminal')).use(['mobileterminal'],function () {
+
+    });
+}
+</script>
