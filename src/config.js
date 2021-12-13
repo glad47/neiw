@@ -52,15 +52,15 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
       ,msgName: 'msg' //状态信息的字段名称
       ,dataName: 'data' //数据详情的字段名称
     }
-    ,baseUrl:'http://10.168.8.250:8881/renren-fast/'
-    ,baseUrl1:"http://localhost:8871/"
-    ,webSocketUrl: 'ws://172.0.0.1:2200/ws'
-    ,imUrl:'http://localhost:8871/'
+    // ,baseUrl:'http://10.168.8.250:8881/renren-fast/'
+    // ,baseUrl1:"http://localhost:8871/"
+    // ,webSocketUrl: 'ws://172.0.0.1:2200/ws'
+    // ,imUrl:'http://localhost:8871/'
 
-      //  ,baseUrl:'http://121.201.102.135:8787/renren-fast/'
-      //  ,baseUrl1:"https://www.pcbonline.com/"
-      //  ,webSocketUrl: 'wss://www.pcbonline.com:8887/ws'
-      //  ,imUrl:'https://www.pcbonline.com/'
+       ,baseUrl:'http://121.201.102.135:8787/renren-fast/'
+       ,baseUrl1:"https://www.pcbonline.com/"
+       ,webSocketUrl: 'wss://www.pcbonline.com:8887/ws'
+       ,imUrl:'https://www.pcbonline.com/'
 
       //独立页面路由，可随意添加（无需写参数）
     ,indPage: [
