@@ -1,2 +1,0 @@
-/** layuiAdmin.pro-v1.0.0 LPPL License By http://www.layui.com/admin/ */
- ;"use strict";layui.define(["admin","table","setter","form","jquery"],function(i){var e=layui.jquery,a=layui.table,t=layui.admin,n=(layui.setter,layui.view),u=(layui.form,{wlcgEdit:function(i,u){t.popup({title:"物料采购编辑",area:["733px","532px"],btn:["保存","取消"],yes:function(i,t){e("button[lay-filter='scm_add_material_purchasing_submit']").click(),a.reload(u)},success:function(e,a){n(this.id).render("scmManagement/iframeWindow/material_purchasing_edit_add",i).done(function(){})}})}});i("p_wlcg_edit",u)});
