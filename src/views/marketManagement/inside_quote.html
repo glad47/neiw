@@ -12,18 +12,21 @@
                     <div>
                         <div class="layui-collapse" lay-accordion lay-filter ="orderTypeCol">
                           <div class="layui-colla-item">
-                            <h2 class="layui-colla-title">PCB Phototype</h2>
+                            <h2 class="layui-colla-title">PCB 报价页面</h2>
                             <div class="layui-colla-content layui-show">
                                 <!-- pcb订单 -->
                                 <div>
 <!-----------顶部计算------------------------------------------>
                                     <form class="layui-form top-quote" lay-filter="quoteForm" onsubmit="return false;">
+                                        <div>
+                                            <label class="layui-form-label">==================================================================</label>  
+                                        </div>
                                         <div class="top-m-one">
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">Order type:</label>
+                                                <label class="layui-form-label">拼版类型:</label>
                                                 <div class="layui-input-block lib-pcbtoptypes">
-                                                    <input class="mto-input" type="radio" lay-filter="boardType" id="radioSinglePcb" name="boardType" value="1" title="Single PCB">
-                                                    <input class="mto-input" type="radio" lay-filter="boardType" id="radioPanelad" name="boardType" value="2" title="Panel as design">
+                                                    <input class="mto-input" type="radio" lay-filter="boardType" id="radioSinglePcb" name="boardType" value="1" title="单只出">
+                                                    <input class="mto-input" type="radio" lay-filter="boardType" id="radioPanelad" name="boardType" value="2" title="拼版出">
                                                     <!--<input type="radio" lay-filter="boardType" id="radioPanelbp" name="boardType" value="panelByPcbonline" title="Panel by PCBonline">-->
                                                     <div class="importPcbInfo" style="display: inline-block">
                                                         <button class="layui-btn layui-btn-sm importOrder" type="button">导入报价信息</button>
@@ -33,7 +36,7 @@
                                                 </div>
                                             </div>
                                             <div class="layui-form-item itSinlgesize">
-                                                <label class="layui-form-label">Single Size:</label>
+                                                <label class="layui-form-label">单只尺寸:</label>
                                                 <div class="layui-input-inline">
                                                     <div class="layui-input-inline tqu">
                                                         <input type="text" name="dimensionsX"  autocomplete="off" class="layui-input mto-input" id="singleSizeX">
@@ -44,14 +47,14 @@
                                                     </div>
                                                      <div class="layui-form-mid">mm</div>
                                                 </div>
-                                                <label class="layui-form-label">Quantity:</label>
+                                                <label class="layui-form-label">pcs总数:</label>
                                                 <div class="layui-input-inline tqu">
                                                     <input type="text" name="quantityPcs"  autocomplete="off" class="layui-input mto-input" id="quantityPCS">
                                                 </div>
                                                 <div class="layui-form-mid">pcs</div>
                                             </div>
                                             <div class="layui-form-item itPanelsize">
-                                                <label class="layui-form-label">Panel Size:</label>
+                                                <label class="layui-form-label">拼版尺寸:</label>
                                                 <div class="layui-input-inline">
                                                     <div class="layui-input-inline tqu">
                                                         <input type="text" name="panelSizeX"  autocomplete="off" class="layui-input mto-input" id="panelSizeX">
@@ -62,14 +65,14 @@
                                                     </div>
                                                     <div class="layui-form-mid">mm</div>
                                                 </div>
-                                                <label class="layui-form-label">Quantity:</label>
+                                                <label class="layui-form-label">PANEL数:</label>
                                                 <div class="layui-input-inline tqu">
                                                     <input type="text" name="quantityPanel"  autocomplete="off" class="layui-input mto-input" id="quantityPanel">
                                                 </div>
                                                 <div class="layui-form-mid">PAL</div>
                                             </div>
                                             <div class="layui-form-item itPanelway">
-                                                <label class="layui-form-label">Panel Way:</label>
+                                                <label class="layui-form-label">拼版方式:</label>
                                                 <div class="layui-input-inline">
 
                                                     <div class="layui-input-inline tqu">
@@ -81,29 +84,32 @@
                                                      </div>
                                                     <div class="layui-form-mid">pcs</div>
                                                 </div>
-                                                <label class="layui-form-label">Area sq:</label>
+                                                <label class="layui-form-label">订单面积:</label>
                                                 <div class="layui-input-inline tqu">
                                                     <input type="text" name="areaSq"  autocomplete="off" class="layui-input mto-input" id="areasq" readonly>
                                                 </div>
                                                 <div class="layui-form-mid">㎡</div>
                                             </div>
                                         </div>
+                                        <div>
+                                            <label class="layui-form-label">==================================================================</label>  
+                                        </div>
 <!-----------第二个模块------------------------------------------>
                                         <div class="center-m-two">
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">PCB type:</label>
+                                                <label class="layui-form-label">PCB类型:</label>
                                                 <div class="layui-input-block">
                                                     <input type="radio" lay-filter="pcbType" id="ptfr4" name="pcbType" value="FR4" title="FR4">
-                                                    <input type="radio" lay-filter="pcbType" id="ptaluminum" name="pcbType" value="Aluminum" title="Aluminum" >
+                                                    <input type="radio" lay-filter="pcbType" id="ptaluminum" name="pcbType" value="Aluminum" title="铝基板" >
                                                     <!--<input type="radio" lay-filter="pcbType" id="ptfr4+aluminum" name="pcbType" value="FR4+Aluminum" title="FR4+Aluminum">-->
                                                 </div>
                                             </div>
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">Layer:</label>
+                                                <label class="layui-form-label">层数:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="layerNum" lay-filter="layer" lay-verify="required" id="selLayer"></select>
                                                 </div>
-                                                <label class="layui-form-label">Thickness:</label>
+                                                <label class="layui-form-label">板厚:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="finishThickness" lay-verify="required" lay-filter="finishThickness" id="selFinishThickness">
                                                         <option value="0.2mm" id="lde">0.2mm</option>
@@ -124,11 +130,11 @@
                                                 </div>
                                             </div>
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">material:</label>
+                                                <label class="layui-form-label">板材厂家:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="material" lay-verify="required" lay-filter="material" id="selMaterial"></select>
                                                 </div>
-                                                <label class="layui-form-label">Code:</label>
+                                                <label class="layui-form-label">板材型号:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="productCode" lay-verify="required" id="selkbsy"></select>
                                                 </div>
@@ -155,18 +161,18 @@
                                                 </div>
                                             </div>
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">Halogen-free:</label>
+                                                <label class="layui-form-label">卤素:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="halogenFree" id="selHf">
-                                                        <option value="">none</option>
-                                                        <option value="NO">NO</option>
-                                                        <option value="YES">YES</option>
+                                                        <option value="">无</option>
+                                                        <option value="NO">无卤</option>
+                                                        <option value="YES">有卤</option>
                                                     </select>
                                                 </div>
-                                                <label class="layui-form-label">Heat Conductivity:</label>
+                                                <label class="layui-form-label">导热系数:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="heatConductivity" id="selHc">
-                                                        <option value="">none</option>
+                                                        <option value="">无</option>
                                                         <option value="1W">1W</option>
                                                         <option value="2W">2W</option>
                                                         <option value="3W">3W</option>
@@ -175,23 +181,23 @@
                                                 </div>
                                             </div>
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">Inner layer copper:</label>
+                                                <label class="layui-form-label">内层铜厚:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="innerLayerCopper" id="selInlayercoopper">
-                                                        <option  value="none">none</option>
+                                                        <option  value="none">无</option>
                                                         <option value="1oz">1oz</option>
                                                         <option value="2oz">2oz</option>
                                                         <option value="3oz">3oz</option>
                                                         <option value="4oz">4oz</option>
                                                     </select>
                                                 </div>
-                                                <label class="layui-form-label" style="width: 80px;">Drilling Num:</label>
+                                                <!-- <label class="layui-form-label" style="width: 80px;">不理:</label>
                                                 <div class="layui-input-inline" style="width: 128px">
                                                     <input type="text" name="nOfHoles"  autocomplete="off" class="layui-input" id="nOfHoles">
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">Inner Min Track/Spacing</label>
+                                                <label class="layui-form-label">内层线宽</label>
                                                 <div class="layui-input-inline">
                                                     <select name="innerMinSpacing" id="selInnerMintrack">
                                                         <option value=""></option>
@@ -203,7 +209,7 @@
                                                         <option value="7mil">7mil</option>
                                                     </select>
                                                 </div>
-                                                <label class="layui-form-label">N.of PP:</label>
+                                                <label class="layui-form-label">PP张数:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="nOfPp" id="selNofpp">
                                                         <option value=""></option>
@@ -220,7 +226,7 @@
                                             </div>
 
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">outer layer copper:</label>
+                                                <label class="layui-form-label">外层铜厚:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="outerLayerCopper" id="selOuterlayercopper">
                                                         <option value=""></option>
@@ -233,7 +239,7 @@
                                                         <option value="4oz">4oz</option>
                                                     </select>
                                                 </div>
-                                                <label class="layui-form-label">Out Min Track/spacing</label>
+                                                <label class="layui-form-label">外层线宽</label>
                                                 <div class="layui-input-inline">
                                                     <select name="outerMinTrack" id="selOutMintrack">
                                                         <option value="3mil">3mil</option>
@@ -246,7 +252,7 @@
                                             </div>
 
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">BGA Size:</label>
+                                                <label class="layui-form-label">BGA大小:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="bgaSize" id="selBgasize">
                                                         <option value="≥0.22mm">≥0.22</option>
@@ -254,7 +260,7 @@
                                                         <option value="≥0.30">≥0.30</option>
                                                     </select>
                                                 </div>
-                                                <label class="layui-form-label">PTH Copper:</label>
+                                                <label class="layui-form-label">孔铜:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="pthCopper" id="selPthcopper">
                                                         <option value="none">none</option>
@@ -265,7 +271,7 @@
                                             </div>
 
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">Min Hole Size:</label>
+                                                <label class="layui-form-label">最小孔:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="minHoleSize" id="selMinholesize">
                                                         <option value="0.2">0.2</option>
@@ -276,78 +282,78 @@
                                                         <option value="1.5">1.5↑</option>
                                                     </select>
                                                 </div>
-                                                <label class="layui-form-label">N.of holes:</label>
+                                                <label class="layui-form-label">单位孔数:</label>
                                                 <div class="layui-input-inline">
                                                     <input type="text" name="nOfHoles" placeholder="" autocomplete="off" class="layui-input">
                                                 </div>
                                             </div>
 
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">Solder Mask color:</label>
+                                                <label class="layui-form-label">阻焊颜色:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="solderMaskTopColor" id="selSoldermc">
-                                                        <option value="none">none</option>
-                                                        <option value="green">green</option>
-                                                        <option value="black">black</option>
-                                                        <option value="white">white</option>
-                                                        <option value="yellow">yellow</option>
-                                                        <option value="red">red</option>
-                                                        <option value="blue">blue</option>
-                                                        <option value="matte_black">matte_black</option>
-                                                        <option value="matte_green">matte_green</option>
-                                                        <option value="purple">purple</option>
+                                                        <option value="none">无</option>
+                                                        <option value="green">绿色</option>
+                                                        <option value="black">黑色</option>
+                                                        <option value="white">白色</option>
+                                                        <option value="yellow">黄色</option>
+                                                        <option value="red">红色</option>
+                                                        <option value="blue">蓝色</option>
+                                                        <option value="matte_black">哑黑</option>
+                                                        <option value="matte_green">哑绿</option>
+                                                        <option value="purple">紫色</option>
                                                     </select>
                                                 </div>
-                                                <label class="layui-form-label">VIA process:</label>
+                                                <label class="layui-form-label">过孔方式:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="viaProcess" id="selViaprocess">
-                                                        <option value="none">None</option>
-                                                        <option value="tenting">Tenting</option>
-                                                        <option value="plugged">Plugged</option>
-                                                        <option value="vias_not_covered">Vias not covered</option>
-                                                        <option value="Follow_gerber">Follow gerber</option>
+                                                        <option value="none">无</option>
+                                                        <option value="tenting">盖油</option>
+                                                        <option value="plugged">塞孔</option>
+                                                        <option value="vias_not_covered">开窗</option>
+                                                        <option value="Follow_gerber">按资料</option>
                                                     </select>
                                                 </div>
                                             </div>
 
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">Silk Screen color:</label>
+                                                <label class="layui-form-label">字符颜色:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="silkScreenTopColor" id="selSilksc">
-                                                        <option value="none">none</option>
-                                                        <option value="green">green</option>
-                                                        <option value="black">black</option>
-                                                        <option value="white">white</option>
-                                                        <option value="yellow">yellow</option>
-                                                        <option value="red">red</option>
-                                                        <option value="blue">blue</option>
-                                                        <option value="matte_green">matte_green</option>
+                                                        <option value="none">无</option>
+                                                        <option value="green">绿色</option>
+                                                        <option value="black">黑色</option>
+                                                        <option value="white">白色</option>
+                                                        <option value="yellow">黄色</option>
+                                                        <option value="red">红色</option>
+                                                        <option value="blue">蓝色</option>
+                                                        <option value="matte_green">哑绿</option>
                                                     </select>
                                                 </div>
-                                                <label class="layui-form-label">Peelable:</label>
+                                                <label class="layui-form-label">蓝胶:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="peelableBrand" id="selPeelable">
-                                                        <option value="none">none</option>
-                                                        <option value="top">TOP</option>
-                                                        <option value="bot">BOT</option>
+                                                        <option value="none">无</option>
+                                                        <option value="top">顶层</option>
+                                                        <option value="bot">底层</option>
                                                     </select>
                                                 </div>
                                             </div>
 
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">Surface finish:</label>
+                                                <label class="layui-form-label">表面处理:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="surfaceFinish" id="selSurfacefinish" lay-filter="selSurfacefinish">
-                                                        <option value="none">none</option>
-                                                        <option value="HASL_with_lead">HASL with lead</option>
-                                                        <option value="HASL_lead_free">HASL lead free</option>
-                                                        <option value="Immersion_Gold">Immersion Gold</option>
-                                                        <option value="Immersion_tin">Immersion tin</option>
-                                                        <option value="Immersion_silver">Immersion silver</option>
+                                                        <option value="none">无</option>
+                                                        <option value="HASL_with_lead">有铅喷锡</option>
+                                                        <option value="HASL_lead_free">无铅喷锡</option>
+                                                        <option value="Immersion_Gold">沉金</option>
+                                                        <option value="Immersion_tin">沉锡</option>
+                                                        <option value="Immersion_silver">沉银</option>
                                                         <option value="OSP">OSP</option>
                                                     </select>
                                                 </div>
-                                                <label class="layui-form-label">Surface Thickness:</label>
+                                                <label class="layui-form-label">涂层厚度:</label>
                                                 <div class="layui-input-inline">
                                                     <select name="thickness" id="selSurfacethickness">
                                                         <option value="none" >none</option>
@@ -366,14 +372,14 @@
                                                 <!-- <label class="layui-form-label">CNC Routing:</label> -->
                                                 <div class="layui-col-md6 lcm-cncP">
                                                     <div class="layui-input-inline">
-                                                        <input type="radio" name="cncAndPunch" value="1" title="CNC Routing" id="routingOne" lay-filter="routingType">
+                                                        <input type="radio" name="cncAndPunch" value="1" title="锣板" id="routingOne" lay-filter="routingType">
                                                     </div>
                                                     <div class="layui-input-inline">
-                                                        <input type="radio" name="cncAndPunch" value="2" title="Punching" lay-filter="routingType">
+                                                        <input type="radio" name="cncAndPunch" value="2" title="模冲" lay-filter="routingType">
                                                     </div>
                                                 </div>
                                                 <div class="layui-col-md6" style="display: inline-block;">
-                                                    <label class="layui-form-label" style="width: 86px;margin-left: -18px;">Au area:</label>
+                                                    <label class="layui-form-label" style="width: 86px;margin-left: -18px;">沉金面积:</label>
                                                     <div class="layui-input-inline">
                                                         <input type="text" name="surfaceArea"  autocomplete="off" class="layui-input" disabled>
                                                     </div>
@@ -385,42 +391,42 @@
                                             </div>
 
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">CNC Path:</label>
+                                                <label class="layui-form-label">锣程:</label>
                                                 <div class="layui-input-inline">
                                                     <input type="text" name="panelRoutingPath"  autocomplete="off" class="layui-input">
                                                 </div>
-                                                <label class="layui-form-label">Cost:</label>
+                                                <label class="layui-form-label">锣板费:</label>
                                                 <div class="layui-input-inline">
                                                     <input type="text" name="cost"  autocomplete="off" class="layui-input" id="routingCost">
                                                 </div>
                                             </div>
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">N.of holes:</label>
+                                                <label class="layui-form-label">冲孔数:</label>
                                                 <div class="layui-input-inline">
                                                     <input type="text" name="punchingHoles"  autocomplete="off" class="layui-input" disabled value="0">
                                                 </div>
-                                                <label class="layui-form-label">N.of Slots:</label>
+                                                <label class="layui-form-label">冲槽数:</label>
                                                 <div class="layui-input-inline">
                                                     <input type="text" name="punchingSlots"  autocomplete="off" class="layui-input" disabled value="0">
                                                 </div>
                                             </div>
                                             <div class="layui-form-item test-sel">
                                                 <div class="layui-input-inline" style="width: 241px;">
-                                                    <label class="layui-form-label" style="width: 80px;">Test Type:</label>
+                                                    <label class="layui-form-label" style="width: 80px;">测试类型:</label>
                                                     <select name="testPointType" id="selTestcost" lay-filter="testPointType">
-                                                        <option value="0">none</option>
-                                                        <option value="1">flying probe</option>
-                                                        <option value="2">Test Fixture</option>
+                                                        <option value="0">无</option>
+                                                        <option value="1">飞针</option>
+                                                        <option value="2">测试架</option>
                                                     </select>
                                                 </div>
-                                                <label class="layui-form-label">Test Fee:</label>
+                                                <label class="layui-form-label">测试费:</label>
                                                 <div class="layui-input-inline" style="width: 128px">
                                                     <input type="text" name="testCost"  autocomplete="off" class="layui-input" id="flyingTest">
                                                 </div>
                                             </div>
 
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label" style="width: 80px;">Test Point:</label>
+                                                <label class="layui-form-label" style="width: 80px;">测试点:</label>
                                                 <div class="layui-input-inline" style="width: 128px">
                                                     <input type="text" name="testPoint"  autocomplete="off" class="layui-input" id="testPoint">
                                                 </div>
@@ -428,18 +434,18 @@
 
                                             <div class="layui-form-item lots-checkbox-group">
                                                 <div class="layui-input-block">
-                                                    <input value="1" type="checkbox" name="blindHoles" title="Blind holes" lay-skin="primary">
-                                                    <input value="1" type="checkbox" name="edgePlated" title="Edge Plated" lay-skin="primary">
-                                                    <input value="1" type="checkbox" name="halfHoleLated" title="Half Hole" lay-skin="primary">
-                                                    <input value="1" type="checkbox" name="contrlImpeance" title="Contrl impeance" lay-skin="primary">
-                                                    <input value="1" type="checkbox" name="buriedHoles" title="Buried holes" lay-skin="primary">
-                                                    <input value="1" type="checkbox" name="carbon" title="Carbo" lay-skin="primary">
-                                                    <input value="1" type="checkbox" name="bevellingCamfer" title="Bevelling" lay-skin="primary">
-                                                    <input value="1" type="checkbox" name="deepMillRouting" title="Deep Mill Routing" lay-skin="primary">
+                                                    <input value="1" type="checkbox" name="blindHoles" title="盲孔" lay-skin="primary">
+                                                    <input value="1" type="checkbox" name="edgePlated" title="包边" lay-skin="primary">
+                                                    <input value="1" type="checkbox" name="halfHoleLated" title="半孔" lay-skin="primary">
+                                                    <input value="1" type="checkbox" name="contrlImpeance" title="阻抗" lay-skin="primary">
+                                                    <input value="1" type="checkbox" name="buriedHoles" title="埋孔" lay-skin="primary">
+                                                    <input value="1" type="checkbox" name="carbon" title="碳油" lay-skin="primary">
+                                                    <input value="1" type="checkbox" name="bevellingCamfer" title="斜边" lay-skin="primary">
+                                                    <input value="1" type="checkbox" name="deepMillRouting" title="盲锣" lay-skin="primary">
                                                 </div>
                                             </div>
                                            <div class="layui-form-item lfi-differentDesign">
-                                                <label class="layui-form-label lfl-differentDesign">Different Design:</label>
+                                                <label class="layui-form-label lfl-differentDesign">多款合拼:</label>
                                                 <div class="layui-input-block">
                                                     <input type="radio" name="differentDesign" value="1" title="1" checked>
                                                     <input type="radio" name="differentDesign" value="2" title="2">
@@ -448,7 +454,7 @@
                                                 </div>
                                             </div>
                                             <div class="layui-form-item">
-                                                <label class="layui-form-label">Remark:</label>
+                                                <label class="layui-form-label">备注:</label>
                                                 <div class="layui-input-block iblock-reamrk">
                                                     <textarea data-type="textarea" name="remark" placeholder="请输入内容" class="layui-textarea" style="width: 100%"></textarea>
                                                 </div>
@@ -474,30 +480,30 @@
                             </div>
                           </div>
                           <div class="layui-colla-item">
-                            <h2 class="layui-colla-title">SMT-Stencil</h2>
+                            <h2 class="layui-colla-title">钢网页面</h2>
                             <div class="layui-colla-content">
                                 <form class="layui-form" id="stmStencil_form">
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label">Stencil Side:</label>
+                                        <label class="layui-form-label">钢网面向:</label>
                                         <div class="layui-input-block">
                                             <select name="stencilSide" lay-filter="stencilSide">
-                                                <option value="Top">Top</option>
-                                                <option value="Bottom">Bottom</option>
-                                                <option value="Top And Bottom (On Single Stencil)">Top And Bottom (On Single Stencil)</option>
-                                                <option value="Top And Bottom (On Separate Stencil)">Top And Bottom (On Separate Stencil)</option>
+                                                <option value="Top">单面</option>
+                                                <!-- <option value="Bottom">Bottom</option> -->
+                                                <option value="Top And Bottom (On Single Stencil)">双面开在一个</option>
+                                                <option value="Top And Bottom (On Separate Stencil)">双面分开</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label">Stencil Size:</label>
+                                        <label class="layui-form-label">大小:</label>
                                         <div class="layui-input-block stencilSide">
                                             <input type="text" class="layui-input" placeholder="please check Stencil size" id="inStencilSize">
                                         </div>
                                     </div>
 
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label">Thickness:</label>
+                                        <label class="layui-form-label">厚度:</label>
                                         <div class="layui-input-inline" style="width: 130px">
                                             <input name="thickness" type="radio" lay-filter="sthickness" class="layui-input" value="0.1" title="0.10MM">
                                         </div>
@@ -513,20 +519,20 @@
                                     </div>
 
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label">Existing Fiducials:</label>
+                                        <label class="layui-form-label">光学点:</label>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input name="existingFiducials" lay-filter="existingFiducials" type="radio" class="layui-input" value="none" title="None" checked>
+                                            <input name="existingFiducials" lay-filter="existingFiducials" type="radio" class="layui-input" value="none" title="无" checked>
                                         </div>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input name="existingFiducials" lay-filter="existingFiducials" type="radio" class="layui-input" value="half lasered" title="Half Lasered">
+                                            <input name="existingFiducials" lay-filter="existingFiducials" type="radio" class="layui-input" value="half lasered" title="半刻">
                                         </div>
                                         <div class="layui-input-inline" style="width: 130px">
-                                            <input name="existingFiducials" lay-filter="existingFiducials" type="radio" class="layui-input" value="lasered through" title="Lasered Through">
+                                            <input name="existingFiducials" lay-filter="existingFiducials" type="radio" class="layui-input" value="lasered through" title="刻穿">
                                         </div>
                                     </div>
 
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label">Quantity:</label>
+                                        <label class="layui-form-label">数量:</label>
                                         <div class="layui-input-block">
                                             <input type="text" class="layui-input" value="1" id="stencil_quantity">
                                         </div>
@@ -542,11 +548,11 @@
                             </div>
                           </div>
                           <div class="layui-colla-item">
-                            <h2 class="layui-colla-title">Assembly Service</h2>
+                            <h2 class="layui-colla-title">贴片报价页面</h2>
                             <div class="layui-colla-content">
                                 <div class="layui-form" id="assemblyService_form">
                                     <div class="layui-form-item top-radio">
-                                        <label class="layui-form-label" style="width: 118px">Assembly Service:</label>
+                                        <label class="layui-form-label" style="width: 118px">贴片方式:</label>
                                         <div class="layui-input-block">
                                             <input type="radio" name="assemblyType" value="1" title="You Supply Parts, PCBonline only Assembly" checked>
                                         </div>
@@ -659,7 +665,7 @@
                               </div>
                               <div class="layui-input-inline layui-col-md2">
                                   <!--<button class="layui-btn" data-type="lookQuote">详情</button>-->
-                                  <button type="button" class="layui-btn layui-btn-sm" data-type="addCustomerFile" data="100%" id="addFile">资料</button>
+                                  <button type="button" class="layui-btn layui-btn-sm" data-type="addCustomerFile" data="100%" id="addFile">上传资料</button>
                               </div>
                           </div>
 
@@ -673,7 +679,7 @@
                               </div>
                               <div class="layui-input-inline lii-lookquote">
                                   <!--<button class="layui-btn up-subbtn" data-type="upSubbtn">报价</button>-->
-                                  <button class="layui-btn layui-btn-sm" type="button" data-type="lookQuote">详情</button>
+                                  <button class="layui-btn layui-btn-sm" type="button" data-type="lookQuote">价格详情</button>
                               </div>
                               <div class="sub-group"></div>
                           </div>
@@ -715,7 +721,7 @@
                                   </div>
                                   <div class="layui-input-inline shipping-input-company" style="width: 142px;">
                                       <select name="courierCompany" id="selCompany" xm-select="selCompany" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
-                                          <option value="">请选择</option>
+                                          <option value="">快递公司</option>
                                       </select>
                                   </div>
                               </div>
@@ -732,7 +738,7 @@
                                           <div class="layui-form-item shipping-item">
                                               <div class="layui-input-inline shipping-input-countrys"  style="width: 142px;">
                                                   <select name="countries" id="selCountrys" xm-select="selCountrys" xm-select-radio  xm-select-search="" xm-select-search-type="dl">
-                                                      <option value="">请选择</option>
+                                                      <option value="">国家</option>
                                                   </select>
                                               </div>
                                           </div>
@@ -748,7 +754,7 @@
                                       </div>
                                   </div>
                                   <div class="rig-others layui-col-md6">
-                                      <label class="layui-form-label" style="padding: 9px 12px 0px 0px;">Weight:</label>
+                                      <label class="layui-form-label" style="padding: 9px 12px 0px 0px;">重量:</label>
                                       <div class="layui-input-inline">
                                           <input class="layui-input" name="weight" type="text" id="pcbWeight" placeholder=" 0.00 KG" >
                                       </div>
@@ -768,13 +774,14 @@
                                         <input class="layui-input" name="mantissa" type="text"/>
                                     </div>
                                 </div>
-                                  <div class="rig-others build-time-item layui-col-md6" style="display: none;width: 146px;">
+                                <div class="rig-others build-time-item layui-col-md6" style="display: none;width: 146px;">
+                                    <label class="layui-form-label">交期：</label>
                                       <div class="layui-input-block build-time-block">
                                           <select name="selBuildTime" lay-filter="selBuildTime" lay-verify="required" id="selBuildTime" lay-search="">
                                               <option value="">请选择</option>
                                           </select>
                                       </div>
-                                  </div>
+                                </div>
                               </div>
 
 
@@ -841,7 +848,7 @@
                               </div>
                               <div class="layui-form-item">
                                   <div class="layui-input-inline stencil-lii">
-                                      <label class="layui-form-label">Stencil Cost:</label>
+                                      <label class="layui-form-label">钢网费:</label>
                                       <div class="layui-input-block">
                                           <input class="layui-input" type="text" id="inStencilCost" placeholder="0.00">
                                       </div>
@@ -849,7 +856,7 @@
                               </div>
                               <div class="layui-form-item">
                                   <div class="layui-input-inline stencil-lii">
-                                      <label class="layui-form-label">Stencil单价:</label>
+                                      <label class="layui-form-label">钢网单价:</label>
                                       <div class="layui-input-block">
                                           <input class="layui-input" type="text" id="sunitPrice" placeholder="0.00" name="sunitPrice" readonly>
                                       </div>
@@ -857,7 +864,7 @@
                               </div>
                               <div class="layui-form-item">
                                   <div class="layui-input-inline stencil-lii">
-                                      <label class="layui-form-label">Stencil总价:</label>
+                                      <label class="layui-form-label">钢网总价:</label>
                                       <div class="layui-input-block">
                                           <input class="layui-input" type="text" id="stotalPrice" placeholder="0.00" readonly>
                                       </div>
@@ -869,7 +876,7 @@
                       <form class="layui-form" id="assemblyForm">
                           <div class="layui-col-md-offset5 stencil-form">
                               <div class="layui-form-item">
-                                  <label class="layui-form-label">Assembly Cost:</label>
+                                  <label class="layui-form-label">贴片费:</label>
                                   <div class="layui-input-block">
                                       <input class="layui-input" type="text" id="assemblyCost" placeholder="0.00" >
                                   </div>
@@ -878,7 +885,7 @@
 
                           <div class="layui-col-md-offset5 stencil-form">
                               <div class="layui-form-item">
-                                  <label class="layui-form-label">Weight:</label>
+                                  <label class="layui-form-label">重量:</label>
                                   <div class="layui-input-block">
                                       <input class="layui-input" type="text" id="assemblyWeight" placeholder="0.00" >
                                   </div>
