@@ -61,7 +61,47 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             where: field
         });
     });
-
+     function findTotalNumber(whichTable){
+    
+    let dd=0;
+    let url='';
+    var token = layui.data('layuiAdmin').access_token;
+    if(whichTable == 0){
+        //pcb order
+        url=setter.baseUrl+'epc/pcborder/indicatorCard';
+    }else if(whichTable == 1){
+        // stencil order 
+        url=setter.baseUrl+'epc/stencilorder/indicatorCard';
+    }
+    $.ajax({
+        type: 'post'
+        ,url: url
+        ,headers: {
+            'access_token':token
+        }
+        ,data: JSON.stringify({})
+        ,dataType:"json"
+        ,contentType : "application/json;charset=utf-8"
+        ,success: function (res) {
+            console.log("successfulllllll ")
+            dd=res.no;
+            if( whichTable == 0){
+                $("#count_pcb").text(dd); 
+            }else if(whichTable == 1 ){
+                $("#count_smt").text(dd); 
+            }
+            
+          
+            
+        }
+        
+    });
+   
+    
+    
+   
+    }
+    
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 内部PCB订单-编写指示卡
     function tabRenderPCB(){
         table.render({
@@ -177,11 +217,17 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                         $(".laytable-cell-1-0-22").css({"width":"130px"});
                     })
                 }
-                var pcbdata = res.data.filter(i => i.status == 5);
+               
+                
+                findTotalNumber(0); 
+                findTotalNumber(1); 
+                // console.log(pcbdata);
+                // var pcbdata = res.data.filter(i => i.status == 5);
                 // console.log(pcbdata);
                 //统计数量
-                $("#count_pcb").text(pcbdata.length);
                 
+                // $("#count_pcb").text(pcbdata.length);
+               
                 // pcb_gerberUpload();
                 // tabPCBObj = res.data;
                 // layui.each($(".pcbReupload"),function(index, elem){
@@ -227,6 +273,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
             }
         });
     }
+    
 
     //监听行单击事件（单击事件为：rowDouble）
     table.on('row(epc_Tabpcb_ok_payment_order)', function(obj){
@@ -585,8 +632,11 @@ layui.define(['admin', 'table', 'index','element','form','laydate','upload', 'up
                         $(".laytable-cell-1-0-22").css({"width":"130px"});
                     })
                 }
-                var stedata = res.data.filter(i => i.status == 5);
-                $("#count_smt").text(stedata.length); 
+
+                findTotalNumber(0); 
+                findTotalNumber(1); 
+                // var stedata = res.data.filter(i => i.status == 5);
+                
                 // stencil_gerberUpload();
                 // tabStencilObj = res.data;
                 // layui.each($(".stencilReupload"),function(index, elem){

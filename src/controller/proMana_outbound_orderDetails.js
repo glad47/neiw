@@ -16,7 +16,7 @@ layui.define(['admin','table','index','element','form','laydate', 'tools_printLa
         ,proMana_global = layui.proMana_global
         ,element = layui.element;
     var $ = layui.jquery;
-
+    
     tabRenderPCB();
     // 全局变量
     var _public_val = {

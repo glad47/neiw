@@ -23,7 +23,7 @@
         <div class="all-contract">
             <div class="modul-top">
                 <div class="lef-logo">
-                    <img src="../../../src/style/res/template/CAPABILITIESicon04.png">
+                    <img src="../../../src/style/res/logo2.ico">
                 </div>
                 <div class="rig-company">
                     <a style="letter-spacing: 12px;">深圳聚谷科技有限公司</a><br>
@@ -211,8 +211,13 @@
                     <li>地址：深圳市宝安区沙井街道马安山社区鞍胜路33号4栋</li>
                     <script type="text/html" template>
                         <li>代表：{{ layui.data('userInfo').userChinaName || '' }}</li>
+
+                        <li>
+                            {{# var mydate = new Date(d.params.dataOfContract) }}
+                            日期：{{ mydate.toLocaleDateString() }}
+                        </li>
                     </script>
-                    <li>日期：</li>
+                   
                 </ul>
                 <ul style="width: 48%;">
                     <script type="text/html" template>

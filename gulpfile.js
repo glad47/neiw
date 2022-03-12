@@ -16,6 +16,7 @@ var del = require('del');
 var gulpif = require('gulp-if');
 var minimist = require('minimist');
 var babel = require('gulp-babel'); // 添加这段代码
+var browserSync = require('browser-sync');
 
 //获取参数
 var argv = require('minimist')(process.argv.slice(2), {
@@ -80,7 +81,34 @@ var argv = require('minimist')(process.argv.slice(2), {
     return gulp.src('./src/views/**/*')
     .pipe(gulp.dest(destDir + '/views'));
   }
+
+
 };
+//-------------added by aziz
+gulp.task('config',function(){
+  gulp.src('./src/config.js')
+  .pipe(gulp.dest(destDir));
+})
+
+//-------------added by aziz
+
+gulp.task('lib',function(){
+  gulp.src('./src/lib/extend/echarts.js')
+  .pipe(gulp.dest(destDir + '/lib/extend'));
+})
+
+//-------------added by aziz
+gulp.task('resource',function(){
+  gulp.src('./src/style/res/**/*')
+    .pipe(gulp.dest(destDir + '/style/res'));
+})
+
+
+//-------------added by aziz
+gulp.task('views', function() {
+  return gulp.src('./src/views/**/*')
+  .pipe(gulp.dest(destDir + '/views'));
+})
 
 
 //清理
@@ -158,6 +186,27 @@ gulp.task('release', function(){ //命令：gulp && gulp release
   .pipe(gulp.dest('./start/layui'))
   .pipe(gulp.dest(releaseDir + '/start/layui'))
 });
+
+gulp.task('start', function() {
+  browserSync.init({
+    server:{
+      baseDir:'./'
+    }
+  });
+  //html
+  gulp.watch('./src/views/**/*').on('change', browserSync.reload);
+  //resourse
+  gulp.watch('./src/style/res/**/*').on('change',browserSync.reload);
+  //js
+  gulp.watch(src,task.minjs);
+  //css
+  gulp.watch('./src/**/*.css',task.mincss)
+  //config
+  gulp.watch('./src/config.js',config)
+
+  //lib
+  gulp.watch('./src/lib/extend/echarts.js',lib);
+})
 
 
 

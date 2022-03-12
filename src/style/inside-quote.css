@@ -2,8 +2,8 @@ input:disabled{background-color: #d4d3d366;cursor: not-allowed;}
 #stencilForm,#assemblyForm{margin-top: 30px;}
 #stencilForm .layui-form-label,#assemblyForm .layui-form-label{width: 80px !important;}
 .rig-price-input .layui-form-label{width: 56px;}
-.rig-others .layui-form-label{width: 46px;}
-.build-time-item .layui-input-block{width: 100% !important;margin-left: unset;}
+.rig-others .layui-form-label{width: 56px;}
+.build-time-item .layui-input-block{width: 100% !important;}
 .top-price-one .layui-input-block,.top-price-one .layui-input-block>.layui-input,.stencil-form .layui-input-block, .stencil-form .layui-input-block>.layui-input{width: 60%;}
 .top-price-one .layui-input,.stencil-form .layui-input-block>.layui-input,#totalPrice,#unitPrice{border: none;border-bottom: solid 1px silver;}
 /*shipping*/
