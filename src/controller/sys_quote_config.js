@@ -301,13 +301,14 @@ layui.define(['admin', 'table', 'util','form','upload'], function(exports){
             ,{field: 'id', title: 'id', width: 70}
             ,{field: 'areaParameterName', title: '平米', width: 120, }//templet: '<div>{{ layui.util.timeAgo(d.time) }}</div>'
             ,{field: 'pcbTypeName', title: '基材', width: 100, }
-            ,{field: 'layerNum', title: '层数', width: 50, }
+            ,{field: 'layerNum', title: '层数', width: 60, }
             ,{field: 'urgentType', title: '加急类型', width: 120, }
             ,{field: 'parameterTypeName', title: '参数类型', width: 120, }
             ,{field: 'parameterName', title: '参数名', width: 180, }
-            ,{field: 'quoteCondition', title: '判断', width: 70, }
+            ,{field: 'quoteCondition', title: '判断', width: 60, }
             ,{field: 'parameterValue', title: '参数值', width: 100, }
             ,{field: 'premiumType', title: '加价类别', width: 120, }
+            ,{field: 'subsidy', title: '折扣', width: 100, }
             ,{field: 'quote', title: '标准值', width: 100, }
             ,{title: '操作', width: 180, align:'center', toolbar: '#info-qc-jg-toolbar'}
             ]]
@@ -322,7 +323,7 @@ layui.define(['admin', 'table', 'util','form','upload'], function(exports){
         if (obj.event === 'edit') {
             admin.popup({
                 title:'编辑报价配置',
-                area:['850px', '440px'],
+                area:['800px', '600px'],
                 btn:['提交','取消'],
                 yes:function(index, layero){
                     $("#sys-quoteConfig-form-submit").click();
@@ -371,7 +372,7 @@ layui.define(['admin', 'table', 'util','form','upload'], function(exports){
         // ,data = checkStatus.data; //获得选中的数据
         admin.popup({
             title: '添加报价配置'
-            ,area: ['766px', '510px']
+            ,area: ['766px', '600px']
             ,btn:['提交','取消']
             ,yes: function(index, layero) {
                 $('#sys-quoteConfig-form-submit').click();
