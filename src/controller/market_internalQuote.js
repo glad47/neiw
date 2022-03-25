@@ -68,6 +68,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
             ,id: "iquote_Tabpcb"
             ,page: true
             ,parseData: function (res) {
+                
                 return{
                     "code": 0,
                     "data": res.page.list,
@@ -291,7 +292,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
                                     view(this.id).render(viewName, tabdata).done(function () {
                                         productNo = null; // 初始化订单号
                                         defVal.customerSn = null;   //初始化客户编号 如a11
-                                        console.log(tabdata);
+                                        // console.log(tabdata);
                                         if (contractType === 1){
                                             // layui.each遍历的数据，td最少为6条，没有数据的显示空白
                                             var tdSize = $(".contract-module-three-tab tbody tr").eq(0).find("td").size();
@@ -332,7 +333,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
                                             }
                                             if (nullNum == checkStatus.data.length) {   // 判断 修改时间数组 是否全为null
                                                 newEstTime = jstools.TimeContrast(ctimeArray);
-                                                console.log(ctimeArray);
+                                                // console.log(ctimeArray);
                                             } else {
                                                 newEstTime = jstools.TimeContrast(timeArray);
                                             }
@@ -415,7 +416,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
             data.orderType = "pcbOrder";        // 根据orderType  发送不同的接口
             data.retab = "iquote_Tabpcb";
             data = filePathProcess.isInternal(data);
-            console.log(data);
+            // console.log(data);
             admin.popup({
                 title: 'PCB订单资料管理'
                 ,area: ['870px', '303px']
@@ -553,7 +554,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
     //监听行工具事件＝＝＝＝》 Stencil 钢网订单
     table.on('tool(iquote_Tabstencil)', function(obj){
         var data = obj.data;
-        console.log(data)
+        // console.log(data)
         if(obj.event === 'del'){
             layer.confirm('真的删除行么', function(index){
                 obj.del();
@@ -587,7 +588,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
             data.retab = "iquote_Tabstencil";
             // 测试代码
             data = filePathProcess.isInternal(data);
-            console.log(data);
+            // console.log(data);
             admin.popup({
                 title: 'PCB订单资料管理'
                 ,area: ['45%', '40%']
@@ -694,7 +695,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','upl
                                 ,success: function (layero, index) {
                                     tabdata.htmlType = 1;     //页面标识 0为报价明细合同 主要用于判断头部左侧标题
                                     view(this.id).render(viewName, tabdata).done(function () {
-                                        console.log(tabdata);
+                                        // console.log(tabdata);
                                         productNo = null; // 初始化订单号
                                         defVal.customerSn = null;   //初始化客户编号 如a11
                                     });

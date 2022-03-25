@@ -46,14 +46,15 @@
             .contract-module-three-tab thead tr th:nth-of-type(3){width: 7%;min-width: 50px;}
             .contract-module-three-tab thead tr th:nth-of-type(4){width: 9%;min-width: 50px;}
             .contract-module-three-tab thead tr th:nth-of-type(5){width: 9%;min-width: 90px;}
-            .contract-module-three-tab thead tr th:nth-of-type(6){width: 5%;min-width: 60px;}
-            .contract-module-three-tab thead tr th:nth-of-type(7){width: 5%;min-width: 60px;}
-            .contract-module-three-tab thead tr th:nth-of-type(8){width: 5%;min-width: 60px;}
-            .contract-module-three-tab thead tr th:nth-of-type(9){width: 5%;min-width: 60px;}
+            .contract-module-three-tab thead tr th:nth-of-type(6){width: 4%;min-width: 60px;}
+            .contract-module-three-tab thead tr th:nth-of-type(7){width: 4%;min-width: 60px;}
+            .contract-module-three-tab thead tr th:nth-of-type(8){width: 4%;min-width: 60px;}
+            .contract-module-three-tab thead tr th:nth-of-type(9){width: 4%;min-width: 60px;}
             .contract-module-three-tab thead tr th:nth-of-type(10){width: 8%;min-width: 72px;}
-            .contract-module-three-tab thead tr th:nth-of-type(11){width: 8%;min-width: 75px;}
-            .contract-module-three-tab thead tr th:nth-of-type(12){width: 8%;min-width: 76px;}
-            .contract-module-three-tab thead tr th:nth-of-type(13){width: 15%;min-width: 100px;}
+            .contract-module-three-tab thead tr th:nth-of-type(11){width: 4%;min-width: 72px;}
+            .contract-module-three-tab thead tr th:nth-of-type(12){width: 8%;min-width: 75px;}
+            .contract-module-three-tab thead tr th:nth-of-type(13){width: 8%;min-width: 76px;}
+            .contract-module-three-tab thead tr th:nth-of-type(14){width: 15%;min-width: 100px;}
             .contract-module-three-tab thead tr th{border-right: solid #086aafdb 1px;text-align: center;border-bottom: solid #086aafdb 1px;}
             .tr-orderInfo,.tr-orderTotal{border-bottom: solid 1px #086aafdb;}
             /*.tr-orderTotal*/
@@ -201,6 +202,7 @@
                         <th>Tooling</th>
                         <th>Overwork</th>
                         <th>Freight</th>
+                        <th style="color: red;">Discount</th>
                         <th>Components</th>
                         <th>Assembly</th>
                         <th>Amount(
@@ -314,6 +316,11 @@
                                 {{ item.buildTime }}
                             {{# } }}
                         </td>
+                        <td style="color: red;">
+                            {{# var disc =  parseFloat(item.subsidy).toFixed(2) * -1 }}
+                            
+                            {{ disc || '0' }}
+                        </td>
                         <!--PCBA 费用小计-->
                         <td>
                             {{ item.pcbaPartsFee || '0'}}
@@ -327,7 +334,7 @@
                     </tr>
                     {{#  }); }}
                     <tr>
-                        <td colspan="11"></td>
+                        <td colspan="12"></td>
                         <td>Total:</td>
                         <td>
                             {{Total.toFixed(3)}}

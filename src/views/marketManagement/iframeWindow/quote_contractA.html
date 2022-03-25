@@ -373,6 +373,14 @@
                             {{#  }); }} 
                         </tr>
                         <tr>
+                            <td style="color: red;">Disouct</td>
+                            {{# layui.each(d.params.data, function(index, item){  }}
+                            {{# var disc =  parseFloat(item.subsidy).toFixed(2) * -1 }}
+                            {{# var disc =  parseFloat(item.subsidy).toFixed(2) * -1 }}
+                            <td style="color: red;" value="{{ item.id }}">{{ disc  || '0' }}</td>
+                            {{#  }); }} 
+                        </tr>
+                        <tr>
                             <td>Freight Fee:</td>
                             {{# layui.each(d.params.data, function(index, item){  }}
                             <td value="{{ item.id }}">

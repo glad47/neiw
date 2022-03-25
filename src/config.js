@@ -53,9 +53,12 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
       ,dataName: 'data' //数据详情的字段名称
     }
     // ,baseUrl:'http://10.168.8.250:8881/renren-fast/'
-    // ,baseUrl1:"http://localhost:8871/"
+    // ,baseUrl1:"http://10.168.8.250:8871/"
     // ,webSocketUrl: 'ws://172.0.0.1:2200/ws'
-    // ,imUrl:'http://localhost:8871/'
+
+    //offline 
+    //  ,imUrl:'http://10.168.8.250:8871/'
+    //  ,baseUrl:'http://10.168.8.250:8080/renren-fast/'
 
        ,baseUrl:'http://121.201.102.135:8787/renren-fast/'
        ,baseUrl1:"https://www.pcbonline.com/"

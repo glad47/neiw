@@ -1,5 +1,10 @@
 <title>内部报价</title>
 <link href="../../../src/style/formSelects-v4.css" rel="stylesheet" />
+<style>
+    #discount::placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    red;
+}
+</style>
 <div class="layui-fluid" id="app">
     <div>
         <div class="layui-row layui-col-space15" id="inside_quote_all">
@@ -774,15 +779,24 @@
                                         <input class="layui-input" name="mantissa" type="text"/>
                                     </div>
                                 </div>
-                                <div class="rig-others build-time-item layui-col-md6" style="display: none;width: 146px;">
-                                    <label class="layui-form-label">交期：</label>
-                                      <div class="layui-input-block build-time-block">
-                                          <select name="selBuildTime" lay-filter="selBuildTime" lay-verify="required" id="selBuildTime" lay-search="">
-                                              <option value="">请选择</option>
-                                          </select>
-                                      </div>
+                                <div class="layui-form-item">
+                                    <div class="rig-others build-time-item layui-col-md6" style="display: none;width: 115px;">
+                                        <label class="layui-form-label" style="padding: 5px;
+                                        margin-top: 7px;">交期：</label>
+                                        <div class="layui-input-block build-time-block" style="margin-left: 70px;">
+                                            <select name="selBuildTime" lay-filter="selBuildTime" lay-verify="required" id="selBuildTime" lay-search="">
+                                                <option value="">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="rig-others layui-col-md6" style="float: right;">
+                                        <label class="layui-form-label" style="color: red;">折扣：</label>
+                                        <div class="layui-input-inline">
+                                            <input style="border-color:red!important;color: red!important; " class="layui-input" name="discount" type="text" id="discount" placeholder=" 0.00 "/>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
+                              
 
 
                               <!--<div class="layui-form-item build-time-item" style="display: none;">-->

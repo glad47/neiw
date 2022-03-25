@@ -554,7 +554,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">小计：</label>
                 <div class="layui-input-block">
-                    {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+parseFloat(d.params.testCostFee)+d.params.overworkFee).toFixed(2)}}
+                    {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+parseFloat(d.params.testCostFee)+d.params.overworkFee-Math.abs(parseFloat(d.params.subsidy))).toFixed(2)}}
                     <input type="text" name="subtotal" value="{{ pcbcost || 0 }}" autocomplete="off" class="layui-input" readonly>
                 </div>
             </div>
@@ -573,6 +573,16 @@
                     <input type="text" name="postFee" value="{{ d.params.postFee || 0 }}" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+                <label class="layui-form-label" style="color: red;">折扣：</label>
+                <div class="layui-input-block">
+                    {{# var disc = parseFloat(d.params.subsidy).toFixed(2) * -1 }}
+                    <input style="border-color: red!important;color: red;"  type="text" name="subsidy" value="{{ disc   || 0 }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+           
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">总计：</label>
                 <div class="layui-input-block">
@@ -722,8 +732,27 @@
                     var _val = parseFloat(val);
                     a += _val;
                 });
+                var subsidy = Math.abs(parseFloat($(".orderPCBupdateForm input[name='subsidy']").val())) ;
+               if(!subsidy){
+                   subsidy=0;
+               }
                 q_params.pcbCost = a.toFixed(2);
-                $(".orderPCBupdateForm input[name='subtotal']").val(q_params.pcbCost);       // 小计
+                if(subsidy >  q_params.pcbCost){
+                    subsidy=0;
+                    
+                 
+                }else{
+                    q_params.pcbCost -= subsidy;
+                }
+                if(subsidy != 0){
+                    $(".orderPCBupdateForm input[name='subsidy']").val(subsidy * -1);
+                    
+                }else{
+                    $(".orderPCBupdateForm input[name='subsidy']").val(subsidy);
+                }
+                $(".orderPCBupdateForm input[name='subtotal']").val(q_params.pcbCost); 
+                
+                    // 小计
                 getPCBA();
                 set_qObj();
             });
@@ -738,6 +767,7 @@
                 _quote_obj.testCostFee = parseFloat($(".orderPCBupdateForm input[name='testCostFee']").val());
                 _quote_obj.overworkFee = parseFloat($(".orderPCBupdateForm input[name='overworkFee']").val());
                 _quote_obj.toolingFee = parseFloat($(".orderPCBupdateForm input[name='toolingFee']").val());
+                
                 for (var key in _quote_obj) {
                     if (isNaN(_quote_obj[key])) {
                         _quote_obj[key] = 0;
@@ -749,6 +779,7 @@
             // 修改表单对象-->回传到页面
             function set_qObj() {
                 var postFee = $(".orderPCBupdateForm input[name='postFee']").val();
+                
                 if (isNaN(postFee) || postFee == "") {
                     postFee = 0;
                 }
@@ -757,7 +788,7 @@
                     pcbaSubtotal = 0;
                 }
                 q_params.shippingPrice = parseFloat(postFee);
-                q_params.pcbCost = parseFloat(q_params.pcbCost);
+                q_params.pcbCost = parseFloat(q_params.pcbCost );
                 q_params.totalPrice = parseFloat(q_params.shippingPrice+q_params.pcbCost+pcbaSubtotal).toFixed(2);
                 $(".orderPCBupdateForm input[name='totalFee']").val(q_params.totalPrice);      // 总价
             }
@@ -837,6 +868,7 @@
                 } else {
                     field.productionVerification = 1;
                 }
+                field.subsidy = Math.abs(field.subsidy)
                 admin.req({
                     type: 'post'
                     ,url: setter.baseUrl+'epc/pcborder/update'

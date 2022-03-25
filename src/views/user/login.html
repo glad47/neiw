@@ -27,7 +27,9 @@
           <div class="layui-col-xs5">
             <div style="margin-left: 10px;">
               <script type="text/html" template>
-                {{# var uuid = new Date().getTime() }}
+                {{# var uuid = new Date().getTime()
+                  
+                }}
               <img src="{{ layui.setter.baseUrl }}captcha.jpg?uuid={{uuid}}" class="layadmin-user-login-codeimg" id="LAY-user-get-vercode">
               <input type="text" name="uuid" value="{{uuid || ''}}" style="display: none;">
               </script>
