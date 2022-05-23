@@ -57,13 +57,13 @@ layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
     // ,webSocketUrl: 'ws://172.0.0.1:2200/ws'
 
     //offline 
-     ,imUrl:'http://10.168.8.250:8871/'
-     ,baseUrl:'http://10.168.8.250:8080/renren-fast/'
+    //  ,imUrl:'http://10.168.8.250:8871/'
+    //  ,baseUrl:'http://10.168.8.250:8080/renren-fast/'
 
-      //  ,baseUrl:'http://121.201.102.135:8787/renren-fast/'
+       ,baseUrl:'http://121.201.102.135:8787/renren-fast/'
        ,baseUrl1:"https://www.pcbonline.com/"
        ,webSocketUrl: 'wss://www.pcbonline.com:8887/ws'
-      //  ,imUrl:'https://www.pcbonline.com/'
+       ,imUrl:'https://www.pcbonline.com/'
 
       //独立页面路由，可随意添加（无需写参数）
     ,indPage: [
