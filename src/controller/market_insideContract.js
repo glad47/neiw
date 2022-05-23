@@ -360,7 +360,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                 sd_len += 1;
                 pTotala += pcbtabObj[i].totalFee;
             }
-            console.log('pcbtabObj[i].invoiceNo:'+pcbtabObj[i].quoteOrderNo);
+            // console.log('pcbtabObj[i].invoiceNo:'+pcbtabObj[i].quoteOrderNo);
         }
         var quoteOrderNo = data.quoteOrderNo;
         //console.log(obj)
@@ -501,15 +501,15 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools', 're
                 }
             });
         } else if(obj.event === 'search-list'){
-            layer.msg("查看数据明细");
+            // layer.msg("查看数据明细");
             data.tabId = "inside_cotract_Tabpcb";
             admin.popup({
                 title: '编辑PCB订单信息'
                 ,area: ['820px', '90%']
-                ,btn:['立即提交', '取消']
+                ,btn:['更新订单', '取消']
                 ,yes: function () {
                     $(".submit-ok").click();
-                    layer.msg('yes');
+                    // layer.msg('yes');
                 }
                 ,success: function (layero, index) {
                     view(this.id).render('marketManagement/iframeWindow/orderPCB_update', data).done(function () {

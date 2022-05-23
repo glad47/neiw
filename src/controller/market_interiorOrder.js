@@ -231,7 +231,7 @@ layui.define(['admin','table','index','element','form','laydate', 'jsTools','r',
             data.tabId = "interior_order_Tabpcb";
             admin.popup({
                 title: '编辑PCB订单信息'
-                ,btn:['立即提交','取消订单', '取消']
+                ,btn:['更新订单','取消订单', '取消']
                 ,area: ['820px', '90%']
                 ,yes: function () {
                     $(".submit-ok").click();

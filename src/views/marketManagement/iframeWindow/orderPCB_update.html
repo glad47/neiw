@@ -554,7 +554,10 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <label class="layui-form-label">小计：</label>
                 <div class="layui-input-block">
-                    {{# var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+parseFloat(d.params.testCostFee)+d.params.overworkFee-Math.abs(parseFloat(d.params.subsidy))).toFixed(2)}}
+                    {{# 
+                        var sub =  d.params.subsidy == null || d.params.subsidy == '' ? 0 : d.params.subsidy;
+                        var pcbcost = parseFloat(d.params.engineeringFee+d.params.boardFee+parseFloat(d.params.testCostFee)+d.params.overworkFee-Math.abs(parseFloat(sub))).toFixed(2)
+                    }}
                     <input type="text" name="subtotal" value="{{ pcbcost || 0 }}" autocomplete="off" class="layui-input" readonly>
                 </div>
             </div>
@@ -611,7 +614,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 126px;">需要确认生产资料：</label>
             <div class="layui-input-block">
-                <input type="checkbox" name="productionVerification" lay-skin="switch" lay-text="是|否" {{d.params.productionVerification == null  || d.params.productionVerification === undefined || d.params.productionVerification === 0 ? '' : 'checked' }} lay-filter="productionVerification">
+                <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.productionVerification == undefined || d.params.productionVerification == '0' ? '' : 'checked' }} lay-filter="isProductionVerification">
             </div>
         </div>
 
@@ -675,7 +678,7 @@
             <div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
                 <!-- <label class="layui-form-label">明细备注到报价单:</label> -->
                 <div class="layui-input-block" style="margin-left: 42px;">
-                    <input type="checkbox" name="noteToQuote" value="1" {{ d.params.noteToQuote == '1' ? 'checked' : '' }} class="layui-input" title="明细备注到报价单" lay-skin="primary" lay-filter="is-mark-quote-note">
+                    <input type="checkbox" name="isNoteToQuote" value="1" {{ d.params.noteToQuote == '1' ? 'checked' : '' }} class="layui-input" title="明细备注到报价单" lay-skin="primary" lay-filter="is-mark-quote-note">
                 </div>
             </div>
         </div>
@@ -695,6 +698,8 @@
 
         <div class="layui-form-item layui-col-md-offset3" style="display: none;">
             <div class="layui-input-block">
+                <input type="hidden" name="productionVerification" value="{{d.params.productionVerification || 0}}">
+                <input type="hidden" name="noteToQuote" value="{{d.params.noteToQuote || 0}}">
                 <button class="layui-btn submit-ok" lay-submit lay-filter="LAY-pcborder-update-submit">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
@@ -708,9 +713,10 @@
         var tabId = d.params.tabId;
         layui.use(['admin', 'table', 'form', 'laydate'], function () {
             var $ = layui.jquery,
-                layer = layui.layer;
-                laydate = layui.laydate;
-            var form = layui.form;
+                setter = layui.setter,
+                layer = layui.layer,
+                laydate = layui.laydate,
+                form = layui.form;
 
             var q_params = {
                 pcbCost: 0,         // 小计
@@ -846,29 +852,40 @@
             }
 
             //监听点选项
-            var nqc;
+            form.on('switch(isProductionVerification)', function (data) {
+                if (data.elem.checked){
+                    layer.msg('需要确认生产资料');
+                    form.val('user_editInfo_form',{productionVerification:1})
+                } else {
+                    layer.msg('不需要确认生产资料');
+                    form.val('user_editInfo_form',{productionVerification:0})
+                }
+            });
+
             form.on('checkbox(is-mark-quote-note)',function(data){
                 if (data.elem.checked) { 
                     layer.msg('明细备注到报价单');
-                    nqc = 1;
+                    form.val('user_editInfo_form',{noteToQuote:1});
                 }else{
                     layer.msg('明细不备注到报价单');
-                    nqc = 2;
+                    form.val('user_editInfo_form',{noteToQuote:0})
                 }
             });
+
             // 表单提交
             form.on('submit(LAY-pcborder-update-submit)',function (data) {
                 var field = data.field;
-                field.noteToQuote = nqc;
-                if (field.remark == "" || field.remark == "null") {
-                    field.remark = "";
-                }
-                if (field.productionVerification == null || field.productionVerification == "" || field.productionVerification == "off") {
-                    field.productionVerification = 0;
-                } else {
-                    field.productionVerification = 1;
-                }
-                field.subsidy = Math.abs(field.subsidy)
+                // field.noteToQuote = nqc;
+                // if (field.remark == "" || field.remark == "null") {
+                //     field.remark = "";
+                // }
+                // if (field.productionVerification == null || field.productionVerification == "" || field.productionVerification == "off") {
+                //     field.productionVerification = 0;
+                // } else {
+                //     field.productionVerification = 1;
+                // }
+                field.subsidy = Math.abs(field.subsidy);
+                console.log(field);
                 admin.req({
                     type: 'post'
                     ,url: setter.baseUrl+'epc/pcborder/update'

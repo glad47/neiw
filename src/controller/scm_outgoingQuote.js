@@ -74,7 +74,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                 }
             }
             ,cols: [[
-                {field:'id', title: 'ID',hide: true}
+                // {field:'id', title: 'ID',hide: true}
+                {type:'checkbox',fixed: 'left'}
                 ,{field:'productNo',fixed: 'left', title: '聚谷编号', align:'center', width: 135, sort: true}
                 ,{field:'status', title: '状态', hide: false, align:'center',templet: '#Tabtb-pcb-scm-outgoingQuote-status',minWidth: 130, sort: true}
                 ,{field: '', title:'下载', toolbar: '#pcb-file', align:'center', sort: true}
@@ -395,7 +396,8 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                 }
             }
             ,cols: [[
-                 {field: 'id', title: 'ID', hide: true, sort: true}
+                //  {field: 'id', title: 'ID', hide: true, sort: true}
+                {type:'checkbox',fixed: 'left'}
                 ,{field: 'productNo', title: '聚谷编号', align:'center', sort: true ,width: 135}
                 ,{field: 'status', title: '状态', align:'center',  templet: '#Tabtb-stencil-scm-outgoingQuote-status', minWidth: 130, sort: true}
                 ,{field: '', title:'File', templet: '#stencil-file',  align:'center', minWidth: 130, sort: true}

@@ -293,7 +293,7 @@
                 <label class="layui-form-label" style="width: 126px;">需要确认生产资料：</label>
                 <div class="layui-input-block">
                     <script type="text/html" template>
-                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.productionVerification == '0' ? 'checked' : '' }} lay-filter="isProductionVerification">
+                        <input type="checkbox" lay-skin="switch" lay-text="是|否" {{ d.params.productionVerification == undefined || d.params.productionVerification == '0' ? '' : 'checked' }} lay-filter="isProductionVerification">
                     </script>
                 </div>
             </div>
