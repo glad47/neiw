@@ -62,7 +62,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
         table.render({
             elem: '#scm_Tabpcb_outgoing_quote'
             ,url: setter.baseUrl+'scm/pcborder/outgoing/list'
-            ,toolbar: true
+            ,toolbar: '#scmTabpcb_outgoing_quote_toolbar'
             ,cellMinWidth: 80
             ,id:"scm_Tabpcb_outgoing_quote"
             ,page: true
@@ -203,8 +203,10 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                             var postData = {'id':data.id, 'supplierIds': supplierArr.toString(),'isInternal':data.isInternal,'onlineOid':data.onlineOid};
                             console.log(postData);
                             admin.req({
+                                type: 'post',
                                 url: setter.baseUrl + 'scm/pcborder/skipSubmit',
-                                data: postData,
+                                data: JSON.stringify(postData),
+                                contentType: "application/json;charset=utf-8",
                                 success: function (res) {
                                     layer.alert('成功跳过提交!', function () {
                                         openAssignSupplier_data = null;     // 初始化
@@ -258,6 +260,7 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                 }
                 ,end:function(){}
                 ,success: function (layero, index) {
+                    data.typeOpen = "assign";
                     view(this.id).render('scmManagement/assign_supplier', data).done(function () {
                         var cid_list;
                         admin.req({
@@ -375,6 +378,146 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
             });
         }
     });
+
+    table.on('toolbar(scm_Tabpcb_outgoing_quote)',function(obj){
+        // console.log(obj);
+        var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        if(obj.event === 'batchAssign'){
+            console.log(data);
+            data.typeOpen = "batchAssign";
+            var _len = data.length;
+            if (_len < 1) {
+                layer.msg('请至少选择一条数据');
+                return;
+            }
+
+            admin.popup({
+                title: '批量指定供应商'
+                ,area: ['912px', '545px']
+                ,btn:['提交','取消']    // 跳过提交先隐藏，功能已经写好了的
+                ,yes:function(index, layero){
+                    var checkdataSupplier = table.checkStatus('scm_assign_supplier_table');
+                    console.log(checkdataSupplier);
+                    if(checkdataSupplier.data.length == 0) {
+                        layer.msg('请至少选择一个供应商');
+                        return; 
+                    }
+                    let batchOrder = [];
+                    data.forEach(item =>{
+                        batchOrder.push({ oid: item.id, orderType: item.orderType})
+                    });
+                    var postData = {businessOperationName:"batchAssignSupplier",batchOrder:batchOrder,supplierIds:checkdataSupplier.data[0].id};
+                    console.log(postData);
+                    admin.req({
+                        url: setter.baseUrl + 'scm/pcborder/skipSubmit',
+                        data: postData,
+                        success: function (res) {
+                            layer.alert('成功跳过提交!', function () {
+                                openAssignSupplier_data = null;     // 初始化
+                                layer.closeAll();
+                            });
+                        }
+                    });
+
+
+                }
+                ,end:function(){}
+                ,success: function (layero, index) {
+                    view(this.id).render('scmManagement/assign_supplier', data).done(function () {
+                        var cid_list;
+                        admin.req({
+                            type: 'post',
+                            url: setter.baseUrl+'scm/pcborder/assignedSupplierIds',
+                            data: {'oid':data.id},
+                            async: false,
+                            success: function (result) {
+                                cid_list = globalCid_list = result.data;
+                                dIds_arr = result.data;
+                            }
+                        });
+                        table.render({
+                            elem: '#scm_assign_supplier_table'
+                            ,url: setter.baseUrl+'scm/pcborder/allSupplier'
+                            ,toolbar: '#supplierTableToolbar'
+                            ,cellMinWidth: 80
+                            ,page:false
+                            ,id:"scm_assign_supplier_table"
+                            ,where: {
+                                access_token: layui.data('layuiAdmin').access_token
+                            }
+                            ,cols: [[
+                                {type:'radio'}
+                                ,{field:'id', title: 'ID',hide: true}
+                                ,{field:'supplierId', title: '供应商编号', hide: false, align:'center',width: 130}
+                                ,{field:'strengths', title: '类别', align:'center',width: 130, templet: '#scm_ogstrengths'}
+                                ,{field:'companyName', title:'公司名', align:'center', hide: false}
+                            ]],
+                            done: function (res, curr, count) {
+                                var tableId = this.id;
+                                // 原dom
+                                var tableElem = this.elem;
+                                // layui渲染出来的表格dom
+                                var tableViewElem = tableElem.next();
+                                //var data = this.url ? res:res.data;
+                                // 当前页面的数据
+                                var data = table.cache[tableId];
+
+                                // 遍历tbody的tr
+                                layui.each(tableViewElem.find('.layui-table-main').find('tr'), function (index, trElem) {
+                                    // 行节点
+                                    trElem = $(trElem);
+                                    // 行下标
+                                    var trIndex = trElem.data('index');
+                                    // 行数据
+                                    var trData = data[trIndex];
+                                    // 判断是否选中的逻辑这个根据自己的实际情况处理
+                                    for (var i=0;i<cid_list.length;i++){
+                                        if (trData.id == cid_list[i]){
+                                            // 如果存在禁用选项，则移除全选
+                                            $(".layui-table-header thead").find("input[name = 'layTableCheckbox'][lay-filter='layTableAllChoose']").remove();
+                                            $(".layui-table-header thead").find(".layui-form-checkbox").remove();
+                                            // 只加属性并不能在获得选中行中得到数据
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('checked', 'checked');
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('value', '');
+                                            tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').attr('disabled', 'disabled');
+                                            // console.log(tableViewElem.find('tr[data-index="' + trIndex + '"] [name="layTableCheckbox"]').text());
+                                            // 把cache的LAY_CHECKED设置成true才能在获得表格选中的数据中得到当前选中的行
+                                            trData[table.config.checkName] = true;
+                                        }
+                                    }
+                                });
+                                // 最后渲染。参数看具体环境，如果有filter之类的尽量具体渲染到某一个form。
+                                form.render(null, tableViewElem.attr('lay-filter'));
+                            }
+                            
+                        });
+
+                        form.on('submit(assign_supplier_search)', function (data) {
+                            var field = data.field;
+                            table.reload('scm_assign_supplier_table',{
+                                where: field
+                            });
+                        });
+                        $(".assign-supplier-searchform input").bind("input propertychange", function (even) {
+                            $("*[lay-filter='assign_supplier_search']").click();
+                        })
+
+                        // PCB 供应商表格  工具栏事件
+                        table.on('toolbar(scm_assign_supplier_table)', function (obj) {
+                            var checkStatus = table.checkStatus(obj.config.id);
+                            switch (obj.event) {
+                                case 'getCheckData':
+                                    var data = checkStatus.data;
+                                    openAssignSupplier_data = data;
+                            }
+                        });
+                    })
+                }
+            });
+
+        }
+    })
 
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 钢网订单-外发报价
     function tabRenderStencil(){

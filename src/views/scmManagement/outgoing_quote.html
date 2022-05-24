@@ -50,6 +50,11 @@
                     <!--PCB订单-->
                     <div class="layui-tab-item layui-show">
                         <table class="layui-table" id="scm_Tabpcb_outgoing_quote" lay-filter="scm_Tabpcb_outgoing_quote"></table>
+                        <script type="text/html" id="scmTabpcb_outgoing_quote_toolbar">
+                            <div class="layui-btn-container">
+                                <button class="layui-btn layui-btn-sm" lay-event="batchAssign">批量指定</button>
+                            </div>
+                        </script>
                         <script type="text/html" id="pcb-file">
                             {{# if(d.gerberPath != null){ }}
                                 {{# if(d.gerberPath.indexOf("pcbonline.com:9090") != -1) { }}
