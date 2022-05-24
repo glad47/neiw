@@ -54,6 +54,9 @@ layui.define(function(exports){
     var currYears;
       
     initCurrYears();
+
+    element.render();
+    
     function initCurrYears() {
         var myDate = new Date();
         currYears = myDate.getFullYear();
@@ -95,8 +98,9 @@ layui.define(function(exports){
             type:'get',
             data: {"currYears": currYears},
             url:set.baseUrl+'allGraphs/monthlySales',
+            async:false,
             success: function (res) {
-                // console.log(res.data);
+                console.log(res.data);
                 var result = lineChartCheckData(res.data,currYears);
                 // console.log(result);
                 var result3 =lineChartCheckData(res.userData,currYears);
@@ -150,37 +154,37 @@ layui.define(function(exports){
           series : data1.seriesData
         },
         //各自类型销售额
-        {
-          title: { 
-            text: currYears+'各种类型销售额',
-            x: 'center',
-            itemGap: 10,
-            textStyle: {
-                fontSize: 18,
-                // padding: 5,
-            },
-            subtext: '单位（$）'
-          }, 
-          tooltip : {
-            trigger: 'axis'
-          },
-          legend: {
-            padding: 25,
-            data:data6.legendData
-          },
-          xAxis : [{
-            type : 'category',
-            boundaryGap : false,
-            data: data6.months
-          }],
-          yAxis : [{
-            type : 'value',
-            axisLabel : {
-              formatter: '$ '+'{value}'
-            }
-          }],
-          series : data6.seriesData
-        },
+        // {
+        //   title: { 
+        //     text: currYears+'各种类型销售额',
+        //     x: 'center',
+        //     itemGap: 10,
+        //     textStyle: {
+        //         fontSize: 18,
+        //         // padding: 5,
+        //     },
+        //     subtext: '单位（$）'
+        //   }, 
+        //   tooltip : {
+        //     trigger: 'axis'
+        //   },
+        //   legend: {
+        //     padding: 25,
+        //     data:data6.legendData
+        //   },
+        //   xAxis : [{
+        //     type : 'category',
+        //     boundaryGap : false,
+        //     data: data6.months
+        //   }],
+        //   yAxis : [{
+        //     type : 'value',
+        //     axisLabel : {
+        //       formatter: '$ '+'{value}'
+        //     }
+        //   }],
+        //   series : data6.seriesData
+        // },
         //总的月销售额
         {
           title : {
@@ -257,77 +261,77 @@ layui.define(function(exports){
         //   }]
         // },
         //跟单员款数
-        {
-          title: {
-            text: currYears+'年跟单员月销售款数',
-            x: 'center',
-            itemGap: 12,
-            textStyle: {
-                fontSize: 18,
-                  // padding: 5,
-            },
-            subtext: '单位（款）'
-          },
-          tooltip : {
-            trigger: 'axis',
-            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-              type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-            }
-          },
-          legend: {
-            padding: 25,
-            data: data1.legendData
-          },
-          grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            // containLabel: true
-          },
-          // calculable : true,
-          xAxis : [
-            {
-              type : 'category',
-              data : data1.months
-            }
-          ],
-          yAxis : [
-            {
-              type : 'value'
-            }
-          ],
-          series : data2
-        },
+        // {
+        //   title: {
+        //     text: currYears+'年跟单员月销售款数',
+        //     x: 'center',
+        //     itemGap: 12,
+        //     textStyle: {
+        //         fontSize: 18,
+        //           // padding: 5,
+        //     },
+        //     subtext: '单位（款）'
+        //   },
+        //   tooltip : {
+        //     trigger: 'axis',
+        //     axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+        //       type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        //     }
+        //   },
+        //   legend: {
+        //     padding: 25,
+        //     data: data1.legendData
+        //   },
+        //   grid: {
+        //     left: '3%',
+        //     right: '4%',
+        //     bottom: '3%',
+        //     // containLabel: true
+        //   },
+        //   // calculable : true,
+        //   xAxis : [
+        //     {
+        //       type : 'category',
+        //       data : data1.months
+        //     }
+        //   ],
+        //   yAxis : [
+        //     {
+        //       type : 'value'
+        //     }
+        //   ],
+        //   series : data2
+        // },
         //新增的用户量
-        {
-          title: {
-            text: currYears+'年跟单员月客户数',
-            x: 'center',
-            itemGap: 12,
-            textStyle: {
-              fontSize: 18,
-              // padding: 5,
-            },
-            subtext: '单位（个）'
-          },
-          tooltip : { //提示框
-            trigger: 'axis',
-            //formatter: "{b}<br>用户数：{c}"
-          },
-          legend: {
-            padding: 25,
-            data:data3.legendData
-          },
-          xAxis : [{ //X轴
-            type : 'category',
-            boundaryGap : false,
-            data : data3.months
-          }],
-          yAxis : [{  //Y轴
-            type : 'value'
-          }],
-          series : data3.seriesData
-        }
+        // {
+        //   title: {
+        //     text: currYears+'年跟单员月客户数',
+        //     x: 'center',
+        //     itemGap: 12,
+        //     textStyle: {
+        //       fontSize: 18,
+        //       // padding: 5,
+        //     },
+        //     subtext: '单位（个）'
+        //   },
+        //   tooltip : { //提示框
+        //     trigger: 'axis',
+        //     //formatter: "{b}<br>用户数：{c}"
+        //   },
+        //   legend: {
+        //     padding: 25,
+        //     data:data3.legendData
+        //   },
+        //   xAxis : [{ //X轴
+        //     type : 'category',
+        //     boundaryGap : false,
+        //     data : data3.months
+        //   }],
+        //   yAxis : [{  //Y轴
+        //     type : 'value'
+        //   }],
+        //   series : data3.seriesData
+        // }
       ]
       ,elemDataView = $('#LAY-index-dataview').children('div')
       ,renderDataView = function(index){
