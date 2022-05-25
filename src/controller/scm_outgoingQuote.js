@@ -200,18 +200,23 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                         } else {
                             supplierArr = jstools.ArrayClearRepeat(supplierArr);     // 字符串转数组去重[封装只接收数组]，再转回字符串提交给后台
                             console.log("supplierArr:"+supplierArr);
-                            var postData = {'id':data.id, 'supplierIds': supplierArr.toString(),'isInternal':data.isInternal,'onlineOid':data.onlineOid};
-                            console.log(postData);
+                            var postData = {'id':data.id, 'supplierIds': supplierArr.toString(),'isInternal':data.isInternal,'onlineOid':data.onlineOid,'businessOperationName':"assignSupplier"};
+                            // console.log(postData);
                             admin.req({
                                 type: 'post',
                                 url: setter.baseUrl + 'scm/pcborder/skipSubmit',
                                 data: JSON.stringify(postData),
                                 contentType: "application/json;charset=utf-8",
                                 success: function (res) {
-                                    layer.alert('成功跳过提交!', function () {
-                                        openAssignSupplier_data = null;     // 初始化
-                                        layer.closeAll();
-                                    });
+                                    if(res.code == 0){
+                                        layer.alert('成功跳过提交!', function () {
+                                            openAssignSupplier_data = null;     // 初始化
+                                            layer.closeAll();
+                                        });
+                                    } else{
+                                        layer.msg(res.msg);
+                                    }
+                                    
                                 }
                             });
                         }
@@ -383,9 +388,12 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
         // console.log(obj);
         var checkStatus = table.checkStatus(obj.config.id);
         var data = checkStatus.data;
+        var pns = data.map(function(elem){return elem.productNo}).join(",");
         if(obj.event === 'batchAssign'){
-            console.log(data);
+            // console.log(data);
+            // console.log(pns);
             data.typeOpen = "batchAssign";
+            data.pns = pns;
             var _len = data.length;
             if (_len < 1) {
                 layer.msg('请至少选择一条数据');
@@ -398,25 +406,35 @@ layui.define(['admin', 'table', 'index','element','form','laydate', 'jsTools'], 
                 ,btn:['提交','取消']    // 跳过提交先隐藏，功能已经写好了的
                 ,yes:function(index, layero){
                     var checkdataSupplier = table.checkStatus('scm_assign_supplier_table');
-                    console.log(checkdataSupplier);
+                    // console.log(checkdataSupplier);
                     if(checkdataSupplier.data.length == 0) {
                         layer.msg('请至少选择一个供应商');
                         return; 
                     }
                     let batchOrder = [];
                     data.forEach(item =>{
-                        batchOrder.push({ oid: item.id, orderType: item.orderType})
+                        let order = new Object();
+                        order.oid = item.id;
+                        order.orderType = item.orderType;
+                        batchOrder.push(order);
                     });
-                    var postData = {businessOperationName:"batchAssignSupplier",batchOrder:batchOrder,supplierIds:checkdataSupplier.data[0].id};
+                    var postData = {'businessOperationName':"batchAssignSupplier",'batchOrder':batchOrder,'supplierIds':checkdataSupplier.data[0].id};
                     console.log(postData);
                     admin.req({
                         url: setter.baseUrl + 'scm/pcborder/skipSubmit',
-                        data: postData,
+                        data: JSON.stringify(postData),
+                        dataType:'json',
+                        contentType:'application/json',
+                        type:'post',
                         success: function (res) {
-                            layer.alert('成功跳过提交!', function () {
-                                openAssignSupplier_data = null;     // 初始化
-                                layer.closeAll();
-                            });
+                            if (res.code == 0 ) {
+                                layer.alert('批量指派成功！!', function () {
+                                    layer.closeAll();
+                                });
+                            } else {
+                                layer.msg(data.msg);
+                            } 
+                            
                         }
                     });
 
